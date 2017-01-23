@@ -235,7 +235,7 @@ bot.on("message", message => {
         getter.getRandom(query[1], (url) => {
             console.log(2)
             if (url === undefined) {
-                message.reply("Não achei")
+                message.reply("Não achei nada com essas tags :(")
             }
             else {
                 message.reply('http:'+url)
