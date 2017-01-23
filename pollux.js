@@ -407,6 +407,8 @@ Abre isso
 
 [] = _Argumento Opcional_
 <> = _Argumento Obrigatório_
+
+Invite: https://discordapp.com/oauth2/authorize?client_id=271394014358405121&scope=bot
 `
         message.author.sendMessage(helptxt)
         console.log("HELP INVOKED")
