@@ -1,7 +1,10 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client();
-const getter = require('booru-getter')
+const getter = require('booru-getter');
+var sortJson = require('sort-json');
+var arraySort = require('array-sort');
+
 var Jimp = require("jimp");
 bot.login("MjcxMzk0MDE0MzU4NDA1MTIx.C2Fy7Q.R4Fmoe-fKNsbPML_9zsBDzvQ6KA");
 let points = JSON.parse(fs.readFileSync('./points.json', 'utf8'));
@@ -12,6 +15,8 @@ var responseObject = {
     , "lol": "roflmaotntpmp"
 };
 var counter = 0
+let drops = 0
+let vacuum = []
     //
     //===============================================================
     //             PATHS
@@ -24,6 +29,7 @@ const CARDS = "./imgres/usercards/"
 const BUILD = "./imgres/build/"
 const FONTS = "./fonts/"
 const LVBAR = "./misc/levelbars/"
+const RANK = points
 const hook = new Discord.WebhookClient('272073532983345156', 'R9ZazRH9UWfojUO3wwEUTI45kQ21raefTRDxLZWwhgYXRP4_GB_2sNZHqpfoc8l3ayDL');
 //
 //===============================================================
@@ -55,7 +61,8 @@ function checkment(message) {
     return tgt
 }
 
-function glassify(img, call) {
+function glassify(img, call,msg = false) {
+
     Jimp.read(img).then(function (user) {
         Jimp.read(BUILD + "glass.png").then(function (glass) {
             Jimp.read(BUILD + "note.png").then(function (lenna) {
@@ -65,6 +72,7 @@ function glassify(img, call) {
                 Jimp.read(BUILD + "note.png").then(function (lennaB) {
                     lennaB.composite(user, 0, 0)
                     lennaB.mask(lenna, 0, 0)
+
                     lennaB.write(`${GLASS}/${call}.png`);
                 });
             });
@@ -100,8 +108,8 @@ bot.on("message", message => {
     //
     //LEVEL UP CHECKER
     //-----------------------------------------------------
-    let curLevel = Math.floor(0.15 * Math.sqrt(userData.points));
-    let forNext = Math.trunc(Math.pow((userData.level + 1) / 0.15, 2));
+    let curLevel = Math.floor(0.18 * Math.sqrt(userData.points));
+    let forNext = Math.trunc(Math.pow((userData.level + 1) / 0.18, 2));
     if (curLevel > userData.level) {
         // Level up!
         userData.level = curLevel;
@@ -122,7 +130,7 @@ bot.on("message", message => {
                             catch (err) {
                                 var level = "00"
                             }
-                            var next = Math.trunc(Math.pow((Number(level) + 1) / 0.15, 2));
+                            var next = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2));
                             if (level.length == 1) {
                                 level = `0${level}`
                             }
@@ -190,6 +198,45 @@ bot.on("message", message => {
             message.channel.sendFile(`${MISC}/${caller}.png`)
         }, 2000);
     };
+    //
+    //RANK
+    //-----------------------------------------------------
+
+    if (message.content.startsWith(prefix + "rank")) {
+
+        var rankItem=[]
+     var ranked=[]
+        for (var i in points){
+          rankItem.name = points[i].name
+          rankItem.points = points[i].points
+          rankItem.level = points[i].level
+
+          ranked.push(rankItem)
+          rankItem=[]
+        }
+
+        arraySort(ranked,'points',{reverse: true})
+        console.log(ranked)
+        let replyData = `
+:first_place: 1st   **${ranked[0].name}**  Level ${ranked[0].level}
+
+:second_place: 2nd  **${ranked[1].name}** Level ${ranked[1].level}
+
+:third_place: 3rd   **${ranked[2].name}**  Level ${ranked[2].level}
+
+:medal: 4th **${ranked[3].name}**    Level ${ranked[3].level}
+
+:medal: 5th **${ranked[4].name}**    Level ${ranked[4].level}
+
+                        `
+        message.channel.sendMessage(replyData)
+
+
+    };
+
+
+
+
     //
     //Avatar Fetcher
     //-----------------------------------------------------
@@ -261,21 +308,28 @@ bot.on("message", message => {
     //-----------------------------------------------------
     if (message.content.startsWith(prefix + "profile") || message.content.startsWith(prefix + "level")) {
         let tgt = checkment(message)
+
         let tgtData = points[tgt.id];
         console.log("COMP INVOKED")
         let img = tgt.avatarURL.substr(0, tgt.avatarURL.length - 10)
-        glassify(img, caller)
+
+        glassify(img, caller, message)
         setTimeout(function () {
+
             Jimp.read(`${GLASS}/${caller}.png`).then(function (photo) {
+           console.log("1")
                 Jimp.read(BUILD + 'cartela.png').then(function (cart) {
+                     console.log("2")
                     Jimp.read(BUILD + 'levbar.png').then(function (bar) {
+                          console.log("3")
                         let adm = checkAdm(message, tgt)
+                         console.log("4")
                         Jimp.read(BUILD + adm + '.png').then(function (tag) {
                             Jimp.loadFont(FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
                                 Jimp.loadFont(FONTS + 'TXT.fnt').then(function (sub) {
                                     try {
                                         var level = tgtData.level.toString()
-                                        var money = tgtData.money.toString()
+                                        var money = tgtData.cookies.toString()
                                         var exp = tgtData.points.toString()
                                     }
                                     catch (err) {
@@ -283,7 +337,8 @@ bot.on("message", message => {
                                         var money = "00"
                                         var exp = "0000"
                                     }
-                                    var next = Math.trunc(Math.pow((Number(level) + 1) / 0.15, 2));
+                                     console.log("5")
+                                    var next = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2));
                                     var perc = Number(exp) / next
                                     if (level.length == 1) {
                                         level = `0${level}`
@@ -291,36 +346,43 @@ bot.on("message", message => {
                                     else if (level === undefined) {
                                         level = `XX`
                                     }
+                                     console.log("6")
                                     let join = message.guild.member(tgt).joinedAt
                                     let joinstamp = `${join.getDate()}/${join.getMonth()+1}/${join.getFullYear()} - ${join.toLocaleTimeString()}`;
                                     var stret = 354 * perc
                                     bar.resize(stret + 1, 18)
                                     if (tgt.bot) {
                                         level = "XX"
-                                        money = "INFINITE"
+                                        money = "INFINITE COOKIES"
                                         exp = "99999"
                                         next = "99999"
                                         bar.resize(354, 18)
                                     };
+                                     console.log("52")
+
                                     cart.print(head, 153, 3, message.guild.member(tgt).displayName);
                                     cart.print(head, 425, 37, `${level}`);
-                                    cart.print(head, 290, 160, `${money}`);
+                                    cart.print(head, 290, 160, `${money} Cookies`);
                                     cart.print(sub, 74, 253, `${exp} / ${next}`);
                                     cart.print(sub, 172, 66, `${joinstamp}`);
                                     cart.composite(bar, 45, 231)
                                     cart.composite(photo, 18, 20)
                                     cart.composite(tag, 7, 182)
-                                    cart.write(`${CARDS}/${caller}.png`)
+                                     console.log("5221234124124")
+
+                                    cart.write(`${CARDS}${caller}.png`)
+                                    console.log("FINNI")
+                                    //message.reply(caller)
                                 })
                             });
                         });
                     });
                 });
             });
-        }, 1000);
+        }, 500);
         setTimeout(function () {
-            message.channel.sendFile(`${CARDS}/${caller}.png`)
-        }, 2000);
+            message.channel.sendFile(`${CARDS}${caller}.png`)
+        }, 2200);
     };
     //
     //Reactions
@@ -405,6 +467,12 @@ Putaria, usar no canal NSFW ou serás mutado.
 \`+help\`
 Abre isso
 
+\`+pick\`
+Pega cookies largados
+
+\`$cook\`
+Veja quantos cookies você tem
+
 [] = _Argumento Opcional_
 <> = _Argumento Obrigatório_
 
@@ -414,7 +482,39 @@ Invite: https://discordapp.com/oauth2/authorize?client_id=271394014358405121&sco
         console.log("HELP INVOKED")
         message.reply("Te enviei uns lance em pvt, dá um zóio.")
 
+
+
     };
+
+       let droprate = randomize(0,1000);
+    console.log("DROPRATE "+droprate)
+        if (droprate>=900){
+                message.guild.defaultChannel.sendFile(BUILD+'cookie.png','Cookie.png',"OLHA GENTE! Um cookie! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot){vacuum.push(cookpot)})
+
+        drops++
+        }
+    if (message.content.startsWith('$cook')) {
+        message.reply("voce tem "+userData.cookies+" cookies")
+    }
+     if (message.content.startsWith(prefix + "pick")) {
+         if(drops > 0){
+             userData.cookies+=drops
+             message.channel.sendMessage(message.author.username+" pegou "+drops+" Cookie(s)");
+             message.guild.defaultChannel.bulkDelete(vacuum)
+             drops = 0
+         }else{
+             message.channel.sendMessage("No Cookie");
+         }
+     }
+
+      if (message.content.startsWith(prefix + "admindrop")) {
+         // message.guild.defaultChannel.sendMessage()
+
+        message.guild.defaultChannel.sendFile(BUILD+'cookie.png','Cookie.png',"OLHA GENTE! Um cookie! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot){vacuum.push(cookpot)})
+
+        drops++
+
+      }
     //-----------------------------------------------------
     //                                           END
     //-----------------------------------------------------
@@ -435,6 +535,10 @@ var current_hour = date.getHours();
 var counter = false;
 bot.on('ready', () => {
     console.log('START');
+
+
+
+
     var ts = Date.now().toString()
     fs.createReadStream('points.json').pipe(fs.createWriteStream('./backup/points_backup_' + ts + '.json'));
     // bot.setPlayingGame("Hyperdimension Neptunia")

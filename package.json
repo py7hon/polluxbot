@@ -24,6 +24,7 @@
   },
   "main": "src/index",
   "dependencies": {
+    "array-sort": "^0.1.2",
     "booru-getter": "0.0.2",
     "common-tags": "^1.4.0",
     "escape-string-regexp": "^1.0.0",
