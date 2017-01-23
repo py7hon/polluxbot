@@ -432,7 +432,7 @@ var counter = false;
 bot.on('ready', () => {
     console.log('START');
     var ts = Date.now().toString()
-    fs.createReadStream('points.json').pipe(fs.createWriteStream('/backup/points_backup_' + ts + '.json'));
+    fs.createReadStream('points.json').pipe(fs.createWriteStream('./backup/points_backup_' + ts + '.json'));
     // bot.setPlayingGame("Hyperdimension Neptunia")
     hook.sendSlackMessage({
             'username': 'Falk'
