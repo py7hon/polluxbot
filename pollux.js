@@ -419,6 +419,10 @@ Invite: https://discordapp.com/oauth2/authorize?client_id=271394014358405121&sco
     //                                           END
     //-----------------------------------------------------
 });
+bot.on('presenceUpdate', (member) => {
+     console.log(member.displayName)
+      member.displayName=="Flicky" ? console.log("foi")  :console.log("numfoi")
+})
 
 bot.on('guildMemberAdd', (member) => {
     member.guild.defaultChannel.sendMessage(`Ae galera, ${member.user.username} acabou de entrar!`)
