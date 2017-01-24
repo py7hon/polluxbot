@@ -30,6 +30,8 @@ const FONTS = "./fonts/"
 const LVBAR = "./misc/levelbars/"
 const RANK = points
 const hook = new Discord.WebhookClient('272073532983345156', 'R9ZazRH9UWfojUO3wwEUTI45kQ21raefTRDxLZWwhgYXRP4_GB_2sNZHqpfoc8l3ayDL');
+
+const coreHook = new Discord.WebhookClient('273496953990676480', '9W4LcooEqVzLsJ1OF3iyB3DxekIlUbGK2dShrtsgGB12x2cOQqCEwdH9He_FQ1d89rMH');
 //
 //===============================================================
 //             FUNCTIONS
@@ -86,6 +88,9 @@ function randomize(min, max) {
 //===============================================================
 //
 bot.on("message", message => {
+
+    var droprate = randomize(0, 1000);
+
     var caller = checkment(message).username // Checar Caller
     if (message.author.bot) return; // Ignorar Bot
     // POINTS.JSON ---------------------------------------------------
@@ -250,21 +255,23 @@ bot.on("message", message => {
         if (err) console.error(err)
     });
     if (message.content.startsWith(prefix + "rule34")) {
-        console.log("RULE34 INVOKED----------")
-        let query = message.content.split(" ") !query[1] ? query[1] = "furry" : query[1] = query[1];
+        console.log("RULE34 INVOKED----------");
+        let query = message.content.split(" ");
+        !query[1] ? query[1] = "furry" : query[1] = query[1];
         getter.getRandomLewd(query[1], (url) => {
             if (url === undefined) {
                 message.reply("Teus pornô são tão bizarro que nem achei essa merda.")
             }
             else {
-                message.reply("http:" + url)
+                message.reply("http:" + url);
             }
         })
     };
     if (message.content.startsWith(prefix + "safe")) {
         console.log("SAFEBOORU INVOKED----------")
         console.log(1)
-        let query = message.content.split(" ") !query[1] ? query[1] = "1girl" : query[1] = query[1];
+        let query = message.content.split(" ");
+        !query[1] ? query[1] = "1girl" : query[1] = query[1];
         getter.getRandom(query[1], (url) => {
             console.log(2)
             if (url === undefined) {
@@ -371,6 +378,24 @@ bot.on("message", message => {
     if (message.content.startsWith(prefix + "salty")) {
         message.channel.sendFile(REACTIONS + "juba.png")
     };
+    if (message.content.startsWith(prefix + "potdrop")) {
+
+        tgt = message.guild.member(checkment(message))
+        let myRole = message.guild.roles.find("name", "ADM");
+        if (tgt.roles.exists("name", "ADM")) {
+            droprate = 1
+        }
+        else if (tgt.roles.exists("name", "MOD")) {
+           message.reply("Somente os almighty Admins podem dropar potes");
+        }
+        else {
+            message.reply("Somente os almighty Admins podem dropar potes");
+        }
+    };
+
+
+
+
     if (message.content.startsWith(prefix + "vidal")) {
         message.channel.sendFile(REACTIONS + "vidaru.png")
     };
@@ -399,14 +424,14 @@ bot.on("message", message => {
     if (responseObject[message.content]) {
         message.channel.sendMessage(responseObject[message.content]);
     }
-    if (current_hour == 23 && counter < 1) {
+    /*if (current_hour == 23 && counter < 1) {
         msg.guild.defaultChannel.sendMessage("Vão dormir seus caralho!")
         counter = true
         console.log("vaidormi")
     }
     else if (current_hour != 23) {
         counter = false
-    }
+    }*/
     if (message.content.startsWith(prefix + "help")) {
         var helptxt = `
 **Comandos disponíveis:**
@@ -462,7 +487,7 @@ Invite: https://discordapp.com/oauth2/authorize?client_id=271394014358405121&sco
         console.log("HELP INVOKED")
         message.reply("Te enviei uns lance em pvt, dá um zóio.")
     };
-    let droprate = randomize(0, 1000);
+
     console.log("DROPRATE " + droprate)
     if (droprate >= 900) {
         message.guild.defaultChannel.sendFile(BUILD + 'cookie.png', 'Cookie.png', "OLHA GENTE! Um cookie! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
@@ -470,40 +495,85 @@ Invite: https://discordapp.com/oauth2/authorize?client_id=271394014358405121&sco
         })
         drops++
     }
+      if (droprate <= 2) {
+        message.guild.defaultChannel.sendFile(BUILD + 'cookipot.jpg', 'Cookipot.jpg', "EITA PORRA! Um pote inteiro de cookies! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
+            vacuum.push(cookpot)
+        })
+        drops+=10
+    }
     if (message.content.startsWith('$cook')) {
         message.reply("voce tem " + userData.cookies + " cookies")
     }
+    var aaa = []
     if (message.content.startsWith(prefix + "pick")) {
+      //aaa.message.delete()
+        ///console.log(aaa)
+        setTimeout(function () {
+
         if (drops > 0) {
             userData.cookies += drops
-            message.channel.sendMessage(message.author.username + " pegou " + drops + " Cookie(s)");
-            message.guild.defaultChannel.bulkDelete(vacuum)
+            message.channel.sendMessage("**"+message.author.username + "** pegou " + drops + " Cookie(s)").then(function (c) {
+            message.delete()
+            c.delete(500000)
+            });
+            try{
+                message.guild.defaultChannel.bulkDelete(vacuum);
+            }catch (err){
+            message.channel.bulkDelete(vacuum);
+                };
+
             drops = 0
         }
         else {
-            message.channel.sendMessage("No Cookie");
+           setTimeout(function () {
+               message.guild.defaultChannel.bulkDelete(vacuum)
+               message.channel.bulkDelete(vacuum)
+           }, 5345)
+            //message.channel.sendMessage("No Cookie");
+        }
+        }, 2345)
+
+    };
+    if (message.content.startsWith(prefix + "test")) {
+        message.channel.sendMessage("teste")
+    }
+    if (message.content.startsWith(prefix + "drop")) {
+        // message.guild.defaultChannel.sendMessage()
+        if (userData.cookies >= 1) {
+            userData.cookies-=1
+           aaa =  message.channel.sendFile(BUILD + 'cookie.png', 'Cookie.png', message.author.username + " largou um cookie :cookie: na sala! Quem digitar \`+pick\` primeiro leva! ",function (cookpot) {
+                vacuum.push(cookpot)
+            })
+            drops++
+            message.delete(1000)
+        }
+        else {
+            message.reply("Você não tem cookies pra dropar...");
         }
     }
-    if (message.content.startsWith(prefix + "admindrop")) {
-        // message.guild.defaultChannel.sendMessage()
-        message.guild.defaultChannel.sendFile(BUILD + 'cookie.png', 'Cookie.png', "OLHA GENTE! Um cookie! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
-            vacuum.push(cookpot)
-        })
-        drops++
-    }
+
+    coreHook.sendMessage(`\`\`\`js
+Message processed
+Author:${message.author}
+Content:${message.content}
+Cookpot Status:${vacuum}
+Drops Status:${drops}
+Droprate:${droprate}
+\`\`\``)
+
     //-----------------------------------------------------
     //                                           END
     //-----------------------------------------------------
 });
 bot.on('presenceUpdate', (member) => {
-    console.log(member.displayName)
-    member.displayName == "Flicky" ? console.log("foi") : console.log("numfoi")
+    //console.log(member.displayName)
+    //member.displayName == "Flicky" ? console.log("foi") : console.log("numfoi")
 })
 bot.on('guildMemberAdd', (member) => {
     member.guild.defaultChannel.sendMessage(`Ae galera, ${member.user.username} acabou de entrar!`)
 });
 bot.on('guildMemberRemove', (member) => {
-    member.guild.defaultChannel.sendMessage(` ${member.user.username} vazou!`)
+    member.guild.defaultChannel.sendMessage(` ${member.user.username} foi-se!`)
 });
 var date = new Date();
 var current_hour = date.getHours();
@@ -537,4 +607,15 @@ bot.on('error', e => {
 });
 process.on("unhandledRejection", err => {
     console.error("OH SHIT! Uncaught Promise Error: \n" + err.stack);
+    let crash = ":skull_crossbones: **Uncaught Promise Error:** \n" + err.stack;
+     coreHook.sendSlackMessage({
+            'username': 'Falk'
+            , 'attachments': [{
+                'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg'
+                , 'pretext': crash
+                , 'color': '#C04', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
+                // 'footer': 'Powered by sneks',
+                'ts': Date.now() / 1000
+      }]
+        })
 });
