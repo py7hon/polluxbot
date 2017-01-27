@@ -4,5 +4,5 @@
 /bower_components/
 /node_modules/
 /backup/
-points.json
+./points.json
 *.psd
