@@ -4,6 +4,6 @@
 /bower_components/
 /node_modules/
 /backup/
-points.json
+
 *.psd
 /points.json
