@@ -115,56 +115,43 @@ function shuffle(array) {
 }
 
 function draw(array, who) {
-    var cardimg = new Jimp(array.length * 96, 147, function (err, image) {});
-    console.log(array)
+    var cardimg = new Jimp(array.length * 98, 147, function (err, image) {});
 
-  //  if (array.length == 1) {
-        Jimp.read(`${BUILD}/cards/${array[0].card}.png`).then(function (c1) {
+
+    Jimp.read(`${BUILD}cards/${array[0].card}.png`).then(function (c1) {
             cardimg.composite(c1, 0 * 96, 0)
-            cardimg.write(`${BUILD}/cards/${who}1_bj.png`)
-        })
-  //  }
-        try{
-
-  //  if (array.length == 2) {
-        Jimp.read(`${BUILD}/cards/${array[1].card}.png`).then(function (c1) {
-            cardimg.composite(c1, 1 * 96, 0)
-            cardimg.write(`${BUILD}/cards/${who}2_bj.png`)
-        })
-        }catch(err){
-            try{
-
-  //  }
- //   if (array.length == 3) {
-        Jimp.read(`${BUILD}/cards/${array[2].card}.png`).then(function (c1) {
-            cardimg.composite(c1, 2 * 96, 0)
-            cardimg.write(`${BUILD}/cards/${who}3_bj.png`)
-        })
-            }catch(err){//try
-//    }
- //   if (array.length == 4) {
-        try{
-            Jimp.read(`${BUILD}/cards/${array[3].card}.png`).then(function (c1) {
-            cardimg.composite(c1, 3 * 96, 0)
-            cardimg.write(`${BUILD}/cards/${who}4_bj.png`)
-        })
-            }catch(err){//try
-//    }
-                try{
-//    if (array.length == 5) {
-        Jimp.read(`${BUILD}/cards/${array[4].card}.png`).then(function (c1) {
-            cardimg.composite(c1, 4 * 96, 0)
-            cardimg.write(`${BUILD}/cards/${who}5_bj.png`)
+            cardimg.write(`${BUILD}cards/${who}0_bj.png`)
+            console.log(array[0].card)
         })
 
-                }catch(err){cardimg.write(`${BUILD}/cards/${who}_bj.png`)}
-
-
-
-
-        }}}//catch
-
-//    }
+        setTimeout(function () {
+    Jimp.read(`${BUILD}cards/${array[1].card}.png`).then(function (c1) {
+            cardimg.composite(c1, 1 * 97, 0)
+            cardimg.write(`${BUILD}cards/${who}1_bj.png`)
+        })
+        }, 5);
+        setTimeout(function () {
+    Jimp.read(`${BUILD}cards/${array[2].card}.png`).then(function (c1) {
+            cardimg.composite(c1, 2 * 97, 0)
+            cardimg.write(`${BUILD}cards/${who}2_bj.png`)
+            console.log(array[2].card + "-------------------------------------")
+        })
+        }, 15);
+        setTimeout(function () {
+    console.log(`${BUILD}cards/${array[3].card}.png`)
+    Jimp.read(`${BUILD}cards/${array[3].card}.png`).then(function (c1) {
+            cardimg.composite(c1, 3 * 97, 0)
+            cardimg.write(`${BUILD}cards/${who}3_bj.png`)
+        })
+        }, 30);
+       setTimeout(function () {
+    Jimp.read(`${BUILD}cards/${array[4].card}.png`).then(function (c1) {
+            cardimg.composite(c1, 4 * 97, 0)
+            cardimg.write(`${BUILD}cards/${who}4_bj.png`)
+            cardimg.write(`${BUILD}cards/${who}5_bj.png`)
+            console.log(array[5].card + "-------------------------------------")
+        })
+        }, 50);
 }
 //===============================================================
 //             BOT MESSAGE
@@ -277,27 +264,33 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
     if (message.content.startsWith(prefix + "bj")) {
         console.log(ongoing)
         if (ongoing) {
-            message.reply("failed")
+            message.reply("você já está jogando comigo. Primeiro termine esse.")
             return;
         }
         stuff = message.content.toLowerCase().split(' ')
-        if (isNaN(parseInt(stuff[1], 10))) {
-            message.reply("failed")
+        if (isNaN(parseInt(stuff[1], 10))||stuff[1]==0) {
+            message.reply("Você precisa apostar alguma coisa, chuchu~")
             return;
         }
         if (checkCookies(stuff[1], userData) == false) {
-            message.reply("failed")
+            message.reply("Oxe, você não tem cookies suficientes pra cobrir essa aposta...")
             return;
         }
+        var bet = stuff[1]
+        userData.cookies-=bet
+
+
         ongoing = true
         var deck = []
-        var naipes = ['H/', 'A/', 'S/', 'C/']
+        var naipes = ['H/', 'D/', 'S/', 'C/']
+        var naipesB = [':hearts:', ':diamonds:', ':spades:', ':clubs:']
         var cards = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
         for (i = 0; i < 4; i++) {
             for (x = 0; x < 13; x++) {
                 var card = {
                     card: naipes[i] + cards[x]
                     , value: x + 1
+                    , icon: "**"+cards[x]+"**" + naipesB[i]
                 }
                 deck.push(card)
             }
@@ -308,159 +301,221 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
         var play = []
         var playQ = 0
         var bankQ = 0
+        var round = 0
         if (end) return;
         //// SETUP------------------------------------------------------------------------------------------SETUP
-        bank.unshift(pile[i])
+        bank = [pile[0], pile[2], pile[4], pile[6], pile[8]]
+            //pile.splice(0, 0)
+        play = [pile[1], pile[3], pile[5], pile[7], pile[9]]
+            //pile.splice(0, 0)
         draw(bank, 'banc')
-        setTimeout(function () {
-            message.channel.sendMessage("My card:")
-            message.channel.sendFile(`${BUILD}/cards/${'banc'+bank.length}_bj.png`)
-        }, 1500);
-        pile.splice(0, 1)
-            //
-        play.unshift(pile[i])
         draw(play, caller)
-        setTimeout(function () { message.reply("Your card:").then(function (thread) {
-            setTimeout(function () {
-                message.channel.sendFile(`${BUILD}/cards/${caller+play.length}_bj.png`)
-            }, 1800);
-            if (end) {
-                ongoing = false
-                console.log(ongoing + " ongo")
-                console.log(end + " end")
-                return;
-            }
-            pile.splice(0, 1)
-            for (crd in bank) {
-                bankQ += bank[crd].value
-            }
-            for (crd in play) {
-                playQ += play[crd].value
-            }
-            //-----------------------------------------------------------------------------------REPLY
-           setTimeout(function () { message.channel.sendMessage("**1** Draw **2** Stop. I have:" + bankQ + ", You have:" + playQ) }, 2000);
-                //pick or hold
-            bot.on("message", newmsg => {
-                if (end) {
-                    ongoing = false
-                    console.log(ongoing)
-                    return;
-                }
-                //1 pick
-                //2 hold
-                bankQ = 0;
-                playQ = 0;
-                // pick
-                if (newmsg.author == message.author && newmsg.content == "1") {
-                    play.unshift(pile[i])
-                    draw(play, caller)
-                    setTimeout(function () {
-                        message.reply("Your Random card is " + pile[i].card)
-                        message.channel.sendFile(`${BUILD}/cards/${caller+play.length}_bj.png`)
-                    }, 1800);
-                    pile.splice(0, 1)
-                    for (crd in play) {
-                        console.log(play[crd].value + "+")
-                        playQ += play[crd].value
+        setTimeout(function () {
+            message.channel.sendMessage("Ok, vamos jogar blackjack! Quem fizer 21 ou o mais próximo vence!")
+        }, 500);
+        setTimeout(function () {
+            message.channel.sendMessage("`Embaralhando...`").then(function (kik) {
+                kik.edit("`Embaralhando..`")
+                kik.edit("`Embaralhando.`")
+                kik.edit("`Embaralhando`")
+                    //
+                setTimeout(function () {
+                    kik.delete()
+                    message.channel.sendFile(`${BUILD}/cards/${caller+round}_bj.png`, "card.png", "Sua carta é " + play[round].icon)
+                    if (end == false) {
+                        message.channel.sendFile(`${BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Minha carta é " + bank[round].icon).then(function (thread) {
+                            if (end) {
+                                ongoing = false
+                                console.log(ongoing + " ongo")
+                                console.log(end + " end")
+                                return;
+                            }
+                            for (crd = 0; crd <= round; crd++) {
+                                bankQ += bank[crd].value
+                            }
+                            for (crd = 0; crd <= round; crd++) {
+                                playQ += play[crd].value
+                            }
+                            //-----------------------------------------------------------------------------------REPLY
+                            message.channel.sendMessage(":one:Seguir :two:Parar.Eu tenho:" + bankQ + ", você:" + playQ)
+                            bot.on("message", newmsg => {
+                                if (end) {
+                                    ongoing = false
+                                    console.log(ongoing)
+                                    return;
+                                }
+                                //1 pick
+                                //2 hold
+                                bankQ = 0;
+                                playQ = 0;
+                                // pick
+                                if (newmsg.author == message.author && newmsg.content == "1") {
+                                    round++
+                                    if (end) {
+                                        ongoing = false
+                                        console.log(ongoing)
+                                        return;
+                                    }
+                                    message.channel.sendFile(`${BUILD}/cards/${caller+round}_bj.png`, "card.png", "Sua carta é " + play[round].icon)
+                                    for (crd = 0; crd <= round; crd++) {
+                                        console.log(play[crd].value + "+")
+                                        playQ += play[crd].value
+                                    }
+                                    if (playQ > 21) {
+                                        message.reply("**Você passou de 21**")
+                                        end = true;
+                                        ongoing = false
+                                        console.log(ongoing)
+                                        return;
+                                    }
+                                    for (crd = 0; crd <= round-1; crd++) {
+                                            console.log(bank[crd].value + "+")
+                                            bankQ += bank[crd].value
+                                        }
+                                    if (bankQ < 16) {
+                                        message.channel.sendFile(`${BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Minha carta é " + bank[round].icon)
+                                        for (crd = 0; crd <= round; crd++) {
+                                            console.log(bank[crd].value + "+")
+                                            bankQ += bank[crd].value
+                                        }
+                                    }
+                                    else {
+                                        message.reply("Eu paro...")
+                                        if (bankQ >= playQ || bankQ == 21) {
+                                            message.reply("Eba, ganhei!")
+                                            end = true;
+                                            ongoing = false
+                                            console.log(ongoing)
+                                            return;
+                                        }
+                                        else {
+                                            message.channel.sendMessage("Você venceu!")
+                                            message.channel.sendMessage("Toma aqui, **"+bet*3+"**:cookie: de prêmio!")
+                                             userData.cookies+=bet*3
+
+                                            end = true;
+                                            ongoing = false
+                                            console.log(ongoing)
+                                            return;
+                                        }
+                                    }
+                                    console.log(bankQ)
+                                    if (bankQ > 21) {
+                                        message.channel.sendMessage("Ops... me dei mal")
+                                          message.channel.sendMessage("Toma aqui, **"+bet*3+"**:cookie: de prêmio!")
+                                             userData.cookies+=bet*3
+                                        end = true;
+                                        ongoing = false
+                                        console.log(ongoing)
+                                        return;
+                                    } setTimeout(function () {
+                                    message.reply(":one:Seguir :two:Parar.Eu tenho:" + bankQ + ", você:" + playQ)
+                                     }, 100);
+                                    //check blow
+                                }
+                                else if (newmsg.author == message.author && newmsg.content == "2") {
+                                    round++
+
+                                    //hold
+                                    if (end) {
+                                        ongoing = false
+                                        console.log(ongoing)
+                                        return;
+                                    }
+                                    bankQ=0
+                                      for (crd = 0; crd <= round-1; crd++) {
+                                        bankQ += bank[crd].value
+                                    }
+
+                                     if (bankQ <= 16) {
+                                         console.log(bankQ)
+                                        message.channel.sendFile(`${BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Eu tirei um " + bank[round].icon)
+                                        bankQ=0
+                                        for (crd = 0; crd <= round; crd++) {
+                                            console.log(bank[crd].value + "+")
+                                            bankQ += bank[crd].value
+                                        }
+                                    }
+                                    else {
+                                        message.channel.sendMessage("Eu paro")
+                                         console.log(bankQ)
+                                         bankQ=0
+                                          for (crd = 0; crd <= round-1; crd++) {
+                                        bankQ += bank[crd].value
+                                    }
+                                        if (bankQ >= playQ || bankQ == 21) {
+                                             console.log(bankQ)
+                                            message.channel.sendMessage("Venci!")
+                                            end = true;
+                                            ongoing = false
+                                            console.log(ongoing)
+                                            return;
+                                        }
+                                        else {
+                                            message.channel.sendMessage("Perdi :(")
+                                              message.channel.sendMessage("Toma aqui, **"+bet*3+"**:cookie: de prêmio!")
+                                             userData.cookies+=bet*3
+                                             console.log(bankQ)
+                                            end = true;
+                                            ongoing = false
+                                            console.log(ongoing)
+                                            return;
+                                        }
+                                    }
+
+
+                                    //if (end) return;
+
+                                  playQ=0
+                                    for (crd = 0; crd <= round - 1; crd++) {
+                                        playQ += play[crd].value
+                                    }
+                                    //  message.reply("1 pick 2 hold, Current sum is me:" + bankQ + " you:" + playQ)
+                                    //check blow
+                                    if (bankQ > 21) {
+                                        message.channel.sendMessage("Ops... me dei mal")
+                                          message.channel.sendMessage("Toma aqui, **"+bet*3+"**:cookie: de prêmio!")
+                                             userData.cookies+=bet*3
+                                         console.log(bankQ)
+                                        console.log("bank blow")
+                                        end = true;
+                                        ongoing = false
+                                        console.log(ongoing)
+                                        return;
+                                    }
+                                    //check higher
+                                    if (bankQ >= playQ) {
+                                        message.channel.sendMessage("Yay! Venci")
+                                        console.log("I win")
+                                        end = true;
+                                        ongoing = false
+                                        console.log(ongoing)
+                                        return;
+                                    }
+                                    else {
+                                        message.reply("Você ganhou!")
+                                          message.channel.sendMessage("Toma aqui, **"+bet*3+"**:cookie: de prêmio!")
+                                             userData.cookies+=bet*3
+                                        console.log("I win")
+                                        end = true;
+                                        ongoing = false
+                                        console.log(ongoing)
+                                        return;
+                                    }
+                                    return;
+                                }
+                                else {
+                                    // end = true;
+                                    // ongoing = false
+                                    // console.log(ongoing)
+                                    return;
+                                };
+                            });
+                        });
                     }
-                    console.log(playQ)
-                    if (playQ > 21) {
-                        message.reply("BLOW")
-                        end = true;
-                        ongoing = false
-                        console.log(ongoing)
-                        return;
-                    }
-                    if (bankQ < 18) {
-                        bank.unshift(pile[i])
-                        draw(bank, 'banc')
-                        setTimeout(function () {
-                            message.reply("My Random card is " + pile[i].card)
-                            message.channel.sendFile(`${BUILD}/cards/${'banc'+bank.length}_bj.png`)
-                        }, 1800);
-                        pile.splice(0, 1)
-                        for (crd in bank) {
-                            console.log(bank[crd].value + "+")
-                            bankQ += bank[crd].value
-                        }
-                    }
-                    else {
-                        message.reply("I hold")
-                        if (bankQ >= playQ) {
-                            message.reply("I win")
-                            end = true;
-                            ongoing = false
-                            console.log(ongoing)
-                            return;
-                        }
-                        else {
-                            message.reply("You win")
-                            end = true;
-                            ongoing = false
-                            console.log(ongoing)
-                            return;
-                        }
-                    }
-                    console.log(bankQ)
-                    if (bankQ > 21) {
-                        message.reply("BLOW")
-                        end = true;
-                        ongoing = false
-                        console.log(ongoing)
-                        return;
-                    }
-                    message.reply("1 pick 2 hold, Current sum is me:" + bankQ + " you:" + playQ)
-                        //check blow
-                }
-                else if (newmsg.author == message.author && newmsg.content == "2") {
-                    //hold
-                    bank.unshift(pile[i])
-                    draw(bank, 'banc')
-                    setTimeout(function () {
-                        message.reply("My Random card is " + pile[i].card)
-                        message.channel.sendFile(`${BUILD}/cards/${'banc'+bank.length}_bj.png`)
-                    }, 1800);
-                    pile.splice(0, 1)
-                    for (crd in bank) {
-                        bankQ += bank[crd].value
-                    }
-                    for (crd in play) {
-                        playQ += play[crd].value
-                    }
-                    message.reply("1 pick 2 hold, Current sum is me:" + bankQ + " you:" + playQ)
-                        //check blow
-                    if (bankQ > 21) {
-                        message.reply("BLOW")
-                        end = true;
-                        ongoing = false
-                        console.log(ongoing)
-                        return;
-                    }
-                    //check higher
-                    if (bankQ >= playQ) {
-                        message.reply("I win")
-                        end = true;
-                        ongoing = false
-                        console.log(ongoing)
-                        return;
-                    }
-                    else {
-                        message.reply("You win")
-                        end = true;
-                        ongoing = false
-                        console.log(ongoing)
-                        return;
-                    }
-                    return;
-                }
-                else {
-                    // end = true;
-                    // ongoing = false
-                    // console.log(ongoing)
-                    return;
-                };
+                }, 500);
             });
-        });}, 800);
+        }, 300);
     }
     //Avatar Fetcher
     //-----------------------------------------------------
