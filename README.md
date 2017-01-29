@@ -1,18 +1,6 @@
-# polluxbot [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> 
+# polluxbot [![NPM version] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+ 
 
-## Installation
-
-Clone this repository, and run:
-```sh
-$ npm install
-```
-
-## Usage
-
-```js
-$ npm run bot
-```
 ## License
 
 MIT © [LucasFlicky](lucasflicky.com)
