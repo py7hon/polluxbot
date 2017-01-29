@@ -69,6 +69,9 @@ fs.readdir("./events/", (err, files) => {
 bot.on("message", message => {
     if (message.author.bot) return; // Ignorar Bot
      if (!message.content.startsWith(cfg.prefix)) return;
+    let userData = points[message.author.id];
+    var caller = gear.checkment(message).username
+
      let command = message.content.split(" ")[0];
   command = command.slice(cfg.prefix.length);
 

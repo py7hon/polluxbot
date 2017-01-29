@@ -1,5 +1,8 @@
-var paths = require("./paths.js");
-exports.run = (bot, message, args) => {
+var paths = require("../paths.js");
+var gear = require("../gearbox.js");
+let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
+
+exports.run = (bot, message, args, userData, caller) => {
         if (gear.checkCookies(3, userData) == false) {
             message.reply(" você não tem cookies suficientes. Você precisa pelo menos **3** :cookie:");
             return;

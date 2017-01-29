@@ -1,4 +1,7 @@
-exports.run = (bot, message, args) => {
+const arraySort = require('array-sort')
+
+
+exports.run = (bot, message, args, userData, caller) => {
         console.log("RANK COOK VIEW INVOKED by " + caller + "-------------\n")
         var rankItem = []
         var ranked = []

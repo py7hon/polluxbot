@@ -1,5 +1,5 @@
 var paths = require("./paths.js");
-
+const Jimp = require("jimp");
 
 module.exports = {
     checkAdm: function checkAdm(origin, target) {

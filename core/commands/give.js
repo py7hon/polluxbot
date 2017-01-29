@@ -1,5 +1,5 @@
-var paths = require("./paths.js");
-exports.run = (bot, message, args) => {
+var paths = require("../paths.js");
+exports.run = (bot, message, args, userData, caller) => {
         console.log("------------give by" + caller)
         var stuff=message.content.split(' ')
         if (stuff.lenght <3){

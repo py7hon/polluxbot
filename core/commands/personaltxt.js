@@ -3,7 +3,7 @@ var gear = require('../gearbox.js');
 
 let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
-exports.run = (bot, message, args) => {
+exports.run = (bot, message, args, userData, caller) => {
 let userData = points[message.author.id];
 
         userData.persotext = message.content.substr(13)

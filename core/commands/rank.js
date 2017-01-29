@@ -1,4 +1,6 @@
-exports.run = (bot, message, args) => {
+const arraySort = require('array-sort')
+
+exports.run = (bot, message, args, userData, caller) => {
 if (message.content.startsWith(prefix + "rank")) {
         console.log("RANK VIEW INVOKED by " + caller + "-------------\n")
         var rankItem = []

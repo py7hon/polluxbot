@@ -1,5 +1,8 @@
-var paths = require("./paths.js");
-exports.run = (bot, message, args) => {
+var paths = require("../paths.js");
+var gear = require("../gearbox.js");
+let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
+
+exports.run = (bot, message, args, userData, caller) => {
         console.log(ongoing)
         if (ongoing) {
             message.reply("você já está jogando comigo. Primeiro termine esse.")

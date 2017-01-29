@@ -1,4 +1,4 @@
-exports.run = (bot, message, args) => {
+exports.run = (bot, message, args, userData, caller) => {
 
 if (message.content.startsWith(prefix + "joined")) {
         console.log("JOINED BY " + caller)

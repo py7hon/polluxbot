@@ -1,10 +1,10 @@
-var paths = require("./paths.js");
+var paths = require("../paths.js");
 const fs = require("fs");
 const Jimp = require("jimp");
 var gear = require('../gearbox.js');
 let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
-exports.run = (bot, message, args) => {
+exports.run = (bot, message, args, userData, caller) => {
 
         var caller = message.author.username
         console.log("PROFILE VIEW INVOKED by " + caller + "-------------\n")
