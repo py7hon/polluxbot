@@ -6,8 +6,8 @@ exports.run = (bot, message, args) => {
       if (typeof evaled !== "string")
         evaled = require("util").inspect(evaled);
 
-      message.channel.sendCode("xl", clean(evaled));
+      message.channel.sendCode("xl", gear.clean(evaled));
     } catch(err) {
-      message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+      message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${gear.clean(err)}\n\`\`\``);
     }
   }

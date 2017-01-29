@@ -1,6 +1,6 @@
 var paths = require("./paths.js");
 exports.run = (bot, message, args) => {
-        if (checkCookies(3, userData) == false) {
+        if (gear.checkCookies(3, userData) == false) {
             message.reply(" você não tem cookies suficientes. Você precisa pelo menos **3** :cookie:");
             return;
         }
@@ -14,7 +14,7 @@ exports.run = (bot, message, args) => {
             message.reply('Comando incorreto, use `+beflip <quantidade> <resultado>` Ex: `+betflip 5 cara`');
             return;
         };
-        if (checkCookies(parseInt(bet[1]), userData) == false) {
+        if (gear.checkCookies(parseInt(bet[1]), userData) == false) {
             message.reply(" cê não tá com essa bola toda não...");
             return;
         };
@@ -24,7 +24,7 @@ exports.run = (bot, message, args) => {
             return;
         }
         userData.cookies -= bet[1]
-        var coin = randomize(1, 2);
+        var coin = gear.randomize(1, 2);
         var res = ""
         var ros = ""
         coin == 1 ? res = "Cara" : res = "Coroa";

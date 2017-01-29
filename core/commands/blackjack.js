@@ -10,7 +10,7 @@ exports.run = (bot, message, args) => {
             message.reply("Você precisa apostar alguma coisa, chuchu~")
             return;
         }
-        if (checkCookies(stuff[1], userData) == false) {
+        if (gear.checkCookies(stuff[1], userData) == false) {
             message.reply("Oxe, você não tem cookies suficientes pra cobrir essa aposta...")
             return;
         }
@@ -33,7 +33,7 @@ exports.run = (bot, message, args) => {
                 deck.push(card)
             }
         }
-        var pile = shuffle(deck)
+        var pile = gear.shuffle(deck)
         var end = false
         var bank = []
         var play = []
@@ -46,8 +46,8 @@ exports.run = (bot, message, args) => {
             //pile.splice(0, 0)
         play = [pile[1], pile[3], pile[5], pile[7], pile[9]]
             //pile.splice(0, 0)
-        draw(bank, 'banc')
-        draw(play, caller)
+        gear.draw(bank, 'banc')
+        gear.draw(play, caller)
         setTimeout(function () {
             message.channel.sendMessage("Ok, vamos jogar blackjack! Quem fizer 21 ou o mais próximo vence!")
         }, 500);

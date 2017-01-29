@@ -6,12 +6,12 @@ exports.run = (bot, message, args) => {
             message.reply("Ordem inválida")
             return;
         }
-        if (checkCookies(stuff[1],message.author)){
+        if (gear.checkCookies(stuff[1],message.author)){
             message.reply("Ordem inválida")
             return;
         }
 
-        let tgt = checkment(message)
+        let tgt = gear.checkment(message)
         let tgtData = points[tgt.id];
 
             // message.guild.defaultChannel.sendMessage()

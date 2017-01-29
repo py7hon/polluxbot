@@ -9,7 +9,7 @@ Retorna o seu avatar, só isso.
 \`+adm [@user]\`
 Verifica se você ou @fulaninho é um Adm
 
-\`+glassify\`
+\`+gear.glassify\`
 Faz umas viadage com teu avatar
 
 \`+profile [@user]\`

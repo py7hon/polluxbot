@@ -126,7 +126,7 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
         let tgtaData = points[tgta.id];
         console.log("LEVEL UP EVENT FOR " + tgta)
         let img = tgta.avatarURL.substr(0, tgta.avatarURL.length - 10)
-        glassify(img, caller)
+        gear.glassify(img, caller)
         setTimeout(function () {
             Jimp.read(`${paths.GLASS}/${caller}.png`).then(function (photo) {
                 Jimp.read(paths.BUILD + 'levelcard.png').then(function (cart) {

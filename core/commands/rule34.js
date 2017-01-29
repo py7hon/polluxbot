@@ -5,7 +5,7 @@ let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
 exports.run = (bot, message, args) => {
     let userData = points[message.author.id];
-    var caller = gear.checkment(message).username
+    var caller = gear.gear.checkment(message).username
 
 
         if (gear.checkCookies(5, userData) == false) {

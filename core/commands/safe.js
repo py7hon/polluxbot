@@ -5,7 +5,7 @@ let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
 exports.run = (bot, message, args) => {
 
-    var caller = gear.checkment(message).username
+    var caller = gear.gear.checkment(message).username
         console.log("SAFEBOORU INVOKED by " + caller + "-------------\n")
         console.log(1)
         let query = message.content.split(" ");

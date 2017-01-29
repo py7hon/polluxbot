@@ -1,5 +1,5 @@
 exports.run = (bot, message, args) => {
-        tgt = message.guild.member(checkment(message))
+        tgt = message.guild.member(gear.checkment(message))
         let myRole = message.guild.roles.find("name", "ADM");
         if (tgt.roles.exists("name", "ADM")) {
             message.guild.defaultChannel.sendMessage(`:mega:  **Anúncio**
