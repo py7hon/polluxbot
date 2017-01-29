@@ -17,7 +17,7 @@ exports.run = (bot, message, args) => {
 
             userData.cookies -= stuff[1]
             tgtData.cookies += stuff[1]
-            aaa = message.channel.sendFile(BUILD + 'cookie.png', 'Cookie.png', message.author.username + " deu **"+stuff[1]+"**:cookie: para"+tgt.username+"!").then(function (c) {
+            aaa = message.channel.sendFile(paths.BUILD + 'cookie.png', 'Cookie.png', message.author.username + " deu **"+stuff[1]+"**:cookie: para"+tgt.username+"!").then(function (c) {
                 message.delete(1000)
             })
 

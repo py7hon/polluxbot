@@ -29,10 +29,10 @@ exports.run = (bot, message, args) => {
         coin == 1 ? res = "Cara" : res = "Coroa";
         coin == 1 ? ros = "heads.png" : ros = "tails.png";
         if (res.toLowerCase() == bet[2]) {
-            message.channel.sendFile(BUILD + 'heads.png', 'heads.png', "Yay! " + res + "! Você ganhou **" + (bet[1] * 2) + "**")
+            message.channel.sendFile(paths.BUILD + 'heads.png', 'heads.png', "Yay! " + res + "! Você ganhou **" + (bet[1] * 2) + "**")
             userData.cookies += bet[1] * 2
         }
         else {
-            message.channel.sendFile(BUILD + ros, ros, "Putz! " + res + "! Você perdeu...")
+            message.channel.sendFile(paths.BUILD + ros, ros, "Putz! " + res + "! Você perdeu...")
         }
     }

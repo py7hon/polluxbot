@@ -58,9 +58,9 @@ exports.run = (bot, message, args) => {
                     //
                 setTimeout(function () {
                     kik.delete()
-                    message.channel.sendFile(`${BUILD}/cards/${caller+round}_bj.png`, "card.png", "Sua carta é " + play[round].icon)
+                    message.channel.sendFile(`${paths.BUILD}/cards/${caller+round}_bj.png`, "card.png", "Sua carta é " + play[round].icon)
                     if (end == false) {
-                        message.channel.sendFile(`${BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Minha carta é " + bank[round].icon).then(function (thread) {
+                        message.channel.sendFile(`${paths.BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Minha carta é " + bank[round].icon).then(function (thread) {
                             if (end) {
                                 ongoing = false
                                 console.log(ongoing + " ongo")
@@ -93,7 +93,7 @@ exports.run = (bot, message, args) => {
                                         console.log(ongoing)
                                         return;
                                     }
-                                    message.channel.sendFile(`${BUILD}/cards/${caller+round}_bj.png`, "card.png", "Sua carta é " + play[round].icon)
+                                    message.channel.sendFile(`${paths.BUILD}/cards/${caller+round}_bj.png`, "card.png", "Sua carta é " + play[round].icon)
                                     for (crd = 0; crd <= round; crd++) {
                                         console.log(play[crd].value + "+")
                                         playQ += play[crd].value
@@ -110,7 +110,7 @@ exports.run = (bot, message, args) => {
                                             bankQ += bank[crd].value
                                         }
                                     if (bankQ < 13) {
-                                        message.channel.sendFile(`${BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Minha carta é " + bank[round].icon)
+                                        message.channel.sendFile(`${paths.BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Minha carta é " + bank[round].icon)
                                         for (crd = 0; crd <= round; crd++) {
                                             console.log(bank[crd].value + "+")
                                             bankQ += bank[crd].value
@@ -166,7 +166,7 @@ exports.run = (bot, message, args) => {
 
                                      if (bankQ < 13) {
                                          console.log(bankQ)
-                                        message.channel.sendFile(`${BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Eu tirei um " + bank[round].icon)
+                                        message.channel.sendFile(`${paths.BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Eu tirei um " + bank[round].icon)
                                         bankQ=0
                                         for (crd = 0; crd <= round; crd++) {
                                             console.log(bank[crd].value + "+")

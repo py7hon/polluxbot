@@ -1,5 +1,11 @@
+const fs = require("fs");
+const getter = require("booru-getter");
+var gear = require('../gearbox.js');
+let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
+
 exports.run = (bot, message, args) => {
-if (message.content.startsWith(prefix + "safe")) {
+
+    var caller = gear.checkment(message).username
         console.log("SAFEBOORU INVOKED by " + caller + "-------------\n")
         console.log(1)
         let query = message.content.split(" ");
@@ -14,4 +20,4 @@ if (message.content.startsWith(prefix + "safe")) {
             }
         })
     };
-}
+

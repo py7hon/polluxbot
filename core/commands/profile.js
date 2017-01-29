@@ -1,21 +1,25 @@
- exports.run = (bot, message, args) => {
+const fs = require("fs");
+const Jimp = require("jimp");
+var gear = require('../gearbox.js');
+let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
+exports.run = (bot, message, args) => {
 
-if (message.content.startsWith(prefix + "profile") || message.content.startsWith(prefix + "level")) {
+        var caller = message.author.username
         console.log("PROFILE VIEW INVOKED by " + caller + "-------------\n")
-        let tgt = checkment(message)
+        let tgt = gear.checkment(message)
         let tgtData = points[tgt.id];
         console.log("COMP INVOKED")
         let img = tgt.avatarURL.substr(0, tgt.avatarURL.length - 10)
-        glassify(img, caller, message)
+        gear.glassify(img, caller, message)
         setTimeout(function () {
-            Jimp.read(`${GLASS}/${caller}.png`).then(function (photo) {
-                Jimp.read(BUILD + 'cartela.png').then(function (cart) {
-                    Jimp.read(BUILD + 'levbar.png').then(function (bar) {
-                        let adm = checkAdm(message, tgt)
-                        Jimp.read(BUILD + adm + '.png').then(function (tag) {
-                            Jimp.loadFont(FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
-                                Jimp.loadFont(FONTS + 'TXT.fnt').then(function (sub) {
+            Jimp.read(`${paths.GLASS}/${caller}.png`).then(function (photo) {
+                Jimp.read(paths.BUILD + 'cartela.png').then(function (cart) {
+                    Jimp.read(paths.BUILD + 'levbar.png').then(function (bar) {
+                        let adm = gear.checkAdm(message, tgt)
+                        Jimp.read(paths.BUILD + adm + '.png').then(function (tag) {
+                            Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
+                                Jimp.loadFont(paths.FONTS + 'TXT.fnt').then(function (sub) {
                                     try {
                                         var level = tgtData.level.toString()
                                         var money = tgtData.cookies.toString()
@@ -56,7 +60,7 @@ if (message.content.startsWith(prefix + "profile") || message.content.startsWith
                                     cart.composite(bar, 45, 231)
                                     cart.composite(photo, 18, 20)
                                     cart.composite(tag, 7, 182)
-                                    cart.write(`${CARDS}${caller}.png`)
+                                    cart.write(`${paths.CARDS}${caller}.png`)
                                     console.log("Success")
                                         //message.reply(caller)
                                 })
@@ -67,9 +71,9 @@ if (message.content.startsWith(prefix + "profile") || message.content.startsWith
             });
         }, 500);
         setTimeout(function () {
-            message.channel.sendFile(`${CARDS}${caller}.png`)
+            message.channel.sendFile(`${paths.CARDS}${caller}.png`)
         }, 2200);
     };
 
 
- }
+

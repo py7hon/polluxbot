@@ -3,6 +3,7 @@ const fs = require("fs");
 const bot = new Discord.Client();
 
 var Jimp = require("jimp");
+var paths = require("paths.js");
 var cleverbot = require("cleverbot");
 
 let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
@@ -23,13 +24,6 @@ var droprate = 5000
 //===============================================================
 //
 
-const MISC = "../resources/misc/"
-const REACTIONS = "../resources/imgres/reactions/"
-const GLASS = "../resources/misc/glassavi/"
-const CARDS = "../resources/imgres/usercards/"
-const BUILD = "../resources/imgres/build/"
-const FONTS = "../resources/fonts/"
-const LVBAR = "../resources/misc/levelbars/"
 
 
     //const RANK = points
@@ -79,8 +73,9 @@ bot.on("message", message => {
   command = command.slice(cfg.prefix.length);
 
   let args = message.content.split(" ").slice(1);
-     let commandFile = require(`./commands/${command}.js`);
- try{
+   try{
+       let commandFile = require(`./commands/${command}.js`);
+
     commandFile.run(bot, message, args);
 
  }catch(err){
@@ -133,10 +128,10 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
         let img = tgta.avatarURL.substr(0, tgta.avatarURL.length - 10)
         glassify(img, caller)
         setTimeout(function () {
-            Jimp.read(`${GLASS}/${caller}.png`).then(function (photo) {
-                Jimp.read(BUILD + 'levelcard.png').then(function (cart) {
-                    Jimp.loadFont(FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
-                        Jimp.loadFont(FONTS + 'BIG.png.fnt').then(function (sub) {
+            Jimp.read(`${paths.GLASS}/${caller}.png`).then(function (photo) {
+                Jimp.read(paths.BUILD + 'levelcard.png').then(function (cart) {
+                    Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
+                        Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
                             try {
                                 var level = tgtaData.level.toString()
                             }
@@ -153,14 +148,14 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
                             cart.print(head, 153, 3, message.guild.member(tgta).displayName);
                             cart.print(sub, 336, 45, `${level}`);
                             cart.composite(photo, 18, 20)
-                            cart.write(`${CARDS}/up/${caller}.png`)
+                            cart.write(`${paths.CARDS}/up/${caller}.png`)
                         })
                     });
                 });
             });
         }, 1000);
         setTimeout(function () {
-            message.channel.sendFile(`${CARDS}/up/${caller}.png`)
+            message.channel.sendFile(`${paths.CARDS}/up/${caller}.png`)
         }, 2000);
         setTimeout(function () {
             //    message.channel.sendMessage("NADA");
@@ -200,16 +195,16 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
             //200x26
         var perc = opt[1]
         var stret = 200 * perc / 100
-        Jimp.read(BUILD + "bar.png").then(function (bar) {
-            Jimp.read(BUILD + "holder.png").then(function (hold) {
+        Jimp.read(paths.BUILD + "bar.png").then(function (bar) {
+            Jimp.read(paths.BUILD + "holder.png").then(function (hold) {
                 bar.resize(stret - 17, 26)
                 hold.composite(bar, 17, 0)
-                hold.write(`${MISC}/${caller}.png`);
+                hold.write(`${paths.MISC}/${caller}.png`);
                 console.log("Success!");
             });
         });
         setTimeout(function () {
-            message.channel.sendFile(`${MISC}/${caller}.png`)
+            message.channel.sendFile(`${paths.MISC}/${caller}.png`)
         }, 2000);
     };
     //
@@ -255,7 +250,7 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
     //Reactions
     //-----------------------------------------------------
     if (message.content.startsWith(prefix + "salty")) {
-        message.channel.sendFile(REACTIONS + "juba.png")
+        message.channel.sendFile(paths.REACTIONS + "juba.png")
     };
     if (message.content.startsWith(prefix + "potdrop")) {
         tgt = message.guild.member(gear.checkment(message))
@@ -271,7 +266,7 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
         }
     };
     if (message.content.startsWith(prefix + "vidal")) {
-        message.channel.sendFile(REACTIONS + "vidaru.png")
+        message.channel.sendFile(paths.REACTIONS + "vidaru.png")
     };
     if (message.content.startsWith(prefix + "hook")) {
         console.log("HOOK INVOKED")
@@ -304,14 +299,14 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
 
     // console.log("DROPRATE " + droprate)
     if (droprate >= 1000 && droprate < 1101) {
-        message.guild.defaultChannel.sendFile(BUILD + 'cookie.png', 'Cookie.png', "OLHA GENTE! Um cookie! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
+        message.guild.defaultChannel.sendFile(paths.BUILD + 'cookie.png', 'Cookie.png', "OLHA GENTE! Um cookie! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
             vacuum.push(cookpot)
         })
         drops++
         console.log("------------=========== ::: NATURAL DROP")
     }
     if (droprate <= 5) {
-        message.guild.defaultChannel.sendFile(BUILD + 'cookipot.jpg', 'Cookipot.jpg', "EITA PORRA! Um pote inteiro de cookies! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
+        message.guild.defaultChannel.sendFile(paths.BUILD + 'cookipot.jpg', 'Cookipot.jpg', "EITA PORRA! Um pote inteiro de cookies! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
             vacuum.push(cookpot)
         })
         drops += 10

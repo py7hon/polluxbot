@@ -1,6 +1,14 @@
+const fs = require("fs");
+const getter = require("booru-getter");
+var gear = require('../gearbox.js');
+let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
+
 exports.run = (bot, message, args) => {
-if (message.content.startsWith(prefix + "rule34")) {
-        if (checkCookies(5, userData) == false) {
+    let userData = points[message.author.id];
+    var caller = gear.checkment(message).username
+
+
+        if (gear.checkCookies(5, userData) == false) {
             message.reply(" você não tem cookies suficientes para comprar putaria. Você precisa pelo menos **5**");
             return;
         }
@@ -17,5 +25,5 @@ if (message.content.startsWith(prefix + "rule34")) {
                 message.reply("http:" + url);
             }
         })
-    };
+
 }
