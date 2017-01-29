@@ -372,7 +372,7 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
                                             console.log(bank[crd].value + "+")
                                             bankQ += bank[crd].value
                                         }
-                                    if (bankQ < 16) {
+                                    if (bankQ < 13) {
                                         message.channel.sendFile(`${BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Minha carta é " + bank[round].icon)
                                         for (crd = 0; crd <= round; crd++) {
                                             console.log(bank[crd].value + "+")
@@ -390,8 +390,8 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
                                         }
                                         else {
                                             message.channel.sendMessage("Você venceu!")
-                                            message.channel.sendMessage("Toma aqui, **"+bet*3+"**:cookie: de prêmio!")
-                                             userData.cookies+=bet*3
+                                            message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
+                                             userData.cookies+=bet*2
 
                                             end = true;
                                             ongoing = false
@@ -402,8 +402,8 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
                                     console.log(bankQ)
                                     if (bankQ > 21) {
                                         message.channel.sendMessage("Ops... me dei mal")
-                                          message.channel.sendMessage("Toma aqui, **"+bet*3+"**:cookie: de prêmio!")
-                                             userData.cookies+=bet*3
+                                          message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
+                                             userData.cookies+=bet*2
                                         end = true;
                                         ongoing = false
                                         console.log(ongoing)
@@ -427,7 +427,7 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
                                         bankQ += bank[crd].value
                                     }
 
-                                     if (bankQ <= 16) {
+                                     if (bankQ < 13) {
                                          console.log(bankQ)
                                         message.channel.sendFile(`${BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Eu tirei um " + bank[round].icon)
                                         bankQ=0
@@ -453,8 +453,8 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
                                         }
                                         else {
                                             message.channel.sendMessage("Perdi :(")
-                                              message.channel.sendMessage("Toma aqui, **"+bet*3+"**:cookie: de prêmio!")
-                                             userData.cookies+=bet*3
+                                              message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
+                                             userData.cookies+=bet*2
                                              console.log(bankQ)
                                             end = true;
                                             ongoing = false
@@ -474,8 +474,8 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
                                     //check blow
                                     if (bankQ > 21) {
                                         message.channel.sendMessage("Ops... me dei mal")
-                                          message.channel.sendMessage("Toma aqui, **"+bet*3+"**:cookie: de prêmio!")
-                                             userData.cookies+=bet*3
+                                          message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
+                                             userData.cookies+=bet*2
                                          console.log(bankQ)
                                         console.log("bank blow")
                                         end = true;
@@ -494,8 +494,8 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
                                     }
                                     else {
                                         message.reply("Você ganhou!")
-                                          message.channel.sendMessage("Toma aqui, **"+bet*3+"**:cookie: de prêmio!")
-                                             userData.cookies+=bet*3
+                                          message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
+                                             userData.cookies+=bet*2
                                         console.log("I win")
                                         end = true;
                                         ongoing = false
@@ -639,6 +639,35 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
 :medal: 4th **${ranked[3].name}**    Level ${ranked[3].level} :: ${ranked[3].points} Exp
 
 :medal: 5th **${ranked[4].name}**    Level ${ranked[4].level} :: ${ranked[4].points} Exp
+
+                        `
+        message.channel.sendMessage(replyData)
+    };
+    if (message.content.startsWith(prefix + "cookierank")) {
+        console.log("RANK COOK VIEW INVOKED by " + caller + "-------------\n")
+        var rankItem = []
+        var ranked = []
+        for (var i in points) {
+            rankItem.name = points[i].name
+            rankItem.cookies = points[i].cookies
+            rankItem.level = points[i].level
+            ranked.push(rankItem)
+            rankItem = []
+        }
+        arraySort(ranked, 'cookies', {
+            reverse: true
+        })
+        console.log(ranked)
+        let replyData = `
+:first_place: 1st   **${ranked[0].name}**  Level ${ranked[0].level} :: ${ranked[0].cookies+":cookie:"} 
+
+:second_place: 2nd  **${ranked[1].name}** Level ${ranked[1].level} :: ${ranked[1].cookies+":cookie:"} 
+
+:third_place: 3rd   **${ranked[2].name}**  Level ${ranked[2].level} :: ${ranked[2].cookies+":cookie:"} 
+
+:medal: 4th **${ranked[3].name}**    Level ${ranked[3].level} :: ${ranked[3].cookies+":cookie:"} 
+
+:medal: 5th **${ranked[4].name}**    Level ${ranked[4].level} :: ${ranked[4].cookies+":cookie:"} 
 
                         `
         message.channel.sendMessage(replyData)
@@ -964,6 +993,32 @@ Invite: https://discordapp.com/oauth2/authorize?client_id=271394014358405121&sco
         else {
             message.reply("Você não tem cookies pra dropar...");
         }
+    }
+    if (message.content.startsWith(prefix + "give")) {
+        console.log("------------give by" + caller)
+        var stuff=message.content.split(' ')
+        if (stuff.lenght <3){
+            message.reply("Ordem inválida")
+            return;
+        }
+        if (checkCookies(stuff[1],message.author)){
+            message.reply("Ordem inválida")
+            return;
+        }
+       
+        let tgt = checkment(message)
+        let tgtData = points[tgt.id];
+    
+            // message.guild.defaultChannel.sendMessage()
+        
+            userData.cookies -= stuff[1]
+            tgtData.cookies += stuff[1]
+            aaa = message.channel.sendFile(BUILD + 'cookie.png', 'Cookie.png', message.author.username + " deu **"+stuff[1]+"**:cookie: para"+tgt.username+"!").then(function (c) {
+                message.delete(1000)
+            })
+            
+           
+       
     }
     //-----------------------------------------------------
     //                                           END
