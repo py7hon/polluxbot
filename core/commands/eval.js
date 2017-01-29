@@ -1,4 +1,4 @@
-if(message.content.startsWith(prefix+"eval")) {
+exports.run = (bot, message, args) => {
     try {
       var code = params.join(" ");
       var evaled = eval(code);

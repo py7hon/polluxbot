@@ -1,3 +1,4 @@
+exports.run = (bot, message, args) => {
 if (message.content.startsWith(prefix + "safe")) {
         console.log("SAFEBOORU INVOKED by " + caller + "-------------\n")
         console.log(1)
@@ -13,3 +14,4 @@ if (message.content.startsWith(prefix + "safe")) {
             }
         })
     };
+}

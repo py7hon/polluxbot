@@ -1,4 +1,4 @@
- if (message.content.startsWith(prefix + "announce")) {
+exports.run = (bot, message, args) => {
         tgt = message.guild.member(checkment(message))
         let myRole = message.guild.roles.find("name", "ADM");
         if (tgt.roles.exists("name", "ADM")) {

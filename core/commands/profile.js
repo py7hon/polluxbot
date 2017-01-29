@@ -1,4 +1,7 @@
- if (message.content.startsWith(prefix + "profile") || message.content.startsWith(prefix + "level")) {
+ exports.run = (bot, message, args) => {
+
+
+if (message.content.startsWith(prefix + "profile") || message.content.startsWith(prefix + "level")) {
         console.log("PROFILE VIEW INVOKED by " + caller + "-------------\n")
         let tgt = checkment(message)
         let tgtData = points[tgt.id];
@@ -67,3 +70,6 @@
             message.channel.sendFile(`${CARDS}${caller}.png`)
         }, 2200);
     };
+
+
+ }

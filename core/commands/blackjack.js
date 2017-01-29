@@ -1,4 +1,4 @@
-if (message.content.startsWith(prefix + "bj")) {
+exports.run = (bot, message, args) => {
         console.log(ongoing)
         if (ongoing) {
             message.reply("você já está jogando comigo. Primeiro termine esse.")

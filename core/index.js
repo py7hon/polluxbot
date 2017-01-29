@@ -22,13 +22,16 @@ var droprate = 5000
 //             PATHS
 //===============================================================
 //
-const MISC = "../misc/"
-const REACTIONS = "../imgres/reactions/"
-const GLASS = "../misc/glassavi/"
-const CARDS = "../imgres/usercards/"
-const BUILD = "../imgres/build/"
-const FONTS = "../fonts/"
-const LVBAR = "../misc/levelbars/"
+
+const MISC = "../resources/misc/"
+const REACTIONS = "../resources/imgres/reactions/"
+const GLASS = "../resources/misc/glassavi/"
+const CARDS = "../resources/imgres/usercards/"
+const BUILD = "../resources/imgres/build/"
+const FONTS = "../resources/fonts/"
+const LVBAR = "../resources/misc/levelbars/"
+
+
     //const RANK = points
 const hook = new Discord.WebhookClient(cfg.hook.ID,cfg.hook.token );
 const coreHook = new Discord.WebhookClient(cfg.coreHook.ID,cfg.coreHook.token);
@@ -70,20 +73,24 @@ fs.readdir("./events/", (err, files) => {
 
 //----Message Digester
 bot.on("message", message => {
-
-
-
     if (message.author.bot) return; // Ignorar Bot
+     if (!message.content.startsWith(cfg.prefix)) return;
      let command = message.content.split(" ")[0];
-  command = command.slice(config.prefix.length);
+  command = command.slice(cfg.prefix.length);
 
   let args = message.content.split(" ").slice(1);
      let commandFile = require(`./commands/${command}.js`);
-  commandFile.run(bot, message, args);
+ try{
+    commandFile.run(bot, message, args);
 
+ }catch(err){
+     console.log(err)
+ }
+})
 
+bot.on("message", message => {
 
-
+    if (message.author.bot) return; // Ignorar Bot
     if (!points[message.author.id]) points[message.author.id] = {
         name: message.author.username
         , points: 0

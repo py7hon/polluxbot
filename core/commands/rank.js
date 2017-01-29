@@ -1,3 +1,4 @@
+exports.run = (bot, message, args) => {
 if (message.content.startsWith(prefix + "rank")) {
         console.log("RANK VIEW INVOKED by " + caller + "-------------\n")
         var rankItem = []
@@ -27,3 +28,4 @@ if (message.content.startsWith(prefix + "rank")) {
                         `
         message.channel.sendMessage(replyData)
     };
+}

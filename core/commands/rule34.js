@@ -1,3 +1,4 @@
+exports.run = (bot, message, args) => {
 if (message.content.startsWith(prefix + "rule34")) {
         if (checkCookies(5, userData) == false) {
             message.reply(" você não tem cookies suficientes para comprar putaria. Você precisa pelo menos **5**");
@@ -17,3 +18,4 @@ if (message.content.startsWith(prefix + "rule34")) {
             }
         })
     };
+}

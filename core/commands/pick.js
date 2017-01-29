@@ -1,4 +1,6 @@
-  if (message.content.startsWith(prefix + "pick")) {
+exports.run = (bot, message, args) => {
+
+if (message.content.startsWith(prefix + "pick")) {
         //aaa.message.delete()
         ///console.log(aaa)
         console.log("Pick trial by" + caller)
@@ -27,3 +29,6 @@
             //message.channel.sendMessage("No Cookie");
         }
     };
+
+
+}

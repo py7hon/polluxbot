@@ -1,4 +1,4 @@
-if (message.content.startsWith(prefix + "glassify")) {
+exports.run = (bot, message, args) => {
         console.log("GLASSIFY INVOKED by " + caller + "-------------\n")
         let img = message.author.avatarURL.substr(0, message.author.avatarURL.length - 10)
             // message.channel.sendFile(img)

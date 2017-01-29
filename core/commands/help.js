@@ -1,4 +1,5 @@
- if (message.content.startsWith(prefix + "help")) {
+exports.run = (bot, message, args) => {
+
         var helptxt = `
 **Comandos disponíveis:**
 

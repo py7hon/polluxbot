@@ -1,4 +1,4 @@
- if (message.content.startsWith(prefix + "give")) {
+exports.run = (bot, message, args) => {
         console.log("------------give by" + caller)
         var stuff=message.content.split(' ')
         if (stuff.lenght <3){

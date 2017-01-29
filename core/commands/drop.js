@@ -1,4 +1,4 @@
- if (message.content.startsWith(prefix + "drop")) {
+exports.run = (bot, message, args) => {
         console.log("------------DROP by" + caller)
             // message.guild.defaultChannel.sendMessage()
         if (userData.cookies >= 1) {

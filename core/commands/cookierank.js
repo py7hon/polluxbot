@@ -1,4 +1,4 @@
-  if (message.content.startsWith(prefix + "cookierank")) {
+exports.run = (bot, message, args) => {
         console.log("RANK COOK VIEW INVOKED by " + caller + "-------------\n")
         var rankItem = []
         var ranked = []
