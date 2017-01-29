@@ -37,7 +37,7 @@ const coreHook = new Discord.WebhookClient('273496953990676480', '9W4LcooEqVzLsJ
 // START SHIT UP
 cleverbot = new cleverbot("btewzf6MtZ3KHqGI", "lEJieBrDuHH0jpCmU4KjhzfXj4KcMwpB");
 cleverbot.setNick("Falk")
-bot.login("MjcxMzk0MDE0MzU4NDA1MTIx.C2Fy7Q.R4Fmoe-fKNsbPML_9zsBDzvQ6KA");
+bot.login(cfg.token);
 //
 //===============================================================
 //             FUNCTIONS
