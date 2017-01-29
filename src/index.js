@@ -1,27 +1,111 @@
 const discord = require('discord.js');
+const fs = require('fs');
+const cfg = require('../config.js');
+const pkg = require('../package.json');
+const Discord = require('discord.js');
+const bot = new Discord.Client();
+const path = require('path');
+const oneLine = require('common-tags').oneLine;
 
+
+ var sqlite3 = require('sqlite3').verbose();
+const sqlite = require('sqlite');
+const Commando = require('discord.js-commando');
+const token = cfg.token
+const getter = require('booru-getter');
+const sortJson = require('sort-json');
+const arraySort = require('array-sort');
+const Jimp = require("jimp");
+const cleverbot = require("cleverbot");
+
+const client = new Commando.Client({
+    owner: '88120564400553984'
+    , commandPrefix: 'falk.'
+    ,selfbot: true
+});
 module.exports = {
-	Client: require('./client'),
-	CommandoClient: require('./client'),
-	Command: require('./commands/base'),
-	CommandArgument: require('./commands/argument'),
-	CommandGroup: require('./commands/group'),
-	CommandMessage: require('./commands/message'),
-	ArgumentType: require('./types/base'),
-	FriendlyError: require('./errors/friendly'),
-	CommandFormatError: require('./errors/command-format'),
-
-	util: require('./util'),
-	version: require('../package').version,
-
-	SettingProvider: require('./providers/base'),
-	get SQLiteProvider() {
-		return require('./providers/sqlite');
-	}
+    Client: require('./client')
+    , CommandoClient: require('./client')
+    , Command: require('./commands/base')
+    , CommandArgument: require('./commands/argument')
+    , CommandGroup: require('./commands/group')
+    , CommandMessage: require('./commands/message')
+    , ArgumentType: require('./types/base')
+    , FriendlyError: require('./errors/friendly')
+    , CommandFormatError: require('./errors/command-format')
+    , util: require('./util')
+    , version: require('../package').version
+    , SettingProvider: require('./providers/base')
+    , get SQLiteProvider() {
+        return require('./providers/sqlite');
+    }
 };
 
-require('./extensions/guild').applyToClass(discord.Guild);
+client.login(token);
+bot.login(token);
+client.registry
+	.registerGroup('math', 'Math')
+	.registerDefaults()
+	//.registerCommandsIn(path.join(__dirname, 'commands'));
+    // Registers your custom command groups
+    .registerGroups([
+        ['fun', 'Fun commands'],
+        ['some', 'Some group'],
+        ['other', 'Some other group']
+    ])
 
+
+client.setProvider(
+    sqlite.open(path.join(__dirname, 'settings.sqlite3')).then(db =>new Commando.SQLiteProvider(db))
+
+).catch(console.error);
+
+
+
+client
+	.on('error', console.error)
+	.on('warn', console.warn)
+	.on('debug', console.log)
+	.on('ready', () => {
+		console.log(`Client ready; logged in as ${client.user.username}#${client.user.discriminator} (${client.user.id})`);
+	})
+	.on('disconnect', () => { console.warn('Disconnected!'); })
+	.on('reconnect', () => { console.warn('Reconnecting...'); })
+	.on('commandError', (cmd, err) => {
+		if(err instanceof commando.FriendlyError) return;
+		console.error(`Error in command ${cmd.groupID}:${cmd.memberName}`, err);
+	})
+	.on('commandBlocked', (msg, reason) => {
+		console.log(oneLine`
+			Command ${msg.command ? `${msg.command.groupID}:${msg.command.memberName}` : ''}
+			blocked; ${reason}
+		`);
+	})
+	.on('commandPrefixChange', (guild, prefix) => {
+		console.log(oneLine`
+			Prefix ${prefix === '' ? 'removed' : `changed to ${prefix || 'the default'}`}
+			${guild ? `in guild ${guild.name} (${guild.id})` : 'globally'}.
+		`);
+	})
+	.on('commandStatusChange', (guild, command, enabled) => {
+		console.log(oneLine`
+			Command ${command.groupID}:${command.memberName}
+			${enabled ? 'enabled' : 'disabled'}
+			${guild ? `in guild ${guild.name} (${guild.id})` : 'globally'}.
+		`);
+	})
+	.on('groupStatusChange', (guild, group, enabled) => {
+		console.log(oneLine`
+			Group ${group.id}
+			${enabled ? 'enabled' : 'disabled'}
+			${guild ? `in guild ${guild.name} (${guild.id})` : 'globally'}.
+		`);
+	});
+
+
+
+
+require('./extensions/guild').applyToClass(discord.Guild);
 /**
  * @external Channel
  * @see {@link https://discord.js.org/#/docs/main/master/class/Channel}
@@ -101,4 +185,8 @@ require('./extensions/guild').applyToClass(discord.Guild);
 /**
  * @external ShardingManager
  * @see {@link https://discord.js.org/#/docs/main/master/class/ShardingManager}
+ */
+/**
+ * @external RequireAllOptions
+ * @see {@link https://www.npmjs.com/package/require-all}
  */

@@ -1,46 +1,65 @@
 {
-  "name": "discord.js-commando",
-  "version": "0.8.4",
-  "description": "The official command framework for Discord.js",
-  "license": "Apache-2.0",
-  "author": "Schuyler Cebulskie <Gawdl3y@gawdl3y.com> (https://gawdl3y.com/)",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Gawdl3y/discord.js-commando.git"
+  "name": "polluxbot",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "",
+  "author": {
+    "name": "LucasFlicky",
+    "email": "lucasflicky@hotmail.com",
+    "url": "lucasflicky.com"
   },
-  "bugs": {
-    "url": "https://github.com/Gawdl3y/discord.js-commando/issues"
-  },
+  "files": [
+    "src"
+  ],
+  "main": "core/index.js",
   "keywords": [
-    "discord",
-    "bot",
-    "commands"
+    ""
   ],
   "scripts": {
-    "bot": "./bot/bot.js",
-    "lint": "eslint src",
-    "docs": "docgen --source src --custom docs/index.yml --output docs/docs.json --jsdoc jsdoc.json",
-    "test-docs": "docgen --source src --custom docs/index.yml --jsdoc jsdoc.json"
-  },
-  "main": "src/index",
-  "dependencies": {
-    "array-sort": "^0.1.2",
-    "booru-getter": "0.0.2",
-    "common-tags": "^1.4.0",
-    "discord.js": "^11.0.0",
-    "escape-string-regexp": "^1.0.0",
-    "require-all": "^2.0.0"
+    "bot": "node --harmony ./core/index.js",
+    "prepublish": "gulp prepublish",
+    "test": "gulp"
   },
   "devDependencies": {
-    "discord.js-docgen": "hydrabolt/discord.js-docgen",
-    "eslint": "^3.11.0",
-    "jsdoc-strip-async-await": "^0.1.0"
+    "eslint": "^3.1.1",
+    "eslint-config-xo-space": "^0.15.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^3.0.1",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-istanbul": "^1.0.0",
+    "gulp-mocha": "^3.0.1",
+    "gulp-plumber": "^1.0.0",
+    "gulp-nsp": "^2.1.0",
+      	"common-tags": "^1.4.0",
+		"escape-string-regexp": "^1.0.0",
+		"require-all": "^2.0.0"
   },
-  "peerDependencies": {
-    "discord.js": "^10.0.0 || ^11.0.0",
-    "sqlite": "^2.2.0"
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "mocha": true
+    }
   },
-  "engines": {
-    "node": ">=7.0.0"
-  }
+  "repository": "git@github.com:/arturiabot.git",
+  "license": "MIT",
+  "dependencies": {
+    "clapp": "^1.1.1",
+    "discord.js": "^11.0.0",
+    "discord.js-commando": "^0.8.4",
+    "node-opus": "^0.2.4",
+    "sqlite": "^2.2.4"
+  },
+    "devDependencies": {
+		"discord.js-docgen": "hydrabolt/discord.js-docgen",
+		"eslint": "^3.11.0",
+		"jsdoc-strip-async-await": "^0.1.0"
+	},
+	"peerDependencies": {
+		"discord.js": "^10.0.0 || ^11.0.0",
+		"sqlite": "^2.2.0"
+	},
+	"engines": {
+		"node": ">=7.0.0"
+	}
 }
