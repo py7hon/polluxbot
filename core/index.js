@@ -3,7 +3,7 @@ const fs = require("fs");
 const bot = new Discord.Client();
 
 var Jimp = require("jimp");
-var paths = require("paths.js");
+var paths = require("./paths.js");
 var cleverbot = require("cleverbot");
 
 let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));

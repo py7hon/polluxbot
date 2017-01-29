@@ -1,3 +1,4 @@
+var paths = require("./paths.js");
 exports.run = (bot, message, args) => {
         console.log("------------give by" + caller)
         var stuff=message.content.split(' ')

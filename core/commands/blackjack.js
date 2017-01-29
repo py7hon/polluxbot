@@ -1,3 +1,4 @@
+var paths = require("./paths.js");
 exports.run = (bot, message, args) => {
         console.log(ongoing)
         if (ongoing) {

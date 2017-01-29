@@ -1,3 +1,4 @@
+var paths = require("./paths.js");
 exports.run = (bot, message, args) => {
         if (checkCookies(3, userData) == false) {
             message.reply(" você não tem cookies suficientes. Você precisa pelo menos **3** :cookie:");

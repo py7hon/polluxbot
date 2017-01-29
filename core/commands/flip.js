@@ -1,3 +1,4 @@
+var paths = require("./paths.js");
 exports.run = (bot, message, args) => {
         var coin = randomize(1, 2);
         if (coin == 1) {

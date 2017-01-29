@@ -1,3 +1,4 @@
+var paths = require("./paths.js");
 const fs = require("fs");
 const Jimp = require("jimp");
 var gear = require('../gearbox.js');
