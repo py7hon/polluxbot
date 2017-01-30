@@ -1,5 +1,6 @@
 const arraySort = require('array-sort')
-
+const fs = require("fs");
+let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
 exports.run = (bot, message, args, userData, caller) => {
         console.log("RANK COOK VIEW INVOKED by " + caller + "-------------\n")

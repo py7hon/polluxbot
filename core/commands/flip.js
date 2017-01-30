@@ -1,4 +1,6 @@
 var paths = require("../paths.js");
+var gear = require("../gearbox.js");
+
 exports.run = (bot, message, args, userData, caller) => {
         var coin = gear.randomize(1, 2);
         if (coin == 1) {

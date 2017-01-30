@@ -1,6 +1,8 @@
 var paths = require("../paths.js");
 var gear = require("../gearbox.js");
+const fs = require("fs");
 let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
+
 
 exports.run = (bot, message, args, userData, caller) => {
         console.log("------------DROP by" + caller)
@@ -8,9 +10,9 @@ exports.run = (bot, message, args, userData, caller) => {
         if (userData.cookies >= 1) {
             userData.cookies -= 1
             aaa = message.channel.sendFile(paths.BUILD + 'cookie.png', 'Cookie.png', message.author.username + " largou um cookie :cookie: na sala! Quem digitar \`+pick\` primeiro leva! ").then(function (c) {
-                vacuum.push(c)
+                gear.vacuum.push(c)
             })
-            drops++
+            gear.drops++
             message.delete(1000)
         }
         else {

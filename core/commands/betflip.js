@@ -1,5 +1,6 @@
 var paths = require("../paths.js");
 var gear = require("../gearbox.js");
+const fs = require("fs");
 let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
 exports.run = (bot, message, args, userData, caller) => {

@@ -1,4 +1,7 @@
 var paths = require("../paths.js");
+var gear = require("../gearbox.js");
+const fs = require("fs");
+
 exports.run = (bot, message, args, userData, caller) => {
         console.log("------------give by" + caller)
         var stuff=message.content.split(' ')

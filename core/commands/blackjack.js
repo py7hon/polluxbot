@@ -1,14 +1,15 @@
 var paths = require("../paths.js");
 var gear = require("../gearbox.js");
+const fs = require("fs");
 let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
 exports.run = (bot, message, args, userData, caller) => {
-        console.log(ongoing)
-        if (ongoing) {
+        console.log(gear.ongoing)
+        if (gear.ongoing) {
             message.reply("você já está jogando comigo. Primeiro termine esse.")
             return;
         }
-        stuff = message.content.toLowerCase().split(' ')
+        var stuff = message.content.toLowerCase().split(' ')
         if (isNaN(parseInt(stuff[1], 10))||stuff[1]==0) {
             message.reply("Você precisa apostar alguma coisa, chuchu~")
             return;
@@ -21,7 +22,7 @@ exports.run = (bot, message, args, userData, caller) => {
         userData.cookies-=bet
 
 
-        ongoing = true
+        gear.ongoing = true
         var deck = []
         var naipes = ['H/', 'D/', 'S/', 'C/']
         var naipesB = [':hearts:', ':diamonds:', ':spades:', ':clubs:']
@@ -66,8 +67,8 @@ exports.run = (bot, message, args, userData, caller) => {
                     if (end == false) {
                         message.channel.sendFile(`${paths.BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Minha carta é " + bank[round].icon).then(function (thread) {
                             if (end) {
-                                ongoing = false
-                                console.log(ongoing + " ongo")
+                                gear.ongoing = false
+                                console.log(gear.ongoing + " ongo")
                                 console.log(end + " end")
                                 return;
                             }
@@ -81,8 +82,8 @@ exports.run = (bot, message, args, userData, caller) => {
                             message.channel.sendMessage(":one:Seguir :two:Parar.Eu tenho:" + bankQ + ", você:" + playQ)
                             bot.on("message", newmsg => {
                                 if (end) {
-                                    ongoing = false
-                                    console.log(ongoing)
+                                    gear.ongoing = false
+                                    console.log(gear.ongoing)
                                     return;
                                 }
                                 //1 pick
@@ -93,8 +94,8 @@ exports.run = (bot, message, args, userData, caller) => {
                                 if (newmsg.author == message.author && newmsg.content == "1") {
                                     round++
                                     if (end) {
-                                        ongoing = false
-                                        console.log(ongoing)
+                                        gear.ongoing = false
+                                        console.log(gear.ongoing)
                                         return;
                                     }
                                     message.channel.sendFile(`${paths.BUILD}/cards/${caller+round}_bj.png`, "card.png", "Sua carta é " + play[round].icon)
@@ -105,8 +106,8 @@ exports.run = (bot, message, args, userData, caller) => {
                                     if (playQ > 21) {
                                         message.reply("**Você passou de 21**")
                                         end = true;
-                                        ongoing = false
-                                        console.log(ongoing)
+                                        gear.ongoing = false
+                                        console.log(gear.ongoing)
                                         return;
                                     }
                                     for (crd = 0; crd <= round-1; crd++) {
@@ -125,8 +126,8 @@ exports.run = (bot, message, args, userData, caller) => {
                                         if (bankQ >= playQ || bankQ == 21) {
                                             message.reply("Eba, ganhei!")
                                             end = true;
-                                            ongoing = false
-                                            console.log(ongoing)
+                                            gear.ongoing = false
+                                            console.log(gear.ongoing)
                                             return;
                                         }
                                         else {
@@ -135,8 +136,8 @@ exports.run = (bot, message, args, userData, caller) => {
                                              userData.cookies+=bet*2
 
                                             end = true;
-                                            ongoing = false
-                                            console.log(ongoing)
+                                            gear.ongoing = false
+                                            console.log(gear.ongoing)
                                             return;
                                         }
                                     }
@@ -146,8 +147,8 @@ exports.run = (bot, message, args, userData, caller) => {
                                           message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
                                              userData.cookies+=bet*2
                                         end = true;
-                                        ongoing = false
-                                        console.log(ongoing)
+                                        gear.ongoing = false
+                                        console.log(gear.ongoing)
                                         return;
                                     } setTimeout(function () {
                                     message.reply(":one:Seguir :two:Parar.Eu tenho:" + bankQ + ", você:" + playQ)
@@ -159,8 +160,8 @@ exports.run = (bot, message, args, userData, caller) => {
 
                                     //hold
                                     if (end) {
-                                        ongoing = false
-                                        console.log(ongoing)
+                                        gear.ongoing = false
+                                        console.log(gear.ongoing)
                                         return;
                                     }
                                     bankQ=0
@@ -188,8 +189,8 @@ exports.run = (bot, message, args, userData, caller) => {
                                              console.log(bankQ)
                                             message.channel.sendMessage("Venci!")
                                             end = true;
-                                            ongoing = false
-                                            console.log(ongoing)
+                                            gear.ongoing = false
+                                            console.log(gear.ongoing)
                                             return;
                                         }
                                         else {
@@ -198,8 +199,8 @@ exports.run = (bot, message, args, userData, caller) => {
                                              userData.cookies+=bet*2
                                              console.log(bankQ)
                                             end = true;
-                                            ongoing = false
-                                            console.log(ongoing)
+                                            gear.ongoing = false
+                                            console.log(gear.ongoing)
                                             return;
                                         }
                                     }
@@ -220,8 +221,8 @@ exports.run = (bot, message, args, userData, caller) => {
                                          console.log(bankQ)
                                         console.log("bank blow")
                                         end = true;
-                                        ongoing = false
-                                        console.log(ongoing)
+                                        gear.ongoing = false
+                                        console.log(gear.ongoing)
                                         return;
                                     }
                                     //check higher
@@ -229,8 +230,8 @@ exports.run = (bot, message, args, userData, caller) => {
                                         message.channel.sendMessage("Yay! Venci")
                                         console.log("I win")
                                         end = true;
-                                        ongoing = false
-                                        console.log(ongoing)
+                                        gear.ongoing = false
+                                        console.log(gear.ongoing)
                                         return;
                                     }
                                     else {
@@ -239,16 +240,16 @@ exports.run = (bot, message, args, userData, caller) => {
                                              userData.cookies+=bet*2
                                         console.log("I win")
                                         end = true;
-                                        ongoing = false
-                                        console.log(ongoing)
+                                        gear.ongoing = false
+                                        console.log(gear.ongoing)
                                         return;
                                     }
                                     return;
                                 }
                                 else {
                                     // end = true;
-                                    // ongoing = false
-                                    // console.log(ongoing)
+                                    // gear.ongoing = false
+                                    // console.log(gear.ongoing)
                                     return;
                                 };
                             });

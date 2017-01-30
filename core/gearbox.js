@@ -2,6 +2,9 @@ var paths = require("./paths.js");
 const Jimp = require("jimp");
 
 module.exports = {
+    drops : 0,
+    vacuum : [],
+    ongoing : false,
     checkAdm: function checkAdm(origin, target) {
         if (origin.guild.member(target).roles.exists("name", "ADM")) {
             return "ADM";
@@ -83,21 +86,21 @@ module.exports = {
                 cardimg.composite(c1, 1 * 97, 0)
                 cardimg.write(`${paths.BUILD}cards/${who}1_bj.png`)
             })
-        }, 5);
+        }, 50);
         setTimeout(function () {
             Jimp.read(`${paths.BUILD}cards/${array[2].card}.png`).then(function (c1) {
                 cardimg.composite(c1, 2 * 97, 0)
                 cardimg.write(`${paths.BUILD}cards/${who}2_bj.png`)
                 console.log(array[2].card + "-------------------------------------")
             })
-        }, 15);
+        }, 100);
         setTimeout(function () {
             console.log(`${paths.BUILD}cards/${array[3].card}.png`)
             Jimp.read(`${paths.BUILD}cards/${array[3].card}.png`).then(function (c1) {
                 cardimg.composite(c1, 3 * 97, 0)
                 cardimg.write(`${paths.BUILD}cards/${who}3_bj.png`)
             })
-        }, 30);
+        }, 150);
         setTimeout(function () {
             Jimp.read(`${paths.BUILD}cards/${array[4].card}.png`).then(function (c1) {
                 cardimg.composite(c1, 4 * 97, 0)
@@ -105,6 +108,6 @@ module.exports = {
                 cardimg.write(`${paths.BUILD}cards/${who}5_bj.png`)
                 console.log(array[5].card + "-------------------------------------")
             })
-        }, 50);
+        }, 200);
     }
 }

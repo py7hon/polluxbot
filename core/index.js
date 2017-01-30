@@ -12,12 +12,14 @@ const cfg = require("../config.js");
 var gear = require('./gearbox.js');
 
 const prefix = "+";
-var ongoing = false
+
 var counter = 0
-var drops = 0
-var vacuum = []
-var counter = false;
+
+
+
 var droprate = 5000
+
+
 //
 //===============================================================
 //             PATHS
@@ -79,7 +81,7 @@ bot.on("message", message => {
    try{
        let commandFile = require(`./commands/${command}.js`);
 
-    commandFile.run(bot, message, args);
+    commandFile.run(bot, message, args, userData, caller);
 
  }catch(err){
      console.log(err)
@@ -303,16 +305,16 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
     // console.log("DROPRATE " + droprate)
     if (droprate >= 1000 && droprate < 1101) {
         message.guild.defaultChannel.sendFile(paths.BUILD + 'cookie.png', 'Cookie.png', "OLHA GENTE! Um cookie! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
-            vacuum.push(cookpot)
+            gear.vacuum.push(cookpot)
         })
-        drops++
+        gear.drops++
         console.log("------------=========== ::: NATURAL DROP")
     }
     if (droprate <= 5) {
         message.guild.defaultChannel.sendFile(paths.BUILD + 'cookipot.jpg', 'Cookipot.jpg', "EITA PORRA! Um pote inteiro de cookies! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
-            vacuum.push(cookpot)
+            gear.vacuum.push(cookpot)
         })
-        drops += 10
+        gear.drops += 10
         console.log("------------=========== ::: NATURAL RARE DROP ::: ===")
     }
 

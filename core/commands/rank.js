@@ -1,7 +1,9 @@
 const arraySort = require('array-sort')
+const fs = require("fs");
+let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
 exports.run = (bot, message, args, userData, caller) => {
-if (message.content.startsWith(prefix + "rank")) {
+
         console.log("RANK VIEW INVOKED by " + caller + "-------------\n")
         var rankItem = []
         var ranked = []
@@ -30,4 +32,3 @@ if (message.content.startsWith(prefix + "rank")) {
                         `
         message.channel.sendMessage(replyData)
     };
-}

@@ -1,4 +1,6 @@
+var gear = require("../gearbox.js")
 exports.run = (bot, message, args, userData, caller) => {
+     const params = message.content.split(" ").slice(1);
     try {
       var code = params.join(" ");
       var evaled = eval(code);
