@@ -6,7 +6,7 @@ let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
 exports.run = (bot, message, args, userData, caller) => {
 
-        var caller = message.author.username
+       // var caller = message.author.username
         console.log("PROFILE VIEW INVOKED by " + caller + "-------------\n")
         let tgt = gear.checkment(message)
         let tgtData = points[tgt.id];
@@ -73,7 +73,7 @@ exports.run = (bot, message, args, userData, caller) => {
         }, 500);
         setTimeout(function () {
             message.channel.sendFile(`${paths.CARDS}${caller}.png`)
-        }, 2200);
+        }, 500);
     };
 
 
