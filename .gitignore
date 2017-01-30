@@ -8,3 +8,4 @@
 *.psd
 /points.json
 /npm-debug.log
+/config.js
