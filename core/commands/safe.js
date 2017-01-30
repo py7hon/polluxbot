@@ -1,13 +1,13 @@
 const fs = require("fs");
 const getter = require("booru-getter");
-var gear = require('../gearbox.js');
-let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
-exports.run = (bot, message, args, userData, caller) => {
 
-    var caller = gear.gear.checkment(message).username
+
+exports.run = (bot, message, args, userData, caller, gear, points) => {
+
+
         console.log("SAFEBOORU INVOKED by " + caller + "-------------\n")
-        console.log(1)
+        console.log(1) ;
         let query = message.content.split(" ");
         !query[1] ? query[1] = "1girl" : query[1] = query[1];
         getter.getRandom(query[1], (url) => {

@@ -1,8 +1,8 @@
 const arraySort = require('array-sort')
 const fs = require("fs");
-let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
-exports.run = (bot, message, args, userData, caller) => {
+
+exports.run = (bot, message, args, userData, caller, gear, points) => {
 
         console.log("RANK VIEW INVOKED by " + caller + "-------------\n")
         var rankItem = []

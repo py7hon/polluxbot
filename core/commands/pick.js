@@ -1,7 +1,7 @@
 const fs = require("fs");
 var gear = require("../gearbox.js");
 
-exports.run = (bot, message, args, userData, caller) => {
+exports.run = (bot, message, args, userData, caller, gear, points) => {
 
 
         //aaa.message.delete()
@@ -31,6 +31,7 @@ exports.run = (bot, message, args, userData, caller) => {
             }
             //message.channel.sendMessage("No Cookie");
         }
+    gear.writePoints(points,caller)
     };
 
 

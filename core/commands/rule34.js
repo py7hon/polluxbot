@@ -1,11 +1,11 @@
 const fs = require("fs");
 const getter = require("booru-getter");
-var gear = require('../gearbox.js');
-let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
-exports.run = (bot, message, args, userData, caller) => {
-    let userData = points[message.author.id];
-    var caller = gear.gear.checkment(message).username
+
+
+exports.run = (bot, message, args, userData, caller, gear, points) => {
+
+
 
 
         if (gear.checkCookies(5, userData) == false) {
@@ -25,5 +25,6 @@ exports.run = (bot, message, args, userData, caller) => {
                 message.reply("http:" + url);
             }
         })
+        gear.writePoints(points,caller)
 
 }

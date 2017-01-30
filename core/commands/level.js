@@ -1,8 +1,8 @@
 const fs = require("fs");
 const gear = require("../gearbox.js");
-let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
-exports.run = (bot, message, args, userData, caller) => {
+
+exports.run = (bot, message, args, userData, caller, gear, points) => {
 
     let tgt = gear.checkment(message)
         let tgtData = points[tgt.id];

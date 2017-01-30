@@ -1,16 +1,18 @@
 var paths = require("../paths.js");
-var gear = require("../gearbox.js");
 const fs = require("fs");
 
-exports.run = (bot, message, args, userData, caller) => {
+
+
+exports.run = (bot, message, args, userData, caller, gear, points) => {
         console.log("------------give by" + caller)
         var stuff=message.content.split(' ')
         if (stuff.lenght <3){
             message.reply("Ordem inválida")
             return;
         }
+    console.log(stuff[1])
         if (gear.checkCookies(stuff[1],message.author)){
-            message.reply("Ordem inválida")
+            message.reply("Sem Cookies suficientes")
             return;
         }
 
@@ -25,6 +27,6 @@ exports.run = (bot, message, args, userData, caller) => {
                 message.delete(1000)
             })
 
-
+gear.writePoints(points,caller)
 
     }

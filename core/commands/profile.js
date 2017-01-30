@@ -1,10 +1,9 @@
 var paths = require("../paths.js");
 const fs = require("fs");
 const Jimp = require("jimp");
-var gear = require('../gearbox.js');
-let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
-exports.run = (bot, message, args, userData, caller) => {
+
+exports.run = (bot, message, args, userData, caller, gear, points) => {
 
        // var caller = message.author.username
         console.log("PROFILE VIEW INVOKED by " + caller + "-------------\n")
@@ -70,10 +69,11 @@ exports.run = (bot, message, args, userData, caller) => {
                     });
                 });
             });
-        }, 500);
+        }, 200);
         setTimeout(function () {
             message.channel.sendFile(`${paths.CARDS}${caller}.png`)
-        }, 500);
+        }, 2500);
+
     };
 
 

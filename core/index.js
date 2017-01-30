@@ -13,6 +13,7 @@ var gear = require('./gearbox.js');
 
 const prefix = "+";
 
+
 var counter = 0
 
 
@@ -79,9 +80,10 @@ bot.on("message", message => {
 
   let args = message.content.split(" ").slice(1);
    try{
+        delete require.cache[require.resolve(`../points.json`)];
        let commandFile = require(`./commands/${command}.js`);
 
-    commandFile.run(bot, message, args, userData, caller);
+    commandFile.run(bot, message, args, userData, caller, gear, points);
 
  }catch(err){
      console.log(err)
@@ -110,14 +112,7 @@ bot.on("message", message => {
     }
     var caller = gear.checkment(message).username // Checar Caller
         // POINTS.JSON ---------------------------------------------------
-    if (message.content.startsWith(prefix + "personaltxt")) {
-        userData.persotext = message.content.substr(13)
-        message.reply(`Seu texto pessoal mudou para:
 
-*` + message.content.substr(13) + `*
-
-Digite \`+profile\` para visualizar ele em seu Profile Card~`)
-    }
     //
     //LEVEL UP CHECKER
     //-----------------------------------------------------
@@ -226,10 +221,7 @@ Digite \`+profile\` para visualizar ele em seu Profile Card~`)
     //
     //Avatar Fetcher
     //-----------------------------------------------------
-    fs.writeFile('../points.json', JSON.stringify(points), (err) => {
-        console.log("JSON write event on " + caller + "'s activity -------------\n")
-        if (err) console.log("JSON ERROR  on " + caller + "'s activity -------------\n" + err)
-    });
+  gear.writePoints(points,caller)
 
 
     // Admin Checker

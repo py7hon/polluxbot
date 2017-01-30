@@ -1,9 +1,9 @@
 var paths = require("../paths.js");
 var gear = require("../gearbox.js");
 const fs = require("fs");
-let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
-exports.run = (bot, message, args, userData, caller) => {
+
+exports.run = (bot, message, args, userData, caller, gear, points) => {
         if (gear.checkCookies(3, userData) == false) {
             message.reply(" você não tem cookies suficientes. Você precisa pelo menos **3** :cookie:");
             return;
@@ -40,4 +40,5 @@ exports.run = (bot, message, args, userData, caller) => {
         else {
             message.channel.sendFile(paths.BUILD + ros, ros, "Putz! " + res + "! Você perdeu...")
         }
+    gear.writePoints(points,caller)
     }

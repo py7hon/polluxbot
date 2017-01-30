@@ -1,10 +1,10 @@
 var paths = require("../paths.js");
 var gear = require("../gearbox.js");
 const fs = require("fs");
-let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
 
-exports.run = (bot, message, args, userData, caller) => {
+
+exports.run = (bot, message, args, userData, caller, gear, points) => {
         console.log("------------DROP by" + caller)
             // message.guild.defaultChannel.sendMessage()
         if (userData.cookies >= 1) {
@@ -18,4 +18,5 @@ exports.run = (bot, message, args, userData, caller) => {
         else {
             message.reply("Você não tem cookies pra dropar...");
         }
+    gear.writePoints(points,caller)
     }

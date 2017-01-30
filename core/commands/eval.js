@@ -1,5 +1,5 @@
 var gear = require("../gearbox.js")
-exports.run = (bot, message, args, userData, caller) => {
+exports.run = (bot, message, args, userData, caller, gear, points) => {
      const params = message.content.split(" ").slice(1);
     try {
       var code = params.join(" ");

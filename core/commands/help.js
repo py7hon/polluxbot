@@ -1,4 +1,4 @@
-exports.run = (bot, message, args, userData, caller) => {
+exports.run = (bot, message, args, userData, caller, gear, points) => {
 
         var helptxt = `
 **Comandos disponíveis:**

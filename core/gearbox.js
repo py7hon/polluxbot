@@ -1,10 +1,17 @@
 var paths = require("./paths.js");
 const Jimp = require("jimp");
+const fs = require("fs");
 
 module.exports = {
     drops : 0,
     vacuum : [],
     ongoing : false,
+    writePoints: function writePoints(points,caller){
+          fs.writeFile('../points.json', JSON.stringify(points), (err) => {
+        console.log("JSON write event on " + caller + "'s activity -------------\n")
+        if (err) console.log("JSON ERROR  on " + caller + "'s activity -------------\n" + err)
+    });
+    },
     checkAdm: function checkAdm(origin, target) {
         if (origin.guild.member(target).roles.exists("name", "ADM")) {
             return "ADM";

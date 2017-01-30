@@ -1,9 +1,9 @@
 var paths = require("../paths.js");
 var gear = require("../gearbox.js");
 const fs = require("fs");
-let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 
-exports.run = (bot, message, args, userData, caller) => {
+
+exports.run = (bot, message, args, userData, caller, gear, points) => {
         console.log(gear.ongoing)
         if (gear.ongoing) {
             message.reply("você já está jogando comigo. Primeiro termine esse.")
@@ -276,4 +276,5 @@ exports.run = (bot, message, args, userData, caller) => {
                 }, 500);
             });
         }, 300);
+    gear.writePoints(points,caller)
     }
