@@ -110,6 +110,16 @@ exports.run = (bot, message, args, userData, caller) => {
                                         console.log(gear.ongoing)
                                         return;
                                     }
+                                    if (playQ == 21) {
+                                        message.reply("**21, Você venceu!**")
+                                         message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
+                                             userData.cookies+=bet*2
+                                        end = true;
+                                        gear.ongoing = false
+                                        console.log(gear.ongoing)
+                                        return;
+                                    }
+
                                     for (crd = 0; crd <= round-1; crd++) {
                                             console.log(bank[crd].value + "+")
                                             bankQ += bank[crd].value
@@ -120,6 +130,14 @@ exports.run = (bot, message, args, userData, caller) => {
                                             console.log(bank[crd].value + "+")
                                             bankQ += bank[crd].value
                                         }
+                                         if (bankQ == 21) {
+                                        message.reply("**21, Venci!**")
+
+                                        end = true;
+                                        gear.ongoing = false
+                                        console.log(gear.ongoing)
+                                        return;
+                                    }
                                     }
                                     else {
                                         message.reply("Eu paro...")

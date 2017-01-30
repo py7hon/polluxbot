@@ -9,14 +9,15 @@
     "url": "lucasflicky.com"
   },
   "files": [
-    "src"
+    "core"
   ],
-  "main": "core/index.js",
+  "main": "index.js",
   "keywords": [
     ""
   ],
   "scripts": {
-    "bot": "node --harmony ./core/index.js",
+    "bot": "node --harmony index.js",
+    "bote": "node index.js",
     "prepublish": "gulp prepublish",
     "test": "gulp"
   },
