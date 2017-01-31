@@ -10,3 +10,7 @@
 /npm-debug.log
 /config.js
 /core/masterreactions.json
+*.jpg
+*.png
+/undefined
+/.gitignore
