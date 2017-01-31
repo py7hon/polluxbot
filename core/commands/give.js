@@ -10,23 +10,28 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
             message.reply("Ordem inválida")
             return;
         }
-    console.log(stuff[1])
-        if (gear.checkCookies(stuff[1],message.author)){
-            message.reply("Sem Cookies suficientes")
-            return;
-        }
+    var donate = parseInt(stuff[1])
+
+    if (gear.checkCookies(donate,userData)==true){
+
 
         let tgt = gear.checkment(message)
         let tgtData = points[tgt.id];
 
             // message.guild.defaultChannel.sendMessage()
 
-            userData.cookies -= stuff[1]
-            tgtData.cookies += stuff[1]
-            aaa = message.channel.sendFile(paths.BUILD + 'cookie.png', 'Cookie.png', message.author.username + " deu **"+stuff[1]+"**:cookie: para"+tgt.username+"!").then(function (c) {
-                message.delete(1000)
+            userData.cookies -= donate
+               tgtData.cookies += donate
+
+           message.channel.sendMessage(message.author.username + " deu **"+donate+"**:cookie: para **"+tgt.username+"**!").then(function (c) {
+                message.delete(5000)
             })
 
 gear.writePoints(points,caller)
+        }else{
+             message.reply("você não tem Cookies suficientes")
+            return;
+        }
+
 
     }
