@@ -15,10 +15,8 @@ Faz umas viadage com teu avatar
 \`+profile [@user]\`
 Mostra o Profilecard seu ou de @fulaninho
 
-\`+bar <1-100>\`
-Uma barra X% cheia
 
-\`+say <texto>\`
+\`+say <texto>\` INATIVO
 Repete <texto>
 
 \`+joined [@user]\`
@@ -42,11 +40,23 @@ Abre isso
 \`+pick\`
 Pega cookies largados
 
-\`$cook\`
+\`+cook\`
 Veja quantos cookies você tem
 
 \`+personaltxt <texto>\`
 Uma frase pro seu Profile Card
+
+\`+blackjack <aposta>\`
+Blackjack
+
+\`+rps [aposta] [@desafiado]\`
+Pedra papel e tesoura
+
+\`+switch [numero]\`
+Troca a foto do bot
+
+\`+stats\`
+info aleatoria
 
 [] = _Argumento Opcional_
 <> = _Argumento Obrigatório_

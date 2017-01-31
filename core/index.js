@@ -1,43 +1,29 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client();
-
 var Jimp = require("jimp");
 var paths = require("./paths.js");
 var cleverbot = require("cleverbot");
-
 let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 let reactions = JSON.parse(fs.readFileSync('./reactions.json', 'utf8'));
+let masterreactions = JSON.parse(fs.readFileSync('./masterreactions.json', 'utf8'));
 const cfg = require("../config.js");
 var gear = require('./gearbox.js');
-
 const prefix = "+";
-
-
 var counter = 0
-
-
-
 var droprate = 5000
-
-
-//
-//===============================================================
-//             PATHS
-//===============================================================
-//
-
-
-
+    //
+    //===============================================================
+    //             PATHS
+    //===============================================================
+    //
     //const RANK = points
-const hook = new Discord.WebhookClient(cfg.hook.ID,cfg.hook.token );
-const coreHook = new Discord.WebhookClient(cfg.coreHook.ID,cfg.coreHook.token);
+const hook = new Discord.WebhookClient(cfg.hook.ID, cfg.hook.token);
+const coreHook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
 // START SHIT UP
-cleverbot = new cleverbot(cfg.clever.ID,cfg.clever.token );
+cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
 cleverbot.setNick(cfg.name)
-
-
-//----Cleverbot
+    //----Cleverbot
 cleverbot.create(function (err, session) {
     bot.on("message", message => {
         if (gear.checkment(message).username != bot.user.username) return;
@@ -53,45 +39,33 @@ cleverbot.create(function (err, session) {
         }
     });
 });
-
-
-
 fs.readdir("./events/", (err, files) => {
-  if(err) return console.error(err);
-  files.forEach(file => {
-    let eventFunction = require(`./events/${file}`);
-    let eventName = file.split(".")[0];
-    // super-secret recipe to call events with all their proper arguments *after* the `bot` var.
-    bot.on(eventName, (...args) => eventFunction.run(bot, ...args));
-  });
+    if (err) return console.error(err);
+    files.forEach(file => {
+        let eventFunction = require(`./events/${file}`);
+        let eventName = file.split(".")[0];
+        bot.on(eventName, (...args) => eventFunction.run(bot, ...args));
+    });
 });
-
-
-
 //----Message Digester
 bot.on("message", message => {
     if (message.author.bot) return; // Ignorar Bot
-     if (!message.content.startsWith(cfg.prefix)) return;
+    if (!message.content.startsWith(cfg.prefix)) return;
     let userData = points[message.author.id];
     var caller = gear.checkment(message).username
-
-     let command = message.content.split(" ")[0];
-  command = command.slice(cfg.prefix.length);
-
-  let args = message.content.split(" ").slice(1);
-   try{
+    let command = message.content.split(" ")[0];
+    command = command.slice(cfg.prefix.length);
+    let args = message.content.split(" ").slice(1);
+    try {
         delete require.cache[require.resolve(`../points.json`)];
-       let commandFile = require(`./commands/${command}.js`);
-
-    commandFile.run(bot, message, args, userData, caller, gear, points);
-
- }catch(err){
-     console.log(err)
- }
+        let commandFile = require(`./commands/${command}.js`);
+        commandFile.run(bot, message, args, userData, caller, gear, points);
+    }
+    catch (err) {
+        console.log(err)
+    }
 })
-
 bot.on("message", message => {
-
     if (message.author.bot) return; // Ignorar Bot
     if (!points[message.author.id]) points[message.author.id] = {
         name: message.author.username
@@ -112,10 +86,9 @@ bot.on("message", message => {
     }
     var caller = gear.checkment(message).username // Checar Caller
         // POINTS.JSON ---------------------------------------------------
-
-    //
-    //LEVEL UP CHECKER
-    //-----------------------------------------------------
+        //
+        //LEVEL UP CHECKER
+        //-----------------------------------------------------
     let curLevel = Math.floor(0.18 * Math.sqrt(userData.points));
     let forNext = Math.trunc(Math.pow((userData.level + 1) / 0.18, 2));
     if (curLevel > userData.level) {
@@ -162,17 +135,12 @@ bot.on("message", message => {
         }, 3000);
     }
     // [END] POINTS.JSON --------------------------------------------------------------------------------------------------
-
-  const params = message.content.split(" ").slice(1);
-
-
-
+    const params = message.content.split(" ").slice(1);
     // BLACKJACK
     if (message.content.startsWith(prefix + "ccc")) {
         var array = ["H/Q", "S/4", "S/A", "C/K", "D/7"]
         console.log(array)
     };
-
     //Avatar Fetcher
     //-----------------------------------------------------
     if (message.content.includes(prefix + "avi")) {
@@ -182,7 +150,6 @@ bot.on("message", message => {
     //
     //Glassify
     //-----------------------------------------------------
-
     //
     //RPG Bar
     //-----------------------------------------------------
@@ -214,17 +181,11 @@ bot.on("message", message => {
         userData.cookies >= 0 ? userData.cookies -= 1 : userData.cookies = 0;
         console.log("Heresia Detected")
     }
-
-
-
-
     //
     //Avatar Fetcher
     //-----------------------------------------------------
-  gear.writePoints(points,caller)
-
-
-    // Admin Checker
+    gear.writePoints(points, caller)
+        // Admin Checker
     if (message.content.startsWith(prefix + "adm")) {
         tgt = message.guild.member(gear.checkment(message))
         let myRole = message.guild.roles.find("name", "ADM");
@@ -241,8 +202,6 @@ bot.on("message", message => {
     //
     //Profile Card
     //-----------------------------------------------------
-
-
     //
     //Reactions
     //-----------------------------------------------------
@@ -278,7 +237,6 @@ bot.on("message", message => {
       }]
         }).catch(console.error);
     };
-
     if (message.content.startsWith(prefix + "say")) {
         message.channel.sendMessage(message.content.substr(5))
     };
@@ -293,14 +251,13 @@ bot.on("message", message => {
     else if (current_hour != 23) {
         counter = false
     }*/
-
     // console.log("DROPRATE " + droprate)
     if (droprate >= 1000 && droprate < 1101) {
         message.guild.defaultChannel.sendFile(paths.BUILD + 'cookie.png', 'Cookie.png', "OLHA GENTE! Um cookie! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
             gear.vacuum.push(cookpot)
         })
         gear.drops++
-        console.log("------------=========== ::: NATURAL DROP")
+            console.log("------------=========== ::: NATURAL DROP")
     }
     if (droprate <= 5) {
         message.guild.defaultChannel.sendFile(paths.BUILD + 'cookipot.jpg', 'Cookipot.jpg', "EITA PORRA! Um pote inteiro de cookies! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
@@ -309,14 +266,10 @@ bot.on("message", message => {
         gear.drops += 10
         console.log("------------=========== ::: NATURAL RARE DROP ::: ===")
     }
-
     var aaa = []
-
     if (message.content.startsWith(prefix + "test")) {
         message.channel.sendMessage("teste")
     }
-
-
     //-----------------------------------------------------
     //                                           END
     //-----------------------------------------------------
@@ -329,13 +282,10 @@ bot.on('guildMemberRemove', (member) => {
     member.guild.defaultChannel.sendMessage(` ${member.user.username} foi-se!`)
 });
 bot.on('ready', () => {
-    av = gear.randomize(1,6)
-
-    bot.user.setAvatar( '../avis/'+av+'.png',function(err) {
-         if (err) throw err;
-  });
-
-
+    av = gear.randomize(1, 6)
+    bot.user.setAvatar('../avis/' + av + '.png', function (err) {
+        if (err) throw err;
+    });
     console.log('START');
     var ts = Date.now().toString()
     fs.createReadStream('../points.json').pipe(fs.createWriteStream('../backup/points_backup_' + ts + '.json'));
@@ -353,6 +303,52 @@ bot.on('ready', () => {
         //  var aa = new Date();
     console.log("HOOK DEPLOYER");
     bot.user.setGame("Heroes of the Storm")
+});
+var made = false
+var mado = false
+bot.on('message', msg => {
+    if (!msg.author.id == '88120564400553984') {
+        return
+    }
+    var m = msg.content.toLowerCase()
+    if (masterreactions[m]) {
+        msg.channel.startTyping();
+        setTimeout(function () {
+            var a = gear.randomize(1, 10)
+            try {
+                msg.channel.sendMessage(masterreactions[m][a]);
+            }
+            catch (e) {
+                console.log(e)
+                msg.channel.sendMessage(masterreactions[m][0]);
+            }
+            msg.channel.stopTyping();
+        }, 1000);
+    }
+})
+bot.on('presenceUpdate', (me, mo) => {
+    if (me.id == '88120564400553984') {
+        console.log(mo.presence.status)
+        var skynet = bot.guilds.get('248285312353173505')
+        var engine = skynet.defaultChannel
+        if (mo.presence.status == 'online') {
+            if (made == false) {
+                engine.sendMessage("Yay! Meu mestre chegou!")
+            }
+            made = true
+            return
+        }
+        else if (mo.presence.status == 'offline') {
+            if (mado == false) {
+                engine.sendMessage("Galera, o Flicky saiu! Hora de tacar o terror no server!")
+            }
+            mado = true
+        }
+        else {
+            made = false
+            mado = false
+        }
+    }
 });
 bot.on('error', e => {
     console.log('MOREO');
