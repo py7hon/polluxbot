@@ -82,7 +82,7 @@ module.exports = {
         else return text;
     }
     , draw: function draw(array, who) {
-        var cardimg = new Jimp(array.length * 98, 147, function (err, image) {});
+          var cardimg = Jimp.read(`${paths.BUILD}cards/fiver.png`).then(function(cardimg) {
         Jimp.read(`${paths.BUILD}cards/${array[0].card}.png`).then(function (c1) {
             cardimg.composite(c1, 0 * 96, 0)
             cardimg.write(`${paths.BUILD}cards/${who}0_bj.png`)
@@ -93,7 +93,52 @@ module.exports = {
                 cardimg.composite(c1, 1 * 97, 0)
                 cardimg.write(`${paths.BUILD}cards/${who}1_bj.png`)
             })
-        }, 50);
+        }, 300);
+        setTimeout(function () {
+            Jimp.read(`${paths.BUILD}cards/${array[2].card}.png`).then(function (c1) {
+                cardimg.composite(c1, 2 * 97, 0)
+                cardimg.write(`${paths.BUILD}cards/${who}2_bj.png`)
+                console.log(array[2].card + "-------------------------------------")
+            })
+        }, 600);
+        setTimeout(function () {
+            console.log(`${paths.BUILD}cards/${array[3].card}.png`)
+            Jimp.read(`${paths.BUILD}cards/${array[3].card}.png`).then(function (c1) {
+                cardimg.composite(c1, 3 * 97, 0)
+                cardimg.write(`${paths.BUILD}cards/${who}3_bj.png`)
+            })
+        }, 900);
+        setTimeout(function () {
+            Jimp.read(`${paths.BUILD}cards/${array[4].card}.png`).then(function (c1) {
+                cardimg.composite(c1, 4 * 97, 0)
+                cardimg.write(`${paths.BUILD}cards/${who}4_bj.png`)
+                cardimg.write(`${paths.BUILD}cards/${who}5_bj.png`)
+                console.log(array[5].card + "-------------------------------------")
+            })
+        }, 1200);
+    })}
+    , drawalt: function drawalt(array, who) {
+
+         if (array.length >= 1) {
+
+
+        var cardimg = Jimp.read(`${paths.BUILD}cards/fiver.png`).then(function(cardimg) {
+
+
+        Jimp.read(`${paths.BUILD}cards/${array[0].card}.png`).then(function (c1) {
+            cardimg.composite(c1, 0 * 96, 0)
+            cardimg.write(`${paths.BUILD}cards/${who}0_bj.png`)
+            console.log(array[0].card)
+        })
+         }) };
+         if (array.length >= 2) {
+        setTimeout(function () {
+            Jimp.read(`${paths.BUILD}cards/${array[1].card}.png`).then(function (c1) {
+                cardimg.composite(c1, 1 * 97, 0)
+                cardimg.write(`${paths.BUILD}cards/${who}1_bj.png`)
+            })
+        }, 50);}
+         if (array.length >= 3) {
         setTimeout(function () {
             Jimp.read(`${paths.BUILD}cards/${array[2].card}.png`).then(function (c1) {
                 cardimg.composite(c1, 2 * 97, 0)
@@ -101,6 +146,8 @@ module.exports = {
                 console.log(array[2].card + "-------------------------------------")
             })
         }, 100);
+         }
+         if (array.length >= 4) {
         setTimeout(function () {
             console.log(`${paths.BUILD}cards/${array[3].card}.png`)
             Jimp.read(`${paths.BUILD}cards/${array[3].card}.png`).then(function (c1) {
@@ -108,6 +155,8 @@ module.exports = {
                 cardimg.write(`${paths.BUILD}cards/${who}3_bj.png`)
             })
         }, 150);
+         }
+         if (array.length >= 5) {
         setTimeout(function () {
             Jimp.read(`${paths.BUILD}cards/${array[4].card}.png`).then(function (c1) {
                 cardimg.composite(c1, 4 * 97, 0)
@@ -116,5 +165,6 @@ module.exports = {
                 console.log(array[5].card + "-------------------------------------")
             })
         }, 200);
+         }
     }
 }

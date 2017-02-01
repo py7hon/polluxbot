@@ -72,7 +72,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
         }, 200);
         setTimeout(function () {
             message.channel.sendFile(`${paths.CARDS}${caller}.png`)
-        }, 2500);
+        }, 5800);
 
     };
 
