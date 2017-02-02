@@ -260,16 +260,12 @@ function enough(){
             setTimeout(function () {
                 for (i = 0; i < 5; i++) {
 
-                    if (dealer.sum() >= 18) {
+                    if (dealer.sum() >= 18 || dealer.sum()>= player.sum()) {
                         console.log('ok chega')
                         enough()
                         return;
                     }
-                    if (dealer.sum() >= player.sum()) {
-                        console.log('ok chega')
-                        enough()
-                        return;
-                    }
+
                     dealer.round++
                         console.log('keepgo dealer')
 
