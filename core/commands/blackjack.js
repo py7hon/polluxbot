@@ -4,277 +4,418 @@ const fs = require("fs");
 
 
 exports.run = (bot, message, args, userData, caller, gear, points) => {
-        console.log(gear.ongoing)
-        if (gear.ongoing) {
-            message.reply("você já está jogando comigo. Primeiro termine esse.")
-            return;
-        }
-        var stuff = message.content.toLowerCase().split(' ')
-        if (isNaN(parseInt(stuff[1], 10))||stuff[1]==0) {
-            message.reply("Você precisa apostar alguma coisa, chuchu~")
-            return;
-        }
-        if (gear.checkCookies(stuff[1], userData) == false) {
-            message.reply("Oxe, você não tem cookies suficientes pra cobrir essa aposta...")
-            return;
-        }
-        var bet = stuff[1]
-        userData.cookies-=bet
 
+    if (typeof ongoing === 'undefined' || ongoing === null) {
+        var ongoing = true
+    } else {
+        message.reply("você já está jogando comigo. Primeiro termine esse.")
+        return;
+    };
+    var stuff = message.content.toLowerCase().split(' ');
+    if (isNaN(parseInt(stuff[1], 10)) || stuff[1] == 0) {
+        message.reply("Você precisa apostar alguma coisa, chuchu~")
+        return;
+    };
+    if (gear.checkCookies(stuff[1], userData) == false) {
+        message.reply("Oxe, você não tem cookies suficientes pra cobrir essa aposta...")
+        return;
+    };
+    var bet = stuff[1];
+    userData.cookies -= bet;
+    ongoing = true;
+    let endgame = undefined;
+    var naipes = ['H/', 'D/', 'S/', 'C/'];
+    var naipesB = [':hearts:', ':diamonds:', ':spades:', ':clubs:'];
+    var cards = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
+    let deck = [];
 
-        gear.ongoing = true
-        var deck = []
-        var naipes = ['H/', 'D/', 'S/', 'C/']
-        var naipesB = [':hearts:', ':diamonds:', ':spades:', ':clubs:']
-        var cards = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
-        for (i = 0; i < 4; i++) {
-            for (x = 0; x < 13; x++) {
-                var card = {
-                    card: naipes[i] + cards[x]
-                    , value: x + 1
-                    , icon: "**"+cards[x]+"**" + naipesB[i]
-                }
-                deck.push(card)
+    for (i = 0; i < 4; i++) {
+        for (x = 0; x < 13; x++) {
+            x < 10 ? val = x + 1 : val = 10;
+            var card = {
+                card: naipes[i] + cards[x],
+                value: val,
+                icon: "**" + cards[x] + "**" + naipesB[i]
             }
+            deck.push(card)
         }
-        var pile = gear.shuffle(deck)
-        var end = false
-        var bank = []
-        var play = []
-        var playQ = 0
-        var bankQ = 0
-        var round = 0
-        if (end) return;
-        //// SETUP------------------------------------------------------------------------------------------SETUP
-        bank = [pile[0], pile[2], pile[4], pile[6], pile[8]]
-            //pile.splice(0, 0)
-        play = [pile[1], pile[3], pile[5], pile[7], pile[9]]
-            //pile.splice(0, 0)
-        gear.draw(bank, 'banc')
-        gear.draw(play, caller)
+    };
+    var pile = gear.shuffle(deck);
+
+
+
+    let player = {
+        hand: [pile[1], pile[3], pile[5], pile[7], pile[9]],
+        sum: function psum(s) {
+            var x = 0
+            for (i = 0; i < this.round + 1; i++) {
+                try {
+                    x += this.hand[i].value
+                } catch (err) {
+                    x += 0
+                }
+            }
+            return x;
+        },
+        round: 1,
+        keepgo: true,
+
+    };
+
+    let dealer = {
+        hand: [pile[0], pile[2], pile[4], pile[6], pile[8]],
+        sum: function dsum(s) {
+            var x = 0
+            for (i = 0; i < this.round + 1; i++) {
+                try {
+                    x += this.hand[i].value
+                } catch (err) {
+                    x += 0
+                }
+            }
+            return x;
+        },
+        round: 0,
+        keepgo: true,
+
+    };
+
+    ongoing = true;
+
+    gear.draw(player.hand, caller);
+    gear.draw(dealer.hand, 'banc');
+
+    function drawCards(a = 500, b = 1000) {
+
         setTimeout(function () {
-            message.channel.sendMessage("Ok, vamos jogar blackjack! Quem fizer 21 ou o mais próximo vence!")
-        }, 500);
-        setTimeout(function () {
-            message.channel.sendMessage("`Embaralhando...`").then(function (kik) {
-                kik.edit("`Embaralhando..`")
-                kik.edit("`Embaralhando.`")
-                kik.edit("`Embaralhando`")
-                    //
-                setTimeout(function () {
-                    kik.delete()
-                    message.channel.sendFile(`${paths.BUILD}/cards/${caller+round}_bj.png`, "card.png", "Sua carta é " + play[round].icon)
-                    if (end == false) {
-                        message.channel.sendFile(`${paths.BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Minha carta é " + bank[round].icon).then(function (thread) {
-                            if (end) {
-                                gear.ongoing = false
-                                console.log(gear.ongoing + " ongo")
-                                console.log(end + " end")
-                                return;
-                            }
-                            for (crd = 0; crd <= round; crd++) {
-                                bankQ += bank[crd].value
-                            }
-                            for (crd = 0; crd <= round; crd++) {
-                                playQ += play[crd].value
-                            }
-                            //-----------------------------------------------------------------------------------REPLY
-                            message.channel.sendMessage(":one:Seguir :two:Parar.Eu tenho:" + bankQ + ", você:" + playQ)
-                            bot.on("message", newmsg => {
-                                if (end) {
-                                    gear.ongoing = false
-                                    console.log(gear.ongoing)
-                                    return;
-                                }
-                                //1 pick
-                                //2 hold
-                                bankQ = 0;
-                                playQ = 0;
-                                // pick
-                                if (newmsg.author == message.author && newmsg.content == "1") {
-                                    round++
-                                    if (end) {
-                                        gear.ongoing = false
-                                        console.log(gear.ongoing)
-                                        return;
-                                    }
-                                    message.channel.sendFile(`${paths.BUILD}/cards/${caller+round}_bj.png`, "card.png", "Sua carta é " + play[round].icon)
-                                    for (crd = 0; crd <= round; crd++) {
-                                        console.log(play[crd].value + "+")
-                                        playQ += play[crd].value
-                                    }
-                                    if (playQ > 21) {
-                                        message.reply("**Você passou de 21**")
-                                        end = true;
-                                        gear.ongoing = false
-                                        console.log(gear.ongoing)
-                                        return;
-                                    }
-                                    if (playQ == 21) {
-                                        message.reply("**21, Você venceu!**")
-                                         message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
-                                             userData.cookies+=bet*2
-                                        end = true;
-                                        gear.ongoing = false
-                                        console.log(gear.ongoing)
-                                        return;
-                                    }
+            message.channel.sendFile(`${paths.BUILD}/cards/${caller+player.round}_bj.png`, "card.png", "Essas são suas cartas. Somando " + player.sum())
+            setTimeout(function () {
+                message.channel.sendFile(`${paths.BUILD}/cards/${'banc'+dealer.round}_bj.png`, "card.png", "Minhas cartas são estas. Somando " + dealer.sum())
+            }, a)
+        }, b)
 
-                                    for (crd = 0; crd <= round-1; crd++) {
-                                            console.log(bank[crd].value + "+")
-                                            bankQ += bank[crd].value
-                                        }
-                                    if (bankQ < 13) {
-                                        message.channel.sendFile(`${paths.BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Minha carta é " + bank[round].icon)
-                                        for (crd = 0; crd <= round; crd++) {
-                                            console.log(bank[crd].value + "+")
-                                            bankQ += bank[crd].value
-                                        }
-                                         if (bankQ == 21) {
-                                        message.reply("**21, Venci!**")
+        //HIT STAND #1
+    };
 
-                                        end = true;
-                                        gear.ongoing = false
-                                        console.log(gear.ongoing)
-                                        return;
-                                    }
-                                    }
-                                    else {
-                                        message.reply("Eu paro...")
-                                        if (bankQ >= playQ || bankQ == 21) {
-                                            message.reply("Eba, ganhei!")
-                                            end = true;
-                                            gear.ongoing = false
-                                            console.log(gear.ongoing)
-                                            return;
-                                        }
-                                        else {
-                                            message.channel.sendMessage("Você venceu!")
-                                            message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
-                                             userData.cookies+=bet*2
+    function conclusion(end) {
+        switch (end) {
+            case 'victory':
+                message.channel.sendMessage("Certo, toma aqui teus " + (bet * 2) + " :cookie: Cookies");
+                userData.cookies += bet * 2;
+                break;
+            case 'defeat':
+                message.channel.sendMessage("Boa sorte da próxima vez.");
 
-                                            end = true;
-                                            gear.ongoing = false
-                                            console.log(gear.ongoing)
-                                            return;
-                                        }
-                                    }
-                                    console.log(bankQ)
-                                    if (bankQ > 21) {
-                                        message.channel.sendMessage("Ops... me dei mal")
-                                          message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
-                                             userData.cookies+=bet*2
-                                        end = true;
-                                        gear.ongoing = false
-                                        console.log(gear.ongoing)
-                                        return;
-                                    } setTimeout(function () {
-                                    message.reply(":one:Seguir :two:Parar.Eu tenho:" + bankQ + ", você:" + playQ)
-                                     }, 100);
-                                    //check blow
-                                }
-                                else if (newmsg.author == message.author && newmsg.content == "2") {
-                                    round++
-
-                                    //hold
-                                    if (end) {
-                                        gear.ongoing = false
-                                        console.log(gear.ongoing)
-                                        return;
-                                    }
-                                    bankQ=0
-                                      for (crd = 0; crd <= round-1; crd++) {
-                                        bankQ += bank[crd].value
-                                    }
-
-                                     if (bankQ < 13) {
-                                         console.log(bankQ)
-                                        message.channel.sendFile(`${paths.BUILD}/cards/${'banc'+round}_bj.png`, "card.png", "Eu tirei um " + bank[round].icon)
-                                        bankQ=0
-                                        for (crd = 0; crd <= round; crd++) {
-                                            console.log(bank[crd].value + "+")
-                                            bankQ += bank[crd].value
-                                        }
-                                    }
-                                    else {
-                                        message.channel.sendMessage("Eu paro")
-                                         console.log(bankQ)
-                                         bankQ=0
-                                          for (crd = 0; crd <= round-1; crd++) {
-                                        bankQ += bank[crd].value
-                                    }
-                                        if (bankQ >= playQ || bankQ == 21) {
-                                             console.log(bankQ)
-                                            message.channel.sendMessage("Venci!")
-                                            end = true;
-                                            gear.ongoing = false
-                                            console.log(gear.ongoing)
-                                            return;
-                                        }
-                                        else {
-                                            message.channel.sendMessage("Perdi :(")
-                                              message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
-                                             userData.cookies+=bet*2
-                                             console.log(bankQ)
-                                            end = true;
-                                            gear.ongoing = false
-                                            console.log(gear.ongoing)
-                                            return;
-                                        }
-                                    }
+                break;
+            case 'tie':
+                message.channel.sendMessage("Bom, pega seus " + (bet) + " :cookie: cookies de volta...");
+                userData.cookies += bet;
+                break;
+        }
+        return ongoing = false;
 
 
-                                    //if (end) return;
-
-                                  playQ=0
-                                    for (crd = 0; crd <= round - 1; crd++) {
-                                        playQ += play[crd].value
-                                    }
-                                    //  message.reply("1 pick 2 hold, Current sum is me:" + bankQ + " you:" + playQ)
-                                    //check blow
-                                    if (bankQ > 21) {
-                                        message.channel.sendMessage("Ops... me dei mal")
-                                          message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
-                                             userData.cookies+=bet*2
-                                         console.log(bankQ)
-                                        console.log("bank blow")
-                                        end = true;
-                                        gear.ongoing = false
-                                        console.log(gear.ongoing)
-                                        return;
-                                    }
-                                    //check higher
-                                    if (bankQ >= playQ) {
-                                        message.channel.sendMessage("Yay! Venci")
-                                        console.log("I win")
-                                        end = true;
-                                        gear.ongoing = false
-                                        console.log(gear.ongoing)
-                                        return;
-                                    }
-                                    else {
-                                        message.reply("Você ganhou!")
-                                          message.channel.sendMessage("Toma aqui, **"+bet*2+"**:cookie: de prêmio!")
-                                             userData.cookies+=bet*2
-                                        console.log("I win")
-                                        end = true;
-                                        gear.ongoing = false
-                                        console.log(gear.ongoing)
-                                        return;
-                                    }
-                                    return;
-                                }
-                                else {
-                                    // end = true;
-                                    // gear.ongoing = false
-                                    // console.log(gear.ongoing)
-                                    return;
-                                };
-                            });
-                        });
-                    }
-                }, 500);
-            });
-        }, 300);
-    gear.writePoints(points,caller)
     }
+
+    /*function hitStand() {
+        if (player.keepgo != true || ongoing != true) {
+            return console.log('===================================')
+        };
+        setTimeout(function () {
+            message.channel.sendMessage(`:one: Hit
+:two: Stand`)
+        }, 2000)
+    };*/
+
+    function checkOut() {
+
+        setTimeout(function () {
+            switch (true) {
+                case (player.sum() == 21):
+                    endgame = 'victory'
+                    message.reply('Estourei o limite, Você venceu').then(function (m) {
+                        conclusion(endgame)
+                    })
+
+                    player.keepgo = false
+                    ongoing = false
+                    return
+                    break;
+                case (player.sum() > 21):
+                    endgame = 'defeat'
+                    message.reply('Você estourou os pontos, eu venci.').then(function (m) {
+                        conclusion(endgame)
+                    })
+
+                    player.keepgo = false
+                    ongoing = false
+                    break;
+            }
+        }, 500)
+
+    };
+function enough(){
+     //-------------------------------------------
+                if ((dealer.sum() >= player.sum()) && (dealer.sum() <= 21)) {
+                    message.channel.sendMessage('Eu paro...')
+                } else {
+                    message.channel.sendMessage('Ow porra...')
+                }
+
+
+                if ((player.sum() == 21) && (dealer.sum() != 21)) {
+
+                    endgame = 'victory'
+                    message.reply('21! Você venceu!').then(function (m) {
+                        conclusion(endgame)
+                    })
+                    ongoing = false
+                    console.log('A')
+
+                } else if (
+                    (21 > player.sum()) &&
+                    (player.sum() == dealer.sum()) &&
+                    (dealer.round > player.round)
+                ) {
+                    endgame = 'victory'
+                    message.reply('Empatamos, mas como você tem menos cartas você vence!').then(function (m) {
+                        conclusion(endgame)
+                    })
+                    ongoing = false
+                    console.log('B')
+
+                } else if (
+                    (21 > player.sum()) &&
+                    (player.sum() == dealer.sum()) &&
+                    (dealer.round > player.round)
+                ) {
+
+                    endgame = 'victory'
+                    message.reply('Empatamos, mas como tenho menos cartas eu venci!').then(function (m) {
+                        conclusion(endgame)
+                    })
+                    ongoing = false
+                    console.log('C')
+
+                } else if (player.sum() > 21) {
+
+                    endgame = 'defeat'
+                    message.reply('Você estourou os pontos, eu venci.').then(function (m) {
+                        conclusion(endgame)
+                    })
+                    ongoing = false
+                    console.log('D')
+
+                } else if ((21 >= dealer.sum()) && (dealer.sum() > player.sum())) {
+
+                    endgame = 'defeat'
+                    message.reply('Fiz mais pontos, venci!').then(function (m) {
+                        conclusion(endgame)
+                    })
+                    ongoing = false
+                    console.log('E')
+
+                } else if (dealer.sum() > 21) {
+
+                    endgame = 'victory'
+                    message.reply('Estourei o limite, Você venceu').then(function (m) {
+                        conclusion(endgame)
+                    })
+                    ongoing = false
+                    console.log('F')
+
+                } else {
+                    endgame = 'tie'
+                    message.reply('Esse jogo foi doido... toma teus cookie de volta').then(function (m) {
+                        conclusion(endgame)
+                    })
+                    ongoing = false
+                    console.log('AAAAAAAA')
+                }
+                // dealer.keepgo = false
+
+
+            setTimeout(function () {
+                message.channel.sendFile(`${paths.BUILD}/cards/${caller+player.round}_bj.png`, "card.png", "Essas são suas cartas. Somando " + player.sum())
+                setTimeout(function () {
+                    message.channel.sendFile(`${paths.BUILD}/cards/${'banc'+dealer.round}_bj.png`, "card.png", " E essas são as minhas, Somando " + dealer.sum())
+
+                    ongoing = false
+                    player.keepgo = false
+                    return
+
+                }, 10)
+
+            }, 280)
+}
+    function gotoEnd() {
+        if (ongoing !== true) return;
+
+        console.log('player KeepGo END')
+
+        message.channel.sendMessage('Ok, minha vez').then(function (c) {
+
+
+
+            setTimeout(function () {
+                for (i = 0; i < 5; i++) {
+
+                    if (dealer.sum() >= 18) {
+                        console.log('ok chega')
+                        enough()
+                        return;
+                    }
+                    if (dealer.sum() >= player.sum()) {
+                        console.log('ok chega')
+                        enough()
+                        return;
+                    }
+                    dealer.round++
+                        console.log('keepgo dealer')
+
+                    message.channel.sendMessage(dealer.hand[dealer.round].icon)
+
+                    console.log(dealer.sum())
+                    console.log(player.sum())
+
+
+                }
+                    }, 100)
+
+        }); //--------------- SEND OK MY TURN
+
+
+
+
+    };
+    //=====================================================================================//
+    //                                                                                     //
+    //                                      START GAME                                     //
+    //                                                                                     //
+    //=====================================================================================//
+
+
+    drawCards();
+
+    if (ongoing == true) {
+        setTimeout(function () {
+            message.channel.sendMessage(`:one: Hit
+:two: Stand`).then(function (m) {
+
+
+                    bot.on('message', newmsg => {
+                        if (endgame != undefined) {
+                            ongoing = false
+                            return;
+                        } else {
+                            if (newmsg.author == message.author && newmsg.content == "1") {
+                                player.keepgo = true
+                                player.round++
+
+                                    drawCards(1, 2);
+                                checkOut();
+if (ongoing === true && player.keepgo === true) {
+                            setTimeout(function () {
+                                message.channel.sendMessage(`:one: Hit
+:two: Stand`).then(function (m) {
+
+
+                                        bot.on('message', newmsgB => {
+                                            if (endgame != undefined) {
+                                                ongoing = false
+                                                return;
+                                            } else {
+                                                if (newmsgB.author == message.author && newmsgB.content == "1") {
+                                                    player.keepgo = true
+                                                    player.round++
+                                                        drawCards(1, 2);
+                                                    checkOut();
+if (ongoing === true && player.keepgo === true) {
+                                                setTimeout(function () {
+                                                    message.channel.sendMessage(`:one: Hit
+:two: Stand`).then(function (m) {
+
+
+                                                            bot.on('message', newmsgC => {
+                                                                if (endgame != undefined) {
+                                                                    ongoing = false
+                                                                    return;
+                                                                } else {
+                                                                    if (newmsgC.author == message.author && newmsgC.content == "1") {
+                                                                        player.keepgo = true
+                                                                        player.round++
+                                                                            drawCards(1, 2);
+                                                                        checkOut();
+                                                                         if (ongoing === true && player.keepgo === true) {
+
+
+                                                                    setTimeout(function () {
+                                                                        message.channel.sendMessage(`:one: Hit
+:two: Stand`).then(function (m) {
+
+
+                                                                                bot.on('message', newmsgD => {
+                                                                                    if (endgame != undefined) {
+                                                                                        ongoing = false
+                                                                                        return;
+                                                                                    } else {
+
+
+                                                                                        if (newmsgD.author == message.author && newmsgD.content == "1") {
+                                                                                            player.keepgo = true
+                                                                                            player.round++
+                                                                                                drawCards(1, 2);
+                                                                                            checkOut();
+                                                                                            if (ongoing) {
+                                                                                                gotoEnd()
+                                                                                            }
+                                                                                        } else if (newmsgD.author == message.author && newmsgD.content == "2") {
+                                                                                            gotoEnd();
+                                                                                        }
+
+                                                                                    }
+
+                                                                                })
+                                                                            }) // -------------POS HITSTAND 4
+                                                                    }, 2)
+                                                                }
+                                                                    } else if (newmsgC.author == message.author && newmsgC.content == "2") {
+                                                                        gotoEnd();
+                                                                    }
+                                                                }
+
+
+
+
+
+                                                            })
+                                                        }) // -------------POS HITSTAND 3
+                                                }, 20)
+                                            }
+                                                } else if (newmsgB.author == message.author && newmsgB.content == "2") {
+                                                    gotoEnd();
+                                                }
+                                            }
+
+
+
+
+                                        })
+                                    }) // -------------POS HITSTAND 2
+                            }, 200)
+                        }
+                            } else if (newmsg.author == message.author && newmsg.content == "2") {
+                                gotoEnd();
+                            }
+                        }
+
+
+
+
+
+                    })
+                }) // -------------POS HITSTAND 1
+        }, 2000)
+    }
+
+}
