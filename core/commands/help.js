@@ -47,13 +47,14 @@ Veja quantos cookies você tem
 Uma frase pro seu Profile Card
 
 \`+blackjack <aposta>\`
-Blackjack
+Blackjack Estilo Vegas. Apostando Cookies
 
 \`+rps [aposta] [@desafiado]\`
 Pedra papel e tesoura
 
 \`+switch [numero]\`
-Troca a foto do bot
+Troca a foto do bot.
+*Menu será implementado logo.*
 
 \`+stats\`
 info aleatoria
@@ -61,7 +62,9 @@ info aleatoria
 [] = _Argumento Opcional_
 <> = _Argumento Obrigatório_
 
-Invite: https://discordapp.com/oauth2/authorize?client_id=271394014358405121&scope=bot
+Qualquer problema só chamar @Flicky praquele inútil me consertar. :heart:
+
+Invite (experimental): https://discordapp.com/oauth2/authorize?client_id=271394014358405121&scope=bot
 `
         message.author.sendMessage(helptxt)
         console.log("HELP INVOKED")

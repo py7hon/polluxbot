@@ -331,9 +331,18 @@ bot.on('presenceUpdate', (me, mo) => {
         console.log(mo.presence.status)
         var skynet = bot.guilds.get('248285312353173505')
         var engine = skynet.defaultChannel
-        if (mo.presence.status == 'online') {
+        if (mo.presence.status == 'online'&&me.presence.status == 'offline') {p
             if (made == false) {
-                engine.sendMessage("Yay! Meu mestre chegou!")
+                var ind = gear.randomize(0,5)
+                var mess =[
+                    "Yay! Meu mestre chegou!"
+                    ,"Ih, chegou o Flicky aí"
+                    ,"Opa, ó só quem voltou"
+                    ,"Flicky olha esses cara"
+                    ,"Chegou o guei"
+                    ,"Apareceu a margarida"
+                ]
+                engine.sendMessage(mess[ind])
             }
             made = true
             return

@@ -10,7 +10,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
         let tgt = gear.checkment(message)
         let tgtData = points[tgt.id];
         console.log("COMP INVOKED")
-        let img = tgt.avatarURL.substr(0, tgt.avatarURL.length - 10)
+        let img = try{tgt.avatarURL.substr(0, tgt.avatarURL.length - 10)}catch(err){"./avis/2.gif"}
         gear.glassify(img, caller, message)
         setTimeout(function () {
             Jimp.read(`${paths.GLASS}/${caller}.png`).then(function (photo) {
@@ -72,7 +72,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
         }, 200);
         setTimeout(function () {
             message.channel.sendFile(`${paths.CARDS}${caller}.png`)
-        }, 2500);
+        }, 5800);
 
     };
 
