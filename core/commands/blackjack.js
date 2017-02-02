@@ -23,7 +23,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
         return;
     };
     var bet = stuff[1];
-    userData.cookies -= bet;
+    userData.cookies -= parseInt(bet);
     ongoing = true;
     let endgame = undefined;
     var naipes = ['H/', 'D/', 'S/', 'C/'];
@@ -102,16 +102,16 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
     function conclusion(end) {
         switch (end) {
             case 'victory':
-                message.channel.sendMessage("Certo, toma aqui teus " + (bet * 2) + " :cookie: Cookies");
-                userData.cookies += bet * 2;
+                message.channel.sendMessage("Certo, toma aqui teus " + parseInt(bet * 2.4) + " :cookie: Cookies de prêmio");
+                userData.cookies += parseInt(bet * 2.4);
                 break;
             case 'defeat':
                 message.channel.sendMessage("Boa sorte da próxima vez.");
 
                 break;
             case 'tie':
-                message.channel.sendMessage("Bom, pega seus " + (bet) + " :cookie: cookies de volta...");
-                userData.cookies += bet;
+                message.channel.sendMessage("Bom, pega seus " +  parseInt(bet * 2.4)) + " :cookie: cookies");
+                userData.cookies += parseInt(bet * 2.4);
                 break;
         }
         return ongoing = false;
@@ -229,7 +229,7 @@ function enough(){
 
                 } else {
                     endgame = 'tie'
-                    message.reply('Esse jogo foi doido... toma teus cookie de volta').then(function (m) {
+                    message.reply('Esse jogo foi doido... mas você venceu!').then(function (m) {
                         conclusion(endgame)
                     })
                     ongoing = false
