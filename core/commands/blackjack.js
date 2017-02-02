@@ -5,6 +5,8 @@ const fs = require("fs");
 
 exports.run = (bot, message, args, userData, caller, gear, points) => {
 
+
+
     if (typeof ongoing === 'undefined' || ongoing === null) {
         var ongoing = true
     } else {
@@ -61,7 +63,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
         keepgo: true,
 
     };
-
+     message.channel.sendMessage("Ok, vamos jogar Blackjack. Estilo vegas! Você puxa as suas até parar e depois eu puxo.");
     let dealer = {
         hand: [pile[0], pile[2], pile[4], pile[6], pile[8]],
         sum: function dsum(s) {
@@ -128,22 +130,23 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
     };*/
 
     function checkOut() {
+if (ongoing==false)return;
 
         setTimeout(function () {
             switch (true) {
                 case (player.sum() == 21):
                     endgame = 'victory'
-                    message.reply('Estourei o limite, Você venceu').then(function (m) {
+                    message.reply('Você fez 21, parabéns!').then(function (m) {
                         conclusion(endgame)
                     })
 
                     player.keepgo = false
                     ongoing = false
-                    return
+
                     break;
                 case (player.sum() > 21):
                     endgame = 'defeat'
-                    message.reply('Você estourou os pontos, eu venci.').then(function (m) {
+                    message.reply('Você estourou os pontos, eu venci.(checkout)').then(function (m) {
                         conclusion(endgame)
                     })
 
@@ -250,6 +253,7 @@ function enough(){
 }
     function gotoEnd() {
         if (ongoing !== true) return;
+        ongoing = false
 
         console.log('player KeepGo END')
 
@@ -270,9 +274,6 @@ function enough(){
                         console.log('keepgo dealer')
 
                     message.channel.sendMessage(dealer.hand[dealer.round].icon)
-
-                    console.log(dealer.sum())
-                    console.log(player.sum())
 
 
                 }
@@ -308,10 +309,11 @@ function enough(){
                                 player.keepgo = true
                                 player.round++
 
-                                    drawCards(1, 2);
+                                    drawCards(11, 22);
                                 checkOut();
-if (ongoing === true && player.keepgo === true) {
+
                             setTimeout(function () {
+                                if (ongoing === true && player.keepgo === true) {
                                 message.channel.sendMessage(`:one: Hit
 :two: Stand`).then(function (m) {
 
@@ -324,10 +326,11 @@ if (ongoing === true && player.keepgo === true) {
                                                 if (newmsgB.author == message.author && newmsgB.content == "1") {
                                                     player.keepgo = true
                                                     player.round++
-                                                        drawCards(1, 2);
+                                                    drawCards(100, 200);
                                                     checkOut();
-if (ongoing === true && player.keepgo === true) {
+
                                                 setTimeout(function () {
+                                                    if (ongoing === true && player.keepgo === true) {
                                                     message.channel.sendMessage(`:one: Hit
 :two: Stand`).then(function (m) {
 
@@ -340,7 +343,7 @@ if (ongoing === true && player.keepgo === true) {
                                                                     if (newmsgC.author == message.author && newmsgC.content == "1") {
                                                                         player.keepgo = true
                                                                         player.round++
-                                                                            drawCards(1, 2);
+                                                                        drawCards(100, 200);
                                                                         checkOut();
                                                                          if (ongoing === true && player.keepgo === true) {
 
@@ -360,7 +363,7 @@ if (ongoing === true && player.keepgo === true) {
                                                                                         if (newmsgD.author == message.author && newmsgD.content == "1") {
                                                                                             player.keepgo = true
                                                                                             player.round++
-                                                                                                drawCards(1, 2);
+                                                                                                drawCards(100, 200);
                                                                                             checkOut();
                                                                                             if (ongoing) {
                                                                                                 gotoEnd()
@@ -373,7 +376,7 @@ if (ongoing === true && player.keepgo === true) {
 
                                                                                 })
                                                                             }) // -------------POS HITSTAND 4
-                                                                    }, 2)
+                                                                    }, 250)
                                                                 }
                                                                     } else if (newmsgC.author == message.author && newmsgC.content == "2") {
                                                                         gotoEnd();
@@ -386,8 +389,8 @@ if (ongoing === true && player.keepgo === true) {
 
                                                             })
                                                         }) // -------------POS HITSTAND 3
-                                                }, 20)
-                                            }
+                                             }   }, 500)
+
                                                 } else if (newmsgB.author == message.author && newmsgB.content == "2") {
                                                     gotoEnd();
                                                 }
@@ -398,8 +401,8 @@ if (ongoing === true && player.keepgo === true) {
 
                                         })
                                     }) // -------------POS HITSTAND 2
-                            }, 200)
-                        }
+                         }   }, 1000)
+
                             } else if (newmsg.author == message.author && newmsg.content == "2") {
                                 gotoEnd();
                             }
