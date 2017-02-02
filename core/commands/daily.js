@@ -26,9 +26,20 @@ var day = 86400000
 var dly = userData.daily
 1486025790272
 if((now-dly)>=day){
+      if((now-dly)<(day*2)){
+        userData.dyStreak+=1
+    }else{
+         userData.dyStreak=0
+    }
+
     message.reply(':cookie:  Você recebeu 200 cookies de bônus diário~')
+     if(userData.dyStreak==10){
+        message.channel.sendMessage(':cookie:  Você recebeu mais 500 cookies por coletar 10 dias seguidos!')
+    }
     userData.cookies+=200
+
     userData.daily=now
+
 }else{
     var r = day-(now-dly)
     var remain = (r/1000 + "").toHHMMSS();
