@@ -6,6 +6,9 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
 \`+avi\`
 Retorna o seu avatar, só isso.
 
+\`+daily\`
+Cookies de graça todo dia.
+
 \`+adm [@user]\`
 Verifica se você ou @fulaninho é um Adm
 

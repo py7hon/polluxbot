@@ -74,6 +74,7 @@ bot.on("message", message => {
         , money: 0
         , medals: {}
         , flowers: 0
+        ,"daily": 86400000
         , cookies: 0
         , persotext: ""
     };
