@@ -4,7 +4,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
     try{
         var a = args.split(' ')}catch(err){var a = args}
     if (a[0] == "*") {
-        if (a[1] == "-silent") {
+        if (a[1] != "-verbose") {
             try {
                 message.channel.sendMessage('Ok, bora lá...')
                 var count = 0
