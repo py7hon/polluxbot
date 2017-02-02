@@ -345,10 +345,12 @@ function enough(){
                                                                         player.round++
                                                                         drawCards(100, 200);
                                                                         checkOut();
-                                                                         if (ongoing === true && player.keepgo === true) {
+
 
 
                                                                     setTimeout(function () {
+
+                                                                         if (ongoing === true && player.keepgo === true) {
                                                                         message.channel.sendMessage(`:one: Hit
 :two: Stand`).then(function (m) {
 
@@ -376,8 +378,8 @@ function enough(){
 
                                                                                 })
                                                                             }) // -------------POS HITSTAND 4
-                                                                    }, 250)
-                                                                }
+                                                                    }  }, 500)
+
                                                                     } else if (newmsgC.author == message.author && newmsgC.content == "2") {
                                                                         gotoEnd();
                                                                     }
@@ -389,7 +391,7 @@ function enough(){
 
                                                             })
                                                         }) // -------------POS HITSTAND 3
-                                             }   }, 500)
+                                             }   }, 1000)
 
                                                 } else if (newmsgB.author == message.author && newmsgB.content == "2") {
                                                     gotoEnd();
@@ -401,7 +403,7 @@ function enough(){
 
                                         })
                                     }) // -------------POS HITSTAND 2
-                         }   }, 1000)
+                         }   }, 1500)
 
                             } else if (newmsg.author == message.author && newmsg.content == "2") {
                                 gotoEnd();
