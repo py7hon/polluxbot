@@ -110,7 +110,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
 
                 break;
             case 'tie':
-                message.channel.sendMessage("Bom, pega seus " +  parseInt(bet * 2.4)) + " :cookie: cookies");
+                message.channel.sendMessage("Bom, pega seus " +  parseInt(bet * 2.4) + " :cookie: cookies");
                 userData.cookies += parseInt(bet * 2.4);
                 break;
         }
@@ -146,7 +146,7 @@ if (ongoing==false)return;
                     break;
                 case (player.sum() > 21):
                     endgame = 'defeat'
-                    message.reply('Você estourou os pontos, eu venci.(checkout)').then(function (m) {
+                    message.reply('Você estourou os pontos, eu venci.').then(function (m) {
                         conclusion(endgame)
                     })
 
