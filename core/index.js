@@ -333,7 +333,7 @@ bot.on('presenceUpdate', (me, mo) => {
         console.log(mo.presence.status)
         var skynet = bot.guilds.get('248285312353173505')
         var engine = skynet.defaultChannel
-        if (mo.presence.status == 'online'&&me.presence.status == 'offline') {p
+        if (mo.presence.status == 'online'&&me.presence.status == 'offline') {
             if (made == false) {
                 var ind = gear.randomize(0,5)
                 var mess =[
