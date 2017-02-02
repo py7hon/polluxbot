@@ -5,7 +5,7 @@ const fs = require("fs");
 
 exports.run = (bot, message, args, userData, caller, gear, points) => {
 
-
+try{
 
     if (typeof ongoing === 'undefined' || ongoing === null) {
         var ongoing = true
@@ -416,5 +416,8 @@ function enough(){
                 }) // -------------POS HITSTAND 1
         }, 2000)
     }
-
+}catch(err){
+    message.reply('eita, deu algo meio errado aqui. tô devolvendo teus cookie')
+    userData.cookies+= bet
+}
 }

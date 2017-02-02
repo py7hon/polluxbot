@@ -13,13 +13,21 @@ module.exports = {
     });
     },
     checkAdm: function checkAdm(origin, target) {
-        if (origin.guild.member(target).roles.exists("name", "ADM")) {
+
+        let modRole = origin.guild.roles.find("name", "MOD");
+        let admRole = origin.guild.roles.find("name", "ADM");
+        let maidRole = origin.guild.roles.find("name", "🎀   Maids");
+
+
+
+
+        if (origin.guild.member(target).roles.has(admRole.id)) {
             return "ADM";
         }
-        else if (origin.guild.member(target).roles.exists("name", "MOD")) {
+        else if (origin.guild.member(target).roles.has(modRole.id)) {
             return "MOD";
         }
-        else if (origin.guild.member(target).roles.exists("name", "🎀   Maids")) {
+        else if (origin.guild.member(target).roles.has(maidRole.id)) {
             return "MAID";
         }
         else if (target.bot) {
@@ -30,10 +38,15 @@ module.exports = {
         }
     }
     , checkment: function checkment(message) {
-        let ment = message.mentions.users.first()
-        let tgt = message.author;
-        ment === undefined ? tgt = message.author : tgt = ment;
-        return tgt
+
+       if(!message.mentions.users.size){
+
+           return message.author
+
+       }else{
+
+           return message.mentions.users.first()
+       }
     }
     , checkCookies: function checkCookies(amount, invoker) {
         if (invoker.cookies >= amount) {
@@ -44,9 +57,12 @@ module.exports = {
         }
     }
     , glassify: function glassify(img, call, msg = false) {
+
         Jimp.read(img).then(function (user) {
+
             Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
                 Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
+
                     user.resize(126, 126)
                     user.mask(glass, 0, 0)
                     var air = {}
@@ -54,11 +70,29 @@ module.exports = {
                         lennaB.composite(user, 0, 0)
                         lennaB.mask(lenna, 0, 0)
                         lennaB.write(`${paths.GLASS}/${call}.png`);
+                         console.log("Glassify Done")
                     });
                 });
             })
         });
     }
+     , roundify: function roundify(img, call, msg = false) {
+         console.log('ROUNDIFY')
+        Jimp.read(img).then(function (user) {
+           user.resize(126, 126)
+                Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
+
+
+                        user.mask(lenna, 0, 0)
+                        user.write(`${paths.ROUND}/${call}.png`);
+
+                });
+
+        });
+    }
+
+
+
     , randomize: function randomize(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }

@@ -4,19 +4,30 @@ const Jimp = require("jimp");
 
 
 exports.run = (bot, message, args, userData, caller, gear, points) => {
+       if (message.channel.type=='dm'){
+           message.reply('Não usável em DM')
+           return
+       }
 
+   message.reply('Gerando seu Profilecard...').then(m => m.delete(2000))
+
+let  img = bot.user.avatarURL.substr(0, bot.user.avatarURL.length - 10)
        // var caller = message.author.username
-        console.log("PROFILE VIEW INVOKED by " + caller + "-------------\n")
         let tgt = gear.checkment(message)
+
         let tgtData = points[tgt.id];
-        console.log("COMP INVOKED")
-        let img = try{tgt.avatarURL.substr(0, tgt.avatarURL.length - 10)}catch(err){"./avis/2.gif"}
-        gear.glassify(img, caller, message)
+
+        let adm = gear.checkAdm(message, tgt)
+           if(tgt.avatarURL){img = tgt.avatarURL.substr(0, tgt.avatarURL.length - 10);}
+
+        gear.roundify(img, caller, message)
         setTimeout(function () {
-            Jimp.read(`${paths.GLASS}/${caller}.png`).then(function (photo) {
+             Jimp.read(`${paths.ROUND}${caller}.png`).then(function (photo) {
+
                 Jimp.read(paths.BUILD + 'cartela.png').then(function (cart) {
+
                     Jimp.read(paths.BUILD + 'levbar.png').then(function (bar) {
-                        let adm = gear.checkAdm(message, tgt)
+
                         Jimp.read(paths.BUILD + adm + '.png').then(function (tag) {
                             Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
                                 Jimp.loadFont(paths.FONTS + 'TXT.fnt').then(function (sub) {
@@ -25,13 +36,13 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
                                         var money = tgtData.cookies.toString()
                                         var exp = tgtData.points.toString()
                                         var texp = tgtData.persotext.toString()
-                                    }
-                                    catch (err) {
+                                    }catch (err) {
                                         var level = "00"
                                         var money = "00"
                                         var exp = "0000"
                                         var texp = ""
                                     }
+
                                     var next = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2));
                                     var perc = Number(exp) / next
                                     if (level.length == 1) {
@@ -51,7 +62,8 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
                                         next = "99999"
                                         bar.resize(354, 18)
                                     };
-                                    cart.print(head, 153, 3, message.guild.member(tgt).displayName);
+
+         cart.print(head, 153, 3, message.guild.member(tgt).displayName);
                                     cart.print(head, 425, 37, `${level}`);
                                     cart.print(head, 290, 160, `${money} Cookies`);
                                     cart.print(sub, 74, 253, `${exp} / ${next}`);
@@ -69,10 +81,10 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
                     });
                 });
             });
-        }, 200);
+        }, 500);
         setTimeout(function () {
             message.channel.sendFile(`${paths.CARDS}${caller}.png`)
-        }, 5800);
+        }, 3800);
 
     };
 
