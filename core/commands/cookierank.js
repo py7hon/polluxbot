@@ -1,10 +1,15 @@
+const Discord = require("discord.js");
 const arraySort = require('array-sort')
 const fs = require("fs");
-
+var paths = require("../paths.js");
 
 exports.run = (bot, message, args, userData, caller, gear, points) => {
-        console.log("RANK COOK VIEW INVOKED by " + caller + "-------------\n")
-        var rankItem = []
+
+ emb =    new Discord.RichEmbed();
+
+
+
+     var rankItem = []
         var ranked = []
         for (var i in points) {
             rankItem.name = points[i].name
@@ -17,17 +22,46 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
             reverse: true
         })
         console.log(ranked)
-        let replyData = `
-:first_place: 1st\t**${ranked[0].name}**\tLevel\t${ranked[0].level}\t\t::\t${ranked[0].cookies+":cookie:"}
 
-:second_place: 2nd\t**${ranked[1].name}**\tLevel\t${ranked[1].level}\t\t::\t${ranked[1].cookies+":cookie:"}
 
-:third_place: 3rd\t**${ranked[2].name}**\tLevel\t${ranked[2].level}\t\t::\t${ranked[2].cookies+":cookie:"}
+    emb.setColor('#da7f5b')
+    emb.title = "RANKING DE COOKIES"
 
-:medal: 4th\t**${ranked[3].name}**\tLevel\t${ranked[3].level}\t\t::\t${ranked[3].cookies+":cookie:"}
+    emb.setAuthor('Pollux',bot.user.avatarURL,'https://github.com/LucasFlicky/polluxbot')
 
-:medal: 5th\t**${ranked[4].name}**\tLevel\t${ranked[4].level}\t\t::\t${ranked[4].cookies+":cookie:"}
+  emb.setFooter('Se você não aparece aqui, digite +cook para ver quantos Cookies você tem')
+  //emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/display.png")
+  // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
+    emb.description = "Os Top-5 mais embolachados do server"
 
-                        `
-        message.channel.sendMessage(replyData)
-    };
+      emb.addField(':first_place: 1st',ranked[0].name, true)
+      emb.addField('Level',ranked[0].level, true)
+      emb.addField('Cookies',ranked[0].cookies + ':cookie:', true)
+
+      emb.addField(':second_place: 2nd',ranked[1].name, true)
+      emb.addField('Level',ranked[1].level, true)
+      emb.addField('Cookies',ranked[1].cookies + ':cookie:', true)
+
+       emb.addField(':third_place: 3rd',ranked[2].name, true)
+      emb.addField('Level',ranked[2].level, true)
+      emb.addField('Cookies',ranked[2].cookies + ':cookie:', true)
+
+       emb.addField(':medal: 4th',ranked[3].name, true)
+      emb.addField('Level',ranked[3].level, true)
+      emb.addField('Cookies',ranked[3].cookies + ':cookie:', true)
+
+
+       emb.addField(':medal: 5th',ranked[4].name, true)
+      emb.addField('Level',ranked[4].level, true)
+      emb.addField('Cookies',ranked[4].cookies + ':cookie:', true)
+
+
+
+    message.channel.sendEmbed(emb)
+
+
+
+
+
+
+}
