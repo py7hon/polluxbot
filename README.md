@@ -13,7 +13,7 @@ Discord Bot
 |+daily|Rubys de graça todo dia|`+daily`| :heavy_check_mark:|
 |+glassify [@mention]|Faz umas frescuras com teu avatar|`+glassify @Fulano`| :heavy_check_mark:|
 |+profile [@mention]|Mostra o Profilecard seu ou de @fulaninho|`+profile @Fulano`| :heavy_check_mark:|
-|+say <texto>|Repete <texto>|`+say Vai se lascar`|           |
+|+say <texto>|Repete <texto>|`+say Vai se lascar`|:heavy_check_mark:|
 |+joined [@user]|Retorna a data que você ou @fulaninho entrou no Server|`+joined @Fulano`| :heavy_check_mark:|
 |+vidal|VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL|`+vidal`| :heavy_check_mark:|
 |+salty|QUIPE BOTE CARALHO|`+salty`| :heavy_check_mark:|
