@@ -34,7 +34,7 @@ const RUBYMOJI = message.guild.emojis.find('name','ruby')
   emb.setFooter('Se você não aparece aqui, digite +ruby para ver quantos Rubys você tem')
   //emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/display.png")
   // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
-    emb.description = "Os Top-5 mais embolachados do server"
+    emb.description = "Os Top-5 mais rubificadoss do server"
 
       emb.addField(':first_place: 1st',ranked[0].name, true)
       emb.addField('Level',ranked[0].level, true)
