@@ -1,7 +1,7 @@
 var paths = require("../paths.js");
 const fs = require("fs");
 var pass = 0
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     console.log("------------RPS by" + caller)
     var stuff = message.content.split(' ')
 
@@ -20,7 +20,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
         , "money": 500
         , "medals": {}
         , "flowers": 0
-        , "cookies": 500
+        , "rubys": 500
         }
 
     if(message.mentions.users.size === 0){
@@ -32,7 +32,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
         , "money": 500
         , "medals": {}
         , "flowers": 0
-        , "cookies": 500
+        , "rubys": 500
         }
         message.reply("Já que você não especificou um desafiado, eu vou jogar com você!");
 
@@ -50,9 +50,9 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
 
     //let tgt = message.mentions.users.first()
 
-    if (gear.checkCookies(donate, userData) == true) {
+    if (gear.checkRubys(donate, userData) == true) {
 
-        if(gear.checkCookies(donate, tgtData) == true || tgt.bot == true){
+        if(gear.checkRubys(donate, tgtData) == true || tgt.bot == true){
 
 
         var challenger = message.author

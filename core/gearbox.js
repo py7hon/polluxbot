@@ -1,8 +1,13 @@
+const Discord = require("discord.js");
 var paths = require("./paths.js");
 const Jimp = require("jimp");
 const fs = require("fs");
 
+
+
+
 module.exports = {
+
     drops : 0,
     vacuum : [],
     ongoing : false,
@@ -12,7 +17,7 @@ module.exports = {
         if (err) console.log("JSON ERROR  on " + caller + "'s activity -------------\n" + err)
     });
     },
-    checkAdm: function checkAdm(origin, target) {
+checkAdm: function checkAdm(origin, target) {
 
         let modRole = origin.guild.roles.find("name", "MOD");
         let admRole = origin.guild.roles.find("name", "ADM");
@@ -48,8 +53,8 @@ module.exports = {
            return message.mentions.users.first()
        }
     }
-    , checkCookies: function checkCookies(amount, invoker) {
-        if (invoker.cookies >= amount) {
+    , checkRubys: function checkRubys(amount, invoker) {
+        if (invoker.rubys >= amount) {
             return true;
         }
         else {

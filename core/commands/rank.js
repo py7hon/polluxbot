@@ -3,7 +3,7 @@ const arraySort = require('array-sort')
 const fs = require("fs");
 var paths = require("../paths.js");
 
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
  emb =    new Discord.RichEmbed();
 

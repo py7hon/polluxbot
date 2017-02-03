@@ -12,6 +12,8 @@ var gear = require('./gearbox.js');
 const prefix = "+";
 var counter = 0
 var droprate = 5000
+let skynet = bot.guilds.get('248285312353173505');
+
     //
     //===============================================================
     //             PATHS
@@ -26,9 +28,9 @@ cleverbot.setNick(cfg.name)
     //----Cleverbot
 cleverbot.create(function (err, session) {
     bot.on("message", message => {
-        if (gear.checkment(message).username != bot.user.username) return;
-        if (message.author.bot) return;
-        //if (message.author.username != "RoboEd") return;
+        //if (gear.checkment(message).username != bot.user.username) return;
+        //if (message.author.bot) return;
+        if (message.author.username != "RoboEd") return;
         if (!message.content.startsWith('+')) {
             message.channel.startTyping()
             cleverbot.ask(message.content.substr(13), function (err, response) {
@@ -59,7 +61,7 @@ bot.on("message", message => {
     try {
         delete require.cache[require.resolve(`../points.json`)];
         let commandFile = require(`./commands/${command}.js`);
-        commandFile.run(bot, message, args, userData, caller, gear, points);
+        commandFile.run(bot, message, args, userData, caller, gear, points, skynet);
     }
     catch (err) {
         console.log(err)
@@ -76,7 +78,7 @@ bot.on("message", message => {
         , flowers: 0
         , dyStreak: 0
         , daily: 86400000
-        , cookies: 0
+        , rubys: 0
         , persotext: ""
     };
     let userData = points[message.author.id];
@@ -180,7 +182,7 @@ bot.on("message", message => {
     //RANK
     //-----------------------------------------------------
     if (message.content.includes("biscoito")) {
-        userData.cookies >= 0 ? userData.cookies -= 1 : userData.cookies = 0;
+        userData.rubys >= 0 ? userData.rubys -= 1 : userData.rubys = 0;
         console.log("Heresia Detected")
     }
     //
@@ -217,10 +219,10 @@ bot.on("message", message => {
             droprate = 1
         }
         else if (tgt.roles.exists("name", "MOD")) {
-            message.reply("Somente os almighty Admins podem dropar potes");
+            message.reply("Somente os almighty Admins podem dropar baús");
         }
         else {
-            message.reply("Somente os almighty Admins podem dropar potes");
+            message.reply("Somente os almighty Admins podem dropar baús");
         }
     };
     if (message.content.startsWith(prefix + "vidal")) {
@@ -255,15 +257,15 @@ bot.on("message", message => {
     }*/
     // console.log("DROPRATE " + droprate)
     if (droprate >= 1000 && droprate < 1101) {
-        message.guild.defaultChannel.sendFile(paths.BUILD + 'cookie.png', 'Cookie.png', "OLHA GENTE! Um cookie! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
-            gear.vacuum.push(cookpot)
+        message.guild.defaultChannel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', "OLHA GENTE! Um ruby! quem digitar \`+pick\` primeiro leva! ").then(function (rubypot) {
+            gear.vacuum.push(rubypot)
         })
         gear.drops++
             console.log("------------=========== ::: NATURAL DROP")
     }
     if (droprate <= 5) {
-        message.guild.defaultChannel.sendFile(paths.BUILD + 'cookipot.jpg', 'Cookipot.jpg', "EITA PORRA! Um pote inteiro de cookies! quem digitar \`+pick\` primeiro leva! ").then(function (cookpot) {
-            gear.vacuum.push(cookpot)
+        message.guild.defaultChannel.sendFile(paths.BUILD + 'rubypot.png', 'Rubychest.png', "EITA PORRA! Um baú inteiro de rubys! quem digitar \`+pick\` primeiro leva! ").then(function (rubypot) {
+            gear.vacuum.push(rubypot)
         })
         gear.drops += 10
         console.log("------------=========== ::: NATURAL RARE DROP ::: ===")
@@ -284,10 +286,10 @@ bot.on('guildMemberRemove', (member) => {
     member.guild.defaultChannel.sendMessage(` ${member.user.username} foi-se!`)
 });
 bot.on('ready', () => {
-    av = gear.randomize(1, 6)
-    bot.user.setAvatar('../avis/' + av + '.png', function (err) {
-        if (err) throw err;
-    });
+   // av = gear.randomize(1, 6)
+    //bot.user.setAvatar('../avis/' + av + '.png', function (err) {
+      //  if (err) throw err;
+    //});
     console.log('START');
     var ts = Date.now().toString()
     fs.createReadStream('../points.json').pipe(fs.createWriteStream('../backup/points_backup_' + ts + '.json'));

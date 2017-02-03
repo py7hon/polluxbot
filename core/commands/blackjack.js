@@ -2,8 +2,8 @@ var paths = require("../paths.js");
 var gear = require("../gearbox.js");
 const fs = require("fs");
 
-
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+const RUBYMOJI = message.guild.emojis.find('name','ruby')
 
     try {
 
@@ -18,12 +18,12 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
             message.reply("Você precisa apostar alguma coisa, chuchu~")
             return;
         };
-        if (gear.checkCookies(stuff[1], userData) == false) {
-            message.reply("Oxe, você não tem cookies suficientes pra cobrir essa aposta...")
+        if (gear.checkRubys(stuff[1], userData) == false) {
+            message.reply("Oxe, você não tem rubys suficientes pra cobrir essa aposta...")
             return;
         };
         var bet = stuff[1];
-        userData.cookies -= parseInt(bet);
+        userData.rubys -= parseInt(bet);
         ongoing = true;
         let endgame = undefined;
         var naipes = ['H/', 'D/', 'S/', 'C/'];
@@ -102,16 +102,16 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
         function conclusion(end) {
             switch (end) {
                 case 'victory':
-                    message.channel.sendMessage("Certo, toma aqui teus " + parseInt(bet * 2.4) + " :cookie: Cookies de prêmio");
-                    userData.cookies += parseInt(bet * 2.4);
+                    message.channel.sendMessage("Certo, toma aqui teus " + parseInt(bet * 2.4) + " "+RUBYMOJI+" Rubys de prêmio");
+                    userData.rubys += parseInt(bet * 2.4);
                     break;
                 case 'defeat':
                     message.channel.sendMessage("Boa sorte da próxima vez.");
 
                     break;
                 case 'tie':
-                    message.channel.sendMessage("Bom, pega seus " + parseInt(bet * 2.4) + " :cookie: cookies");
-                    userData.cookies += parseInt(bet * 2.4);
+                    message.channel.sendMessage("Bom, pega seus " + parseInt(bet * 2.4) + " "+RUBYMOJI+" rubys");
+                    userData.rubys += parseInt(bet * 2.4);
                     break;
             }
             return ongoing = false;
@@ -146,7 +146,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
                         break;
                     case (player.sum() > 21):
                         endgame = 'defeat'
-                        message.reply('Você estourou os pontos, eu venci. 1 ').then(function (m) {
+                        message.reply('Você estourou os pontos, eu venci. ').then(function (m) {
                             conclusion(endgame)
 
 
@@ -423,7 +423,7 @@ Turn 4`).then(function (mmm) {
             }, 2000)
         }
     } catch (err) {
-        message.reply('eita, deu algo meio errado aqui. tô devolvendo teus cookie')
-        userData.cookies += bet
+        message.reply('eita, deu algo meio errado aqui. tô devolvendo teus ruby')
+        userData.rubys += bet
     }
 }

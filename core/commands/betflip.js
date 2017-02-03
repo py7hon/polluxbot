@@ -2,10 +2,10 @@ var paths = require("../paths.js");
 var gear = require("../gearbox.js");
 const fs = require("fs");
 
-
-exports.run = (bot, message, args, userData, caller, gear, points) => {
-        if (gear.checkCookies(3, userData) == false) {
-            message.reply(" você não tem cookies suficientes. Você precisa pelo menos **3** :cookie:");
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+const RUBYMOJI = message.guild.emojis.find('name','ruby')
+        if (gear.checkRubys(3, userData) == false) {
+            message.reply(" você não tem rubys suficientes. Você precisa pelo menos **3** );
             return;
         }
         var bet = message.content.toLowerCase().split(' ');
@@ -18,7 +18,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
             message.reply('Comando incorreto, use `+beflip <quantidade> <resultado>` Ex: `+betflip 5 cara`');
             return;
         };
-        if (gear.checkCookies(parseInt(bet[1]), userData) == false) {
+        if (gear.checkRubys(parseInt(bet[1]), userData) == false) {
             message.reply(" cê não tá com essa bola toda não...");
             return;
         };
@@ -27,7 +27,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
             message.reply('Comando incorreto, use `+beflip <quantidade> <resultado>` Ex: `+betflip 5 cara`');
             return;
         }
-        userData.cookies -= bet[1]
+        userData.rubys -= bet[1]
         var coin = gear.randomize(1, 2);
         var res = ""
         var ros = ""
@@ -35,7 +35,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
         coin == 1 ? ros = "heads.png" : ros = "tails.png";
         if (res.toLowerCase() == bet[2]) {
             message.channel.sendFile(paths.BUILD + 'heads.png', 'heads.png', "Yay! " + res + "! Você ganhou **" + (bet[1] * 2) + "**")
-            userData.cookies += bet[1] * 2
+            userData.rubys += bet[1] * 2
         }
         else {
             message.channel.sendFile(paths.BUILD + ros, ros, "Putz! " + res + "! Você perdeu...")

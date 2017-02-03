@@ -3,7 +3,7 @@ const fs = require("fs");
 const Jimp = require("jimp");
 
 
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
        if (message.channel.type=='dm'){
            message.reply('Não usável em DM')
            return
@@ -33,7 +33,7 @@ let  img = bot.user.avatarURL.substr(0, bot.user.avatarURL.length - 10)
                                 Jimp.loadFont(paths.FONTS + 'TXT.fnt').then(function (sub) {
                                     try {
                                         var level = tgtData.level.toString()
-                                        var money = tgtData.cookies.toString()
+                                        var money = tgtData.rubys.toString()
                                         var exp = tgtData.points.toString()
                                         var texp = tgtData.persotext.toString()
                                     }catch (err) {
@@ -57,7 +57,7 @@ let  img = bot.user.avatarURL.substr(0, bot.user.avatarURL.length - 10)
                                     bar.resize(stret + 1, 18)
                                     if (tgt.bot) {
                                         level = "XX"
-                                        money = "INFINITE COOKIES"
+                                        money = "INFINITE RUBYS"
                                         exp = "99999"
                                         next = "99999"
                                         bar.resize(354, 18)
@@ -65,7 +65,7 @@ let  img = bot.user.avatarURL.substr(0, bot.user.avatarURL.length - 10)
 
          cart.print(head, 153, 3, message.guild.member(tgt).displayName);
                                     cart.print(head, 425, 37, `${level}`);
-                                    cart.print(head, 290, 160, `${money} Cookies`);
+                                    cart.print(head, 290, 160, `${money} Rubys`);
                                     cart.print(sub, 74, 253, `${exp} / ${next}`);
                                     cart.print(sub, 172, 66, `${joinstamp}`);
                                     cart.print(sub, 180, 120, `${texp}`);

@@ -1,4 +1,3 @@
-
  String.prototype.toHHMMSS = function () {
     var sec_num = parseInt(this, 10); // don't forget the second param
     var hours   = Math.floor(sec_num / 3600);
@@ -15,8 +14,9 @@
     return time;
 }
 
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
+const RUBYMOJI = message.guild.emojis.find('name','ruby')
     // day one 1485938511477 + 86400000
 
 const D = 1000 * 60 * 60 * 24 * 1
@@ -32,18 +32,18 @@ if((now-dly)>=day){
          userData.dyStreak=0
     }
 
-    message.reply(':cookie:  Você recebeu 200 cookies de bônus diário~')
+    message.reply( RUBYMOJI+' Você recebeu 200 rubys de bônus diário~')
      if(userData.dyStreak==10){
-        message.channel.sendMessage(':cookie:  Você recebeu mais 500 cookies por coletar 10 dias seguidos!')
+        message.channel.sendMessage(RUBYMOJI+' Você recebeu mais 500 rubys por coletar 10 dias seguidos!')
     }
-    userData.cookies+=200
+    userData.rubys+=200
 
     userData.daily=now
 
 }else{
     var r = day-(now-dly)
     var remain = (r/1000 + "").toHHMMSS();
-    message.reply(':cookie:  Você já pegou seu bônus diário, ele estará disponível novamente em: **'+remain+'**')
+    message.reply( RUBYMOJI+' Você já pegou seu bônus diário, ele estará disponível novamente em: **'+remain+'**')
 }
 
 

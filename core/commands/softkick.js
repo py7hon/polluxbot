@@ -1,4 +1,4 @@
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     const Jimp = require("jimp");
     var paths = require("../paths.js");
 

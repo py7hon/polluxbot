@@ -1,5 +1,5 @@
 const fs = require("fs");
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     if (!args || args.size < 1) return message.channel.reply(`Faltou coisa ae magrão.`);
     try{
         var a = args.split(' ')}catch(err){var a = args}

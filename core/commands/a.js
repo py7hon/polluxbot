@@ -1,23 +1,30 @@
+const Discord = require("discord.js");
+const arraySort = require('array-sort')
+const fs = require("fs");
+var paths = require("../paths.js");
 
-exports.run = (bot, message, args, userData, caller, gear, points) => {
-    const Discord = require("discord.js");
- emb =    new Discord.RichEmbed();
-    var paths = require("../paths.js");
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
-    emb.color = 44524
-    emb.title = "44524"
+let rub = message.guild.emojis.find('name','ruby')
+let doughnut = message.guild.emojis.find('name','doughnut')
+let ruby = message.guild.emojis.find('name','ruby')
+let lollipop = message.guild.emojis.find('name','lollipop')
+let hamburger = message.guild.emojis.find('name','hamburger')
+let potato = message.guild.emojis.find('name','potato')
+let bacon = message.guild.emojis.find('name','bacon')
+let egg = message.guild.emojis.find('name','egg')
+let peanuts = message.guild.emojis.find('name','peanuts')
+ message.channel.fetchMessage('276877187976790016').then(target => {
 
-    emb.setAuthor('AVD','https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/4.gif')
-
- //   emb.footer = "vvvvvvvvvvvvv"
- //   emb.thumbnail = "../../avis/1.png"
-  //  emb.image = "../../avis/2.png"
-    emb.description = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-   /*   emb.addField('AAA','BBB')
-      emb.addField('111','222')
-      emb.addField('AB1','CAD', true)
-      emb.addField('AB1','CAD', true)
-    */
-    message.channel.sendEmbed(emb,"asfasfasfasf")
-
+    target.react(doughnut)
+    target.react(ruby)
+    target.react(lollipop)
+    target.react(hamburger)
+    target.react(potato)
+    target.react(bacon)
+    target.react(egg)
+    target.react(peanuts)
+    target.react(rub)
+ })
+message.delete()
 }

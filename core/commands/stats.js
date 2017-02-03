@@ -1,4 +1,4 @@
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
     String.prototype.toHHMMSS = function () {
     var sec_num = parseInt(this, 10); // don't forget the second param

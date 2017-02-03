@@ -1,4 +1,4 @@
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         tgt = message.guild.member(gear.checkment(message))
         let myRole = message.guild.roles.find("name", "ADM");
         if (tgt.roles.exists("name", "ADM")) {

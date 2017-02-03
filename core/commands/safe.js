@@ -3,7 +3,7 @@ const getter = require("booru-getter");
 
 
 
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
 
         console.log("SAFEBOORU INVOKED by " + caller + "-------------\n")

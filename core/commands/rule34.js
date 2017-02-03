@@ -3,16 +3,17 @@ const getter = require("booru-getter");
 
 
 
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+    const RUBYMOJI = message.guild.emojis.find('name','ruby')
 
 
 
 
-        if (gear.checkCookies(5, userData) == false) {
-            message.reply(" você não tem cookies suficientes para comprar putaria. Você precisa pelo menos **5**");
+        if (gear.checkRubys(5, userData) == false) {
+            message.reply(" você não tem rubys suficientes para comprar putaria. Você precisa pelo menos **5**");
             return;
         }
-        userData.cookies -= 5;
+        userData.rubys -= 5;
         console.log("PUTARIA INVOKED by " + caller + "-------------\n")
         let query = message.content.split(" ");
         !query[1] ? query[1] = "furry" : query[1] = query[1];
@@ -21,7 +22,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
                 message.reply("Teus pornô são tão bizarro que nem achei essa merda.")
             }
             else {
-                message.channel.sendMessage("Foram debitados **5** :cookie: da sua conta.")
+                message.channel.sendMessage("Foram debitados **5** "+RUBYMOJI+" da sua conta.")
                 message.reply("http:" + url);
             }
         })

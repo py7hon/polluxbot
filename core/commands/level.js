@@ -2,7 +2,7 @@ const fs = require("fs");
 const gear = require("../gearbox.js");
 
 
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
     let tgt = gear.checkment(message)
         let tgtData = points[tgt.id];

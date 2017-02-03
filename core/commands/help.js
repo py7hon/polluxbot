@@ -1,4 +1,4 @@
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
         var helptxt = `
 **Comandos disponíveis:**
@@ -7,7 +7,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
 Retorna o seu avatar, só isso.
 
 \`+daily\`
-Cookies de graça todo dia.
+Rubys de graça todo dia.
 
 \`+adm [@user]\`
 Verifica se você ou @fulaninho é um Adm
@@ -41,16 +41,16 @@ Putaria, usar no canal NSFW ou serás mutado.
 Abre isso
 
 \`+pick\`
-Pega cookies largados
+Pega rubys largados
 
-\`+cook\`
-Veja quantos cookies você tem
+\`+ruby\`
+Veja quantos rubys você tem
 
 \`+personaltxt <texto>\`
 Uma frase pro seu Profile Card
 
 \`+blackjack <aposta>\`
-Blackjack Estilo Vegas. Apostando Cookies
+Blackjack Estilo Vegas. Apostando Rubys
 
 \`+rps [aposta] [@desafiado]\`
 Pedra papel e tesoura

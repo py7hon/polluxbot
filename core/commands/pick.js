@@ -1,7 +1,7 @@
 const fs = require("fs");
 var gear = require("../gearbox.js");
 
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
 
         //aaa.message.delete()
@@ -9,8 +9,8 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
         console.log("Pick trial by" + caller)
         if (gear.drops > 0) {
             console.log("----------- SUCCESSFUL PICK by" + caller)
-            userData.cookies += gear.drops
-            message.channel.sendMessage("**" + message.author.username + "** pegou " + gear.drops + " Cookie(s)").then(function (c) {
+            userData.rubys += gear.drops
+            message.channel.sendMessage("**" + message.author.username + "** pegou " + gear.drops + " Ruby(s)").then(function (c) {
                 message.delete()
                 c.delete(500000)
             });
@@ -29,7 +29,7 @@ exports.run = (bot, message, args, userData, caller, gear, points) => {
             for (i in gear.vacuum) {
                 gear.vacuum[i].delete()
             }
-            //message.channel.sendMessage("No Cookie");
+            //message.channel.sendMessage("No Ruby");
         }
     gear.writePoints(points,caller)
     };

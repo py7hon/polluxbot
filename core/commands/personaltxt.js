@@ -2,7 +2,7 @@ const fs = require("fs");
 
 
 
-exports.run = (bot, message, args, userData, caller, gear, points) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
         userData.persotext = message.content.substr(13)
         message.reply(`Seu texto pessoal mudou para:
