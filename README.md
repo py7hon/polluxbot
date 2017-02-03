@@ -23,7 +23,7 @@ Discord Bot
 |+pick|Pega rubys largados|`+pick`| :heavy_check_mark:|
 |+ruby [@mention]|Veja quantos rubys você tem|`+ruby @Fulano`| :heavy_check_mark:|
 |+personaltxt|Uma frase pro seu Profile Card|`+personaltxt Penso logo mito`| :heavy_exclamation_mark:|
-|+blackjack <aposta> |Blackjack Estilo Vegas. Apostando Rubys|`+blackjack 50`|       :heavy_exclamation_mark:     |
+|+blackjack <aposta> |Blackjack Estilo Vegas. Apostando Rubys|`+blackjack 50`|      :bug:    |
 |+rps [aposta] [@mention]|Pedra papel e tesoura com a Bot ou com alguém, valendo ou não rubys|`+rps 10 @Fulano`|     :bug:      |
 |+switch|Trocar a foto da bot.   |`+switch`| :heavy_check_mark:|
 |+stats|informação chata aleatoria|`+stats`| :heavy_check_mark:|
