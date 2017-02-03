@@ -310,7 +310,9 @@ return
 
 
                         bot.on('message', newmsg => {
+                            if (newmsg.channel != message.channel) return;
                             if (newmsg.author != message.author) return;
+
                             if (endgame != undefined) {
                                 ongoing = false
                                 return;
@@ -329,6 +331,7 @@ return
 
 
                                                     bot.on('message', newmsgB => {
+                                                        if (newmsg.channel != message.channel) return;
                                                         if (newmsgB.author != message.author) return;
                                                         if (endgame != undefined) {
                                                             ongoing = false
@@ -353,6 +356,7 @@ Turn 4`).then(function (mmm) {
 
 
                                                                                 bot.on('message', newmsgC => {
+                                                                                    if (newmsg.channel != message.channel) return;
                                                                                     if (newmsgC.author != message.author) return;
                                                                                     if (endgame != undefined) {
                                                                                         ongoing = false
