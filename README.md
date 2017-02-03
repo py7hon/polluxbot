@@ -2,8 +2,10 @@
 # **POLLUX**
 Discord Bot
 
- 
-![Pollux](./avis/display.png)
+|     |    |
+|:-------------|-------------:|
+| ![Pollux](./avis/7.png)                     |                ![Pollux](./avis/skynet.png)        | 
+|     |    |
 
 🇧🇷 *Currently available only in Brazilian Portuguese*
 
