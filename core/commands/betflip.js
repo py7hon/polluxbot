@@ -5,7 +5,7 @@ const fs = require("fs");
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 const RUBYMOJI = message.guild.emojis.find('name','ruby')
         if (gear.checkRubys(3, userData) == false) {
-            message.reply(" você não tem rubys suficientes. Você precisa pelo menos **3** );
+            message.reply(" você não tem rubys suficientes. Você precisa pelo menos **3**" );
             return;
         }
         var bet = message.content.toLowerCase().split(' ');
