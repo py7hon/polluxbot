@@ -5,7 +5,7 @@ const fs = require("fs");
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 const RUBYMOJI = message.guild.emojis.find('name','ruby')
         if (gear.checkRubys(3, userData) == false) {
-            message.reply(" você não tem rubys suficientes. Você precisa pelo menos **3**" );
+            message.reply(" você não tem rubys suficientes. Você precisa pelo menos **3** "+RUBYMOJI );
             return;
         }
         var bet = message.content.toLowerCase().split(' ');
@@ -34,7 +34,7 @@ const RUBYMOJI = message.guild.emojis.find('name','ruby')
         coin == 1 ? res = "Cara" : res = "Coroa";
         coin == 1 ? ros = "heads.png" : ros = "tails.png";
         if (res.toLowerCase() == bet[2]) {
-            message.channel.sendFile(paths.BUILD + 'heads.png', 'heads.png', "Yay! " + res + "! Você ganhou **" + (bet[1] * 2) + "**")
+            message.channel.sendFile(paths.BUILD + 'heads.png', 'heads.png', "Yay! " + res + "! Você ganhou **" + (bet[1] * 2) + "** "+RUBYMOJI)
             userData.rubys += bet[1] * 2
         }
         else {
