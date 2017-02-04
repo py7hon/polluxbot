@@ -69,6 +69,21 @@ bot.on("message", message => {
 })
 bot.on("message", message => {
     if (message.author.bot) return; // Ignorar Bot
+    if (!message.content.endsWith('is now illegal')) return;
+    let userData = points[message.author.id];
+    var caller = gear.checkment(message).username
+    let args = message.content.split(" ")
+    try {
+        delete require.cache[require.resolve(`../points.json`)];
+        let commandFile = require(`./sidecommands/nowillegal.js`);
+        commandFile.run(bot, message, args, userData, caller, gear, points, skynet);
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+bot.on("message", message => {
+    if (message.author.bot) return; // Ignorar Bot
     if (!points[message.author.id]) points[message.author.id] = {
         name: message.author.username
         , points: 0
