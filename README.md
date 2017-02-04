@@ -29,6 +29,7 @@ Discord Bot
 |+rps [aposta] [@mention]|Pedra papel e tesoura com a Bot ou com alguém, valendo ou não rubys|`+rps 10 @Fulano`|     :bug:      |
 |+switch|Trocar a foto da bot.   |`+switch`| :heavy_check_mark:|
 |+stats|informação chata aleatoria|`+stats`| :heavy_check_mark:|
+|<texto> is now illegal|Trump vai decretar algo ilegal|`lolicon is now illegal`| :heavy_check_mark:|
 
 [] = Argumentos Opcionais *Pelamor, não escrevam [ ] nos comandos*
 
