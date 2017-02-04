@@ -31,7 +31,7 @@ Discord Bot
 |<sub>+stats|<sub>informação chata aleatoria|<sub>`+stats`|<sub> :heavy_check_mark:|<sub>
 |<sub>\<texto\> is now illegal|<sub>Trump vai decretar algo ilegal|<sub>`lolicon is now illegal`|<sub> :heavy_check_mark:|<sub>
 |<sub> +enable \<módulo\> [abrangência] |<sub>Habilita um módulo no canal ou server|<sub>`+enable ruby s` Ativa Rubys no Server <br>`+enable nsfw c` Ativa NSFW no Canal|<sub> :heavy_check_mark:|<sub>
-|<sub> +disable \<módulo\> [abrangência] |<sub>Desabilita um módulo no canal ou Server<br> *Use `c` ou `channel` para Canal e `s` `server` para Server*|<sub>`+disable level s` Desativa Levels no Server <br>`+disable nsfw c` Desativa NSFW no Canal atual|<sub> :heavy_check_mark:|<sub>
+|<sub> +disable \<módulo\> [abrangência] |<sub>Desabilita um módulo no canal ou Server<br> *Use `c` ou `channel` para Canal e `s` `server` para Server*|<sub>`+disable level s` Desativa Levels no Server <br>`+disable nsfw c` Desativa NSFW no Canal |<sub> :heavy_check_mark:|<sub>
 |<sub>+modules|<sub> Visualiza o status dos módulos no canal atual|<sub> `+modules`|<sub>:heavy_check_mark:|<sub>
 
 
