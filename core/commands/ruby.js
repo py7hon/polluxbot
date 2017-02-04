@@ -1,4 +1,10 @@
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+
+     if(!gear.moduleCheck('RUBY',message)){
+        message.reply(':no_entry_sign: Sistema de Rubys foi desabilitado aqui.');
+        return;
+    }
+
     if (message.mentions.users.size === 0) {
         var r = userData.rubys
         var fam = ''

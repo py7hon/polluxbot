@@ -2,11 +2,17 @@ const Discord = require("discord.js");
 var paths = require("./paths.js");
 const Jimp = require("jimp");
 const fs = require("fs");
-
+var modules = require("./modules.json");
 
 
 
 module.exports = {
+    moduleCheck: function moduleCheck(mod,msg){
+        return modules[msg.guild.id].channels[msg.channel.id][mod];
+
+
+
+    },
 
     drops : 0,
     vacuum : [],

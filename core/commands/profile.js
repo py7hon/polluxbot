@@ -1,13 +1,17 @@
 var paths = require("../paths.js");
 const fs = require("fs");
 const Jimp = require("jimp");
-
+const gear = require('../gearbox.js');
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
        if (message.channel.type=='dm'){
            message.reply('Não usável em DM')
            return
        }
+    if(!gear.moduleCheck('LEVEL',message)||!gear.moduleCheck('PROFILE',message)){
+        message.reply(':no_entry_sign: Sistema de Levels foi desabilitado aqui.');
+        return;
+    }
 
    message.reply('Gerando seu Profilecard...').then(m => m.delete(2000))
 

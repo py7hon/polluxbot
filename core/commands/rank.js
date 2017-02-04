@@ -2,9 +2,13 @@ const Discord = require("discord.js");
 const arraySort = require('array-sort')
 const fs = require("fs");
 var paths = require("../paths.js");
+const gear = require('../gearbox.js')
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
-
+  if(!gear.moduleCheck('LEVEL',message)||!gear.moduleCheck('PROFILE',message)){
+        message.reply(':no_entry_sign: Sistema de Levels foi desabilitado aqui.');
+        return;
+    }
  emb =    new Discord.RichEmbed();
 
 

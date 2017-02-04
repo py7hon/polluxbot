@@ -1,9 +1,15 @@
 const fs = require("fs");
 const getter = require("booru-getter");
-
+var gear = require("../gearbox.js");
 
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+
+    if(gear.moduleCheck('NSFW',message)==false){
+        message.reply(':no_entry_sign: Comandos NSFW não são permitidos neste Canal.');
+        return;
+    }
+
     const RUBYMOJI = message.guild.emojis.find('name','ruby')
 
 

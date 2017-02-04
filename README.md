@@ -30,6 +30,11 @@ Discord Bot
 |+switch|Trocar a foto da bot.   |`+switch`| :heavy_check_mark:|
 |+stats|informação chata aleatoria|`+stats`| :heavy_check_mark:|
 |\<texto\> is now illegal|Trump vai decretar algo ilegal|`lolicon is now illegal`| :heavy_check_mark:|
+| +enable \<módulo\> [abrangência] |Habilita um módulo no canal ou server|`+enable ruby server` Habilita rubys no server `+enable nsfw c` Habilita NSFW no canal atual| :heavy_check_mark:|
+| +disable \<módulo\> [abrangência] |Desabilita um módulo no canal *(channel/c)* ou server *(server/s)*|`+disable level s` Desabilita sistema de levels no server `+disable nsfw channel` Desabilita NSFW no canal atual| :heavy_check_mark:|
+|+modules| Visualiza o status dos módulos no canal atual| `+modules`|:heavy_check_mark:|
+
+
 
 [] = Argumentos Opcionais *Pelamor, não escrevam [ ] nos comandos*
 

@@ -3,7 +3,10 @@ var gear = require("../gearbox.js");
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
+  if(!gear.moduleCheck('RUBY',message)){
 
+        return;
+    }
         //aaa.message.delete()
         ///console.log(aaa)
         console.log("Pick trial by" + caller)
