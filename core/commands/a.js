@@ -1,30 +1,41 @@
 const Discord = require("discord.js");
 const arraySort = require('array-sort')
+const Jimp = require("jimp");
 const fs = require("fs");
 var paths = require("../paths.js");
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+    if (args == "") return;
 
-let rub = message.guild.emojis.find('name','ruby')
-let doughnut = message.guild.emojis.find('name','doughnut')
-let ruby = message.guild.emojis.find('name','ruby')
-let lollipop = message.guild.emojis.find('name','lollipop')
-let hamburger = message.guild.emojis.find('name','hamburger')
-let potato = message.guild.emojis.find('name','potato')
-let bacon = message.guild.emojis.find('name','bacon')
-let egg = message.guild.emojis.find('name','egg')
-let peanuts = message.guild.emojis.find('name','peanuts')
- message.channel.fetchMessage('276877187976790016').then(target => {
+    let textHolder = new Jimp(120, 100, function (err, image) {});
 
-    target.react(doughnut)
-    target.react(ruby)
-    target.react(lollipop)
-    target.react(hamburger)
-    target.react(potato)
-    target.react(bacon)
-    target.react(egg)
-    target.react(peanuts)
-    target.react(rub)
- })
-message.delete()
+
+    args.pop()
+    args.pop()
+    args.pop()
+
+
+
+    var A = args.toString().split(',').join(' ')
+
+    // args.push("is now illegal")
+
+
+    Jimp.read(`${paths.BUILD}illegal.jpg`).then(function (illegal) {
+        console.log(3);
+        Jimp.loadFont(paths.FONTS + 'blackTXT.fnt').then(function (sub) {
+            textHolder.print(sub, 0, 0, A);
+            textHolder.print(sub, 0, 32, `is now illegal`);
+            textHolder.rotate(8);
+
+
+            illegal.composite(textHolder, 318, 162);
+
+            illegal.write(`${paths.MISC}/${caller}_illegal.jpg`);
+            console.log('done');
+        })
+    })
+    setTimeout(f => {
+        message.channel.sendFile(`${paths.MISC}/${caller}_illegal.jpg`)
+    }, 2000)
 }
