@@ -30,8 +30,8 @@ Discord Bot
 |<sub>+switch|<sub>Trocar a foto da bot.   |<sub>`+switch`|<sub> :heavy_check_mark:|<sub>
 |<sub>+stats|<sub>informação chata aleatoria|<sub>`+stats`|<sub> :heavy_check_mark:|<sub>
 |<sub>\<texto\> is now illegal|<sub>Trump vai decretar algo ilegal|<sub>`lolicon is now illegal`|<sub> :heavy_check_mark:|<sub>
-|<sub> +enable \<módulo\> [abrangência] |<sub>Habilita um módulo no canal ou server|<sub>`+enable ruby server` Habilita rubys no server `+enable nsfw c` Habilita NSFW no canal atual|<sub> :heavy_check_mark:|<sub>
-|<sub> +disable \<módulo\> [abrangência] |<sub>Desabilita um módulo no canal *(channel/c)* ou server *(server/s)*|<sub>`+disable level s` Desabilita sistema de levels no server `+disable nsfw channel` Desabilita NSFW no canal atual|<sub> :heavy_check_mark:|<sub>
+|<sub> +enable \<módulo\> [abrangência] |<sub>Habilita um módulo no canal ou server|<sub>`+enable ruby server` Habilita rubys no server <br>`+enable nsfw c` Habilita NSFW no canal atual|<sub> :heavy_check_mark:|<sub>
+|<sub> +disable \<módulo\> [abrangência] |<sub>Desabilita um módulo no canal *(channel/c)* ou server *(server/s)*|<sub>`+disable level s` Desabilita sistema de levels no server <br>`+disable nsfw channel` Desabilita NSFW no canal atual|<sub> :heavy_check_mark:|<sub>
 |<sub>+modules|<sub> Visualiza o status dos módulos no canal atual|<sub> `+modules`|<sub>:heavy_check_mark:|<sub>
 
 
