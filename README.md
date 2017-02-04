@@ -10,7 +10,7 @@ Discord Bot
 🇧🇷 *Currently available only in Brazilian Portuguese*
 
 | Comando        | O que isso faz           | exemplo  | status| 
-| :-------------: |:-------------| :-----|:-----:|
+| :-----------------: |:-------------| :-----|:-----:|
 |+avi | Mostra o seu avatar, só isso | `+avi` | :heavy_check_mark:|
 |+daily|Rubys de graça todo dia|`+daily`| :heavy_check_mark:|
 |+glassify [@mention]|Faz umas frescuras com teu avatar|`+glassify @Fulano`| :heavy_check_mark:|
