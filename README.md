@@ -15,7 +15,7 @@ Discord Bot
 |+daily|Rubys de graça todo dia|`+daily`| :heavy_check_mark:|
 |+glassify [@mention]|Faz umas frescuras com teu avatar|`+glassify @Fulano`| :heavy_check_mark:|
 |+profile [@mention]|Mostra o Profilecard seu ou de @fulaninho|`+profile @Fulano`| :heavy_check_mark:|
-|+say <texto>|Repete <texto>|`+say Vai se lascar`|:heavy_check_mark:|
+|+say \<texto\>|Repete \<texto\>|`+say Vai se lascar`|:heavy_check_mark:|
 |+joined [@user]|Retorna a data que você ou @fulaninho entrou no Server|`+joined @Fulano`| :heavy_check_mark:|
 |+vidal|VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL|`+vidal`| :heavy_check_mark:|
 |+salty|QUIPE BOTE CARALHO|`+salty`| :heavy_check_mark:|
@@ -25,11 +25,11 @@ Discord Bot
 |+pick|Pega rubys largados|`+pick`| :heavy_check_mark:|
 |+ruby [@mention]|Veja quantos rubys você tem|`+ruby @Fulano`| :heavy_check_mark:|
 |+personaltxt|Uma frase pro seu Profile Card|`+personaltxt Penso logo mito`| :heavy_exclamation_mark:|
-|+blackjack <aposta> |Blackjack Estilo Vegas. Apostando Rubys|`+blackjack 50`|      :bug:    |
+|+blackjack \<aposta\> |Blackjack Estilo Vegas. Apostando Rubys|`+blackjack 50`|      :bug:    |
 |+rps [aposta] [@mention]|Pedra papel e tesoura com a Bot ou com alguém, valendo ou não rubys|`+rps 10 @Fulano`|     :bug:      |
 |+switch|Trocar a foto da bot.   |`+switch`| :heavy_check_mark:|
 |+stats|informação chata aleatoria|`+stats`| :heavy_check_mark:|
-|<texto> is now illegal|Trump vai decretar algo ilegal|`lolicon is now illegal`| :heavy_check_mark:|
+|\<texto\> is now illegal|Trump vai decretar algo ilegal|`lolicon is now illegal`| :heavy_check_mark:|
 
 [] = Argumentos Opcionais *Pelamor, não escrevam [ ] nos comandos*
 
