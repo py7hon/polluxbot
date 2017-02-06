@@ -3,8 +3,8 @@ var gear = require("../gearbox.js");
 const fs = require("fs");
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
-    message.reply("Blackjack está temporariamente suspenso")
-    return
+    //message.reply("Blackjack está temporariamente suspenso")
+   // return
 
 const RUBYMOJI = message.guild.emojis.find('name','ruby')
 
@@ -17,7 +17,7 @@ const RUBYMOJI = message.guild.emojis.find('name','ruby')
             return;
         };
         var stuff = message.content.toLowerCase().split(' ');
-        if (isNaN(parseInt(stuff[1], 10)) || stuff[1] == 0) {
+        if (isNaN(parseInt(stuff[1], 10)) || stuff[1] == -1) {
             message.reply("Você precisa apostar alguma coisa, chuchu~")
             return;
         };

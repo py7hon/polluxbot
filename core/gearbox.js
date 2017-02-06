@@ -8,7 +8,7 @@ var modules = require("./modules.json");
 
 module.exports = {
     moduleCheck: function moduleCheck(mod,msg){
-        return modules[msg.guild.id].channels[msg.channel.id][mod];
+       try{ return modules[msg.guild.id].channels[msg.channel.id][mod];}catch(err){false}
 
 
 

@@ -5,6 +5,9 @@ const fs = require('fs')
 
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+    
+    
+    
 if(message.channel.type == 'dm'){
     message.reply("Comando não utilizável por DM");
     return;
@@ -14,6 +17,17 @@ if(message.channel.type == 'dm'){
     message.reply("Escolha um módulo");
     return;
 }
+    
+ let modRole = message.guild.roles.find("name", "MOD");
+    let admRole = message.guild.roles.find("name", "ADM");
+try{
+    
+    if (!message.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
+        return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+    }
+}catch(err){}
+    
+    
     function pp(o, p) {
         return o[p];
     }
@@ -35,7 +49,7 @@ if(message.channel.type == 'dm'){
             sc = 'C'
             break;
         default:
-            sc = 'S'
+            sc = 'C'
             break;
     }
 console.log(sc)

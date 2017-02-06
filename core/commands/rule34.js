@@ -1,7 +1,7 @@
 const fs = require("fs");
 const getter = require("booru-getter");
 var gear = require("../gearbox.js");
-
+ const Discord = require("discord.js");
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
@@ -28,8 +28,22 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
                 message.reply("Teus pornô são tão bizarro que nem achei essa merda.")
             }
             else {
-                message.channel.sendMessage("Foram debitados **5** "+RUBYMOJI+" da sua conta.")
-                message.reply("http:" + url);
+                message.channel.sendMessage()
+                //message.reply("http:" + url);
+                 emb =    new Discord.RichEmbed();
+                      emb.setColor('#b41212')
+                      emb.setTitle(':underage:')
+ 
+                emb.setImage("http:" + url)
+                    message.channel.sendEmbed(emb,message.author+" Foram debitados **5** "+RUBYMOJI+" da sua conta.").then(function (m) {
+                m.react('👍')
+                m.react('👎')
+                m.react('❤')
+                m.react('😠')
+
+            })
+
+
             }
         })
         gear.writePoints(points,caller)

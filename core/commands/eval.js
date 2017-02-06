@@ -1,5 +1,14 @@
 var gear = require("../gearbox.js")
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+    
+  
+    let admRole = message.guild.roles.find("name", "ADM");
+
+    if (!message.member.roles.has(admRole.id)) {
+        return message.reply("Apenas ADMs podem executar este comando").catch(console.error);
+    }
+    
+    
      const params = message.content.split(" ").slice(1);
     try {
       var code = params.join(" ");

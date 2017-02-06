@@ -14,7 +14,45 @@ const prefix = "+";
 var counter = 0
 var droprate = 5000
 let skynet = bot.guilds.get('248285312353173505');
+function buildGuilds(){
+    
 
+    for (i = 0; i < bot.guilds.size; i++) {
+
+        if (!modules[bot.guilds.array()[i].id]) {
+
+            var params = {}
+            for (x = 0; x < bot.guilds.array()[i].channels.size; x++) {
+
+                nam = bot.guilds.array()[i].channels.array()[x].id
+                nama = bot.guilds.array()[i].name
+                params.name = nama
+                params[nam] = {NSFW: false, RUBY: false, GAMES: true, LEVEL: false
+
+                }
+            }
+
+
+            modules[bot.guilds.array()[i].id] = {
+
+
+                channels:{}
+
+            }
+
+            modules[bot.guilds.array()[i].id].channels = params
+
+        };
+        fs.writeFile('./modules.json', JSON.stringify(modules), (err) => {
+            console.log("JSON write event-------\n")
+            if (err) console.log("JSON ERROR  ------------\n" + err)
+        });
+
+    }
+
+
+
+}
 //
 //===============================================================
 //             PATHS
@@ -29,9 +67,9 @@ cleverbot.setNick(cfg.name)
     //----Cleverbot
 cleverbot.create(function (err, session) {
     bot.on("message", message => {
-        //if (gear.checkment(message).username != bot.user.username) return;
-        //if (message.author.bot) return;
-        if (message.author.username != "RoboEd") return;
+        if (gear.checkment(message).username != bot.user.username) return;
+        if (message.author.bot) return;
+        //if (message.author.username != "RoboEd") return;
         if (!message.content.startsWith('+')) {
             message.channel.startTyping()
             cleverbot.ask(message.content.substr(13), function (err, response) {
@@ -83,6 +121,7 @@ bot.on("message", message => {
 })
 bot.on("message", message => {
     if (message.author.bot) return; // Ignorar Bot
+    //buildGuilds()
     if (!points[message.author.id]) points[message.author.id] = {
         name: message.author.username,
         points: 0,
@@ -97,7 +136,7 @@ bot.on("message", message => {
     };
     let userData = points[message.author.id];
     if (!message.content.includes(prefix)) {
-        var droprate = gear.randomize(0, 2000);
+        var droprate = gear.randomize(0, 8000);
         console.log("Drop Random " + droprate)
         userData.points++;
         userData.money += gear.randomize(0, 5);
@@ -222,6 +261,7 @@ bot.on("message", message => {
         message.channel.sendMessage(message.content.substr(5))
     };
     if (reactions[message.content]) {
+    if(message.guild!=skynet)return;
         message.channel.sendMessage(reactions[message.content]);
     }
     /*if (current_hour == 23 && counter < 1) {
@@ -233,15 +273,15 @@ bot.on("message", message => {
         counter = false
     }*/
     // console.log("DROPRATE " + droprate)
-    if (droprate >= 1000 && droprate < 1081 && gear.moduleCheck('RUBY',message)) {
-        message.guild.defaultChannel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', "OLHA GENTE! Um ruby! quem digitar \`+pick\` primeiro leva! ").then(function (rubypot) {
+    if (droprate >= 1000 && droprate < 1151 && gear.moduleCheck('RUBY',message)) {
+        message.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', "OLHA GENTE! Um ruby! quem digitar \`+pick\` primeiro leva! ").then(function (rubypot) {
             gear.vacuum.push(rubypot)
         })
         gear.drops++
             console.log("------------=========== ::: NATURAL DROP")
     }
     if (droprate <= 5 && gear.moduleCheck('RUBY',message)) {
-        message.guild.defaultChannel.sendFile(paths.BUILD + 'rubypot.png', 'Rubychest.png', "EITA PORRA! Um baú inteiro de rubys! quem digitar \`+pick\` primeiro leva! ").then(function (rubypot) {
+        message.channel.sendFile(paths.BUILD + 'rubypot.png', 'Rubychest.png', "EITA PORRA! Um baú inteiro de rubys! quem digitar \`+pick\` primeiro leva! ").then(function (rubypot) {
             gear.vacuum.push(rubypot)
         })
         gear.drops += 10
@@ -257,48 +297,14 @@ bot.on("message", message => {
 });
 //--Presence Update
 bot.on('guildMemberAdd', (member) => {
-    member.guild.defaultChannel.sendMessage(`Ae galera, ${member.user.username} acabou de entrar!`)
+   // member.guild.defaultChannel.sendMessage(`Ae galera, ${member.user.username} acabou de entrar!`)
 });
 bot.on('guildMemberRemove', (member) => {
-    member.guild.defaultChannel.sendMessage(` ${member.user.username} foi-se!`)
+   // member.guild.defaultChannel.sendMessage(` ${member.user.username} foi-se!`)
 });
 bot.on('ready', () => {
 
-
-
-
-    for (i = 0; i < bot.guilds.size; i++) {
-
-        if (!modules[bot.guilds.array()[i].id]) {
-
-            var params = {}
-            for (x = 0; x < bot.guilds.array()[i].channels.size; x++) {
-
-                nam = bot.guilds.array()[i].channels.array()[x].id
-                params[nam] = {NSFW: false, RUBY: false, GAMES: true, LEVEL: true
-
-                }
-            }
-
-
-            modules[bot.guilds.array()[i].id] = {
-
-
-                channels:{}
-
-            }
-
-            modules[bot.guilds.array()[i].id].channels = params
-
-        };
-        fs.writeFile('./modules.json', JSON.stringify(modules), (err) => {
-            console.log("JSON write event-------\n")
-            if (err) console.log("JSON ERROR  ------------\n" + err)
-        });
-
-    }
-
-
+buildGuilds()
 
 
     console.log('START');
@@ -317,7 +323,7 @@ bot.on('ready', () => {
         })
         //  var aa = new Date();
     console.log("HOOK DEPLOYER");
-    bot.user.setGame("Heroes of the Storm")
+    bot.user.setGame("Ace Combat ZERO")
 });
 var made = false
 var mado = false

@@ -68,6 +68,7 @@ info aleatoria
 Qualquer problema só chamar @Flicky praquele inútil me consertar. :heart:
 
 Invite (experimental): https://discordapp.com/oauth2/authorize?client_id=271394014358405121&scope=bot
+New Support Discord: https://discord.gg/ay48h7Q
 `
         message.author.sendMessage(helptxt)
         console.log("HELP INVOKED")

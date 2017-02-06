@@ -19,7 +19,8 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     var ind = 0
     for (var y in modules[message.guild.id].channels[message.channel.id]) {
         ind++
-        emb.addField(y, modules[message.guild.id].channels[message.channel.id][y],true)
+        modules[message.guild.id].channels[message.channel.id][y] ? a = ':white_check_mark:' : a = ':no_entry:' ;
+        emb.addField(y, a ,true)
 
     }
 

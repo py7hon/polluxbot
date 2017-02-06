@@ -3,7 +3,7 @@ const fs = require("fs");
 
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
-  if(!gear.moduleCheck('LEVEL',message)||!gear.moduleCheck('PROFILE',message)){
+  if(!gear.moduleCheck('LEVEL',message)){
         message.reply(':no_entry_sign: Sistema de Levels foi desabilitado aqui.');
         return;
     }
