@@ -23,6 +23,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         emb.addField(y, a ,true)
 
     }
-
+    modules[message.guild.id].announcements ? a = ':white_check_mark:' : a = ':no_entry:' ;
+     emb.addField('BOT ANNOUNCEMENTS', a ,true)
     message.channel.sendEmbed(emb)
 }

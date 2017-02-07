@@ -23,7 +23,8 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
             illegal.composite(textHolder, 318, 162);
 
             illegal.write(`${paths.MISC}/${caller}_illegal.jpg`);
-            console.log('done');
+            console.log(message.guild.name)
+            console.log('Illegal - Done');
         })
     })
     setTimeout(f => {
