@@ -10,18 +10,20 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     }
 
 
-    if (modRole){
-    if (!message.member.roles.has(modRole.id)) {
+  
+    if (modRole&&admRole){
+    if (!message.member.roles.has(modRole.id)&&!message.member.roles.has(admRole.id)) {
         return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
     }
     }else if (admRole){
     if (essage.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
         return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
     }
-    }else if (!message.guild.member(message.author).hasPermission("MANAGE_SERVER")) {
+    }
+    if (!message.guild.member(message.author).hasPermission("MANAGE_SERVER")) {
          return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
     }
-
+    
     if (message.mentions.users.size === 0) {
         return message.reply("tu precisa me dizer de quem eu vou chutar a bunda").catch(console.error);
     }

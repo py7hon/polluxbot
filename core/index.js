@@ -32,9 +32,9 @@ function buildGuilds() {
                 
                 params[nam] = {
                     NSFW: false,
-                    RUBY: false,
+                    RUBY: true,
                     GAMES: true,
-                    LEVEL: false
+                    LEVEL: true
 
                 }
             }

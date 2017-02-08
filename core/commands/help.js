@@ -3,8 +3,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         var helptxt = `
 **Comandos disponíveis:**
 
-\`+avi\`
-Retorna o seu avatar, só isso.
+
 
 \`+daily\`
 Rubys de graça todo dia.
@@ -19,17 +18,11 @@ Faz umas viadage com teu avatar
 Mostra o Profilecard seu ou de @fulaninho
 
 
-\`+say <texto>\` INATIVO
+\`+say <texto>\` 
 Repete <texto>
 
 \`+joined [@user]\`
 Retorna a data que você ou @fulaninho entrou no Server
-
-\`+vidal\`
-VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL VIDAL
-
-\`+salty\`
-QUIPE BOTE CARALHO
 
 \`+safe [tags]\`
 Imagens bonitas do Safebooru.
@@ -55,7 +48,7 @@ Blackjack Estilo Vegas. Apostando Rubys
 \`+rps [aposta] [@desafiado]\`
 Pedra papel e tesoura
 
-\`+switch [numero]\`
+\`+switch \`
 Troca a foto do bot.
 *Menu será implementado logo.*
 

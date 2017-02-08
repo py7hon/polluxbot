@@ -23,17 +23,20 @@ if(message.channel.type == 'dm'){
     }
 
 
-    if (modRole){
-    if (!message.member.roles.has(modRole.id)) {
+    
+    if (modRole&&admRole){
+    if (!message.member.roles.has(modRole.id)&&!message.member.roles.has(admRole.id)) {
         return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
     }
     }else if (admRole){
     if (essage.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
         return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
     }
-    }else if (!message.guild.member(message.author).hasPermission("MANAGE_SERVER")) {
+    }
+    if (!message.guild.member(message.author).hasPermission("MANAGE_SERVER")) {
          return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
     }
+    
     
     
     function pp(o, p) {
