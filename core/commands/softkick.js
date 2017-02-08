@@ -3,13 +3,13 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     var paths = require("../paths.js");
 
 
-    let fuq = message.guild.roles.find("name", "Malcriados");
-    let modRole = message.guild.roles.find("name", "MOD");
-    let admRole = message.guild.roles.find("name", "ADM");
+    // let fuq = message.guild.roles.find("name", "Malcriados");
+    //let modRole = message.guild.roles.find("name", "MOD");
+    //let admRole = message.guild.roles.find("name", "ADM");
 
-    if (!message.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
-        return message.reply("como assim tu quer kickar alguém, seu pleb.").catch(console.error);
-    }
+    // if (!message.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
+    //        return message.reply("como assim tu quer kickar alguém, seu pleb.").catch(console.error);
+    //  }
     if (message.mentions.users.size === 0) {
         return message.reply("tu precisa me dizer de quem eu vou chutar a bunda").catch(console.error);
     }
@@ -28,25 +28,30 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         img = kik.avatarURL.substr(0, kik.avatarURL.length - 10);
     }
 
-    gear.roundify(img, caller)
-    setTimeout(function () {
-        Jimp.read(paths.ROUND + caller + '.png').then(function (face) {
+    Jimp.read(img).then(function (face) {
+        face.resize(126, 126)
+        Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
+            face.mask(lenna, 0, 0)
+
+
             face.resize(96, 96)
             face.rotate(-45)
             Jimp.read(paths.BUILD + "jazz.png").then(function (jazz) {
                 jazz.composite(face, 80, 31);
-                jazz.write(`${paths.ROUND}/${caller}2.png`);
+                //jazz.write(`${paths.ROUND}/${caller}2.png`);
+                message.channel.sendMessage('Ok, me dá um segundo...')
+                jazz.getBuffer(Jimp.MIME_PNG, function (err, image) {
 
+
+                    message.channel.sendFile(image, 'kicked.png', `:lock: Mandei ${kik.username} passear na Masmorra.`).then(m => {
+                       // kickMember.addRole(fuq)
+                    }).catch(console.error)
+                })
             });
 
         });
-    }, 800)
-    message.channel.sendMessage('Ok, me dá um segundo...')
-    setTimeout(function () {
-        message.channel.sendFile(`${paths.ROUND}/${caller}2.png`, 'kicked.png', `:lock: Mandei ${kik.username} passear na Masmorra.`).then(m => {
-            kickMember.addRole(fuq)
-        }).catch(console.error)
-    }, 3000)
+    });
+
 
 
 }

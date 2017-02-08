@@ -5,29 +5,27 @@ const fs = require("fs");
 var paths = require("../paths.js");
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
-    if (args == "") return;
 
+
+    let prepo = args[args.length - 1]
+    args.pop()
     let textHolder = new Jimp(120, 100, function (err, image) {});
-    args.pop()
-    args.pop()
-    args.pop()
+
     var A = args.toString().split(',').join(' ')
 
     Jimp.read(`${paths.BUILD}illegal.jpg`).then(function (illegal) {
         console.log(3);
         Jimp.loadFont(paths.FONTS + 'blackTXT.fnt').then(function (sub) {
-            textHolder.print(sub, 0, 0, A);
-            textHolder.print(sub, 0, 32, `is now illegal`);
-            textHolder.rotate(8);
+            //textHolder.print(sub, 0, 0, A);
+            textHolder.print(sub, 0, 0, `${A} ${prepo} now illegal`, 120);
+            textHolder.rotate(7);
 
-            illegal.composite(textHolder, 318, 162);
+            illegal.composite(textHolder, 320, 135);
+            illegal.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                message.channel.sendFile(image)
+            })
 
-            illegal.write(`${paths.MISC}/${caller}_illegal.jpg`);
-            console.log(message.guild.name)
             console.log('Illegal - Done');
         })
     })
-    setTimeout(f => {
-        message.channel.sendFile(`${paths.MISC}/${caller}_illegal.jpg`)
-    }, 2000)
 }

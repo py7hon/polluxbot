@@ -13,6 +13,15 @@ module.exports = {
 
 
     },
+    parseTrackers: function parseTrackers(target,value){
+        console.log(target+' PARSE')
+    if(!target){target = 0}
+    if(target==null){target = 0}
+    if(target==undefined){target = 0}
+    target+= parseInt(value)
+
+},
+
 
     drops : 0,
     vacuum : [],
@@ -24,13 +33,11 @@ module.exports = {
     });
     },
 checkAdm: function checkAdm(origin, target) {
+try{
 
         let modRole = origin.guild.roles.find("name", "MOD");
         let admRole = origin.guild.roles.find("name", "ADM");
         let maidRole = origin.guild.roles.find("name", "🎀   Maids");
-
-
-
 
         if (origin.guild.member(target).roles.has(admRole.id)) {
             return "ADM";
@@ -47,6 +54,7 @@ checkAdm: function checkAdm(origin, target) {
         else {
             return "none";
         }
+}catch(err){return "none"}
     }
     , checkment: function checkment(message) {
 
@@ -80,29 +88,14 @@ checkAdm: function checkAdm(origin, target) {
                     Jimp.read(paths.BUILD + "note.png").then(function (lennaB) {
                         lennaB.composite(user, 0, 0)
                         lennaB.mask(lenna, 0, 0)
-                        lennaB.write(`${paths.GLASS}/${call}.png`);
+
+                        //lennaB.write(`${paths.GLASS}/${call}.png`);
                          console.log("Glassify Done")
                     });
                 });
             })
         });
     }
-     , roundify: function roundify(img, call, msg = false) {
-         console.log('ROUNDIFY')
-        Jimp.read(img).then(function (user) {
-           user.resize(126, 126)
-                Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
-
-
-                        user.mask(lenna, 0, 0)
-                        user.write(`${paths.ROUND}/${call}.png`);
-
-                });
-
-        });
-    }
-
-
 
     , randomize: function randomize(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);

@@ -19,7 +19,12 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
             message.reply(" você não tem rubys suficientes para comprar putaria. Você precisa pelo menos **5**");
             return;
         }
+
+        points['271394014358405121'].rubys+=5
+        gear.parseTrackers(points['271394014358405121'].earnTracker.putaria,5)
         userData.rubys -= 5;
+        gear.parseTrackers(userData.expenseTracker.putaria,5)
+
         console.log("PUTARIA INVOKED by " + caller + "-------------\n")
         let query = message.content.split(" ");
         !query[1] ? query[1] = "furry" : query[1] = query[1];

@@ -10,7 +10,7 @@ let reactions = JSON.parse(fs.readFileSync('./reactions.json', 'utf8'));
 let masterreactions = JSON.parse(fs.readFileSync('./masterreactions.json', 'utf8'));
 const cfg = require("../config.js");
 var gear = require('./gearbox.js');
-const prefix = "+";
+let prefix = "+";
 var counter = 0
 var droprate = 5000
 let skynet = bot.guilds.get('248285312353173505');
@@ -21,13 +21,15 @@ function buildGuilds() {
     for (i = 0; i < bot.guilds.size; i++) {
 
         if (!modules[bot.guilds.array()[i].id]) {
-
+            nama = bot.guilds.array()[i].name
+            modules[bot.guilds.array()[i].id].name = nama
+            modules[bot.guilds.array()[i].id].prefix = ''
+                modules[bot.guilds.array()[i].id].modrole = ''
             var params = {}
             for (x = 0; x < bot.guilds.array()[i].channels.size; x++) {
 
                 nam = bot.guilds.array()[i].channels.array()[x].id
-                nama = bot.guilds.array()[i].name
-                params.name = nama
+
                 params[nam] = {
                     NSFW: false,
                     RUBY: false,
@@ -91,20 +93,20 @@ fs.readdir("./events/", (err, files) => {
     files.forEach(file => {
         let eventFunction = require(`./events/${file}`);
         let eventName = file.split(".")[0];
-        bot.on(eventName, (event) => eventFunction.run(bot, event, points, gear,cfg, skynet, hook, prefix));
+        bot.on(eventName, (event) => eventFunction.run(bot, event, points, gear, cfg, skynet, hook, prefix));
     });
 });
 //----Message Digester
 
 
 
-  bot.on('message', (event) => {
-       if (reactions[event.content]) {
+bot.on('message', (event) => {
+    if (reactions[event.content]) {
         if (event.guild != skynet) return;
         event.channel.sendevent(reactions[event.content]);
     }
 
-  })
+})
 
 //--Presence Update
 bot.on('guildMemberAdd', (member) => {
@@ -120,7 +122,8 @@ bot.on('ready', () => {
 
     console.log('START');
     var ts = Date.now().toString()
-    fs.createReadStream('../points.json').pipe(fs.createWriteStream('../backup/points_backup_' + ts + '.json'));
+    fs.createReadStream('../points.json').pipe(fs.createWriteStream('../backup/points_backup.json'));
+    fs.createReadStream('./modules.json').pipe(fs.createWriteStream('../backup/modules_backup.json'));
     // bot.setPlayingGame("Hyperdimension Neptunia")
     hook.sendSlackMessage({
             'username': 'Bot status',
@@ -190,21 +193,11 @@ bot.on('presenceUpdate', (me, mo) => {
 });
 bot.on('error', e => {
     console.log('MOREO');
-    hook.sendMessage(":skull_crossbones: Falk MORREO")
+    hook.sendMessage(":skull_crossbones: Error Sustained")
         //  var aa = new Date();
         //console.log(aa.getHours());
 });
 process.on("unhandledRejection", err => {
-    let crash = ":skull_crossbones: **Uncaught Promise Error:** \n" + err.stack;
-    coreHook.sendSlackMessage({
-        'username': 'Falk',
-        'attachments': [{
-            'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-            'pretext': crash,
-            'color': '#C04', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-            // 'footer': 'Powered by sneks',
-            'ts': Date.now() / 1000
-      }]
-    })
+
 });
 bot.login(cfg.token);

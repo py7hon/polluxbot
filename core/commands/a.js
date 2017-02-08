@@ -6,16 +6,27 @@ var paths = require("../paths.js");
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
+    let textHolder = new Jimp(120, 100, function (err, image) {});
+    args.pop()
+    args.pop()
+    args.pop()
+    var A = args.toString().split(',').join(' ')
 
- emb =    new Discord.RichEmbed();
+    Jimp.read(`${paths.BUILD}illegal.jpg`).then(function (illegal) {
+        console.log(3);
+        Jimp.loadFont(paths.FONTS + 'blackTXT.fnt').then(function (sub) {
+            textHolder.print(sub, 0, 0, "teste teste teste");
+            textHolder.print(sub, 0, 32, `is now illegal`);
+            textHolder.rotate(8);
 
-                        emb.setColor('#ff97cf')
- 
-                emb.setURL('https://www.youtube.com/watch?v=qr89xoZyE1g')
-                emb.setURL('https://www.youtube.com/watch?v=qr89xoZyE1g')
-                    message.channel.sendEmbed(ebbd)
-   
+            illegal.composite(textHolder, 318, 162);
 
-    
-    
+     illegal.getBuffer( Jimp.MIME_PNG, function(err, image){
+         message.channel.sendFile(image)
+     })
+
+            console.log('Illegal - Done');
+        })
+    })
+
 }

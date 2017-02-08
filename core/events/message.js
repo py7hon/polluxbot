@@ -1,22 +1,42 @@
+let modules = require("../modules.json");
+let Jimp = require('jimp')
+var paths = require("../paths.js");
+var gear = require("../gearbox.js");
+const fs = require("fs");
+
 exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
     if (event.author.bot) return; // Ignorar Bot
 
+let pref = "+"
 
+    if (modules[event.guild.id].prefix!=''&&modules[event.guild.id].prefix!==undefined){
+         pref =  modules[event.guild.id].prefix
+
+    }else{
+       pref = prefix
+
+    }
 
     let userData = points[event.author.id];
     let args = event.content.split(" ").slice(1);
     let command = event.content.split(" ")[0];
-    command = command.slice(cfg.prefix.length);
+    command = command.slice(pref.length)
 
 
 
     if (event.content.endsWith('now illegal')) {
+        let aargs = event.content.split(' ')
+        aargs.pop()
+        aargs.pop()
+
         let illegal = require(`../sidecommands/nowillegal.js`);
         try{
-            illegal.run(bot, event, args, userData, caller, gear, points, skynet )
+            illegal.run(bot, event, aargs, userData, caller, gear, points, skynet )
+            return
         }catch(err){
             console.log('ERROR')
             hook.sendMessage(err)
+            return
             }
     }
 
@@ -28,10 +48,10 @@ exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
 
     //img
 
-    if (event.content.startsWith(prefix + "salty")) {
+    if (event.content.startsWith(pref + "salty")) {
         event.channel.sendFile(paths.REACTIONS + "juba.png")
     };
-    if (event.content.startsWith(prefix + "vidal")) {
+    if (event.content.startsWith(pref + "vidal")) {
         event.channel.sendFile(paths.REACTIONS + "vidaru.png")
     };
 
@@ -64,13 +84,15 @@ exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
         money: 0,
         medals: {},
         flowers: 0,
+        expenseTracker:{},
+        earnTracker:{},
         dyStreak: 0,
         daily: 86400000,
         rubys: 0,
         persotext: ""
     };
     let userData = points[event.author.id];
-    if (!event.content.includes(prefix)) {
+    if (!event.content.includes(pref)) {
         var droprate = gear.randomize(0, 8000);
         console.log("Drop Random " + droprate)
         userData.points++;
@@ -94,9 +116,19 @@ exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
             let tgtaData = points[tgta.id];
             console.log("LEVEL UP EVENT FOR " + tgta)
             let img = tgta.avatarURL.substr(0, tgta.avatarURL.length - 10)
-            gear.glassify(img, caller)
-            setTimeout(function () {
-                Jimp.read(`${paths.GLASS}/${caller}.png`).then(function (photo) {
+
+                Jimp.read(img).then(function (user) {
+
+            Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
+                Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
+
+                    user.resize(126, 126)
+                    user.mask(glass, 0, 0)
+                    var air = {}
+                    Jimp.read(paths.BUILD + "note.png").then(function (photo) {
+                        photo.composite(user, 0, 0)
+                        photo.mask(lenna, 0, 0)
+
                     Jimp.read(paths.BUILD + 'levelcard.png').then(function (cart) {
                         Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
                             Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
@@ -114,30 +146,33 @@ exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
                                 cart.print(head, 153, 3, event.guild.member(tgta).displayName);
                                 cart.print(sub, 336, 45, `${level}`);
                                 cart.composite(photo, 18, 20)
-                                cart.write(`${paths.CARDS}/up/${caller}.png`)
+                                cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                                    event.channel.sendFile(image)
+                                })
+                                //cart.write(`${paths.CARDS}/up/${caller}.png`)
                             })
                         });
                     });
                 });
-            }, 1000);
-            setTimeout(function () {
-                event.channel.sendFile(`${paths.CARDS}/up/${caller}.png`)
-            }, 2000);
-            setTimeout(function () {
-                //    event.channel.sendMessage("NADA");
-            }, 3000);
+                });
+                });
+                });
+
+
+
+
         }
         // [END] POINTS.JSON --------------------------------------------------------------------------------------------------
     } // LEVEL Checks
 
 
-    if (!event.content.startsWith(cfg.prefix)) return; // ignore no-prefix
+    if (!event.content.startsWith(pref)) return; // ignore no-prefix
     delete require.cache[require.resolve(`../../points.json`)];
     try{
     let commandFile = require(`../commands/${command}.js`);
         commandFile.run(bot, event, args, userData, caller, gear, points, skynet);
     }catch(err){
-        //console.log('ERROR')
+        console.log(err)
     }
 
 }

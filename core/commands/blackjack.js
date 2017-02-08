@@ -3,8 +3,8 @@ var gear = require("../gearbox.js");
 const fs = require("fs");
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
-    //message.reply("Blackjack está temporariamente suspenso")
-   // return
+    message.reply("Blackjack está temporariamente suspenso")
+    return
 
 const RUBYMOJI = message.guild.emojis.find('name','ruby')
 

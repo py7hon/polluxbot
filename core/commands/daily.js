@@ -37,11 +37,11 @@ if((now-dly)>=day){
          userData.dyStreak=0
     }
 
-    message.reply( RUBYMOJI+' Você recebeu 200 rubys de bônus diário~')
+    message.reply( RUBYMOJI+' Você recebeu 100 rubys de bônus diário~')
      if(userData.dyStreak==10){
         message.channel.sendMessage(RUBYMOJI+' Você recebeu mais 500 rubys por coletar 10 dias seguidos!')
     }
-    userData.rubys+=200
+    userData.rubys+=100
 
     userData.daily=now
 
