@@ -7,7 +7,7 @@ const fs = require("fs");
 exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
     if (event.author.bot) return; // Ignorar Bot
 
-let pref = "+"
+let pref = "--"
 
     if (modules[event.guild.id].prefix!=''&&modules[event.guild.id].prefix!==undefined){
          pref =  modules[event.guild.id].prefix
