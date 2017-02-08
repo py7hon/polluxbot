@@ -7,6 +7,7 @@ const hook = new Discord.WebhookClient(cfg.annHook.ID, cfg.annHook.token);
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
     if (!message.author.id == '88120564400553984') return;
+
 console.log(modules[message.guild.id].announcements)
    
 
@@ -43,11 +44,14 @@ console.log(modules[message.guild.id].announcements)
 
 
 
+
     for (i = 0; i < bot.guilds.size; i++) {
+
 
         if (modules[bot.guilds.array()[i].id].announcements === true) {
         
             bot.guilds.array()[i].defaultChannel.sendEmbed(emb)
+
 
         }
     }
