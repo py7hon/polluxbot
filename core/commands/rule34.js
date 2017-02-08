@@ -21,9 +21,9 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         }
 
         points['271394014358405121'].rubys+=5
-        gear.parseTrackers(points['271394014358405121'].earnTracker.putaria,5)
+       points['271394014358405121'].earnTracker.putaria += 5
         userData.rubys -= 5;
-        gear.parseTrackers(userData.expenseTracker.putaria,5)
+       userData.expenseTracker.putaria+=5
 
         console.log("PUTARIA INVOKED by " + caller + "-------------\n")
         let query = message.content.split(" ");

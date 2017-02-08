@@ -28,7 +28,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         return;
     }
     userData.rubys -= bet[1]
-    gear.parseTrackers(userData.expenseTracker.jogatina, bet[1])
+   userData.expenseTracker.jogatina += parseInt(bet[1])*1;
 
     var coin = gear.randomize(1, 2);
     var res = ""
@@ -38,13 +38,13 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     if (res.toLowerCase() == bet[2]) {
         message.channel.sendFile(paths.BUILD + 'heads.png', 'heads.png', "Yay! " + res + "! Você ganhou **" + (bet[1] * 2) + "** " + RUBYMOJI)
         userData.rubys += bet[1] * 2
-        gear.parseTrackers(userData.earnTracker.jogatina, bet[1] * 2)
+       userData.earnTracker.jogatina += parseInt(bet[1])*2;
     } else {
         message.channel.sendFile(paths.BUILD + ros, ros, "Putz! " + res + "! Você perdeu...")
-        points['271394014358405121'].rubys += parseInt(bet[1])
+        points['271394014358405121'].rubys += parseInt(bet[1]*1)
 
 
-        gear.parseTrackers(points['271394014358405121'].earnTracker.jogatina, bet[1] * 2)
+      points['271394014358405121'].earnTracker.jogatina += parseInt(bet[1])*2;
 
     }
     gear.writePoints(points, caller)
