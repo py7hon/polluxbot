@@ -42,9 +42,6 @@ console.log(modules[message.guild.id].announcements)
 
 
 
-
-
-
     for (i = 0; i < bot.guilds.size; i++) {
 
 
