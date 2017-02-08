@@ -3,7 +3,7 @@ const fs = require("fs");
 const bot = new Discord.Client();
 var Jimp = require("jimp");
 var paths = require("./paths.js");
-var cleverbot = require("cleverbot");
+var cleverbot = require("cleverbot.io");
 let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 let modules = JSON.parse(fs.readFileSync('./modules.json', 'utf8'));
 let reactions = JSON.parse(fs.readFileSync('./reactions.json', 'utf8'));
@@ -21,15 +21,15 @@ function buildGuilds() {
     for (i = 0; i < bot.guilds.size; i++) {
 
         if (!modules[bot.guilds.array()[i].id]) {
-            nama = bot.guilds.array()[i].name
-            modules[bot.guilds.array()[i].id].name = nama
-            modules[bot.guilds.array()[i].id].prefix = ''
-                modules[bot.guilds.array()[i].id].modrole = ''
+            var nama = bot.guilds.array()[i].name
+           
+           
+               
             var params = {}
             for (x = 0; x < bot.guilds.array()[i].channels.size; x++) {
 
                 nam = bot.guilds.array()[i].channels.array()[x].id
-
+                
                 params[nam] = {
                     NSFW: false,
                     RUBY: false,
@@ -44,8 +44,10 @@ function buildGuilds() {
 
 
                 channels: {},
-                announcements: false
-
+                announcements: false,
+                name: nama,
+                prefix : '+'
+                ,modrole:''
             }
 
             modules[bot.guilds.array()[i].id].channels = params

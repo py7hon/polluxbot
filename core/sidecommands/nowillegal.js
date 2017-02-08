@@ -6,20 +6,20 @@ var paths = require("../paths.js");
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
-
-    let prepo = args[args.length - 1]
-    args.pop()
+  console.log('Illegal - Start');
+  
+  
     let textHolder = new Jimp(120, 100, function (err, image) {});
 
-    var A = args.toString().split(',').join(' ')
+    var A = message.content
 
     Jimp.read(`${paths.BUILD}illegal.jpg`).then(function (illegal) {
-        console.log(3);
+       
         Jimp.loadFont(paths.FONTS + 'blackTXT.fnt').then(function (sub) {
             //textHolder.print(sub, 0, 0, A);
-            textHolder.print(sub, 0, 0, `${A} ${prepo} now illegal`, 120);
+            textHolder.print(sub, 0, 0, A, 120);
             textHolder.rotate(7);
-
+ console.log(3);
             illegal.composite(textHolder, 320, 135);
             illegal.getBuffer(Jimp.MIME_PNG, function (err, image) {
                 message.channel.sendFile(image)
