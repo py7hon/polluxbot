@@ -6,27 +6,30 @@ var paths = require("../paths.js");
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
-    let textHolder = new Jimp(120, 100, function (err, image) {});
-    args.pop()
-    args.pop()
-    args.pop()
-    var A = args.toString().split(',').join(' ')
+  emb = new Discord.RichEmbed();
+  
 
-    Jimp.read(`${paths.BUILD}illegal.jpg`).then(function (illegal) {
-        console.log(3);
-        Jimp.loadFont(paths.FONTS + 'blackTXT.fnt').then(function (sub) {
-            textHolder.print(sub, 0, 0, "teste teste teste");
-            textHolder.print(sub, 0, 32, `is now illegal`);
-            textHolder.rotate(8);
 
-            illegal.composite(textHolder, 318, 162);
+        emb.setColor('#ffd156')
+    emb.title = "UPDATE Announcement"
 
-     illegal.getBuffer( Jimp.MIME_PNG, function(err, image){
-         message.channel.sendFile(image)
-     })
 
-            console.log('Illegal - Done');
-        })
-    })
+    emb.setAuthor('Pollux Maintainance',bot.user.avatarURL,'https://discord.gg/ay48h7Q')
+    emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/4.gif?raw=true')
+    emb.setFooter('Use +mute_notices para desativar estes avisos. +unmute_notices para reativar.')
+
+
+  //emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/display.png")
+  // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
+    //emb.description = "Os Top-5 mais rubificadoss do server"
+
+      emb.description = ''
+      emb.addField('New or Updated Commands','a', true)
+
+
+
+
+
+    message.channel.sendEmbed(emb)
 
 }

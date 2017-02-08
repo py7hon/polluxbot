@@ -47,6 +47,7 @@ a = gear.randomize(2,4)
       emb.addField(':busts_in_silhouette:   Users',bot.users.size, true)
       emb.addField(':satellite_orbital:   Ping',parseFloat(Math.round(bot.ping * 100) / 100).toFixed(0)+'ms', true)
       emb.addField(':electric_plug:   Uptime',uptime, true)
+ emb.addField('More Info','POLLUX Support: https://discord.gg/ay48h7Q', true)
 
 
 

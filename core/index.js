@@ -44,7 +44,7 @@ function buildGuilds() {
 
 
                 channels: {},
-                announcements: false,
+                announcements: true,
                 name: nama,
                 prefix : '+'
                 ,modrole:''

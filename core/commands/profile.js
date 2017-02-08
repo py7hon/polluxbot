@@ -21,7 +21,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
     let tgtData = points[tgt.id];
 
-    let adm = gear.checkAdm(message, tgt)
+    let adm = gear.checkAdm(message, tgt).toLowerCase()
     if (tgt.avatarURL) {
         img = tgt.avatarURL.substr(0, tgt.avatarURL.length - 10);
     }
@@ -41,6 +41,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
                 Jimp.read(paths.BUILD + 'levbar.png').then(function (bar) {
 
                     Jimp.read(paths.BUILD + adm + '.png').then(function (tag) {
+                    
                         Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
                             Jimp.loadFont(paths.FONTS + 'TXT.fnt').then(function (sub) {
                                 try {
