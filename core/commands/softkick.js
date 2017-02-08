@@ -3,13 +3,27 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     var paths = require("../paths.js");
 
 
-    // let fuq = message.guild.roles.find("name", "Malcriados");
-    //let modRole = message.guild.roles.find("name", "MOD");
-    //let admRole = message.guild.roles.find("name", "ADM");
+    //let fuq = message.guild.roles.find("name", "Malcriados");
+  let modRole = message.guild.roles.find("name", "MOD");
+    let admRole = message.guild.roles.find("name", "ADM");
+    if (modules[message.guild.id].modrole!=""){
+        modRole = modules[message.guild.id].modrole
+    }
 
-    // if (!message.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
-    //        return message.reply("como assim tu quer kickar alguém, seu pleb.").catch(console.error);
-    //  }
+
+    if (modRole){
+    if (!message.member.roles.has(modRole.id)) {
+        return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+    }
+    }else if (admRole){
+    if (essage.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
+        return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+    }
+    }else if (!message.guild.member(message.author).hasPermission("MANAGE_SERVER")) {
+         return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+    }
+
+
     if (message.mentions.users.size === 0) {
         return message.reply("tu precisa me dizer de quem eu vou chutar a bunda").catch(console.error);
     }

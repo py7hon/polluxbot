@@ -16,11 +16,23 @@ if(message.channel.type == 'dm'){
 }
     
     
-     let modRole = message.guild.roles.find("name", "MOD");
+    let modRole = message.guild.roles.find("name", "MOD");
     let admRole = message.guild.roles.find("name", "ADM");
+    if (modules[message.guild.id].modrole!=""){
+        modRole = modules[message.guild.id].modrole
+    }
 
-    if (!message.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
+
+    if (modRole){
+    if (!message.member.roles.has(modRole.id)) {
         return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+    }
+    }else if (admRole){
+    if (essage.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
+        return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+    }
+    }else if (!message.guild.member(message.author).hasPermission("MANAGE_SERVER")) {
+         return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
     }
     
     
