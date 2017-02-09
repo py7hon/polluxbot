@@ -9,7 +9,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
   console.log('Illegal - Start');
   
   
-    let textHolder = new Jimp(120, 100, function (err, image) {});
+    let textHolder = new Jimp(128, 100, function (err, image) {});
 
     var A = message.content
 
@@ -17,7 +17,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
        
         Jimp.loadFont(paths.FONTS + 'blackTXT.fnt').then(function (sub) {
             //textHolder.print(sub, 0, 0, A);
-            textHolder.print(sub, 0, 0, A, 120);
+            textHolder.print(sub, 0, 0, A, 128);
             textHolder.rotate(7);
  console.log(3);
             illegal.composite(textHolder, 320, 135);

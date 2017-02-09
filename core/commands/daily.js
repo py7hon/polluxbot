@@ -21,7 +21,9 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         return;
     }
     
-const RUBYMOJI = message.guild.emojis.find('name','ruby')
+let RUBYMOJI = message.guild.emojis.find('name','ruby')
+if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
+
     // day one 1485938511477 + 86400000
 
 const D = 1000 * 60 * 60 * 24 * 1

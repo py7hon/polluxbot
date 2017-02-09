@@ -3,7 +3,8 @@ var gear = require("../gearbox.js");
 const fs = require("fs");
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
-    const RUBYMOJI = message.guild.emojis.find('name', 'ruby')
+let RUBYMOJI = message.guild.emojis.find('name','ruby')
+if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
     if (gear.checkRubys(3, userData) == false) {
         message.reply(" você não tem rubys suficientes. Você precisa pelo menos **3** " + RUBYMOJI);
         return;
@@ -39,6 +40,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         message.channel.sendFile(paths.BUILD + 'heads.png', 'heads.png', "Yay! " + res + "! Você ganhou **" + (bet[1] * 2) + "** " + RUBYMOJI)
         userData.rubys += bet[1] * 2
        userData.earnTracker.jogatina += parseInt(bet[1])*2;
+        points['271394014358405121'].expenseTracker.jogatina += parseInt(bet[1]);
     } else {
         message.channel.sendFile(paths.BUILD + ros, ros, "Putz! " + res + "! Você perdeu...")
         points['271394014358405121'].rubys += parseInt(bet[1]*1)

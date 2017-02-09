@@ -10,7 +10,8 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         return;
     }
 
-    const RUBYMOJI = message.guild.emojis.find('name','ruby')
+let RUBYMOJI = message.guild.emojis.find('name','ruby')
+if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
 
 
 

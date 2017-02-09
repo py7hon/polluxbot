@@ -15,6 +15,8 @@ var counter = 0
 var droprate = 5000
 let skynet = bot.guilds.get('248285312353173505');
 
+
+
 function buildGuilds() {
 
 
@@ -23,7 +25,7 @@ function buildGuilds() {
         if (!modules[bot.guilds.array()[i].id]) {
             var nama = bot.guilds.array()[i].name
            
-           
+           bot.guilds.array()[i].createEmoji('../resources/imgres/emoji/ruby.png','ruby');
                
             var params = {}
             for (x = 0; x < bot.guilds.array()[i].channels.size; x++) {

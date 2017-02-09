@@ -6,8 +6,8 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     message.reply("Blackjack está temporariamente suspenso")
     return
 
-const RUBYMOJI = message.guild.emojis.find('name','ruby')
-
+let RUBYMOJI = message.guild.emojis.find('name','ruby')
+if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
     try {
 
         if (typeof ongoing === 'undefined' || ongoing === null) {

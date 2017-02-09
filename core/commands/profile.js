@@ -67,7 +67,14 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
                                 let joinstamp = `${join.getDate()}/${join.getMonth()+1}/${join.getFullYear()} - ${join.toLocaleTimeString()}`;
                                 var stret = 354 * perc
                                 bar.resize(stret + 1, 18)
-                                if (tgt.bot) {
+                                if (tgt.id=='271394014358405121'){
+                                    level = "XX"
+                                    money = tgtData.rubys.toString()
+                                    exp = "99999"
+                                    next = "99999"
+                                    bar.resize(354, 18)
+                                }
+                                else if (tgt.bot) {
                                     level = "XX"
                                     money = "INFINITE RUBYS"
                                     exp = "99999"

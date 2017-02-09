@@ -14,8 +14,8 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         return;
     }
 
-
-const RUBYMOJI = message.guild.emojis.find('name','ruby')
+let RUBYMOJI = message.guild.emojis.find('name','ruby')
+if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
  emb =    new Discord.RichEmbed();
 
 
@@ -23,11 +23,16 @@ const RUBYMOJI = message.guild.emojis.find('name','ruby')
      var rankItem = []
         var ranked = []
         for (var i in points) {
+            if (points[i].name == 'Pollux') {
+            }else{
+                
             rankItem.name = points[i].name
             rankItem.rubys = points[i].rubys
             rankItem.level = points[i].level
             ranked.push(rankItem)
             rankItem = []
+        }
+
         }
         arraySort(ranked, 'rubys', {
             reverse: true

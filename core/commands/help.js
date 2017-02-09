@@ -6,6 +6,9 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 \`+daily\`
 Rubys de graça todo dia.
 
+\`+airwaifu\`
+Waifus aeroplanares 
+
 \`+profile [@user]\`
 Mostra o Profilecard seu ou de @fulaninho
 

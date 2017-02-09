@@ -13,6 +13,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         if (gear.drops > 0) {
             console.log("----------- SUCCESSFUL PICK by" + caller)
             userData.rubys += gear.drops
+            userData.earnTracker.drops+=gear.drops
             message.channel.sendMessage("**" + message.author.username + "** pegou " + gear.drops + " Ruby(s)").then(function (c) {
                 message.delete()
                 c.delete(500000)

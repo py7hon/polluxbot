@@ -10,11 +10,13 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         return;
     }
 
-const RUBYMOJI = message.guild.emojis.find('name','ruby')
+let RUBYMOJI = message.guild.emojis.find('name','ruby')
+if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
         console.log("------------DROP by" + caller)
             // message.guild.defaultChannel.sendMessage()
         if (userData.rubys >= 1) {
             userData.rubys -= 1
+            userData.expenseTracker.drops+=1
             aaa = message.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', message.author.username + " largou um ruby "+RUBYMOJI+" na sala! Quem digitar \`+pick\` primeiro leva! ").then(function (c) {
                 gear.vacuum.push(c)
             })

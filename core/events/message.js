@@ -31,7 +31,7 @@ let pref = "+"
 
         let illegal = require(`../sidecommands/nowillegal.js`);
         try{
-            illegal.run(bot, event, aargs, userData, caller, gear, points, skynet )
+            illegal.run(bot, event, aargs, userData, caller, gear, points, skynet, pref )
             return
         }catch(err){
             console.log('ERROR')
@@ -170,7 +170,7 @@ let pref = "+"
     delete require.cache[require.resolve(`../../points.json`)];
     try{
     let commandFile = require(`../commands/${command}.js`);
-        commandFile.run(bot, event, args, userData, caller, gear, points, skynet);
+        commandFile.run(bot, event, args, userData, caller, gear, points, skynet, pref);
     }catch(err){
         console.log(err)
     }
