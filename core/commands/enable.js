@@ -18,26 +18,31 @@ if(message.channel.type == 'dm'){
     return;
 }
     
-  let modRole = message.guild.roles.find("name", "MOD");
-    let admRole = message.guild.roles.find("name", "ADM");
-    if (modules[message.guild.id].modrole!=""){
-        modRole = modules[message.guild.id].modrole
-    }
+  if (!message.author.id == '88120564400553984') {
 
-    
-    if (modRole&&admRole){
-    if (!message.member.roles.has(modRole.id)&&!message.member.roles.has(admRole.id)) {
-        return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+        let modRole = message.guild.roles.find("name", "MOD");
+        let admRole = message.guild.roles.find("name", "ADM");
+        if (modules[message.guild.id].modrole != "") {
+            modRole = modules[message.guild.id].modrole
+
+        }
+
+
+
+        if (modRole && admRole) {
+            if (!message.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
+                return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+            }
+        } else if (admRole) {
+            if (essage.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
+                return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+            }
+        }
+        if (!message.guild.member(message.author).hasPermission("MANAGE_SERVER")) {
+            return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+        }
+
     }
-    }else if (admRole){
-    if (essage.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
-        return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
-    }
-    }
-    if (!message.guild.member(message.author).hasPermission("MANAGE_SERVER")) {
-         return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
-    }
-    
     function pp(o, p) {
         return o[p];
     }

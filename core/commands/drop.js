@@ -3,7 +3,7 @@ var gear = require("../gearbox.js");
 const fs = require("fs");
 
 
-exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+exports.run = (bot, message, args, userData, caller, gear, points, skynet, pref) => {
 
       if(!gear.moduleCheck('RUBY',message)){
         message.reply(':no_entry_sign: Sistema de Rubys foi desabilitado aqui.');
@@ -17,7 +17,7 @@ if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
         if (userData.rubys >= 1) {
             userData.rubys -= 1
             userData.expenseTracker.drops+=1
-            aaa = message.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', message.author.username + " largou um ruby "+RUBYMOJI+" na sala! Quem digitar \`+pick\` primeiro leva! ").then(function (c) {
+            aaa = message.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', message.author.username + " largou um ruby "+RUBYMOJI+" na sala! Quem digitar \`"+pref+"pick\` primeiro leva! ").then(function (c) {
                 gear.vacuum.push(c)
             })
             gear.drops++

@@ -1,19 +1,25 @@
-let modules = require("../modules.json");
+const fs = require("fs");
+//let modules = JSON.parse(fs.readFileSync('./modules.json', 'utf8'));
+let modules = require('../modules.json');
 let Jimp = require('jimp')
 var paths = require("../paths.js");
 var gear = require("../gearbox.js");
-const fs = require("fs");
 
 exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
+
     if (event.author.bot) return; // Ignorar Bot
+    if (event.channel.type === 'dm') {
+        event.reply('Ainda não dou suporte a mensagens por DM, desculpa~');
+        return;
+    }
 
-let pref = "+"
+    let pref = "+"
 
-    if (modules[event.guild.id].prefix!=''&&modules[event.guild.id].prefix!==undefined){
-         pref =  modules[event.guild.id].prefix
+    if (modules[event.guild.id].prefix != '' && modules[event.guild.id].prefix !== undefined) {
+        pref = modules[event.guild.id].prefix
 
-    }else{
-       pref = prefix
+    } else {
+        pref = prefix
 
     }
 
@@ -30,14 +36,14 @@ let pref = "+"
         aargs.pop()
 
         let illegal = require(`../sidecommands/nowillegal.js`);
-        try{
-            illegal.run(bot, event, aargs, userData, caller, gear, points, skynet, pref )
+        try {
+            illegal.run(bot, event, aargs, userData, caller, gear, points, skynet, pref)
             return
-        }catch(err){
+        } catch (err) {
             console.log('ERROR')
             hook.sendMessage(err)
             return
-            }
+        }
     }
 
     if (event.content.includes("biscoito")) {
@@ -57,19 +63,24 @@ let pref = "+"
 
 
 
-    if (gear.moduleCheck('RUBY', event)) {
-        if (droprate >= 1000 && droprate < 1151) {
-            event.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', "OLHA GENTE! Um ruby! quem digitar \`+pick\` primeiro leva! ").then(function (rubypot) {
+    if (gear.moduleCheck('RUBYDROP', event)) {
+        if (droprate >= 1000 && droprate < 2251) {
+            event.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', "OLHA GENTE! Um ruby! quem digitar \`" + pref + "pick\` primeiro leva! ").then(function (rubypot) {
                 gear.vacuum.push(rubypot)
             })
             gear.drops++
+                modules[bot.user.id].expenseTracker.drops++
+                modules[bot.user.id].rubys--
                 console.log("------------=========== ::: NATURAL DROP")
         }
-        if (droprate <= 5) {
-            event.channel.sendFile(paths.BUILD + 'rubypot.png', 'Rubychest.png', "EITA PORRA! Um baú inteiro de rubys! quem digitar \`+pick\` primeiro leva! ").then(function (rubypot) {
+        if (droprate <= 25) {
+            event.channel.sendFile(paths.BUILD + 'rubypot.png', 'Rubychest.png', "EITA PORRA! Um baú inteiro de rubys! quem digitar \`" + pref + "pick\` primeiro leva! ").then(function (rubypot) {
                 gear.vacuum.push(rubypot)
             })
             gear.drops += 10
+
+            modules[bot.user.id].expenseTracker.drops += 10
+            modules[bot.user.id].rubys -= 10
             console.log("------------=========== ::: NATURAL RARE DROP ::: ===")
         }
 
@@ -77,35 +88,63 @@ let pref = "+"
 
     if (gear.moduleCheck('LEVEL', event)) {
 
-    if (!points[event.author.id]) points[event.author.id] = {
-        name: event.author.username,
-        points: 0,
-        level: 0,
-        money: 0,
-        medals: {},
-        flowers: 0,
-        expenseTracker:{},
-        earnTracker:{},
-        dyStreak: 0,
-        daily: 86400000,
-        rubys: 0,
-        persotext: ""
-    };
-    let userData = points[event.author.id];
-    if (!event.content.includes(pref)) {
-        var droprate = gear.randomize(0, 8000);
-        console.log("Drop Random " + droprate)
-        userData.points++;
-        userData.money += gear.randomize(0, 5);
-    }
-    var caller = gear.checkment(event).username // Checar Caller
-        // POINTS.JSON ---------------------------------------------------
+        if (!points[event.author.id]) points[event.author.id] = {
+            name: event.author.username,
+            points: 0,
+            level: 0,
+            money: 0,
+            medals: {},
+            flowers: 0,
+            expenseTracker: {},
+            earnTracker: {},
+            dyStreak: 0,
+            daily: 86400000,
+            rubys: 0,
+            persotext: ""
+        };
+        let userData = points[event.author.id];
+        if (!event.content.includes(pref)) {
+            var droprate = gear.randomize(0, 8000);
+            console.log("Drop Random " + droprate)
+            userData.points++;
+            userData.money += gear.randomize(0, 5);
+        }
+        var caller = gear.checkment(event).username // Checar Caller
+            // POINTS.JSON ---------------------------------------------------
+
+        // [END] POINTS.JSON --------------------------------------------------------------------------------------------------
+    } // LEVEL Checks
 
 
 
-        //
-        //LEVEL UP CHECKER
-        //-----------------------------------------------------
+
+    if (gear.moduleCheck('LVUP_MSG', event)) {
+
+        if (!points[event.author.id]) points[event.author.id] = {
+            name: event.author.username,
+            points: 0,
+            level: 0,
+            money: 0,
+            medals: {},
+            flowers: 0,
+            expenseTracker: {},
+            earnTracker: {},
+            dyStreak: 0,
+            daily: 86400000,
+            rubys: 0,
+            persotext: ""
+        };
+        let userData = points[event.author.id];
+        if (!event.content.includes(pref)) {
+            var droprate = gear.randomize(0, 8000);
+            console.log("Drop Random " + droprate)
+            userData.points++;
+            userData.money += gear.randomize(0, 5);
+        }
+        var caller = gear.checkment(event).username // Checar Caller
+            //
+            //LEVEL UP CHECKER
+            //-----------------------------------------------------
         let curLevel = Math.floor(0.18 * Math.sqrt(userData.points));
         let forNext = Math.trunc(Math.pow((userData.level + 1) / 0.18, 2));
         if (curLevel > userData.level) {
@@ -115,63 +154,70 @@ let pref = "+"
             let tgta = event.author
             let tgtaData = points[tgta.id];
             console.log("LEVEL UP EVENT FOR " + tgta)
+            let img = tgta.defaultAvatarURL.substr(0, tgta.avatarURL.length - 10)
+        }
+        try {
             let img = tgta.avatarURL.substr(0, tgta.avatarURL.length - 10)
+        } catch (err) {
 
-                Jimp.read(img).then(function (user) {
 
-            Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
-                Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
+            Jimp.read(img).then(function (user) {
 
-                    user.resize(126, 126)
-                    user.mask(glass, 0, 0)
-                    var air = {}
-                    Jimp.read(paths.BUILD + "note.png").then(function (photo) {
-                        photo.composite(user, 0, 0)
-                        photo.mask(lenna, 0, 0)
+                Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
+                    Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
 
-                    Jimp.read(paths.BUILD + 'levelcard.png').then(function (cart) {
-                        Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
-                            Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
-                                try {
-                                    var level = tgtaData.level.toString()
-                                } catch (err) {
-                                    var level = "00"
-                                }
-                                var next = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2));
-                                if (level.length == 1) {
-                                    level = `0${level}`
-                                } else if (level === undefined) {
-                                    level = `XX`
-                                }
-                                cart.print(head, 153, 3, event.guild.member(tgta).displayName);
-                                cart.print(sub, 336, 45, `${level}`);
-                                cart.composite(photo, 18, 20)
-                                cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                                    event.channel.sendFile(image)
-                                })
-                                //cart.write(`${paths.CARDS}/up/${caller}.png`)
-                            })
+                        user.resize(126, 126)
+                        user.mask(glass, 0, 0)
+                        var air = {}
+                        Jimp.read(paths.BUILD + "note.png").then(function (photo) {
+                            photo.composite(user, 0, 0)
+                            photo.mask(lenna, 0, 0)
+
+                            Jimp.read(paths.BUILD + 'levelcard.png').then(function (cart) {
+                                Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
+                                    Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
+                                        try {
+                                            var level = tgtaData.level.toString()
+                                        } catch (err) {
+                                            var level = "00"
+                                        }
+                                        var next = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2));
+                                        if (level.length == 1) {
+                                            level = `0${level}`
+                                        } else if (level === undefined) {
+                                            level = `XX`
+                                        }
+                                        cart.print(head, 153, 3, event.guild.member(tgta).displayName);
+                                        cart.print(sub, 336, 45, `${level}`);
+                                        cart.composite(photo, 18, 20)
+                                        cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                                                event.channel.sendFile(image)
+                                            })
+                                            //cart.write(`${paths.CARDS}/up/${caller}.png`)
+                                    })
+                                });
+                            });
                         });
                     });
                 });
-                });
-                });
-                });
+            });
 
 
 
 
         }
-        // [END] POINTS.JSON --------------------------------------------------------------------------------------------------
-    } // LEVEL Checks
+    }
+
+
+
 
 
     if (!event.content.startsWith(pref)) return; // ignore no-prefix
     delete require.cache[require.resolve(`../../points.json`)];
-    try{
-    let commandFile = require(`../commands/${command}.js`);
+    try {
+        let commandFile = require(`../commands/${command}.js`);
         commandFile.run(bot, event, args, userData, caller, gear, points, skynet, pref);
-    }catch(err){
+    } catch (err) {
         console.log(err)
     }
 

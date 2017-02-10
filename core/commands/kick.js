@@ -20,9 +20,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
     }
     }
-    if (!message.guild.member(message.author).hasPermission("MANAGE_SERVER")) {
-         return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
-    }
+
     
     if (message.mentions.users.size === 0) {
         return message.reply("tu precisa me dizer de quem eu vou chutar a bunda").catch(console.error);

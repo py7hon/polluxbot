@@ -5,48 +5,50 @@ const fs = require('fs')
 
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
-if(message.channel.type == 'dm'){
-    message.reply("Comando não utilizável por DM");
-    return;
-}
-
-    if(message.content.length<10){
-    message.reply("Escolha um módulo");
-    return;
-}
-    
-    
-    let modRole = message.guild.roles.find("name", "MOD");
-    let admRole = message.guild.roles.find("name", "ADM");
-    if (modules[message.guild.id].modrole!=""){
-        modRole = modules[message.guild.id].modrole
+    if (message.channel.type == 'dm') {
+        message.reply("Comando não utilizável por DM");
+        return;
     }
 
+    if (message.content.length < 10) {
+        message.reply("Escolha um módulo");
+        return;
+    }
 
-    
-    if (modRole&&admRole){
-    if (!message.member.roles.has(modRole.id)&&!message.member.roles.has(admRole.id)) {
-        return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+    if (!message.author.id == '88120564400553984') {
+
+        let modRole = message.guild.roles.find("name", "MOD");
+        let admRole = message.guild.roles.find("name", "ADM");
+        if (modules[message.guild.id].modrole != "") {
+            modRole = modules[message.guild.id].modrole
+
+        }
+
+
+
+        if (modRole && admRole) {
+            if (!message.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
+                return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+            }
+        } else if (admRole) {
+            if (essage.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
+                return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+            }
+        }
+        if (!message.guild.member(message.author).hasPermission("MANAGE_SERVER")) {
+            return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+        }
+
     }
-    }else if (admRole){
-    if (essage.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
-        return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
-    }
-    }
-    if (!message.guild.member(message.author).hasPermission("MANAGE_SERVER")) {
-         return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
-    }
-    
-    
-    
+
     function pp(o, p) {
         return o[p];
     }
 
     var target = args[0].toUpperCase()
-    if (args[1]){
+    if (args[1]) {
         var scope = args[1].toLowerCase()
-        }
+    }
     var sc = ''
     switch (scope) {
         case 's':
@@ -63,21 +65,20 @@ if(message.channel.type == 'dm'){
             sc = 'C'
             break;
     }
-console.log(sc)
+    console.log(sc)
     if (sc == 'S') {
 
-        for(var y in modules[message.guild.id].channels){
-             modules[message.guild.id].channels[y][target] = false
+        for (var y in modules[message.guild.id].channels) {
+            modules[message.guild.id].channels[y][target] = false
         }
 
 
         message.reply('O módulo ' + target + ' foi desabilitado globalmente!')
-        }
-     else {
+    } else {
 
-            modules[message.guild.id].channels[message.channel.id][target] = false
-            message.reply('O módulo ' + target + ' foi desabilitado no canal #'+message.channel.name)
-        }
+        modules[message.guild.id].channels[message.channel.id][target] = false
+        message.reply('O módulo ' + target + ' foi desabilitado no canal #' + message.channel.name)
+    }
 
 
 
