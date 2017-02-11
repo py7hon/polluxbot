@@ -27,8 +27,8 @@ console.log(modules[message.guild.id].announcements)
     //emb.description = "Os Top-5 mais rubificadoss do server"
 
       emb.description = ann.split('ççç')[0]
-      emb.addField('New or Updated Commands',ann.split('ççç')[1], true)
-      emb.addField('Disabled Commands',ann.split('ççç')[2], true)
+      emb.addField('New or Updated Feats',ann.split('ççç')[1], true)
+      emb.addField('Disabled/Discontinued Feats',ann.split('ççç')[2], true)
       emb.addField('More Info','POLLUX Support: https://discord.gg/ay48h7Q', true)
 
 
