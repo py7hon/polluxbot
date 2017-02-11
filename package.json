@@ -37,6 +37,7 @@
   "dependencies": {
     "booru-getter": "0.0.2",
     "clapp": "^1.1.1",
+    "colors": "^1.1.2",
     "discord.js": "^11.0.0",
     "discord.js-commando": "^0.8.4",
     "node-opus": "^0.2.4",
