@@ -13,6 +13,7 @@ let prefix = "+";
 var counter = 0
 var droprate = 5000
 let skynet = bot.guilds.get('248285312353173505');
+var colors = require('colors');
 
 
 
@@ -46,19 +47,20 @@ function buildGuilds() {
             modules[bot.guilds.array()[i].id] = {
 
 
-                channels: {},
-                announcements: true,
                 name: nama,
+                language:'en',
                 prefix: '+',
-                modrole: ''
+                modrole: '',
+                announcements: true,
+                channels: {},
             }
 
             modules[bot.guilds.array()[i].id].channels = params
 
         };
         fs.writeFile('./modules.json', JSON.stringify(modules), (err) => {
-            console.log("JSON write event-------\n")
-            if (err) console.log("JSON ERROR  ------------\n" + err)
+            console.log("JSON write event-------".gray)
+            if (err) console.log("JSON ERROR  ------------\n".red + err)
         });
 
     }
@@ -72,8 +74,8 @@ function buildGuilds() {
 //===============================================================
 //
 //const RANK = points
-const hook = new Discord.WebhookClient(cfg.hook.ID, cfg.hook.token);
-const coreHook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
+//const hook = new Discord.WebhookClient(cfg.hook.ID, cfg.hook.token);
+const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
 // START SHIT UP
 cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
 cleverbot.setNick(cfg.name)
@@ -88,7 +90,7 @@ cleverbot.create(function (err, session) {
             cleverbot.ask(message.content.substr(13), function (err, response) {
                 message.reply(response);
                 message.channel.stopTyping();
-                console.log("Cleverbot chat: " + message.content + " // " + response)
+                console.log(colors.blue("Cleverbot chat: " + message.content + " // " + response))
             })
         }
     });
@@ -99,7 +101,7 @@ bot.on('ready', () => {
     buildGuilds()
 
 
-    console.log('START');
+    console.log('START'.green.bold);
     var ts = Date.now().toString()
     fs.createReadStream('../points.json').pipe(fs.createWriteStream('../backup/points_backup.json'));
     fs.createReadStream('./modules.json').pipe(fs.createWriteStream('../backup/modules_backup.json'));
@@ -115,7 +117,7 @@ bot.on('ready', () => {
       }]
         })
         //  var aa = new Date();
-    console.log("HOOK DEPLOYER");
+    console.log("HOOK DEPLOYER".gray);
     bot.user.setGame("Ace Combat ZERO")
 });
 
@@ -125,7 +127,7 @@ fs.readdir("./events/", (err, files) => {
     files.forEach(file => {
         let eventFunction = require(`./events/${file}`);
         let eventName = file.split(".")[0];
-        bot.on(eventName, (event) => eventFunction.run(bot, event, points, gear, cfg, skynet, hook, prefix));
+        bot.on(eventName, (event) => eventFunction.run(bot, event, points, gear, cfg, skynet, hook, prefix, modules));
     });
 });
 //----Message Digester
@@ -151,7 +153,7 @@ bot.on('guildMemberRemove', (member) => {
 
 
 bot.on('error', e => {
-    console.log('MOREO');
+    console.log('MOREO'.red);
     hook.sendSlackMessage({
         'username': 'Pollux Core Reporter',
         'attachments': [{
@@ -165,7 +167,7 @@ bot.on('error', e => {
 });
 
 process.on('error', e => {
-    console.log('MOREO');
+    console.log('MOREO'.bgRed.white.bold);
     hook.sendSlackMessage({
         'username': 'Pollux Core Reporter',
         'attachments': [{
@@ -179,18 +181,19 @@ process.on('error', e => {
 });
 
 process.on("unhandledRejection", err => {
-    console.log('REJECTION: ' + err);
-    hook.sendMessage("Unhandled Rejection Occured")
+    console.log('REJECTION: '.bgYellow.red.bold + err);
+
 });
 
 process.on('uncaughtException', function (err) {
-    console.log('EXCEPTION: ' + err);
+    console.log('EXCEPTION: '.bgRed.white.bold + err);
     hook.sendSlackMessage({
         'username': 'Pollux Core Reporter',
         'attachments': [{
             'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
             'pretext': `**Internal Systems has Sustained a Crash Event**
-${err}
+**${err}**
+${err.stack}
 `,
             'color': '#C04', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
             // 'footer': 'Powered by sneks',
