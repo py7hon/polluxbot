@@ -16,3 +16,4 @@
 / ./node_modules
 /node_modules/
 /core/modules.json
+/core/commands/b.js
