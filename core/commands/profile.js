@@ -92,7 +92,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
                                 cart.composite(photo, 18, 20)
                                 cart.composite(tag, 7, 182)
                                     //cart.write(`${paths.CARDS}${caller}.png`)
-                                console.log("Success")
+                                console.log("Success".green)
                                 cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
                                     message.channel.sendFile(image)
                                 })

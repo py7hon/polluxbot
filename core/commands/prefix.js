@@ -15,7 +15,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
 
     fs.writeFile('./modules.json', JSON.stringify(modules), (err) => {
-        console.log("JSON write event-------\n")
+        console.log("JSON write event-------")
          delete require.cache[require.resolve('../modules.json')];
         if (err) console.log("JSON ERROR  ------------\n" + err)
 
