@@ -88,7 +88,7 @@ console.log(sc)
 
 
     fs.writeFile('./modules.json', JSON.stringify(modules), (err) => {
-        console.log("JSON write event-------\n")
+        console.log("JSON write event-------")
         if (err) console.log("JSON ERROR  ------------\n" + err)
 
 
