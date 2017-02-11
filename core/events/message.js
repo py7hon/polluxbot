@@ -1,11 +1,14 @@
 const fs = require("fs");
 //let modules = JSON.parse(fs.readFileSync('./modules.json', 'utf8'));
-let modules = require('../modules.json');
 let Jimp = require('jimp')
 var paths = require("../paths.js");
-var gear = require("../gearbox.js");
 
-exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
+
+exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix, modules) => {
+
+
+
+
 
     if (event.author.bot) return; // Ignorar Bot
     if (event.channel.type === 'dm') {
@@ -28,7 +31,9 @@ exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
     let command = event.content.split(" ")[0];
     command = command.slice(pref.length)
 
-
+event.Server = modules[event.guild.id]
+        event.Prefix = pref
+        event.Modules = modules
 
     if (event.content.endsWith('now illegal')) {
         let aargs = event.content.split(' ')
@@ -71,7 +76,7 @@ exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
             gear.drops++
                 modules[bot.user.id].expenseTracker.drops++
                 modules[bot.user.id].rubys--
-                console.log("------------=========== ::: NATURAL DROP")
+                console.log("------------=========== ::: NATURAL DROP".bgGreen.white)
         }
         if (droprate <= 25) {
             event.channel.sendFile(paths.BUILD + 'rubypot.png', 'Rubychest.png', "EITA PORRA! Um baú inteiro de rubys! quem digitar \`" + pref + "pick\` primeiro leva! ").then(function (rubypot) {
@@ -81,7 +86,7 @@ exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
 
             modules[bot.user.id].expenseTracker.drops += 10
             modules[bot.user.id].rubys -= 10
-            console.log("------------=========== ::: NATURAL RARE DROP ::: ===")
+            console.log("------------=========== ::: NATURAL RARE DROP ::: ===".bgGreen.yellow.bold)
         }
 
     } // RUBY Checks
@@ -104,8 +109,12 @@ exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
         };
         let userData = points[event.author.id];
         if (!event.content.includes(pref)) {
-            var droprate = gear.randomize(0, 8000);
-            console.log("Drop Random " + droprate)
+            var droprate = gear.randomize(0, 5000);
+            if(event.Server.name == "Discord Bots"){
+                console.log(("Drop Random " + droprate + " at "+event.Server.name).toString().gray)
+            }else{
+                console.log("Drop Random ".yellow + droprate + " at "+event.Server.name.toString().bgBlue)
+            }
             userData.points++;
             userData.money += gear.randomize(0, 5);
         }
@@ -135,12 +144,7 @@ exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
             persotext: ""
         };
         let userData = points[event.author.id];
-        if (!event.content.includes(pref)) {
-            var droprate = gear.randomize(0, 8000);
-            console.log("Drop Random " + droprate)
-            userData.points++;
-            userData.money += gear.randomize(0, 5);
-        }
+
         var caller = gear.checkment(event).username // Checar Caller
             //
             //LEVEL UP CHECKER
@@ -152,13 +156,19 @@ exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
             userData.level = curLevel;
             // event.reply(`upou pro level **${curLevel}**!`);
             let tgta = event.author
+            console.log(tgta)
             let tgtaData = points[tgta.id];
-            console.log("LEVEL UP EVENT FOR " + tgta)
+            console.log("LEVEL UP EVENT FOR ".bgBlue + tgta)
+
             let img = tgta.defaultAvatarURL.substr(0, tgta.avatarURL.length - 10)
-        }
-        try {
-            let img = tgta.avatarURL.substr(0, tgta.avatarURL.length - 10)
-        } catch (err) {
+            console.log(img)
+
+
+            if(tgta.avatarURL.substr(0, tgta.avatarURL.length - 10)!==undefined){
+                img = tgta.defaultAvatarURL.substr(0, tgta.avatarURL.length - 10)
+            console.log(img)
+            }
+
 
 
             Jimp.read(img).then(function (user) {
@@ -203,9 +213,9 @@ exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
             });
 
 
+ }
 
 
-        }
     }
 
 
@@ -215,7 +225,10 @@ exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix) => {
     if (!event.content.startsWith(pref)) return; // ignore no-prefix
     delete require.cache[require.resolve(`../../points.json`)];
     try {
+        delete require.cache[require.resolve(`../commands/${command}.js`)];
         let commandFile = require(`../commands/${command}.js`);
+
+
         commandFile.run(bot, event, args, userData, caller, gear, points, skynet, pref);
     } catch (err) {
         console.log(err)
