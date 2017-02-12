@@ -11,9 +11,14 @@ var deploy = function (message) {
     var bot = message.botUser
     var command = message.content.substr(message.guild.mods.PREFIX.length).split(' ')[0]
 
+
+
     try {
         delete require.cache[require.resolve(`./nCommands/${command}.js`)];
         let commandFile = require(`./nCommands/${command}.js`);
+
+        //if (commandFile.skynet && message.guild.id!='248285312353173505') return;
+
         commandFile.init(message, userDB, DB);
         console.log(("  --== " + command.toUpperCase() + " ==--   ").bgBlue.yellow.bold)
     } catch (err) {
