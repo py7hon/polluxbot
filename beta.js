@@ -16,11 +16,12 @@ cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
 var prefix = "+";
 var shardID = process.env.SHARD_ID;
 var shardCount = process.env.SHARD_COUNT;
-
+const Jimp = require("jimp");
 var i18next = require('i18next');
 var multilang = require('./utils/multilang_b');
 var Backend = require('i18next-node-fs-backend');
 var fs = require("fs");
+var paths = require("./core/paths.js");
 var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8'));
 var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8'));
 var timer;
@@ -105,9 +106,10 @@ getDirs('utils/lang/', (list) => {
                     deployer.run(message);
                 } else {
                     if (message.guild && !message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {
-                        //messageHelper.updateXP(message, (err) => {
-                        //    if (err) return;
-                        //  });
+
+                      paramUpdate(Author, 'exp', 1)
+                            updateEXP(Author,message)
+
                     }
                     if (message.guild && !!message.mentions.users.get(bot.user.id) && !message.content.startsWith(prefix) && !message.author.bot) {
                         message.channel.startTyping()
@@ -248,7 +250,7 @@ function serverSetup(guild) {
                 ANNOUNCE: false,
                 PREFIX: "+",
                 MODROLE: {},
-                LANGUAGE: 'en',
+                LANGUAGE: 'dev',
                 DISABLED: {}
             },
             channels: {}
@@ -325,6 +327,121 @@ function userSetup(user) {
         console.log("JSON Write User Database".gray)
     });
 }
+
+
+function paramUpdate(target, param, val) {
+
+    target.mods[param] += val
+    if (target instanceof Discord.User) {
+        userDB[target.id].modules[param] += val
+    }
+    if (target instanceof Discord.Guild) {
+        DB[target.id].modules[param] += val
+    }
+    if (target instanceof Discord.Channel) {
+        DB[target.id].modules.channels.modules[param] += val
+    }
+    //this.writeJ(userDB,'./database/users')
+    //this.writeJ(DB,'./database/servers')
+}
+
+function paramDefine(target, param, val) {
+
+    target.mods[param] = val
+    if (target instanceof Discord.User) {
+        userDB[target.id].modules[param] = val
+    }
+    if (target instanceof Discord.Guild) {
+        DB[target.id].modules[param] = val
+    }
+    if (target instanceof Discord.Channel) {
+        DB[target.guild.id].channels[target.id].modules[param] = val
+    }
+}
+
+
+
+
+
+
+
+
+function updateEXP(TG,event) {
+    let userData = TG.mods;
+
+    var caller = TG.username // Checar Caller
+
+        //LEVEL UP CHECKER
+        //-----------------------------------------------------
+
+    let curLevel = Math.floor(0.18 * Math.sqrt(userData.exp));
+    let forNext = Math.trunc(Math.pow((userData.level + 1) / 0.18, 2));
+    if (curLevel > userData.level) {
+        // Level up!
+        paramUpdate(TG, 'level', 1)
+
+        // event.reply(`upou pro level **${curLevel}**!`);
+
+        console.log("LEVEL UP EVENT FOR ".bgBlue + TG)
+
+       let img = TG.defaultAvatarURL.substr(0, TG.defaultAvatarURL.length - 10)
+    if (TG.avatarURL) {
+        img = TG.avatarURL.substr(0, TG.avatarURL.length - 10);
+    }
+
+
+
+        Jimp.read(img).then(function (user) {
+
+            Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
+                Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
+
+                    user.resize(126, 126)
+                    user.mask(glass, 0, 0)
+                    var air = {}
+                    Jimp.read(paths.BUILD + "note.png").then(function (photo) {
+                        photo.composite(user, 0, 0)
+                        photo.mask(lenna, 0, 0)
+
+                        Jimp.read(paths.BUILD + 'levelcard.png').then(function (cart) {
+                            Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
+                                Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
+                                    try {
+                                        var level = userData.level.toString()
+                                    } catch (err) {
+                                        var level = "00"
+                                    }
+                                    var next = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2));
+                                    if (level.length == 1) {
+                                        level = `0${level}`
+                                    } else if (level === undefined) {
+                                        level = `XX`
+                                    }
+                                    cart.print(head, 153, 3, event.guild.member(TG).displayName);
+                                    cart.print(sub, 336, 45, `${level}`);
+                                    cart.composite(photo, 18, 20)
+                                    cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                                            event.channel.sendFile(image)
+                                        })
+                                        //cart.write(`${paths.CARDS}/up/${caller}.png`)
+                                })
+                            });
+                        });
+                    });
+                });
+            });
+        });
+
+
+    }
+}
+
+
+
+
+
+
+
 
 module.exports = {
     userDB: userDB,
