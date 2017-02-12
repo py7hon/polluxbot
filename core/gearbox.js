@@ -61,8 +61,6 @@ fs.writeFile('./database/servers.json', JSON.stringify(main.DB, null, 4), (err) 
 
 
 
-
-
     //OLDS
 
 
