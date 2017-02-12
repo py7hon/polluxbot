@@ -1,43 +1,52 @@
-exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+var gear = require("../gearbox.js");
+var paths = require("../paths.js");
+var locale = require('../../utils/multilang_b');
+var mm = locale.getT();
+
+var cmd = 'name';
+
+var init = function (message, userDB, DB) {
+var Server = message.guild;
+var Channel = message.channel;
+var Author = message.author;
+if (Author.bot) return;
+var Member = Server.member(Author);
+var Target = message.mentions.users.first() || Author;
+var MSG = message.content;
+var bot = message.botUser
+var args = MSG.split(' ').slice(1)[1]
+var LANG = message.lang;
+
+//-------MAGIC----------------
     const Jimp = require("jimp");
     var paths = require("../paths.js");
 
 
-    let modRole = message.guild.roles.find("name", "MOD");
-    let admRole = message.guild.roles.find("name", "ADM");
-    if (modules[message.guild.id].modrole!=""){
-        modRole = modules[message.guild.id].modrole
-    }
+    var modPass = false
 
-
-
-    if (modRole&&admRole){
-    if (!message.member.roles.has(modRole.id)&&!message.member.roles.has(admRole.id)) {
-        return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
-    }
-    }else if (admRole){
-    if (essage.member.roles.has(modRole.id) && !message.member.roles.has(admRole.id)) {
-        return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
-    }
-    }
-
+    if (Server.mods.MODROLE && Server.mods.MODROLE.size >= 1){
+        modPass = Member.roles.has(Server.mods.MODROLE);
+    }else if(Member.hasPermission("MANAGE_SERVER")){
+        modPass = true;
+    };
+if (!modPass) return message.reply('insufficient perms');
 
     if (message.mentions.users.size === 0) {
         return message.reply("tu precisa me dizer de quem eu vou chutar a bunda").catch(console.error);
     }
-    let kickMember = message.guild.member(message.mentions.users.first());
-    let kik = message.mentions.users.first()
+    let kickMember = Server.member(Target);
+    let kik = Target
     if (!kickMember) {
         return message.reply("deu ruim, não achei esse maluco");
     }
-    if (!message.guild.member(bot.user).hasPermission("KICK_MEMBERS")) {
+    if (!Server.member(bot.user).hasPermission("KICK_MEMBERS")) {
         return message.reply("Por algum raio de razão eu não posso kickar esse cara. MIMDÁ PERMISSÃO").catch(console.error);
     }
 
 
-    let img = bot.user.avatarURL.substr(0, bot.user.avatarURL.length - 10)
-    if (kik.avatarURL !== undefined) {
-        img = kik.avatarURL.substr(0, kik.avatarURL.length - 10);
+    let img = Target.defaultAvatarURL.substr(0, Target.defaultAvatarURL.length - 10)
+    if (Target.avatarURL) {
+        img = Target.avatarURL.substr(0, Target.avatarURL.length - 10);
     }
 
 
@@ -71,3 +80,4 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
 
 }
+module.exports = {cmd: cmd, perms: 0, init: init, cat: 'misc'};

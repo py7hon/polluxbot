@@ -1,12 +1,28 @@
-var gear = require("../gearbox.js")
-var modules = require("../modules.json")
-exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+var gear = require("../gearbox.js");
+var paths = require("../paths.js");
+var locale = require('../../utils/multilang_b');
+var mm = locale.getT();
+
+var cmd = 'name';
+
+var init = function (message, userDB, DB) {
+var Server = message.guild;
+var Channel = message.channel;
+var Author = message.author;
+if (Author.bot) return;
+var Member = Server.member(Author);
+var Target = message.mentions.users.first() || Author;
+var MSG = message.content;
+var bot = message.botUser
+var args = MSG.split(' ').slice(1)[1]
+var LANG = message.lang;
+
+//-------MAGIC----------------
+
+  if (!Author.id == '88120564400553984') return;
 
 
-  if (!message.author.id == '88120564400553984') return;
-
-
-     const params = message.content.split(" ").slice(1);
+     const params = MSG.split(" ").slice(1);
     try {
       var code = params.join(" ");
       var evaled = eval(code);
@@ -19,3 +35,4 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
       message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${gear.clean(err)}\n\`\`\``);
     }
   }
+module.exports = {cmd: cmd, perms: 0, init: init, cat: 'misc'};
