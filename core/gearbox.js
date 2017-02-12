@@ -21,9 +21,9 @@ paramUpdate: function paramUpdate(target, param, val) {
     if (target instanceof Discord.User) {
         main.userDB[target.id].modules[param] += val
     }if (target instanceof Discord.Guild) {
-       main.userDB[target.id].modules[param] += val
+       main.DB[target.id].modules[param] += val
     }if (target instanceof Discord.Channel){
-        main.userDB[target.id].modules.channels.modules[param] += val
+        main.DB[target.id].modules.channels.modules[param] += val
     }
     //this.writeJ(main.userDB,'./database/users')
     //this.writeJ(main.DB,'./database/servers')
