@@ -17,3 +17,6 @@
 /node_modules/
 /core/modules.json
 /core/commands/b.js
+/database/
+/utils/forfun/
+/.editorconfig

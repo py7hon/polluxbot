@@ -2,11 +2,14 @@ const fs = require("fs");
 //let modules = JSON.parse(fs.readFileSync('./modules.json', 'utf8'));
 let Jimp = require('jimp')
 var paths = require("../paths.js");
-
-
+var droprate =0
+var colors = require ('colors')
 exports.run = (bot, event, points, gear, cfg, skynet, hook, prefix, modules) => {
 
-
+    let RUBYMOJI = event.guild.emojis.find('name','ruby')
+if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
+    console.log(event.guild.name.toString().bold.yellow + "\n" + event.author.username.bold + " : "+ event.content.gray)
+ droprate = gear.randomize(0, 15000);
 
 
 
@@ -69,23 +72,25 @@ event.Server = modules[event.guild.id]
 
 
     if (gear.moduleCheck('RUBYDROP', event)) {
-        if (droprate >= 1000 && droprate < 2251) {
+    console.log(droprate)
+        if (droprate > 1589 && droprate < 2251) {
+            console.log('DROP')
             event.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', "OLHA GENTE! Um ruby! quem digitar \`" + pref + "pick\` primeiro leva! ").then(function (rubypot) {
                 gear.vacuum.push(rubypot)
             })
             gear.drops++
-                modules[bot.user.id].expenseTracker.drops++
-                modules[bot.user.id].rubys--
+               // modules[bot.user.id].expenseTracker.drops++
+               // modules[bot.user.id].rubys--
                 console.log("------------=========== ::: NATURAL DROP".bgGreen.white)
         }
-        if (droprate <= 25) {
+        if (droprate < 10) {
             event.channel.sendFile(paths.BUILD + 'rubypot.png', 'Rubychest.png', "EITA PORRA! Um baú inteiro de rubys! quem digitar \`" + pref + "pick\` primeiro leva! ").then(function (rubypot) {
                 gear.vacuum.push(rubypot)
             })
             gear.drops += 10
 
-            modules[bot.user.id].expenseTracker.drops += 10
-            modules[bot.user.id].rubys -= 10
+           // modules[bot.user.id].expenseTracker.drops += 10
+            //modules[bot.user.id].rubys -= 10
             console.log("------------=========== ::: NATURAL RARE DROP ::: ===".bgGreen.yellow.bold)
         }
 
@@ -109,7 +114,7 @@ event.Server = modules[event.guild.id]
         };
         let userData = points[event.author.id];
         if (!event.content.includes(pref)) {
-            var droprate = gear.randomize(0, 5000);
+
             if(event.Server.name == "Discord Bots"){
                 console.log(("Drop Random " + droprate + " at "+event.Server.name).toString().gray)
             }else{

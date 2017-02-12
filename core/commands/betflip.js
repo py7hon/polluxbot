@@ -3,6 +3,7 @@ var gear = require("../gearbox.js");
 const fs = require("fs");
 
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+
 let RUBYMOJI = message.guild.emojis.find('name','ruby')
 if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
     if (gear.checkRubys(3, userData) == false) {

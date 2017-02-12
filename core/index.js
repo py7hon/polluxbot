@@ -1,24 +1,29 @@
 const Discord = require("discord.js");
-const fs = require("fs");
 const bot = new Discord.Client();
+
 var Jimp = require("jimp");
 var paths = require("./paths.js");
 var cleverbot = require("cleverbot");
+
+const fs = require("fs");
 let points = JSON.parse(fs.readFileSync('../points.json', 'utf8'));
 let modules = JSON.parse(fs.readFileSync('./modules.json', 'utf8'));
 let reactions = JSON.parse(fs.readFileSync('./reactions.json', 'utf8'));
+
 const cfg = require("../config.js");
 var gear = require('./gearbox.js');
-let prefix = "+";
-var counter = 0
-var droprate = 5000
-let skynet = bot.guilds.get('248285312353173505');
-var colors = require('colors');
 
+let prefix = cfg.prefix;
+
+var colors = require('colors');
+let skynet = bot.guilds.get('248285312353173505');
+
+const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
+cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
+cleverbot.setNick(cfg.name)
 
 
 function buildGuilds() {
-
 
     for (i = 0; i < bot.guilds.size; i++) {
 
@@ -75,10 +80,8 @@ function buildGuilds() {
 //
 //const RANK = points
 //const hook = new Discord.WebhookClient(cfg.hook.ID, cfg.hook.token);
-const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
 // START SHIT UP
-cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
-cleverbot.setNick(cfg.name)
+
     //----Cleverbot
 cleverbot.create(function (err, session) {
     bot.on("message", message => {
@@ -133,7 +136,6 @@ fs.readdir("./events/", (err, files) => {
 //----Message Digester
 
 
-
 bot.on('message', (event) => {
     if (reactions[event.content]) {
         if (event.guild != skynet) return;
@@ -181,7 +183,7 @@ process.on('error', e => {
 });
 
 process.on("unhandledRejection", err => {
-    console.log('REJECTION: '.bgYellow.red.bold + err);
+    console.log('REJECTION: '.bgYellow.red.bold + err.stack);
 
 });
 
@@ -191,7 +193,8 @@ process.on('uncaughtException', function (err) {
         'username': 'Pollux Core Reporter',
         'attachments': [{
             'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-            'pretext': `**Internal Systems has Sustained a Crash Event**
+            'pretext': `__**Internal System has Sustained a Crash Event**__
+
 **${err}**
 ${err.stack}
 `,
@@ -202,6 +205,5 @@ ${err.stack}
     })
 
 });
-
 
 bot.login(cfg.token);

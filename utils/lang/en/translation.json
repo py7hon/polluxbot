@@ -1,0 +1,18 @@
+ {"$": {
+
+        "insuFloor": "Você não tem {{goods}} suficientes. Você precisa pelo menos **{{number}}** {{emoji}}",
+     "insuBet": "Aposte pelo menos {{number}}",
+     "noFunds":" EN cê não tá com essa bola toda não... Você só tem {{number}} {{goods}}"
+
+
+    },
+  "CMD":{
+       "incorrectUsage": "Comando incorreto, use {{usage}}. Exemplo: {{example}}"
+
+  },
+  "dict":{
+      "coinHeads": "cara",
+      "coinTails": "coroa"
+
+  }
+ }

@@ -1,0 +1,24 @@
+ {"$": {
+
+        "insuFloor": "Você não tem {{goods}} suficientes. Você precisa pelo menos **{{number}}** {{emoji}}",
+     "insuBet": "Aposte pelo menos {{number}}",
+     "noFunds":" cê não tá com essa bola toda não... Você só tem {{number}} {{goods}}",
+     "coinVictory": "Yay! {{result}}! Você ganhou **{{prize}}** {{emoji}}",
+     "coinDefeat": "Putz, {{result}}! Você perdeu..."
+     ,"dailyGet":"{{emoji}} Você recebeu 100 {{goods}} de bônus diário~"
+     ,"dailyNope":"{{emoji}} Você já pegou o seu bônus diário, ele estará disponível novamente em: **{{remaining}}**"
+     ,"dailyStreak":"{{emoji}} Você recebeu mais 500 {{goods}} por coletar 10 dias seguidos!"
+    },
+  "CMD":{
+       "incorrectUsage": "Comando incorreto, use {{usage}}. Exemplo: {{example}}",
+      "disabledModule": ":no_entry_sign: O módulo {{module}} foi desabilitado aqui."
+
+  },
+  "dict":{
+      "coinHeads": "cara",
+      "coinTails": "coroa",
+      "qnt": "quantidade",
+      "res": "resultado"
+
+  }
+ }
