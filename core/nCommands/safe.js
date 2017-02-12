@@ -1,15 +1,29 @@
-const fs = require("fs");
-const getter = require("booru-getter");
- const Discord = require("discord.js");
+var gear = require("../gearbox.js");
+const Discord = require("discord.js");
+const Jimp = require("jimp");
+const getter = require("booru-getter")
+
+var cmd = 'name';
+
+var init = function (message, userDB, DB) {
+var Server = message.guild;
+var Channel = message.channel;
+var Author = message.author;
+if (Author.bot) return;
+var Member = Server.member(Author);
+var Target = message.mentions.users.first() || Author;
+var MSG = message.content;
+var bot = message.botUser
+var args = MSG.split(' ').slice(1)[1]
+var LANG = message.lang;
+
+//-------MAGIC----------------
 
 
-exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
-
-
-        console.log("SAFEBOORU INVOKED by " + caller + "-------------\n")
+        console.log("SAFEBOORU INVOKED by " + Author + "-------------\n")
         console.log(1) ;
         let query = message.content.split(" ");
-        !query[1] ? query[1] = "1girl+airplane" : query[1] = query[1];
+        !query[1] ? query[1] = "1girl+airplane+solo" : query[1] = query[1];
         getter.getRandom(query[1], (url) => {
             console.log(2)
             if (url === undefined) {
@@ -31,4 +45,6 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
             }
         })
     };
+
+module.exports = {cmd: cmd, perms: 0, init: init, cat: 'image'};
 
