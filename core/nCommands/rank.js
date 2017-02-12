@@ -1,35 +1,49 @@
 const Discord = require("discord.js");
 const arraySort = require('array-sort')
 const fs = require("fs");
-var paths = require("../paths.js");
 const gear = require('../gearbox.js')
 
-exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
-  if(!gear.moduleCheck('LEVEL',message)){
-        message.reply(':no_entry_sign: Sistema de Levels foi desabilitado aqui.');
-        return;
-    }
+var locale = require('../../utils/multilang_b');
+var mm = locale.getT();
+
+var cmd = 'name';
+
+var init = function (message, userDB, DB) {
+var Server = message.guild;
+var Channel = message.channel;
+var Author = message.author;
+if (Author.bot) return;
+var Member = Server.member(Author);
+var Target = message.mentions.users.first() || Author;
+var MSG = message.content;
+var bot = message.botUser
+var args = MSG.split(' ').slice(1)[1]
+var LANG = message.lang;
+
+//-------MAGIC----------------
+
+
  emb =    new Discord.RichEmbed();
 
 
 
      var rankItem = []
         var ranked = []
-        for (var i in points) {
-            rankItem.name = points[i].name
-            rankItem.points = points[i].points
-            rankItem.level = points[i].level
+        for (var i in userDB) {
+            rankItem.name = userDB[i].name
+            rankItem.exp = userDB[i].modules.exp
+            rankItem.level = userDB[i].modules.level
             ranked.push(rankItem)
             rankItem = []
         }
-        arraySort(ranked, 'points', {
+        arraySort(ranked, 'userDB', {
             reverse: true
         })
         console.log(ranked)
 
 
     emb.setColor('#da5bae')
-    emb.title = "Pink Hoodie SKYNET Maid Cafe Oldfags Ranking"
+    emb.title = "Global Leaderboards"
 
     emb.setAuthor('Pollux',bot.user.avatarURL,'https://github.com/LucasFlicky/polluxbot')
 
@@ -37,30 +51,19 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
  emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/skynet.png")
  // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/skynet.png")
   // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
-    emb.description = "Os Top-5 fregueses mais tradicionais do Cyber Cafe"
+    //emb.description = "Os Top-5 fregueses mais tradicionais do Cyber Cafe"
 
-
-      emb.addField(':first_place: 1st',ranked[0].name, true)
-
-      emb.addField('Level '+ranked[0].level,'**'+ranked[0].points + '** Exp', true)
-
-
-      emb.addField(':second_place: 2nd',ranked[1].name, true)
-
-      emb.addField('Level '+ranked[1].level,'**'+ranked[1].points + '** Exp', true)
-
-       emb.addField(':third_place: 3rd',ranked[2].name, true)
-
-      emb.addField('Level '+ranked[2].level,'**'+ranked[2].points + '** Exp', true)
-
-       emb.addField(':medal: 4th',ranked[3].name, true)
-
-      emb.addField('Level '+ranked[3].level,'**'+ranked[3].points + '** Exp', true)
-
-
-       emb.addField(':medal: 5th',ranked[4].name, true)
-
-      emb.addField('Level '+ranked[4].level,'**'+ranked[4].points + '** Exp', true)
+var medals = [':first_place: 1st',
+':first_place: 2nd',
+':first_place: 3rd',
+':medal: 4th',
+':medal: 5th'
+]
+for (i=0;i<ranked.length;i++){
+    if (i > 4) return;
+      emb.addField(medals[i],ranked[i].name, true)
+      emb.addField('Level '+ranked[i].level,'**'+ranked[i].exp + '** Exp', true)
+}
 
 
 
@@ -72,3 +75,5 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
 
 }
+module.exports = {cmd: cmd, perms: 0, init: init, cat: 'misc'};
+

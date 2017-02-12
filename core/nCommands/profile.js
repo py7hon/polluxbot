@@ -1,32 +1,50 @@
-var paths = require("../paths.js");
 const fs = require("fs");
 const Jimp = require("jimp");
-const gear = require('../gearbox.js');
+var gear = require("../gearbox.js");
+var paths = require("../paths.js");
+var locale = require('../../utils/multilang_b');
+var mm = locale.getT();
 
-exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+var cmd = 'name';
+
+var init = function (message, userDB, DB) {
+    var Server = message.guild;
+    var Channel = message.channel;
+    var Author = message.author;
+    if (Author.bot) return;
+    var Member = Server.member(Author);
+    var Target = message.mentions.users.first() || Author;
+    var MSG = message.content;
+    var bot = message.botUser
+    var args = MSG.split(' ').slice(1)[1]
+    var LANG = message.lang;
+
+    //-------MAGIC----------------
     if (message.channel.type == 'dm') {
         message.reply('Não usável em DM')
         return
     }
-    if (!gear.moduleCheck('LEVEL', message)) {
-        message.reply(':no_entry_sign: Sistema de Levels foi desabilitado aqui.');
-        return;
-    }
+    //CHECK PROFS LV ETC ---
 
     message.reply('Gerando seu Profilecard...').then(m => m.delete(2000))
 
-    let img = bot.user.avatarURL.substr(0, bot.user.avatarURL.length - 10)
-        // var caller = message.author.username
-    let tgt = gear.checkment(message)
-
-    let tgtData = points[tgt.id];
-
-    let adm = gear.checkAdm(message, tgt).toLowerCase()
-    if (tgt.avatarURL) {
-        img = tgt.avatarURL.substr(0, tgt.avatarURL.length - 10);
+    let img = Target.defaultAvatarURL.substr(0, Target.defaultAvatarURL.length - 10)
+    if (Target.avatarURL) {
+        img = Target.avatarURL.substr(0, Target.avatarURL.length - 10);
     }
 
+    let tgtData = Target.mods;
 
+    let adm = gear.checkAdm(message, Target).toLowerCase()
+
+    let GOODMOJI = ':gem:'
+    let GOOD = 'Gems'
+    if (Server.mods.GOODMOJI) {
+        GOODMOJI = Server.mods.GOODMOJI
+    }
+    if (Server.mods.GOODNAME) {
+        GOOD = Server.mods.GOODNAME
+    }
 
 
     Jimp.read(img).then(function (photo) {
@@ -46,8 +64,8 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
                             Jimp.loadFont(paths.FONTS + 'TXT.fnt').then(function (sub) {
                                 try {
                                     var level = tgtData.level.toString()
-                                    var money = tgtData.rubys.toString()
-                                    var exp = tgtData.points.toString()
+                                    var money = tgtData.goodies.toString()
+                                    var exp = tgtData.exp.toString()
                                     var texp = tgtData.persotext.toString()
                                 } catch (err) {
                                     var level = "00"
@@ -63,28 +81,27 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
                                 } else if (level === undefined) {
                                     level = `XX`
                                 }
-                                let join = message.guild.member(tgt).joinedAt
+                                console.log('OK ATE QUI')
+                                let join = message.guild.member(Target).joinedAt
                                 let joinstamp = `${join.getDate()}/${join.getMonth()+1}/${join.getFullYear()} - ${join.toLocaleTimeString()}`;
                                 var stret = 354 * perc
                                 bar.resize(stret + 1, 18)
-                                if (tgt.id=='271394014358405121'){
+                                if (Target.id == '271394014358405121') {
                                     level = "XX"
-                                    money = tgtData.rubys.toString()
+                                    money = tgtData.goodies.toString()
                                     exp = "99999"
                                     next = "99999"
                                     bar.resize(354, 18)
-                                }
-                                else if (tgt.bot) {
+                                } else if (Target.bot) {
                                     level = "XX"
-                                    money = "INFINITE RUBYS"
+                                    money = "INFINITE" + GOOD
                                     exp = "99999"
                                     next = "99999"
                                     bar.resize(354, 18)
                                 };
-
-                                cart.print(head, 153, 3, message.guild.member(tgt).displayName);
+                                cart.print(head, 153, 3, message.guild.member(Target).displayName);
                                 cart.print(head, 425, 37, `${level}`);
-                                cart.print(head, 290, 160, `${money} Rubys`);
+                                cart.print(head, 290, 160, `${money} ${GOOD}`);
                                 cart.print(sub, 74, 253, `${exp} / ${next}`);
                                 cart.print(sub, 172, 66, `${joinstamp}`);
                                 cart.print(sub, 180, 120, `${texp}`);
@@ -112,4 +129,10 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
 
 
+};
+module.exports = {
+    cmd: cmd,
+    perms: 0,
+    init: init,
+    cat: 'misc'
 };
