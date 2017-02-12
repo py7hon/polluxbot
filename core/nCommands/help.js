@@ -1,64 +1,70 @@
-exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+var gear = require("../gearbox.js");
+var fs = require("fs");
+var paths = require("../paths.js");
+var locale = require('../../utils/multilang_b');
+var mm = locale.getT();
 
-        var helptxt = `
-**Comandos disponíveis:**
+var cmd = 'help';
 
-\`+daily\`
-Rubys de graça todo dia.
+var init = function (message, userDB, DB) {
+    var LANG = message.lang;
 
-\`+airwaifu\`
-Waifus aeroplanares
 
-\`+profile [@user]\`
-Mostra o Profilecard seu ou de @fulaninho
+var commands = [];
+var commandInfo = {};
+var txt = ""
+var tx = ""
 
-\`+say <texto>\`
-Repete <texto>
+    fs.readdir("./core/nCommands/", (err, files) => {
+        //if (err) return console.error(err);
+        files.forEach(file => {
+            var comm = require('./'+file)
 
-\`+joined [@user]\`
-Retorna a data que você ou @fulaninho entrou no Server
 
-\`+safe [tags]\`
-Imagens bonitas do Safebooru.
+            commandInfo = {
+                name: comm.cmd,
+                category: comm.cat,
+                description: mm('help.' + comm.cmd, {
+                    lngs: LANG
+                })
+                ,public: comm.pub
+            }
+            if(commandInfo.public==true){
 
-\`+rule34 [tags]\`
-Putaria, usar no canal NSFW ou serás mutado.
+            commands.push(commandInfo)
+            }
 
-\`+help\`
-Abre isso
-
-\`+pick\`
-Pega rubys largados
-
-\`+ruby\`
-Veja quantos rubys você tem
-
-\`+personaltxt <texto>\`
-Uma frase pro seu Profile Card
-
-\`+blackjack <aposta>\`
-Blackjack Estilo Vegas. Apostando Rubys
-
-\`+rps [aposta] [@desafiado]\`
-Pedra papel e tesoura
-
-\`+switch \`
-Troca a foto do bot.
-*Menu será implementado logo.*
-
-\`+stats\`
-info aleatoria
-
-[] = _Argumento Opcional_
-<> = _Argumento Obrigatório_
-
-Qualquer problema só chamar @Flicky praquele inútil me consertar. :heart:
-
-Invite (experimental): https://discordapp.com/oauth2/authorize?client_id=271394014358405121&scope=bot
-Support Discord: https://discord.gg/ay48h7Q
-
+        });
+            for (i in commands){
+    tx = `
+__**${message.prefix+commands[i].name}**__
+Category: _${commands[i].category}_
+${commands[i].description}
 `
-        message.author.sendMessage(helptxt)
-        console.log("HELP INVOKED")
-        message.reply("Te enviei uns lance em pvt, dá um zóio.")
-    };
+    txt = txt + tx
+
+
+}
+        message.author.sendMessage(txt)
+       return
+    });
+    //----Mess
+
+
+
+
+
+
+
+
+    console.log("HELP INVOKED")
+    message.reply("Te enviei uns lance em pvt, dá um zóio.")
+};
+
+module.exports = {
+    pub:true,
+    cmd: cmd,
+    perms: 0,
+    init: init,
+    cat: 'help'
+};

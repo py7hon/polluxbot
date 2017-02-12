@@ -6,7 +6,7 @@ const gear = require('../gearbox.js')
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
-var cmd = 'name';
+var cmd = 'rank';
 
 var init = function (message, userDB, DB) {
 var Server = message.guild;
@@ -17,7 +17,7 @@ var Member = Server.member(Author);
 var Target = message.mentions.users.first() || Author;
 var MSG = message.content;
 var bot = message.botUser
-var args = MSG.split(' ').slice(1)[1]
+var args = MSG.split(' ').slice(1)
 var LANG = message.lang;
 
 //-------MAGIC----------------
@@ -75,5 +75,5 @@ for (i=0;i<ranked.length;i++){
 
 
 }
-module.exports = {cmd: cmd, perms: 0, init: init, cat: 'misc'};
+module.exports = {pub:true,cmd: cmd, perms: 0, init: init, cat: 'misc'};
 

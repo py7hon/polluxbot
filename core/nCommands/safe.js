@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const Jimp = require("jimp");
 const getter = require("booru-getter")
 
-var cmd = 'name';
+var cmd = 'safe';
 
 var init = function (message, userDB, DB) {
 var Server = message.guild;
@@ -46,5 +46,5 @@ var LANG = message.lang;
         })
     };
 
-module.exports = {cmd: cmd, perms: 0, init: init, cat: 'image'};
+module.exports = {pub:true,cmd: cmd, perms: 0, init: init, cat: 'image'};
 

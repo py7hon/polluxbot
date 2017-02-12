@@ -3,7 +3,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
-var cmd = 'name';
+var cmd = 'drop';
 
 var init = function (message, userDB, DB) {
 var Server = message.guild;
@@ -50,5 +50,5 @@ let GOODMOJI = ':gem:'
 
     }
 
-module.exports = {cmd: cmd, perms: 0, init: init, cat: 'misc'};
+module.exports = {pub:true,cmd: cmd, perms: 0, init: init, cat: 'misc'};
 

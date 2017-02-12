@@ -87,4 +87,4 @@ if (sc == 'S') {
 
 
 }
-module.exports = {cmd: cmd, perms: 0, init: init, cat: 'master'};
+module.exports = {pub:true,cmd: cmd, perms: 0, init: init, cat: 'master'};

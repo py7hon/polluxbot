@@ -1,5 +1,15 @@
-exports.run = (bot, message, args, userData, caller, gear, points, skynet, pref) => {
+
+var cmd = 'say';
+
+var init = function (message, userDB, DB) {
   message.delete()
-  message.channel.sendMessage(message.content.substr(pref.length+3))
+ message.channel.sendMessage(message.content.substr(message.prefix.length+3))
 
 }
+module.exports = {
+    pub:true,
+    cmd: cmd,
+    perms: 0,
+    init: init,
+    cat: 'bot'
+};

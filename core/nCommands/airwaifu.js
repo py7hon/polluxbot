@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const getter = require("booru-getter");
 const fs = require("fs");
 
-var cmd = 'name';
+var cmd = 'airwaifu';
 
 
 var init = function (message) {
@@ -43,6 +43,6 @@ var emb = new Discord.RichEmbed();
 
 };
 
-module.exports = {cmd: cmd, perms: 0, init: init, cat: 'misc'};
+module.exports = {pub:true,cmd: cmd, perms: 0, init: init, cat: 'misc'};
 
 

@@ -112,6 +112,7 @@
 
  }
  module.exports = {
+     pub:true,
      cmd: cmd,
      perms: 0,
      init: init,

@@ -5,7 +5,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
-var cmd = 'name';
+var cmd = 'profile';
 
 var init = function (message, userDB, DB) {
     var Server = message.guild;
@@ -16,7 +16,7 @@ var init = function (message, userDB, DB) {
     var Target = message.mentions.users.first() || Author;
     var MSG = message.content;
     var bot = message.botUser
-    var args = MSG.split(' ').slice(1)[1]
+    var args = MSG.split(' ').slice(1)
     var LANG = message.lang;
 
     //-------MAGIC----------------
@@ -104,7 +104,7 @@ var init = function (message, userDB, DB) {
                                 cart.print(head, 290, 160, `${money} ${GOOD}`);
                                 cart.print(sub, 74, 253, `${exp} / ${next}`);
                                 cart.print(sub, 172, 66, `${joinstamp}`);
-                                cart.print(sub, 180, 120, `${texp}`);
+                                cart.print(sub, 180, 100, `${texp}`, 250);
                                 cart.composite(bar, 45, 231)
                                 cart.composite(photo, 18, 20)
                                 cart.composite(tag, 7, 182)
@@ -131,6 +131,7 @@ var init = function (message, userDB, DB) {
 
 };
 module.exports = {
+    pub:true,
     cmd: cmd,
     perms: 0,
     init: init,

@@ -1,24 +1,73 @@
- {"$": {
-
-        "insuFloor": "Você não tem {{goods}} suficientes. Você precisa pelo menos **{{number}}** {{emoji}}",
-     "insuBet": "Aposte pelo menos {{number}}",
-     "noFunds":" cê não tá com essa bola toda não... Você só tem {{number}} {{goods}}",
-     "coinVictory": "Yay! {{result}}! Você ganhou **{{prize}}** {{emoji}}",
-     "coinDefeat": "Putz, {{result}}! Você perdeu..."
-     ,"dailyGet":"{{emoji}} Você recebeu 100 {{goods}} de bônus diário~"
-     ,"dailyNope":"{{emoji}} Você já pegou o seu bônus diário, ele estará disponível novamente em: **{{remaining}}**"
-     ,"dailyStreak":"{{emoji}} Você recebeu mais 500 {{goods}} por coletar 10 dias seguidos!"
-    },
-  "CMD":{
-       "incorrectUsage": "Comando incorreto, use {{usage}}. Exemplo: {{example}}",
-      "disabledModule": ":no_entry_sign: O módulo {{module}} foi desabilitado aqui."
-
-  },
-  "dict":{
-      "coinHeads": "cara",
-      "coinTails": "coroa",
-      "qnt": "quantidade",
-      "res": "resultado"
-
-  }
+ {
+     "$": {
+         "insuFloor": "Você não tem {{goods}} suficientes. Você precisa pelo menos **{{number}}** {{emoji}}",
+         "insuBet": "Aposte pelo menos {{number}}",
+         "noFunds": " cê não tá com essa bola toda não... Você só tem {{number}} {{goods}}",
+         "coinVictory": "Yay! {{result}}! Você ganhou **{{prize}}** {{emoji}}",
+         "coinDefeat": "Putz, {{result}}! Você perdeu...",
+         "dailyGet": "{{emoji}} Você recebeu 100 {{goods}} de bônus diário~",
+         "dailyNope": "{{emoji}} Você já pegou o seu bônus diário, ele estará disponível novamente em: **{{remaining}}**",
+         "dailyStreak": "{{emoji}} Você recebeu mais 500 {{goods}} por coletar 10 dias seguidos!",
+         "noFundsGeneric": "você não tem {{goods}} suficientes",
+         "giveGoods": "{{author}} deu **{{donate}}** {{goods}} para **{{target}}** !",
+         "hasAmount": "{{target}} tem {{goods}} {{goodname}}.",
+         "youAmount": "Você tem {{goods}} {{goodname}}. {{comment}}",
+         "cash10": "Você é um pleb pé rapado",
+         "cash100": "Você tá bem ok",
+         "cash500": "Você tá bem na fita",
+         "cash1000": "Você é semi-rico",
+         "cash5000": "Você é RYCAAAA",
+         "cash10000": "Você é um fuckin magnata",
+         "cashInfinite": "Você é um cheater"
+     },
+     "forFun": {
+         "saltLVL": "O nível de sal de {{target}} é de **{{amount}}%** {{emoji}}"
+     },
+     "misc": {
+         "memberSince": "{{target}} é membro desde: {{joinedstamp}}",
+         "aviOK": "Okei, troquei minha foto por essa daqui:"
+     },
+     "CMD": {
+         "incorrectUsage": "Comando incorreto, use {{usage}}. Exemplo: {{example}}",
+         "disabledModule": ":no_entry_sign: O módulo {{module}} foi desabilitado aqui.",
+         "genericInvalid": "Ordem inválida",
+         "prefixChng": "Mudei o prefixo dos meus comandos para {{prefix}}, experimente `{{prefix}}stats` para testar."
+     },
+     "dict": {
+         "coinHeads": "cara",
+         "coinTails": "coroa",
+         "qnt": "quantidade",
+         "res": "resultado"
+     },
+     "profile": {
+         "persotexUpdate": "Seu texto pessoal mudou para: \n {{pstext}} \n Digite `{{prefix}}profile` para visualizar ele em seu ProfileCard."
+     },
+     "builds": {
+         "memberSince": "Membro Desde:",
+         "level": "Level:",
+         "levelUp": "Level Up!"
+     },
+     "help": {
+         "checkYeDM": "Te enviei uns lance em pvt, dá um zóio.",
+         "availableComms": "Comandos Disponíves",
+         "airwaifu": "Waifus aeroplanares",
+         "announce": "Anuncia uma mensagem no canal #general do Server",
+         "balance": "Seu extrato bancário de goodies gastos",
+         "disable": "Desabilita módulos",
+         "drop": "Larga um goodie no canal para alguem pegar",
+         "enable": "Habilita módulos",
+         "flip": "Cara ou Coroa, é isso aí.",
+         "give": "Faz uma doação de X goodies para @fulaninho",
+         "joined": "Retorna a data e o momento em que você ou @fulaninho entrou no Server",
+         "kick": "Expulsa @fulaninho",
+         "level": "Retorna o seu Nível ou de @fulaninho",
+         "personalTxt": "Define um texto pessoal para o seu Profile Card",
+         "pick": "Junta goodies jogados na sala",
+         "prefixSet": "Define um novo Prefixo para os meus comandos.",
+         "profile": "Mostra o Profilecard seu ou de @fulaninho",
+         "rank": "Ranking do **SERVER** em ordem de EXP",
+         "cash": "Sua quantidade atual de goodies",
+         "stats": "Informação chata e aleatória de robô",
+         "switch": "Troca minha foto"
+     }
  }

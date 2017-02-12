@@ -122,6 +122,7 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
 
 
 module.exports = {
+    pub:true,
     cmd: cmd,
     perms: 0,
     init: init,

@@ -3,7 +3,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
-var cmd = 'name';
+var cmd = 'eval';
 
 var init = function (message, userDB, DB) {
 var Server = message.guild;
@@ -35,4 +35,4 @@ var LANG = message.lang;
       message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${gear.clean(err)}\n\`\`\``);
     }
   }
-module.exports = {cmd: cmd, perms: 0, init: init, cat: 'misc'};
+module.exports = {pub:false,cmd: cmd, perms: 0, init: init, cat: 'misc'};

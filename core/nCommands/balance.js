@@ -42,6 +42,7 @@ var init = function (message) {
     message.channel.sendEmbed(emb)
 }
 module.exports = {
+    pub:true,
     cmd: cmd,
     perms: 0,
     init: init,

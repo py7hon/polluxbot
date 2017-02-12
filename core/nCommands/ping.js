@@ -13,4 +13,4 @@ var init = function (message) {
 
     });
 };
-module.exports = {cmd: cmd, perms: 0, init: init, cat: 'misc'};
+module.exports = {pub:true,cmd: cmd, perms: 0, init: init, cat: 'misc'};

@@ -3,7 +3,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
-var cmd = 'saltlevel';
+var cmd = 'name';
 
 var init = function (message, userDB, DB) {
     var Server = message.guild;
@@ -19,28 +19,37 @@ var init = function (message, userDB, DB) {
 
     //-------MAGIC----------------
 
-let saltmoji = message.guild.emojis.find('name','salty')
-
-    //let target = message.mentions.users.first();
-    var multiplier = 1
-    try{if (message.mentions.users.first().id == "248435798179971072"){
-        multiplier = 23
-    }}catch(err){}
-    r = gear.randomize(1,100)
-    var vocab = mm('forFun.saltLVL', {
-        lngs:LANG,
-        target: Target.username,
-        amount: r * multiplier,
-        emoji: saltmoji
-    })
-    message.channel.sendMessage(vocab)
-}
+};
 
 module.exports = {
-    pub:false,
     cmd: cmd,
     perms: 0,
     init: init,
-    cat: 'skynet',
-    skynet:true
+    cat: 'misc'
 };
+
+
+
+error3: mm('$.insuBet', {
+        lngs: message.lang,
+        number: 3
+    }),
+
+
+
+    let GOODMOJI = ':gem:'
+let GOOD = 'Gems'
+if (Server.mods.GOODMOJI) {
+    GOODMOJI = Server.mods.GOODMOJI
+}
+if (Server.mods.GOODNAME) {
+    GOOD = Server.mods.GOODNAME
+}
+
+
+if (modPass) {
+    Server.defaultChannel.sendMessage(`:mega:  **Anúncio**
+` + MSG.substr(10))
+} else {
+    message.reply("Somente Admins e Mods podem criar anúncios");
+}};

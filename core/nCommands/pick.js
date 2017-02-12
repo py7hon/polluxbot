@@ -3,7 +3,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
-var cmd = 'name';
+var cmd = 'pick';
 
 var init = function (message, userDB, DB) {
 var Server = message.guild;
@@ -59,5 +59,5 @@ var userData = Author.mods
 
     };
 
-module.exports = {cmd: cmd, perms: 0, init: init, cat: 'misc'};
+module.exports = {pub:true,cmd: cmd, perms: 0, init: init, cat: 'misc'};
 

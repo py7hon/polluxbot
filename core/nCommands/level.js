@@ -4,7 +4,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
-var cmd = 'name';
+var cmd = 'level';
 
 var init = function (message, userDB, DB) {
 
@@ -19,5 +19,5 @@ var Target = message.mentions.users.first() || Author;
     message.channel.sendMessage( Target.username+' está no Level **'+Target.mods.level+'**')
 }
 
-module.exports = {cmd: cmd, perms: 0, init: init, cat: 'misc'};
+module.exports = {pub:true,cmd: cmd, perms: 0, init: init, cat: 'misc'};
 

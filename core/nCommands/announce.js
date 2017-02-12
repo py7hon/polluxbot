@@ -1,4 +1,4 @@
-var cmd = 'name';
+var cmd = 'announce';
 
 var init = function (message) {
     var Server = message.guild;
@@ -32,6 +32,7 @@ var init = function (message) {
 };
 
 module.exports = {
+    pub:true,
     cmd: cmd,
     perms: 0,
     init: init,
