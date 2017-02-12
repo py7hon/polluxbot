@@ -71,7 +71,8 @@ event.Server = modules[event.guild.id]
 
 
 
-    if (gear.moduleCheck('RUBYDROP', event)) {
+    if (gear.moduleCheck('RUBYDROP', event)&&event.guild.name!="Discord Bots") {
+        if (event.guild.name=="Discord Bots") return;
     console.log(droprate)
         if (droprate > 1589 && droprate < 2251) {
             console.log('DROP')
@@ -222,6 +223,7 @@ event.Server = modules[event.guild.id]
 
 
     }
+
 
 
 
