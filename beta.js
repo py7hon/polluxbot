@@ -56,8 +56,11 @@ getDirs('utils/lang/', (list) => {
     console.log('Ready to Rock!')
     bot.on('ready', () => {
         bot.user.setStatus('online')
-        bot.user.setGame(`Heroes of the Storm`, 'https://www.picarto.tv/LucasFlicky').then().catch();
+        bot.user.setGame(`Adobe Edge Code CC`, 'https://www.twitch.tv/LucasFlicky').then().catch();
+
+        bot.guilds.forEach( G => serverSetup(G))
         userSetup(bot.user)
+
     });
     deployer.pullComms()
 
@@ -248,7 +251,7 @@ function serverSetup(guild) {
                 LVUP: true,
                 DROPS: true,
                 ANNOUNCE: false,
-                PREFIX: "+",
+                PREFIX: "b+",
                 MODROLE: {},
                 LANGUAGE: 'dev',
                 DISABLED: {}
@@ -261,6 +264,7 @@ function serverSetup(guild) {
                 DB[guild.id].channels[element.id] = {
                     name: element.name,
                     modules: {
+                        DROPS: 0,
                         NSFW: false,
                         GOODIES: true,
                         GOODMOJI: ':gem:',
@@ -288,6 +292,13 @@ function serverSetup(guild) {
     fs.writeFile('./database/servers.json', JSON.stringify(DB, null, 4), (err) => {
         console.log("JSON Write Server Database".gray)
     });
+
+
+     guild.members.forEach(memb => {
+         if(!memb.user.bot){
+             userSetup(memb.user)
+         }
+     })
 }
 
 
@@ -440,6 +451,24 @@ function updateEXP(TG,event) {
 
 
 
+process.on('uncaughtException', function (err) {
+    console.log('EXCEPTION: '.bgRed.white.bold + err);
+    hook.sendSlackMessage({
+        'username': 'Pollux Core Reporter',
+        'attachments': [{
+            'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
+            'pretext': `__**Internal System has Sustained a Crash Event**__
+
+**${err}**
+${err.stack}
+`,
+            'color': '#C04', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
+            // 'footer': 'Powered by sneks',
+            'ts': Date.now() / 1000
+      }]
+    })
+
+});
 
 
 
