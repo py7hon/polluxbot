@@ -47,7 +47,7 @@ var LANG = message.lang;
 
     emb.setAuthor('Pollux',bot.user.avatarURL,'https://github.com/LucasFlicky/polluxbot')
 
-  emb.setFooter('Se você não aparece aqui, digite +profile para ver seu Level')
+  emb.setFooter(mm('forFun.leadUnap',{lngs:LANG,prefix:message.prefix}))
  emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/skynet.png")
  // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/skynet.png")
   // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")

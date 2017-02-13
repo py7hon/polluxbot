@@ -6,6 +6,8 @@ var mm = locale.getT();
 var cmd = 'disable';
 
 var init = function (message, userDB, DB) {
+
+    console.log('fff')
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -21,12 +23,16 @@ var init = function (message, userDB, DB) {
 
 
     if (message.channel.type == 'dm') {
-        message.reply("Comando não utilizável por DM");
+        message.reply(mm('CMD.noDM', {
+            lngs: LANG
+        }));
         return;
     }
 
     if (message.content.length < 10) {
-        message.reply("Escolha um módulo");
+        message.reply(mm('CMD.chooseAmod', {
+            lngs: LANG
+        }));
         return;
     }
 
@@ -41,50 +47,106 @@ var init = function (message, userDB, DB) {
 
 
     if (!modPass) {
-        return message.reply("Apenas MODs e ADMs podem executar este comando").catch(console.error);
+        return message.reply(mm('CMD.moderatioNeeded', {
+            lngs: LANG
+        })).catch(console.error);
     }
 
 
 
 
-function pp(o, p) {
-    return o[p];
+    function pp(o, p) {
+        return o[p];
+    }
+
+    var module = args[0].toUpperCase()
+    if (args[1]) {
+        var scope = args[1].toLowerCase()
+    }
+    var sc = ''
+    switch (scope) {
+        case 's':
+        case 'server':
+        case 'guild':
+            sc = 'S'
+            break;
+        case 'c':
+        case 'channel':
+        case 'chnl':
+            sc = 'C'
+            break;
+        default:
+            sc = 'C'
+            break;
+    }
+
+
+    var disaMS = mm('CMD.disabledSer', {
+        lngs: LANG,
+        module: module
+    })
+    var disaMC = mm('CMD.disabledChn', {
+        lngs: LANG,
+        module: module,
+        channel: Channel.name
+    })
+    var disaCS = mm('CMD.disabledComSer', {
+        lngs: LANG,
+        command: module
+    })
+    var disaCC = mm('CMD.disabledComChn', {
+        lngs: LANG,
+        command: module,
+        channel: Channel.name
+    })
+
+
+
+    console.log('aaa')
+    if (sc == 'S') {
+        if (module in Server.mods) {
+            gear.paramDefine(Server, module, false)
+            message.reply(disaMS)
+        } else {
+            imComm(message, sc)
+        }
+
+    } else {
+
+        if (module in message.channel.mods) {
+            gear.paramDefine(Channel, module, false)
+            message.reply(disaMC)
+        } else {
+            imComm(message, sc)
+        }
+    }
+
+
+
+    function imComm(msg, scope) {
+        console.log('immcomm')
+        try {
+            let command = msg.content.substr(msg.prefix.length).split(' ')[1];
+            let commandFile = require(`./${command}.js`);
+            if (scope == 'S') {
+                gear.paramAdd(Server, 'DISABLED', command)
+                message.reply(disaCS)
+            }
+            if (scope == 'C') {
+                gear.paramAdd(Channel, 'DISABLED', command)
+                message.reply(disaCC)
+            }
+        } catch (err) {
+            console.log((err.stack).red)
+        }
+    }
+
+
 }
-
-var module = args[0].toUpperCase()
-if (args[1]) {
-    var scope = args[1].toLowerCase()
-}
-var sc = ''
-switch (scope) {
-    case 's':
-    case 'server':
-    case 'guild':
-        sc = 'S'
-        break;
-    case 'c':
-    case 'channel':
-    case 'chnl':
-        sc = 'C'
-        break;
-    default:
-        sc = 'C'
-        break;
-}
-
-if (sc == 'S') {
-        if (!(module in Server.mods)) return;
-        gear.paramDefine(Server, module ,false)
-        message.reply('O módulo ' + module + ' foi desabilitado globalmente!')
-} else {
-
-     if (!(module in message.channel.mods)) return;
-        gear.paramDefine(Channel, module ,false)
-    message.reply('O módulo `' + module + '` foi desabilitado no canal #' + Channel.name)
-}
-
-
-
-
-}
-module.exports = {pub:true,cmd: cmd, perms: 0, init: init, cat: 'master'};
+module.exports = {
+    pub: true,
+    cmd: cmd,
+    perms: 0,
+    init: init,
+    cat: 'master'
+};

@@ -20,7 +20,7 @@ var LANG = message.lang;
 //-------MAGIC----------------
 
 let GOODMOJI = ':gem:'
-    let GOOD = 'Gems'
+    let GOOD = 'Gem'
     if (Server.mods.GOODMOJI) {
         GOODMOJI = Server.mods.GOODMOJI
     }
@@ -30,34 +30,72 @@ let GOODMOJI = ':gem:'
 var userData = Author.mods
 
 
+
         console.log("Pick trial by" + Author)
-        if (gear.drops > 0) {
+        if (Channel.DROPSLY > 0) {
             console.log("----------- SUCCESSFUL PICK by" + Author)
-             gear.paramUpdate(Author,'goodies',1)
-              gear.paramUpdate(Author,'earnings.drops',1)
-            message.channel.sendMessage("**" + Author.username + "** pegou " + gear.drops + " "+GOOD).then(function (c) {
+
+            message.channel.sendMessage("**" + Author.username + "** pegou " + Channel.DROPSLY + " "+GOOD).then(function (c) {
                 message.delete()
                 c.delete(500000)
-            });
-            //  message.channel.bulkDelete(gear.vacuum);
-            //    message.guild.defaultChannel.bulkDelete(gear.vacuum);
-            for (i in gear.vacuum) {
-                gear.vacuum[i].delete()
-            }
-            //   message.channel.bulkDelete(gear.vacuum);
-            gear.drops = 0
+            }).catch();
+
+            gear.paramIncrement(Author, 'goodies', Channel.DROPSLY)
+            gear.paramIncrement(Author, 'earnings.drops', Channel.DROPSLY)
+            Channel.DROPSLY=0
         }
         else {
             console.log("----------- FAILED PICK by" + Author)
-                //   message.channel.bulkDelete(gear.vacuum);
-                //   message.guild.defaultChannel.bulkDelete(gear.vacuum);
-            for (i in gear.vacuum) {
-                gear.vacuum[i].delete()
-            }
+
+
             //message.channel.sendMessage("No Ruby");
         }
 
     };
 
 module.exports = {pub:true,cmd: cmd, perms: 0, init: init, cat: 'misc'};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

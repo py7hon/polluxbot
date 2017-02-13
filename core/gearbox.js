@@ -4,48 +4,130 @@ const main = require('../beta.js')
 const Jimp = require("jimp");
 const fs = require("fs");
 
+Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
+
 module.exports = {
 
-writeJ: function writeJ(a,b){
-    fs.writeFile(b+'.json', JSON.stringify(a, null, 4), (err) => {
-        console.log('-')
-    });
-},
+    writeJ: function writeJ(a, b) {
+        fs.writeFile(b + '.json', JSON.stringify(a, null, 4), (err) => {
+            console.log('-')
+        });
+    },
 
+    paramAdd: function paramAdd(target, param, val) {
+        try {
 
-paramUpdate: function paramUpdate(target, param, val) {
+            if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                main.userDB[target.id].modules[param].push(val)
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                main.DB[target.id].modules[param].push(val)
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                main.DB[target.guild.id].channels[target.id].modules[param].push(val)
+            }
+            fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
+                //console.log("JSON Write User Database".gray)
+            });
+            fs.writeFile('./database/servers.json', JSON.stringify(main.DB, null, 4), (err) => {
+                //console.log("JSON Write Servers Database".gray)
+            });
+        } catch (err) {
+            console.log('ERROR JSON'.bgRed.white.bold)
+            console.log(err.stack)
+        }
+    },
+paramRemove: function paramRemove(target, param, val) {
+        try {
 
+            if (target instanceof Discord.User) {
+                //target.mods[param].remove(val)
+                main.userDB[target.id].modules[param].remove(val)
+            }
+            if (target instanceof Discord.Guild) {
+                //target.mods[param].remove(val)
+                main.DB[target.id].modules[param].remove(val)
+            }
+            if (target instanceof Discord.Channel) {
+                //target.mods[param].remove(val)
+                main.DB[target.guild.id].channels[target.id].modules[param].remove(val)
+            }
+            fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
+                //console.log("JSON Write User Database".gray)
+            });
+            fs.writeFile('./database/servers.json', JSON.stringify(main.DB, null, 4), (err) => {
+                //console.log("JSON Write Servers Database".gray)
+            });
+        } catch (err) {
+            console.log('ERROR JSON'.bgRed.white.bold)
+            console.log(err.stack)
+        }
+    },
+    paramIncrement: function paramIncrement(target, param, val) {
+        try {
 
+            if (target instanceof Discord.User) {
+                //target.mods[param] += val
+                main.userDB[target.id].modules[param] += val
+            }
+            if (target instanceof Discord.Guild) {
+                //target.mods[param] += val
+                main.DB[target.id].modules[param] += val
+            }
+            if (target instanceof Discord.Channel) {
+                //target.mods[param] += val
+                main.DB[target.guild.id].channels[target.id].modules[param] += val
+            }
+            fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
+                //console.log("JSON Write User Database".gray)
+            });
+            fs.writeFile('./database/servers.json', JSON.stringify(main.DB, null, 4), (err) => {
+                //console.log("JSON Write Servers Database".gray)
+            });
+        } catch (err) {
+             console.log('ERROR JSON'.bgRed.white.bold)
+            console.log(err.stack)
+        }
+    },
 
-
-    if (target instanceof Discord.User) {
-        main.userDB[target.id].modules[param] += val
-    }if (target instanceof Discord.Guild) {
-       main.DB[target.id].modules[param] += val
-    }if (target instanceof Discord.Channel){
-        main.DB[target.id].modules.channels.modules[param] += val
-    }
-    //this.writeJ(main.userDB,'./database/users')
-    //this.writeJ(main.DB,'./database/servers')
-} ,
     paramDefine: function paramDefine(target, param, val) {
+        try {
+            if (target instanceof Discord.User) {
+                //target.mods[param] = val
+                main.userDB[target.id].modules[param] = val
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param] = val
+                main.DB[target.id].modules[param] = val
+            }
+            if (target instanceof Discord.Channel) {
+                //target.mods[param] = val
 
-
-
-    if (target instanceof Discord.User) {
-        main.userDB[target.id].modules[param] = val
-    }if (target instanceof Discord.Guild) {
-       main.DB[target.id].modules[param] = val
-    }if (target instanceof Discord.Channel){
-        main.DB[target.guild.id].channels[target.id].modules[param] = val
-    }
-fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
-        console.log("JSON Write User Database".gray)
-    });
-fs.writeFile('./database/servers.json', JSON.stringify(main.DB, null, 4), (err) => {
-        console.log("JSON Write Servers Database".gray)
-    });
-} ,
+                main.DB[target.guild.id].channels[target.id].modules[param] = val
+            }
+            fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
+                //console.log("JSON Write User Database".gray)
+            });
+            fs.writeFile('./database/servers.json', JSON.stringify(main.DB, null, 4), (err) => {
+                //console.log("JSON Write Servers Database".gray)
+            });
+        } catch (err) {
+             console.log('ERROR JSON'.bgRed.white.bold)
+            console.log(err.stack)
+        }
+    },
 
     checkGoods: function checkGoods(amount, invoker) {
         if (invoker.mods.goodies >= amount) {
@@ -70,7 +152,7 @@ fs.writeFile('./database/servers.json', JSON.stringify(main.DB, null, 4), (err) 
     ongoing: false,
     writePoints: function writePoints(points, caller) {
         fs.writeFile('../points.json', JSON.stringify(points), (err) => {
-            console.log("JSON write event on " + caller + "'s activity -------------\n")
+            //console.log("JSON Write event on " + caller + "'s activity -------------\n")
             if (err) console.log("JSON ERROR  on " + caller + "'s activity -------------\n" + err)
         });
     },
@@ -249,26 +331,26 @@ fs.writeFile('./database/servers.json', JSON.stringify(main.DB, null, 4), (err) 
         }
     },
     getDir: function getDir(rootDir, cb) {
-    fs.readdir(rootDir, function (err, files) {
-        var dirs = [];
-        for (var index = 0; index < files.length; ++index) {
-            var file = files[index];
-            if (file[0] !== '.') {
-                var filePath = rootDir + '/' + file;
-                fs.stat(filePath, function (err, stat) {
-                    if (stat.isDirectory()) {
-                        dirs.push(this.file);
-                    }
-                    if (files.length === (this.index + 1)) {
-                        return cb(dirs);
-                    }
-                }.bind({
-                    index: index
-                    , file: file
-                }));
+        fs.readdir(rootDir, function (err, files) {
+            var dirs = [];
+            for (var index = 0; index < files.length; ++index) {
+                var file = files[index];
+                if (file[0] !== '.') {
+                    var filePath = rootDir + '/' + file;
+                    fs.stat(filePath, function (err, stat) {
+                        if (stat.isDirectory()) {
+                            dirs.push(this.file);
+                        }
+                        if (files.length === (this.index + 1)) {
+                            return cb(dirs);
+                        }
+                    }.bind({
+                        index: index,
+                        file: file
+                    }));
+                }
             }
-        }
-    });
-}
+        });
+    }
 
 }

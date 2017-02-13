@@ -1,5 +1,6 @@
 var cmd = 'announce';
-
+var locale = require('../../utils/multilang_b');
+var mm = locale.getT();
 var init = function (message) {
     var Server = message.guild;
     var Channel = message.channel;
@@ -10,6 +11,7 @@ var init = function (message) {
     var MSG = message.content;
     if (Author.bot) return;
 
+  var LANG = message.lang;
     var modPass = false
 
     if (Server.mods.MODROLE && Server.mods.MODROLE.size >= 1){
@@ -21,8 +23,8 @@ var init = function (message) {
 
     var tgt = message.guild.member(Target)
     if (modPass) {
-
-        Server.defaultChannel.sendMessage(`:mega:  **Anúncio**
+var anno = mm('dict.announce',{lngs:LANG})
+        Server.defaultChannel.sendMessage(`${anno}
 ` + MSG.substr(10))
 
     } else {

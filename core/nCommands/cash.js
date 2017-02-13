@@ -19,7 +19,7 @@ var init = function (message, userDB, DB) {
 
 
     let GOODMOJI = ':gem:'
-    let GOOD = 'Gems'
+    let GOOD = 'Gem'
     if (Server.mods.GOODMOJI) {
         GOODMOJI = Server.mods.GOODMOJI
     }

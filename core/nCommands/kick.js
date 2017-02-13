@@ -24,23 +24,33 @@ var LANG = message.lang;
 
     var modPass = false
 
+
+    var noperms     =   mm('CMD.moderationNeeded', {lngs:LANG})
+    var whokik      =   mm('CMD.kinNone', {lngs:LANG})
+    var nope        =   mm('CMD.kin404', {lngs:LANG})
+    var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
+    var justasec    =   mm('CMD.jas', {lngs:LANG})
+    var didkik      =   mm('CMD.didkik', {lngs:LANG, target:Target.username})
+
+
+
     if (Server.mods.MODROLE && Server.mods.MODROLE.size >= 1){
         modPass = Member.roles.has(Server.mods.MODROLE);
     }else if(Member.hasPermission("MANAGE_SERVER")){
         modPass = true;
     };
-if (!modPass) return message.reply('insufficient perms');
+if (!modPass) return message.reply(noperms);
 
     if (message.mentions.users.size === 0) {
-        return message.reply("tu precisa me dizer de quem eu vou chutar a bunda").catch(console.error);
+        return message.reply(whokik).catch(console.error);
     }
     let kickMember = Server.member(Target);
     let kik = Target
     if (!kickMember) {
-        return message.reply("deu ruim, não achei esse maluco");
+        return message.reply(nope);
     }
     if (!Server.member(bot.user).hasPermission("KICK_MEMBERS")) {
-        return message.reply("Por algum raio de razão eu não posso kickar esse cara. MIMDÁ PERMISSÃO").catch(console.error);
+        return message.reply(noPermsMe).catch(console.error);
     }
 
 
@@ -61,11 +71,11 @@ if (!modPass) return message.reply('insufficient perms');
             Jimp.read(paths.BUILD + "jazz.png").then(function (jazz) {
                 jazz.composite(face, 80, 31);
                 //jazz.write(`${paths.ROUND}/${caller}2.png`);
-                message.channel.sendMessage('Ok, me dá um segundo...')
+                message.channel.sendMessage(justasec)
                 jazz.getBuffer(Jimp.MIME_PNG, function (err, image) {
 
 
-                    message.channel.sendFile(image, 'kicked.png', `:boot: Meti um pé na bunda de ${kik.username}.`).then(m => {
+                    message.channel.sendFile(image, 'kicked.png', didkik).then(m => {
                         kickMember.kick()
                     }).catch(console.error)
                 })

@@ -16,7 +16,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet, pref)
   Server.language = args[0]
 
    fs.writeFile('./modules.json', JSON.stringify(modules), (err) => {
-        console.log("JSON write event-------")
+        //console.log("JSON Write event-------")
         if (err) console.log("JSON ERROR  ------------\n" + err)
 
     })

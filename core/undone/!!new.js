@@ -38,7 +38,7 @@ error3: mm('$.insuBet', {
 
 
     let GOODMOJI = ':gem:'
-let GOOD = 'Gems'
+let GOOD = 'Gem'
 if (Server.mods.GOODMOJI) {
     GOODMOJI = Server.mods.GOODMOJI
 }

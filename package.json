@@ -13,13 +13,12 @@
   ],
   "main": "index.js",
   "keywords": [
-    ""
+    "discordbot"
   ],
   "scripts": {
-    "bot": "node --harmony index.js",
-    "bote": "node index.js",
-    "prepublish": "gulp prepublish",
-    "test": "gulp"
+    "bot": "node --harmony beta.js",
+    "test": "node beta.js"
+
   },
   "repository": "git@github.com:/arturiabot.git",
   "license": "MIT",

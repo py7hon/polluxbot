@@ -9,7 +9,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     modules[message.guild.id].announcements = true
 
     fs.writeFile('./modules.json', JSON.stringify(modules), (err) => {
-        console.log("JSON write event-------")
+        //console.log("JSON Write event-------")
         if (err) console.log("JSON ERROR  ------------\n" + err)
 })
 

@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 const getter = require("booru-getter");
 const fs = require("fs");
+var locale = require('../../utils/multilang_b');
+var mm = locale.getT();
 
 var cmd = 'airwaifu';
 
@@ -13,8 +15,10 @@ var Target = message.mentions.users.first() || Author;
 var MSG = message.content;
 if (Author.bot) return;
 var emb = new Discord.RichEmbed();
+  var LANG = message.lang;
 
-
+    var success = mm('forFun.airwaifu',{lngs:LANG})
+    var fail = mm('forFun.booru404',{lngs:LANG})
 
 
     let query = 'airplane+-comic+-animated'

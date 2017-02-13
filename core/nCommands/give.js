@@ -22,7 +22,7 @@ var init = function (message, userDB, DB) {
 
 
     let GOODMOJI = ':gem:'
-    let GOOD = 'Gems'
+    let GOOD = 'Gem'
     if (Server.mods.GOODMOJI) {
         GOODMOJI = Server.mods.GOODMOJI
     }
@@ -39,17 +39,17 @@ var init = function (message, userDB, DB) {
     if (gear.checkGoods(donate, Author) == true) {
 
         // message.guild.defaultChannel.sendMessage()
-        gear.paramUpdate(Author, 'goodies', -donate)
-        gear.paramUpdate(Author, 'expenses.trade', donate)
-        gear.paramUpdate(Target, 'goodies', donate)
-        gear.paramUpdate(Target, 'earnings.trade', donate)
+        gear.paramIncrement(Author, 'goodies', -donate)
+        gear.paramIncrement(Author, 'expenses.trade', donate)
+        gear.paramIncrement(Target, 'goodies', donate)
+        gear.paramIncrement(Target, 'earnings.trade', donate)
 
-        message.channel.sendMessage(message.author.username + " deu **" + donate + "** " + GOODMOJI + " para **" + Target.username + "**!").then(function (c) {
+        message.channel.sendMessage( mm('$.giveGoods' , {lngs:LANG, donate:donate, emoji:GOODMOJI, target:Target.username,author:Author.username })).then(function (c) {
             message.delete(5000)
         })
         gear.writePoints(points, caller)
     } else {
-        message.reply("você não tem Rubys suficientes")
+        message.reply(mm('$.noFundsGeneric',{lngs:LANG,goods:GOOD}))
         return;
     }
 }

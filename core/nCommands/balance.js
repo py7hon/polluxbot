@@ -5,6 +5,12 @@ const fs = require("fs");
 var paths = require("../paths.js");
 var cmd = 'balance';
 
+var locale = require('../../utils/multilang_b');
+var mm = locale.getT();
+
+
+
+
 var init = function (message) {
     var Server = message.guild;
     var Channel = message.channel;
@@ -13,9 +19,22 @@ var init = function (message) {
     var MSG = message.content;
     var bot = message.botUser
     if (Author.bot) return;
+    var LANG = message.lang;
     emb = new Discord.RichEmbed();
+
+
+    var bal =  mm('$.balance',{lngs:LANG});
+    var put =  mm('$.lewdery',{lngs:LANG});
+    var jog =  mm('$.gambling',{lngs:LANG});
+    var dro =  mm('$.drops',{lngs:LANG});
+    var tra =  mm('$.trades',{lngs:LANG});
+    var gas =  mm('$.expenses',{lngs:LANG});
+    var gan =  mm('$.earninghs',{lngs:LANG});
+    var nope =  mm('CMD.noDM',{lngs:LANG});
+
+
     if (message.channel.type == 'dm') {
-        message.reply('Não usável em DM')
+        message.reply(nope)
         return
     }
     let img = Target.defaultAvatarURL.substr(0, Target.defaultAvatarURL.length - 10)
@@ -23,20 +42,20 @@ var init = function (message) {
         img = Target.avatarURL.substr(0, Target.avatarURL.length - 10);
     }
     emb.setColor('#ffd156')
-    emb.title = "Balanço"
+    emb.title = bal
     emb.setThumbnail(img)
         //emb.description = ' Números contabilizados desde 8-Feb-2017 '
-    emb.addField('Ganhos', `
-      **Putaria**: ${Target.mods.earnings.putaria}
-**Jogatina**: ${Target.mods.earnings.jogatina}
-**Drops**: ${Target.mods.earnings.drops}
-**Trade**: ${Target.mods.earnings.trade}
+    emb.addField(gan, `
+      **${put}**: ${Target.mods.earnings.putaria}
+**${jog}**: ${Target.mods.earnings.jogatina}
+**${dro}**: ${Target.mods.earnings.drops}
+**${tra}**: ${Target.mods.earnings.trade}
       `, true)
-    emb.addField('Gastos', `
-  **Putaria**: ${Target.mods.expenses.putaria}
-**Jogatina**: ${Target.mods.expenses.jogatina}
-**Drops**: ${Target.mods.expenses.drops}
-**Trade**: ${Target.mods.expenses.trade}
+    emb.addField(gas, `
+  **${put}**: ${Target.mods.expenses.putaria}
+**${jog}**: ${Target.mods.expenses.jogatina}
+**${dro}**: ${Target.mods.expenses.drops}
+**${tra}**: ${Target.mods.expenses.trade}
 
       `, true)
     message.channel.sendEmbed(emb)

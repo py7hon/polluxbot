@@ -45,6 +45,16 @@ ${commands[i].description}
 
 
 }
+        txt = txt + `
+Disabling annoying autopost commands:
+Goodies/Gems Drops: ${message.prefix}disable DROPS
+Level Up pictures: ${message.prefix}disable LVUP
+
+Invite me to your server: https://discordapp.com/oauth2/authorize?client_id=271394014358405121&scope=bot&permissions=2121661559
+
+Join the Support Discord:https://discord.gg/ay48h7Q
+
+`
         message.author.sendMessage(txt)
        return
     });

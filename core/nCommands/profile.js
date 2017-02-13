@@ -19,14 +19,18 @@ var init = function (message, userDB, DB) {
     var args = MSG.split(' ').slice(1)
     var LANG = message.lang;
 
+var nope =  mm('CMD.noDM',{lngs:LANG});
+ var gener =  mm('builds.genProf',{lngs:LANG});
+ var inf =  mm('dict.infinite',{lngs:LANG});
+
     //-------MAGIC----------------
     if (message.channel.type == 'dm') {
-        message.reply('Não usável em DM')
+        message.reply(nope)
         return
     }
     //CHECK PROFS LV ETC ---
 
-    message.reply('Gerando seu Profilecard...').then(m => m.delete(2000))
+    message.reply(gener).then(m => m.delete(2000))
 
     let img = Target.defaultAvatarURL.substr(0, Target.defaultAvatarURL.length - 10)
     if (Target.avatarURL) {
@@ -38,7 +42,7 @@ var init = function (message, userDB, DB) {
     let adm = gear.checkAdm(message, Target).toLowerCase()
 
     let GOODMOJI = ':gem:'
-    let GOOD = 'Gems'
+    let GOOD = 'Gem'
     if (Server.mods.GOODMOJI) {
         GOODMOJI = Server.mods.GOODMOJI
     }
@@ -94,14 +98,14 @@ var init = function (message, userDB, DB) {
                                     bar.resize(354, 18)
                                 } else if (Target.bot) {
                                     level = "XX"
-                                    money = "INFINITE" + GOOD
+                                    money = inf +' '+ GOOD
                                     exp = "99999"
                                     next = "99999"
                                     bar.resize(354, 18)
                                 };
                                 cart.print(head, 153, 3, message.guild.member(Target).displayName);
                                 cart.print(head, 425, 37, `${level}`);
-                                cart.print(head, 290, 160, `${money} ${GOOD}`);
+                                cart.print(head, 290, 160, `${money} ${GOOD}s`);
                                 cart.print(sub, 74, 253, `${exp} / ${next}`);
                                 cart.print(sub, 172, 66, `${joinstamp}`);
                                 cart.print(sub, 180, 100, `${texp}`, 250);

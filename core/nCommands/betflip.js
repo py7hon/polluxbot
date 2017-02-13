@@ -17,7 +17,7 @@ var init = function (message, userDB, DB) {
     var BOT = message.botUser.user
 
   let GOODMOJI = ':gem:'
-    let GOOD = 'Gems'
+    let GOOD = 'Gem'
     if (Server.mods.GOODMOJI) {
         GOODMOJI = Server.mods.GOODMOJI
     }
@@ -80,8 +80,8 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
        message.reply(prompts.error2);
         return;
     }
-    gear.paramUpdate(Author, 'goodies', -parseInt(bet[1]))
-    gear.paramUpdate(Author, 'expenses.jogatina', parseInt(bet[1]))
+    gear.paramIncrement(Author, 'goodies', -parseInt(bet[1]))
+    gear.paramIncrement(Author, 'expenses.jogatina', parseInt(bet[1]))
 
     var coin = gear.randomize(1, 2);
     var res = ""
@@ -97,9 +97,9 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
         })
         message.channel.sendFile(paths.BUILD + ros, ros, vicPrompt )
 
-        gear.paramUpdate(Author, 'goodies', parseInt(bet[1] * 2))
-        gear.paramUpdate(Author, 'earnings.jogatina', parseInt(bet[1] * 2))
-        gear.paramUpdate(BOT, 'expenses.jogatina', parseInt(bet[1] * 2))
+        gear.paramIncrement(Author, 'goodies', parseInt(bet[1] * 2))
+        gear.paramIncrement(Author, 'earnings.jogatina', parseInt(bet[1] * 2))
+        gear.paramIncrement(BOT, 'expenses.jogatina', parseInt(bet[1] * 2))
 
     } else {
         var dftPrompt = mm('$.coinDefeat', {
@@ -108,8 +108,8 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
         })
         message.channel.sendFile(paths.BUILD + ros, ros, dftPrompt)
 
-        gear.paramUpdate(BOT, 'goodies', parseInt(bet[1]))
-        gear.paramUpdate(BOT, 'earnings.jogatina', parseInt(bet[1]))
+        gear.paramIncrement(BOT, 'goodies', parseInt(bet[1]))
+        gear.paramIncrement(BOT, 'earnings.jogatina', parseInt(bet[1]))
 
 
     }

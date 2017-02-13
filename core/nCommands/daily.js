@@ -50,7 +50,7 @@
 
 
      let GOODMOJI = ':gem:'
-     let GOOD = 'Gems'
+     let GOOD = 'Gem'
      if (Server.mods.GOODMOJI) {
          GOODMOJI = Server.mods.GOODMOJI
      }
@@ -71,7 +71,7 @@
      1486025790272
      if ((now - dly) >= day) {
          if ((now - dly) < (day * 2)) {
-             gear.paramUpdate(Author, 'dyStreak', 1)
+             gear.paramIncrement(Author, 'dyStreak', 1)
          } else {
              gear.paramDefine(Author, 'dyStreak', 0)
          }
@@ -93,7 +93,7 @@
              message.channel.sendMessage(dailyStreak)
          }
 
-         gear.paramUpdate(Author, 'goodies', 100)
+         gear.paramIncrement(Author, 'goodies', 100)
          gear.paramDefine(Author, 'daily', now)
 
      } else {
