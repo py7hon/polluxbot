@@ -4,7 +4,7 @@ const Jimp = require("jimp");
 const fs = require("fs");
 var paths = require("../paths.js");
 
-exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
+exports.run = (bot, message, args) => {
 
   console.log('Illegal - Start');
   

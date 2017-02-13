@@ -1,0 +1,21 @@
+ {"$": {
+
+        "insuFloor": "Você não tem {{goods}} suficientes. Você precisa pelo menos **{{number}}** {{emoji}}",
+     "insuBet": "Aposte pelo menos {{number}}",
+     "noFunds":" PT cê não tá com essa bola toda não... Você só tem {{number}} {{goods}}",
+     "coinVictory": "Yay! {{result}}! Você ganhou **{{prize}}** {{emoji}}",
+     "coinDefeat": "Putz, {{result}}! Você perdeu..."
+
+    },
+  "CMD":{
+       "incorrectUsage": "Comando incorreto, use {{usage}}. Exemplo: {{example}}"
+
+  },
+  "dict":{
+      "coinHeads": "cara",
+      "coinTails": "coroa",
+      "qnt": "quantidade",
+      "res": "resultado"
+
+  }
+ }

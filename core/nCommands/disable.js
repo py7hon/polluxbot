@@ -1,0 +1,152 @@
+var gear = require("../gearbox.js");
+var paths = require("../paths.js");
+var locale = require('../../utils/multilang_b');
+var mm = locale.getT();
+
+var cmd = 'disable';
+
+var init = function (message, userDB, DB) {
+
+    console.log('fff')
+    var Server = message.guild;
+    var Channel = message.channel;
+    var Author = message.author;
+    if (Author.bot) return;
+    var Member = Server.member(Author);
+    var Target = message.mentions.users.first() || Author;
+    var MSG = message.content;
+    var bot = message.botUser
+    var args = MSG.split(' ').slice(1)
+    var LANG = message.lang;
+
+    //-------MAGIC----------------
+
+
+    if (message.channel.type == 'dm') {
+        message.reply(mm('CMD.noDM', {
+            lngs: LANG
+        }));
+        return;
+    }
+
+    if (message.content.length < 10) {
+        message.reply(mm('CMD.chooseAmod', {
+            lngs: LANG
+        }));
+        return;
+    }
+
+
+    var modPass = false
+
+    if (Server.mods.MODROLE && Server.mods.MODROLE.size >= 1) {
+        modPass = Member.roles.has(Server.mods.MODROLE);
+    } else if (Member.hasPermission("MANAGE_SERVER")) {
+        modPass = true;
+    };
+
+
+    if (!modPass) {
+        return message.reply(mm('CMD.moderatioNeeded', {
+            lngs: LANG
+        })).catch(console.error);
+    }
+
+
+
+
+    function pp(o, p) {
+        return o[p];
+    }
+
+    var module = args[0].toUpperCase()
+    if (args[1]) {
+        var scope = args[1].toLowerCase()
+    }
+    var sc = ''
+    switch (scope) {
+        case 's':
+        case 'server':
+        case 'guild':
+            sc = 'S'
+            break;
+        case 'c':
+        case 'channel':
+        case 'chnl':
+            sc = 'C'
+            break;
+        default:
+            sc = 'C'
+            break;
+    }
+
+
+    var disaMS = mm('CMD.disabledSer', {
+        lngs: LANG,
+        module: module
+    })
+    var disaMC = mm('CMD.disabledChn', {
+        lngs: LANG,
+        module: module,
+        channel: Channel.name
+    })
+    var disaCS = mm('CMD.disabledComSer', {
+        lngs: LANG,
+        command: module
+    })
+    var disaCC = mm('CMD.disabledComChn', {
+        lngs: LANG,
+        command: module,
+        channel: Channel.name
+    })
+
+
+
+    console.log('aaa')
+    if (sc == 'S') {
+        if (module in Server.mods) {
+            gear.paramDefine(Server, module, false)
+            message.reply(disaMS)
+        } else {
+            imComm(message, sc)
+        }
+
+    } else {
+
+        if (module in message.channel.mods) {
+            gear.paramDefine(Channel, module, false)
+            message.reply(disaMC)
+        } else {
+            imComm(message, sc)
+        }
+    }
+
+
+
+    function imComm(msg, scope) {
+        console.log('immcomm')
+        try {
+            let command = msg.content.substr(msg.prefix.length).split(' ')[1];
+            let commandFile = require(`./${command}.js`);
+            if (scope == 'S') {
+                gear.paramAdd(Server, 'DISABLED', command)
+                message.reply(disaCS)
+            }
+            if (scope == 'C') {
+                gear.paramAdd(Channel, 'DISABLED', command)
+                message.reply(disaCC)
+            }
+        } catch (err) {
+            console.log((err.stack).red)
+        }
+    }
+
+
+}
+module.exports = {
+    pub: true,
+    cmd: cmd,
+    perms: 0,
+    init: init,
+    cat: 'master'
+};
