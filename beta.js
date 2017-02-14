@@ -603,8 +603,8 @@ function updateEXP(TG, event) {
                                     cart.print(sub, 336, 45, `${level}`);
                                     cart.composite(photo, 18, 20)
                                     cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                                            if (Server.mods.LVUP) {
-                                                if (Channel.mods.LVUP) {
+                                            if (event.guild.mods.LVUP) {
+                                                if (event.channel.mods.LVUP) {
                                                     event.channel.sendFile(image)
                                                 }
                                             }
