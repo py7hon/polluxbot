@@ -1,0 +1,2454 @@
+{
+    "110373943822540800": {
+        "name": "Discord Bots",
+        "modules": {
+            "NSFW": false,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": false,
+            "ANNOUNCE": false,
+            "PREFIX": "px+",
+            "MODROLE": {},
+            "LANGUAGE": "dev",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "110373943822540800": {
+                "name": "general",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "110374080984682496": {
+                "name": "old-bot-list",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "110374153562886144": {
+                "name": "development",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "113743192305827841": {
+                "name": "testing-^_`",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "114776864664322048": {
+                "name": "ababababababababa",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "116705171312082950": {
+                "name": "testing-nsfw",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "117018340114825217": {
+                "name": "testing-voice",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "119222314964353025": {
+                "name": "ultimate-shitposting",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "120589498529742849": {
+                "name": "information",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "124622509881425920": {
+                "name": "mod-log",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "131195194321272832": {
+                "name": "alalalalalalalala",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "132632676225122304": {
+                "name": "testing-[\\]",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "152506216470282240": {
+                "name": "trash_discord-js",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "153440962809561088": {
+                "name": "general-backup",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "162215875833757696": {
+                "name": "carbon-complaint",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "167622210331082753": {
+                "name": "bot-list-log",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "167636197491867648": {
+                "name": "eye-tracking",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "203599208912125962": {
+                "name": "bot-list",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "209541337131909120": {
+                "name": "starboard",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "253399174387728384": {
+                "name": "image-feed",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "158666807388012544": {
+        "name": "THE IV REICH",
+        "modules": {
+            "NSFW": false,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": false,
+            "ANNOUNCE": true,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "dev",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "158666807388012544": {
+                "name": "nazihome",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "160956261637029888": {
+                "name": "sad",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "252187034129530880": {
+                "name": "hell",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "248285312353173505": {
+        "name": "Pink Hood SKYNET Maid Cafe",
+        "modules": {
+            "NSFW": false,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": true,
+            "ANNOUNCE": true,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "dev",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "248285312353173505": {
+                "name": "lounge",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "248336170860281857": {
+                "name": "mitadores",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "248336459981914112": {
+                "name": "ravenloft",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "248343933061562368": {
+                "name": "backyard_nsfw",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "249641789152034816": {
+                "name": "engine_room",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "249664893668556801": {
+                "name": "cassino",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "249678631566049291": {
+                "name": "test_yard",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "249744159164858368": {
+                "name": "jukebox_control",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "249935171346890752": {
+                "name": "masmorra",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "250503530761158657": {
+                "name": "escolinha",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "250656455919796224": {
+                "name": "reception_hall",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "250779053194215445": {
+                "name": "hall_of_shame",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "265520401780572160": {
+                "name": "shadowverse",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "271456584264056832": {
+                "name": "bot_factory",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "273655653707284480": {
+                "name": "cleberbot",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "274656067693051906": {
+                "name": "vegas",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "276086172894363648": {
+                "name": "cozinha",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "276135112859713537": {
+                "name": "oficina",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "276153978415480835": {
+                "name": "salao_nobre_de_rpg",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "256482380515115008": {
+        "name": "ZUERA NEVER ENDS",
+        "modules": {
+            "NSFW": false,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": false,
+            "ANNOUNCE": true,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "dev",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "256482380515115008": {
+                "name": "geral",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "256484318870765568": {
+                "name": "battlerite",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "256486006386196499": {
+                "name": "rocket_league",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "259433406541201411": {
+                "name": "dota_2",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "259433419191222272": {
+                "name": "bot_command",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "259487263715491840": {
+                "name": "anime",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "279758069586722816": {
+                "name": "pedir_musica",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "258954893270843392": {
+        "name": "Máfia das codorna - MCN",
+        "modules": {
+            "NSFW": false,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": false,
+            "ANNOUNCE": true,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "dev",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "258954893270843392": {
+                "name": "bate-papo",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "258958561776893952": {
+                "name": "admins",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "258958614105030656": {
+                "name": "regras",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "258962370683076608": {
+                "name": "notificacoes",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "265958893245562881": {
+                "name": "divulgacoes",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "270290818840002562": {
+                "name": "imagens",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "260212561096474635": {
+        "name": "Musica",
+        "modules": {
+            "NSFW": false,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": false,
+            "ANNOUNCE": true,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "dev",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "260212561096474635": {
+                "name": "chat",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "260548137335259136": {
+                "name": "musica",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "270297868387090432": {
+                "name": "batalha_de_repi",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "270308837632770058": {
+                "name": "historinhaspraboidormir",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "270325109309308938": {
+                "name": "info",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "280179384810471424": {
+                "name": "apostas",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "262099815846903808": {
+        "name": "nhorselover's AJ chat",
+        "modules": {
+            "NSFW": false,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": false,
+            "ANNOUNCE": true,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "dev",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "262099815846903808": {
+                "name": "general",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "270049082939015168": {
+                "name": "masterpices",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "270049132708757504": {
+                "name": "rules",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "270051826328535043": {
+                "name": "spam",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "276508886968827904": {
+                "name": "advertising",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "276520101921030154": {
+                "name": "shiping",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "277904376167923712": {
+                "name": "welcome-chat",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "279124590846935040": {
+                "name": "advertisement",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "268698238608080896": {
+        "name": "Games talk",
+        "modules": {
+            "NSFW": false,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": false,
+            "ANNOUNCE": true,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "dev",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "268698238608080896": {
+                "name": "all_games_talk",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "268698292504887307": {
+                "name": "roblox_gross",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "268698553042468864": {
+                "name": "super_hot",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "268698797100498946": {
+                "name": "roblox_no_gross",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "268699080337653760": {
+                "name": "blockland",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "268699587781328907": {
+                "name": "blockstorm",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "269175847183712256": {
+                "name": "other",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "269795085649051648": {
+                "name": "dont_starve_together",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "269795160789876746": {
+                "name": "dont_starve",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "273079304919842816": {
+                "name": "bot_commands",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "274544801414905856": {
+                "name": "7_days_to_die",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "277774993683906560": {
+                "name": "dead_island",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "277775057034674177": {
+                "name": "dead_island_riptide",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278150674729009154": {
+                "name": "counter_strike_go",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278150751560400898": {
+                "name": "team_fortress_two",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278157202793955328": {
+                "name": "team_fortress_classic",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278157346835005460": {
+                "name": "counter_strike_16",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "270973230741716992": {
+        "name": "Grupo di Determination",
+        "modules": {
+            "NSFW": false,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": false,
+            "ANNOUNCE": true,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "dev",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "270973230741716992": {
+                "name": "determination",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "270982043674869760": {
+                "name": "notificacao_bot",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "277856959313477632": {
+                "name": "determinamedia",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278320107162435585": {
+                "name": "notifications",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278320580124475392": {
+                "name": "regras",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "280180220236136448": {
+                "name": "apostas",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "277391723322408960": {
+        "name": "POLLUX Support",
+        "modules": {
+            "NSFW": false,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": false,
+            "ANNOUNCE": true,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "dev",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "277391723322408960": {
+                "name": "general_international",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "277391764573388800": {
+                "name": "tests",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "277391864552882176": {
+                "name": "general_pt-br",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "277391998195859456": {
+                "name": "suggestions",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "277392033000325120": {
+                "name": "support",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "277392117167292417": {
+                "name": "information",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "277392183387226113": {
+                "name": "faq",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "277392703082332161": {
+                "name": "github_logs",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "279653588664451072": {
+                "name": "core",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "279675914348920842": {
+                "name": "upcoming_features",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "280174605157793792": {
+                "name": "beta",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "278047763634061313": {
+        "name": "BotLab",
+        "modules": {
+            "NSFW": false,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": false,
+            "ANNOUNCE": true,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "dev",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "278324409276563458": {
+                "name": "center5",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278309802151641089": {
+                "name": "testing",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "279111075348086785": {
+                "name": "nsfw",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278325629202595840": {
+                "name": "center8",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278365770008887300": {
+                "name": "announcements",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278322202557022208": {
+                "name": "logs",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278325699163717632": {
+                "name": "center10",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278318515306496000": {
+                "name": "l--bots--l",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278338402871672834": {
+                "name": "insider_builds",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278325199886352384": {
+                "name": "center7",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "279045812506460160": {
+                "name": "servers",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "279797629917986817": {
+                "name": "random",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278319199913246720": {
+                "name": "bug-reporting",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278324109665107968": {
+                "name": "center4",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "280162432863698945": {
+                "name": "serverhub",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278386375676395522": {
+                "name": "bot_phones",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278325661536354305": {
+                "name": "center9",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278325142701211648": {
+                "name": "center6",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278381871061270538": {
+                "name": "add_bot",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278050728986017792": {
+                "name": "rules",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278047763634061313": {
+                "name": "lounge",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278324066157592576": {
+                "name": "center3",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278323847919435776": {
+                "name": "center2",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278908305106141184": {
+                "name": "l--invite--l",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "280426679783129108": {
+                "name": "starboard",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278056638475141120": {
+                "name": "strike-log",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278323218434228224": {
+                "name": "l--music--l",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "280386336593018882": {
+                "name": "cleverbots",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278318901908078593": {
+                "name": "botinvites",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278670529328578562": {
+                "name": "l--general--l",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278323810594193408": {
+                "name": "center1",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "278773875930824704": {
+        "name": "Shit...",
+        "modules": {
+            "NSFW": false,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": false,
+            "ANNOUNCE": true,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "dev",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "278773875930824704": {
+                "name": "bots-arguing-mute",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278811680677560320": {
+                "name": "logs",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278820949078573056": {
+                "name": "bee-movie",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "278831986125176832": {
+                "name": "text-chat",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "279134998093889536": {
+                "name": "snail-racing",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": false,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gems",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": false,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    }
+}

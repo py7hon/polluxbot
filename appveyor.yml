@@ -4,6 +4,7 @@ environment:
 
 # Install scripts. (runs after repo cloning)
 install:
+
   # Get the latest stable version of Node.js or io.js
   - ps: Install-Product node 7.4.0 x64
   - npm -g install npm@4
@@ -20,7 +21,8 @@ install:
   - npm install i18next
   - npm install colors
   - npm install i18next-node-fs-backend
-
+  - nuget install secure-file -ExcludeVersion
+  - secure-file\tools\secure-file -decrypt config.js.enc -secret %my_secret%
 # Post-install test scripts.
 test_script:
   # Output useful info for debugging.
