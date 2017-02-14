@@ -24,9 +24,7 @@ install:
 
 # Post-install test scripts.
 test_script:
- - nuget install secure-file -ExcludeVersion
 
-  - secure-file\tools\secure-file -decrypt C:\projects\polluxbot\config.js.enc -secret %my_secret%
 
   # Output useful info for debugging.
   - node --version

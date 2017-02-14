@@ -7,7 +7,31 @@ var bot = new Discord.Client({
     fetchAllMembers: true,
     disabledEvents: ['typingStart', 'typingStop', 'guildMemberSpeaking']
 });
-var cfg = require('./config.js');
+
+try {
+
+    var cfg = require('./config.js');
+} catch () {
+    cfg = {
+        name: "Pollux",
+        prefix: "+",
+        token: process.env.TOKEN,
+        tokenBETA: process.env.TOKENBETA,
+        clever: {
+            ID: process.env.CLEVID,
+            token: process.env.CLEVTOK
+        },
+        hook: {
+            ID: process.env.HOOKID,
+            token: process.env.HOOTOK
+        },
+         coreHook: {
+            ID: process.env.HOOKID,
+            token: process.env.HOOTOK
+        }
+
+    }
+}
 var deployer = require('./core/deployer.js');
 var cleverbot = require("cleverbot");
 cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
@@ -55,10 +79,10 @@ getDirs('utils/lang/', (list) => {
     bot.on('ready', () => {
 
         bot.user.setStatus('online')
-       // bot.user.setGame(`Adobe Edge Code CC`, 'https://www.twitch.tv/LucasFlicky').then().catch();
+            // bot.user.setGame(`Adobe Edge Code CC`, 'https://www.twitch.tv/LucasFlicky').then().catch();
         bot.user.setGame(`Super Smash Bros`).then().catch();
 
-      async.parallel(  bot.guilds.forEach(G => serverSetup(G)) )
+        async.parallel(bot.guilds.forEach(G => serverSetup(G)))
 
         userSetup(bot.user)
     });
@@ -85,20 +109,20 @@ getDirs('utils/lang/', (list) => {
         clearTimeout(timer);
         setTimer();
         if (message.content.endsWith('now illegal')) {
-        let aargs = message.content.split(' ')
-        aargs.pop()
-        aargs.pop()
+            let aargs = message.content.split(' ')
+            aargs.pop()
+            aargs.pop()
 
-        let illegal = require(`./core/sidecommands/nowillegal.js`);
-        try {
-            illegal.run(bot, message, aargs)
-            return
-        } catch (err) {
-            console.log('ERROR')
-            hook.sendMessage(err)
-            return
+            let illegal = require(`./core/sidecommands/nowillegal.js`);
+            try {
+                illegal.run(bot, message, aargs)
+                return
+            } catch (err) {
+                console.log('ERROR')
+                hook.sendMessage(err)
+                return
+            }
         }
-    }
         //message.lang = ['en', 'en'];
         //message.langList = list;
         //message.shardID = shardID;
@@ -263,7 +287,7 @@ function serverSetup(guild) {
 
 
     if (!DB[guild.id]) {
-          console.log('Setting Up Guild:'.yellow + guild.name)
+        console.log('Setting Up Guild:'.yellow + guild.name)
         DB[guild.id] = {
             name: guild.name,
             modules: {
@@ -329,7 +353,7 @@ function userSetup(user) {
 
 
     if (!userDB[user.id]) {
-         console.log('Setting Up Member:' + user.username)
+        console.log('Setting Up Member:' + user.username)
         userDB[user.id] = {
             name: user.username,
             modules: {
@@ -509,11 +533,11 @@ function dropGoodies(event) {
     }
     var droprate = randomize(1, 8000)
     if (GLD.name == "Discord Bots") return;
-    console.log(droprate + " @ " + event.guild.name.toString().bgWhite.black + " - " + event.author.username.toString().bold + ": "+event.content.toString().gray)
+    console.log(droprate + " @ " + event.guild.name.toString().bgWhite.black + " - " + event.author.username.toString().bold + ": " + event.content.toString().gray)
     if (droprate > 1889 && droprate < 2000) {
         console.log('DROP')
         var pack;
-         var mm = multilang.getT();
+        var mm = multilang.getT();
         CHN.sendFile(paths.BUILD + 'ruby.png', 'goodie.png', mm('$.goodDrop', {
             lngs: LANG,
             good: GOOD,
@@ -533,7 +557,7 @@ function dropGoodies(event) {
         console.log("------------=========== ::: NATURAL DROP".bgGreen.white)
     }
     if (droprate == 777) {
-         var mm = multilang.getT();
+        var mm = multilang.getT();
         event.channel.sendFile(paths.BUILD + 'rubypot.png', mm('$.rareDrop', {
             lngs: LANG,
             good: GOOD,
