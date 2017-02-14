@@ -1,5 +1,6 @@
 
-[![Discord](https://discordapp.com/api/guilds/277391723322408960/widget.png)](https://discord.gg/ay48h7Q)
+[![Build status](https://ci.appveyor.com/api/projects/status/3xkseko9xxdoqfh9/branch/appveyor?svg=true)](https://ci.appveyor.com/project/LucasFlicky/polluxbot/branch/master)
+[![Discord](https://discordapp.com/api/guilds/248285312353173505/widget.png)](https://discord.gg/ay48h7Q)
 
 
 # **POLLUX**
