@@ -5,8 +5,9 @@ environment:
 # Install scripts. (runs after repo cloning)
 install:
   # Get the latest stable version of Node.js or io.js
-  - ps: Install-Product node 7.4.0
-  - ps: Install-Product npm 4.0.5
+  - ps: Install-Product node 7.4.0 x64
+  - npm -g install npm@4
+  - set PATH=%APPDATA%\npm;%PATH%
   # install modules
   - npm install
   - npm install booru-getter
