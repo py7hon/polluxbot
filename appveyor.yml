@@ -22,7 +22,7 @@ install:
   - npm install colors
   - npm install i18next-node-fs-backend
   - nuget install secure-file -ExcludeVersion
-  - secure-file\tools\secure-file -decrypt config.js.enc -secret %my_secret%
+  - secure-file\tools\secure-file -decrypt ./config.js.enc -secret %my_secret%
 # Post-install test scripts.
 test_script:
   # Output useful info for debugging.
