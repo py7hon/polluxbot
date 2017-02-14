@@ -23,7 +23,7 @@ var LANG = message.lang;
 //-------MAGIC----------------
 
 
- emb =    new Discord.RichEmbed();
+
 
 
 
@@ -39,9 +39,9 @@ var LANG = message.lang;
         arraySort(ranked, 'userDB', {
             reverse: true
         })
-        console.log(ranked)
 
 
+ emb =    new Discord.RichEmbed();
     emb.setColor('#da5bae')
     emb.title = "Global Leaderboards"
 
@@ -59,15 +59,19 @@ var medals = [':first_place: 1st',
 ':medal: 4th',
 ':medal: 5th'
 ]
+console.log("WALRUS")
 for (i=0;i<ranked.length;i++){
-    if (i > 4) return;
+    if (i < 5){
+         console.log(ranked[i])
+         console.log(medals[i])
       emb.addField(medals[i],ranked[i].name, true)
       emb.addField('Level '+ranked[i].level,'**'+ranked[i].exp + '** Exp', true)
+    }
 }
 
 
 
-    message.channel.sendEmbed(emb)
+    message.channel.sendEmbed(emb).catch()
 
 
 
