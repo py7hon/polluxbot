@@ -1,5 +1,4 @@
-
-[![Build status](https://ci.appveyor.com/api/projects/status/3xkseko9xxdoqfh9/branch/appveyor?svg=true)](https://ci.appveyor.com/project/LucasFlicky/polluxbot/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/i8u0uuy2vxwhm0wc/branch/appveyor?svg=true)](https://ci.appveyor.com/project/LucasFlicky/polluxbot/branch/appveyor)
 [![Discord](https://discordapp.com/api/guilds/248285312353173505/widget.png)](https://discord.gg/ay48h7Q)
 
 
