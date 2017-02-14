@@ -11,7 +11,7 @@ var bot = new Discord.Client({
 try {
 
     var cfg = require('./config.js');
-} catch () {
+} catch (err) {
     cfg = {
         name: "Pollux",
         prefix: "+",
