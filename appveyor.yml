@@ -22,7 +22,11 @@ install:
   - npm install colors
   - npm install i18next-node-fs-backend
   - nuget install secure-file -ExcludeVersion
+<<<<<<< HEAD
   - secure-file\tools\secure-file -decrypt C:\projects\polluxbot\config.js.enc -secret %my_secret%
+=======
+  - secure-file\tools\secure-file -decrypt ./config.js.enc -secret %my_secret%
+>>>>>>> origin/master
 # Post-install test scripts.
 test_script:
   # Output useful info for debugging.
