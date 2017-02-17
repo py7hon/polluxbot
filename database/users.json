@@ -134,7 +134,7 @@
         "modules": {
             "PERMS": 3,
             "level": 1,
-            "exp": 45,
+            "exp": 48,
             "goodies": 623,
             "coins": 0,
             "medals": {},
@@ -212,7 +212,7 @@
         "modules": {
             "PERMS": 3,
             "level": 0,
-            "exp": 4,
+            "exp": 5,
             "goodies": 700,
             "coins": 0,
             "medals": {},
@@ -238,7 +238,7 @@
         "modules": {
             "PERMS": 3,
             "level": 0,
-            "exp": 4,
+            "exp": 6,
             "goodies": 663,
             "coins": 0,
             "medals": {},

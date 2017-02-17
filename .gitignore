@@ -21,3 +21,5 @@
 /utils/forfun/
 /.editorconfig
 /core/undone/
+/database/servers.json
+/database/users.json
