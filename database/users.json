@@ -133,8 +133,8 @@
         "name": "kolith",
         "modules": {
             "PERMS": 3,
-            "level": 0,
-            "exp": 15,
+            "level": 1,
+            "exp": 45,
             "goodies": 623,
             "coins": 0,
             "medals": {},
@@ -212,7 +212,7 @@
         "modules": {
             "PERMS": 3,
             "level": 0,
-            "exp": 3,
+            "exp": 4,
             "goodies": 700,
             "coins": 0,
             "medals": {},
@@ -238,7 +238,7 @@
         "modules": {
             "PERMS": 3,
             "level": 0,
-            "exp": 3,
+            "exp": 4,
             "goodies": 663,
             "coins": 0,
             "medals": {},
@@ -290,8 +290,34 @@
         "modules": {
             "PERMS": 0,
             "level": 0,
-            "exp": 6,
+            "exp": 14,
             "goodies": 681,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "271810114975956995": {
+        "name": "Kicock",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 5,
+            "goodies": 648,
             "coins": 0,
             "medals": {},
             "expenses": {
