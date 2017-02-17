@@ -23,7 +23,7 @@ var LANG = message.lang;
 //-------MAGIC----------------
 
 
-
+gear.paramIncrement(Author,'goodies',0)
 
 
 
@@ -36,7 +36,7 @@ var LANG = message.lang;
             ranked.push(rankItem)
             rankItem = []
         }
-        arraySort(ranked, 'userDB', {
+        arraySort(ranked, 'exp', {
             reverse: true
         })
 

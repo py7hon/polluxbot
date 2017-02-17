@@ -6,7 +6,7 @@ var mm = locale.getT();
 
 var cmd = 'level';
 
-var init = function (message, userDB, DB) {
+var init = function (message,userDB,DB) {
 
 var Author = message.author;
 var Target = message.mentions.users.first() || Author;

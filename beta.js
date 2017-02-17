@@ -1,37 +1,13 @@
 var Discord = require("discord.js");
 var bot = new Discord.Client({
-    messageCacheMaxSize: 2048,
-    messageCacheLifetime: 680,
-    //messageSweepInterval: 1600,
+    messageCacheMaxSize: 4048,
+    messageCacheLifetime: 1680,
+    messageSweepInterval: 2600,
     disableEveryone: true,
     fetchAllMembers: true,
     disabledEvents: ['typingStart', 'typingStop', 'guildMemberSpeaking']
 });
-
-try {
-
-    var cfg = require('./config.js');
-} catch (err) {
-    cfg = {
-        name: "Pollux",
-        prefix: "+",
-        token: process.env.TOKEN,
-        tokenBETA: process.env.TOKENBETA,
-        clever: {
-            ID: process.env.CLEVID,
-            token: process.env.CLEVTOK
-        },
-        hook: {
-            ID: process.env.HOOKID,
-            token: process.env.HOOTOK
-        },
-         coreHook: {
-            ID: process.env.HOOKID,
-            token: process.env.HOOTOK
-        }
-
-    }
-}
+var cfg = require('./config.js');
 var deployer = require('./core/deployer.js');
 var cleverbot = require("cleverbot");
 cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
@@ -45,8 +21,15 @@ var multilang = require('./utils/multilang_b');
 var Backend = require('i18next-node-fs-backend');
 var fs = require("fs");
 var paths = require("./core/paths.js");
-var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8'));
-var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8'));
+
+//var SelfReloadJSON = require('self-reload-json');
+var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8',console.log("OK")));
+var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8',console.log("OK")));
+
+
+//var DB= new SelfReloadJSON();
+//var userDB =new SelfReloadJSON('./database/users.json');
+
 var timer;
 var colors = require('colors');
 var backendOptions = {
@@ -54,12 +37,24 @@ var backendOptions = {
     addPath: './utils/lang/{{lng}}/{{ns}}.missing.json',
     jsonIndent: 2
 };
+const {
+    AkairoClient
+} = require('discord-akairo');
+const client = new AkairoClient({
+    ownerID: '88120564400553984',
+    prefix: '+'
+});
+
+client.login(cfg.token).then(() => {
+
+});
+
 
 const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
 getDirs('utils/lang/', (list) => {
     i18next.use(Backend).init({
         backend: backendOptions,
-        lng: 'dev',
+        lng: 'en',
         fallbacklngs: false,
         preload: list,
         load: 'all'
@@ -73,6 +68,16 @@ getDirs('utils/lang/', (list) => {
 
     function loginSuccess() {
         console.log('LOGGED IN!'.bgGreen.white.bold)
+        hook.sendSlackMessage({
+            'username': 'Pollux Core Reporter',
+            'attachments': [{
+                'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
+                'pretext': `Successful Login!`,
+                'color': '#49c7ff', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
+                // 'footer': 'Powered by sneks',
+                'ts': Date.now() / 1000
+      }]
+        })
     }
     bot.login(cfg.token).then(loginSuccess());
     console.log('Ready to Rock!')
@@ -85,19 +90,39 @@ getDirs('utils/lang/', (list) => {
         async.parallel(bot.guilds.forEach(G => serverSetup(G)))
 
         userSetup(bot.user)
+        hook.sendSlackMessage({
+            'username': 'Pollux Core Reporter',
+            'attachments': [{
+                'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
+                'pretext': `All systems go! I am ready to rock, master!`,
+                'color': '#3ed844', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
+                // 'footer': 'Powered by sneks',
+                'ts': Date.now() / 1000
+      }]
+        })
     });
     deployer.pullComms()
 
     function setTimer() {
-        timer = setTimeout(() => {
-            try {
-                bot.destroy();
-            } catch (e) {}
-            process.exit(1);
-        }, 1000 * 10 * 60);
+        /* timer = setTimeout(() => {
+             try {
+                 bot.destroy();
+             } catch (e) {}
+             process.exit(1);
+         }, 1000 * 10 * 60);*/
     }
     bot.on('reconnecting', () => {
-        console.log("Reconnect")
+        console.log("Reconnect".bgRed)
+        hook.sendSlackMessage({
+            'username': 'Pollux Core Reporter',
+            'attachments': [{
+                'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
+                'pretext': `SELF RESTART TRIGGERED! Gimme a second to still myself.`,
+                'color': '#ffb249', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
+                // 'footer': 'Powered by sneks',
+                'ts': Date.now() / 1000
+      }]
+        })
     });
     bot.on("message", (message) => {
         var Server = message.guild;
@@ -105,6 +130,18 @@ getDirs('utils/lang/', (list) => {
         var Author = message.author;
         var Target = message.mentions.users.first() || Author;
         var MSG = message.content;
+
+        if (Server) {
+
+            if (Server.name == "Discord Bots" && (MSG.includes('px+') || MSG.toLowerCase().includes('pollux'))) {
+                console.log(" @ " + Server.name.toString().bgRed.blue.bold + Channel.name.toString().bgRed.yellow + " - " + Author.username.toString().bold + ": " + MSG.toString().gray + "\n")
+            } else {
+                if (Server.name == "Discord Bots") return;
+                console.log(" @ " + Server.name.toString().bgYellow.blue.bold + Channel.name.toString().bgYellow.red + " - " + Author.username.toString().bold + ": " + MSG.toString().gray + "\n")
+            }
+
+        }
+
         if (Author.bot) return;
         clearTimeout(timer);
         setTimer();
@@ -133,16 +170,51 @@ getDirs('utils/lang/', (list) => {
             userSetup(Author);
             userSetup(Target);
             paramIncrement(Author, 'exp', 1)
+            if (!Author.mods.PERMS) {
 
-            if (Server.mods.LEVELS) {
-                if (Channel.mods.LEVELS) {
-                    updateEXP(Author, message)
+                if (Server.member(Author).hasPermission("MANAGE_GUILD")) {
+
+                    paramDefine(Author, 'PERMS', 0)
+                } else {
+
+                    paramDefine(Author, 'PERMS', 3)
                 }
+
+
+                if (Server.mods.MODROLE.name) {
+
+                    if (Server.member(Author).roles.exists('name', Server.mods.MODROLE.name)) {
+                        paramDefine(Author, 'PERMS', 3)
+                    }
+                }
+
             }
-            if (Server.mods.DROPS) {
-                if (Channel.mods.DROPS) {
-                    dropGoodies(message)
+
+
+            if (!Channel.mods) {
+                channelSetup(Channel, Server);
+            }
+
+            try {
+
+                if (Server.mods.LEVELS) {
+                    if (Channel.mods.LEVELS) {
+                        updateEXP(Author, message)
+                    }
                 }
+            } catch (err) {
+                serverSetup(Server)
+
+            }
+            try {
+
+                if (Server.mods.DROPS) {
+                    if (Channel.mods.DROPS) {
+                        dropGoodies(message)
+                    }
+                }
+            } catch (err) {
+                serverSetup(Server)
             }
 
 
@@ -150,21 +222,45 @@ getDirs('utils/lang/', (list) => {
             if (Server && typeof (Server.mods.LANGUAGE) !== 'undefined' && Server.mods.LANGUAGE && Server.mods.LANGUAGE !== '') {
                 message.lang = [Server.mods.LANGUAGE, 'en'];
             }
+
             //Wave 2 -- CHECK PREFIX
             if (Server && typeof (Server.mods.PREFIX) !== 'undefined' && Server.mods.PREFIX && Server.mods.PREFIX !== '') {
                 //-- START PREFIX
                 if (message.content.startsWith(Server.mods.PREFIX)) {
                     message.botUser = bot;
+                    message.akairo = client;
                     message.prefix = Server.mods.PREFIX;
 
                     //deployer.checkModule(message)
-                    console.log('check ' + message)
-                    if (deployer.checkUse(message)) {
-                        console.log('OK')
-                        deployer.run(message);
-                    }
 
+
+
+
+
+                    console.log('check ' + message)
+                    switch (deployer.checkUse(message)) {
+
+                        case "DISABLED":
+                            message.reply(mm('CMD.disabledModule', {
+                                lngs: message.lang,
+                                module: message.split(' ')[1]
+                            }))
+
+
+                            break;
+                        case "NO PRIVILEGES":
+                            message.reply(mm('CMD.moderationNeeded', {
+                                lngs: message.lang,
+                                prefix: message.prefix
+                            }))
+                            break;
+                        default:
+                            console.log('OK go')
+                            deployer.run(message,userDB,DB);
+                            break;
+                    }
                     // deployer.checkUse(message)
+
 
                 } else {
                     //-- IS MENTION BOT
@@ -203,6 +299,7 @@ getDirs('utils/lang/', (list) => {
 bot.on('guildCreate', (guild, member) => {
     serverSetup(guild);
 });
+
 bot.on('guildMemberAdd', (member) => {
     var Server = member.guild
     if (Server) {
@@ -254,10 +351,20 @@ bot.on('guildMemberRemove', (member) => {
     }
 })
 
-bot.on("warn", console.warn);
+//bot.on("warn", console.warn);
 bot.on('error', (error) => {
     if (!error) return;
     console.log(error.toString().red);
+    hook.sendSlackMessage({
+        'username': 'Pollux Core Reporter',
+        'attachments': [{
+            'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
+            'pretext': `Minor error! Check console`,
+            'color': '#ffdc49', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
+            // 'footer': 'Powered by sneks',
+            'ts': Date.now() / 1000
+      }]
+    })
 });
 //FUNCTIONFEST
 function getDirs(rootDir, cb) {
@@ -283,6 +390,29 @@ function getDirs(rootDir, cb) {
     })
 }
 
+function channelSetup(element, guild) {
+
+    console.log('Setting Up Channel:'.white + element.name + " from " + guild.name)
+    DB[guild.id].channels[element.id] = {
+        name: element.name,
+        modules: {
+            DROPSLY: 0,
+
+            NSFW: false,
+            GOODIES: true,
+            GOODMOJI: ':gem:',
+            GOODNAME: 'Gem',
+            LEVELS: true,
+            LVUP: true,
+            DROPS: false,
+            DISABLED: ['cog']
+        }
+    }
+    element.mods = DB[guild.id].channels[element.id].modules;
+
+
+}
+
 function serverSetup(guild) {
 
 
@@ -296,10 +426,12 @@ function serverSetup(guild) {
                 LEVELS: true,
                 LVUP: true,
                 DROPS: false,
+                                GOODMOJI: ':gem:',
+                        GOODNAME: 'Gem',
                 ANNOUNCE: false,
                 PREFIX: "+",
                 MODROLE: {},
-                LANGUAGE: 'dev',
+                LANGUAGE: 'en',
                 DISABLED: ['cog']
             },
             channels: {}
@@ -314,8 +446,7 @@ function serverSetup(guild) {
 
                         NSFW: false,
                         GOODIES: true,
-                        GOODMOJI: ':gem:',
-                        GOODNAME: 'Gems',
+
                         LEVELS: true,
                         LVUP: true,
                         DROPS: false,
@@ -323,15 +454,11 @@ function serverSetup(guild) {
                     }
                 }
                 element.mods = DB[guild.id].channels[element.id].modules;
-            }
-        });
-    } else {
-        guild.channels.forEach(element => {
-            if (element.type != 'voice') {
-                element.mods = DB[guild.id].channels[element.id].modules;
 
             }
         });
+    } else {
+
     }
     guild.mods = DB[guild.id].modules
     try {
@@ -357,9 +484,10 @@ function userSetup(user) {
         userDB[user.id] = {
             name: user.username,
             modules: {
+                PERMS:0,
                 level: 0,
                 exp: 0,
-                goodies: 500,
+                goodies: 500+randomize(100,200),
                 coins: 0,
                 medals: {},
                 expenses: {
@@ -402,18 +530,34 @@ Array.prototype.remove = function () {
 
 function paramAdd(target, param, val) {
     try {
-        if (target instanceof Discord.User) {
-            //target.mods[param].push(val)
-            userDB[target.id].modules[param].push(val)
-        }
-        if (target instanceof Discord.Guild) {
-            // target.mods[param].push(val)
-            DB[target.id].modules[param].push(val)
-        }
-        if (target instanceof Discord.Channel) {
-            // target.mods[param].push(val)
-            DB[target.guild.id].channels[target.id].modules[param].push(val)
-        }
+ param = param.split('.'); if ((param.length==1)){
+
+            if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                userDB[target.id].modules[param].push(val)
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                DB[target.id].modules[param].push(val)
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                DB[target.guild.id].channels[target.id].modules[param].push(val)
+            }
+}else{
+               if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                userDB[target.id].modules[param[0]][param[1]].push(val)
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                DB[target.id].modules[param[0]][param[1]].push(val)
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                DB[target.guild.id].channels[target.id].modules[param[0]][param[1]].push(val)
+            }
+}
         fs.writeFile('./database/users.json', JSON.stringify(userDB, null, 4), (err) => {
             ////console.log("JSON Write User Database".gray)
         });
@@ -428,18 +572,34 @@ function paramAdd(target, param, val) {
 
 function paramRemove(target, param, val) {
     try {
-        if (target instanceof Discord.User) {
-            //target.mods[param].remove(val)
-            userDB[target.id].modules[param].remove(val)
-        }
-        if (target instanceof Discord.Guild) {
-            //target.mods[param].remove(val)
-            DB[target.id].modules[param].remove(val)
-        }
-        if (target instanceof Discord.Channel) {
-            //target.mods[param].remove(val)
-            DB[target.guild.id].channels[target.id].modules[param].remove(val)
-        }
+param = param.split('.'); if ((param.length==1)){
+
+            if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                userDB[target.id].modules[param].remove(val)
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                DB[target.id].modules[param].remove(val)
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                DB[target.guild.id].channels[target.id].modules[param].remove(val)
+            }
+}else{
+               if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                userDB[target.id].modules[param[0]][param[1]].remove(val)
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                DB[target.id].modules[param[0]][param[1]].remove(val)
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                DB[target.guild.id].channels[target.id].modules[param[0]][param[1]].remove(val)
+            }
+}
         fs.writeFile('./database/users.json', JSON.stringify(userDB, null, 4), (err) => {
             ////console.log("JSON Write User Database".gray)
         });
@@ -454,18 +614,34 @@ function paramRemove(target, param, val) {
 
 function paramIncrement(target, param, val) {
     try {
-        if (target instanceof Discord.User) {
-            //target.mods[param] += val
-            userDB[target.id].modules[param] += val
-        }
-        if (target instanceof Discord.Guild) {
-            //target.mods[param] += val
-            DB[target.id].modules[param] += val
-        }
-        if (target instanceof Discord.Channel) {
-            //target.mods[param] += val
-            DB[target.guild.id].channels[target.id].modules[param] += val
-        }
+param = param.split('.'); if ((param.length==1)){
+
+            if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                userDB[target.id].modules[param] += val
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                DB[target.id].modules[param] += val
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                DB[target.guild.id].channels[target.id].modules[param] += val
+            }
+}else{
+               if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                userDB[target.id].modules[param[0]][param[1]] += val
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                DB[target.id].modules[param[0]][param[1]] += val
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                DB[target.guild.id].channels[target.id].modules[param[0]][param[1]] += val
+            }
+}
         try {
             fs.writeFile('./database/users.json', JSON.stringify(userDB, null, 4), (err) => {
                 ////console.log("JSON Write User Database".gray)
@@ -482,18 +658,34 @@ function paramIncrement(target, param, val) {
 
 function paramDefine(target, param, val) {
     try {
-        if (target instanceof Discord.User) {
-            //target.mods[param] = val
-            userDB[target.id].modules[param] = val
-        }
-        if (target instanceof Discord.Guild) {
-            // target.mods[param] = val
-            DB[target.id].modules[param] = val
-        }
-        if (target instanceof Discord.Channel) {
-            //target.mods[param] = val
-            DB[target.guild.id].channels[target.id].modules[param] = val
-        }
+param = param.split('.'); if ((param.length==1)){
+
+            if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                userDB[target.id].modules[param] = val
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                DB[target.id].modules[param] = val
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                DB[target.guild.id].channels[target.id].modules[param] = val
+            }
+}else{
+               if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                userDB[target.id].modules[param[0]][param[1]] = val
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                DB[target.id].modules[param[0]][param[1]] = val
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                DB[target.guild.id].channels[target.id].modules[param[0]][param[1]] = val
+            }
+}
         try {
             fs.writeFile('./database/users.json', JSON.stringify(userDB, null, 4), (err) => {
                 ////console.log("JSON Write User Database".gray)
@@ -533,7 +725,7 @@ function dropGoodies(event) {
     }
     var droprate = randomize(1, 8000)
     if (GLD.name == "Discord Bots") return;
-    console.log(droprate + " @ " + event.guild.name.toString().bgWhite.black + " - " + event.author.username.toString().bold + ": " + event.content.toString().gray)
+    console.log(droprate)
     if (droprate > 1889 && droprate < 2000) {
         console.log('DROP')
         var pack;
@@ -586,7 +778,7 @@ function randomize(min, max) {
 function updateEXP(TG, event) {
     let userData = TG.mods;
     var caller = TG.username // Checar Caller
-    if (event.guild.name == "Discord Bots") return;
+
     //LEVEL UP CHECKER
     //-----------------------------------------------------
     let curLevel = Math.floor(0.18 * Math.sqrt(userData.exp));
@@ -594,8 +786,10 @@ function updateEXP(TG, event) {
     if (curLevel > userData.level) {
         // Level up!
         paramIncrement(TG, 'level', 1)
-            // event.reply(`upou pro level **${curLevel}**!`);
+
+        // event.reply(`upou pro level **${curLevel}**!`);
         console.log("LEVEL UP EVENT FOR ".bgBlue + TG)
+        if (event.guild.name == "Discord Bots") return;
         let img = TG.defaultAvatarURL.substr(0, TG.defaultAvatarURL.length - 10)
         if (TG.avatarURL) {
             img = TG.avatarURL.substr(0, TG.avatarURL.length - 10);
@@ -626,9 +820,11 @@ function updateEXP(TG, event) {
                                     cart.print(head, 153, 3, event.guild.member(TG).displayName);
                                     cart.print(sub, 336, 45, `${level}`);
                                     cart.composite(photo, 18, 20)
+
                                     cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
                                             if (event.guild.mods.LVUP) {
                                                 if (event.channel.mods.LVUP) {
+
                                                     event.channel.sendFile(image)
                                                 }
                                             }

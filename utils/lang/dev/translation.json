@@ -22,7 +22,7 @@
          , "goodDrop": "OLHA GENTE! Um {{good}} {{emoji}}! quem digitar `{{prefix}}pick` primeiro leva!"
          , "rareDrop": "EITA PORRA! Um baú cheio de {{good}}s {{emoji}}! quem digitar `{{prefix}}pick` primeiro leva TUDO!"
          , "userDrop": "{{user}} largou um {{good}} {{emoji}} na sala! quem digitar `{{prefix}}pick` primeiro leva!"
-         , "cantDrop" : "Você não tem {{goods}} pra dropar..."
+         , "cantDrop": "Você não tem {{goods}} pra dropar..."
          , "pick": "{{user}} pegou **{{count}}** {{good}}(s) {{emoji}}!"
          , "earnings": "Ganhos"
          , "expenses": "Gastos"
@@ -31,6 +31,7 @@
          , "trades": "Trades"
          , "drops": "Drops"
          , "balance": "Balanço"
+         , "total": "Total"
      }
      , "forFun": {
          "saltLVL": "O nível de sal de {{target}} é de **{{amount}}%** {{emoji}}"
@@ -38,7 +39,7 @@
          , "nsfw404": "Teus pornô são tão bizarros que nem achei saporra"
          , "nsfwNope": ":no_entry_sign: Comandos NSFW não são permitidos neste Canal"
          , "nsfwNofunds": "você não tem {{goods}}s suficientes para comprar putaria. Você precisa pelo menos **5**"
-         , "nsfwCheckout": "Foram debitados 5 {{emoji}}s de sua conta."
+         , "nsfwCheckout": "Foram debitados 5 {{emoji}} de sua conta."
          , "airwaifu": ":airplane: Aerowaifu do Dia."
          , "leadUnap": "Se você não aparece aqui, digite `{{prefix}}profile` para ver seu Level"
      }
@@ -62,11 +63,11 @@
          , "enabledChn": "O módulo {{module}} foi habilitado no canal #{{channel}}"
          , "enabledComSer": "O comando {{command}} foi habilitado Globalmente"
          , "enabledComChn": "O comando {{command}} foi habilitado no canal #{{channel}}"
-         , "kinNone" : "tu precisa me dizer de quem eu vou chutar a bunda"
-         , "kin404" : "deu ruim, não achei esse maluco"
-         , "unperm" : "Por algum raio de razão eu não posso kickar esse cara. MIMDÁ PERMISSÃO"
-         , "jas" : "Ok, me dá um segundo..."
-         , "didkik" : ":boot: Meti um pé na bunda de {{target}}."
+         , "kikNone": "tu precisa me dizer de quem eu vou chutar a bunda"
+         , "kik404": "deu ruim, não achei esse maluco"
+         , "unperm": "Por algum raio de razão eu não posso kickar esse cara. MIMDÁ PERMISSÃO"
+         , "jas": "Ok, me dá um segundo..."
+         , "didkik": ":boot: Meti um pé na bunda de {{target}}."
      }
      , "dict": {
          "coinHeads": "cara"
@@ -88,7 +89,7 @@
          "memberSince": "Membro Desde:"
          , "level": "Level:"
          , "levelUp": "Level Up!"
-         ,"genProf": "Gerando ProfileCard..."
+         , "genProf": "Gerando ProfileCard..."
      }
      , "help": {
          "checkYeDM": "Te enviei uns lance em pvt, dá um zóio."
@@ -96,9 +97,9 @@
          , "airwaifu": "Waifus aeroplanares"
          , "announce": "Anuncia uma mensagem no canal #general do Server"
          , "balance": "Seu extrato bancário de goodies gastos"
-         , "disable": "Desabilita módulos"
+         , "disable": "Desabilita módulos ou Comandos"
          , "drop": "Larga um goodie no canal para alguem pegar"
-         , "enable": "Habilita módulos"
+         , "enable": "Habilita módulos ou Comandos"
          , "flip": "Cara ou Coroa, é isso aí."
          , "give": "Faz uma doação de X goodies para @fulaninho"
          , "joined": "Retorna a data e o momento em que você ou @fulaninho entrou no Server"
@@ -113,8 +114,16 @@
          , "stats": "Informação chata e aleatória de robô"
          , "switch": "Troca minha foto"
          , "joinSupp": "Entre no Server de Suporte"
-         , "inviteMe": "Me convide para participar do seu Server~"
-         , "inviteMe": "Me convide para participar do seu Server~"
-         , "disableNuisance": "Desabilite eventos automáticos:\n Drop de Goodies/Gems: ${message.prefix}disable DROPS \n Imagens de Level Up: ${message.prefix}disable LVUP"
+         , "invite": "Me convide para participar do seu Server~"
+         , "disableNuisance": "Desabilite eventos automáticos:\n Drop de Goodies/Gems: {{prefix}}disable DROPS \n Imagens de Level Up: {{prefix}}disable LVUP"
+         , "cashrank": "Ranking **GLOBAL** de {{good}}s. Alternativamente `{{prefix}}{{good}}`"
+         , "cashrank": "Ranking **GLOBAL** de {{good}}s. Alternativamente `{{prefix}}{{good}}`"
+        ,"daily":"{{good}}s de graça todo dia."
+        ,"help":"Você provavelmente sabe o que isso faz"
+        ,"rule34":"Busca uns Hentai por aí"
+        ,"safe":"Imagens bonitas do Safebooru"
+        ,"ping":"Pong"
+        ,"speak or lang":"Trocar o idioma, atualmente suportando: `{{langs}}`"
+        ,"betflip":"Aposte {{good}}s virando uma moeda"
      }
  }

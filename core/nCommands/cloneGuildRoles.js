@@ -6,7 +6,7 @@ var mm = locale.getT();
 var cmd = 'cloneGuildRoles';
 
 
-var init = function (message, userDB, DB) {
+var init = function (message,userDB,DB) {
 
     var Server = message.guild;
     var Channel = message.channel;
@@ -77,7 +77,7 @@ var init = function (message, userDB, DB) {
         }).catch();
 
         message.channel.awaitMessages(filterV, {max: 1,time: 10000}).then(cc => {
-            message.reply('Ok, aborted!');
+
             sack = [];
             return;
 

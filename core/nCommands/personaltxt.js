@@ -5,7 +5,7 @@ var mm = locale.getT();
 
 var cmd = 'personalTxt';
 
-var init = function (message, userDB, DB) {
+var init = function (message,userDB,DB) {
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;

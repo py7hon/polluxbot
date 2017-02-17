@@ -1,7 +1,7 @@
 
 var cmd = 'say';
 
-var init = function (message, userDB, DB) {
+var init = function (message,userDB,DB) {
   message.delete()
  message.channel.sendMessage(message.content.substr(message.prefix.length+3))
 

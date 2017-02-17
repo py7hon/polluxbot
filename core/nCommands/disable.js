@@ -5,7 +5,7 @@ var mm = locale.getT();
 
 var cmd = 'disable';
 
-var init = function (message, userDB, DB) {
+var init = function (message,userDB,DB) {
 
     console.log('fff')
     var Server = message.guild;

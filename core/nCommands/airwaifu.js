@@ -5,7 +5,7 @@ var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
 var cmd = 'airwaifu';
-
+var emb = new Discord.RichEmbed();
 
 var init = function (message) {
 var Server = message.guild;
@@ -14,7 +14,7 @@ var Author = message.author;
 var Target = message.mentions.users.first() || Author;
 var MSG = message.content;
 if (Author.bot) return;
-var emb = new Discord.RichEmbed();
+
   var LANG = message.lang;
 
     var success = mm('forFun.airwaifu',{lngs:LANG})
@@ -30,17 +30,18 @@ var emb = new Discord.RichEmbed();
             message.reply("Não achei nada com essas tags :(")
         } else {
             //message.reply('http:' + url)
+            emb.setImage('http:' +url)
             emb.setColor('#a47ee2')
             emb.setTitle(':airplane: Aerowaifu do Dia')
 
-            emb.setImage("http:" + url)
-            message.channel.sendEmbed(emb).then(function (m) {
-                m.react('👍')
-                m.react('👎')
-                m.react('❤')
-                m.react('😠')
 
-            })
+            message.channel.sendEmbed(emb).then(function (m) {
+                m.react('👍').catch()
+                m.react('👎').catch()
+                m.react('❤').catch()
+                m.react('😠').catch()
+
+            }).catch()
         }
     })
 

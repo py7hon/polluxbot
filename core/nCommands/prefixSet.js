@@ -6,7 +6,7 @@ var mm = locale.getT();
 
 var cmd = 'prefixSet';
 
-var init = function (message, userDB, DB) {
+var init = function (message,userDB,DB) {
 var args = message.content.split(' ').slice(1)
     var Server = message.guild;
     var LANG = message.lang;

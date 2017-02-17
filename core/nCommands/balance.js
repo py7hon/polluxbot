@@ -29,10 +29,18 @@ var init = function (message) {
     var dro =  mm('$.drops',{lngs:LANG});
     var tra =  mm('$.trades',{lngs:LANG});
     var gas =  mm('$.expenses',{lngs:LANG});
-    var gan =  mm('$.earninghs',{lngs:LANG});
+    var gan =  mm('$.earnings',{lngs:LANG});
+    var tot =  mm('$.total',{lngs:LANG});
     var nope =  mm('CMD.noDM',{lngs:LANG});
 
-
+    let GOODMOJI = ':gem:'
+let GOOD = 'Gem'
+if (Server.mods.GOODMOJI) {
+    GOODMOJI = Server.mods.GOODMOJI
+}
+if (Server.mods.GOODNAME) {
+    GOOD = Server.mods.GOODNAME
+}
     if (message.channel.type == 'dm') {
         message.reply(nope)
         return
@@ -42,9 +50,9 @@ var init = function (message) {
         img = Target.avatarURL.substr(0, Target.avatarURL.length - 10);
     }
     emb.setColor('#ffd156')
-    emb.title = bal
+    emb.title =  ":yen: " +bal
     emb.setThumbnail(img)
-        //emb.description = ' Números contabilizados desde 8-Feb-2017 '
+    emb.description = tot+' **'+Target.mods.goodies+"** "+GOOD+"s "+GOODMOJI
     emb.addField(gan, `
       **${put}**: ${Target.mods.earnings.putaria}
 **${jog}**: ${Target.mods.earnings.jogatina}

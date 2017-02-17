@@ -5,7 +5,7 @@ var mm = locale.getT();
 
 var cmd = 'eval';
 
-var init = function (message, userDB, DB) {
+var init = function (message,userDB,DB) {
 var Server = message.guild;
 var Channel = message.channel;
 var Author = message.author;
@@ -19,7 +19,7 @@ var LANG = message.lang;
 
 //-------MAGIC----------------
 
-  if (!Author.id == '88120564400553984') return;
+  if (!Author.id == '88120564400553984') return message.reply('Only my master can send me direct orders. now begone!');
 
 
      const params = MSG.split(" ").slice(1);
@@ -32,7 +32,7 @@ var LANG = message.lang;
 
       message.channel.sendCode("xl", gear.clean(evaled));
     } catch(err) {
-      message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${gear.clean(err)}\n\`\`\``);
+      message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${(err)}\n\`\`\``);
     }
   }
 module.exports = {pub:false,cmd: cmd, perms: 0, init: init, cat: 'misc'};

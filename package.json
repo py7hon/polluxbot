@@ -8,7 +8,7 @@
     "email": "lucasflicky@hotmail.com",
     "url": "lucasflicky.com"
   },
-
+  "files": "core",
   "main": "beta.js",
   "keywords": [
     "discordbot"
@@ -30,6 +30,7 @@
     "icy": "^2.1.0",
     "mongoose": "^4.8.1",
     "node-opus": "^0.2.4",
+    "self-reload-json": "^0.2.0",
     "shortid": "^2.2.6",
     "socket.io-client": "^1.6.0",
     "sqlite": "^2.2.4",

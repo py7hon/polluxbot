@@ -5,7 +5,7 @@ var mm = locale.getT();
 
 var cmd = 'saltlevel';
 
-var init = function (message, userDB, DB) {
+var init = function (message,userDB,DB) {
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -31,7 +31,8 @@ let saltmoji = message.guild.emojis.find('name','salty')
         lngs:LANG,
         target: Target.username,
         amount: r * multiplier,
-        emoji: saltmoji
+        emoji: saltmoji,
+       interpolation: {'escapeValue': false}
     })
     message.channel.sendMessage(vocab)
 }

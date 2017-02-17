@@ -2,10 +2,11 @@ var gear = require("../gearbox.js");
 const Discord = require("discord.js");
 const Jimp = require("jimp");
 const getter = require("booru-getter")
-
+var locale = require('../../utils/multilang_b');
+var mm = locale.getT();
 var cmd = 'safe';
 
-var init = function (message, userDB, DB) {
+var init = function (message,userDB,DB) {
 var Server = message.guild;
 var Channel = message.channel;
 var Author = message.author;
@@ -18,7 +19,7 @@ var args = MSG.split(' ').slice(1)[1]
 var LANG = message.lang;
 
 //-------MAGIC----------------
-
+ var emb =    new Discord.RichEmbed();
 
         console.log("SAFEBOORU INVOKED by " + Author + "-------------\n")
         console.log(1) ;
@@ -31,17 +32,18 @@ var LANG = message.lang;
             }
             else {
                 //message.reply('http:' + url)
-                 emb =    new Discord.RichEmbed();
-                        emb.setColor('#ff97cf')
+                emb.setImage('http:'+url)
+                console.log(url.bgYellow)
+                  emb.setColor('#ff97cf')
 
-                emb.setImage("http:" + url)
+
                     message.channel.sendEmbed(emb,message.author+' ').then(function (m) {
-                m.react('👍')
-                m.react('👎')
-                m.react('❤')
-                m.react('😠')
+                m.react('👍').catch()
+                m.react('👎').catch()
+                m.react('❤').catch()
+                m.react('😠').catch()
 
-            })
+            }).catch()
             }
         })
     };

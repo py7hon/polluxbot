@@ -26,6 +26,8 @@ module.exports = {
     paramAdd: function paramAdd(target, param, val) {
         try {
 
+param = param.split('.'); if ((param.length==1)){
+
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
                 main.userDB[target.id].modules[param].push(val)
@@ -38,6 +40,20 @@ module.exports = {
                // target.mods[param].push(val)
                 main.DB[target.guild.id].channels[target.id].modules[param].push(val)
             }
+}else{
+               if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                main.userDB[target.id].modules[param[0]][param[1]].push(val)
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                main.DB[target.id].modules[param[0]][param[1]].push(val)
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                main.DB[target.guild.id].channels[target.id].modules[param[0]][param[1]].push(val)
+            }
+}
             fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
                 //console.log("JSON Write User Database".gray)
             });
@@ -52,18 +68,34 @@ module.exports = {
 paramRemove: function paramRemove(target, param, val) {
         try {
 
+       param = param.split('.'); if ((param.length==1)){
+
             if (target instanceof Discord.User) {
-                //target.mods[param].remove(val)
+                //target.mods[param].push(val)
                 main.userDB[target.id].modules[param].remove(val)
             }
             if (target instanceof Discord.Guild) {
-                //target.mods[param].remove(val)
+               // target.mods[param].push(val)
                 main.DB[target.id].modules[param].remove(val)
             }
             if (target instanceof Discord.Channel) {
-                //target.mods[param].remove(val)
+               // target.mods[param].push(val)
                 main.DB[target.guild.id].channels[target.id].modules[param].remove(val)
             }
+}else{
+               if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                main.userDB[target.id].modules[param[0]][param[1]].remove(val)
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                main.DB[target.id].modules[param[0]][param[1]].remove(val)
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                main.DB[target.guild.id].channels[target.id].modules[param[0]][param[1]].remove(val)
+            }
+}
             fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
                 //console.log("JSON Write User Database".gray)
             });
@@ -78,18 +110,34 @@ paramRemove: function paramRemove(target, param, val) {
     paramIncrement: function paramIncrement(target, param, val) {
         try {
 
+  param = param.split('.'); if ((param.length==1)){
+
             if (target instanceof Discord.User) {
-                //target.mods[param] += val
+                //target.mods[param].push(val)
                 main.userDB[target.id].modules[param] += val
             }
             if (target instanceof Discord.Guild) {
-                //target.mods[param] += val
+               // target.mods[param].push(val)
                 main.DB[target.id].modules[param] += val
             }
             if (target instanceof Discord.Channel) {
-                //target.mods[param] += val
+               // target.mods[param].push(val)
                 main.DB[target.guild.id].channels[target.id].modules[param] += val
             }
+}else{
+               if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                main.userDB[target.id].modules[param[0]][param[1]] += val
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                main.DB[target.id].modules[param[0]][param[1]] += val
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                main.DB[target.guild.id].channels[target.id].modules[param[0]][param[1]] += val
+            }
+}
             fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
                 //console.log("JSON Write User Database".gray)
             });
@@ -104,19 +152,34 @@ paramRemove: function paramRemove(target, param, val) {
 
     paramDefine: function paramDefine(target, param, val) {
         try {
+param = param.split('.'); if ((param.length==1)){
+
             if (target instanceof Discord.User) {
-                //target.mods[param] = val
+                //target.mods[param].push(val)
                 main.userDB[target.id].modules[param] = val
             }
             if (target instanceof Discord.Guild) {
-               // target.mods[param] = val
+               // target.mods[param].push(val)
                 main.DB[target.id].modules[param] = val
             }
             if (target instanceof Discord.Channel) {
-                //target.mods[param] = val
-
+               // target.mods[param].push(val)
                 main.DB[target.guild.id].channels[target.id].modules[param] = val
             }
+}else{
+               if (target instanceof Discord.User) {
+                //target.mods[param].push(val)
+                main.userDB[target.id].modules[param[0]][param[1]] = val
+            }
+            if (target instanceof Discord.Guild) {
+               // target.mods[param].push(val)
+                main.DB[target.id].modules[param[0]][param[1]] = val
+            }
+            if (target instanceof Discord.Channel) {
+               // target.mods[param].push(val)
+                main.DB[target.guild.id].channels[target.id].modules[param[0]][param[1]] = val
+            }
+}
             fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
                 //console.log("JSON Write User Database".gray)
             });

@@ -6,7 +6,7 @@ var mm = locale.getT();
 
 var cmd = 'betflip';
 
-var init = function (message, userDB, DB) {
+var init = function (message,userDB,DB) {
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -67,6 +67,7 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
         message.reply(prompts.error2);
         return;
     };
+    bet[1] = parseInt(bet[1], 10)
     if (bet[1] < 3) {
        message.reply(prompts.error3);
         return;

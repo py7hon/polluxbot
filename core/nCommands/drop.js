@@ -5,7 +5,7 @@ var mm = locale.getT();
 
 var cmd = 'drop';
 
-var init = function (message, userDB, DB) {
+var init = function (message,userDB,DB) {
 var Server = message.guild;
 var Channel = message.channel;
 var Author = message.author;
@@ -36,16 +36,18 @@ let GOODMOJI = ':gem:'
         console.log("------------DROP by" + Author)
             // message.guild.defaultChannel.sendMessage()
         if (userData.goodies >= 1) {
+
             gear.paramIncrement(Author,'goodies',-1)
               gear.paramIncrement(Author,'expenses.drops',1)
-            message.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', mm('$.userDrop',{lngs:LANG,emoji:GOODMOJI,good:GOOD,user:Author.username,prefix:message.prefix})).then(function (c) {
+            message.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', mm('$.userDrop',{lngs:LANG,emoji:GOODMOJI,good:GOOD,user:Author.username,prefix:message.prefix})).then(function (r) {
                 bot.on('message', m => {
                 if (m.content == m.guild.mods.PREFIX+"pick"){
                     r.delete().catch()
                 }
             })
             }).catch()
-             Channel.DROPSLY+=1
+
+             if(isNaN(Channel.DROPSLY)){Channel.DROPSLY=1}else{Channel.DROPSLY+=1}
             message.delete(1000)
         }
         else {

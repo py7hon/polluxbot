@@ -6,13 +6,15 @@ var mm = locale.getT();
 
 var cmd = 'help';
 
-var init = function (message, userDB, DB) {
+var init = function (message,userDB,DB) {
     var LANG = message.lang;
 
 
 var commands = [];
 var commandInfo = {};
 var txt = ""
+var txt2 = ""
+var txt3 = ""
 var tx = ""
 
     fs.readdir("./core/nCommands/", (err, files) => {
@@ -25,11 +27,15 @@ var tx = ""
                 name: comm.cmd,
                 category: comm.cat,
                 description: mm('help.' + comm.cmd, {
-                    lngs: LANG
+                    lngs: LANG,
+                    langs: "pt, en",
+                    prefix: message.prefix,
+                    good:message.guild.mods.GOODNAME.toLowerCase()
                 })
                 ,public: comm.pub
             }
-            if(commandInfo.public==true){
+
+            if(commandInfo.public==true||commandInfo.category!=undefined){
 
             commands.push(commandInfo)
             }
@@ -41,22 +47,45 @@ __**${message.prefix+commands[i].name}**__
 Category: _${commands[i].category}_
 ${commands[i].description}
 `
+
+   if((txt+tx).length<1000){
     txt = txt + tx
+   }else{
+       txt2=txt2 + tx
+   }
 
 
 }
-        txt = txt + `
-Disabling annoying autopost commands:
-Goodies/Gems Drops: ${message.prefix}disable DROPS
-Level Up pictures: ${message.prefix}disable LVUP
+        txt2 = txt2 + `
+${mm('help.disableNuisance', {
+                    lngs: LANG,
 
-Invite me to your server: https://discordapp.com/oauth2/authorize?client_id=271394014358405121&scope=bot&permissions=2121661559
+                    prefix: message.prefix,
 
-Join the Support Discord:https://discord.gg/ay48h7Q
+                })}
+
+${mm('help.invite', {
+                    lngs: LANG,
+
+                    prefix: message.prefix,
+
+                })}: https://discordapp.com/oauth2/authorize?client_id=271394014358405121&scope=bot&permissions=2121661559
+
+${mm('help.joinSupp', {
+                    lngs: LANG,
+
+                    prefix: message.prefix,
+
+                })}: https://discord.gg/ay48h7Q
 
 `
-        message.author.sendMessage(txt)
-       return
+
+
+        message.author.sendMessage(txt).catch()
+
+            message.author.sendMessage(txt2).catch()
+
+        return
     });
     //----Mess
 
@@ -68,7 +97,7 @@ Join the Support Discord:https://discord.gg/ay48h7Q
 
 
     console.log("HELP INVOKED")
-    message.reply("Te enviei uns lance em pvt, dá um zóio.")
+    message.reply(mm('help.checkYeDM',{lngs:LANG}))
 };
 
 module.exports = {
