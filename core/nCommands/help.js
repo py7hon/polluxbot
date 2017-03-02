@@ -4,10 +4,12 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
+
 var cmd = 'help';
 
 var init = function (message,userDB,DB) {
     var LANG = message.lang;
+
 
 
 var commands = [];
@@ -16,7 +18,14 @@ var txt = ""
 var txt2 = ""
 var txt3 = ""
 var tx = ""
-
+    let GOODMOJI = ':gem:'
+    let GOOD = 'Gem'
+    if (message.guild.mods.GOODMOJI) {
+        GOODMOJI = message.guild.mods.GOODMOJI
+    }
+    if (message.guild.mods.GOODNAME) {
+        GOOD = message.guild.mods.GOODNAME
+    }
     fs.readdir("./core/nCommands/", (err, files) => {
         //if (err) return console.error(err);
         files.forEach(file => {
@@ -30,7 +39,7 @@ var tx = ""
                     lngs: LANG,
                     langs: "pt, en",
                     prefix: message.prefix,
-                    good:message.guild.mods.GOODNAME.toLowerCase()
+                    good:GOOD.toLowerCase()
                 })
                 ,public: comm.pub
             }

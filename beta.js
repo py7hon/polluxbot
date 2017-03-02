@@ -21,10 +21,10 @@ var multilang = require('./utils/multilang_b');
 var Backend = require('i18next-node-fs-backend');
 var fs = require("fs");
 var paths = require("./core/paths.js");
-var skynet = bot.guilds.get('248285312353173505')
-//var SelfReloadJSON = require('self-reload-json');
-var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8',console.log("OK")));
-var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8',console.log("OK")));
+var skynet = '248285312353173505'
+    //var SelfReloadJSON = require('self-reload-json');
+var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8', console.log("OK")));
+var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8', console.log("OK")));
 
 
 //var DB= new SelfReloadJSON();
@@ -84,11 +84,11 @@ getDirs('utils/lang/', (list) => {
     bot.on('ready', () => {
 
         bot.user.setStatus('online')
-       var ts = Date.now();
+        var ts = Date.now();
 
 
 
-            // bot.user.setGame(`Adobe Edge Code CC`, 'https://www.twitch.tv/LucasFlicky').then().catch();
+        // bot.user.setGame(`Adobe Edge Code CC`, 'https://www.twitch.tv/LucasFlicky').then().catch();
         bot.user.setGame(`Super Smash Bros`).then().catch();
 
         async.parallel(bot.guilds.forEach(G => serverSetup(G)))
@@ -108,10 +108,19 @@ getDirs('utils/lang/', (list) => {
 
 
 
-                fs.createReadStream('database/users.json').pipe(fs.createWriteStream('./backup/USERS_' + ts + '.json'));
+        fs.createReadStream('database/users.json').pipe(fs.createWriteStream('./backup/USERS_' + ts + '.json'));
         fs.createReadStream('database/servers.json').pipe(fs.createWriteStream('./backup/SERVERS_' + ts + '.json'));
 
     });
+
+
+
+
+
+
+
+
+
     deployer.pullComms()
 
     function setTimer() {
@@ -144,17 +153,17 @@ getDirs('utils/lang/', (list) => {
 
         if (Server) {
 
-            var logserver   =  Server.name + " "
-            var logchan     =  " #"+Channel.name+" "
-            var logusr      =  " " + Author.username + ": "
-            var logmsg      =  MSG
+            var logserver = Server.name + " "
+            var logchan = " #" + Channel.name + " "
+            var logusr = " " + Author.username + ": "
+            var logmsg = MSG
 
             if (Server.name == "Discord Bots" && (MSG.includes('px+') || MSG.toLowerCase().includes('pollux'))) {
                 console.log(" @ " + logserver.bgRed.blue.bold + logchan.bgRed.yellow + " - " + logusr.bold + ": " + logmsg.gray + "\n")
             } else {
                 if (Server.name != "Discord Bots") {
 
-                console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
+                    console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
                 }
             }
 
@@ -274,7 +283,7 @@ getDirs('utils/lang/', (list) => {
                             break;
                         default:
                             console.log('OK go')
-                            deployer.run(message,userDB,DB);
+                            deployer.run(message, userDB, DB);
                             break;
                     }
                     // deployer.checkUse(message)
@@ -431,7 +440,7 @@ function channelSetup(element, guild) {
 
 }
 
-function serverSetup(guild) {
+var serverSetup = function serverSetup(guild) {
 
 
     if (!DB[guild.id]) {
@@ -444,8 +453,8 @@ function serverSetup(guild) {
                 LEVELS: true,
                 LVUP: true,
                 DROPS: false,
-                                GOODMOJI: ':gem:',
-                        GOODNAME: 'Gem',
+                GOODMOJI: ':gem:',
+                GOODNAME: 'Gem',
                 ANNOUNCE: false,
                 PREFIX: "+",
                 MODROLE: {},
@@ -502,10 +511,10 @@ function userSetup(user) {
         userDB[user.id] = {
             name: user.username,
             modules: {
-                PERMS:0,
+                PERMS: 0,
                 level: 0,
                 exp: 0,
-                goodies: 500+randomize(100,200),
+                goodies: 500 + randomize(100, 200),
                 coins: 0,
                 medals: {},
                 expenses: {
@@ -548,34 +557,35 @@ Array.prototype.remove = function () {
 
 function paramAdd(target, param, val) {
     try {
- param = param.split('.'); if ((param.length==1)){
+        param = param.split('.');
+        if ((param.length == 1)) {
 
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
                 userDB[target.id].modules[param].push(val)
             }
             if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.id].modules[param].push(val)
             }
             if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.guild.id].channels[target.id].modules[param].push(val)
             }
-}else{
-               if (target instanceof Discord.User) {
+        } else {
+            if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
                 userDB[target.id].modules[param[0]][param[1]].push(val)
             }
             if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.id].modules[param[0]][param[1]].push(val)
             }
             if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.guild.id].channels[target.id].modules[param[0]][param[1]].push(val)
             }
-}
+        }
         fs.writeFile('./database/users.json', JSON.stringify(userDB, null, 4), (err) => {
             ////console.log("JSON Write User Database".gray)
         });
@@ -590,34 +600,35 @@ function paramAdd(target, param, val) {
 
 function paramRemove(target, param, val) {
     try {
-param = param.split('.'); if ((param.length==1)){
+        param = param.split('.');
+        if ((param.length == 1)) {
 
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
                 userDB[target.id].modules[param].remove(val)
             }
             if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.id].modules[param].remove(val)
             }
             if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.guild.id].channels[target.id].modules[param].remove(val)
             }
-}else{
-               if (target instanceof Discord.User) {
+        } else {
+            if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
                 userDB[target.id].modules[param[0]][param[1]].remove(val)
             }
             if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.id].modules[param[0]][param[1]].remove(val)
             }
             if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.guild.id].channels[target.id].modules[param[0]][param[1]].remove(val)
             }
-}
+        }
         fs.writeFile('./database/users.json', JSON.stringify(userDB, null, 4), (err) => {
             ////console.log("JSON Write User Database".gray)
         });
@@ -632,34 +643,35 @@ param = param.split('.'); if ((param.length==1)){
 
 function paramIncrement(target, param, val) {
     try {
-param = param.split('.'); if ((param.length==1)){
+        param = param.split('.');
+        if ((param.length == 1)) {
 
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
                 userDB[target.id].modules[param] += val
             }
             if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.id].modules[param] += val
             }
             if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.guild.id].channels[target.id].modules[param] += val
             }
-}else{
-               if (target instanceof Discord.User) {
+        } else {
+            if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
                 userDB[target.id].modules[param[0]][param[1]] += val
             }
             if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.id].modules[param[0]][param[1]] += val
             }
             if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.guild.id].channels[target.id].modules[param[0]][param[1]] += val
             }
-}
+        }
         try {
             fs.writeFile('./database/users.json', JSON.stringify(userDB, null, 4), (err) => {
                 ////console.log("JSON Write User Database".gray)
@@ -676,34 +688,35 @@ param = param.split('.'); if ((param.length==1)){
 
 function paramDefine(target, param, val) {
     try {
-param = param.split('.'); if ((param.length==1)){
+        param = param.split('.');
+        if ((param.length == 1)) {
 
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
                 userDB[target.id].modules[param] = val
             }
             if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.id].modules[param] = val
             }
             if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.guild.id].channels[target.id].modules[param] = val
             }
-}else{
-               if (target instanceof Discord.User) {
+        } else {
+            if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
                 userDB[target.id].modules[param[0]][param[1]] = val
             }
             if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.id].modules[param[0]][param[1]] = val
             }
             if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
+                // target.mods[param].push(val)
                 DB[target.guild.id].channels[target.id].modules[param[0]][param[1]] = val
             }
-}
+        }
         try {
             fs.writeFile('./database/users.json', JSON.stringify(userDB, null, 4), (err) => {
                 ////console.log("JSON Write User Database".gray)
@@ -858,13 +871,6 @@ function updateEXP(TG, event) {
         });
     }
 }
-bot.on('presenceupdate', (oldMember, newMember) => {
-
-if (newMember.id == '248435798179971072' && newMember.presence.game.name.toLowerCase() == "for honor"){
-    skynet.defaultChannel.sendMessage("O gay do " + newMember + " já tá jogando aquele jogo de viado de novo.")
-}
-
-})
 
 
 
@@ -887,5 +893,89 @@ ${err.stack}
 });
 module.exports = {
     userDB: userDB,
-    DB: DB
+    DB: DB,
+    serverSetup: serverSetup
 };
+
+
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+//---------------SKYNET MAID CAFE EXCLUSIVE FEATURES ------------------------------
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+
+bot.on('presenceUpdate', (oldMember, newMember) => {
+    var sky = bot.guilds.get(skynet)
+    if (oldMember.guild != sky) return;
+
+    try {
+
+        if (newMember.id == '248435798179971072' && newMember.presence.game.name.toLowerCase() == "for honor") {
+            console.log('HONOR')
+            sky.defaultChannel.sendMessage("O gay do " + newMember + " já tá jogando aquele jogo de viado de novo.")
+
+        }
+
+
+        if (newMember.presence.game.name.toLowerCase() == "heroes of the storm") {
+            console.log('HERO')
+            var herois = sky.roles.find('name', 'Heróis do Toró')
+            sky.defaultChannel.sendMessage(herois + " pessoal, " + newMember.displayName + " abriu o jogo, juntem ae.")
+
+        }
+    } catch (e) {
+        if (newMember.id == '248435798179971072' && oldMember.presence.game.name.toLowerCase() == "for honor" && !newMember.presence.game) {
+            sky.defaultChannel.sendMessage(" Juba acabou de sair do jogo de viado dele.")
+
+        }
+    }
+
+})
+
+//
+//Reactions
+//-----------------------------------------------------
+const REACTIONS = "./resources/imgres/reactions/"
+
+bot.on('message', message => {
+  var now = new Date().getTime();
+       var dayC = 86400000
+
+if (!message.guild) return;
+
+        if (!message.guild.mods.putometro_curr) {
+            paramDefine(message.guild, 'putometro_curr', 0)
+        }
+        if (!message.guild.mods.putometro_max) {
+            paramDefine(message.guild, 'putometro_max', 0)
+        }
+        if (!message.guild.mods.putometro_last) {
+            paramDefine(message.guild, 'putometro_last', 0)
+        }
+        if (now-message.guild.mods.putometro_last >= dayC){
+            paramDefine(message.guild, 'putometro_curr', parseInt(Math.round(-(message.guild.mods.putometro_last-now)/dayC * 100) / 100))
+        }
+            if(message.guild.mods.putometro_curr>message.guild.mods.putometro_max){
+                 paramDefine(message.guild, 'putometro_max', message.guild.mods.putometro_curr)
+            }
+
+
+
+    if (message.content.includes(':rage:')||message.content.includes('puto') && message.content.includes('to ')){
+console.log("puto")
+paramDefine(message.guild, 'putometro_max', message.guild.mods.putometro_curr)
+ paramDefine(message.guild, 'putometro_curr', 0)
+ paramDefine(message.guild, 'putometro_last', now)
+
+    }
+
+    if (message.content.startsWith(prefix + "salty")) {
+        message.channel.sendFile(REACTIONS + "juba.png")
+    };
+
+    if (message.content.startsWith(prefix + "vidal")) {
+        message.channel.sendFile(REACTIONS + "vidaru.png")
+    };
+
+
+})

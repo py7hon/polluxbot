@@ -17,12 +17,9 @@
 /node_modules/
 /core/modules.json
 /core/commands/b.js
-/database/
 /utils/forfun/
 /.editorconfig
 /core/undone/
-/database/servers.json
-/database/users.json
 /autoexec.bat
 /core/MORKEN.txt
 /map.html
