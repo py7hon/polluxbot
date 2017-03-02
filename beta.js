@@ -950,7 +950,7 @@ if (!message.guild) return;
             paramDefine(message.guild, 'putometro_max', 0)
         }
         if (!message.guild.mods.putometro_last) {
-            paramDefine(message.guild, 'putometro_last', 0)
+            paramDefine(message.guild, 'putometro_last', now)
         }
         if (now-message.guild.mods.putometro_last >= dayC){
             paramDefine(message.guild, 'putometro_curr', parseInt(Math.round(-(message.guild.mods.putometro_last-now)/dayC * 100) / 100))

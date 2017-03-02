@@ -16,9 +16,9 @@
             "DISABLED": [
                 "cog"
             ],
-            "putometro_curr": 17227,
-            "putometro_max": 17227.348872094906,
-            "putometro_last": 0
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488445666022
         },
         "channels": {
             "110373943822540800": {
@@ -745,8 +745,8 @@
             "DISABLED": [
                 "cog"
             ],
-            "putometro_curr": 17227,
-            "putometro_max": 17227,
+            "putometro_curr": 0,
+            "putometro_max": 0,
             "putometro_last": 0
         },
         "channels": {
@@ -1975,9 +1975,9 @@
             "DISABLED": [
                 "cog"
             ],
-            "putometro_curr": 17227,
-            "putometro_max": 17227.346719502315,
-            "putometro_last": 0
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488445665478
         },
         "channels": {
             "277391723322408960": {
@@ -2016,6 +2016,8 @@
                     "DROPSLY": 0,
                     "NSFW": false,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
                     "DROPS": false,

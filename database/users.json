@@ -2,11 +2,11 @@
     "88120564400553984": {
         "name": "Flicky",
         "modules": {
-            "exp": 31019,
+            "exp": 31094,
             "level": 31,
             "coins": 11490,
             "medals": {},
-            "PERMS": 0,
+            "PERMS": 3,
             "expenses": {
                 "putaria": 15,
                 "jogatina": 1818,
@@ -731,8 +731,8 @@
         "name": "TripingPC",
         "modules": {
             "PERMS": 3,
-            "level": 0,
-            "exp": 10,
+            "level": 1,
+            "exp": 45,
             "goodies": 696,
             "coins": 0,
             "medals": {},
@@ -809,8 +809,8 @@
         "name": "Ovyerus",
         "modules": {
             "PERMS": 3,
-            "level": 0,
-            "exp": 1,
+            "level": 1,
+            "exp": 46,
             "goodies": 606,
             "coins": 0,
             "medals": {},
@@ -836,7 +836,7 @@
         "modules": {
             "PERMS": 0,
             "level": 0,
-            "exp": 7,
+            "exp": 9,
             "goodies": 660,
             "coins": 0,
             "medals": {},
@@ -888,7 +888,7 @@
         "modules": {
             "PERMS": 3,
             "level": 0,
-            "exp": 1,
+            "exp": 5,
             "goodies": 652,
             "coins": 0,
             "medals": {},
@@ -914,8 +914,944 @@
         "modules": {
             "PERMS": 3,
             "level": 0,
-            "exp": 3,
+            "exp": 7,
             "goodies": 602,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "243503221350334475": {
+        "name": "SATAN-TARAKS",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 28,
+            "goodies": 607,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "196063887290925058": {
+        "name": "YWI",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 1,
+            "goodies": 644,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "95475674269093888": {
+        "name": "jakeoid",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 16,
+            "goodies": 682,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "159023220140277760": {
+        "name": "Tactic Alpha",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 7,
+            "goodies": 624,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "203300837928206337": {
+        "name": "Xenthys",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 2,
+            "goodies": 660,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "113156185389092864": {
+        "name": "jagrosh",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 7,
+            "goodies": 605,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "256885622944432129": {
+        "name": "Candy From Hell",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 0,
+            "goodies": 644,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "259601353419128833": {
+        "name": "MDMCK10",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 12,
+            "goodies": 619,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "267933393772216321": {
+        "name": "Atomic",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 0,
+            "goodies": 674,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "174599095606968320": {
+        "name": "Zennyization",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 4,
+            "goodies": 627,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "168169809303961600": {
+        "name": "Pollr",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 0,
+            "goodies": 659,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "116138050710536192": {
+        "name": "Roadcrosser",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 23,
+            "goodies": 625,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "106395317271805952": {
+        "name": "emoticon",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 2,
+            "goodies": 653,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "151916651988647936": {
+        "name": "PikaDude",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 30,
+            "goodies": 635,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "245422902126575616": {
+        "name": "lalzz",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 13,
+            "goodies": 642,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "156324425673736192": {
+        "name": "Eclair",
+        "modules": {
+            "PERMS": 3,
+            "level": 1,
+            "exp": 75,
+            "goodies": 664,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "180927920011870208": {
+        "name": "NaruAyase2195",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 1,
+            "goodies": 641,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "118547889931812868": {
+        "name": "Vex",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 10,
+            "goodies": 674,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "132581875536494592": {
+        "name": "DrCelt",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 19,
+            "goodies": 607,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "109175018570661888": {
+        "name": "carshalash",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 1,
+            "goodies": 660,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "127106106081280000": {
+        "name": "Kurba",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 4,
+            "goodies": 654,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "211417829906448387": {
+        "name": "Potaha",
+        "modules": {
+            "PERMS": 3,
+            "level": 1,
+            "exp": 37,
+            "goodies": 639,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "142906820631986176": {
+        "name": "Doggo~ ❤",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 20,
+            "goodies": 671,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "94129005791281152": {
+        "name": "Zeta",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 0,
+            "goodies": 624,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "244165871562391552": {
+        "name": "Erlite",
+        "modules": {
+            "PERMS": 3,
+            "level": 1,
+            "exp": 37,
+            "goodies": 605,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "86607397321207808": {
+        "name": "spoopy🍡",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 0,
+            "goodies": 691,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "80088516616269824": {
+        "name": "Danny",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 3,
+            "goodies": 622,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "203490083645423617": {
+        "name": "Red Panda",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 17,
+            "goodies": 678,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "172002275412279296": {
+        "name": "Tatsumaki",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 0,
+            "goodies": 643,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "251253454826110977": {
+        "name": "Monstercat",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 0,
+            "goodies": 662,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "200431291848589312": {
+        "name": "Lina_Inverse",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 0,
+            "goodies": 601,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "200390141825646593": {
+        "name": "Ryu",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 0,
+            "goodies": 659,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "231565857870839809": {
+        "name": "JayBot",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 0,
+            "goodies": 614,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "155659573515124736": {
+        "name": "noud02",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 8,
+            "goodies": 664,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "115134128717955080": {
+        "name": "Arraying",
+        "modules": {
+            "PERMS": 0,
+            "level": 0,
+            "exp": 0,
+            "goodies": 654,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "185617810133614594": {
+        "name": "Hjorthen",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 1,
+            "goodies": 626,
             "coins": 0,
             "medals": {},
             "expenses": {
