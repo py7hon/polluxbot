@@ -19,7 +19,7 @@ var LANG = message.lang;
 
 //-------MAGIC----------------
 
-  if (!Author.id == '88120564400553984') return message.reply('Only my master can send me direct orders. now begone!');
+  if (Author.id != '88120564400553984') return message.reply('Only my master can send me direct orders. now begone!');
 
 
      const params = MSG.split(" ").slice(1);

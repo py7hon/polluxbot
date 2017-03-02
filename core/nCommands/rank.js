@@ -54,8 +54,8 @@ gear.paramIncrement(Author,'goodies',0)
     //emb.description = "Os Top-5 fregueses mais tradicionais do Cyber Cafe"
 
 var medals = [':first_place: 1st',
-':first_place: 2nd',
-':first_place: 3rd',
+':second_place: 2nd',
+':third_place: 3rd',
 ':medal: 4th',
 ':medal: 5th'
 ]

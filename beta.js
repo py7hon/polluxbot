@@ -21,7 +21,7 @@ var multilang = require('./utils/multilang_b');
 var Backend = require('i18next-node-fs-backend');
 var fs = require("fs");
 var paths = require("./core/paths.js");
-
+var skynet = bot.guilds.get('248285312353173505')
 //var SelfReloadJSON = require('self-reload-json');
 var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8',console.log("OK")));
 var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8',console.log("OK")));
@@ -84,6 +84,10 @@ getDirs('utils/lang/', (list) => {
     bot.on('ready', () => {
 
         bot.user.setStatus('online')
+       var ts = Date.now();
+
+
+
             // bot.user.setGame(`Adobe Edge Code CC`, 'https://www.twitch.tv/LucasFlicky').then().catch();
         bot.user.setGame(`Super Smash Bros`).then().catch();
 
@@ -100,6 +104,13 @@ getDirs('utils/lang/', (list) => {
                 'ts': Date.now() / 1000
       }]
         })
+
+
+
+
+                fs.createReadStream('database/users.json').pipe(fs.createWriteStream('./backup/USERS_' + ts + '.json'));
+        fs.createReadStream('database/servers.json').pipe(fs.createWriteStream('./backup/SERVERS_' + ts + '.json'));
+
     });
     deployer.pullComms()
 
@@ -133,11 +144,18 @@ getDirs('utils/lang/', (list) => {
 
         if (Server) {
 
+            var logserver   =  Server.name + " "
+            var logchan     =  " #"+Channel.name+" "
+            var logusr      =  " " + Author.username + ": "
+            var logmsg      =  MSG
+
             if (Server.name == "Discord Bots" && (MSG.includes('px+') || MSG.toLowerCase().includes('pollux'))) {
-                console.log(" @ " + Server.name.toString().bgRed.blue.bold + Channel.name.toString().bgRed.yellow + " - " + Author.username.toString().bold + ": " + MSG.toString().gray + "\n")
+                console.log(" @ " + logserver.bgRed.blue.bold + logchan.bgRed.yellow + " - " + logusr.bold + ": " + logmsg.gray + "\n")
             } else {
-                if (Server.name == "Discord Bots") return;
-                console.log(" @ " + Server.name.toString().bgYellow.blue.bold + Channel.name.toString().bgYellow.red + " - " + Author.username.toString().bold + ": " + MSG.toString().gray + "\n")
+                if (Server.name != "Discord Bots") {
+
+                console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
+                }
             }
 
         }
@@ -417,7 +435,7 @@ function serverSetup(guild) {
 
 
     if (!DB[guild.id]) {
-        console.log('Setting Up Guild:'.yellow + guild.name)
+        console.log(('          --- - - - - = = = = = = Setting Up Guild:'.yellow + guild.name).bgBlue)
         DB[guild.id] = {
             name: guild.name,
             modules: {
@@ -840,6 +858,14 @@ function updateEXP(TG, event) {
         });
     }
 }
+bot.on('presenceupdate', (oldMember, newMember) => {
+
+if (newMember.id == '248435798179971072' && newMember.presence.game.name.toLowerCase() == "for honor"){
+    skynet.defaultChannel.sendMessage("O gay do " + newMember + " já tá jogando aquele jogo de viado de novo.")
+}
+
+})
+
 
 
 process.on('uncaughtException', function (err) {

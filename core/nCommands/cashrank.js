@@ -59,9 +59,9 @@ var init = function (message,userDB,DB) {
     emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/resources/imgres/emoji/ruby.png")
         // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
         //    emb.description = "Os Top-5 mais rubificadoss do server"
-    var medals = [':first_place: 1st'
-, ':first_place: 2nd'
-, ':first_place: 3rd'
+var medals = [':first_place: 1st',
+':second_place: 2nd',
+':third_place: 3rd'
 , ':medal: 4th'
 , ':medal: 5th'
 ]
