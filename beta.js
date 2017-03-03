@@ -89,7 +89,7 @@ getDirs('utils/lang/', (list) => {
 
 
         // bot.user.setGame(`Adobe Edge Code CC`, 'https://www.twitch.tv/LucasFlicky').then().catch();
-        bot.user.setGame(`Super Smash Bros`).then().catch();
+        bot.user.setGame(`Bocha`).then().catch();
 
         async.parallel(bot.guilds.forEach(G => serverSetup(G)))
 
@@ -425,13 +425,13 @@ function channelSetup(element, guild) {
         modules: {
             DROPSLY: 0,
 
-            NSFW: false,
+            NSFW: true,
             GOODIES: true,
             GOODMOJI: ':gem:',
             GOODNAME: 'Gem',
             LEVELS: true,
             LVUP: true,
-            DROPS: false,
+            DROPS: true,
             DISABLED: ['cog']
         }
     }
@@ -448,11 +448,11 @@ var serverSetup = function serverSetup(guild) {
         DB[guild.id] = {
             name: guild.name,
             modules: {
-                NSFW: false,
+                NSFW: true,
                 GOODIES: true,
                 LEVELS: true,
                 LVUP: true,
-                DROPS: false,
+                DROPS: true,
                 GOODMOJI: ':gem:',
                 GOODNAME: 'Gem',
                 ANNOUNCE: false,
@@ -471,12 +471,12 @@ var serverSetup = function serverSetup(guild) {
                     modules: {
                         DROPSLY: 0,
 
-                        NSFW: false,
+                        NSFW: true,
                         GOODIES: true,
 
                         LEVELS: true,
                         LVUP: true,
-                        DROPS: false,
+                        DROPS: true,
                         DISABLED: ['cog']
                     }
                 }
@@ -920,7 +920,20 @@ bot.on('presenceUpdate', (oldMember, newMember) => {
         if (newMember.presence.game.name.toLowerCase() == "heroes of the storm") {
             console.log('HERO')
             var herois = sky.roles.find('name', 'Heróis do Toró')
-            sky.defaultChannel.sendMessage(herois + " pessoal, " + newMember.displayName + " abriu o jogo, juntem ae.")
+            sky.defaultChannel.sendMessage(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.")
+
+            var team = 0
+            newMember.guild.presences.forEach(e => {
+                if (e.game && e.game.name.toLowerCase() == "heroes of the storm") team++;
+            })
+
+            if (team > 1 && team < 6){
+                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(5-team)+" e fecha o time.")
+            }
+            if (team > 5){
+                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(10-team)+" e temos dois times!!!")
+            }
+
 
         }
     } catch (e) {
@@ -975,6 +988,16 @@ paramDefine(message.guild, 'putometro_max', message.guild.mods.putometro_curr)
 
     if (message.content.startsWith(prefix + "vidal")) {
         message.channel.sendFile(REACTIONS + "vidaru.png")
+
+    };    if (message.content.includes("quantos heróis temos")||message.content.includes("quantos herois temos")||message.content.includes("how many heroes")) {
+
+   var team = 0
+            message.guild.presences.forEach(e => {
+                if (e.game && e.game.name.toLowerCase() == "heroes of the storm") team++;
+            })
+            var n =""
+            if (team > 1) n="s";
+            message.reply(' temos **'+team+'** Herói'+n+' no Nexus no momento.')
     };
 
 

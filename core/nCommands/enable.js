@@ -102,15 +102,17 @@ var init = function (message,userDB,DB) {
 
 
 
-    console.log('aaa')
     if (sc == 'S') {
-        if (module in Server.mods) {
-            gear.paramDefine(Server, module, true)
+        Server.channels.forEach(e=>{
+
+        if (module in e.mods) {
+            gear.paramDefine(e, module, true)
             message.reply(disaMS)
         } else {
             imComm(message, sc)
         }
 
+        })
     } else {
 
         if (module in message.channel.mods) {

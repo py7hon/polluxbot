@@ -2,14 +2,14 @@
     "110373943822540800": {
         "name": "Discord Bots",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
-            "LVUP": true,
+            "LVUP": false,
             "DROPS": false,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
@@ -25,13 +25,13 @@
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "GOODMOJI": ":gem:",
                     "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -41,10 +41,10 @@
                 "name": "old-bot-list",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -55,12 +55,12 @@
                 "name": "development",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "GOODMOJI": ":gem:",
                     "GOODNAME": "Gem",
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -71,13 +71,13 @@
                 "name": "testing-^_`",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "GOODMOJI": ":gem:",
                     "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -87,10 +87,10 @@
                 "name": "ababababababababa",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -101,10 +101,10 @@
                 "name": "testing-nsfw",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -115,10 +115,12 @@
                 "name": "testing-voice",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -129,13 +131,13 @@
                 "name": "ultimate-shitposting",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "GOODMOJI": ":gem:",
                     "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -145,10 +147,10 @@
                 "name": "information",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -159,10 +161,10 @@
                 "name": "mod-log",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -173,10 +175,10 @@
                 "name": "alalalalalalalala",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -187,12 +189,12 @@
                 "name": "testing-[\\]",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "GOODMOJI": ":gem:",
                     "GOODNAME": "Gem",
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -203,10 +205,10 @@
                 "name": "trash_discord-js",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -217,10 +219,10 @@
                 "name": "general-backup",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -231,10 +233,10 @@
                 "name": "carbon-complaint",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -245,10 +247,12 @@
                 "name": "bot-list-log",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -259,10 +263,10 @@
                 "name": "eye-tracking",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -273,10 +277,10 @@
                 "name": "bot-list",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -287,10 +291,10 @@
                 "name": "starboard",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -301,10 +305,10 @@
                 "name": "image-feed",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
-                    "LVUP": true,
+                    "LVUP": false,
                     "DROPS": false,
                     "DISABLED": [
                         "cog"
@@ -316,31 +320,36 @@
     "116436654746632196": {
         "name": "LM&G",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
             "DISABLED": [
                 "cog"
-            ]
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488461091166
         },
         "channels": {
             "116436654746632196": {
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -350,11 +359,11 @@
                 "name": "staff",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -364,11 +373,11 @@
                 "name": "announcements",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -378,11 +387,11 @@
                 "name": "stream-highlights",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -392,11 +401,13 @@
                 "name": "selfie_chat",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -406,11 +417,13 @@
                 "name": "gallery",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -420,11 +433,11 @@
                 "name": "bot",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -435,17 +448,17 @@
     "248285312353173505": {
         "name": "Pink Hood SKYNET Maid Cafe",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
-            "LANGUAGE": "en",
+            "LANGUAGE": "dev",
             "DISABLED": [
                 "cog"
             ],
@@ -458,13 +471,13 @@
                 "name": "lounge",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "GOODMOJI": ":gem:",
                     "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -474,11 +487,11 @@
                 "name": "mitadores",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -488,11 +501,11 @@
                 "name": "ravenloft",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -502,11 +515,11 @@
                 "name": "backyard_nsfw",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -516,11 +529,11 @@
                 "name": "engine_room",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -530,11 +543,13 @@
                 "name": "kasino",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -544,13 +559,13 @@
                 "name": "test_yard",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "GOODMOJI": ":gem:",
                     "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -560,11 +575,11 @@
                 "name": "jukebox_control",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -574,11 +589,11 @@
                 "name": "masmorra",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -588,11 +603,11 @@
                 "name": "escolinha",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -602,11 +617,11 @@
                 "name": "reception_hall",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -616,11 +631,11 @@
                 "name": "hall_of_shame",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -630,11 +645,11 @@
                 "name": "shadowverse",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -644,13 +659,13 @@
                 "name": "bot_factory",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "GOODMOJI": ":gem:",
                     "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -660,11 +675,11 @@
                 "name": "cleberbot",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -674,11 +689,11 @@
                 "name": "vegas",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -688,11 +703,11 @@
                 "name": "cozinha",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -702,11 +717,11 @@
                 "name": "oficina",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -716,11 +731,11 @@
                 "name": "streets_of_tokyo",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -731,14 +746,14 @@
     "252388688766435328": {
         "name": "The Ivory Leon",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
@@ -747,20 +762,20 @@
             ],
             "putometro_curr": 0,
             "putometro_max": 0,
-            "putometro_last": 0
+            "putometro_last": 1488447475713
         },
         "channels": {
             "252388688766435328": {
                 "name": "botnet",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "GOODMOJI": ":gem:",
                     "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -770,11 +785,11 @@
                 "name": "logs",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -784,25 +799,29 @@
                 "name": "leon-quotes",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
                 }
             },
             "285231558196068352": {
-                "name": "celt-shelter",
+                "name": "come",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -813,14 +832,14 @@
     "255479037407920128": {
         "name": "Astronauts Of Roblox (A.O.R)",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
@@ -833,11 +852,11 @@
                 "name": "avisos",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -847,11 +866,11 @@
                 "name": "regras",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -861,11 +880,11 @@
                 "name": "divulgacao",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -875,11 +894,11 @@
                 "name": "info",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -889,11 +908,11 @@
                 "name": "offtopic",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -903,11 +922,11 @@
                 "name": "astronautas",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -917,11 +936,11 @@
                 "name": "inscricoes",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -931,11 +950,11 @@
                 "name": "naves",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -945,11 +964,11 @@
                 "name": "musicas",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -959,11 +978,11 @@
                 "name": "navepreta",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -973,11 +992,11 @@
                 "name": "naveazul",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -987,11 +1006,11 @@
                 "name": "naveroxa",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1002,14 +1021,14 @@
     "258742888219934731": {
         "name": "SERVIDOR PRIVADA",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
@@ -1022,11 +1041,11 @@
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1036,11 +1055,11 @@
                 "name": "chat",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1051,31 +1070,34 @@
     "259944159543033856": {
         "name": "_XD clan",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
             "DISABLED": [
                 "cog"
-            ]
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488464731885
         },
         "channels": {
             "259944159543033856": {
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1085,11 +1107,11 @@
                 "name": "konsole",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1099,11 +1121,11 @@
                 "name": "sexy",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1114,31 +1136,36 @@
     "263666628502224907": {
         "name": "Lumber Tycoon 2 Fans",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
             "DISABLED": [
                 "cog"
-            ]
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488483776178
         },
         "channels": {
             "263666628502224907": {
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1148,11 +1175,11 @@
                 "name": "musics",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1162,11 +1189,11 @@
                 "name": "rules",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1176,11 +1203,11 @@
                 "name": "news",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1190,11 +1217,11 @@
                 "name": "scammers_list",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1204,11 +1231,11 @@
                 "name": "selling-chat",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1218,11 +1245,11 @@
                 "name": "welcome_and_bye",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1232,11 +1259,11 @@
                 "name": "bot-test",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1246,11 +1273,11 @@
                 "name": "lumberphotos",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1260,11 +1287,11 @@
                 "name": "chats",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1274,11 +1301,11 @@
                 "name": "tests",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1288,11 +1315,11 @@
                 "name": "welcome_and_bye_chat",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1302,11 +1329,11 @@
                 "name": "photos",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1316,11 +1343,11 @@
                 "name": "importants",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1331,31 +1358,34 @@
     "266790112921124864": {
         "name": "Mobile Legends SįNįStĘr Clan",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
             "DISABLED": [
                 "cog"
-            ]
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488464731940
         },
         "channels": {
             "266790112921124864": {
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1365,11 +1395,11 @@
                 "name": "news",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1379,11 +1409,11 @@
                 "name": "topics",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1394,31 +1424,34 @@
     "268432172946292736": {
         "name": "elsword",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
             "DISABLED": [
                 "cog"
-            ]
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488464729982
         },
         "channels": {
             "268432172946292736": {
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1429,14 +1462,14 @@
     "270973230741716992": {
         "name": "Grupo di Determination",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
@@ -1449,11 +1482,11 @@
                 "name": "determination",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1463,11 +1496,11 @@
                 "name": "notificacao_bot",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1477,11 +1510,11 @@
                 "name": "determinamedia",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1491,11 +1524,11 @@
                 "name": "notifications",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1505,11 +1538,11 @@
                 "name": "apostas",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1520,14 +1553,14 @@
     "273552406300852224": {
         "name": "MEGA GAMERS",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
@@ -1540,11 +1573,11 @@
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1554,11 +1587,11 @@
                 "name": "nsfw",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1568,11 +1601,11 @@
                 "name": "nsfw",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1582,11 +1615,11 @@
                 "name": "gruponsfw",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1597,31 +1630,34 @@
     "274319442098257921": {
         "name": "Elsword",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
             "DISABLED": [
                 "cog"
-            ]
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488493602872
         },
         "channels": {
             "277531105698119681": {
                 "name": "wadanohara",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1631,11 +1667,11 @@
                 "name": "divulgacao",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1645,11 +1681,11 @@
                 "name": "elsword",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1659,11 +1695,11 @@
                 "name": "outro",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1673,11 +1709,11 @@
                 "name": "nsfw",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1687,11 +1723,11 @@
                 "name": "test",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1701,11 +1737,11 @@
                 "name": "digimon",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1715,11 +1751,11 @@
                 "name": "rage",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1729,11 +1765,11 @@
                 "name": "amvs",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1743,11 +1779,11 @@
                 "name": "anime",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1757,11 +1793,13 @@
                 "name": "loli",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1771,11 +1809,11 @@
                 "name": "yaoi",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1785,11 +1823,13 @@
                 "name": "geral",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1799,11 +1839,11 @@
                 "name": "musicas",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1813,11 +1853,11 @@
                 "name": "meme",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1827,11 +1867,11 @@
                 "name": "minecraft",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1841,11 +1881,13 @@
                 "name": "desenhos",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1855,11 +1897,11 @@
                 "name": "personagens",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1869,11 +1911,11 @@
                 "name": "bot",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1883,11 +1925,43 @@
                 "name": "wallpapers",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "286872223439126538": {
+                "name": "ecchi",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "286985694092722179": {
+                "name": "spam",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1898,31 +1972,34 @@
     "274492987772239872": {
         "name": "Waifu Bots Galore",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
             "DISABLED": [
                 "cog"
-            ]
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488464730174
         },
         "channels": {
             "274492987772239872": {
                 "name": "talk",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1932,11 +2009,11 @@
                 "name": "commands",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1946,11 +2023,11 @@
                 "name": "tell_them_waifus",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1961,14 +2038,14 @@
     "277391723322408960": {
         "name": "POLLUX Support",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
@@ -1984,11 +2061,11 @@
                 "name": "general_international",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -1998,13 +2075,13 @@
                 "name": "tests",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "GOODMOJI": ":gem:",
                     "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2014,13 +2091,13 @@
                 "name": "general_pt-br",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "GOODMOJI": ":gem:",
                     "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2030,11 +2107,11 @@
                 "name": "feature-requests",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2044,11 +2121,11 @@
                 "name": "support",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2058,11 +2135,11 @@
                 "name": "information",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2072,11 +2149,11 @@
                 "name": "faq",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2086,11 +2163,11 @@
                 "name": "github_logs",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2100,11 +2177,11 @@
                 "name": "core",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2114,13 +2191,13 @@
                 "name": "new_upcoming_features",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "GOODMOJI": ":gem:",
                     "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2130,11 +2207,11 @@
                 "name": "beta",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2144,11 +2221,11 @@
                 "name": "bot_workshop",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2164,7 +2241,7 @@
                     "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2175,31 +2252,36 @@
     "280474774487040001": {
         "name": "Litcord",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
             "DISABLED": [
                 "cog"
-            ]
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488503727635
         },
         "channels": {
             "280474774487040001": {
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2210,14 +2292,14 @@
     "282274511947300864": {
         "name": "Serve BR",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
@@ -2230,11 +2312,11 @@
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2245,14 +2327,14 @@
     "282538092651479051": {
         "name": "Menino forevi alounis",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
@@ -2265,11 +2347,11 @@
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2279,11 +2361,11 @@
                 "name": "nada",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2294,14 +2376,14 @@
     "283305832018477056": {
         "name": "RetroRoleplay",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
@@ -2314,11 +2396,11 @@
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2328,11 +2410,11 @@
                 "name": "rp",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2342,11 +2424,11 @@
                 "name": "storyline",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2356,11 +2438,11 @@
                 "name": "erp",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2370,11 +2452,11 @@
                 "name": "nsfw",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2384,11 +2466,11 @@
                 "name": "enders_secret_room",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2399,14 +2481,14 @@
     "283740170061348875": {
         "name": "CreeperClub_BR",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
@@ -2419,11 +2501,11 @@
                 "name": "chat",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2433,11 +2515,11 @@
                 "name": "chatgames",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2447,11 +2529,11 @@
                 "name": "treta_simulator",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2461,11 +2543,11 @@
                 "name": "bpodlbac",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2475,11 +2557,11 @@
                 "name": "admins",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2489,11 +2571,11 @@
                 "name": "vips",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2503,11 +2585,11 @@
                 "name": "nsfw",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2518,31 +2600,36 @@
     "284323493825478657": {
         "name": "@everyone",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
             "DISABLED": [
                 "cog"
-            ]
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488448732266
         },
         "channels": {
             "284323493825478657": {
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2552,11 +2639,11 @@
                 "name": "pls-no-bots-type-here",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2567,31 +2654,36 @@
     "285532897874673666": {
         "name": "spam for mario coins",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
             "DISABLED": [
                 "cog"
-            ]
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488448718896
         },
         "channels": {
             "285532897874673666": {
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2601,11 +2693,11 @@
                 "name": "modlogs",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2615,11 +2707,13 @@
                 "name": "bee-movie",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2629,11 +2723,11 @@
                 "name": "mod-logs",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2643,11 +2737,11 @@
                 "name": "logs",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2657,11 +2751,11 @@
                 "name": "djs",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2672,31 +2766,36 @@
     "285589846465183744": {
         "name": "Potato + Carrot=P.C",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
-            "LANGUAGE": "en",
+            "LANGUAGE": "dev",
             "DISABLED": [
                 "cog"
-            ]
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488466256649
         },
         "channels": {
             "285589846465183744": {
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
                     "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
@@ -2707,31 +2806,172 @@
     "286215869560913929": {
         "name": "SWEGE",
         "modules": {
-            "NSFW": false,
+            "NSFW": true,
             "GOODIES": true,
             "LEVELS": true,
             "LVUP": true,
-            "DROPS": false,
+            "DROPS": true,
             "GOODMOJI": ":gem:",
             "GOODNAME": "Gem",
-            "ANNOUNCE": false,
+            "ANNOUNCE": true,
             "PREFIX": "+",
             "MODROLE": {},
             "LANGUAGE": "en",
             "DISABLED": [
                 "cog"
-            ]
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488450174041
         },
         "channels": {
             "286215869560913929": {
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
-                    "NSFW": false,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "GOODMOJI": ":gem:",
+                    "GOODNAME": "Gem",
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "286903699941359616": {
+        "name": "Abrazos y peleas",
+        "modules": {
+            "NSFW": true,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": true,
+            "GOODMOJI": ":gem:",
+            "GOODNAME": "Gem",
+            "ANNOUNCE": true,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "en",
+            "DISABLED": [
+                "cog"
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1488474413070
+        },
+        "channels": {
+            "286903699941359616": {
+                "name": "general",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
                     "GOODIES": true,
                     "LEVELS": true,
                     "LVUP": true,
-                    "DROPS": false,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "286903873166114817": {
+                "name": "hentai",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "286904029768974348": {
+                "name": "memes",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "286904140326502401": {
+                "name": "twitah",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "286904200590393345": {
+                "name": "animes",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "286904977505648640": {
+                "name": "music",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "286905044341882880": {
+                "name": "bots",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "286905378057355265": {
+                "name": "osuuuuuuuu",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
                     "DISABLED": [
                         "cog"
                     ]
