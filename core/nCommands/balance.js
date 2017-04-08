@@ -11,7 +11,7 @@ var mm = locale.getT();
 
 
 
-var init = function (message) {
+var init = function (message,userDB,DB) {
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -45,6 +45,10 @@ if (Server.mods.GOODNAME) {
         message.reply(nope)
         return
     }
+
+    Target.mods = userDB[Author.id].modules
+
+
     let img = Target.defaultAvatarURL.substr(0, Target.defaultAvatarURL.length - 10)
     if (Target.avatarURL) {
         img = Target.avatarURL.substr(0, Target.avatarURL.length - 10);

@@ -7,7 +7,7 @@ var cfg = require('../config.js');
 
 
 
-var deploy = function (message,userDB,DB) {
+var deploy = function (message, userDB, DB) {
 
     var bot = message.botUser
     var command = message.content.substr(message.guild.mods.PREFIX.length).split(' ')[0]
@@ -15,28 +15,62 @@ var deploy = function (message,userDB,DB) {
     try {
         console.log(command)
         console.log(message.guild.mods.GOODNAME.toLowerCase())
-        if (command == message.guild.mods.GOODNAME.toLowerCase()) {
-
-            commandFile = require(`./nCommands/cash.js`);
 
 
-        } else if (command == message.guild.mods.GOODNAME.toLowerCase() + 'rank') {
 
+
+
+
+
+
+
+        switch (true) {
+            case command == message.guild.mods.GOODNAME.toLowerCase():
+            case command == message.guild.mods.GOODNAME.toLowerCase() + "s":
+            case command == "$":
+        commandFile = require(`./nCommands/cash.js`);
+        break;
+        case command == message.guild.mods.GOODNAME.toLowerCase() + 'rank':
             commandFile = require(`./nCommands/cashrank.js`);
-        } else {
+            break;
+                 case command == 'incinerate':
+            commandFile = require(`./nCommands/clear.js`);
+            break;
+
+        default:
             try {
                 delete require.cache[require.resolve(`./nCommands/${command}.js`)];
                 commandFile = require(`./nCommands/${command}.js`);
             } catch (e) {}
-        }
+            break;
 
-        //if (commandFile.skynet && message.guild.id!='248285312353173505') return;
-
-        commandFile.init(message, userDB, DB);
-        console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
-    } catch (err) {
-        console.log((err.stack).red)
     }
+
+    /*
+
+    if (command == message.guild.mods.GOODNAME.toLowerCase()||command == message.guild.mods.GOODNAME.toLowerCase()+"s"||command=="$") {
+
+        commandFile = require(`./nCommands/cash.js`);
+
+
+    } else if (command == message.guild.mods.GOODNAME.toLowerCase() + 'rank') {
+
+        commandFile = require(`./nCommands/cashrank.js`);
+    } else {
+        try {
+            delete require.cache[require.resolve(`./nCommands/${command}.js`)];
+            commandFile = require(`./nCommands/${command}.js`);
+        } catch (e) {}
+    }
+    */
+
+    //if (commandFile.skynet && message.guild.id!='248285312353173505') return;
+
+    commandFile.init(message, userDB, DB);
+    console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
+} catch (err) {
+    console.log((err.stack).red)
+}
 };
 
 var pullComms = function () {
@@ -103,11 +137,11 @@ var checkModule = function (msg) {
 }
 
 
-var commCheck = function (msg,userDB,DB) {
+var commCheck = function (msg, userDB, DB) {
     try {
         let command = msg.content.substr(msg.prefix.length).split(' ')[0];
 
-        commands[command].init(msg,userDB,DB);
+        commands[command].init(msg, userDB, DB);
     } catch (err) {
         //  console.log(err.stack)
     }
@@ -121,7 +155,3 @@ module.exports = {
     checkPerms: checkPerms,
     checkUse: checkUse
 };
-
-
-
-

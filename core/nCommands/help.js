@@ -65,7 +65,7 @@ ${commands[i].description}
 
 
 }
-        txt2 = txt2 + `
+        txt3 = `
 ${mm('help.disableNuisance', {
                     lngs: LANG,
 
@@ -93,6 +93,7 @@ ${mm('help.joinSupp', {
         message.author.sendMessage(txt).catch()
 
             message.author.sendMessage(txt2).catch()
+            message.author.sendMessage(txt3).catch()
 
         return
     });

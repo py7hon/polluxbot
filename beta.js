@@ -919,7 +919,7 @@ bot.on('presenceUpdate', (oldMember, newMember) => {
 
         if (newMember.presence.game.name.toLowerCase() == "heroes of the storm") {
             console.log('HERO')
-            var herois = sky.roles.find('name', 'Heróis do Toró')
+            var herois = sky.roles.find('name', 'Heróis do Toró  🎮')
             sky.defaultChannel.sendMessage(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.")
 
             var team = 0
@@ -932,6 +932,9 @@ bot.on('presenceUpdate', (oldMember, newMember) => {
             }
             if (team > 5){
                 sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(10-team)+" e temos dois times!!!")
+            }
+             if (team == 5){
+                sky.defaultChannel.sendMessage("FECHOU TIME!!!")
             }
 
 
