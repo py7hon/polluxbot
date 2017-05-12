@@ -11,61 +11,11 @@ var init = function (message,userDB,DB) {
     var LANG = message.lang;
 
 
-
-var commands = [];
-var commandInfo = {};
-var txt = ""
-var txt2 = ""
-var txt3 = ""
-var tx = ""
-    let GOODMOJI = ':gem:'
-    let GOOD = 'Gem'
-    if (message.guild.mods.GOODMOJI) {
-        GOODMOJI = message.guild.mods.GOODMOJI
-    }
-    if (message.guild.mods.GOODNAME) {
-        GOOD = message.guild.mods.GOODNAME
-    }
-    fs.readdir("./core/nCommands/", (err, files) => {
-        //if (err) return console.error(err);
-        files.forEach(file => {
-            var comm = require('./'+file)
-
-
-            commandInfo = {
-                name: comm.cmd,
-                category: comm.cat,
-                description: mm('help.' + comm.cmd, {
-                    lngs: LANG,
-                    langs: "pt, en",
-                    prefix: message.prefix,
-                    good:GOOD.toLowerCase()
-                })
-                ,public: comm.pub
-            }
-
-            if(commandInfo.public==true||commandInfo.category!=undefined){
-
-            commands.push(commandInfo)
-            }
-
-        });
-            for (i in commands){
-    tx = `
-__**${message.prefix+commands[i].name}**__
-Category: _${commands[i].category}_
-${commands[i].description}
-`
-
-   if((txt+tx).length<1000){
-    txt = txt + tx
-   }else{
-       txt2=txt2 + tx
-   }
-
-
-}
         txt3 = `
+
+**COMMAND LIST:** http://pollux.lucasflicky.com/commands.html
+
+
 ${mm('help.disableNuisance', {
                     lngs: LANG,
 
@@ -90,13 +40,9 @@ ${mm('help.joinSupp', {
 `
 
 
-        message.author.sendMessage(txt).catch()
-
-            message.author.sendMessage(txt2).catch()
             message.author.sendMessage(txt3).catch()
 
-        return
-    });
+
     //----Mess
 
 
@@ -107,7 +53,8 @@ ${mm('help.joinSupp', {
 
 
     console.log("HELP INVOKED")
-    message.reply(mm('help.checkYeDM',{lngs:LANG}))
+  //  message.reply(mm('help.checkYeDM',{lngs:LANG}))
+    message.reply("See my command list at: http://pollux.lucasflicky.com/commands")
 };
 
 module.exports = {

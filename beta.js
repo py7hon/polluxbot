@@ -88,7 +88,7 @@ getDirs('utils/lang/', (list) => {
 
 
 
-        // bot.user.setGame(`Adobe Edge Code CC`, 'https://www.twitch.tv/LucasFlicky').then().catch();
+        // bot.user.setGame(`Flicky draws Silenyte stuff`, 'https://www.twitch.tv/LucasFlicky').then().catch();
         bot.user.setGame(`Bocha`).then().catch();
 
         async.parallel(bot.guilds.forEach(G => serverSetup(G)))
@@ -919,7 +919,7 @@ bot.on('presenceUpdate', (oldMember, newMember) => {
 
         if (newMember.presence.game.name.toLowerCase() == "heroes of the storm") {
             console.log('HERO')
-            var herois = sky.roles.find('name', 'Heróis do Toró  🎮')
+            var herois = sky.roles.find('name', 'Herois do Toró  🎮')
             sky.defaultChannel.sendMessage(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.")
 
             var team = 0
@@ -976,6 +976,10 @@ if (!message.guild) return;
             }
 
 
+    if (message.content.includes('mad scientist')||message.content.includes('mado saient')){
+
+        message.channel.sendMessage('https://www.youtube.com/watch?v=gjTzz8cOxBU')
+    }
 
     if (message.content.includes(':rage:')||message.content.includes('puto') && message.content.includes('to ')){
 console.log("puto")
