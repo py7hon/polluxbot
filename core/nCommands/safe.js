@@ -32,7 +32,7 @@ var LANG = message.lang;
             }
             else {
                 //message.reply('http:' + url)
-                emb.setImage('http:'+url)
+                emb.setImage(url)
                 console.log(url.bgYellow)
                   emb.setColor('#ff97cf')
 
