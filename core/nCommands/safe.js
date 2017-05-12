@@ -32,11 +32,12 @@ var LANG = message.lang;
             }
             else {
                 //message.reply('http:' + url)
-                emb.setImage(url)
-                console.log(url.bgYellow)
+              //  emb.setImage(url)
+               emb.setTitle("dsfasf")
+                console.log(url)
                   emb.setColor('#ff97cf')
 
-  message.channel.sendMessage('http:'+url)
+
                     message.channel.sendEmbed(emb,message.author+' ').then(function (m) {
                 m.react('👍').catch()
                 m.react('👎').catch()
