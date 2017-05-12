@@ -36,7 +36,7 @@ var LANG = message.lang;
                 console.log(url.bgYellow)
                   emb.setColor('#ff97cf')
 
-  message.channel.sendEmbed(emb)
+  message.channel.sendMessage('http:'+url)
                     message.channel.sendEmbed(emb,message.author+' ').then(function (m) {
                 m.react('👍').catch()
                 m.react('👎').catch()
