@@ -907,9 +907,7 @@ module.exports = {
 bot.on('presenceUpdate', (oldMember, newMember) => {
     var sky = bot.guilds.get(skynet)
     if (oldMember.guild != sky) return;
-setTimeout(
-{
-
+setTimeout(fu=>{
 
     try {
 
