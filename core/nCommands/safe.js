@@ -33,7 +33,7 @@ var LANG = message.lang;
             else {
                 //message.reply('http:' + url)
                 emb.setImage(url)
-               emb.setTitle("dsfasf")
+               emb.setTitle("s a f e")
                 console.log(url)
                   emb.setColor('#ff97cf')
 

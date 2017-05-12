@@ -30,7 +30,10 @@ if (Author.bot) return;
             message.reply("Não achei nada com essas tags :(")
         } else {
             //message.reply('http:' + url)
-            emb.setImage('http:' +url)
+            emb.setImage(url)
+
+
+
             emb.setColor('#a47ee2')
             emb.setTitle(':airplane: Aerowaifu do Dia')
 
