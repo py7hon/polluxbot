@@ -21,7 +21,7 @@ var LANG = message.lang;
 //-------MAGIC----------------
  var emb =    new Discord.RichEmbed();
 
-        console.log("SAFEBOORU INVOKED by " + Author + "-------------\n")
+        console.log("SAFEBOORU INVOKED by " + Author.name + "-------------\n")
         console.log(1) ;
         let query = message.content.split(" ");
         !query[1] ? query[1] = "1girl+airplane+solo" : query[1] = query[1];
@@ -36,7 +36,7 @@ var LANG = message.lang;
                 console.log(url.bgYellow)
                   emb.setColor('#ff97cf')
 
-
+  message.channel.sendEmbed(emb)
                     message.channel.sendEmbed(emb,message.author+' ').then(function (m) {
                 m.react('👍').catch()
                 m.react('👎').catch()
