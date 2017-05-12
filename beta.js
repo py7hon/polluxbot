@@ -907,6 +907,9 @@ module.exports = {
 bot.on('presenceUpdate', (oldMember, newMember) => {
     var sky = bot.guilds.get(skynet)
     if (oldMember.guild != sky) return;
+setTimeout(
+{
+
 
     try {
 
@@ -917,10 +920,10 @@ bot.on('presenceUpdate', (oldMember, newMember) => {
         }
 
 
-        if (newMember.presence.game.name.toLowerCase() == "heroes of the storm") {
+        if ((newMember.presence.game.name.toLowerCase() == "heroes of the storm")&&(oldMember.presence.game.name.toLowerCase() != "heroes of the storm")) {
             console.log('HERO')
             var herois = sky.roles.find('name', 'Herois do Toró  🎮')
-            sky.defaultChannel.sendMessage(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.")
+            sky.defaultChannel.sendMessage(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.").then(jjm=>{jjm.delete(600000)}).catch()
 
             var team = 0
             newMember.guild.presences.forEach(e => {
@@ -928,15 +931,17 @@ bot.on('presenceUpdate', (oldMember, newMember) => {
             })
 
             if (team > 1 && team < 6){
-                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(5-team)+" e fecha o time.")
+                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(5-team)+" e fecha o time.").then(jjm=>{jjm.delete(600000)}).catch()
             }
-            if (team > 5){
-                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(10-team)+" e temos dois times!!!")
+            if (team > 5 && team < 10){
+                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(10-team)+" e temos dois times!!!").then(jjm=>{jjm.delete(600000)}).catch()
             }
              if (team == 5){
-                sky.defaultChannel.sendMessage("FECHOU TIME!!!")
+                sky.defaultChannel.sendMessage("FECHOU TIME!!!").then(jjm=>{jjm.delete(600000)}).catch()
             }
-
+if (team == 10){
+                sky.defaultChannel.sendMessage("FECHOU DOIS TIMES!!!").then(jjm=>{jjm.delete(600000)}).catch()
+            }
 
         }
     } catch (e) {
@@ -945,7 +950,7 @@ bot.on('presenceUpdate', (oldMember, newMember) => {
 
         }
     }
-
+},10000)
 })
 
 //
