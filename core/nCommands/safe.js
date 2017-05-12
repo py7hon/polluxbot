@@ -32,7 +32,7 @@ var LANG = message.lang;
             }
             else {
                 //message.reply('http:' + url)
-              //  emb.setImage(url)
+                emb.setImage('https://webassets.mongodb.com/_com_assets/global/mongodb-logo-white.png')
                emb.setTitle("dsfasf")
                 console.log(url)
                   emb.setColor('#ff97cf')
