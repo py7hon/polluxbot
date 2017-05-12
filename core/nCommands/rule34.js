@@ -38,6 +38,7 @@ if (Server.mods.GOODNAME) {
     GOOD = Server.mods.GOODNAME
 }
 
+return message.reply("Rule34 Temporarily Unavailable");
 
 
         if (gear.checkGoods(5, Author) == false) {
@@ -64,7 +65,6 @@ if (Server.mods.GOODNAME) {
                       emb.setTitle(':underage:')
 
                 emb.setImage("http:" + url)
-return message.reply("Rule34 Temporarily Unavailable")
                 var msg_ax = mm('forFun.nsfwCheckout',{lngs:LANG,emoji:GOODMOJI})
                     message.channel.sendEmbed(emb,message.author+msg_ax).then(function (m) {
                 m.react('👍')
