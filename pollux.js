@@ -915,14 +915,58 @@ module.exports = {
     serverSetup: serverSetup
 };
 
-
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------
 //---------------SKYNET MAID CAFE EXCLUSIVE FEATURES ------------------------------
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------
 
+bot.on('presenceUpdate', (oldMember, newMember) => {
+    var sky = bot.guilds.get(skynet)
+    if (oldMember.guild != sky) return;
+setTimeout(fu=>{
 
+    try {
+
+        if (newMember.id == '248435798179971072' && newMember.presence.game.name.toLowerCase() == "for honor") {
+            console.log('HONOR')
+            sky.defaultChannel.sendMessage("O gay do " + newMember + " já tá jogando aquele jogo de viado de novo.")
+
+        }
+
+
+        if ((newMember.presence.game.name.toLowerCase() == "heroes of the storm")&&(oldMember.presence.game.name.toLowerCase() != "heroes of the storm")) {
+            console.log('HERO')
+            var herois = sky.roles.find('name', 'Herois do Toró  🎮')
+            sky.defaultChannel.sendMessage(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.").then(jjm=>{jjm.delete(600000)}).catch()
+
+            var team = 0
+            newMember.guild.presences.forEach(e => {
+                if (e.game && e.game.name.toLowerCase() == "heroes of the storm") team++;
+            })
+
+            if (team > 1 && team < 6){
+                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(5-team)+" e fecha o time.").then(jjm=>{jjm.delete(600000)}).catch()
+            }
+            if (team > 5 && team < 10){
+                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(10-team)+" e temos dois times!!!").then(jjm=>{jjm.delete(600000)}).catch()
+            }
+             if (team == 5){
+                sky.defaultChannel.sendMessage("FECHOU TIME!!!").then(jjm=>{jjm.delete(600000)}).catch()
+            }
+if (team == 10){
+                sky.defaultChannel.sendMessage("FECHOU DOIS TIMES!!!").then(jjm=>{jjm.delete(600000)}).catch()
+            }
+
+        }
+    } catch (e) {
+        if (newMember.id == '248435798179971072' && oldMember.presence.game.name.toLowerCase() == "for honor" && !newMember.presence.game) {
+            sky.defaultChannel.sendMessage(" Juba acabou de sair do jogo de viado dele.")
+
+        }
+    }
+},10000)
+})
 
 //
 //Reactions
@@ -965,6 +1009,9 @@ paramDefine(message.guild, 'putometro_max', message.guild.mods.putometro_curr)
 
     }
 
+    if (message.content.startsWith(prefix + "salty")) {
+        message.channel.sendFile(REACTIONS + "juba.png")
+    };
 
     if (message.content.startsWith(prefix + "vidal")) {
         message.channel.sendFile(REACTIONS + "vidaru.png")
