@@ -50,104 +50,10 @@ client.login(cfg.token).then(() => {
 });
 
 
-const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
-getDirs('utils/lang/', (list) => {
-    i18next.use(Backend).init({
-        backend: backendOptions,
-        lng: 'en',
-        fallbacklngs: false,
-        preload: list,
-        load: 'all'
-    }, (err, t) => {
-        if (err) {
-            console.log(err)
-        }
-        setTimer();
-        multilang.setT(t);
-    });
 
-    function loginSuccess() {
-        console.log('LOGGED IN!'.bgGreen.white.bold)
-        hook.sendSlackMessage({
-            'username': 'Pollux Core Reporter',
-            'attachments': [{
-                'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-                'pretext': `Successful Login!`,
-                'color': '#49c7ff', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-                // 'footer': 'Powered by sneks',
-                'ts': Date.now() / 1000
-      }]
-        })
-    }
-    bot.login(cfg.token).then(loginSuccess());
-    console.log('Ready to Rock!')
-    bot.on('ready', () => {
+//--GLOBAL MESSAGE DIGESTOR
 
-        bot.user.setStatus('online')
-        var ts = Date.now();
-
-
-
-        // bot.user.setGame(`Flicky draws Silenyte stuff`, 'https://www.twitch.tv/LucasFlicky').then().catch();
-        bot.user.setGame(`Bocha`).then().catch();
-
-        async.parallel(bot.guilds.forEach(G => serverSetup(G)))
-
-        userSetup(bot.user)
-        hook.sendSlackMessage({
-            'username': 'Pollux Core Reporter',
-            'attachments': [{
-                'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-                'pretext': `All systems go! I am ready to rock, master!`,
-                'color': '#3ed844', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-                // 'footer': 'Powered by sneks',
-                'ts': Date.now() / 1000
-      }]
-        })
-
-
-
-
-        fs.createReadStream('database/users.json').pipe(fs.createWriteStream('./backup/USERS_' + ts + '.json'));
-        fs.createReadStream('database/servers.json').pipe(fs.createWriteStream('./backup/SERVERS_' + ts + '.json'));
-
-    });
-
-
-
-
-
-
-
-
-
-    deployer.pullComms()
-
-    function setTimer() {
-        /* timer = setTimeout(() => {
-             try {
-                 bot.destroy();
-             } catch (e) {}
-             process.exit(1);
-         }, 1000 * 10 * 60);*/
-    }
-    bot.on('reconnecting', () => {
-        console.log("Reconnect".bgRed)
-        hook.sendSlackMessage({
-            'username': 'Pollux Core Reporter',
-            'attachments': [{
-                'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-                'pretext': `SELF RESTART TRIGGERED! Gimme a second to still myself.`,
-                'color': '#ffb249', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-                // 'footer': 'Powered by sneks',
-                'ts': Date.now() / 1000
-      }]
-        })
-    });
-
-
-    /*
-    bot.on("message", (message) => {
+  bot.on("message", (message) => {
         var Server = message.guild;
         var Channel = message.channel;
         var Author = message.author;
@@ -324,79 +230,7 @@ getDirs('utils/lang/', (list) => {
             message.reply('PM Not Supported');
             return;
         }
-    })*/
-})
-bot.on('guildCreate', (guild, member) => {
-    serverSetup(guild);
-});
-
-bot.on('guildMemberAdd', (member) => {
-    var Server = member.guild
-    if (Server) {
-        if (typeof (Server.hi) !== 'undefined' && Server.joinText !== '' && Server.joinText) {
-            let channels = member.guild.channels.filter(c => {
-                return (c.id === Server.joinChannel)
-            });
-            let channel = channels.first();
-            let content = Server.joinText.replace('%user%', member.user);
-            content = content.replace('%server%', member.guild.name);
-            try {
-                channel.sendMessage(content);
-            } catch (e) {}
-        }
-        if (typeof (Server.roles) !== 'undefined' && Server.roles.length > 0) {
-            async.each(Server.roles, (role, cb) => {
-                if (role.default) {
-                    member.addRole(role.id).then(memberNew => {
-                        return cb();
-                    }).catch(err => cb(err));
-                } else {
-                    async.setImmediate(() => {
-                        return cb();
-                    });
-                }
-            }, (err) => {
-                if (err) return;
-            });
-        }
-    }
-})
-
-bot.on('guildMemberRemove', (member) => {
-    var Server = member.guild
-    if (Server) {
-        if (typeof (Server.bye) !== 'undefined' && Server.leaveText !== '' && Server.leaveText) {
-            try {
-                let channels = member.guild.channels.filter(c => {
-                    return (c.id === Server.leaveChannel)
-                });
-                let channel = channels.first();
-                let content = Server.leaveText.replace('%user%', member.user.username);
-                content = content.replace('%guild%', member.guild.name);
-                try {
-                    channel.sendMessage(content);
-                } catch (e) {}
-            } catch (e) {}
-        }
-    }
-})
-
-//bot.on("warn", console.warn);
-bot.on('error', (error) => {
-    if (!error) return;
-    console.log(error.toString().red);
-    hook.sendSlackMessage({
-        'username': 'Pollux Core Reporter',
-        'attachments': [{
-            'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-            'pretext': `Minor error! Check console`,
-            'color': '#ffdc49', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-            // 'footer': 'Powered by sneks',
-            'ts': Date.now() / 1000
-      }]
     })
-});
-
 
 
 //FUNCTIONFEST
@@ -879,7 +713,6 @@ function updateEXP(TG, event) {
 }
 
 
-
 process.on('uncaughtException', function (err) {
     console.log('EXCEPTION: '.bgRed.white.bold + err);
     hook.sendSlackMessage({
@@ -897,124 +730,9 @@ ${err.stack}
       }]
     })
 });
+
 module.exports = {
     userDB: userDB,
     DB: DB,
     serverSetup: serverSetup
 };
-
-
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------SKYNET MAID CAFE EXCLUSIVE FEATURES ------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-
-bot.on('presenceUpdate', (oldMember, newMember) => {
-    var sky = bot.guilds.get(skynet)
-    if (oldMember.guild != sky) return;
-setTimeout(fu=>{
-
-    try {
-
-        if (newMember.id == '248435798179971072' && newMember.presence.game.name.toLowerCase() == "for honor") {
-            console.log('HONOR')
-            sky.defaultChannel.sendMessage("O gay do " + newMember + " já tá jogando aquele jogo de viado de novo.")
-
-        }
-
-
-        if ((newMember.presence.game.name.toLowerCase() == "heroes of the storm")&&(oldMember.presence.game.name.toLowerCase() != "heroes of the storm")) {
-            console.log('HERO')
-            var herois = sky.roles.find('name', 'Herois do Toró  🎮')
-            sky.defaultChannel.sendMessage(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.").then(jjm=>{jjm.delete(600000)}).catch()
-
-            var team = 0
-            newMember.guild.presences.forEach(e => {
-                if (e.game && e.game.name.toLowerCase() == "heroes of the storm") team++;
-            })
-
-            if (team > 1 && team < 6){
-                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(5-team)+" e fecha o time.").then(jjm=>{jjm.delete(600000)}).catch()
-            }
-            if (team > 5 && team < 10){
-                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(10-team)+" e temos dois times!!!").then(jjm=>{jjm.delete(600000)}).catch()
-            }
-             if (team == 5){
-                sky.defaultChannel.sendMessage("FECHOU TIME!!!").then(jjm=>{jjm.delete(600000)}).catch()
-            }
-if (team == 10){
-                sky.defaultChannel.sendMessage("FECHOU DOIS TIMES!!!").then(jjm=>{jjm.delete(600000)}).catch()
-            }
-
-        }
-    } catch (e) {
-        if (newMember.id == '248435798179971072' && oldMember.presence.game.name.toLowerCase() == "for honor" && !newMember.presence.game) {
-            sky.defaultChannel.sendMessage(" Juba acabou de sair do jogo de viado dele.")
-
-        }
-    }
-},10000)
-})
-
-//
-//Reactions
-//-----------------------------------------------------
-const REACTIONS = "./resources/imgres/reactions/"
-
-bot.on('message', message => {
-  var now = new Date().getTime();
-       var dayC = 86400000
-
-if (!message.guild) return;
-
-        if (!message.guild.mods.putometro_curr) {
-            paramDefine(message.guild, 'putometro_curr', 0)
-        }
-        if (!message.guild.mods.putometro_max) {
-            paramDefine(message.guild, 'putometro_max', 0)
-        }
-        if (!message.guild.mods.putometro_last) {
-            paramDefine(message.guild, 'putometro_last', now)
-        }
-        if (now-message.guild.mods.putometro_last >= dayC){
-            paramDefine(message.guild, 'putometro_curr', parseInt(Math.round(-(message.guild.mods.putometro_last-now)/dayC * 100) / 100))
-        }
-            if(message.guild.mods.putometro_curr>message.guild.mods.putometro_max){
-                 paramDefine(message.guild, 'putometro_max', message.guild.mods.putometro_curr)
-            }
-
-
-    if (message.content.includes('mad scientist')||message.content.includes('mado saient')){
-
-        message.channel.sendMessage('https://www.youtube.com/watch?v=gjTzz8cOxBU')
-    }
-
-    if (message.content.includes(':rage:')||message.content.includes('puto') && message.content.includes('to ')){
-console.log("puto")
-paramDefine(message.guild, 'putometro_max', message.guild.mods.putometro_curr)
- paramDefine(message.guild, 'putometro_curr', 0)
- paramDefine(message.guild, 'putometro_last', now)
-
-    }
-
-    if (message.content.startsWith(prefix + "salty")) {
-        message.channel.sendFile(REACTIONS + "juba.png")
-    };
-
-    if (message.content.startsWith(prefix + "vidal")) {
-        message.channel.sendFile(REACTIONS + "vidaru.png")
-
-    };    if (message.content.includes("quantos heróis temos")||message.content.includes("quantos herois temos")||message.content.includes("how many heroes")) {
-
-   var team = 0
-            message.guild.presences.forEach(e => {
-                if (e.game && e.game.name.toLowerCase() == "heroes of the storm") team++;
-            })
-            var n =""
-            if (team > 1) n="s";
-            message.reply(' temos **'+team+'** Herói'+n+' no Nexus no momento.')
-    };
-
-
-})
