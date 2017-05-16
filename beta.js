@@ -146,7 +146,8 @@ getDirs('utils/lang/', (list) => {
     });
 
 
-    /*
+
+
     bot.on("message", (message) => {
         var Server = message.guild;
         var Channel = message.channel;
@@ -324,7 +325,7 @@ getDirs('utils/lang/', (list) => {
             message.reply('PM Not Supported');
             return;
         }
-    })*/
+    })
 })
 bot.on('guildCreate', (guild, member) => {
     serverSetup(guild);
