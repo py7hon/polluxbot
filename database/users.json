@@ -2,7 +2,7 @@
     "88120564400553984": {
         "name": "Flicky",
         "modules": {
-            "exp": 41506,
+            "exp": 41509,
             "level": 36,
             "coins": 11490,
             "medals": {},
@@ -734,7 +734,7 @@
         "modules": {
             "PERMS": 3,
             "level": 15,
-            "exp": 7321,
+            "exp": 7322,
             "goodies": 696,
             "coins": 0,
             "medals": {},
@@ -1228,7 +1228,7 @@
         "modules": {
             "PERMS": 3,
             "level": 5,
-            "exp": 986,
+            "exp": 987,
             "goodies": 625,
             "coins": 0,
             "medals": {},
@@ -62825,7 +62825,7 @@
         "modules": {
             "PERMS": 3,
             "level": 6,
-            "exp": 1355,
+            "exp": 1356,
             "goodies": 115,
             "coins": 0,
             "medals": {},
@@ -63268,7 +63268,7 @@
         "modules": {
             "PERMS": 3,
             "level": 7,
-            "exp": 1664,
+            "exp": 1665,
             "goodies": 2,
             "coins": 0,
             "medals": {},
@@ -80769,6 +80769,32 @@
             "level": 0,
             "exp": 2,
             "goodies": 620,
+            "coins": 0,
+            "medals": {},
+            "expenses": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "earnings": {
+                "putaria": 0,
+                "jogatina": 0,
+                "drops": 0,
+                "trade": 0
+            },
+            "dyStreak": 8,
+            "daily": 1486595162497,
+            "persotext": ""
+        }
+    },
+    "303249751048978432": {
+        "name": "blueboyashraf",
+        "modules": {
+            "PERMS": 3,
+            "level": 0,
+            "exp": 1,
+            "goodies": 653,
             "coins": 0,
             "medals": {},
             "expenses": {

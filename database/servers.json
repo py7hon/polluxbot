@@ -16,8 +16,8 @@
             "DISABLED": [
                 "cog"
             ],
-            "putometro_curr": 67,
-            "putometro_max": 67,
+            "putometro_curr": 72,
+            "putometro_max": 72,
             "putometro_last": 1488658552266
         },
         "channels": {
@@ -864,8 +864,8 @@
             "DISABLED": [
                 "cog"
             ],
-            "putometro_curr": 69,
-            "putometro_max": 69,
+            "putometro_curr": 74,
+            "putometro_max": 74,
             "putometro_last": 1488447475713
         },
         "channels": {
@@ -2242,8 +2242,8 @@
             "DISABLED": [
                 "cog"
             ],
-            "putometro_curr": 68,
-            "putometro_max": 68,
+            "putometro_curr": 74,
+            "putometro_max": 74,
             "putometro_last": 1488445665478
         },
         "channels": {
@@ -16874,8 +16874,8 @@
             "DISABLED": [
                 "cog"
             ],
-            "putometro_curr": 36,
-            "putometro_max": 36,
+            "putometro_curr": 42,
+            "putometro_max": 42,
             "putometro_last": 1491261170203
         },
         "channels": {
@@ -17215,7 +17215,7 @@
             "DISABLED": [
                 "cog"
             ],
-            "putometro_curr": 1,
+            "putometro_curr": 6,
             "putometro_max": 36,
             "putometro_last": 1494343708786
         },
@@ -23404,6 +23404,639 @@
         },
         "channels": {
             "284846709891268608": {
+                "name": "general",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "286341123557818368": {
+        "name": "Kirito's Always Right Foundation",
+        "modules": {
+            "NSFW": true,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": true,
+            "GOODMOJI": ":gem:",
+            "GOODNAME": "Gem",
+            "ANNOUNCE": false,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "en",
+            "DISABLED": [
+                "cog"
+            ],
+            "putometro_curr": 0,
+            "putometro_max": 0,
+            "putometro_last": 1494897681400
+        },
+        "channels": {
+            "302632568409423872": {
+                "name": "high_rank_rules",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "288441342189633536": {
+                "name": "crew_rules",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "286344821281521666": {
+                "name": "announcements",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "288433794543779840": {
+                "name": "private_chat",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "304032495610101761": {
+                "name": "bot_commands",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "288436278947610637": {
+                "name": "crew_announcement",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "304718505524199438": {
+                "name": "staff_offtopic",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "288438049380237312": {
+                "name": "pictures",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "288441167308259328": {
+                "name": "welcome",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "286341123557818368": {
+                "name": "publicchat",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "288436665209323532": {
+                "name": "staff_chat",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "309853347291332610": {
+                "name": "staff_questions",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "289194270475288577": {
+                "name": "spam",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "301684165894602752": {
+        "name": "Armata Ornitorincilor",
+        "modules": {
+            "NSFW": true,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": true,
+            "GOODMOJI": ":gem:",
+            "GOODNAME": "Gem",
+            "ANNOUNCE": false,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "en",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "301684165894602752": {
+                "name": "general",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "307070846814519296": {
+                "name": "reguli",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "307070989722845184": {
+                "name": "d234s",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "312672895782354944": {
+        "name": "FDS General",
+        "modules": {
+            "NSFW": true,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": true,
+            "GOODMOJI": ":gem:",
+            "GOODNAME": "Gem",
+            "ANNOUNCE": false,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "en",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "312672895782354944": {
+                "name": "general",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "312672985481740288": {
+                "name": "tunes",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "312673243624374272": {
+                "name": "announcements",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "312674103834312704": {
+                "name": "wildcards",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "312962175268552706": {
+                "name": "trading",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "308297393294671872": {
+        "name": "Fυรнiиz: O Server da Zoeira",
+        "modules": {
+            "NSFW": true,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": true,
+            "GOODMOJI": ":gem:",
+            "GOODNAME": "Gem",
+            "ANNOUNCE": false,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "en",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "308297393294671872": {
+                "name": "chat",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "308297799592706059": {
+                "name": "nsfw-pornografico",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "308298040865718273": {
+                "name": "imagens_e_midias",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "308299459857743883": {
+                "name": "welcome",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "308312345925386242": {
+                "name": "opnioes",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "310164157359980547": {
+                "name": "musica",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "310934569215852544": {
+                "name": "motivos_de_mutes",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "310936399710781441": {
+                "name": "nsfw-chat_livre",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "311649836141117442": {
+                "name": "chat_zoero",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "311650229650849792": {
+                "name": "mee6_avisa",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "311972439901077507": {
+                "name": "avisos_ou_notificacoes",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "312399618556166145": {
+                "name": "divulgue",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "300049470052368395": {
+        "name": "WolfPack",
+        "modules": {
+            "NSFW": true,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": true,
+            "GOODMOJI": ":gem:",
+            "GOODNAME": "Gem",
+            "ANNOUNCE": false,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "en",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "300049470052368395": {
+                "name": "wolfpackchannel",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            },
+            "312372331945394176": {
+                "name": "the_meeting_channel",
+                "modules": {
+                    "DROPSLY": 0,
+                    "NSFW": true,
+                    "GOODIES": true,
+                    "LEVELS": true,
+                    "LVUP": true,
+                    "DROPS": true,
+                    "DISABLED": [
+                        "cog"
+                    ]
+                }
+            }
+        }
+    },
+    "313579286760259584": {
+        "name": "testing",
+        "modules": {
+            "NSFW": true,
+            "GOODIES": true,
+            "LEVELS": true,
+            "LVUP": true,
+            "DROPS": true,
+            "GOODMOJI": ":gem:",
+            "GOODNAME": "Gem",
+            "ANNOUNCE": false,
+            "PREFIX": "+",
+            "MODROLE": {},
+            "LANGUAGE": "en",
+            "DISABLED": [
+                "cog"
+            ]
+        },
+        "channels": {
+            "313579286760259584": {
                 "name": "general",
                 "modules": {
                     "DROPSLY": 0,
