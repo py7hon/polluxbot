@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 var paths = require("./paths.js");
-const main = require('../beta.js')
+const main = require('../pollux.js')
 const Jimp = require("jimp");
 const fs = require("fs");
 

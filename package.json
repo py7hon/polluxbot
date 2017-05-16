@@ -9,7 +9,7 @@
     "url": "lucasflicky.com"
   },
   "files": "core",
-  "main": "beta.js",
+  "main": "pollux.js",
   "keywords": [
     "discordbot"
   ],
