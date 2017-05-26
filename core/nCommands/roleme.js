@@ -68,7 +68,7 @@ var mem=Member
         switch (args){
   case "overwatch":
               case "ow":
-         xR("Overwatch   🎮",mem);
+         fR("Overwatch   🎮",mem);
         break;  
     case "paladins":
 
