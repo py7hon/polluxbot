@@ -66,9 +66,12 @@ var mem=Member
             }
     }else{
         switch (args){
-
+  case "overwatch":
+              case "ow":
+         xR("Overwatch   🎮",mem);
+        break;  
     case "paladins":
-    case "overwatch":
+
     fR("Paladins   🎮",mem);
         break;
         case "hots":
