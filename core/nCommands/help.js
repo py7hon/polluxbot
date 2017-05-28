@@ -60,7 +60,7 @@ ${mm('help.joinSupp', {
 module.exports = {
     pub:true,
     cmd: cmd,
-    perms: 0,
+    perms: 8,
     init: init,
     cat: 'help'
 };

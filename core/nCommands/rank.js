@@ -79,5 +79,5 @@ for (i=0;i<ranked.length;i++){
 
 
 }
-module.exports = {pub:true,cmd: cmd, perms: 0, init: init, cat: 'misc'};
+module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'misc'};
 

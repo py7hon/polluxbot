@@ -149,7 +149,7 @@ var init = function (message,userDB,DB) {
 module.exports = {
     pub: true,
     cmd: cmd,
-    perms: 0,
+    perms: 2,
     init: init,
     cat: 'master'
 };

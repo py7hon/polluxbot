@@ -8,7 +8,7 @@ var init = function (message,userDB,DB) {
 module.exports = {
     pub:true,
     cmd: cmd,
-    perms: 0,
+    perms: 8,
     init: init,
     cat: 'bot'
 };

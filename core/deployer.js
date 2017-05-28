@@ -90,15 +90,11 @@ var checkUse = function (msg) {
 
         switch (true) {
 
-            // case msg.guild.mods.DISABLED.includes(commandFile.cat):
-            // case msg.guild.mods.DISABLED.includes(commandFile.cmd):
-            //        return "DISABLED";
-            //      break;
             case msg.channel.mods.DISABLED.includes(commandFile.cat):
             case msg.channel.mods.DISABLED.includes(commandFile.cmd):
                 return "DISABLED";
                 break;
-            case msg.author.mods.PERMS < commandFile.perms:
+            case msg.author.mods.PERMS > commandFile.perms:
                 return "NO PRIVILEGE";
                 break;
             default:

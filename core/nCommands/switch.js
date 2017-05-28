@@ -29,7 +29,7 @@ var av;
 module.exports = {
     pub:false,
     cmd: cmd,
-    perms: 0,
+    perms: 1,
     init: init,
     cat: 'bot'
 };

@@ -57,7 +57,7 @@ var LANG = message.lang;
 
     };
 
-module.exports = {pub:false,cmd: cmd, perms: 0, init: init, cat: 'language'};
+module.exports = {pub:false,cmd: cmd, perms: 2, init: init, cat: 'language'};
 
 
 

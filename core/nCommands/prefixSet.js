@@ -22,7 +22,7 @@ var args = message.content.split(' ').slice(1)
 
 module.exports = {
     cmd: cmd,
-    perms: 0,
+    perms: 2,
     init: init,
     cat: 'master'
 };

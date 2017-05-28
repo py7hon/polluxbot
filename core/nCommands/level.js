@@ -19,5 +19,5 @@ var Target = message.mentions.users.first() || Author;
     message.channel.sendMessage( Target.username+' está no Level **'+Target.mods.level+'**')
 }
 
-module.exports = {pub:true,cmd: cmd, perms: 0, init: init, cat: 'misc'};
+module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'misc'};
 

@@ -101,7 +101,7 @@ var init = function (message,userDB,DB) {
 module.exports = {
     pub:true,
     cmd: cmd,
-    perms: 0,
+    perms: 3,
     init: init,
     cat: '$'
 };

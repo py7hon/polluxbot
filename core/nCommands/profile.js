@@ -137,7 +137,7 @@ var nope =  mm('CMD.noDM',{lngs:LANG});
 module.exports = {
     pub:true,
     cmd: cmd,
-    perms: 0,
+    perms: 3,
     init: init,
     cat: 'misc'
 };

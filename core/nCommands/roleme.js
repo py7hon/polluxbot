@@ -92,4 +92,4 @@ function xR(role,memb){
         memb.removeRole(a).then(a => message.channel.sendMessage(":no_entry: Removi **"+memb.displayName+"** do grupo de **"+role+"** !")).catch(e=> message.channel.sendMessage("Erro!"))
             }
 }
-module.exports = {pub:false,cmd: cmd, perms: 0, init: init, cat: 'info'};
+module.exports = {pub:false,cmd: cmd, perms: 3, init: init, cat: 'info'};

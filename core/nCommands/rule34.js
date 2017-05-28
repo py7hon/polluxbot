@@ -83,7 +83,7 @@ return message.reply("Rule34 Temporarily Unavailable");
 module.exports = {
     pub:true,
     cmd: cmd,
-    perms: 0,
+    perms: 3,
     init: init,
     cat: 'NSFW'
 };

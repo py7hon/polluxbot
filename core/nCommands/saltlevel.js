@@ -40,7 +40,7 @@ let saltmoji = message.guild.emojis.find('name','salty')
 module.exports = {
     pub:false,
     cmd: cmd,
-    perms: 0,
+    perms: 3,
     init: init,
     cat: 'skynet',
     skynet:true

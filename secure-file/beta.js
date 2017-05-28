@@ -8,35 +8,27 @@ var bot = new Discord.Client({
     disabledEvents: ['typingStart', 'typingStop', 'guildMemberSpeaking']
 });
 var cfg = require('./config.js');
-
-
-var deployer = require('./core/deployer.js'); // <------------- I DUN LIKE DIS
-
-
-var cleverbot = require("cleverbot");// <------------- REVIEW  DIS
+var deployer = require('./core/deployer.js');
+var cleverbot = require("cleverbot");
 cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
-
-
-
-var async = require('async')  // <-- EVER USED?
-
-
+var async = require('async')
+var prefix = "+";
+var shardID = process.env.SHARD_ID;
+var shardCount = process.env.SHARD_COUNT;
 const Jimp = require("jimp");
 var i18next = require('i18next');
 var multilang = require('./utils/multilang_b');
-
-
 var Backend = require('i18next-node-fs-backend');
 var fs = require("fs");
 var paths = require("./core/paths.js");
+var skynet = '248285312353173505'
+    //var SelfReloadJSON = require('self-reload-json');
 var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8', console.log("OK")));
 var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8', console.log("OK")));
 
 
-var prefix = "+";
-var skynet = '248285312353173505'
-
-
+//var DB= new SelfReloadJSON();
+//var userDB =new SelfReloadJSON('./database/users.json');
 
 var timer;
 var colors = require('colors');
@@ -58,11 +50,7 @@ client.login(cfg.token).then(() => {
 });
 
 
-//DEBUG
 const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
-//---
-
-
 getDirs('utils/lang/', (list) => {
     i18next.use(Backend).init({
         backend: backendOptions,
@@ -74,10 +62,10 @@ getDirs('utils/lang/', (list) => {
         if (err) {
             console.log(err)
         }
-
+        setTimer();
         multilang.setT(t);
     });
-})
+
     function loginSuccess() {
         console.log('LOGGED IN!'.bgGreen.white.bold)
         hook.sendSlackMessage({
@@ -91,15 +79,16 @@ getDirs('utils/lang/', (list) => {
       }]
         })
     }
-
-
+    bot.login(cfg.token).then(loginSuccess());
     console.log('Ready to Rock!')
     bot.on('ready', () => {
 
         bot.user.setStatus('online')
+        var ts = Date.now();
+
+
 
         // bot.user.setGame(`Flicky draws Silenyte stuff`, 'https://www.twitch.tv/LucasFlicky').then().catch();
-
         bot.user.setGame(`Bocha`).then().catch();
 
         async.parallel(bot.guilds.forEach(G => serverSetup(G)))
@@ -116,38 +105,56 @@ getDirs('utils/lang/', (list) => {
       }]
         })
 
-        fs.createReadStream('database/users.json').pipe(fs.createWriteStream('./backup/USERS_' + Date.now() + '.json'));
-        fs.createReadStream('database/servers.json').pipe(fs.createWriteStream('./backup/SERVERS_' + Date.now() + '.json'));
+
+
+
+        fs.createReadStream('database/users.json').pipe(fs.createWriteStream('./backup/USERS_' + ts + '.json'));
+        fs.createReadStream('database/servers.json').pipe(fs.createWriteStream('./backup/SERVERS_' + ts + '.json'));
 
     });
 
 
-//Check Commands
+
+
+
+
+
+
 
     deployer.pullComms()
 
+    function setTimer() {
+        /* timer = setTimeout(() => {
+             try {
+                 bot.destroy();
+             } catch (e) {}
+             process.exit(1);
+         }, 1000 * 10 * 60);*/
+    }
+    bot.on('reconnecting', () => {
+        console.log("Reconnect".bgRed)
+        hook.sendSlackMessage({
+            'username': 'Pollux Core Reporter',
+            'attachments': [{
+                'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
+                'pretext': `SELF RESTART TRIGGERED! Gimme a second to still myself.`,
+                'color': '#ffb249', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
+                // 'footer': 'Powered by sneks',
+                'ts': Date.now() / 1000
+      }]
+        })
+    });
 
-
-//=====================================             EVENTS
 
 
 
     bot.on("message", (message) => {
-
-
-
-
         var Server = message.guild;
         var Channel = message.channel;
         var Author = message.author;
         var Target = message.mentions.users.first() || Author;
         var MSG = message.content;
 
-
-
-
-
-        //---  LOGS
         if (Server) {
 
             var logserver = Server.name + " "
@@ -165,14 +172,10 @@ getDirs('utils/lang/', (list) => {
             }
 
         }
-        //--- END LOGS
-
-
-
-//-- NO BOTS PAST HERE
 
         if (Author.bot) return;
-
+        clearTimeout(timer);
+        setTimer();
         if (message.content.endsWith('now illegal')) {
             let aargs = message.content.split(' ')
             aargs.pop()
@@ -188,81 +191,68 @@ getDirs('utils/lang/', (list) => {
                 return
             }
         }
-
+        //message.lang = ['en', 'en'];
+        //message.langList = list;
+        //message.shardID = shardID;
+        //message.shardCount = shardCount;
+        // messageHelper.filterEmojis(message);
         if (Server && !Author.bot) {
-
-
             serverSetup(Server);
-
-
-
-
             userSetup(Author);
-
             userSetup(Target);
-
-
             paramIncrement(Author, 'exp', 1)
+            if (!Author.mods.PERMS) {
+
+                if (Server.member(Author).hasPermission("MANAGE_GUILD")) {
+
+                    paramDefine(Author, 'PERMS', 0)
+                } else {
+
+                    paramDefine(Author, 'PERMS', 3)
+                }
 
 
-            /*
+                if (Server.mods.MODROLE.name) {
 
-            -= ::PERMS:: =-
+                    if (Server.member(Author).roles.exists('name', Server.mods.MODROLE.name)) {
+                        paramDefine(Author, 'PERMS', 3)
+                    }
+                }
 
-            0 = ALMIGHTY (owner)
-            1 = ADM
-            2 = MOD
-            3 = PLEB
-            4 = FUDIDO
-            5 = FORBIDDEN
+            }
 
-            */
-
-
-                updatePerms(Author,Server)
-                updatePerms(Target,Server)
-
-
-            // DONE WITH PERMS ---//
 
             if (!Channel.mods) {
                 channelSetup(Channel, Server);
             }
 
-
-
             try {
 
-                if (!Server.mods.DISABLED.includes("level")) {
-                     updateEXP(Author, message)
-                }else if (!Channel.mods.DISABLED.includes("level")) {
-                     updateEXP(Author, message)
+                if (Server.mods.LEVELS) {
+                    if (Channel.mods.LEVELS) {
+                        updateEXP(Author, message)
                     }
+                }
+            } catch (err) {
+                serverSetup(Server)
 
+            }
+            try {
+
+                if (Server.mods.DROPS) {
+                    if (Channel.mods.DROPS) {
+                        dropGoodies(message)
+                    }
+                }
             } catch (err) {
                 serverSetup(Server)
             }
-
-         try {
-
-                if (!Server.mods.DISABLED.includes("drop")) {
-                     dropGoodies(message)
-                }else if (!Channel.mods.DISABLED.includes("drop")) {
-                     dropGoodies(message)
-                    }
-
-            } catch (err) {
-                serverSetup(Server)
-            }
-
-
 
 
             //Wave 1
             if (Server && typeof (Server.mods.LANGUAGE) !== 'undefined' && Server.mods.LANGUAGE && Server.mods.LANGUAGE !== '') {
                 message.lang = [Server.mods.LANGUAGE, 'en'];
             }
-
 
             //Wave 2 -- CHECK PREFIX
             if (Server && typeof (Server.mods.PREFIX) !== 'undefined' && Server.mods.PREFIX && Server.mods.PREFIX !== '') {
@@ -274,16 +264,17 @@ getDirs('utils/lang/', (list) => {
 
                     //deployer.checkModule(message)
 
+
+
+
+
                     console.log('check ' + message)
-
-                var mm = multilang.getT();
-
                     switch (deployer.checkUse(message)) {
 
                         case "DISABLED":
                             message.reply(mm('CMD.disabledModule', {
                                 lngs: message.lang,
-                                module: message.content.substr(message.prefix.length).split(' ')[0]
+                                module: message.split(' ')[1]
                             }))
 
 
@@ -302,14 +293,8 @@ getDirs('utils/lang/', (list) => {
                     // deployer.checkUse(message)
 
 
-                }
-
-
-                else {
-            /*
-
-
-                   //-- IS MENTION BOT
+                } else {
+                    //-- IS MENTION BOT
                     if (message.guild && !message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {}
                     //-- KLEBER
                     if (message.guild && !!message.mentions.users.get(bot.user.id) && !message.content.startsWith(prefix) && !message.author.bot) {
@@ -323,12 +308,8 @@ getDirs('utils/lang/', (list) => {
                             })
                         })
                     }
-
-                   */
                 }
-            }
-
-            else {
+            } else {
                 if (message.content.startsWith(prefix)) {
                     message.botUser = bot;
                     message.prefix = prefix;
@@ -345,24 +326,7 @@ getDirs('utils/lang/', (list) => {
             return;
         }
     })
-
-//----------------------------------------
-
-
- bot.on('reconnecting', () => {
-        console.log("Reconnect".bgRed)
-        hook.sendSlackMessage({
-            'username': 'Pollux Core Reporter',
-            'attachments': [{
-                'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-                'pretext': `SELF RESTART TRIGGERED! Gimme a second to still myself.`,
-                'color': '#ffb249', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-                // 'footer': 'Powered by sneks',
-                'ts': Date.now() / 1000
-      }]
-        })
-    });
-
+})
 bot.on('guildCreate', (guild, member) => {
     serverSetup(guild);
 });
@@ -527,6 +491,8 @@ var serverSetup = function serverSetup(guild) {
 
             }
         });
+    } else {
+
     }
     guild.mods = DB[guild.id].modules
     try {
@@ -773,41 +739,7 @@ function paramDefine(target, param, val) {
 }
 
 
-function updatePerms(tgt,Server){
-          switch (true){
-                          case Server.member(tgt).id == Server.ownerID:
 
-                        paramDefine(tgt, 'PERMS', 0);
-                  console.log(tgt.username + "PERMS  "+0)
-                        break;
-                           case Server.member(tgt).hasPermission("ADMINISTRATOR"):
-                     case Server.member(tgt).hasPermission("BAN_MEMBERS"):
-                        paramDefine(tgt, 'PERMS', 1);
-                  console.log(tgt.username + "PERMS  "+1)
-                        break;
-                    case Server.member(tgt).hasPermission("MANAGE_GUILD"):
-                    paramDefine(tgt, 'PERMS', 2);
-                        console.log(tgt.username + "   MG GLD PERMS  "+2)
-                        break;
-                    case Server.member(tgt).hasPermission("KICK_MEMBERS"):
-                        paramDefine(tgt, 'PERMS', 2);
-                        console.log(tgt.username + "    KIK PERMS  "+2)
-                        break;
-
-
-                    default:
-                         paramDefine(tgt, 'PERMS', 3);
-                        break;
-                       }
-
-                if (Server.mods.MODROLE.name) {
-                    if (Server.member(tgt).roles.exists('name', Server.mods.MODROLE.name)) {
-                        paramDefine(tgt, 'PERMS', 2)
-                        console.log(tgt.username + "PERMS plus "+2)
-                    }
-                }
-
-}
 
 
 
@@ -835,13 +767,12 @@ function dropGoodies(event) {
     if (droprate > 1889 && droprate < 2000) {
         console.log('DROP')
         var pack;
-        var prefie = GLD.mods.PREFIX || "+"
         var mm = multilang.getT();
         CHN.sendFile(paths.BUILD + 'ruby.png', 'goodie.png', mm('$.goodDrop', {
             lngs: LANG,
             good: GOOD,
             emoji: GOODMOJI,
-            prefix: prefie
+            prefix: event.guild.mods.PREFIX
         })).then(function (r) {
             bot.on('message', m => {
                 if (m.content == m.guild.mods.PREFIX + "pick") {
@@ -967,16 +898,124 @@ ${err.stack}
       }]
     })
 });
-
-
 module.exports = {
     userDB: userDB,
     DB: DB,
-    serverSetup: serverSetup,
-    userSetup: serverSetup
+    serverSetup: serverSetup
 };
 
 
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+//---------------SKYNET MAID CAFE EXCLUSIVE FEATURES ------------------------------
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+
+bot.on('presenceUpdate', (oldMember, newMember) => {
+    var sky = bot.guilds.get(skynet)
+    if (oldMember.guild != sky) return;
+setTimeout(fu=>{
+
+    try {
+
+        if (newMember.id == '248435798179971072' && newMember.presence.game.name.toLowerCase() == "for honor") {
+            console.log('HONOR')
+            sky.defaultChannel.sendMessage("O gay do " + newMember + " já tá jogando aquele jogo de viado de novo.")
+
+        }
 
 
-   bot.login(cfg.beta).then(loginSuccess());
+        if ((newMember.presence.game.name.toLowerCase() == "heroes of the storm")&&(oldMember.presence.game.name.toLowerCase() != "heroes of the storm")) {
+            console.log('HERO')
+            var herois = sky.roles.find('name', 'Herois do Toró  🎮')
+            sky.defaultChannel.sendMessage(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.").then(jjm=>{jjm.delete(600000)}).catch()
+
+            var team = 0
+            newMember.guild.presences.forEach(e => {
+                if (e.game && e.game.name.toLowerCase() == "heroes of the storm") team++;
+            })
+
+            if (team > 1 && team < 6){
+                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(5-team)+" e fecha o time.").then(jjm=>{jjm.delete(600000)}).catch()
+            }
+            if (team > 5 && team < 10){
+                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(10-team)+" e temos dois times!!!").then(jjm=>{jjm.delete(600000)}).catch()
+            }
+             if (team == 5){
+                sky.defaultChannel.sendMessage("FECHOU TIME!!!").then(jjm=>{jjm.delete(600000)}).catch()
+            }
+if (team == 10){
+                sky.defaultChannel.sendMessage("FECHOU DOIS TIMES!!!").then(jjm=>{jjm.delete(600000)}).catch()
+            }
+
+        }
+    } catch (e) {
+        if (newMember.id == '248435798179971072' && oldMember.presence.game.name.toLowerCase() == "for honor" && !newMember.presence.game) {
+            sky.defaultChannel.sendMessage(" Juba acabou de sair do jogo de viado dele.")
+
+        }
+    }
+},10000)
+})
+
+//
+//Reactions
+//-----------------------------------------------------
+const REACTIONS = "./resources/imgres/reactions/"
+
+bot.on('message', message => {
+  var now = new Date().getTime();
+       var dayC = 86400000
+
+if (!message.guild) return;
+
+        if (!message.guild.mods.putometro_curr) {
+            paramDefine(message.guild, 'putometro_curr', 0)
+        }
+        if (!message.guild.mods.putometro_max) {
+            paramDefine(message.guild, 'putometro_max', 0)
+        }
+        if (!message.guild.mods.putometro_last) {
+            paramDefine(message.guild, 'putometro_last', now)
+        }
+        if (now-message.guild.mods.putometro_last >= dayC){
+            paramDefine(message.guild, 'putometro_curr', parseInt(Math.round(-(message.guild.mods.putometro_last-now)/dayC * 100) / 100))
+        }
+            if(message.guild.mods.putometro_curr>message.guild.mods.putometro_max){
+                 paramDefine(message.guild, 'putometro_max', message.guild.mods.putometro_curr)
+            }
+
+
+    if (message.content.includes('mad scientist')||message.content.includes('mado saient')){
+
+        message.channel.sendMessage('https://www.youtube.com/watch?v=gjTzz8cOxBU')
+    }
+
+    if (message.content.includes(':rage:')||message.content.includes('puto') && message.content.includes('to ')){
+console.log("puto")
+paramDefine(message.guild, 'putometro_max', message.guild.mods.putometro_curr)
+ paramDefine(message.guild, 'putometro_curr', 0)
+ paramDefine(message.guild, 'putometro_last', now)
+
+    }
+
+    if (message.content.startsWith(prefix + "salty")) {
+        message.channel.sendFile(REACTIONS + "juba.png")
+    };
+
+    if (message.content.startsWith(prefix + "vidal")) {
+        message.channel.sendFile(REACTIONS + "vidaru.png")
+
+    };    if (message.content.includes("quantos heróis temos")||message.content.includes("quantos herois temos")||message.content.includes("how many heroes")) {
+
+   var team = 0
+            message.guild.presences.forEach(e => {
+                if (e.game && e.game.name.toLowerCase() == "heroes of the storm") team++;
+            })
+            var n =""
+            if (team > 1) n="s";
+            message.reply(' temos **'+team+'** Herói'+n+' no Nexus no momento.')
+    };
+
+
+})
