@@ -108,7 +108,7 @@ getDirs('utils/lang/', (list) => {
 
         // bot.user.setGame(`Flicky draws Silenyte stuff`, 'https://www.twitch.tv/LucasFlicky').then().catch();
 
-        bot.user.setGame(`Bocha`).then().catch();
+        bot.user.setGame(`Neverwinter Nights`).then().catch();
 
         async.parallel(bot.guilds.forEach(G => serverSetup(G)))
 
