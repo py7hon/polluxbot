@@ -47,10 +47,10 @@
          return;
      }
 
+var emoj = bot.emojis.get('276878246589497344') 
 
-
-     let GOODMOJI = ':gem:'
-     let GOOD = 'Gem'
+     let GOODMOJI = DB[Server.id].modules.GOODMOJI || emoj
+     let GOOD = DB[Server.id].modules.GOODNAME || 'Ruby'
 
 
 
