@@ -24,9 +24,11 @@ DB[message.guild.id].modules.GOODNAME = "Ruby"
 
 
         switch (true) {
-            case command == DB[message.guild.id].modules.GOODNAME.toLowerCase():
-            case command == DB[message.guild.id].modules.GOODNAME.toLowerCase() + "s":
+            //case command == DB[message.guild.id].modules.GOODNAME.toLowerCase():
+            //case command == DB[message.guild.id].modules.GOODNAME.toLowerCase() + "s":
             case command == "$":
+             case command == "ruby":
+             case command == "rubys":
         commandFile = require(`./nCommands/cash.js`);
         break;
         case command == DB[message.guild.id].modules.GOODNAME.toLowerCase() + 'rank':
