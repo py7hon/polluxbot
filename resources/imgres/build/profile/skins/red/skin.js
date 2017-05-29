@@ -1,49 +1,62 @@
  module.exports = {
 
-
-      font1: "HEADING.fnt"
+//text
+      font1: "HEADING.fnt"  
      ,font2: "TXT.fnt"
      ,font3: "TXT.fnt"
      ,invisible: "TXT.fnt"
 
      //positions
+   
+   
+   //USER NAME
 
-     ,nameX: 153
-     ,nameY: 3
-     ,nameF: "f1"
+     ,nameX: 153          // name X position
+     ,nameY: 3            // name Y position
+     ,nameF: "f1"          // name Font (f1, f2, f3, inv [for invisible] )
 
-     ,levelX: 425
-     ,levelY: 37
-     ,levelF: "f2"
+   // USER LEVEL
+   
+     ,levelX: 425             //  X position
+     ,levelY: 37            //  Y position
+     ,levelF: "f2"          //  Font (f1, f2, f3, inv [for invisible] )
+   
+   //GEMS / RUBYS / CASH
 
-     ,moneyX: 290
-     ,moneyY: 160
-     ,moneyF:  "f1"
+     ,moneyX: 290           //  X position  
+     ,moneyY: 160           //  Y position    
+     ,moneyF:  "f1"         //  Font (f1, f2, f3, inv [for invisible] )      
 
-     ,expX: 74
-     ,expY: 253
-     ,expF:  "f2"
+   //EXP POINTS
+     ,expX: 74              //  X position
+     ,expY: 253             //  Y position
+     ,expF:  "f2"              //  Font (f1, f2, f3, inv [for invisible] )
 
-     ,joinX: 172
-     ,joinY: 66
-     ,joinF:  "f2"
+   
+   //JOIN DATE
+     ,joinX: 172            //  X position
+     ,joinY: 66             //  Y position
+     ,joinF:  "f2"          //  Font (f1, f2, f3, inv [for invisible] )
 
-     ,persotextX: 180
-     ,persotextY: 100
-     ,persotextWmax: 100
-     ,persotextF:  "f2"
+   //PERSONAL TEXT
+     ,persotextX: 180         //  X position
+     ,persotextY: 100         //  Y position
+     ,persotextWmax: 100      //  Maximum text width
+     ,persotextF:  "f2"       //  Font (f1, f2, f3, inv [for invisible] )
 
-     ,barX: 45
-     ,barY: 231
-     ,barW: 354
-     ,barH: 18
+     ,barX: 45                //Level Bar X position
+     ,barY: 231               //Level Bar Y position
+     ,barW: 354               //Level Bar Width
+     ,barH: 18                //Level Bar  Height
 
-     ,propicX: 18
-     ,propicY: 20
-     ,propicHW: 126
-     ,roundpic:true
+   //Profile Picture
+   
+     ,propicX: 18             //  X position
+     ,propicY: 20             //  Y position
+     ,propicHW: 126           //  Width and Height
+     ,roundpic:true           //  Rounded? (false for square)
 
-     ,admtagX: 7
-     ,admtagY: 182
+     ,admtagX: 7          //  ADM TAG X position
+     ,admtagY: 182        //  ADM TAG Y position
 
 };
