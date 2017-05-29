@@ -115,7 +115,7 @@
          , "switch": "Troca minha foto"
          , "joinSupp": "Entre no Server de Suporte"
          , "invite": "Me convide para participar do seu Server~"
-         , "disableNuisance": "Desabilite eventos automáticos:\n Drop de Goodies/Gems: {{prefix}}disable DROPS \n Imagens de Level Up: {{prefix}}disable LVUP"
+         , "disableNuisance": "Desabilite eventos automáticos:\n Drop de Goodies/Rubys: {{prefix}}disable DROPS \n Imagens de Level Up: {{prefix}}disable LVUP"
          , "cashrank": "Ranking **GLOBAL** de {{good}}s. Alternativamente `{{prefix}}{{good}}`"
          , "cashrank": "Ranking **GLOBAL** de {{good}}s. Alternativamente `{{prefix}}{{good}}`"
         ,"daily":"{{good}}s de graça todo dia."
