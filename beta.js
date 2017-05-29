@@ -468,6 +468,8 @@ function getDirs(rootDir, cb) {
     })
 }
 
+var emojya = bot.emojis.get('276878246589497344') 
+message.reply(emojya)
 function channelSetup(element, guild) {
 
     console.log('Setting Up Channel:'.white + element.name + " from " + guild.name)
@@ -475,11 +477,11 @@ function channelSetup(element, guild) {
         name: element.name,
         modules: {
             DROPSLY: 0,
-
+      
             NSFW: true,
             GOODIES: true,
-            GOODMOJI: ':gem:',
-            GOODNAME: 'Gem',
+            GOODMOJI: emojya,
+            GOODNAME: 'Ruby',
             LEVELS: true,
             LVUP: true,
             DROPS: true,
@@ -504,8 +506,8 @@ var serverSetup = function serverSetup(guild) {
                 LEVELS: true,
                 LVUP: true,
                 DROPS: false,
-                GOODMOJI: ':gem:',
-                GOODNAME: 'Gem',
+                GOODMOJI: emojya,
+                GOODNAME: 'Ruby',
                 ANNOUNCE: false,
                 PREFIX: "+",
                 MODROLE: {},
@@ -846,12 +848,12 @@ function dropGoodies(event) {
     var CHN = event.channel
     var GLD = event.guild
     var LANG = event.lang;
-    let GOODMOJI = ':gem:'
-    let GOOD = 'Gem'
+    let GOODMOJI = emojya
+    let GOOD = 'Ruby'
     if (DB[Server.id].modules) {
-        GOODMOJI = DB[Server.id].modules
+        GOODMOJI = DB[Server.id].modules.GOODMOJI
     }
-    if (DB[Server.id].modules.GOODNAME) {
+    if (DB[Server.id].modules) {
         GOOD = DB[Server.id].modules.GOODNAME
     }
     if (typeof CHN.DROPSLY != 'number') {
