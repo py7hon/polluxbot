@@ -23,12 +23,12 @@ var  userData = userDB[Author.id].modules
 
 
 let GOODMOJI = ':gem:'
-    let GOOD = 'Gem'
+    let GOOD = 'Ruby'
     if (DB[Server.id].modules) {
-        GOODMOJI = DB[Server.id].modules
+    //    GOODMOJI = DB[Server.id].modules
     }
     if (DB[Server.id].modules.GOODNAME) {
-        GOOD = DB[Server.id].modules.GOODNAME
+    //    GOOD = DB[Server.id].modules.GOODNAME
     }
 
 
