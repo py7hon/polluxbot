@@ -17,7 +17,9 @@ var deploy = function (message, userDB, DB) {
 
 
 
-
+if (!DB[message.guild.id].modules){
+DB[message.guild.id].modules.GOODNAME = "Ruby"
+}
 
 
 
