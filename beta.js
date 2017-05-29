@@ -469,7 +469,7 @@ function getDirs(rootDir, cb) {
 }
 
 var emojya = bot.emojis.get('276878246589497344') 
-message.reply(emojya)
+
 function channelSetup(element, guild) {
 
     console.log('Setting Up Channel:'.white + element.name + " from " + guild.name)
