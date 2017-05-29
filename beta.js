@@ -931,6 +931,7 @@ function updateEXP(TG, event) {
         if (TG.avatarURL) {
             img = TG.avatarURL.substr(0, TG.avatarURL.length - 10);
         }
+      var guild = event.guild 
         Jimp.read(img).then(function (user) {
             Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
                 Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
