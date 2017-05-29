@@ -41,7 +41,7 @@ let GOODMOJI = ':gem:'
               gear.paramIncrement(Author,'expenses.drops',1)
             message.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', mm('$.userDrop',{lngs:LANG,emoji:GOODMOJI,good:GOOD,user:Author.username,prefix:message.prefix})).then(function (r) {
                 bot.on('message', m => {
-                if (m.content == m.guild.mods.PREFIX+"pick"){
+                if (m.content == DB[m.guild.id].modules.PREFIX+"pick"){
                     r.delete().catch()
                 }
             })
