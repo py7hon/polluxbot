@@ -53,7 +53,7 @@ const client = new AkairoClient({
     prefix: '+'
 });
 
-client.login(cfg.token).then(() => {
+client.login(cfg.beta).then(() => {
 
 });
 
@@ -92,9 +92,20 @@ getDirs('utils/lang/', (list) => {
         })
     }
 
+//var dvv = require('./database.js')
 
     console.log('Ready to Rock!')
     bot.on('ready', () => {
+
+
+        bot.guilds.forEach(g => { g.members.forEach( m=> {
+
+
+
+          //  dvv.addUser(m.user,false);
+        //    dvv.find('name',m.user.id);
+        })})
+
 
         bot.user.setStatus('online')
 
@@ -118,6 +129,7 @@ getDirs('utils/lang/', (list) => {
 
         fs.createReadStream('database/users.json').pipe(fs.createWriteStream('./backup/USERS_' + Date.now() + '.json'));
         fs.createReadStream('database/servers.json').pipe(fs.createWriteStream('./backup/SERVERS_' + Date.now() + '.json'));
+
 
     });
 
@@ -194,9 +206,6 @@ getDirs('utils/lang/', (list) => {
 
             serverSetup(Server);
 
-
-
-
             userSetup(Author);
 
             userSetup(Target);
@@ -223,9 +232,11 @@ getDirs('utils/lang/', (list) => {
                 updatePerms(Target,Server)
 
 
+
+
             // DONE WITH PERMS ---//
 
-            if (!Channel.mods) {
+            if (DB[Server.id].channels[Channel.id] == undefined) {
                 channelSetup(Channel, Server);
             }
 
@@ -233,9 +244,9 @@ getDirs('utils/lang/', (list) => {
 
             try {
 
-                if (!Server.mods.DISABLED.includes("level")) {
+                if (DB[Server.id].modules&&!DB[Server.id].modules.DISABLED.includes("level")) {
                      updateEXP(Author, message)
-                }else if (!Channel.mods.DISABLED.includes("level")) {
+                }else if (DB[Server.id].modules&&!DB[Server.id].channels[Channel.id].modules.DISABLED.includes("level")) {
                      updateEXP(Author, message)
                     }
 
@@ -245,9 +256,9 @@ getDirs('utils/lang/', (list) => {
 
          try {
 
-                if (!Server.mods.DISABLED.includes("drop")) {
+                if (DB[Server.id].modules&&!DB[Server.id].modules.DISABLED.includes("drop")) {
                      dropGoodies(message)
-                }else if (!Channel.mods.DISABLED.includes("drop")) {
+                }else if (!DB[Server.id].channels[Channel.id].modules.DISABLED.includes("drop")) {
                      dropGoodies(message)
                     }
 
@@ -259,18 +270,18 @@ getDirs('utils/lang/', (list) => {
 
 
             //Wave 1
-            if (Server && typeof (Server.mods.LANGUAGE) !== 'undefined' && Server.mods.LANGUAGE && Server.mods.LANGUAGE !== '') {
-                message.lang = [Server.mods.LANGUAGE, 'en'];
+            if (Server && typeof (DB[Server.id].modules.LANGUAGE) !== 'undefined' && DB[Server.id].modules.LANGUAGE && DB[Server.id].modules.LANGUAGE !== '') {
+                message.lang = [DB[Server.id].modules.LANGUAGE, 'en'];
             }
 
 
             //Wave 2 -- CHECK PREFIX
-            if (Server && typeof (Server.mods.PREFIX) !== 'undefined' && Server.mods.PREFIX && Server.mods.PREFIX !== '') {
+            if (Server && typeof (DB[Server.id].modules.PREFIX) !== 'undefined' && DB[Server.id].modules.PREFIX && DB[Server.id].modules.PREFIX !== '') {
                 //-- START PREFIX
-                if (message.content.startsWith(Server.mods.PREFIX)) {
+                if (message.content.startsWith(DB[Server.id].modules.PREFIX)) {
                     message.botUser = bot;
                     message.akairo = client;
-                    message.prefix = Server.mods.PREFIX;
+                    message.prefix = DB[Server.id].modules.PREFIX;
 
                     //deployer.checkModule(message)
 
@@ -278,7 +289,7 @@ getDirs('utils/lang/', (list) => {
 
                 var mm = multilang.getT();
 
-                    switch (deployer.checkUse(message)) {
+                    switch (deployer.checkUse(message, DB, userDB)) {
 
                         case "DISABLED":
                             message.reply(mm('CMD.disabledModule', {
@@ -478,7 +489,7 @@ function channelSetup(element, guild) {
             DISABLED: ['cog']
         }
     }
-    element.mods = DB[guild.id].channels[element.id].modules;
+    //element.mods = DB[guild.id].channels[element.id].modules;
 
 
 }
@@ -495,7 +506,7 @@ var serverSetup = function serverSetup(guild) {
                 GOODIES: true,
                 LEVELS: true,
                 LVUP: true,
-                DROPS: true,
+                DROPS: false,
                 GOODMOJI: ':gem:',
                 GOODNAME: 'Gem',
                 ANNOUNCE: false,
@@ -516,23 +527,22 @@ var serverSetup = function serverSetup(guild) {
 
                         NSFW: true,
                         GOODIES: true,
-
                         LEVELS: true,
                         LVUP: true,
                         DROPS: true,
                         DISABLED: ['cog']
                     }
                 }
-                element.mods = DB[guild.id].channels[element.id].modules;
+               // element.mods = DB[guild.id].channels[element.id].modules;
 
             }
         });
     }
-    guild.mods = DB[guild.id].modules
+
     try {
 
         fs.writeFile('./database/servers.json', JSON.stringify(DB, null, 4), (err) => {
-            //console.log("JSON Write Server Database".gray)
+            console.log("JSON Write Server Database".gray)
         });
     } catch (err) {}
 
@@ -549,37 +559,58 @@ function userSetup(user) {
 
     if (!userDB[user.id]) {
         console.log('Setting Up Member:' + user.username)
+
         userDB[user.id] = {
             name: user.username,
             modules: {
-                PERMS: 0,
+                PERMS: 3,
                 level: 0,
                 exp: 0,
-                goodies: 500 + randomize(100, 200),
+                goodies: 0,
                 coins: 0,
-                medals: {},
+                medals: [],
                 expenses: {
                     putaria: 0,
                     jogatina: 0,
                     drops: 0,
                     trade: 0
                 },
-                "earnings": {
+                earnings: {
                     putaria: 0,
                     jogatina: 0,
                     drops: 0,
                     trade: 0
                 },
-                dyStreak: 8,
+                dyStreak: 5,
                 daily: 1486595162497,
-                persotext: ""
+                persotext: "",
+
+                skin:'default',
+                skinsAvailable:['default'],
+
+                build: {
+                    STR: 10,
+                    DEX: 10,
+                    CON: 10,
+                    INT: 10,
+                    WIS: 10,
+                    CHA: 10,
+                    weaponA: "none",
+                    weaponB: "none",
+                    shield: "none",
+                    armor: "none",
+                    invent: [],
+                    skills: [],
+                    HP: 100,
+                    MP: 50
             }
         }
     }
-    user.mods = userDB[user.id].modules
+  //  user.mods = userDB[user.id].modules
     fs.writeFile('./database/users.json', JSON.stringify(userDB, null, 4), (err) => {
         ////console.log("JSON Write User Database".gray)
     });
+}
 }
 
 
@@ -800,8 +831,8 @@ function updatePerms(tgt,Server){
                         break;
                        }
 
-                if (Server.mods.MODROLE.name) {
-                    if (Server.member(tgt).roles.exists('name', Server.mods.MODROLE.name)) {
+                if (DB[Server.id].modules.MODROLE.name) {
+                    if (Server.member(tgt).roles.exists('name', DB[Server.id].modules.MODROLE.name)) {
                         paramDefine(tgt, 'PERMS', 2)
                         console.log(tgt.username + "PERMS plus "+2)
                     }
@@ -820,11 +851,11 @@ function dropGoodies(event) {
     var LANG = event.lang;
     let GOODMOJI = ':gem:'
     let GOOD = 'Gem'
-    if (GLD.mods.GOODMOJI) {
-        GOODMOJI = GLD.mods.GOODMOJI
+    if (DB[Server.id].modules) {
+        GOODMOJI = DB[Server.id].modules
     }
-    if (GLD.mods.GOODNAME) {
-        GOOD = GLD.mods.GOODNAME
+    if (DB[Server.id].modules.GOODNAME) {
+        GOOD = DB[Server.id].modules.GOODNAME
     }
     if (typeof CHN.DROPSLY != 'number') {
         CHN.DROPSLY = 0
@@ -835,7 +866,7 @@ function dropGoodies(event) {
     if (droprate > 1889 && droprate < 2000) {
         console.log('DROP')
         var pack;
-        var prefie = GLD.mods.PREFIX || "+"
+        var prefie = DB[Server.id].modules.PREFIX || "+"
         var mm = multilang.getT();
         CHN.sendFile(paths.BUILD + 'ruby.png', 'goodie.png', mm('$.goodDrop', {
             lngs: LANG,
@@ -844,7 +875,7 @@ function dropGoodies(event) {
             prefix: prefie
         })).then(function (r) {
             bot.on('message', m => {
-                if (m.content == m.guild.mods.PREFIX + "pick") {
+                if (m.content == m.DB[guild.id].modules.PREFIX + "pick") {
                     r.delete().catch()
                 }
             })
@@ -861,10 +892,10 @@ function dropGoodies(event) {
             lngs: LANG,
             good: GOOD,
             emoji: GOODMOJI,
-            prefix: event.guild.mods.PREFIX
+            prefix: event.DB[guild.id].modules.PREFIX
         })).then(function (r) {
             bot.on('message', m => {
-                if (m.content == m.guild.mods.PREFIX + "pick") {
+                if (m.content == m.DB[guild.id].modules.PREFIX + "pick") {
                     r.delete().catch()
                 }
             })
@@ -883,7 +914,7 @@ function randomize(min, max) {
 }
 
 function updateEXP(TG, event) {
-    let userData = TG.mods;
+    let userData = userDB[TG.id].modules;
     var caller = TG.username // Checar Caller
 
     //LEVEL UP CHECKER
@@ -910,7 +941,7 @@ function updateEXP(TG, event) {
                     Jimp.read(paths.BUILD + "note.png").then(function (photo) {
                         photo.composite(user, 0, 0)
                         photo.mask(lenna, 0, 0)
-                        Jimp.read(paths.BUILD + 'levelcard.png').then(function (cart) {
+                        Jimp.read(paths.BUILD +"profile/skins/"+ userData.skin + '/levelcard.png').then(function (cart) {
                             Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
                                 Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
                                     try {
@@ -929,8 +960,8 @@ function updateEXP(TG, event) {
                                     cart.composite(photo, 18, 20)
 
                                     cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                                            if (event.guild.mods.LVUP) {
-                                                if (event.channel.mods.LVUP) {
+                                            if (event.DB[guild.id].modules.LVUP) {
+                                                if (DB[event.channel.guild.id].channels[event.channel.id].modules.LVUP) {
 
                                                     event.channel.sendFile(image)
                                                 }
@@ -969,7 +1000,7 @@ ${err.stack}
 });
 
 
-module.exports = {
+ module.exports = {
     userDB: userDB,
     DB: DB,
     serverSetup: serverSetup,

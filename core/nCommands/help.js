@@ -57,7 +57,7 @@ ${mm('help.joinSupp', {
     message.reply("See my command list at: http://pollux.lucasflicky.com/commands")
 };
 
-module.exports = {
+ module.exports = {
     pub:true,
     cmd: cmd,
     perms: 8,

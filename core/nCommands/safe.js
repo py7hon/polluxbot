@@ -49,5 +49,5 @@ var LANG = message.lang;
         })
     };
 
-module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'image'};
+ module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'image'};
 

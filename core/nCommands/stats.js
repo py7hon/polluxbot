@@ -77,4 +77,4 @@ a = gear.randomize(2,4)
 
 
 }
-module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'info'};
+ module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'info'};

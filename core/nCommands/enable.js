@@ -39,8 +39,8 @@ var init = function (message,userDB,DB) {
 
     var modPass = false
 
-    if (Server.mods.MODROLE && Server.mods.MODROLE.size >= 1) {
-        modPass = Member.roles.has(Server.mods.MODROLE);
+    if (DB[Server.id].modules.MODROLE && DB[Server.id].modules.MODROLE.size >= 1) {
+        modPass = Member.roles.has(DB[Server.id].modules.MODROLE);
     } else if (Member.hasPermission("MANAGE_SERVER")) {
         modPass = true;
     };
@@ -105,7 +105,7 @@ var init = function (message,userDB,DB) {
     if (sc == 'S') {
         Server.channels.forEach(e=>{
 
-        if (module in e.mods) {
+        if (module in DB[e.guild.id].channels[e.id].modules) {
             gear.paramDefine(e, module, true)
             message.reply(disaMS)
         } else {
@@ -115,7 +115,7 @@ var init = function (message,userDB,DB) {
         })
     } else {
 
-        if (module in message.channel.mods) {
+        if (module in DB[message.guild.id].channel[message.channel.id].modules) {
             gear.paramDefine(Channel, module, true)
             message.reply(disaMC)
         } else {
@@ -145,7 +145,7 @@ var init = function (message,userDB,DB) {
 
 
 }
-module.exports = {
+ module.exports = {
     pub: true,
     cmd: cmd,
     perms: 2,

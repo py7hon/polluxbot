@@ -18,11 +18,11 @@ var init = function (message,userDB,DB) {
 
   let GOODMOJI = ':gem:'
     let GOOD = 'Gem'
-    if (Server.mods.GOODMOJI) {
-        GOODMOJI = Server.mods.GOODMOJI
+    if (DB[Server.id].modules) {
+        GOODMOJI = DB[Server.id].modules
     }
-    if (Server.mods.GOODNAME) {
-        GOOD = Server.mods.GOODNAME
+    if (DB[Server.id].modules) {
+        GOOD = DB[Server.id].modules.GOODNAME
     }
 
     var bet = MSG.toLowerCase().split(' ');
@@ -45,7 +45,7 @@ var init = function (message,userDB,DB) {
         }),
           noFunds: mm('$.noFunds', {
             lngs: message.lang,
-            number: Author.mods.goodies,
+            number: userDB[Author.id].modules.goodies,
             goods: GOOD
         }),
 
@@ -122,7 +122,7 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
 
 
 
-module.exports = {
+ module.exports = {
     pub:true,
     cmd: cmd,
     perms: 3,

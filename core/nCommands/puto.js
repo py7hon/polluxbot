@@ -34,16 +34,16 @@ var init = function (message, userDB, DB) {
             message.reply(nope)
             return
         }
-        if (!Server.mods.putometro_curr) {
+        if (!DB[Server.id].modules.putometro_curr) {
             gear.paramDefine(Server, 'putometro_curr', 0)
         }
-        if (!Server.mods.putometro_max) {
+        if (!DB[Server.id].modules.putometro_max) {
             gear.paramDefine(Server, 'putometro_max', 0)
         }
 
 
-        var a = Server.mods.putometro_curr
-        var s = Server.mods.putometro_max
+        var a = DB[Server.id].modules.putometro_curr
+        var s = DB[Server.id].modules.putometro_max
 
 
 
@@ -62,7 +62,7 @@ var init = function (message, userDB, DB) {
                 })
                                                  }
 
-                module.exports = {
+                 module.exports = {
                     pub:true,
                     cmd: cmd,
                     perms: 3,

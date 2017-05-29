@@ -21,7 +21,7 @@ var init = function (message,userDB,DB) {
 
 };
 
-module.exports = {
+ module.exports = {
     cmd: cmd,
     perms: 3,
     init: init,
@@ -39,11 +39,11 @@ error3: mm('$.insuBet', {
 
     let GOODMOJI = ':gem:'
 let GOOD = 'Gem'
-if (Server.mods.GOODMOJI) {
-    GOODMOJI = Server.mods.GOODMOJI
+if (DB[Server.id].modules) {
+    GOODMOJI = DB[Server.id].modules
 }
-if (Server.mods.GOODNAME) {
-    GOOD = Server.mods.GOODNAME
+if (DB[Server.id].modules.GOODNAME) {
+    GOOD = DB[Server.id].modules.GOODNAME
 }
 
 

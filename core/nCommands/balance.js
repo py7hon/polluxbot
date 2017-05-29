@@ -35,18 +35,18 @@ var init = function (message,userDB,DB) {
 
     let GOODMOJI = ':gem:'
 let GOOD = 'Gem'
-if (Server.mods.GOODMOJI) {
-    GOODMOJI = Server.mods.GOODMOJI
+if (DB[Server.id].modules) {
+    GOODMOJI = DB[Server.id].modules
 }
-if (Server.mods.GOODNAME) {
-    GOOD = Server.mods.GOODNAME
+if (DB[Server.id].modules) {
+    GOOD = DB[Server.id].modules.GOODNAME
 }
     if (message.channel.type == 'dm') {
         message.reply(nope)
         return
     }
 
-    Target.mods = userDB[Author.id].modules
+    userDB[Target.id].modules = userDB[Author.id].modules
 
 
     let img = Target.defaultAvatarURL.substr(0, Target.defaultAvatarURL.length - 10)
@@ -56,23 +56,23 @@ if (Server.mods.GOODNAME) {
     emb.setColor('#ffd156')
     emb.title =  ":yen: " +bal
     emb.setThumbnail(img)
-    emb.description = tot+' **'+Target.mods.goodies+"** "+GOOD+"s "+GOODMOJI
+    emb.description = tot+' **'+userDB[Target.id].modules.goodies+"** "+GOOD+"s "+GOODMOJI
     emb.addField(gan, `
-      **${put}**: ${Target.mods.earnings.putaria}
-**${jog}**: ${Target.mods.earnings.jogatina}
-**${dro}**: ${Target.mods.earnings.drops}
-**${tra}**: ${Target.mods.earnings.trade}
+      **${put}**: ${userDB[Target.id].modules.earnings.putaria}
+**${jog}**: ${userDB[Target.id].modules.earnings.jogatina}
+**${dro}**: ${userDB[Target.id].modules.earnings.drops}
+**${tra}**: ${userDB[Target.id].modules.earnings.trade}
       `, true)
     emb.addField(gas, `
-  **${put}**: ${Target.mods.expenses.putaria}
-**${jog}**: ${Target.mods.expenses.jogatina}
-**${dro}**: ${Target.mods.expenses.drops}
-**${tra}**: ${Target.mods.expenses.trade}
+  **${put}**: ${userDB[Target.id].modules.expenses.putaria}
+**${jog}**: ${userDB[Target.id].modules.expenses.jogatina}
+**${dro}**: ${userDB[Target.id].modules.expenses.drops}
+**${tra}**: ${userDB[Target.id].modules.expenses.trade}
 
       `, true)
     message.channel.sendEmbed(emb)
 }
-module.exports = {
+ module.exports = {
     pub:true,
     cmd: cmd,
     perms: 3,

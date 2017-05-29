@@ -2,19 +2,16 @@ var commands = {};
 const fs = require('fs');
 const path = require('path');
 var cfg = require('../config.js');
-//var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8'));
-//var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8'));
-
 
 
 var deploy = function (message, userDB, DB) {
 
     var bot = message.botUser
-    var command = message.content.substr(message.guild.mods.PREFIX.length).split(' ')[0]
+    var command = message.content.substr(DB[message.guild.id].modules.PREFIX.length).split(' ')[0]
     let commandFile;
     try {
-        console.log(command)
-        console.log(message.guild.mods.GOODNAME.toLowerCase())
+       // console.log(command)
+    //    console.log(DB[message.guild.id].modules.GOODNAME.toLowerCase())
 
 
 
@@ -25,12 +22,12 @@ var deploy = function (message, userDB, DB) {
 
 
         switch (true) {
-            case command == message.guild.mods.GOODNAME.toLowerCase():
-            case command == message.guild.mods.GOODNAME.toLowerCase() + "s":
+            case command == DB[message.guild.id].modules.GOODNAME.toLowerCase():
+            case command == DB[message.guild.id].modules.GOODNAME.toLowerCase() + "s":
             case command == "$":
         commandFile = require(`./nCommands/cash.js`);
         break;
-        case command == message.guild.mods.GOODNAME.toLowerCase() + 'rank':
+        case command == DB[message.guild.id].modules.GOODNAME.toLowerCase() + 'rank':
             commandFile = require(`./nCommands/cashrank.js`);
             break;
                  case command == 'incinerate':
@@ -48,12 +45,12 @@ var deploy = function (message, userDB, DB) {
 
     /*
 
-    if (command == message.guild.mods.GOODNAME.toLowerCase()||command == message.guild.mods.GOODNAME.toLowerCase()+"s"||command=="$") {
+    if (command == DB[message.guild.id].modules.GOODNAME.toLowerCase()||command == DB[message.guild.id].modules.GOODNAME.toLowerCase()+"s"||command=="$") {
 
         commandFile = require(`./nCommands/cash.js`);
 
 
-    } else if (command == message.guild.mods.GOODNAME.toLowerCase() + 'rank') {
+    } else if (command == DB[message.guild.id].modules.GOODNAME.toLowerCase() + 'rank') {
 
         commandFile = require(`./nCommands/cashrank.js`);
     } else {
@@ -67,10 +64,12 @@ var deploy = function (message, userDB, DB) {
     //if (commandFile.skynet && message.guild.id!='248285312353173505') return;
 
     commandFile.init(message, userDB, DB);
+
     console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
 } catch (err) {
     console.log((err.stack).red)
 }
+
 };
 
 var pullComms = function () {
@@ -80,7 +79,7 @@ var pullComms = function () {
 var pushComms = function (t) {
     commands = t;
 };
-var checkUse = function (msg) {
+var checkUse = function (msg, DB, userDB) {
 
     try {
         let command = msg.content.substr(msg.prefix.length).split(' ')[0];
@@ -90,11 +89,11 @@ var checkUse = function (msg) {
 
         switch (true) {
 
-            case msg.channel.mods.DISABLED.includes(commandFile.cat):
-            case msg.channel.mods.DISABLED.includes(commandFile.cmd):
+            case DB[msg.guild.id].channels[msg.channel.id].modules.DISABLED.includes(commandFile.cat):
+            case DB[msg.guild.id].channels[msg.channel.id].modules.DISABLED.includes(commandFile.cmd):
                 return "DISABLED";
                 break;
-            case msg.author.mods.PERMS > commandFile.perms:
+            case userDB[msg.author.id].modules.PERMS > commandFile.perms:
                 return "NO PRIVILEGE";
                 break;
             default:
@@ -142,7 +141,7 @@ var commCheck = function (msg, userDB, DB) {
         //  console.log(err.stack)
     }
 };
-module.exports = {
+ module.exports = {
     commCheck: commCheck,
     run: deploy,
     pullComms: pullComms,

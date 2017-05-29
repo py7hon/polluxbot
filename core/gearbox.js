@@ -16,7 +16,7 @@ Array.prototype.remove = function() {
     return this;
 };
 
-module.exports = {
+ module.exports = {
 
     writeJ: function writeJ(a, b) {
         fs.writeFile(b + '.json', JSON.stringify(a, null, 4), (err) => {

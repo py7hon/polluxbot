@@ -26,7 +26,7 @@ var av;
     message.channel.sendFile('./avis/'+av+'.png','avatar.png',vocab)
     }
 
-module.exports = {
+ module.exports = {
     pub:false,
     cmd: cmd,
     perms: 1,

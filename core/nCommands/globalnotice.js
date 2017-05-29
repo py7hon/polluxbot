@@ -73,7 +73,7 @@ console.log(DB[message.guild.id].modules.announcements)
 
 };
 
-module.exports = {
+ module.exports = {
     pub: false,
     cmd: cmd,
     perms: 0,

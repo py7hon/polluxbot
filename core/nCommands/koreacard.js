@@ -50,7 +50,7 @@
         }
 
 
-    module.exports = {
+     module.exports = {
         pub: false
         , cmd: cmd
         , perms: 0

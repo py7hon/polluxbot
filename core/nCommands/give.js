@@ -16,18 +16,18 @@ var init = function (message,userDB,DB) {
     var bot = message.botUser
     var args = MSG.split(' ').slice(1)[0]
     var LANG = message.lang;
-    var userData = Author.mods
-    var tgtData = Target.mods
+    var userData = userDB[Author.id].modules
+    var tgtData = userDB[Target.id].modules
 
 
 
     let GOODMOJI = ':gem:'
     let GOOD = 'Gem'
-    if (Server.mods.GOODMOJI) {
-        GOODMOJI = Server.mods.GOODMOJI
+    if (DB[Server.id].modules) {
+        GOODMOJI = DB[Server.id].modules
     }
-    if (Server.mods.GOODNAME) {
-        GOOD = Server.mods.GOODNAME
+    if (DB[Server.id].modules.GOODNAME) {
+        GOOD = DB[Server.id].modules.GOODNAME
     }
 
 
@@ -54,7 +54,7 @@ var init = function (message,userDB,DB) {
     }
 }
 
-module.exports = {
+ module.exports = {
     pub:true,
     cmd: cmd,
     perms: 3,

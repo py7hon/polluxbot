@@ -416,7 +416,7 @@ setTimeout(fu=>{
 
         if ((newMember.presence.game.name.toLowerCase() == "heroes of the storm")&&(oldMember.presence.game.name.toLowerCase() != "heroes of the storm")) {
             console.log('HERO')
-            var herois = sky.roles.find('name', 'Herois do Toró  🎮')
+            var herois = sky.roles.find('name', 'Herois do Toró')
             sky.defaultChannel.sendMessage(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.").then(jjm=>{jjm.delete(600000)}).catch()
 
             var team = 0
@@ -458,20 +458,20 @@ bot.on('message', message => {
 
 if (!message.guild) return;
 
-        if (!message.guild.mods.putometro_curr) {
+        if (!DB[message.guild.id].modules.putometro_curr) {
             paramDefine(message.guild, 'putometro_curr', 0)
         }
-        if (!message.guild.mods.putometro_max) {
+        if (!DB[message.guild.id].modules.putometro_max) {
             paramDefine(message.guild, 'putometro_max', 0)
         }
-        if (!message.guild.mods.putometro_last) {
+        if (!DB[message.guild.id].modules.putometro_last) {
             paramDefine(message.guild, 'putometro_last', now)
         }
-        if (now-message.guild.mods.putometro_last >= dayC){
-            paramDefine(message.guild, 'putometro_curr', parseInt(Math.round(-(message.guild.mods.putometro_last-now)/dayC * 100) / 100))
+        if (now-DB[message.guild.id].modules.putometro_last >= dayC){
+            paramDefine(message.guild, 'putometro_curr', parseInt(Math.round(-(DB[message.guild.id].modules.putometro_last-now)/dayC * 100) / 100))
         }
-            if(message.guild.mods.putometro_curr>message.guild.mods.putometro_max){
-                 paramDefine(message.guild, 'putometro_max', message.guild.mods.putometro_curr)
+            if(DB[message.guild.id].modules.putometro_curr>DB[message.guild.id].modules.putometro_max){
+                 paramDefine(message.guild, 'putometro_max', DB[message.guild.id].modules.putometro_curr)
             }
 
 
@@ -482,7 +482,7 @@ if (!message.guild) return;
 
     if (message.content.includes(':rage:')||message.content.includes('puto') && message.content.includes('to ')){
 console.log("puto")
-paramDefine(message.guild, 'putometro_max', message.guild.mods.putometro_curr)
+paramDefine(message.guild, 'putometro_max', DB[message.guild.id].modules.putometro_curr)
  paramDefine(message.guild, 'putometro_curr', 0)
  paramDefine(message.guild, 'putometro_last', now)
 

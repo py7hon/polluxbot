@@ -86,4 +86,4 @@ var init = function (message,userDB,DB) {
 };
 
 
-module.exports = {pub: false,cmd: cmd,perms: 0,init: init,cat: 'misc'};
+ module.exports = {pub: false,cmd: cmd,perms: 0,init: init,cat: 'misc'};

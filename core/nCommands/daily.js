@@ -39,7 +39,7 @@
      var args = MSG.split(' ').slice(1)[1]
      var LANG = message.lang;
 
-     if (!Server.mods.GOODIES) {
+     if (!DB[Server.id].modules.GOODIES) {
          message.reply(mm('CMD.disabledModule', {
              lngs: LANG,
              module: "`GOODIES`"
@@ -51,12 +51,6 @@
 
      let GOODMOJI = ':gem:'
      let GOOD = 'Gem'
-     if (Server.mods.GOODMOJI) {
-         GOODMOJI = Server.mods.GOODMOJI
-     }
-     if (Server.mods.GOODNAME) {
-         GOOD = Server.mods.GOODNAME
-     }
 
 
 
@@ -66,8 +60,8 @@
 
      var now = new Date().getTime();
      var day = 86400000
-     var dly = Author.mods.daily
-     var streak = Author.mods.dyStreak
+     var dly = userDB[Author.id].modules.daily
+     var streak = userDB[Author.id].modules.dyStreak
      1486025790272
      if ((now - dly) >= day) {
          if ((now - dly) < (day * 2)) {
@@ -111,7 +105,7 @@
 
 
  }
- module.exports = {
+  module.exports = {
      pub:true,
      cmd: cmd,
      perms: 3,

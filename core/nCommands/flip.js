@@ -18,7 +18,7 @@ var init = function (message,userDB,DB) {
             }))
         }
 }
-        module.exports = {
+         module.exports = {
             pub:true,
             cmd: cmd
             , perms: 0

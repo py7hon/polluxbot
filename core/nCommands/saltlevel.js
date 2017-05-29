@@ -37,7 +37,7 @@ let saltmoji = message.guild.emojis.find('name','salty')
     message.channel.sendMessage(vocab)
 }
 
-module.exports = {
+ module.exports = {
     pub:false,
     cmd: cmd,
     perms: 3,

@@ -96,7 +96,7 @@ for (i=0;i<rotation.length;i++){
 
 })}
 
-                module.exports = {
+                 module.exports = {
                     pub:true,
                     cmd: cmd,
                     perms: 3,

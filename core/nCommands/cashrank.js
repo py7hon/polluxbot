@@ -26,11 +26,11 @@ var init = function (message,userDB,DB) {
 
     let GOODMOJI = ':gem:'
     let GOOD = 'Gem'
-    if (Server.mods.GOODMOJI) {
-        GOODMOJI = Server.mods.GOODMOJI
+    if (DB[Server.id].modules) {
+        GOODMOJI = DB[Server.id].modules
     }
-    if (Server.mods.GOODNAME) {
-        GOOD = Server.mods.GOODNAME
+    if (DB[Server.id].modules.GOODNAME) {
+        GOOD = DB[Server.id].modules.GOODNAME
     }
     emb = new Discord.RichEmbed();
     var rankItem = []
@@ -75,7 +75,7 @@ var medals = [':first_place: 1st',
     }
     message.channel.sendEmbed(emb)
 }
-module.exports = {
+ module.exports = {
     pub: true
     , cmd: cmd
     , perms: 0

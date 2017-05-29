@@ -5,7 +5,7 @@ var setT = (t) => {
 var getT = () => {
     return reroute;
 };
-module.exports = {
+ module.exports = {
     setT: setT
     , getT: getT
 };

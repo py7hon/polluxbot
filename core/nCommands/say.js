@@ -6,7 +6,7 @@ var init = function (message,userDB,DB) {
  message.channel.sendMessage(message.content.substr(message.prefix.length+3))
 
 }
-module.exports = {
+ module.exports = {
     pub:true,
     cmd: cmd,
     perms: 3,

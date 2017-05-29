@@ -14,8 +14,8 @@ var init = function (message) {
   var LANG = message.lang;
     var modPass = false
 
-    if (Server.mods.MODROLE && Server.mods.MODROLE.size != ""){
-        modPass = Member.roles.has(Server.mods.MODROLE);
+    if (DB[Server.id].modules.MODROLE && DB[Server.id].modules.MODROLE.size != ""){
+        modPass = Member.roles.has(DB[Server.id].modules.MODROLE);
     }if(Member.hasPermission("MANAGE_SERVER")||Member.hasPermission("ADMINISTRATOR")){
         modPass = true;
     };
@@ -33,7 +33,7 @@ var anno = mm('dict.announce',{lngs:LANG})
 
 };
 
-module.exports = {
+ module.exports = {
     pub:true,
     cmd: cmd,
     perms: 3,

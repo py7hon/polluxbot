@@ -13,14 +13,14 @@ var args = message.content.split(' ').slice(1)
     var bot = message.botUser
 
     gear.paramDefine(Server, 'PREFIX', args[0].toString());
-    Server.mods.PREFIX =  args[0].toString();
+    DB[Server.id].modules.PREFIX =  args[0].toString();
     message.reply(mm('CMD.prefixChng', {
         lngs: LANG,
-        prefix: Server.mods.PREFIX
+        prefix: DB[Server.id].modules.PREFIX
     }));
 }
 
-module.exports = {
+ module.exports = {
     cmd: cmd,
     perms: 2,
     init: init,

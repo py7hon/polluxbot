@@ -19,16 +19,16 @@ var LANG = message.lang;
 
 //-------MAGIC----------------
 
-var  userData = Author.mods
+var  userData = userDB[Author.id].modules
 
 
 let GOODMOJI = ':gem:'
     let GOOD = 'Gem'
-    if (Server.mods.GOODMOJI) {
-        GOODMOJI = Server.mods.GOODMOJI
+    if (DB[Server.id].modules) {
+        GOODMOJI = DB[Server.id].modules
     }
-    if (Server.mods.GOODNAME) {
-        GOOD = Server.mods.GOODNAME
+    if (DB[Server.id].modules.GOODNAME) {
+        GOOD = DB[Server.id].modules.GOODNAME
     }
 
 
@@ -56,5 +56,5 @@ let GOODMOJI = ':gem:'
 
     }
 
-module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'misc'};
+ module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'misc'};
 

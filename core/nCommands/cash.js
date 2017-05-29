@@ -20,11 +20,11 @@ var init = function (message,userDB,DB) {
 
     let GOODMOJI = ':gem:'
     let GOOD = 'Gem'
-    if (Server.mods.GOODMOJI) {
-        GOODMOJI = Server.mods.GOODMOJI
+    if (DB[Server.id].modules) {
+        GOODMOJI = DB[Server.id].modules
     }
-    if (Server.mods.GOODNAME) {
-        GOOD = Server.mods.GOODNAME
+    if (DB[Server.id].modules) {
+        GOOD = DB[Server.id].modules.GOODNAME
     }
 
 
@@ -53,19 +53,19 @@ var init = function (message,userDB,DB) {
         heHas: mm("$.hasAmount", {
             lngs: LANG,
             goodname: GOOD,
-            goods: Target.mods.goodies
+            goods: userDB[Target.id].modules.goodies
         }),
         youHave: mm("$.youAmount", {
             lngs: LANG,
             goodname: GOOD,
-            goods: Author.mods.goodies
+            goods: userDB[Author.id].modules.goodies
         })
 
     }
     vocab.c1
 
     if (message.mentions.users.size === 0) {
-        var r = Target.mods.goodies
+        var r = userDB[Target.id].modules.goodies
         var fam = ''
         switch (true) {
             case (r < 10):
@@ -98,7 +98,7 @@ var init = function (message,userDB,DB) {
     return message.channel.sendMessage(vocab.heHas)
 }
 
-module.exports = {
+ module.exports = {
     pub:true,
     cmd: cmd,
     perms: 3,

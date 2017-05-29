@@ -29,7 +29,7 @@ Target = Server.member(Target)
 **__Autoroles Disponíveis:__**
 *Jogo/Role [keyword]*
 **Heroes of the Storm** [hots, heroes]
-**Guild Wars 2** [guildwars1, gw2]
+**Guild Wars 2** [guildwars2, gw2]
 **Paladins** [paladins]
 **Perv** (NSFW-Access) [perv]
 
@@ -45,20 +45,20 @@ var mem=Member
         switch (argsV){
   case "overwatch":
               case "ow":
-         xR("Overwatch   🎮",mem);
+         xR("Overwatch",mem);
         break;
 
     case "paladins":
 
-    xR("Paladins   🎮",mem);
+    xR("Paladins",mem);
         break;
         case "hots":
         case "heroes":
-    xR("Heróis do Toró   🎮",mem);
+    xR("Heróis do Toró",mem);
         break;
         case "gw2":
         case "guildwars2":
-    xR("Guild Wars II   🎮",mem);
+    xR("Guild Wars II",mem);
         break;
           case "perv":
     xR("Perv",mem);
@@ -68,19 +68,19 @@ var mem=Member
         switch (args){
   case "overwatch":
               case "ow":
-         fR("Overwatch   🎮",mem);
+         fR("Overwatch",mem);
         break;
     case "paladins":
 
-    fR("Paladins   🎮",mem);
+    fR("Paladins",mem);
         break;
         case "hots":
         case "heroes":
-    fR("Heróis do Toró   🎮",mem);
+    fR("Heróis do Toró",mem);
         break;
         case "gw2":
         case "guildwars2":
-    fR("Guild Wars II   🎮",mem);
+    fR("Guild Wars II",mem);
         break;
           case "perv":
     fR("Perv",mem);
@@ -99,4 +99,4 @@ function xR(role,memb){
         memb.removeRole(a).then(a => message.channel.sendMessage(":no_entry: Removi **"+memb.displayName+"** do grupo de **"+role+"** !")).catch(e=> message.channel.sendMessage("Erro!"))
             }
 }
-module.exports = {pub:false,cmd: cmd, perms: 3, init: init, cat: 'info'};
+ module.exports = {pub:false,cmd: cmd, perms: 3, init: init, cat: 'info'};

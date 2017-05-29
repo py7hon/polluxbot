@@ -24,18 +24,18 @@ var init = function (message,userDB,DB) {
 
     //-------MAGIC----------------
 
-    if(Channel.mods.NSFW==false){
+    if(DB[Server.id].channels[Channel.id].modules.NSFW==false){
         message.reply(mm('forFun.nsfwNope',{lngs:LANG}));
         return;
     }
 
     let GOODMOJI = ':gem:'
 let GOOD = 'Gem'
-if (Server.mods.GOODMOJI) {
-    GOODMOJI = Server.mods.GOODMOJI
+if (DB[Server.id].modules) {
+    GOODMOJI = DB[Server.id].modules
 }
-if (Server.mods.GOODNAME) {
-    GOOD = Server.mods.GOODNAME
+if (DB[Server.id].modules.GOODNAME) {
+    GOOD = DB[Server.id].modules.GOODNAME
 }
 
 return message.reply("Rule34 Temporarily Unavailable");
@@ -80,7 +80,7 @@ return message.reply("Rule34 Temporarily Unavailable");
 
 
 }
-module.exports = {
+ module.exports = {
     pub:true,
     cmd: cmd,
     perms: 3,

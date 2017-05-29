@@ -5,7 +5,7 @@ function replaceWilds(input,args){
 
    return input
 }
-module.exports = {
+ module.exports = {
 
         def: function def(x) {
 

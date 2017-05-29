@@ -235,7 +235,7 @@ type \`ok\` to confirm, or \`c\` Cancel`)
 
 
 
-        module.exports = {
+         module.exports = {
             pub: true,
             cmd: cmd,
             perms: 3,

@@ -201,7 +201,7 @@ getDirs('utils/lang/', (list) => {
             userSetup(Author);
             userSetup(Target);
             paramIncrement(Author, 'exp', 1)
-            if (!Author.mods.PERMS) {
+            if (!userDB[Author.id].modules.PERMS) {
 
                 if (Server.member(Author).hasPermission("MANAGE_GUILD")) {
 
@@ -212,9 +212,9 @@ getDirs('utils/lang/', (list) => {
                 }
 
 
-                if (Server.mods.MODROLE.name) {
+                if (DB[Server.id].modules.MODROLE.name) {
 
-                    if (Server.member(Author).roles.exists('name', Server.mods.MODROLE.name)) {
+                    if (Server.member(Author).roles.exists('name', DB[Server.id].modules.MODROLE.name)) {
                         paramDefine(Author, 'PERMS', 3)
                     }
                 }
@@ -228,7 +228,7 @@ getDirs('utils/lang/', (list) => {
 
             try {
 
-                if (Server.mods.LEVELS) {
+                if (DB[Server.id].modules.LEVELS) {
                     if (Channel.mods.LEVELS) {
                         updateEXP(Author, message)
                     }
@@ -239,7 +239,7 @@ getDirs('utils/lang/', (list) => {
             }
             try {
 
-                if (Server.mods.DROPS) {
+                if (DB[Server.id].modules.DROPS) {
                     if (Channel.mods.DROPS) {
                         dropGoodies(message)
                     }
@@ -250,17 +250,17 @@ getDirs('utils/lang/', (list) => {
 
 
             //Wave 1
-            if (Server && typeof (Server.mods.LANGUAGE) !== 'undefined' && Server.mods.LANGUAGE && Server.mods.LANGUAGE !== '') {
-                message.lang = [Server.mods.LANGUAGE, 'en'];
+            if (Server && typeof (DB[Server.id].modules.LANGUAGE) !== 'undefined' && DB[Server.id].modules.LANGUAGE && DB[Server.id].modules.LANGUAGE !== '') {
+                message.lang = [DB[Server.id].modules.LANGUAGE, 'en'];
             }
 
             //Wave 2 -- CHECK PREFIX
-            if (Server && typeof (Server.mods.PREFIX) !== 'undefined' && Server.mods.PREFIX && Server.mods.PREFIX !== '') {
+            if (Server && typeof (DB[Server.id].modules.PREFIX) !== 'undefined' && DB[Server.id].modules.PREFIX && DB[Server.id].modules.PREFIX !== '') {
                 //-- START PREFIX
-                if (message.content.startsWith(Server.mods.PREFIX)) {
+                if (message.content.startsWith(DB[Server.id].modules.PREFIX)) {
                     message.botUser = bot;
                     message.akairo = client;
-                    message.prefix = Server.mods.PREFIX;
+                    message.prefix = DB[Server.id].modules.PREFIX;
 
                     //deployer.checkModule(message)
 
@@ -898,7 +898,7 @@ ${err.stack}
       }]
     })
 });
-module.exports = {
+ module.exports = {
     userDB: userDB,
     DB: DB,
     serverSetup: serverSetup
