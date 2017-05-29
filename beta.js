@@ -53,9 +53,6 @@ const client = new AkairoClient({
     prefix: '+'
 });
 
-client.login(cfg.beta).then(() => {
-
-});
 
 
 //DEBUG
@@ -347,7 +344,7 @@ getDirs('utils/lang/', (list) => {
                 } else {
                     if (message.guild && !message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {}
                     if (message.guild && !!message.mentions.users.get(bot.user.id) && message.guild.id !== '110373943822540800' && !message.content.startsWith(prefix) && !message.author.bot) {
-                        if (!cfg.beta) {}
+                        if (!cfg.token) {}
                     }
                 }
             }
@@ -1010,4 +1007,4 @@ ${err.stack}
 
 
 
-   bot.login(cfg.beta).then(loginSuccess());
+   bot.login(cfg.token).then(loginSuccess());
