@@ -960,7 +960,7 @@ function updateEXP(TG, event) {
                                     cart.composite(photo, 18, 20)
 
                                     cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                                            if (event.DB[guild.id].modules.LVUP) {
+                                            if (DB[guild.id].modules.LVUP) {
                                                 if (DB[event.channel.guild.id].channels[event.channel.id].modules.LVUP) {
 
                                                     event.channel.sendFile(image)
