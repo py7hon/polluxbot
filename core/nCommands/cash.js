@@ -18,8 +18,12 @@ var init = function (message,userDB,DB) {
     //-------MAGIC----------------
 
 
-    let GOODMOJI = ':gem:'
-    let GOOD = 'Gem'
+var emoj = bot.emojis.get('276878246589497344') 
+
+     let GOODMOJI = DB[Server.id].modules.GOODMOJI || emoj
+     let GOOD = DB[Server.id].modules.GOODNAME || 'Ruby'
+     
+     
     if (DB[Server.id].modules) {
         GOODMOJI = DB[Server.id].modules
     }
