@@ -71,20 +71,20 @@ var emoj = bot.emojis.get('276878246589497344')
          }
          var dailyGet = mm('$.dailyGet', {
              lngs: LANG,
-             emoji: GOODMOJI,
+             emoji: '',
              goods: GOOD
          })
 
 
-         message.reply(dailyGet)
+         message.reply(emoj+dailyGet)
          if (streak == 10) {
              var dailyStreak = mm('$.dailyStreak', {
                  lngs: LANG,
-                 emoji: GOODMOJI
+                 emoji: ''
 
              })
 
-             message.channel.sendMessage(dailyStreak)
+             message.channel.sendMessage(emoj+dailyStreak)
          }
 
          gear.paramIncrement(Author, 'goodies', 100)
@@ -95,10 +95,10 @@ var emoj = bot.emojis.get('276878246589497344')
          var remain = (r / 1000 + "").toHHMMSS();
          var dailyNope = mm('$.dailyNope', {
              lngs: LANG,
-             emoji: GOODMOJI,
+             emoji: '',
              remaining: remain
          })
-         message.reply(dailyNope)
+         message.reply(emoj+dailyNope)
      }
 
 
