@@ -115,7 +115,7 @@
          , "switch": "Changes my Display Picture"
          , "joinSupp": "Join my Support Server for reporting bugs and suggesting feats"
          , "invite": "Invite me for yout server~"
-         , "disableNuisance": "Disable Annoying responses:\n Goodies/Gems: ${message.prefix}disable DROPS \n  Level Up: ${message.prefix}disable LVUP"
+         , "disableNuisance": "Disable Annoying responses:\n Goodies/Rubys: ${message.prefix}disable DROPS \n  Level Up: ${message.prefix}disable LVUP"
          ,"cashrank": "**GLOBAL** {{good}}s Ranking. Alternatively `{{prefix}}{{good}}`"
              ,"daily":"Free {{good}}s everyday."
         ,"help":"You probably know what this does"
