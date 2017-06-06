@@ -194,7 +194,7 @@ param = param.split('.'); if ((param.length==1)){
     },
 
     checkGoods: function checkGoods(amount, invoker) {
-        if (invoker.mods.goodies >= amount) {
+        if (userDB[invoker.id].modules.goodies >= amount) {
             return true;
         } else {
             return false;
