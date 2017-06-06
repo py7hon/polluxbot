@@ -19,7 +19,7 @@
    
      ,levelX: 425             //  X position
      ,levelY: 37            //  Y position
-     ,levelF: "f2"          //  Font (f1, f2, f3, inv [for invisible] )
+     ,levelF: "f1"          //  Font (f1, f2, f3, inv [for invisible] )
    
    //GEMS / RUBYS / CASH
 

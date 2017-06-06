@@ -39,6 +39,17 @@ para sair use \`+roleme out [role]\`
 
 var mem=Member
 
+//--------------------------------------
+
+
+
+
+
+
+
+//--------------------------------------
+
+
 
 
     if (args=="out"){
@@ -47,7 +58,13 @@ var mem=Member
               case "ow":
          xR("Overwatch",mem);
         break;
-
+ case "left4dead":
+ case "left4dead2":
+ case "l4d":
+ case "l4d2":
+              case "ow":
+         xR("Left 4 Dead 2",mem);
+        break;
     case "paladins":
 
     xR("Paladins",mem);
@@ -69,6 +86,13 @@ var mem=Member
   case "overwatch":
               case "ow":
          fR("Overwatch",mem);
+        break;
+                 case "left4dead":
+ case "left4dead2":
+ case "l4d":
+ case "l4d2":
+              case "ow":
+         fR("Left 4 Dead 2",mem);
         break;
     case "paladins":
 

@@ -126,4 +126,16 @@
         ,"speak or lang":"Trocar o idioma, atualmente suportando: `{{langs}}`"
         ,"betflip":"Aposte {{good}}s virando uma moeda"
      }
+     ,"menu": {
+         "cake": "Bolo"
+         ,"tart": "Torta"
+         ,"coffee": "Café"
+         ,"donut": "Donut"
+         ,"donut2": "Rosca"
+         ,"eggplant": "Berinjela"
+         ,"custard": "Pudim"
+         ,"goaway": "Eu vou dar uma volta enquanto tu te decide, qualquer coisa só chamar~"
+           ,"chargeA": "Ive charged {{total}} "
+         ,"chargeB": " from your account. I'll be back in a minute with yout order!"
+     }
  }

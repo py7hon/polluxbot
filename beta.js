@@ -13,12 +13,12 @@ var cfg = require('./config.js');
 var deployer = require('./core/deployer.js'); // <------------- I DUN LIKE DIS
 
 
-var cleverbot = require("cleverbot");// <------------- REVIEW  DIS
+var cleverbot = require("cleverbot"); // <------------- REVIEW  DIS
 cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
 
 
 
-var async = require('async')  // <-- EVER USED?
+var async = require('async') // <-- EVER USED?
 
 
 const Jimp = require("jimp");
@@ -32,6 +32,9 @@ var paths = require("./core/paths.js");
 var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8', console.log("OK")));
 var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8', console.log("OK")));
 
+const sql = require('sqlite');
+sql.open('./database/pollux.sqlite');
+var database = require('./database/schema.js')
 
 var prefix = "+";
 var skynet = '248285312353173505'
@@ -75,65 +78,75 @@ getDirs('utils/lang/', (list) => {
         multilang.setT(t);
     });
 })
-    function loginSuccess() {
-        console.log('LOGGED IN!'.bgGreen.white.bold)
-        hook.sendSlackMessage({
-            'username': 'Pollux Core Reporter',
-            'attachments': [{
-                'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-                'pretext': `Successful Login!`,
-                'color': '#49c7ff', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-                // 'footer': 'Powered by sneks',
-                'ts': Date.now() / 1000
+
+function loginSuccess() {
+    console.log('LOGGED IN!'.bgGreen.white.bold)
+    hook.sendSlackMessage({
+        'username': 'Pollux Core Reporter',
+        'attachments': [{
+            'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
+            'pretext': `Successful Login!`,
+            'color': '#49c7ff', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
+            // 'footer': 'Powered by sneks',
+            'ts': Date.now() / 1000
       }]
-        })
-    }
+    })
+}
 
 //var dvv = require('./database.js')
 
-    console.log('Ready to Rock!')
-    bot.on('ready', () => {
+console.log('Ready to Rock!')
+bot.on('ready', () => {
 
 
-        bot.guilds.forEach(g => { g.members.forEach( m=> {
+ sql.run('CREATE TABLE IF NOT EXISTS users '+database.users)
+ sql.run('CREATE TABLE IF NOT EXISTS servers '+database.servers)
+ sql.run('CREATE TABLE IF NOT EXISTS channels '+database.channels)
 
 
 
-          //  dvv.addUser(m.user,false);
-        //    dvv.find('name',m.user.id);
-        })})
+
+    bot.guilds.forEach(g => {
+        g.members.forEach(m => {
 
 
-        bot.user.setStatus('online')
 
-        // bot.user.setGame(`Flicky draws Silenyte stuff`, 'https://www.twitch.tv/LucasFlicky').then().catch();
-
-        bot.user.setGame(`Neverwinter Nights`).then().catch();
-
-        async.parallel(bot.guilds.forEach(G => serverSetup(G)))
-
-        userSetup(bot.user)
-        hook.sendSlackMessage({
-            'username': 'Pollux Core Reporter',
-            'attachments': [{
-                'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-                'pretext': `All systems go! I am ready to rock, master!`,
-                'color': '#3ed844', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-                // 'footer': 'Powered by sneks',
-                'ts': Date.now() / 1000
-      }]
+            //  dvv.addUser(m.user,false);
+            //    dvv.find('name',m.user.id);
         })
-
-        fs.createReadStream('database/users.json').pipe(fs.createWriteStream('./backup/USERS_' + Date.now() + '.json'));
-        fs.createReadStream('database/servers.json').pipe(fs.createWriteStream('./backup/SERVERS_' + Date.now() + '.json'));
+    })
 
 
-    });
+    bot.user.setStatus('online')
+
+    // bot.user.setGame(`Flicky draws Silenyte stuff`, 'https://www.twitch.tv/LucasFlicky').then().catch();
+
+    bot.user.setGame(`Neverwinter Nights`).then().catch();
+
+    async.parallel(bot.guilds.forEach(G => serverSetup(G)))
+
+    userSetup(bot.user)
+    hook.sendSlackMessage({
+        'username': 'Pollux Core Reporter',
+        'attachments': [{
+            'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
+            'pretext': `All systems go! I am ready to rock, master!`,
+            'color': '#3ed844', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
+            // 'footer': 'Powered by sneks',
+            'ts': Date.now() / 1000
+      }]
+    })
+
+    fs.createReadStream('database/users.json').pipe(fs.createWriteStream('./backup/USERS_' + Date.now() + '.json'));
+    fs.createReadStream('database/servers.json').pipe(fs.createWriteStream('./backup/SERVERS_' + Date.now() + '.json'));
+
+
+});
 
 
 //Check Commands
 
-    deployer.pullComms()
+deployer.pullComms()
 
 
 
@@ -141,235 +154,230 @@ getDirs('utils/lang/', (list) => {
 
 
 
-    bot.on("message", (message) => {
+bot.on("message", (message) => {
 
 
 
 
-        var Server = message.guild;
-        var Channel = message.channel;
-        var Author = message.author;
-        var Target = message.mentions.users.first() || Author;
-        var MSG = message.content;
+    var Server = message.guild;
+    var Channel = message.channel;
+    var Author = message.author;
+    var Target = message.mentions.users.first() || Author;
+    var MSG = message.content;
 
 
 
 
 
-        //---  LOGS
-        if (Server) {
+    //---  LOGS
+    if (Server) {
 
-            var logserver = Server.name + " "
-            var logchan = " #" + Channel.name + " "
-            var logusr = " " + Author.username + ": "
-            var logmsg = MSG
+        var logserver = Server.name + " "
+        var logchan = " #" + Channel.name + " "
+        var logusr = " " + Author.username + ": "
+        var logmsg = MSG
 
-            if (Server.name == "Discord Bots" && (MSG.includes('px+') || MSG.toLowerCase().includes('pollux'))) {
-                console.log(" @ " + logserver.bgRed.blue.bold + logchan.bgRed.yellow + " - " + logusr.bold + ": " + logmsg.gray + "\n")
-            } else {
-                if (Server.name != "Discord Bots") {
+        if (Server.name == "Discord Bots" && (MSG.includes('px+') || MSG.toLowerCase().includes('pollux'))) {
+            console.log(" @ " + logserver.bgRed.blue.bold + logchan.bgRed.yellow + " - " + logusr.bold + ": " + logmsg.gray + "\n")
+        } else {
+            if (Server.name != "Discord Bots") {
 
-                    console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
-                }
-            }
-
-        }
-        //--- END LOGS
-
-
-
-//-- NO BOTS PAST HERE
-
-        if (Author.bot) return;
-
-        if (message.content.endsWith('now illegal')) {
-            let aargs = message.content.split(' ')
-            aargs.pop()
-            aargs.pop()
-
-            let illegal = require(`./core/sidecommands/nowillegal.js`);
-            try {
-                illegal.run(bot, message, aargs)
-                return
-            } catch (err) {
-                console.log('ERROR')
-                hook.sendMessage(err)
-                return
+                console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
             }
         }
 
-        if (Server && !Author.bot) {
-
-
-            serverSetup(Server);
-
-            userSetup(Author);
-
-            userSetup(Target);
-
-
-            paramIncrement(Author, 'exp', 1)
-
-
-            /*
-
-            -= ::PERMS:: =-
-
-            0 = ALMIGHTY (owner)
-            1 = ADM
-            2 = MOD
-            3 = PLEB
-            4 = FUDIDO
-            5 = FORBIDDEN
-
-            */
-
-
-                updatePerms(Author,Server)
-                updatePerms(Target,Server)
+    }
+    //--- END LOGS
 
 
 
+    //-- NO BOTS PAST HERE
 
-            // DONE WITH PERMS ---//
+    if (Author.bot) return;
 
-            if (DB[Server.id].channels[Channel.id] == undefined) {
-                channelSetup(Channel, Server);
+    if (message.content.endsWith('now illegal')) {
+        let aargs = message.content.split(' ')
+        aargs.pop()
+        aargs.pop()
+
+        let illegal = require(`./core/sidecommands/nowillegal.js`);
+        try {
+            illegal.run(bot, message, aargs)
+            return
+        } catch (err) {
+            console.log('ERROR')
+            hook.sendMessage(err)
+            return
+        }
+    }
+
+    if (Server && !Author.bot) {
+
+
+        serverSetup(Server);
+
+        userSetup(Author);
+
+        userSetup(Target);
+
+
+        paramIncrement(Author, 'exp', 1)
+
+
+        /*
+
+        -= ::PERMS:: =-
+
+        0 = ALMIGHTY (owner)
+        1 = ADM
+        2 = MOD
+        3 = PLEB
+        4 = FUDIDO
+        5 = FORBIDDEN
+
+        */
+
+
+        updatePerms(Author, Server)
+        updatePerms(Target, Server)
+
+
+
+
+        // DONE WITH PERMS ---//
+
+        if (DB[Server.id].channels[Channel.id] == undefined) {
+            channelSetup(Channel, Server);
+        }
+
+
+
+        try {
+
+            if (DB[Server.id].modules && !DB[Server.id].modules.DISABLED.includes("level")) {
+                updateEXP(Author, message)
+            } else if (DB[Server.id].modules && !DB[Server.id].channels[Channel.id].modules.DISABLED.includes("level")) {
+                updateEXP(Author, message)
             }
 
+        } catch (err) {
+            serverSetup(Server)
+        }
 
+        try {
 
-            try {
-
-                if (DB[Server.id].modules&&!DB[Server.id].modules.DISABLED.includes("level")) {
-                     updateEXP(Author, message)
-                }else if (DB[Server.id].modules&&!DB[Server.id].channels[Channel.id].modules.DISABLED.includes("level")) {
-                     updateEXP(Author, message)
-                    }
-
-            } catch (err) {
-                serverSetup(Server)
+            if (DB[Server.id].modules && !DB[Server.id].modules.DISABLED.includes("drop")) {
+                dropGoodies(message)
+            } else if (!DB[Server.id].channels[Channel.id].modules.DISABLED.includes("drop")) {
+                dropGoodies(message)
             }
 
-         try {
-
-                if (DB[Server.id].modules&&!DB[Server.id].modules.DISABLED.includes("drop")) {
-                     dropGoodies(message)
-                }else if (!DB[Server.id].channels[Channel.id].modules.DISABLED.includes("drop")) {
-                     dropGoodies(message)
-                    }
-
-            } catch (err) {
-                serverSetup(Server)
-            }
+        } catch (err) {
+            serverSetup(Server)
+        }
 
 
 
 
-            //Wave 1
-            if (Server && typeof (DB[Server.id].modules.LANGUAGE) !== 'undefined' && DB[Server.id].modules.LANGUAGE && DB[Server.id].modules.LANGUAGE !== '') {
-                message.lang = [DB[Server.id].modules.LANGUAGE, 'en'];
-            }
+        //Wave 1
+        if (Server && typeof (DB[Server.id].modules.LANGUAGE) !== 'undefined' && DB[Server.id].modules.LANGUAGE && DB[Server.id].modules.LANGUAGE !== '') {
+            message.lang = [DB[Server.id].modules.LANGUAGE, 'en'];
+        }
 
 
-            //Wave 2 -- CHECK PREFIX
-            if (Server && typeof (DB[Server.id].modules.PREFIX) !== 'undefined' && DB[Server.id].modules.PREFIX && DB[Server.id].modules.PREFIX !== '') {
-                //-- START PREFIX
-                if (message.content.startsWith(DB[Server.id].modules.PREFIX)) {
-                    message.botUser = bot;
-                    message.akairo = client;
-                    message.prefix = DB[Server.id].modules.PREFIX;
+        //Wave 2 -- CHECK PREFIX
+        if (Server && typeof (DB[Server.id].modules.PREFIX) !== 'undefined' && DB[Server.id].modules.PREFIX && DB[Server.id].modules.PREFIX !== '') {
+            //-- START PREFIX
+            if (message.content.startsWith(DB[Server.id].modules.PREFIX)) {
+                message.botUser = bot;
+                message.akairo = client;
+                message.prefix = DB[Server.id].modules.PREFIX;
 
-                    //deployer.checkModule(message)
+                //deployer.checkModule(message)
 
-                    console.log('check ' + message)
+                console.log('check ' + message)
 
                 var mm = multilang.getT();
 
-                    switch (deployer.checkUse(message, DB, userDB)) {
+                switch (deployer.checkUse(message, DB, userDB)) {
 
-                        case "DISABLED":
-                            message.reply(mm('CMD.disabledModule', {
-                                lngs: message.lang,
-                                module: message.content.substr(message.prefix.length).split(' ')[0]
-                            }))
-
-
-                            break;
-                        case "NO PRIVILEGES":
-                            message.reply(mm('CMD.moderationNeeded', {
-                                lngs: message.lang,
-                                prefix: message.prefix
-                            }))
-                            break;
-                        default:
-                            console.log('OK go')
-                            deployer.run(message, userDB, DB);
-                            break;
-                    }
-                    // deployer.checkUse(message)
+                    case "DISABLED":
+                        message.reply(mm('CMD.disabledModule', {
+                            lngs: message.lang,
+                            module: message.content.substr(message.prefix.length).split(' ')[0]
+                        }))
 
 
+                        break;
+                    case "NO PRIVILEGES":
+                        message.reply(mm('CMD.moderationNeeded', {
+                            lngs: message.lang,
+                            prefix: message.prefix
+                        }))
+                        break;
+                    default:
+                        console.log('OK go')
+                        deployer.run(message, userDB, DB);
+                        break;
                 }
+                // deployer.checkUse(message)
 
 
-                else {
-            /*
+            } else {
+                /*
 
 
-                   //-- IS MENTION BOT
-                    if (message.guild && !message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {}
-                    //-- KLEBER
-                    if (message.guild && !!message.mentions.users.get(bot.user.id) && !message.content.startsWith(prefix) && !message.author.bot) {
-                        cleverbot.setNick(cfg.name)
-                        cleverbot.create(function (err, session) {
-                            message.channel.startTyping()
-                            cleverbot.ask(message.content, function (err, response) {
-                                message.reply(response);
-                                message.channel.stopTyping();
-                                console.log(colors.blue("Cleverbot chat: " + message.content + " // " + response))
+                       //-- IS MENTION BOT
+                        if (message.guild && !message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {}
+                        //-- KLEBER
+                        if (message.guild && !!message.mentions.users.get(bot.user.id) && !message.content.startsWith(prefix) && !message.author.bot) {
+                            cleverbot.setNick(cfg.name)
+                            cleverbot.create(function (err, session) {
+                                message.channel.startTyping()
+                                cleverbot.ask(message.content, function (err, response) {
+                                    message.reply(response);
+                                    message.channel.stopTyping();
+                                    console.log(colors.blue("Cleverbot chat: " + message.content + " // " + response))
+                                })
                             })
-                        })
-                    }
+                        }
 
-                   */
-                }
-            }
-
-            else {
-                if (message.content.startsWith(prefix)) {
-                    message.botUser = bot;
-                    message.prefix = prefix;
-                    deployer.commCheck(message);
-                } else {
-                    if (message.guild && !message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {}
-                    if (message.guild && !!message.mentions.users.get(bot.user.id) && message.guild.id !== '110373943822540800' && !message.content.startsWith(prefix) && !message.author.bot) {
-                        if (!cfg.token) {}
-                    }
-                }
+                       */
             }
         } else {
-            message.reply('PM Not Supported');
-            return;
+            if (message.content.startsWith(prefix)) {
+                message.botUser = bot;
+                message.prefix = prefix;
+                deployer.commCheck(message);
+            } else {
+                if (message.guild && !message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {}
+                if (message.guild && !!message.mentions.users.get(bot.user.id) && message.guild.id !== '110373943822540800' && !message.content.startsWith(prefix) && !message.author.bot) {
+                    if (!cfg.token) {}
+                }
+            }
         }
-    })
+    } else {
+        message.reply('PM Not Supported');
+        return;
+    }
+})
 
 //----------------------------------------
 
 
- bot.on('reconnecting', () => {
-        console.log("Reconnect".bgRed)
-        hook.sendSlackMessage({
-            'username': 'Pollux Core Reporter',
-            'attachments': [{
-                'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-                'pretext': `SELF RESTART TRIGGERED! Gimme a second to still myself.`,
-                'color': '#ffb249', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-                // 'footer': 'Powered by sneks',
-                'ts': Date.now() / 1000
+bot.on('reconnecting', () => {
+    console.log("Reconnect".bgRed)
+    hook.sendSlackMessage({
+        'username': 'Pollux Core Reporter',
+        'attachments': [{
+            'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
+            'pretext': `SELF RESTART TRIGGERED! Gimme a second to still myself.`,
+            'color': '#ffb249', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
+            // 'footer': 'Powered by sneks',
+            'ts': Date.now() / 1000
       }]
-        })
-    });
+    })
+});
 
 bot.on('guildCreate', (guild, member) => {
     serverSetup(guild);
@@ -440,6 +448,7 @@ bot.on('error', (error) => {
             'ts': Date.now() / 1000
       }]
     })
+    hook.sendMessage(error.toString())
 });
 
 
@@ -468,7 +477,7 @@ function getDirs(rootDir, cb) {
     })
 }
 
-var emojya = bot.emojis.get('276878246589497344') 
+var emojya = bot.emojis.get('276878246589497344')
 
 function channelSetup(element, guild) {
 
@@ -477,7 +486,7 @@ function channelSetup(element, guild) {
         name: element.name,
         modules: {
             DROPSLY: 0,
-      
+
             NSFW: true,
             GOODIES: true,
             GOODMOJI: emojya,
@@ -494,6 +503,13 @@ function channelSetup(element, guild) {
 }
 
 var serverSetup = function serverSetup(guild) {
+
+
+
+
+
+
+
 
 
     if (!DB[guild.id]) {
@@ -532,7 +548,7 @@ var serverSetup = function serverSetup(guild) {
                         DISABLED: ['cog']
                     }
                 }
-               // element.mods = DB[guild.id].channels[element.id].modules;
+                // element.mods = DB[guild.id].channels[element.id].modules;
 
             }
         });
@@ -552,7 +568,25 @@ var serverSetup = function serverSetup(guild) {
     })*/
 }
 
+function dbVAL(tab,rowa,col){
+
+ sql.get(`SELECT * FROM ${tab} WHERE id ='${rowa}'`).then(row => {
+     if (!row) return 0;
+      row[col]
+    });
+}
+
+
 function userSetup(user) {
+
+
+
+
+   // sql.run('CREATE TABLE IF NOT EXISTS users '+database.users).then(() => {
+    //    sql.run('INSERT INTO users (id, name) VALUES (?, ?)', [user.id, user.username]);
+//    });
+
+
 
 
 
@@ -584,8 +618,8 @@ function userSetup(user) {
                 daily: 1486595162497,
                 persotext: "",
 
-                skin:'default',
-                skinsAvailable:['default'],
+                skin: 'default',
+                skinsAvailable: ['default'],
 
                 build: {
                     STR: 10,
@@ -602,14 +636,14 @@ function userSetup(user) {
                     skills: [],
                     HP: 100,
                     MP: 50
+                }
             }
         }
+        //  user.mods = userDB[user.id].modules
+        fs.writeFile('./database/users.json', JSON.stringify(userDB, null, 4), (err) => {
+            ////console.log("JSON Write User Database".gray)
+        });
     }
-  //  user.mods = userDB[user.id].modules
-    fs.writeFile('./database/users.json', JSON.stringify(userDB, null, 4), (err) => {
-        ////console.log("JSON Write User Database".gray)
-    });
-}
 }
 
 
@@ -803,39 +837,42 @@ function paramDefine(target, param, val) {
 }
 
 
-function updatePerms(tgt,Server){
-          switch (true){
-                          case Server.member(tgt).id == Server.ownerID:
+function updatePerms(tgt, Server) {
+    try{
 
-                        paramDefine(tgt, 'PERMS', 0);
-                  console.log(tgt.username + "PERMS  "+0)
-                        break;
-                           case Server.member(tgt).hasPermission("ADMINISTRATOR"):
-                     case Server.member(tgt).hasPermission("BAN_MEMBERS"):
-                        paramDefine(tgt, 'PERMS', 1);
-                  console.log(tgt.username + "PERMS  "+1)
-                        break;
-                    case Server.member(tgt).hasPermission("MANAGE_GUILD"):
-                    paramDefine(tgt, 'PERMS', 2);
-                        console.log(tgt.username + "   MG GLD PERMS  "+2)
-                        break;
-                    case Server.member(tgt).hasPermission("KICK_MEMBERS"):
-                        paramDefine(tgt, 'PERMS', 2);
-                        console.log(tgt.username + "    KIK PERMS  "+2)
-                        break;
+    switch (true) {
+        case Server.member(tgt).id == Server.ownerID:
+
+            paramDefine(tgt, 'PERMS', 0);
+            console.log(tgt.username + "PERMS  " + 0)
+            break;
+        case Server.member(tgt).hasPermission("ADMINISTRATOR"):
+        case Server.member(tgt).hasPermission("BAN_MEMBERS"):
+            paramDefine(tgt, 'PERMS', 1);
+            console.log(tgt.username + "PERMS  " + 1)
+            break;
+        case Server.member(tgt).hasPermission("MANAGE_GUILD"):
+            paramDefine(tgt, 'PERMS', 2);
+            console.log(tgt.username + "   MG GLD PERMS  " + 2)
+            break;
+        case Server.member(tgt).hasPermission("KICK_MEMBERS"):
+            paramDefine(tgt, 'PERMS', 2);
+            console.log(tgt.username + "    KIK PERMS  " + 2)
+            break;
 
 
-                    default:
-                         paramDefine(tgt, 'PERMS', 3);
-                        break;
-                       }
+        default:
+            paramDefine(tgt, 'PERMS', 3);
+            break;
+    }
+    }catch(err){}
 
-                if (DB[Server.id].modules.MODROLE.name) {
-                    if (Server.member(tgt).roles.exists('name', DB[Server.id].modules.MODROLE.name)) {
-                        paramDefine(tgt, 'PERMS', 2)
-                        console.log(tgt.username + "PERMS plus "+2)
-                    }
-                }
+    if (DB[Server.id].modules.MODROLE.name) {
+        if (Server.member(tgt).roles.exists('name', DB[Server.id].modules.MODROLE.name)) {
+            paramDefine(tgt, 'PERMS', 2)
+            console.log(tgt.username + "PERMS plus " + 2)
+        }
+    }
 
 }
 
@@ -916,6 +953,7 @@ function updateEXP(TG, event) {
     let userData = userDB[TG.id].modules;
     var caller = TG.username // Checar Caller
 
+
     //LEVEL UP CHECKER
     //-----------------------------------------------------
     let curLevel = Math.floor(0.18 * Math.sqrt(userData.exp));
@@ -924,6 +962,7 @@ function updateEXP(TG, event) {
         // Level up!
         paramIncrement(TG, 'level', 1)
 
+
         // event.reply(`upou pro level **${curLevel}**!`);
         console.log("LEVEL UP EVENT FOR ".bgBlue + TG)
         if (event.guild.name == "Discord Bots") return;
@@ -931,7 +970,7 @@ function updateEXP(TG, event) {
         if (TG.avatarURL) {
             img = TG.avatarURL.substr(0, TG.avatarURL.length - 10);
         }
-      var guild = event.guild 
+        var guild = event.guild
         Jimp.read(img).then(function (user) {
             Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
                 Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
@@ -941,7 +980,7 @@ function updateEXP(TG, event) {
                     Jimp.read(paths.BUILD + "note.png").then(function (photo) {
                         photo.composite(user, 0, 0)
                         photo.mask(lenna, 0, 0)
-                        Jimp.read(paths.BUILD +"profile/skins/"+ userData.skin + '/levelcard.png').then(function (cart) {
+                        Jimp.read(paths.BUILD + "profile/skins/" + userData.skin + '/levelcard.png').then(function (cart) {
                             Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
                                 Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
                                     try {
@@ -960,15 +999,15 @@ function updateEXP(TG, event) {
                                     cart.composite(photo, 18, 20)
 
                                     cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                                            if (DB[guild.id].modules.LVUP) {
-                                                if (DB[event.channel.guild.id].channels[event.channel.id].modules.LVUP) {
+                                        if (DB[guild.id].modules.LVUP) {
+                                            if (DB[event.channel.guild.id].channels[event.channel.id].modules.LVUP) {
 
-                                                    event.channel.sendFile(image)
-                                                }
+                                                event.channel.sendFile(image)
                                             }
+                                        }
 
-                                        })
-                                        //cart.write(`${paths.CARDS}/up/${caller}.png`)
+                                    })
+                                    //cart.write(`${paths.CARDS}/up/${caller}.png`)
                                 })
                             });
                         });
@@ -1000,7 +1039,7 @@ ${err.stack}
 });
 
 
- module.exports = {
+module.exports = {
     userDB: userDB,
     DB: DB,
     serverSetup: serverSetup,
@@ -1010,4 +1049,4 @@ ${err.stack}
 
 
 
-   bot.login(cfg.token).then(loginSuccess());
+bot.login(cfg.token).then(loginSuccess());

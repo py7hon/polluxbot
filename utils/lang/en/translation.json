@@ -125,4 +125,16 @@
         ,"speak or lang":"Change the language I speak, currently Available: `{{langs}}`"
         ,"betflip":"Bet {{good}}s flipping a BRL coin"
      }
+       ,"menu": {
+           "cake": "Cake"
+         ,"tart": "Tart"
+         ,"coffee": "Coffee"
+         ,"donut": "Donut"
+         ,"donut2": "Doughtnut"
+         ,"eggplant": "Eggplant"
+         ,"custard": "Pudding"
+         ,"goaway": "I'm gonna look around while you decide. Call me again when you're done."
+         ,"chargeA": "Ive charged {{total}} "
+         ,"chargeB": " from your account. I'll be back in a minute with yout order!"
+     }
  }
