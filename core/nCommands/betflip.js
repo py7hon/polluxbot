@@ -7,6 +7,7 @@ var mm = locale.getT();
 var cmd = 'betflip';
 
 var init = function (message,userDB,DB) {
+
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -15,7 +16,7 @@ var init = function (message,userDB,DB) {
     if (Author.bot) return;
     var bot = message.botUser
     var BOT = message.botUser.user
-
+const rubymoji = bot.emojis.get('276878246589497344')
   let GOODMOJI = ':gem:'
     let GOOD = 'Gem'
     if (DB[Server.id].modules) {
@@ -32,7 +33,7 @@ var init = function (message,userDB,DB) {
             lngs: message.lang,
             goods: GOOD,
             number: 3,
-            emoji: GOODMOJI
+            emoji: ""
         }),
         error2: mm('CMD.incorrectUsage', {
             lngs: message.lang,
@@ -46,7 +47,7 @@ var init = function (message,userDB,DB) {
           noFunds: mm('$.noFunds', {
             lngs: message.lang,
             number: userDB[Author.id].modules.goodies,
-            goods: GOOD
+            goods: ""
         }),
 
     };
@@ -73,7 +74,7 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
         return;
     };
     if (gear.checkGoods(parseInt(bet[1]), Author) == false) {
-        message.reply(prompts.noFunds);
+        message.reply(prompts.noFunds + rubymoji);
         return;
     };
 
