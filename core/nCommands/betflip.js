@@ -57,7 +57,7 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
 
 
     if (gear.checkGoods(3, Author) == false) {
-        message.reply(prompts.error1);
+        message.reply(prompts.error1+ rubymoji);
         return;
     }
     if (bet.length <= 2) {
@@ -79,7 +79,7 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
     };
 
     if (bet[2] != coinHeads && bet[2] != coinTails) {
-       message.reply(prompts.error2);
+       message.reply(prompts.error2+ rubymoji);
         return;
     }
     gear.paramIncrement(Author, 'goodies', -parseInt(bet[1]))
