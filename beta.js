@@ -1125,4 +1125,4 @@ module.exports = {
 
 
 
-bot.login(cfg.beta).then(loginSuccess());
+bot.login(cfg.token).then(loginSuccess());
