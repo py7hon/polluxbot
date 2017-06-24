@@ -105,7 +105,7 @@ var init = function (message,userDB,DB) {
     if (sc == 'S') {
         Server.channels.forEach(e=>{
 
-        if (module in DB[e.guild.id].channels[e.id].modules) {
+        if (module in DB.get(e.guild.id).channels[e.id].modules) {
             gear.paramDefine(e, module, true)
             message.reply(disaMS)
         } else {
@@ -115,7 +115,7 @@ var init = function (message,userDB,DB) {
         })
     } else {
 
-        if (module in DB[message.guild.id].channel[message.channel.id].modules) {
+        if (module in DB.get(message.guild.id).channel[message.channel.id].modules) {
             gear.paramDefine(Channel, module, true)
             message.reply(disaMC)
         } else {
