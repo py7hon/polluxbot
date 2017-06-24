@@ -41,7 +41,7 @@ var emojya = bot.emojis.get('276878246589497344')
               gear.paramIncrement(Author,'expenses.drops',1)
             message.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', mm('$.userDrop',{lngs:LANG,emoji:GOODMOJI,good:GOOD,user:Author.username,prefix:message.prefix})).then(function (r) {
                 bot.on('message', m => {
-                if (m.content == DB.get(m.guild.id).modules.PREFIX+"pick"){
+                if (m.content == DB.get(message.guild.id).modules.PREFIX+"pick"){
                     r.delete().catch()
                 }
             })
