@@ -29,8 +29,47 @@ var multilang = require('./utils/multilang_b');
 var Backend = require('i18next-node-fs-backend');
 var fs = require("fs");
 var paths = require("./core/paths.js");
-var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8', console.log("OK")));
-var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8', console.log("OK")));
+
+
+
+try{
+var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8'));
+      console.log("OK")
+    fs.createReadStream('database/servers.json').pipe(fs.createWriteStream('./backup/servers.json'));
+
+}catch(err){
+
+      console.log("ERROR")
+var DBbak = JSON.parse(fs.readFileSync('./backup/servers.json', 'utf8'))
+fs.createReadStream('backup/servers.json').pipe(fs.createWriteStream('./database/servers.json'));
+    console.log('- json catch')
+       fs.writeFileSync('./database/servers.json', JSON.stringify(DBbak, null, 4), (err) => {            console.log('- json catch save')        });
+
+        console.log('- json catch next')
+var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8'))
+
+}
+try{
+var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8'))
+      console.log("OK")
+    fs.createReadStream('database/users.json').pipe(fs.createWriteStream('./backup/users.json'));
+
+}catch(err){
+
+      console.log("ERROR")
+var userDB_bak = JSON.parse(fs.readFileSync('./backup/users.json', 'utf8'))
+fs.createReadStream('backup/users.json').pipe(fs.createWriteStream('./database/users.json'));
+         fs.writeFileSync('./database/users.json', JSON.stringify(userDB_bak, null, 4), (err) => {            console.log('- json catch save error')        });
+        console.log('- json catch next')
+var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8'))
+
+}
+
+
+//fs.createReadStream('database/users.json').pipe(fs.createWriteStream('./backup/servers.json'));
+
+//    fs.createReadStream('database/servers.json').pipe(fs.createWriteStream('./backup/SERVERS_' + Date.now() + '.json'));
+
 
 const sql = require('sqlite');
 sql.open('./database/pollux.sqlite');
@@ -99,9 +138,9 @@ console.log('Ready to Rock!')
 bot.on('ready', () => {
 
 
- sql.run('CREATE TABLE IF NOT EXISTS users '+database.users)
- sql.run('CREATE TABLE IF NOT EXISTS servers '+database.servers)
- sql.run('CREATE TABLE IF NOT EXISTS channels '+database.channels)
+    sql.run('CREATE TABLE IF NOT EXISTS users ' + database.users)
+    sql.run('CREATE TABLE IF NOT EXISTS servers ' + database.servers)
+    sql.run('CREATE TABLE IF NOT EXISTS channels ' + database.channels)
 
 
 
@@ -137,8 +176,7 @@ bot.on('ready', () => {
       }]
     })
 
-    fs.createReadStream('database/users.json').pipe(fs.createWriteStream('./backup/USERS_' + Date.now() + '.json'));
-    fs.createReadStream('database/servers.json').pipe(fs.createWriteStream('./backup/SERVERS_' + Date.now() + '.json'));
+
 
 
 });
@@ -435,6 +473,7 @@ bot.on('guildMemberRemove', (member) => {
 })
 
 //bot.on("warn", console.warn);
+
 bot.on('error', (error) => {
     if (!error) return;
     console.log(error.toString().red);
@@ -443,8 +482,7 @@ bot.on('error', (error) => {
         'attachments': [{
             'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
             'pretext': `Minor error! Check console`,
-            'color': '#ffdc49', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-            // 'footer': 'Powered by sneks',
+            'color': '#ffdc49',
             'ts': Date.now() / 1000
       }]
     })
@@ -568,11 +606,11 @@ var serverSetup = function serverSetup(guild) {
     })*/
 }
 
-function dbVAL(tab,rowa,col){
+function dbVAL(tab, rowa, col) {
 
- sql.get(`SELECT * FROM ${tab} WHERE id ='${rowa}'`).then(row => {
-     if (!row) return 0;
-      row[col]
+    sql.get(`SELECT * FROM ${tab} WHERE id ='${rowa}'`).then(row => {
+        if (!row) return 0;
+        row[col]
     });
 }
 
@@ -582,9 +620,9 @@ function userSetup(user) {
 
 
 
-   // sql.run('CREATE TABLE IF NOT EXISTS users '+database.users).then(() => {
+    // sql.run('CREATE TABLE IF NOT EXISTS users '+database.users).then(() => {
     //    sql.run('INSERT INTO users (id, name) VALUES (?, ?)', [user.id, user.username]);
-//    });
+    //    });
 
 
 
@@ -838,34 +876,34 @@ function paramDefine(target, param, val) {
 
 
 function updatePerms(tgt, Server) {
-    try{
+    try {
 
-    switch (true) {
-        case Server.member(tgt).id == Server.ownerID:
+        switch (true) {
+            case Server.member(tgt).id == Server.ownerID:
 
-            paramDefine(tgt, 'PERMS', 0);
-            console.log(tgt.username + "PERMS  " + 0)
-            break;
-        case Server.member(tgt).hasPermission("ADMINISTRATOR"):
-        case Server.member(tgt).hasPermission("BAN_MEMBERS"):
-            paramDefine(tgt, 'PERMS', 1);
-            console.log(tgt.username + "PERMS  " + 1)
-            break;
-        case Server.member(tgt).hasPermission("MANAGE_GUILD"):
-            paramDefine(tgt, 'PERMS', 2);
-            console.log(tgt.username + "   MG GLD PERMS  " + 2)
-            break;
-        case Server.member(tgt).hasPermission("KICK_MEMBERS"):
-            paramDefine(tgt, 'PERMS', 2);
-            console.log(tgt.username + "    KIK PERMS  " + 2)
-            break;
+                paramDefine(tgt, 'PERMS', 0);
+                console.log(tgt.username + "PERMS  " + 0)
+                break;
+            case Server.member(tgt).hasPermission("ADMINISTRATOR"):
+            case Server.member(tgt).hasPermission("BAN_MEMBERS"):
+                paramDefine(tgt, 'PERMS', 1);
+                console.log(tgt.username + "PERMS  " + 1)
+                break;
+            case Server.member(tgt).hasPermission("MANAGE_GUILD"):
+                paramDefine(tgt, 'PERMS', 2);
+                console.log(tgt.username + "   MG GLD PERMS  " + 2)
+                break;
+            case Server.member(tgt).hasPermission("KICK_MEMBERS"):
+                paramDefine(tgt, 'PERMS', 2);
+                console.log(tgt.username + "    KIK PERMS  " + 2)
+                break;
 
 
-        default:
-            paramDefine(tgt, 'PERMS', 3);
-            break;
-    }
-    }catch(err){}
+            default:
+                paramDefine(tgt, 'PERMS', 3);
+                break;
+        }
+    } catch (err) {}
 
     if (DB[Server.id].modules.MODROLE.name) {
         if (Server.member(tgt).roles.exists('name', DB[Server.id].modules.MODROLE.name)) {
@@ -1026,13 +1064,12 @@ process.on('uncaughtException', function (err) {
         'username': 'Pollux Core Reporter',
         'attachments': [{
             'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-            'pretext': `__**Internal System has Sustained a Crash Event**__
+            'pretext': `__**System has Sustained a Crash Event**__
 
 **${err}**
 ${err.stack}
 `,
-            'color': '#C04', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-            // 'footer': 'Powered by sneks',
+            'color': '#C04',
             'ts': Date.now() / 1000
       }]
     })

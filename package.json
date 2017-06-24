@@ -37,6 +37,7 @@
     "self-reload-json": "^0.2.0",
     "shortid": "^2.2.6",
     "socket.io-client": "^1.6.0",
+    "spotify-web-api-node": "^2.4.0",
     "sqlite": "^2.2.4",
     "x2js": "^3.0.1"
   },
