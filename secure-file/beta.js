@@ -201,7 +201,7 @@ getDirs('utils/lang/', (list) => {
             userSetup(Author);
             userSetup(Target);
             paramIncrement(Author, 'exp', 1)
-            if (!userDB[Author.id].modules.PERMS) {
+            if (!userDB.get(Author.id).modules.PERMS) {
 
                 if (Server.member(Author).hasPermission("MANAGE_GUILD")) {
 
@@ -212,9 +212,9 @@ getDirs('utils/lang/', (list) => {
                 }
 
 
-                if (DB[Server.id].modules.MODROLE.name) {
+                if (DB.get(Server.id).modules.MODROLE.name) {
 
-                    if (Server.member(Author).roles.exists('name', DB[Server.id].modules.MODROLE.name)) {
+                    if (Server.member(Author).roles.exists('name', DB.get(Server.id).modules.MODROLE.name)) {
                         paramDefine(Author, 'PERMS', 3)
                     }
                 }
@@ -228,7 +228,7 @@ getDirs('utils/lang/', (list) => {
 
             try {
 
-                if (DB[Server.id].modules.LEVELS) {
+                if (DB.get(Server.id).modules.LEVELS) {
                     if (Channel.mods.LEVELS) {
                         updateEXP(Author, message)
                     }
@@ -239,7 +239,7 @@ getDirs('utils/lang/', (list) => {
             }
             try {
 
-                if (DB[Server.id].modules.DROPS) {
+                if (DB.get(Server.id).modules.DROPS) {
                     if (Channel.mods.DROPS) {
                         dropGoodies(message)
                     }
@@ -250,17 +250,17 @@ getDirs('utils/lang/', (list) => {
 
 
             //Wave 1
-            if (Server && typeof (DB[Server.id].modules.LANGUAGE) !== 'undefined' && DB[Server.id].modules.LANGUAGE && DB[Server.id].modules.LANGUAGE !== '') {
-                message.lang = [DB[Server.id].modules.LANGUAGE, 'en'];
+            if (Server && typeof (DB.get(Server.id).modules.LANGUAGE) !== 'undefined' && DB.get(Server.id).modules.LANGUAGE && DB.get(Server.id).modules.LANGUAGE !== '') {
+                message.lang = [DB.get(Server.id).modules.LANGUAGE, 'en'];
             }
 
             //Wave 2 -- CHECK PREFIX
-            if (Server && typeof (DB[Server.id].modules.PREFIX) !== 'undefined' && DB[Server.id].modules.PREFIX && DB[Server.id].modules.PREFIX !== '') {
+            if (Server && typeof (DB.get(Server.id).modules.PREFIX) !== 'undefined' && DB.get(Server.id).modules.PREFIX && DB.get(Server.id).modules.PREFIX !== '') {
                 //-- START PREFIX
-                if (message.content.startsWith(DB[Server.id].modules.PREFIX)) {
+                if (message.content.startsWith(DB.get(Server.id).modules.PREFIX)) {
                     message.botUser = bot;
                     message.akairo = client;
-                    message.prefix = DB[Server.id].modules.PREFIX;
+                    message.prefix = DB.get(Server.id).modules.PREFIX;
 
                     //deployer.checkModule(message)
 
@@ -569,7 +569,7 @@ function paramAdd(target, param, val) {
 
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
-                userDB[target.id].modules[param].push(val)
+                userDB.get(Target.id).modules[param].push(val)
             }
             if (target instanceof Discord.Guild) {
                 // target.mods[param].push(val)
@@ -582,7 +582,7 @@ function paramAdd(target, param, val) {
         } else {
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
-                userDB[target.id].modules[param[0]][param[1]].push(val)
+                userDB.get(Target.id).modules[param[0]][param[1]].push(val)
             }
             if (target instanceof Discord.Guild) {
                 // target.mods[param].push(val)
@@ -612,7 +612,7 @@ function paramRemove(target, param, val) {
 
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
-                userDB[target.id].modules[param].remove(val)
+                userDB.get(Target.id).modules[param].remove(val)
             }
             if (target instanceof Discord.Guild) {
                 // target.mods[param].push(val)
@@ -625,7 +625,7 @@ function paramRemove(target, param, val) {
         } else {
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
-                userDB[target.id].modules[param[0]][param[1]].remove(val)
+                userDB.get(Target.id).modules[param[0]][param[1]].remove(val)
             }
             if (target instanceof Discord.Guild) {
                 // target.mods[param].push(val)
@@ -655,7 +655,7 @@ function paramIncrement(target, param, val) {
 
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
-                userDB[target.id].modules[param] += val
+                userDB.get(Target.id).modules[param] += val
             }
             if (target instanceof Discord.Guild) {
                 // target.mods[param].push(val)
@@ -668,7 +668,7 @@ function paramIncrement(target, param, val) {
         } else {
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
-                userDB[target.id].modules[param[0]][param[1]] += val
+                userDB.get(Target.id).modules[param[0]][param[1]] += val
             }
             if (target instanceof Discord.Guild) {
                 // target.mods[param].push(val)
@@ -700,7 +700,7 @@ function paramDefine(target, param, val) {
 
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
-                userDB[target.id].modules[param] = val
+                userDB.get(Target.id).modules[param] = val
             }
             if (target instanceof Discord.Guild) {
                 // target.mods[param].push(val)
@@ -713,7 +713,7 @@ function paramDefine(target, param, val) {
         } else {
             if (target instanceof Discord.User) {
                 //target.mods[param].push(val)
-                userDB[target.id].modules[param[0]][param[1]] = val
+                userDB.get(Target.id).modules[param[0]][param[1]] = val
             }
             if (target instanceof Discord.Guild) {
                 // target.mods[param].push(val)

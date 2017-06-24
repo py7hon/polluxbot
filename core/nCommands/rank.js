@@ -29,13 +29,14 @@ gear.paramIncrement(Author,'goodies',0)
 
      var rankItem = []
         var ranked = []
-        for (var i in userDB) {
-            rankItem.name = userDB[i].name
-            rankItem.exp = userDB[i].modules.exp
-            rankItem.level = userDB[i].modules.level
+        userDB.forEach(j=>{
+            var i = JSON.parse(j)
+            rankItem.exp = i.modules.exp
+            rankItem.level = i.modules.level
+            rankItem.name = i.name
             ranked.push(rankItem)
             rankItem = []
-        }
+        })
         arraySort(ranked, 'exp', {
             reverse: true
         })

@@ -34,16 +34,16 @@ var init = function (message, userDB, DB) {
             message.reply(nope)
             return
         }
-        if (!DB[Server.id].modules.putometro_curr) {
+        if (!DB.get(Server.id).modules.putometro_curr) {
             gear.paramDefine(Server, 'putometro_curr', 0)
         }
-        if (!DB[Server.id].modules.putometro_max) {
+        if (!DB.get(Server.id).modules.putometro_max) {
             gear.paramDefine(Server, 'putometro_max', 0)
         }
 
 
-        var a = DB[Server.id].modules.putometro_curr
-        var s = DB[Server.id].modules.putometro_max
+        var a = DB.get(Server.id).modules.putometro_curr
+        var s = DB.get(Server.id).modules.putometro_max
 
 
 

@@ -16,14 +16,16 @@ var init = function (message,userDB,DB) {
     if (Author.bot) return;
     var bot = message.botUser
     var BOT = message.botUser.user
-const rubymoji = bot.emojis.get('276878246589497344')
-  let GOODMOJI = ':gem:'
-    let GOOD = 'Gem'
-    if (DB[Server.id].modules) {
-        GOODMOJI = DB[Server.id].modules
+
+
+    var emojya = bot.emojis.get('276878246589497344')
+    let GOODMOJI = emojya
+    let GOOD = 'Ruby'
+    if (DB.get(Server.id).modules.GOODMOJI) {
+        GOODMOJI = DB.get(Server.id).modules.GOODMOJI
     }
-    if (DB[Server.id].modules) {
-        GOOD = DB[Server.id].modules.GOODNAME
+    if (DB.get(Server.id).modules.GOODNAME) {
+        GOOD = DB.get(Server.id).modules.GOODNAME
     }
 
     var bet = MSG.toLowerCase().split(' ');
@@ -46,7 +48,7 @@ const rubymoji = bot.emojis.get('276878246589497344')
         }),
           noFunds: mm('$.noFunds', {
             lngs: message.lang,
-            number: userDB[Author.id].modules.goodies,
+            number: userDB.get(Author.id).modules.goodies,
             goods: ""
         }),
 
@@ -95,8 +97,8 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
             lngs: message.lang,
             result:res,
             prize: bet[1]*2,
-            emoji: GOODMOJI
-        })
+            emoji: ""
+        })+emojya
         message.channel.sendFile(paths.BUILD + ros, ros, vicPrompt )
 
         gear.paramIncrement(Author, 'goodies', parseInt(bet[1] * 2))

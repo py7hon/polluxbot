@@ -13,10 +13,10 @@ var args = message.content.split(' ').slice(1)
     var bot = message.botUser
 
     gear.paramDefine(Server, 'PREFIX', args[0].toString());
-    DB[Server.id].modules.PREFIX =  args[0].toString();
+    DB.get(Server.id).modules.PREFIX =  args[0].toString();
     message.reply(mm('CMD.prefixChng', {
         lngs: LANG,
-        prefix: DB[Server.id].modules.PREFIX
+        prefix: DB.get(Server.id).modules.PREFIX
     }));
 }
 

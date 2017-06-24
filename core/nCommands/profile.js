@@ -43,21 +43,21 @@ var init = function (message, userDB, DB) {
         img = Target.avatarURL.substr(0, Target.avatarURL.length - 10);
     }
 
-    let tgtData = userDB[Target.id].modules;
+    let tgtData = userDB.get(Target.id).modules;
 
     let adm = gear.checkAdm(message, Target).toLowerCase()
 
     let GOODMOJI = ':gem:'
     let GOOD = 'Gem'
-    if (DB[Server.id].modules) {
-        GOODMOJI = DB[Server.id].modules
+    if (DB.get(Server.id).modules) {
+        GOODMOJI = DB.get(Server.id).modules
     }
-    if (DB[Server.id].modules.GOODNAME) {
-        GOOD = DB[Server.id].modules.GOODNAME
+    if (DB.get(Server.id).modules.GOODNAME) {
+        GOOD = DB.get(Server.id).modules.GOODNAME
     }
 
 
-    var skin = userDB[Target.id].modules.skin
+    var skin = userDB.get(Target.id).modules.skin
     var skinfo = require("../../"+paths.SKINS+skin+"/skin.js")
 
         Jimp.read(img).then(function (photo) {

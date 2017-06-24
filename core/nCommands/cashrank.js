@@ -8,7 +8,6 @@ var cmd = 'cashrank';
 var init = function (message,userDB,DB) {
 
 
-
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -24,30 +23,32 @@ var init = function (message,userDB,DB) {
     gear.paramIncrement(Author,'goodies',0)
       gear.paramIncrement(Author,'goodies',0)
 
-    let GOODMOJI = ':gem:'
-    let GOOD = 'Gem'
-    if (DB[Server.id].modules) {
-        GOODMOJI = DB[Server.id].modules
+var emojya = bot.emojis.get('276878246589497344')
+    let GOODMOJI = emojya
+    let GOOD = 'Ruby'
+    if (DB.get(Server.id).modules.GOODMOJI) {
+        GOODMOJI = DB.get(Server.id).modules.GOODMOJI
     }
-    if (DB[Server.id].modules.GOODNAME) {
-        GOOD = DB[Server.id].modules.GOODNAME
+    if (DB.get(Server.id).modules.GOODNAME) {
+        GOOD = DB.get(Server.id).modules.GOODNAME
     }
     emb = new Discord.RichEmbed();
     var rankItem = []
     var ranked = []
-    for (var i in userDB) {
+     userDB.forEach(j=>{
+            var i = JSON.parse(j)
         console.log(i +'---------------')
 
 
-        if (userDB[i].name == 'Pollux') {}
+        if (i.name == 'Pollux') {}
         else {
-            rankItem.name = userDB[i].name
-            rankItem.goodies = userDB[i].modules.goodies
-            rankItem.level = userDB[i].modules.level
+            rankItem.name = i.name
+            rankItem.goodies = i.modules.goodies
+            rankItem.level = i.modules.level
             ranked.push(rankItem)
             rankItem = []
         }
-    }
+    })
     arraySort(ranked, 'goodies', {
         reverse: true
     })
@@ -70,10 +71,11 @@ var medals = [':first_place: 1st',
         if (i < 5) {
 
             emb.addField(medals[i], ranked[i].name, true)
-            emb.addField(GOOD + 's', ranked[i].goodies + GOODMOJI, true)
+            emb.addField(GOOD + 's', ranked[i].goodies + "" + GOODMOJI, true)
         }
     }
     message.channel.sendEmbed(emb)
+
 }
  module.exports = {
     pub: true

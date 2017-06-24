@@ -7,7 +7,7 @@ var cfg = require('../config.js');
 var deploy = function (message, userDB, DB) {
 
     var bot = message.botUser
-    var command = message.content.substr(DB[message.guild.id].modules.PREFIX.length).split(' ')[0]
+    var command = message.content.substr(DB.get(message.guild.id).modules.PREFIX.length).split(' ')[0]
     let commandFile;
     try {
        // console.log(command)
@@ -17,8 +17,8 @@ var deploy = function (message, userDB, DB) {
 
 
 
-if (!DB[message.guild.id].modules){
-DB[message.guild.id].modules.GOODNAME = "Ruby"
+if (!DB.get(message.guild.id).modules){
+DB.get(message.guild.id).modules.GOODNAME = "Ruby"
 }
 
 
@@ -31,7 +31,7 @@ DB[message.guild.id].modules.GOODNAME = "Ruby"
              case command == "rubys":
         commandFile = require(`./nCommands/cash.js`);
         break;
-        case command == DB[message.guild.id].modules.GOODNAME.toLowerCase() + 'rank':
+        case command == DB.get(message.guild.id).modules.GOODNAME.toLowerCase() + 'rank':
             commandFile = require(`./nCommands/cashrank.js`);
             break;
                  case command == 'incinerate':
@@ -91,14 +91,14 @@ var checkUse = function (msg, DB, userDB) {
 
         let commandFile = require(`./nCommands/${command}.js`);
 
-
+console.log(DB.get(msg.guild.id).channels[msg.channel.id])
         switch (true) {
 
-            case DB[msg.guild.id].channels[msg.channel.id].modules.DISABLED.includes(commandFile.cat):
-            case DB[msg.guild.id].channels[msg.channel.id].modules.DISABLED.includes(commandFile.cmd):
+            case DB.get(msg.guild.id).channels[msg.channel.id].modules.DISABLED.includes(commandFile.cat):
+            case DB.get(msg.guild.id).channels[msg.channel.id].modules.DISABLED.includes(commandFile.cmd):
                 return "DISABLED";
                 break;
-            case userDB[msg.author.id].modules.PERMS > commandFile.perms:
+            case userDB.get(msg.author.id).modules.PERMS > commandFile.perms:
                 return "NO PRIVILEGE";
                 break;
             default:
@@ -111,7 +111,7 @@ var checkUse = function (msg, DB, userDB) {
         console.log((err.stack).red)
          if (msg.guild.name.includes("POLLUX")){
 
-        msg.channel.sendMessage("```"+err.stack+"```")
+     //   msg.channel.sendMessage("```"+err.stack+"```")
         }
     }
 

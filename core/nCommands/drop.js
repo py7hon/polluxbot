@@ -19,16 +19,16 @@ var LANG = message.lang;
 
 //-------MAGIC----------------
 
-var  userData = userDB[Author.id].modules
+var  userData = userDB.get(Author.id).modules
 
-
-let GOODMOJI = ':gem:'
+var emojya = bot.emojis.get('276878246589497344')
+    let GOODMOJI = emojya
     let GOOD = 'Ruby'
-    if (DB[Server.id].modules) {
-    //    GOODMOJI = DB[Server.id].modules
+    if (DB.get(Server.id).modules.GOODMOJI) {
+        GOODMOJI = DB.get(Server.id).modules.GOODMOJI
     }
-    if (DB[Server.id].modules.GOODNAME) {
-    //    GOOD = DB[Server.id].modules.GOODNAME
+    if (DB.get(Server.id).modules.GOODNAME) {
+        GOOD = DB.get(Server.id).modules.GOODNAME
     }
 
 
@@ -41,7 +41,7 @@ let GOODMOJI = ':gem:'
               gear.paramIncrement(Author,'expenses.drops',1)
             message.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', mm('$.userDrop',{lngs:LANG,emoji:GOODMOJI,good:GOOD,user:Author.username,prefix:message.prefix})).then(function (r) {
                 bot.on('message', m => {
-                if (m.content == DB[m.guild.id].modules.PREFIX+"pick"){
+                if (m.content == DB.get(m.guild.id).modules.PREFIX+"pick"){
                     r.delete().catch()
                 }
             })

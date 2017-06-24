@@ -20,6 +20,39 @@ var LANG = message.lang;
 //-------MAGIC----------------
 
 
+    var modPass = false
+
+
+    var noperms     =   mm('CMD.moderationNeeded', {lngs:LANG})
+    var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
+
+
+
+
+    if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size >= 1){
+        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
+    }else if(Member.hasPermission("MANAGE_SERVER")){
+        modPass = true;
+    }else if(Member.hasPermission("ADMINISTRATOR")){
+        modPass = true;
+    };
+
+
+
+if (!modPass) return message.reply(noperms);
+
+    if (message.mentions.users.size === 0) {
+        return message.reply(whokik).catch(console.error);
+    }
+    let kickMember = Server.member(Target);
+    let kik = Target
+    if (!kickMember) {
+        return message.reply(nope);
+    }
+
+
+
+
 //if (fs.existsSync('./utils/lang/'+args)) {
      switch(args){
         case 'en':

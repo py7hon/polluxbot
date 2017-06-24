@@ -19,7 +19,7 @@ var init = function (message,userDB,DB) {
 
     //-------MAGIC----------------
 
-        var userData = userDB[Author.id]
+        var userData = userDB.get(Author.id)
         var persotxt = MSG.substr((message.prefix + cmd).length +1)
         gear.paramDefine(Author,'persotext',persotxt)
         userData.persotext = persotxt

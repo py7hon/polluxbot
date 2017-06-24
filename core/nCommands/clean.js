@@ -30,8 +30,8 @@ var LANG = message.lang;
 
 
 
-    if (DB[Server.id].modules.MODROLE && DB[Server.id].modules.MODROLE.size >= 1){
-        modPass = Member.roles.has(DB[Server.id].modules.MODROLE);
+    if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size >= 1){
+        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
     }else if(Member.hasPermission("MANAGE_SERVER")){
         modPass = true;
     };

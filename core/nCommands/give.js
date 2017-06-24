@@ -16,18 +16,19 @@ var init = function (message,userDB,DB) {
     var bot = message.botUser
     var args = MSG.split(' ').slice(1)[0]
     var LANG = message.lang;
-    var userData = userDB[Author.id].modules
-    var tgtData = userDB[Target.id].modules
+    var userData = userDB.get(Author.id).modules
+    var tgtData = userDB.get(Target.id).modules
 
 
 
-    let GOODMOJI = ':gem:'
-    let GOOD = 'Gem'
-    if (DB[Server.id].modules) {
-        GOODMOJI = DB[Server.id].modules
+var emojya = bot.emojis.get('276878246589497344')
+    let GOODMOJI = emojya
+    let GOOD = 'Ruby'
+    if (DB.get(Server.id).modules.GOODMOJI) {
+        GOODMOJI = DB.get(Server.id).modules.GOODMOJI
     }
-    if (DB[Server.id].modules.GOODNAME) {
-        GOOD = DB[Server.id].modules.GOODNAME
+    if (DB.get(Server.id).modules.GOODNAME) {
+        GOOD = DB.get(Server.id).modules.GOODNAME
     }
 
 

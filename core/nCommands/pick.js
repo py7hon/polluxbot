@@ -19,16 +19,15 @@ var LANG = message.lang;
 
 //-------MAGIC----------------
 
-let GOODMOJI = ':gem:'
-    let GOOD = 'Gem'
-    if (DB[Server.id].modules) {
-        GOODMOJI = DB[Server.id].modules
+var emojya = bot.emojis.get('276878246589497344')
+    let GOODMOJI = emojya
+    let GOOD = 'Ruby'
+    if (DB.get(Server.id).modules.GOODMOJI) {
+        GOODMOJI = DB.get(Server.id).modules.GOODMOJI
     }
-    if (DB[Server.id].modules.GOODNAME) {
-        GOOD = DB[Server.id].modules.GOODNAME
+    if (DB.get(Server.id).modules.GOODNAME) {
+        GOOD = DB.get(Server.id).modules.GOODNAME
     }
-var userData = userDB[Author.id].modules
-
 
 
         console.log("Pick trial by" + Author)
@@ -54,14 +53,6 @@ var userData = userDB[Author.id].modules
     };
 
  module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'misc'};
-
-
-
-
-
-
-
-
 
 
 

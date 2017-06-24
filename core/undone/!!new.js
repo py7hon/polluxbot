@@ -39,11 +39,11 @@ error3: mm('$.insuBet', {
 
     let GOODMOJI = ':gem:'
 let GOOD = 'Gem'
-if (DB[Server.id].modules) {
-    GOODMOJI = DB[Server.id].modules
+if (DB.get(Server.id).modules) {
+    GOODMOJI = DB.get(Server.id).modules
 }
-if (DB[Server.id].modules.GOODNAME) {
-    GOOD = DB[Server.id].modules.GOODNAME
+if (DB.get(Server.id).modules.GOODNAME) {
+    GOOD = DB.get(Server.id).modules.GOODNAME
 }
 
 

@@ -39,7 +39,7 @@
      var args = MSG.split(' ').slice(1)[1]
      var LANG = message.lang;
 
-     if (!DB[Server.id].modules.GOODIES) {
+     if (!DB.get(Server.id).modules.GOODIES) {
          message.reply(mm('CMD.disabledModule', {
              lngs: LANG,
              module: "`GOODIES`"
@@ -49,8 +49,8 @@
 
 var emoj = bot.emojis.get('276878246589497344') 
 
-     let GOODMOJI = DB[Server.id].modules.GOODMOJI || emoj
-     let GOOD = DB[Server.id].modules.GOODNAME || 'Ruby'
+     let GOODMOJI = DB.get(Server.id).modules.GOODMOJI || emoj
+     let GOOD = DB.get(Server.id).modules.GOODNAME || 'Ruby'
 
 
 
@@ -60,8 +60,8 @@ var emoj = bot.emojis.get('276878246589497344')
 
      var now = new Date().getTime();
      var day = 86400000
-     var dly = userDB[Author.id].modules.daily
-     var streak = userDB[Author.id].modules.dyStreak
+     var dly = userDB.get(Author.id).modules.daily
+     var streak = userDB.get(Author.id).modules.dyStreak
      1486025790272
      if ((now - dly) >= day) {
          if ((now - dly) < (day * 2)) {

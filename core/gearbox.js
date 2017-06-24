@@ -1,12 +1,14 @@
 const Discord = require("discord.js");
 var paths = require("./paths.js");
 var cfg = require('../config.js');
-const main = require('../'+cfg.main+'.js')
+const main = require('../' + cfg.main + '.js')
 const Jimp = require("jimp");
 const fs = require("fs");
 
-Array.prototype.remove = function() {
-    var what, a = arguments, L = a.length, ax;
+Array.prototype.remove = function () {
+    var what, a = arguments,
+        L = a.length,
+        ax;
     while (L && this.length) {
         what = a[--L];
         while ((ax = this.indexOf(what)) !== -1) {
@@ -16,7 +18,7 @@ Array.prototype.remove = function() {
     return this;
 };
 
- module.exports = {
+module.exports = {
 
     writeJ: function writeJ(a, b) {
         fs.writeFile(b + '.json', JSON.stringify(a, null, 4), (err) => {
@@ -25,84 +27,110 @@ Array.prototype.remove = function() {
     },
 
     paramAdd: function paramAdd(target, param, val) {
+
+
+
+
+
+
+
+
+
         try {
 
-param = param.split('.'); if ((param.length==1)){
+         //   param = param.split('.');
+          //  if ((param.length == 1)) {
 
-            if (target instanceof Discord.User) {
-                //target.mods[param].push(val)
-                main.userDB[target.id].modules[param].push(val)
-            }
-            if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
-                main.DB[target.id].modules[param].push(val)
-            }
-            if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
-                main.DB[target.guild.id].channels[target.id].modules[param].push(val)
-            }
-}else{
-               if (target instanceof Discord.User) {
-                //target.mods[param].push(val)
-                main.userDB[target.id].modules[param[0]][param[1]].push(val)
-            }
-            if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
-                main.DB[target.id].modules[param[0]][param[1]].push(val)
-            }
-            if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
-                main.DB[target.guild.id].channels[target.id].modules[param[0]][param[1]].push(val)
-            }
-}
-            fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
-                //console.log("JSON Write User Database".gray)
-            });
-            fs.writeFile('./database/servers.json', JSON.stringify(main.DB, null, 4), (err) => {
-                //console.log("JSON Write Servers Database".gray)
-            });
+                if (target instanceof Discord.User) {
+
+                    var Umodules = main.userDB.get(target.id)
+                      if (param.includes('.')){
+                        param = param.split('.')
+                        Umodules.modules[param[0]][param[1]].push(val)
+                        }else{
+                        Umodules.modules[param].push(val)
+                        }
+                    main.userDB.set(target.id, Umodules)
+
+                }
+
+                if (target instanceof Discord.Guild) {
+
+                    var Smodules = main.DB.get(target.id)
+                       if (param.includes('.')){
+                        param = param.split('.')
+                        Smodules.modules[param[0]][param[1]].push(val)
+                        }else{
+                        Smodules.modules[param].push(val)
+                        }
+                    main.DB.set(target.id, Smodules)
+
+                }
+                if (target instanceof Discord.Channel) {
+
+                    var Tchannel = main.DB.get(target.guild.id)
+                    var Cmodules = Tchannel.get(target.id)
+                      if (param.includes('.')){
+                        param = param.split('.')
+                        Cmodules.modules[param[0]][param[1]].push(val)
+                        }else{
+                        Cmodules.modules[param].push(val)
+                        }
+                    main.DB.set(target.guild.id, Tchannel)
+
+                }
+          //  }
         } catch (err) {
             console.log('ERROR JSON'.bgRed.white.bold)
             console.log(err.stack)
         }
     },
-paramRemove: function paramRemove(target, param, val) {
+    paramRemove: function paramRemove(target, param, val) {
         try {
 
-       param = param.split('.'); if ((param.length==1)){
+        //    param = param.split('.');
+         //   if ((param.length == 1)) {
 
-            if (target instanceof Discord.User) {
-                //target.mods[param].push(val)
-                main.userDB[target.id].modules[param].remove(val)
-            }
-            if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
-                main.DB[target.id].modules[param].remove(val)
-            }
-            if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
-                main.DB[target.guild.id].channels[target.id].modules[param].remove(val)
-            }
-}else{
-               if (target instanceof Discord.User) {
-                //target.mods[param].push(val)
-                main.userDB[target.id].modules[param[0]][param[1]].remove(val)
-            }
-            if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
-                main.DB[target.id].modules[param[0]][param[1]].remove(val)
-            }
-            if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
-                main.DB[target.guild.id].channels[target.id].modules[param[0]][param[1]].remove(val)
-            }
-}
-            fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
-                //console.log("JSON Write User Database".gray)
-            });
-            fs.writeFile('./database/servers.json', JSON.stringify(main.DB, null, 4), (err) => {
-                //console.log("JSON Write Servers Database".gray)
-            });
+     if (target instanceof Discord.User) {
+
+                    var Umodules = main.userDB.get(target.id)
+                      if (param.includes('.')){
+                        param = param.split('.')
+                        Umodules.modules[param[0]][param[1]].remove(val)
+                        }else{
+                        Umodules.modules[param].remove(val)
+                        }
+                    main.userDB.set(target.id, Umodules)
+
+                }
+
+                if (target instanceof Discord.Guild) {
+
+                    var Smodules = main.DB.get(target.id)
+                       if (param.includes('.')){
+                        param = param.split('.')
+                        Smodules.modules[param[0]][param[1]].remove(val)
+                        }else{
+                        Smodules.modules[param].remove(val)
+                        }
+                    main.DB.set(target.id, Smodules)
+
+                }
+                if (target instanceof Discord.Channel) {
+
+                    var Tchannel = main.DB.get(target.guild.id)
+                    var Cmodules = Tchannel.get(target.id)
+                      if (param.includes('.')){
+                        param = param.split('.')
+                        Cmodules.modules[param[0]][param[1]].remove(val)
+                        }else{
+                        Cmodules.modules[param].remove(val)
+                        }
+                    main.DB.set(target.guild.id, Tchannel)
+
+                }
+          //  }
+
         } catch (err) {
             console.log('ERROR JSON'.bgRed.white.bold)
             console.log(err.stack)
@@ -111,90 +139,105 @@ paramRemove: function paramRemove(target, param, val) {
     paramIncrement: function paramIncrement(target, param, val) {
         try {
 
-  param = param.split('.'); if ((param.length==1)){
 
-            if (target instanceof Discord.User) {
-                //target.mods[param].push(val)
-                main.userDB[target.id].modules[param] += val
+
+                   if (target instanceof Discord.User) {
+
+                    var Umodules = main.userDB.get(target.id)
+                       if (param.includes('.')){
+                        param = param.split('.')
+                        Umodules.modules[param[0]][param[1]] += val
+                        }else{
+                        Umodules.modules[param] += val
+                        }
+                    main.userDB.set(target.id, Umodules)
+
+                }
+
+                if (target instanceof Discord.Guild) {
+
+                    var Smodules = main.DB.get(target.id)
+                      if (param.includes('.')){
+                        param = param.split('.')
+                        Smodules.modules[param[0]][param[1]] += val
+                        }else{
+                        Smodules.modules[param] += val
+                        }
+                    main.DB.set(target.id, Smodules)
+
+                }
+                if (target instanceof Discord.Channel) {
+
+                    var Tchannel = main.DB.get(target.guild.id)
+                    var Cmodules = Tchannel.get(target.id)
+                      if (param.includes('.')){
+                        param = param.split('.')
+                        Cmodules.modules[param[0]][param[1]] += val
+                        }else{
+                        Cmodules.modules[param] += val
+                        }
+                    main.DB.set(target.guild.id, Tchannel)
+
+                }
+
+            } catch (err) {
+                console.log('ERROR JSON'.bgRed.white.bold)
+                console.log(err.stack)
             }
-            if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
-                main.DB[target.id].modules[param] += val
-            }
-            if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
-                main.DB[target.guild.id].channels[target.id].modules[param] += val
-            }
-}else{
-               if (target instanceof Discord.User) {
-                //target.mods[param].push(val)
-                main.userDB[target.id].modules[param[0]][param[1]] += val
-            }
-            if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
-                main.DB[target.id].modules[param[0]][param[1]] += val
-            }
-            if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
-                main.DB[target.guild.id].channels[target.id].modules[param[0]][param[1]] += val
-            }
-}
-            fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
-                //console.log("JSON Write User Database".gray)
-            });
-            fs.writeFile('./database/servers.json', JSON.stringify(main.DB, null, 4), (err) => {
-                //console.log("JSON Write Servers Database".gray)
-            });
-        } catch (err) {
-             console.log('ERROR JSON'.bgRed.white.bold)
-            console.log(err.stack)
-        }
+
     },
 
     paramDefine: function paramDefine(target, param, val) {
         try {
-param = param.split('.'); if ((param.length==1)){
 
-            if (target instanceof Discord.User) {
-                //target.mods[param].push(val)
-                main.userDB[target.id].modules[param] = val
-            }
-            if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
-                main.DB[target.id].modules[param] = val
-            }
-            if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
-                main.DB[target.guild.id].channels[target.id].modules[param] = val
-            }
-}else{
-               if (target instanceof Discord.User) {
-                //target.mods[param].push(val)
-                main.userDB[target.id].modules[param[0]][param[1]] = val
-            }
-            if (target instanceof Discord.Guild) {
-               // target.mods[param].push(val)
-                main.DB[target.id].modules[param[0]][param[1]] = val
-            }
-            if (target instanceof Discord.Channel) {
-               // target.mods[param].push(val)
-                main.DB[target.guild.id].channels[target.id].modules[param[0]][param[1]] = val
-            }
-}
-            fs.writeFile('./database/users.json', JSON.stringify(main.userDB, null, 4), (err) => {
-                //console.log("JSON Write User Database".gray)
-            });
-            fs.writeFile('./database/servers.json', JSON.stringify(main.DB, null, 4), (err) => {
-                //console.log("JSON Write Servers Database".gray)
-            });
+              if (target instanceof Discord.User) {
+
+                    var Umodules = main.userDB.get(target.id)
+
+                    if (param.includes('.')){
+                        param = param.split('.')
+                        Umodules.modules[param[0]][param[1]] = val
+                        }else{
+                        Umodules.modules[param] = val
+                        }
+
+                    main.userDB.set(target.id, Umodules)
+
+                }
+
+                if (target instanceof Discord.Guild) {
+
+                    var Smodules = main.DB.get(target.id)
+                    if (param.includes('.')){
+                        param = param.split('.')
+                        Smodules.modules[param[0]][param[1]] = val
+                        }else{
+                        Smodules.modules[param] = val
+                        }
+                    main.DB.set(target.id, Smodules)
+
+                }
+                if (target instanceof Discord.Channel) {
+
+                    var Tchannel = main.DB.get(target.guild.id)
+                    var Cmodules = Tchannel.get(target.id)
+                       if (param.includes('.')){
+                        param = param.split('.')
+                        Cmodules.modules[param[0]][param[1]] = val
+                        }else{
+                        Cmodules.modules[param] = val
+                        }
+                    main.DB.set(target.guild.id, Tchannel)
+
+                }
         } catch (err) {
-             console.log('ERROR JSON'.bgRed.white.bold)
+            console.log('ERROR JSON'.bgRed.white.bold)
             console.log(err.stack)
         }
     },
 
     checkGoods: function checkGoods(amount, invoker) {
-        if (main.userDB[invoker.id].modules.goodies >= amount) {
+        if (main.userDB.get(invoker.id).modules.goodies >= amount) {
             return true;
         } else {
             return false;
@@ -262,27 +305,27 @@ param = param.split('.'); if ((param.length==1)){
     },
     glassify: function glassify(img, call, msg = false) {
 
-        Jimp.read(img).then(function (user) {
+            Jimp.read(img).then(function (user) {
 
-            Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
-                Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
+                Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
+                    Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
 
-                    user.resize(126, 126)
-                    user.mask(glass, 0, 0)
-                    var air = {}
-                    Jimp.read(paths.BUILD + "note.png").then(function (lennaB) {
-                        lennaB.composite(user, 0, 0)
-                        lennaB.mask(lenna, 0, 0)
+                        user.resize(126, 126)
+                        user.mask(glass, 0, 0)
+                        var air = {}
+                        Jimp.read(paths.BUILD + "note.png").then(function (lennaB) {
+                            lennaB.composite(user, 0, 0)
+                            lennaB.mask(lenna, 0, 0)
 
-                        //lennaB.write(`${paths.GLASS}/${call}.png`);
-                        console.log("Glassify Done")
+                            //lennaB.write(`${paths.GLASS}/${call}.png`);
+                            console.log("Glassify Done")
+                        });
                     });
-                });
-            })
-        });
-    }
+                })
+            });
+        }
 
-    ,
+        ,
     randomize: function randomize(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     },

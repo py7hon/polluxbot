@@ -39,6 +39,7 @@ const  rubymoj = bot.emojis.get('276878246589497344')
         message.reply(nope)
         return
     }
+
     Author.menuproc = true
     emb = new Discord.RichEmbed();
 
@@ -55,7 +56,15 @@ const  rubymoj = bot.emojis.get('276878246589497344')
 
 
 
-
+var emojya = bot.emojis.get('276878246589497344')
+    let GOODMOJI = emojya
+    let GOOD = 'Ruby'
+    if (DB.get(Server.id).modules.GOODMOJI) {
+        GOODMOJI = DB.get(Server.id).modules.GOODMOJI
+    }
+    if (DB.get(Server.id).modules.GOODNAME) {
+        GOOD = DB.get(Server.id).modules.GOODNAME
+    }
 
     //message.channel.sendEmbed(emb)
 
@@ -87,7 +96,7 @@ const  rubymoj = bot.emojis.get('276878246589497344')
 
         //--start shit
 
-        const balance = await userDB[Author.id].modules.goodies;
+        const balance = await userDB.get(Author.id).modules.goodies;
 
 
 

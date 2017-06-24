@@ -18,13 +18,14 @@ var init = function (message,userDB,DB) {
     //-------MAGIC----------------
 
 
-    let GOODMOJI = ':gem:'
-    let GOOD = 'Gem'
-    if (DB[Server.id].modules) {
-        GOODMOJI = DB[Server.id].modules
+var emojya = bot.emojis.get('276878246589497344')
+    let GOODMOJI = emojya
+    let GOOD = 'Ruby'
+    if (DB.get(Server.id).modules.GOODMOJI) {
+        GOODMOJI = DB.get(Server.id).modules.GOODMOJI
     }
-    if (DB[Server.id].modules.GOODNAME) {
-        GOOD = DB[Server.id].modules.GOODNAME
+    if (DB.get(Server.id).modules.GOODNAME) {
+        GOOD = DB.get(Server.id).modules.GOODNAME
     }
 
 
@@ -53,19 +54,19 @@ var init = function (message,userDB,DB) {
         heHas: mm("$.hasAmount", {
             lngs: LANG,
             goodname: GOOD,
-            goods: userDB[Target.id].modules.goodies
+            goods: userDB.get(Target.id).modules.goodies
         }),
         youHave: mm("$.youAmount", {
             lngs: LANG,
             goodname: GOOD,
-            goods: userDB[Author.id].modules.goodies
+            goods: userDB.get(Author.id).modules.goodies
         })
 
     }
     vocab.c1
 
     if (message.mentions.users.size === 0) {
-        var r = userDB[Target.id].modules.goodies
+        var r = userDB.get(Target.id).modules.goodies
         var fam = ''
         switch (true) {
             case (r < 10):

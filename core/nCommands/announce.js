@@ -14,8 +14,8 @@ var init = function (message) {
   var LANG = message.lang;
     var modPass = false
 
-    if (DB[Server.id].modules.MODROLE && DB[Server.id].modules.MODROLE.size != ""){
-        modPass = Member.roles.has(DB[Server.id].modules.MODROLE);
+    if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size != ""){
+        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
     }if(Member.hasPermission("MANAGE_SERVER")||Member.hasPermission("ADMINISTRATOR")){
         modPass = true;
     };
