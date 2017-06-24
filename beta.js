@@ -157,8 +157,6 @@ var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8'))
 */
 
 const sql = require('sqlite');
-sql.open('./database/pollux.sqlite');
-var database = require('./database/schema.js')
 
 var prefix = "+";
 var skynet = '248285312353173505'
