@@ -746,9 +746,9 @@ Array.prototype.remove = function () {
 
                       if (param.includes('.')){
                         param = param.split('.')
-                        Tchannel.channels(target.id).modules[param[0]][param[1]].push(val)
+                        Tchannel.channels[target.id].modules[param[0]][param[1]].push(val)
                         }else{
-                        Tchannel.channels(target.id).modules[param].push(val)
+                        Tchannel.channels[target.id].modules[param].push(val)
                         }
                     DB.set(target.guild.id, Tchannel)
 
@@ -796,9 +796,9 @@ Array.prototype.remove = function () {
 
                       if (param.includes('.')){
                         param = param.split('.')
-                        Tchannel.channels(target.id).modules[param[0]][param[1]].remove(val)
+                        Tchannel.channels[target.id].modules[param[0]][param[1]].remove(val)
                         }else{
-                        Tchannel.channels(target.id).modules[param].remove(val)
+                        Tchannel.channels[target.id].modules[param].remove(val)
                         }
                     DB.set(target.guild.id, Tchannel)
 
@@ -846,9 +846,9 @@ Array.prototype.remove = function () {
 
                       if (param.includes('.')){
                         param = param.split('.')
-                        Tchannel.channels(target.id).modules[param[0]][param[1]] += val
+                        Tchannel.channels[target.id].modules[param[0]][param[1]] += val
                         }else{
-                        Tchannel.channels(target.id).modules[param] += val
+                        Tchannel.channels[target.id].modules[param] += val
                         }
                     DB.set(target.guild.id, Tchannel)
 
@@ -897,9 +897,9 @@ Array.prototype.remove = function () {
 
                        if (param.includes('.')){
                         param = param.split('.')
-                        Tchannel.channels(target.id).modules[param[0]][param[1]] = val
+                        Tchannel.channels[target.id].modules[param[0]][param[1]] = val
                         }else{
-                        Tchannel.channels(target.id).modules[param] = val
+                        Tchannel.channels[target.id].modules[param] = val
                         }
                     DB.set(target.guild.id, Tchannel)
 

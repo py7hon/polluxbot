@@ -68,13 +68,13 @@ module.exports = {
                 }
                 if (target instanceof Discord.Channel) {
 
-                    var guildproc = main.DB.get(target.guild.id)
+                    var Tchannel = main.DB.get(target.guild.id)
 
                       if (param.includes('.')){
                         param = param.split('.')
-                        guildproc.channels(target.id).modules[param[0]][param[1]].push(val)
+                        Tchannel.channels[target.id].modules[param[0]][param[1]].push(val)
                         }else{
-                        guildproc.channels(target.id).modules[param].push(val)
+                        Tchannel.channels[target.id].modules[param].push(val)
                         }
                     main.DB.set(target.guild.id, Tchannel)
 
@@ -123,9 +123,9 @@ module.exports = {
 
                       if (param.includes('.')){
                         param = param.split('.')
-                        Tchannel.channels(target.id).modules[param[0]][param[1]].remove(val)
+                        Tchannel.channels[target.id].modules[param[0]][param[1]].remove(val)
                         }else{
-                        Tchannel.channels(target.id).modules[param].remove(val)
+                        Tchannel.channels[target.id].modules[param].remove(val)
                         }
                     main.DB.set(target.guild.id, Tchannel)
 
@@ -173,9 +173,9 @@ module.exports = {
 
                       if (param.includes('.')){
                         param = param.split('.')
-                        Tchannel.channels(target.id).modules[param[0]][param[1]] += val
+                        Tchannel.channels[target.id].modules[param[0]][param[1]] += val
                         }else{
-                        Tchannel.channels(target.id).modules[param] += val
+                        Tchannel.channels[target.id].modules[param] += val
                         }
                     main.DB.set(target.guild.id, Tchannel)
 
@@ -224,9 +224,9 @@ module.exports = {
 
                        if (param.includes('.')){
                         param = param.split('.')
-                        Tchannel.channels(target.id).modules[param[0]][param[1]] = val
+                        Tchannel.channels[target.id].modules[param[0]][param[1]] = val
                         }else{
-                        Tchannel.channels(target.id).modules[param] = val
+                        Tchannel.channels[target.id].modules[param] = val
                         }
                     main.DB.set(target.guild.id, Tchannel)
 
