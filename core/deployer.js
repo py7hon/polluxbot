@@ -91,7 +91,6 @@ var checkUse = function (msg, DB, userDB) {
 
         let commandFile = require(`./nCommands/${command}.js`);
 
-console.log(DB.get(msg.guild.id).channels[msg.channel.id])
         switch (true) {
 
             case DB.get(msg.guild.id).channels[msg.channel.id].modules.DISABLED.includes(commandFile.cat):

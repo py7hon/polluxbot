@@ -67,6 +67,7 @@ a = gear.randomize(2,4)
       emb.addField(':electric_plug:   Uptime',uptime, true)
  emb.addField('More Info','POLLUX Support: https://discord.gg/ay48h7Q', true)
  emb.addField('Invite','https://discordapp.com/oauth2/authorize?client_id=271394014358405121&scope=bot&permissions=2121661559', true)
+ emb.addField('Commands','http://pollux.lucasflicky.com/commands', true)
 
 
 

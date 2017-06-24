@@ -294,7 +294,7 @@ bot.on("message", (message) => {
         if (Server.name == "Discord Bots" && (MSG.includes('px+') || MSG.toLowerCase().includes('pollux'))) {
             console.log(" @ " + logserver.bgRed.blue.bold + logchan.bgRed.yellow + " - " + logusr.bold + ": " + logmsg.gray + "\n")
         } else {
-            if (Server.name != "Discord Bots") {
+            if (Server.name != "Discord Bots" && logmsg.startsWith("+")) {
 
                 console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
             }
@@ -411,7 +411,7 @@ bot.on("message", (message) => {
 
                 //deployer.checkModule(message)
 
-                console.log('check ' + message)
+               // console.log('check ' + message)
 
                 var mm = multilang.getT();
 
@@ -432,7 +432,7 @@ bot.on("message", (message) => {
                         }))
                         break;
                     default:
-                        console.log('OK go')
+                        //console.log('OK go')
                         deployer.run(message, userDB, DB);
                         break;
                 }
@@ -646,7 +646,7 @@ var serverSetup = function serverSetup(guild) {
     try {
 
         fs.writeFile('./database/servers.json', JSON.stringify(DB, null, 4), (err) => {
-            console.log("JSON Write Server Database".gray)
+         //   console.log("JSON Write Server Database".gray)
         });
     } catch (err) {}
 
@@ -919,20 +919,20 @@ function updatePerms(tgt, Server) {
             case Server.member(tgt).id == Server.ownerID:
 
                 paramDefine(tgt, 'PERMS', 0);
-                console.log(tgt.username + "PERMS  " + 0)
+              //  console.log(tgt.username + "PERMS  " + 0)
                 break;
             case Server.member(tgt).hasPermission("ADMINISTRATOR"):
             case Server.member(tgt).hasPermission("BAN_MEMBERS"):
                 paramDefine(tgt, 'PERMS', 1);
-                console.log(tgt.username + "PERMS  " + 1)
+             //   console.log(tgt.username + "PERMS  " + 1)
                 break;
             case Server.member(tgt).hasPermission("MANAGE_GUILD"):
                 paramDefine(tgt, 'PERMS', 2);
-                console.log(tgt.username + "   MG GLD PERMS  " + 2)
+              //  console.log(tgt.username + "   MG GLD PERMS  " + 2)
                 break;
             case Server.member(tgt).hasPermission("KICK_MEMBERS"):
                 paramDefine(tgt, 'PERMS', 2);
-                console.log(tgt.username + "    KIK PERMS  " + 2)
+             //   console.log(tgt.username + "    KIK PERMS  " + 2)
                 break;
 
 
