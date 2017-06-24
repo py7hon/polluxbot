@@ -68,13 +68,13 @@ module.exports = {
                 }
                 if (target instanceof Discord.Channel) {
 
-                    var Tchannel = main.DB.get(target.guild.id)
-                    var Cmodules = Tchannel.get(target.id)
+                    var guildproc = main.DB.get(target.guild.id)
+
                       if (param.includes('.')){
                         param = param.split('.')
-                        Cmodules.modules[param[0]][param[1]].push(val)
+                        guildproc.channels(target.id).modules[param[0]][param[1]].push(val)
                         }else{
-                        Cmodules.modules[param].push(val)
+                        guildproc.channels(target.id).modules[param].push(val)
                         }
                     main.DB.set(target.guild.id, Tchannel)
 
@@ -83,6 +83,7 @@ module.exports = {
         } catch (err) {
             console.log('ERROR JSON'.bgRed.white.bold)
             console.log(err.stack)
+            message.reply("ERROR")
         }
     },
     paramRemove: function paramRemove(target, param, val) {
@@ -119,12 +120,12 @@ module.exports = {
                 if (target instanceof Discord.Channel) {
 
                     var Tchannel = main.DB.get(target.guild.id)
-                    var Cmodules = Tchannel.get(target.id)
+
                       if (param.includes('.')){
                         param = param.split('.')
-                        Cmodules.modules[param[0]][param[1]].remove(val)
+                        Tchannel.channels(target.id).modules[param[0]][param[1]].remove(val)
                         }else{
-                        Cmodules.modules[param].remove(val)
+                        Tchannel.channels(target.id).modules[param].remove(val)
                         }
                     main.DB.set(target.guild.id, Tchannel)
 
@@ -169,12 +170,12 @@ module.exports = {
                 if (target instanceof Discord.Channel) {
 
                     var Tchannel = main.DB.get(target.guild.id)
-                    var Cmodules = Tchannel.get(target.id)
+
                       if (param.includes('.')){
                         param = param.split('.')
-                        Cmodules.modules[param[0]][param[1]] += val
+                        Tchannel.channels(target.id).modules[param[0]][param[1]] += val
                         }else{
-                        Cmodules.modules[param] += val
+                        Tchannel.channels(target.id).modules[param] += val
                         }
                     main.DB.set(target.guild.id, Tchannel)
 
@@ -220,12 +221,12 @@ module.exports = {
                 if (target instanceof Discord.Channel) {
 
                     var Tchannel = main.DB.get(target.guild.id)
-                    var Cmodules = Tchannel.get(target.id)
+
                        if (param.includes('.')){
                         param = param.split('.')
-                        Cmodules.modules[param[0]][param[1]] = val
+                        Tchannel.channels(target.id).modules[param[0]][param[1]] = val
                         }else{
-                        Cmodules.modules[param] = val
+                        Tchannel.channels(target.id).modules[param] = val
                         }
                     main.DB.set(target.guild.id, Tchannel)
 

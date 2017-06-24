@@ -743,12 +743,12 @@ Array.prototype.remove = function () {
                 if (target instanceof Discord.Channel) {
 
                     var Tchannel = DB.get(target.guild.id)
-                    var Cmodules = Tchannel.get(target.id)
+
                       if (param.includes('.')){
                         param = param.split('.')
-                        Cmodules.modules[param[0]][param[1]].push(val)
+                        Tchannel.channels(target.id).modules[param[0]][param[1]].push(val)
                         }else{
-                        Cmodules.modules[param].push(val)
+                        Tchannel.channels(target.id).modules[param].push(val)
                         }
                     DB.set(target.guild.id, Tchannel)
 
@@ -793,12 +793,12 @@ Array.prototype.remove = function () {
                 if (target instanceof Discord.Channel) {
 
                     var Tchannel = DB.get(target.guild.id)
-                    var Cmodules = Tchannel.get(target.id)
+
                       if (param.includes('.')){
                         param = param.split('.')
-                        Cmodules.modules[param[0]][param[1]].remove(val)
+                        Tchannel.channels(target.id).modules[param[0]][param[1]].remove(val)
                         }else{
-                        Cmodules.modules[param].remove(val)
+                        Tchannel.channels(target.id).modules[param].remove(val)
                         }
                     DB.set(target.guild.id, Tchannel)
 
@@ -843,12 +843,12 @@ Array.prototype.remove = function () {
                 if (target instanceof Discord.Channel) {
 
                     var Tchannel = DB.get(target.guild.id)
-                    var Cmodules = Tchannel.get(target.id)
+
                       if (param.includes('.')){
                         param = param.split('.')
-                        Cmodules.modules[param[0]][param[1]] += val
+                        Tchannel.channels(target.id).modules[param[0]][param[1]] += val
                         }else{
-                        Cmodules.modules[param] += val
+                        Tchannel.channels(target.id).modules[param] += val
                         }
                     DB.set(target.guild.id, Tchannel)
 
@@ -894,12 +894,12 @@ Array.prototype.remove = function () {
                 if (target instanceof Discord.Channel) {
 
                     var Tchannel = DB.get(target.guild.id)
-                    var Cmodules = Tchannel.get(target.id)
+
                        if (param.includes('.')){
                         param = param.split('.')
-                        Cmodules.modules[param[0]][param[1]] = val
+                        Tchannel.channels(target.id).modules[param[0]][param[1]] = val
                         }else{
-                        Cmodules.modules[param] = val
+                        Tchannel.channels(target.id).modules[param] = val
                         }
                     DB.set(target.guild.id, Tchannel)
 

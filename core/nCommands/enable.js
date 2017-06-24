@@ -115,7 +115,7 @@ var init = function (message,userDB,DB) {
         })
     } else {
 
-        if (module in DB.get(message.guild.id).channel[message.channel.id].modules) {
+        if (module in DB.get(message.guild.id).channels[message.channel.id].modules) {
             gear.paramDefine(Channel, module, true)
             message.reply(disaMC)
         } else {
