@@ -83,7 +83,7 @@ module.exports = {
         } catch (err) {
             console.log('ERROR JSON'.bgRed.white.bold)
             console.log(err.stack)
-            message.reply("ERROR")
+
         }
     },
     paramRemove: function paramRemove(target, param, val) {
