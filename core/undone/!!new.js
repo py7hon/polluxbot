@@ -2,6 +2,7 @@ var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
+const Jimp = require("jimp");
 
 var cmd = 'name';
 
@@ -17,7 +18,38 @@ var init = function (message,userDB,DB) {
     var args = MSG.split(' ').slice(1)
     var LANG = message.lang;
 
-    //-------MAGIC----------------
+    //-------MAGIC----------------------------------------------------------------------------------------------------
+
+    var noperms     =   mm('CMD.moderationNeeded', {lngs:LANG})
+    var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
+    var justasec    =   mm('CMD.jas', {lngs:LANG})
+
+    var modPass = false
+
+    if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size >= 1){
+        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
+    }else if(Member.hasPermission("MANAGE_SERVER")||Member.hasPermission("ADMINISTRATOR")){
+        modPass = true;
+    };
+if (!modPass) return message.reply(noperms);
+
+    if (message.mentions.users.size === 0) {
+        return message.reply(whokik).catch(console.error);
+    }
+    let kickMember = Server.member(Target);
+    let kik = Target
+    if (!kickMember) {
+        return message.reply(nope);
+    }
+
+
+
+
+
+
+
+
+    //-------FINNI----------------------------------------------------------------------------------------------------
 
 };
 
@@ -30,26 +62,3 @@ var init = function (message,userDB,DB) {
 
 
 
-error3: mm('$.insuBet', {
-        lngs: message.lang,
-        number: 3
-    }),
-
-
-
-    let GOODMOJI = ':gem:'
-let GOOD = 'Gem'
-if (DB.get(Server.id).modules) {
-    GOODMOJI = DB.get(Server.id).modules
-}
-if (DB.get(Server.id).modules.GOODNAME) {
-    GOOD = DB.get(Server.id).modules.GOODNAME
-}
-
-
-if (modPass) {
-    Server.defaultChannel.sendMessage(`:mega:  **Anúncio**
-` + MSG.substr(10))
-} else {
-    message.reply("Somente Admins e Mods podem criar anúncios");
-}};

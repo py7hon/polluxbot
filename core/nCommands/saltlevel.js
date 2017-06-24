@@ -19,7 +19,7 @@ var init = function (message,userDB,DB) {
 
     //-------MAGIC----------------
 
-let saltmoji = message.guild.emojis.find('name','salty')
+let saltmoji = "<:salty:277280624900046849>"
 
     //let target = message.mentions.users.first();
     var multiplier = 1

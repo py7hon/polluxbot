@@ -4,6 +4,11 @@ var cfg = require('../config.js');
 const main = require('../' + cfg.main + '.js')
 const Jimp = require("jimp");
 const fs = require("fs");
+var emoji = require("../resources/lists/emoji.js");
+//var playing = require("../resources/lists/playing.js");
+
+
+
 
 Array.prototype.remove = function () {
     var what, a = arguments,
@@ -19,6 +24,37 @@ Array.prototype.remove = function () {
 };
 
 module.exports = {
+
+    randomize: function randomize(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    },
+    gamechange: function gamechange(gamein=false) {
+        try {
+            if (gamein!=false)return gamein;
+            delete require.cache[require.resolve(`../resources/lists/playing.js`)];
+            var gamelist = require("../resources/lists/playing.js");
+            var max = gamelist.games.length
+            var rand = this.randomize(0,max)
+
+           return gamelist.games[rand]
+
+
+        } catch (e) {
+            console.log(e)
+        }
+    },
+
+
+    emoji: function emoji(emo) {
+        try {
+            delete require.cache[require.resolve(`../resources/lists/emoji.js`)];
+            emoji = require("../resources/lists/emoji.js");
+            return emoji[emo]
+        } catch (e) {
+            console.log(e)
+        }
+    },
+
 
     writeJ: function writeJ(a, b) {
         fs.writeFile(b + '.json', JSON.stringify(a, null, 4), (err) => {
@@ -38,48 +74,48 @@ module.exports = {
 
         try {
 
-         //   param = param.split('.');
-          //  if ((param.length == 1)) {
+            //   param = param.split('.');
+            //  if ((param.length == 1)) {
 
-                if (target instanceof Discord.User) {
+            if (target instanceof Discord.User) {
 
-                    var Umodules = main.userDB.get(target.id)
-                      if (param.includes('.')){
-                        param = param.split('.')
-                        Umodules.modules[param[0]][param[1]].push(val)
-                        }else{
-                        Umodules.modules[param].push(val)
-                        }
-                    main.userDB.set(target.id, Umodules)
-
+                var Umodules = main.userDB.get(target.id)
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Umodules.modules[param[0]][param[1]].push(val)
+                } else {
+                    Umodules.modules[param].push(val)
                 }
+                main.userDB.set(target.id, Umodules)
 
-                if (target instanceof Discord.Guild) {
+            }
 
-                    var Smodules = main.DB.get(target.id)
-                       if (param.includes('.')){
-                        param = param.split('.')
-                        Smodules.modules[param[0]][param[1]].push(val)
-                        }else{
-                        Smodules.modules[param].push(val)
-                        }
-                    main.DB.set(target.id, Smodules)
+            if (target instanceof Discord.Guild) {
 
+                var Smodules = main.DB.get(target.id)
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Smodules.modules[param[0]][param[1]].push(val)
+                } else {
+                    Smodules.modules[param].push(val)
                 }
-                if (target instanceof Discord.Channel) {
+                main.DB.set(target.id, Smodules)
 
-                    var Tchannel = main.DB.get(target.guild.id)
+            }
+            if (target instanceof Discord.Channel) {
 
-                      if (param.includes('.')){
-                        param = param.split('.')
-                        Tchannel.channels[target.id].modules[param[0]][param[1]].push(val)
-                        }else{
-                        Tchannel.channels[target.id].modules[param].push(val)
-                        }
-                    main.DB.set(target.guild.id, Tchannel)
+                var Tchannel = main.DB.get(target.guild.id)
 
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Tchannel.channels[target.id].modules[param[0]][param[1]].push(val)
+                } else {
+                    Tchannel.channels[target.id].modules[param].push(val)
                 }
-          //  }
+                main.DB.set(target.guild.id, Tchannel)
+
+            }
+            //  }
         } catch (err) {
             console.log('ERROR JSON'.bgRed.white.bold)
             console.log(err.stack)
@@ -89,48 +125,48 @@ module.exports = {
     paramRemove: function paramRemove(target, param, val) {
         try {
 
-        //    param = param.split('.');
-         //   if ((param.length == 1)) {
+            //    param = param.split('.');
+            //   if ((param.length == 1)) {
 
-     if (target instanceof Discord.User) {
+            if (target instanceof Discord.User) {
 
-                    var Umodules = main.userDB.get(target.id)
-                      if (param.includes('.')){
-                        param = param.split('.')
-                        Umodules.modules[param[0]][param[1]].remove(val)
-                        }else{
-                        Umodules.modules[param].remove(val)
-                        }
-                    main.userDB.set(target.id, Umodules)
-
+                var Umodules = main.userDB.get(target.id)
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Umodules.modules[param[0]][param[1]].remove(val)
+                } else {
+                    Umodules.modules[param].remove(val)
                 }
+                main.userDB.set(target.id, Umodules)
 
-                if (target instanceof Discord.Guild) {
+            }
 
-                    var Smodules = main.DB.get(target.id)
-                       if (param.includes('.')){
-                        param = param.split('.')
-                        Smodules.modules[param[0]][param[1]].remove(val)
-                        }else{
-                        Smodules.modules[param].remove(val)
-                        }
-                    main.DB.set(target.id, Smodules)
+            if (target instanceof Discord.Guild) {
 
+                var Smodules = main.DB.get(target.id)
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Smodules.modules[param[0]][param[1]].remove(val)
+                } else {
+                    Smodules.modules[param].remove(val)
                 }
-                if (target instanceof Discord.Channel) {
+                main.DB.set(target.id, Smodules)
 
-                    var Tchannel = main.DB.get(target.guild.id)
+            }
+            if (target instanceof Discord.Channel) {
 
-                      if (param.includes('.')){
-                        param = param.split('.')
-                        Tchannel.channels[target.id].modules[param[0]][param[1]].remove(val)
-                        }else{
-                        Tchannel.channels[target.id].modules[param].remove(val)
-                        }
-                    main.DB.set(target.guild.id, Tchannel)
+                var Tchannel = main.DB.get(target.guild.id)
 
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Tchannel.channels[target.id].modules[param[0]][param[1]].remove(val)
+                } else {
+                    Tchannel.channels[target.id].modules[param].remove(val)
                 }
-          //  }
+                main.DB.set(target.guild.id, Tchannel)
+
+            }
+            //  }
 
         } catch (err) {
             console.log('ERROR JSON'.bgRed.white.bold)
@@ -142,95 +178,95 @@ module.exports = {
 
 
 
-                   if (target instanceof Discord.User) {
+            if (target instanceof Discord.User) {
 
-                    var Umodules = main.userDB.get(target.id)
-                       if (param.includes('.')){
-                        param = param.split('.')
-                        Umodules.modules[param[0]][param[1]] += val
-                        }else{
-                        Umodules.modules[param] += val
-                        }
-                    main.userDB.set(target.id, Umodules)
-
+                var Umodules = main.userDB.get(target.id)
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Umodules.modules[param[0]][param[1]] += val
+                } else {
+                    Umodules.modules[param] += val
                 }
+                main.userDB.set(target.id, Umodules)
 
-                if (target instanceof Discord.Guild) {
-
-                    var Smodules = main.DB.get(target.id)
-                      if (param.includes('.')){
-                        param = param.split('.')
-                        Smodules.modules[param[0]][param[1]] += val
-                        }else{
-                        Smodules.modules[param] += val
-                        }
-                    main.DB.set(target.id, Smodules)
-
-                }
-                if (target instanceof Discord.Channel) {
-
-                    var Tchannel = main.DB.get(target.guild.id)
-
-                      if (param.includes('.')){
-                        param = param.split('.')
-                        Tchannel.channels[target.id].modules[param[0]][param[1]] += val
-                        }else{
-                        Tchannel.channels[target.id].modules[param] += val
-                        }
-                    main.DB.set(target.guild.id, Tchannel)
-
-                }
-
-            } catch (err) {
-                console.log('ERROR JSON'.bgRed.white.bold)
-                console.log(err.stack)
             }
+
+            if (target instanceof Discord.Guild) {
+
+                var Smodules = main.DB.get(target.id)
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Smodules.modules[param[0]][param[1]] += val
+                } else {
+                    Smodules.modules[param] += val
+                }
+                main.DB.set(target.id, Smodules)
+
+            }
+            if (target instanceof Discord.Channel) {
+
+                var Tchannel = main.DB.get(target.guild.id)
+
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Tchannel.channels[target.id].modules[param[0]][param[1]] += val
+                } else {
+                    Tchannel.channels[target.id].modules[param] += val
+                }
+                main.DB.set(target.guild.id, Tchannel)
+
+            }
+
+        } catch (err) {
+            console.log('ERROR JSON'.bgRed.white.bold)
+            console.log(err.stack)
+        }
 
     },
 
     paramDefine: function paramDefine(target, param, val) {
         try {
 
-              if (target instanceof Discord.User) {
+            if (target instanceof Discord.User) {
 
-                    var Umodules = main.userDB.get(target.id)
+                var Umodules = main.userDB.get(target.id)
 
-                    if (param.includes('.')){
-                        param = param.split('.')
-                        Umodules.modules[param[0]][param[1]] = val
-                        }else{
-                        Umodules.modules[param] = val
-                        }
-
-                    main.userDB.set(target.id, Umodules)
-
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Umodules.modules[param[0]][param[1]] = val
+                } else {
+                    Umodules.modules[param] = val
                 }
 
-                if (target instanceof Discord.Guild) {
+                main.userDB.set(target.id, Umodules)
 
-                    var Smodules = main.DB.get(target.id)
-                    if (param.includes('.')){
-                        param = param.split('.')
-                        Smodules.modules[param[0]][param[1]] = val
-                        }else{
-                        Smodules.modules[param] = val
-                        }
-                    main.DB.set(target.id, Smodules)
+            }
 
+            if (target instanceof Discord.Guild) {
+
+                var Smodules = main.DB.get(target.id)
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Smodules.modules[param[0]][param[1]] = val
+                } else {
+                    Smodules.modules[param] = val
                 }
-                if (target instanceof Discord.Channel) {
+                main.DB.set(target.id, Smodules)
 
-                    var Tchannel = main.DB.get(target.guild.id)
+            }
+            if (target instanceof Discord.Channel) {
 
-                       if (param.includes('.')){
-                        param = param.split('.')
-                        Tchannel.channels[target.id].modules[param[0]][param[1]] = val
-                        }else{
-                        Tchannel.channels[target.id].modules[param] = val
-                        }
-                    main.DB.set(target.guild.id, Tchannel)
+                var Tchannel = main.DB.get(target.guild.id)
 
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Tchannel.channels[target.id].modules[param[0]][param[1]] = val
+                } else {
+                    Tchannel.channels[target.id].modules[param] = val
                 }
+                main.DB.set(target.guild.id, Tchannel)
+
+            }
         } catch (err) {
             console.log('ERROR JSON'.bgRed.white.bold)
             console.log(err.stack)
@@ -244,7 +280,6 @@ module.exports = {
             return false;
         }
     },
-
 
 
 
@@ -327,9 +362,7 @@ module.exports = {
         }
 
         ,
-    randomize: function randomize(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    },
+
     shuffle: function shuffle(array) {
         var currentIndex = array.length,
             temporaryValue, randomIndex;

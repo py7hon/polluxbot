@@ -213,6 +213,18 @@ function loginSuccess() {
             'ts': Date.now() / 1000
       }]
     })
+
+
+    setInterval(function() {
+  var date = new Date();
+  if ( date.getSeconds() === 0 ) {
+   gamechange(bot)
+  }
+}, 1000);
+
+
+
+
 }
 
 //var dvv = require('./database.js')
@@ -236,7 +248,7 @@ bot.on('ready', () => {
 
     // bot.user.setGame(`Flicky draws Silenyte stuff`, 'https://www.twitch.tv/LucasFlicky').then().catch();
 
-    bot.user.setGame(`Neverwinter Nights`).then().catch();
+    //bot.user.setGame(`Neverwinter Nights`).then().catch();
 
     async.parallel(bot.guilds.forEach(G => serverSetup(G)))
 
@@ -291,10 +303,10 @@ bot.on("message", (message) => {
         var logusr = " " + Author.username + ": "
         var logmsg = MSG
 
-        if (Server.name == "Discord Bots" && (MSG.includes('px+') || MSG.toLowerCase().includes('pollux'))) {
+        if (Server.name == "Discord Bots" && (MSG.includes('px+')||  MSG.toLowerCase().includes('pollux'))) {
             console.log(" @ " + logserver.bgRed.blue.bold + logchan.bgRed.yellow + " - " + logusr.bold + ": " + logmsg.gray + "\n")
         } else {
-            if (Server.name != "Discord Bots" && logmsg.startsWith("+")) {
+            if (Author.username == "Pollux" ||  MSG.toLowerCase().includes('pollux') ||(Server.name != "Discord Bots" && logmsg.startsWith("+"))) {
 
                 console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
             }
@@ -473,6 +485,7 @@ bot.on("message", (message) => {
             }
         }
     } else {
+        console.log(message.content)
         message.reply('PM Not Supported');
         return;
     }
@@ -1024,6 +1037,22 @@ function randomize(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function gamechange(bot) {
+        try {
+            delete require.cache[require.resolve(`./resources/lists/playing.js`)];
+            var gamelist = require("./resources/lists/playing.js");
+            var max = gamelist.games.length-1
+            var rand = randomize(0,max)
+          bot.user.setGame(gamelist.games[rand]).then().catch(err=>{console.log(err)});
+
+          // return
+
+
+        } catch (e) {
+            console.log(e)
+        }
+    };
+
 function updateEXP(TG, event) {
     let userData = userDB.get(TG.id).modules;
     var caller = TG.username // Checar Caller
@@ -1075,7 +1104,7 @@ function updateEXP(TG, event) {
 
                                     cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
                                         if (DB.get(guild.id).modules.LVUP) {
-                                            if (DB[event.channel.guild.id].channels[event.channel.id].modules.LVUP) {
+                                            if (DB.get(guild.id).channels[event.channel.id].modules.LVUP) {
 
                                                 event.channel.sendFile(image)
                                             }
@@ -1122,5 +1151,7 @@ module.exports = {
 
 
 
-
 bot.login(cfg.token).then(loginSuccess());
+
+
+
