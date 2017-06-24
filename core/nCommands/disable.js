@@ -132,6 +132,15 @@ var init = function (message,userDB,DB) {
             let command = msg.content.substr(msg.prefix.length).split(' ')[1];
             let commandFile = require(`./${command}.js`);
             if (scope == 'S') {
+
+
+                        Server.channels.forEach(e=>{
+
+   gear.paramAdd(e, 'DISABLED', command)
+
+        })
+
+
                 gear.paramAdd(Server, 'DISABLED', command)
                 message.reply(disaCS)
             }
