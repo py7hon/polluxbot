@@ -28,7 +28,7 @@ ${mm('help.invite', {
 
                     prefix: message.prefix,
 
-                })}: https://goo.gl/info/qkGqqU
+                })}: http://goo.gl/qkGqqU
 
 ${mm('help.joinSupp', {
                     lngs: LANG,

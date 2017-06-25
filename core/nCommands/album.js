@@ -119,7 +119,7 @@ spotifyApi.searchAlbums('Love')
      // emb.addField(':satellite_orbital:   Ping',parseFloat(Math.round(bot.ping * 100) / 100).toFixed(0)+'ms', true)
    //   emb.addField(':electric_plug:   Uptime',uptime, true)
 // emb.addField('More Info','POLLUX Support: https://discord.gg/ay48h7Q', true)
- //emb.addField('Invite','https://goo.gl/info/qkGqqU', true)
+ //emb.addField('Invite','http://goo.gl/qkGqqU', true)
 
 
 
