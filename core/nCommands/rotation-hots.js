@@ -73,22 +73,27 @@ var init = function (message, userDB, DB) {
   // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
    emb.description = "Weekly Hero Rotation"
 
-      emb.addField('All Levels',`${rotation[0][0]}
-${rotation[0][1]}
-${rotation[0][2]}
-${rotation[0][3]}
-${rotation[0][4]}
+      var a =gear.emoji('zagara')
+
+
+      emb.addField('All Levels',`
+${gear.emoji(rotation[0][0].replace(".","").replace(" ","").toLowerCase())}${rotation[0][0]}
+${gear.emoji(rotation[0][1].replace(".","").replace(" ","").toLowerCase())}${rotation[0][1]}
+${gear.emoji(rotation[0][2].replace(".","").replace(" ","").toLowerCase())}${rotation[0][2]}
+${gear.emoji(rotation[0][3].replace(".","").replace(" ","").toLowerCase())}${rotation[0][3]}
+${gear.emoji(rotation[0][4].replace(".","").replace(" ","").toLowerCase())}${rotation[0][4]}
 `, true)
-            emb.addField('.',`${rotation[0][5]}
-${rotation[0][6]}
-${rotation[0][7]}
-${rotation[0][8]}
-${rotation[0][9]}
+            emb.addField('.',`
+${gear.emoji(rotation[0][5].replace(".","").replace(" ","").toLowerCase())}${rotation[0][5]}
+${gear.emoji(rotation[0][6].replace(".","").replace(" ","").toLowerCase())}${rotation[0][6]}
+${gear.emoji(rotation[0][7].replace(".","").replace(" ","").toLowerCase())}${rotation[0][7]}
+${gear.emoji(rotation[0][8].replace(".","").replace(" ","").toLowerCase())}${rotation[0][8]}
+${gear.emoji(rotation[0][9].replace(".","").replace(" ","").toLowerCase())}${rotation[0][9]}
 `, true)
-            emb.addField('Level 5',`${rotation[1]}`, true)
-            emb.addField('Level 7',`${rotation[2]}`, true)
-            emb.addField('Level 12',`${rotation[3]}`, true)
-            emb.addField('Level 15',`${rotation[4]}`, true)
+            emb.addField('Level 5',`${gear.emoji(rotation[1].replace(".","").replace(" ","").toLowerCase())}${rotation[1]}`, true)
+            emb.addField('Level 7',`${gear.emoji(rotation[2].replace(".","").replace(" ","").toLowerCase())}${rotation[2]}`, true)
+            emb.addField('Level 12',`${gear.emoji(rotation[3].replace(".","").replace(" ","").toLowerCase())}${rotation[3]}`, true)
+            emb.addField('Level 15',`${gear.emoji(rotation[4].replace(".","").replace(" ","").toLowerCase())}${rotation[4]}`, true)
 
 
     message.channel.sendEmbed(emb)

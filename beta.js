@@ -109,6 +109,7 @@ var async = require('async') // <-- EVER USED?
 const Jimp = require("jimp");
 var i18next = require('i18next');
 var multilang = require('./utils/multilang_b');
+var greetings = require('./utils/greetings');
 
 
 var Backend = require('i18next-node-fs-backend');
@@ -220,6 +221,12 @@ function loginSuccess() {
   if ( date.getSeconds() === 0 ) {
    gamechange(bot)
   }
+        var g = bot.guilds.get("328266942249172993")
+        //console.log(g)
+
+ process.nextTick(cb=>{delete require.cache});
+         process.nextTick(cb=>{g.defaultChannel.sendMessage("greet:"+greetings.test)});
+
 }, 1000);
 
 
@@ -486,7 +493,7 @@ bot.on("message", (message) => {
         }
     } else {
         console.log(message.content)
-        message.reply('PM Not Supported');
+        message.reply("Sorry sweetie, don't send stuff for me here. I'll have DM support someday in the future. If you are here for help check http://pollux.lucasflicky.com/commands");
         return;
     }
 })
@@ -508,7 +515,8 @@ bot.on('reconnecting', () => {
     })
 });
 
-bot.on('guildCreate', (guild, member) => {
+bot.on('guildCreate', (guild) => {
+    guild.owner.sendMessage()
     serverSetup(guild);
 });
 
@@ -1151,7 +1159,8 @@ module.exports = {
 
 
 
-bot.login(cfg.token).then(loginSuccess());
+bot.login(cfg.tokenTrue).then(loginSuccess());
+
 
 
 

@@ -1,6 +1,7 @@
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
+var greet = require('../../utils/greetings');
 var mm = locale.getT();
 
 var cmd = 'eval';

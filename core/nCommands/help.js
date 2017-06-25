@@ -28,7 +28,7 @@ ${mm('help.invite', {
 
                     prefix: message.prefix,
 
-                })}: https://discordapp.com/oauth2/authorize?client_id=271394014358405121&scope=bot&permissions=2121661559
+                })}: https://goo.gl/info/qkGqqU
 
 ${mm('help.joinSupp', {
                     lngs: LANG,

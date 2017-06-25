@@ -12,7 +12,7 @@ module.exports = {
         ,"Hyperdimension Neptunia"
         ,"Guild Wars 2"
         ,"EarthBound"
-        ,"Elysium"
+        ,"Elsword"
         ,"Grand Theft Auto V"
         ,"Ace Combat"
         ,"Majhong"

@@ -6,6 +6,18 @@ var cfg = require('../config.js');
 
 var deploy = function (message, userDB, DB) {
 
+
+
+
+
+
+
+
+
+
+
+
+
     var bot = message.botUser
     var command = message.content.substr(DB.get(message.guild.id).modules.PREFIX.length).split(' ')[0]
     let commandFile;
@@ -70,7 +82,7 @@ DB.get(message.guild.id).modules.GOODNAME = "Ruby"
 
     console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
 } catch (err) {
-   // console.log((err.stack).red)
+    console.log((err.stack).red)
 
 }
 
@@ -109,7 +121,7 @@ var checkUse = function (msg, DB, userDB) {
        // console.log((err.stack).red)
          if (msg.guild.name.includes("POLLUX")){
 
-     //   msg.channel.sendMessage("```"+err.stack+"```")
+       // msg.channel.sendMessage("```"+err.stack+"```")
         }
     }
 
