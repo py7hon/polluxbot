@@ -14,17 +14,17 @@ var G = message.guild
     "```"+`
 Server Info:
 
-${DB[G.id].name}
+${DB.get(G.id).name}
 ${G.memberCount} Members
 ${G.channels.size} Channels
 
 Owner: ${G.owner.displayName}
 
-${DB[G.id].modules.DISABLED}
-${DB[G.id].modules.PREFIX}
-${DB[G.id].modules.LANGUAGE}
-${DB[G.id].modules.GOODMOJI}
-${DB[G.id].modules.GOODNAME}
+${DB.get(G.id).modules.DISABLED}
+${DB.get(G.id).modules.PREFIX}
+${DB.get(G.id).modules.LANGUAGE}
+${DB.get(G.id).modules.GOODMOJI}
+${DB.get(G.id).modules.GOODNAME}
 
 
 `+"``` "+`${G.iconURL}`

@@ -1,7 +1,6 @@
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
-var greet = require('../../utils/greetings');
 var mm = locale.getT();
 
 var cmd = 'eval';
@@ -36,11 +35,4 @@ var LANG = message.lang;
       message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${(err)}\n\`\`\``);
     }
   }
-
- module.exports = {
-     pub:false,
-     cmd: cmd,
-     perms: 0,
-     init: init,
-     cat: 'misc'
- }
+module.exports = {pub:false,cmd: cmd, perms: 0, init: init, cat: 'misc'};
