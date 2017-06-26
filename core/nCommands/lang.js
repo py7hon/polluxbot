@@ -3,7 +3,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 var fs = require('fs');
-var cmd = 'speak';
+var cmd = 'speak or lang';
 
 var init = function (message,userDB,DB) {
 var Server = message.guild;
@@ -20,9 +20,32 @@ var LANG = message.lang;
 //-------MAGIC----------------
 
 
+    var modPass = false
+
+
+    var noperms     =   mm('CMD.moderationNeeded', {lngs:LANG})
+    var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
+
+
+
+
+    if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size >= 1){
+        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
+    }else if(Member.hasPermission("MANAGE_SERVER")){
+        modPass = true;
+    }else if(Member.hasPermission("ADMINISTRATOR")){
+        modPass = true;
+    };
+
+
+
+if (!modPass) return message.reply(noperms);
+
+
 //if (fs.existsSync('./utils/lang/'+args)) {
-    switch(args){
+     switch(args){
         case 'en':
+        case 'english':
             message.reply(":flag_ca: Alright, I will now speak English! Canadian flag because fuck you, that's why.");
             gear.paramDefine(Server,'LANGUAGE','en');
             break;
@@ -35,6 +58,7 @@ var LANG = message.lang;
             gear.paramDefine(Server,'LANGUAGE','en');
             break;
          case 'pt':
+         case 'portuguese':
             message.reply(":flag_br: Okei, a partir de agora eu falo Português! Bandeira do Brasil porque ninguém liga pra Portugal.");
             gear.paramDefine(Server,'LANGUAGE','dev');
             break;
@@ -48,58 +72,13 @@ var LANG = message.lang;
             gear.paramDefine(Server,'LANGUAGE','ru');
             break;
         default:
-            message.reply(":flag_ue: I didn't find that language so i'm setting it to English as default (usage is `+speak en` / `+speak pt`)");
+            message.reply(":earth_americas: I didn't find that language so i'm setting it to English as default. \n(usage is `+speak en` / `+speak pt`)\n I'm always open for language suggestions! ~~");
             gear.paramDefine(Server,'LANGUAGE','en');
             break;
     }
 
 
-
     };
 
- module.exports = {pub:false,cmd: cmd, perms: 2, init: init, cat: 'language'};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ module.exports = {pub:true,cmd: cmd, perms: 2, init: init, cat: 'language'};
 
