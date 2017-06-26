@@ -138,4 +138,13 @@
            ,"chargeA": "Ive charged {{total}} "
          ,"chargeB": " from your account. I'll be back in a minute with yout order!"
      }
+       ,"nuke":{
+        "confirm" : " :radioactive: **__Isto irá resetar todas configurações específicas do Server, incluindo:__**\n```\n -Prefixo\n -ModRoles (Cargos de Moderação)\n -Comandos e Módulos Habilitados/Desabilitados\n -Drops de Rubys vão mudar para OFF\n -Mensagens de LevelUp vão mudar para ON\n -Reactions customizadas vão ser apagadas \n```\n -Este nuke será notificado no Server de Suporte\n -Você não poderá usar o comando nuke por 48 hours em caso de uso indevido. Recorrência ira bloquear o comando no Server.\n\n\n **Realmente quer que eu mande nukes?**\n Envie **ok** para sim, **c** para cancelar."
+         ,"confirmB" : "**Escreva a razão do Nuke para confirmar**\n Envie **c** para cancelar."
+         ,"start" : ":radioactive: **NUKE EM ANDAMENTO** :radioactive: "
+         ,"cancel" : "Nuke Abortado!"
+         ,"timeout" : "Nuke Timeout! Nada foi alterado"
+         ,"completed" : "Informações e definições do Server resetadas. Teste o comando **+ping**"
+     }
+
  }

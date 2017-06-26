@@ -73,8 +73,8 @@ getDirs('utils/lang/', (list) => {
             'attachments': [{
                 'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
                 'pretext': `Successful Login!`,
-                'color': '#49c7ff', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-                // 'footer': 'Powered by sneks',
+                'color': '#49c7ff',
+
                 'ts': Date.now() / 1000
       }]
         })
@@ -104,8 +104,8 @@ getDirs('utils/lang/', (list) => {
             'attachments': [{
                 'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
                 'pretext': `All systems go! I am ready to rock, master!`,
-                'color': '#3ed844', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-                // 'footer': 'Powered by sneks',
+                'color': '#3ed844',
+
                 'ts': Date.now() / 1000
       }]
         })
@@ -143,8 +143,8 @@ getDirs('utils/lang/', (list) => {
             'attachments': [{
                 'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
                 'pretext': `SELF RESTART TRIGGERED! Gimme a second to still myself.`,
-                'color': '#ffb249', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-                // 'footer': 'Powered by sneks',
+                'color': '#ffb249',
+
                 'ts': Date.now() / 1000
       }]
         })
@@ -406,8 +406,8 @@ bot.on('error', (error) => {
         'attachments': [{
             'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
             'pretext': `Minor error! Check console`,
-            'color': '#ffdc49', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-            // 'footer': 'Powered by sneks',
+            'color': '#ffdc49',
+
             'ts': Date.now() / 1000
       }]
     })
@@ -908,8 +908,8 @@ process.on('uncaughtException', function (err) {
 **${err}**
 ${err.stack}
 `,
-            'color': '#C04', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-            // 'footer': 'Powered by sneks',
+            'color': '#C04',
+
             'ts': Date.now() / 1000
       }]
     })

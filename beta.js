@@ -109,7 +109,7 @@ var async = require('async') // <-- EVER USED?
 const Jimp = require("jimp");
 var i18next = require('i18next');
 var multilang = require('./utils/multilang_b');
-var greetings = require('./utils/greetings');
+const greeting = require('./utils/greeting');
 
 
 var Backend = require('i18next-node-fs-backend');
@@ -209,8 +209,8 @@ function loginSuccess() {
         'attachments': [{
             'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
             'pretext': `Successful Login!`,
-            'color': '#49c7ff', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-            // 'footer': 'Powered by sneks',
+            'color': '#49c7ff',
+
             'ts': Date.now() / 1000
       }]
     })
@@ -221,11 +221,7 @@ function loginSuccess() {
   if ( date.getSeconds() === 0 ) {
    gamechange(bot)
   }
-        var g = bot.guilds.get("328266942249172993")
-        //console.log(g)
 
- process.nextTick(cb=>{delete require.cache});
-         process.nextTick(cb=>{g.defaultChannel.sendMessage("greet:"+greetings.test)});
 
 }, 1000);
 
@@ -265,8 +261,8 @@ bot.on('ready', () => {
         'attachments': [{
             'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
             'pretext': `All systems go! I am ready to rock, master!`,
-            'color': '#3ed844', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-            // 'footer': 'Powered by sneks',
+            'color': '#3ed844',
+
             'ts': Date.now() / 1000
       }]
     })
@@ -420,6 +416,21 @@ bot.on("message", (message) => {
         }
 
 
+        if (message.content === "pollux+nuke"){
+
+            let nuke = require(`./core/sidecommands/nuke.js`);
+        try {
+            nuke.run(bot, message, DB, gdfal)
+            return
+        } catch (err) {
+            console.log('ERROR NUKE')
+            message.reply("ERROR, Report this, please!")
+            hook.sendMessage(err)
+            return
+        }
+
+        }
+
         //Wave 2 -- CHECK PREFIX
         if (Server && typeof (DB.get(Server.id).modules.PREFIX) !== 'undefined' && DB.get(Server.id).modules.PREFIX && DB.get(Server.id).modules.PREFIX !== '') {
             //-- START PREFIX
@@ -456,6 +467,7 @@ bot.on("message", (message) => {
                         break;
                 }
                 // deployer.checkUse(message)
+
 
 
             } else {
@@ -508,16 +520,23 @@ bot.on('reconnecting', () => {
         'attachments': [{
             'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
             'pretext': `SELF RESTART TRIGGERED! Gimme a second to still myself.`,
-            'color': '#ffb249', //'footer_icon': 'http://snek.s3.amazonaws.com/topSnek.png',
-            // 'footer': 'Powered by sneks',
+            'color': '#ffb249',
+
             'ts': Date.now() / 1000
       }]
     })
 });
 
+
+
 bot.on('guildCreate', (guild) => {
-    guild.owner.sendMessage()
+
+    var greetings = greeting.own.replace(/\{\{server\}\}/g, guild.name)
+    guild.owner.sendMessage(greetings)
     serverSetup(guild);
+});
+bot.on("guildDelete", (guild) => {
+  DB.delete(guild.id)
 });
 
 bot.on('guildMemberAdd', (member) => {
@@ -664,12 +683,7 @@ var serverSetup = function serverSetup(guild) {
         });
     }
 
-    try {
 
-        fs.writeFile('./database/servers.json', JSON.stringify(DB, null, 4), (err) => {
-         //   console.log("JSON Write Server Database".gray)
-        });
-    } catch (err) {}
 
     /*guild.members.forEach(memb => {
         if (!memb.user.bot) {
@@ -1159,7 +1173,7 @@ module.exports = {
 
 
 
-bot.login(cfg.tokenTrue).then(loginSuccess());
+bot.login(cfg.token).then(loginSuccess());
 
 
 

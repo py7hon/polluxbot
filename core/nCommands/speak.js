@@ -41,17 +41,6 @@ var LANG = message.lang;
 
 if (!modPass) return message.reply(noperms);
 
-    if (message.mentions.users.size === 0) {
-        return message.reply(whokik).catch(console.error);
-    }
-    let kickMember = Server.member(Target);
-    let kik = Target
-    if (!kickMember) {
-        return message.reply(nope);
-    }
-
-
-
 
 //if (fs.existsSync('./utils/lang/'+args)) {
      switch(args){

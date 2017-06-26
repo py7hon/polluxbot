@@ -29,3 +29,5 @@
 /database.js
 /test.js
 /data/
+/hooks.js
+/secure-file/beta.js

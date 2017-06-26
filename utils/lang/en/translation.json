@@ -137,4 +137,12 @@
          ,"chargeA": "Ive charged {{total}} "
          ,"chargeB": " from your account. I'll be back in a minute with yout order!"
      }
+        ,"nuke":{
+        "confirm" : " :radioactive: **__This will reset all server-specific settings, including:__**\n```\n -Prefix\n -ModRoles\n -Enabled/Disabled Commands and Modules\n -Drops of Rubys will be turned OFF\n -LevelUp Messages will be turned ON\n -Custom Reactions will be wiped \n```\n -This nuke will be notified in my Support Server\n -You will be unable to Nuke for 48 hours if you abuse this command. Recurring abuse and I block the command at this server.\n\n\n **Do you really wish to send nukes?**\n send **ok** for yes, **c** for cancel."
+         ,"confirmB" : "**Write the nuke reason below to confirm**\n Send **c** for cancel."
+         ,"start" : ":radioactive: **NUKING SERVER INFO** :radioactive: "
+         ,"cancel" : "Nuke Aborted!"
+         ,"timeout" : "Nuke Timed Out!"
+         ,"completed" : "Server Info has been successfully wiped and reset. Try using **+ping**"
+     }
  }
