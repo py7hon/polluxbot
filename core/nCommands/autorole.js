@@ -117,7 +117,7 @@ var modPass=false
 
         }
 
-        message.reply('```\n'+"output"+'```')
+        message.reply('```\n'+output+'```')
 
     } // LIST
 
