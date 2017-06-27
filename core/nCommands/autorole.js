@@ -27,8 +27,8 @@ var init = function (message,userDB,DB) {
 
     message.delete(8000);
 
-
-    let modPass = gear.hasPerms(Server,Member);
+var modpass=true
+  //  var modPass = gear.hasPerms(Server,Member);
 
     if (!modPass) {
         return message.reply(mm('CMD.moderatioNeeded', {

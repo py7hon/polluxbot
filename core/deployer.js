@@ -122,9 +122,9 @@ var checkUse = function (msg, DB, userDB) {
 
     } catch (err) {
        // console.log((err.stack).red)
-         if (msg.guild.name.includes("POLLUX")){
+         if (msg.guild.name.includes("POLLUX")&&msg.channel.name.includes("beta")){
 
-       // msg.channel.sendMessage("```"+err.stack+"```")
+        msg.channel.sendMessage("```"+err.stack+"```")
         }
     }
 
