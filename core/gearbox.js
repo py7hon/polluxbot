@@ -83,6 +83,9 @@ module.exports = {
             if (target instanceof Discord.User) {
 
                 var Umodules = main.userDB.get(target.id)
+                if  (!Umodules.modules[param]){Umodules.modules[param] =[]}
+
+
                 if (param.includes('.')) {
                     param = param.split('.')
                     Umodules.modules[param[0]][param[1]].push(val)
@@ -96,6 +99,8 @@ module.exports = {
             if (target instanceof Discord.Guild) {
 
                 var Smodules = main.DB.get(target.id)
+                if  (!Smodules.modules[param]){Smodules.modules[param] =[]}
+
                 if (param.includes('.')) {
                     param = param.split('.')
                     Smodules.modules[param[0]][param[1]].push(val)
@@ -108,6 +113,7 @@ module.exports = {
             if (target instanceof Discord.Channel) {
 
                 var Tchannel = main.DB.get(target.guild.id)
+                if  (!Tchannel.channels[target.id].modules[param]){Tchannel.channels[target.id].modules[param] =[]}
 
                 if (param.includes('.')) {
                     param = param.split('.')
@@ -184,6 +190,7 @@ module.exports = {
             if (target instanceof Discord.User) {
 
                 var Umodules = main.userDB.get(target.id)
+                 if  (!Umodules.modules[param]){Umodules.modules[param] =0}
                 if (param.includes('.')) {
                     param = param.split('.')
                     Umodules.modules[param[0]][param[1]] += val
@@ -197,6 +204,7 @@ module.exports = {
             if (target instanceof Discord.Guild) {
 
                 var Smodules = main.DB.get(target.id)
+                if  (!Smodules.modules[param]){Smodules.modules[param] =0}
                 if (param.includes('.')) {
                     param = param.split('.')
                     Smodules.modules[param[0]][param[1]] += val
@@ -209,6 +217,7 @@ module.exports = {
             if (target instanceof Discord.Channel) {
 
                 var Tchannel = main.DB.get(target.guild.id)
+                if  (!Tchannel.channels[target.id].modules[param]){Tchannel.channels[target.id].modules[param] =0}
 
                 if (param.includes('.')) {
                     param = param.split('.')
@@ -286,11 +295,22 @@ module.exports = {
 
 
 
+hasPerms: function hasPerms(Server,Member){
+    var DB = main.DB;
+    var modpass = false;
+    if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size >= 1) {
+        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
+    } else if (Member.hasPermission("MANAGE_SERVER")||Member.hasPermission("ADMINISTRATOR")) {
+        modPass = true;
+    };
+
+return modPass;
+
+},
 
 
 
     //OLDS
-
 
 
     drops: 0,

@@ -18,94 +18,97 @@ const DB = new PersistentCollection({name: "DB"});
 const userDB = new PersistentCollection({name: 'userDB'});
 
 const gdfal = {
-            name: "",
-            modules: {
-                NSFW: true,
-                GOODIES: true,
-                LEVELS: true,
-                LVUP: true,
-                DROPS: false,
-                GOODMOJI: emojya,
-                GOODNAME: 'Ruby',
-                ANNOUNCE: false,
-                PREFIX: "+",
-                MODROLE: {},
-                LANGUAGE: 'en',
-                DISABLED: ['cog']
-            },
-        statistics:{
+    name: "",
+    modules: {
+        NSFW: true,
+        GOODIES: true,
+        LEVELS: true,
+        LVUP: true,
+        DROPS: false,
+        GOODMOJI: emojya,
+        GOODNAME: 'Ruby',
+        ANNOUNCE: false,
+        PREFIX: "+",
+        MODROLE: {},
+        LANGUAGE: 'en',
+        DISABLED: ['cog']
+        ,AUTOROLES{}
+        ,statistics:{
             commandsUsed:{}
             ,rubyHistory: 0
         }
-            channels: {}
-        };
+
+    },
+
+    channels: {}
+};
 const cdfal = {
-                    name: "",
-                    modules: {
-                        DROPSLY: 0,
+    name: "",
+    modules: {
+        DROPSLY: 0,
 
-                        NSFW: true,
-                        GOODIES: true,
-                        LEVELS: true,
-                        LVUP: true,
-                        DROPS: true,
-                        DISABLED: ['cog']
-                    }
-                };
+        NSFW: true,
+        GOODIES: true,
+        LEVELS: true,
+        LVUP: true,
+        DROPS: true,
+        DISABLED: ['cog']
+    }
+};
 const udefal = {
-            name: "",
-            modules: {
-                PERMS: 3,
-                level: 0,
-                exp: 0,
-                goodies: 0,
-                coins: 0,
-                medals: [],
-                expenses: {
-                    putaria: 0,
-                    jogatina: 0,
-                    drops: 0,
-                    trade: 0
-                },
-                earnings: {
-                    putaria: 0,
-                    jogatina: 0,
-                    drops: 0,
-                    trade: 0
-                },
-                dyStreak: 5,
-                daily: 1486595162497,
-                persotext: "",
+    name: "",
+    modules: {
+        PERMS: 3,
+        level: 0,
+        exp: 0,
+        goodies: 0,
+        coins: 0,
+        medals: [],
+        expenses: {
+            putaria: 0,
+            jogatina: 0,
+            drops: 0,
+            trade: 0
+        },
+        earnings: {
+            putaria: 0,
+            jogatina: 0,
+            drops: 0,
+            trade: 0
+        },
+        dyStreak: 5,
+        daily: 1486595162497,
+        persotext: "",
 
-                skin: 'default',
-                skinsAvailable: ['default'],
+        skin: 'default',
+        skinsAvailable: ['default'],
 
-                build: {
-                    STR: 10,
-                    DEX: 10,
-                    CON: 10,
-                    INT: 10,
-                    WIS: 10,
-                    CHA: 10,
-                    weaponA: "none",
-                    weaponB: "none",
-                    shield: "none",
-                    armor: "none",
-                    invent: [],
-                    skills: [],
-                    HP: 100,
-                    MP: 50
-                }
-                ,fun:{
-                    waifu: undefined
-                    ,shiprate: {}
-                }
-                ,statistics:{
-                    commandsUsed:{}
-
-                }
-            }
+        build: {
+            STR: 10,
+            DEX: 10,
+            CON: 10,
+            INT: 10,
+            WIS: 10,
+            CHA: 10,
+            weaponA: "none",
+            weaponB: "none",
+            shield: "none",
+            armor: "none",
+            invent: [],
+            skills: [],
+            HP: 100,
+            MP: 50
         }
+        ,fun:{
+            waifu: undefined
+            ,shiprate: {}
+        }
+        ,statistics:{
+            commandsUsed:{}
+
+        }
+    }
+}
 
 var deployer = require('./core/deployer.js'); // <------------- I DUN LIKE DIS
 
@@ -224,18 +227,18 @@ function loginSuccess() {
             'color': '#49c7ff',
 
             'ts': Date.now() / 1000
-      }]
+        }]
     })
 
 
     setInterval(function() {
-  var date = new Date();
-  if ( date.getSeconds() === 0 ) {
-   gamechange(bot)
-  }
+        var date = new Date();
+        if ( date.getSeconds() === 0 ) {
+            gamechange(bot)
+        }
 
 
-}, 1000);
+    }, 1000);
 
 
 
@@ -276,7 +279,7 @@ bot.on('ready', () => {
             'color': '#3ed844',
 
             'ts': Date.now() / 1000
-      }]
+        }]
     })
 
 
@@ -336,7 +339,7 @@ bot.on("message", (message) => {
 
     if (Author.bot) return;
 
- //   if (message.content ==
+    //   if (message.content ==
 
     if (message.content.endsWith('now illegal')) {
         let aargs = message.content.split(' ')
@@ -431,15 +434,15 @@ bot.on("message", (message) => {
         if (message.content === "pollux+nuke"){
 
             let nuke = require(`./core/sidecommands/nuke.js`);
-        try {
-            nuke.run(bot, message, DB, gdfal)
-            return
-        } catch (err) {
-            console.log('ERROR NUKE')
-            message.reply("ERROR, Report this, please!")
-            hook.sendMessage(err)
-            return
-        }
+            try {
+                nuke.run(bot, message, DB, gdfal)
+                return
+            } catch (err) {
+                console.log('ERROR NUKE')
+                message.reply("ERROR, Report this, please!")
+                hook.sendMessage(err)
+                return
+            }
 
         }
 
@@ -453,7 +456,7 @@ bot.on("message", (message) => {
 
                 //deployer.checkModule(message)
 
-               // console.log('check ' + message)
+                // console.log('check ' + message)
 
                 var mm = multilang.getT();
 
@@ -535,7 +538,7 @@ bot.on('reconnecting', () => {
             'color': '#ffb249',
 
             'ts': Date.now() / 1000
-      }]
+        }]
     })
 });
 
@@ -548,41 +551,41 @@ bot.on('guildCreate', (guild) => {
     serverSetup(guild);
 });
 bot.on("guildDelete", (guild) => {
-  DB.delete(guild.id)
+    DB.delete(guild.id)
 });
 
 bot.on('guildMemberAdd', (member) => {
     var Server = member.guild
 
     if (member.guild.id == "")
-    if (Server) {
-        if (typeof (Server.hi) !== 'undefined' && Server.joinText !== '' && Server.joinText) {
-            let channels = member.guild.channels.filter(c => {
-                return (c.id === Server.joinChannel)
-            });
-            let channel = channels.first();
-            let content = Server.joinText.replace('%user%', member.user);
-            content = content.replace('%server%', member.guild.name);
-            try {
-                channel.sendMessage(content);
-            } catch (e) {}
+        if (Server) {
+            if (typeof (Server.hi) !== 'undefined' && Server.joinText !== '' && Server.joinText) {
+                let channels = member.guild.channels.filter(c => {
+                    return (c.id === Server.joinChannel)
+                });
+                let channel = channels.first();
+                let content = Server.joinText.replace('%user%', member.user);
+                content = content.replace('%server%', member.guild.name);
+                try {
+                    channel.sendMessage(content);
+                } catch (e) {}
+            }
+            if (typeof (Server.roles) !== 'undefined' && Server.roles.length > 0) {
+                async.each(Server.roles, (role, cb) => {
+                    if (role.default) {
+                        member.addRole(role.id).then(memberNew => {
+                            return cb();
+                        }).catch(err => cb(err));
+                    } else {
+                        async.setImmediate(() => {
+                            return cb();
+                        });
+                    }
+                }, (err) => {
+                    if (err) return;
+                });
+            }
         }
-        if (typeof (Server.roles) !== 'undefined' && Server.roles.length > 0) {
-            async.each(Server.roles, (role, cb) => {
-                if (role.default) {
-                    member.addRole(role.id).then(memberNew => {
-                        return cb();
-                    }).catch(err => cb(err));
-                } else {
-                    async.setImmediate(() => {
-                        return cb();
-                    });
-                }
-            }, (err) => {
-                if (err) return;
-            });
-        }
-    }
 })
 
 bot.on('guildMemberRemove', (member) => {
@@ -616,7 +619,7 @@ bot.on('error', (error) => {
             'pretext': `Minor error! Check console`,
             'color': '#ffdc49',
             'ts': Date.now() / 1000
-      }]
+        }]
     })
     hook.sendMessage(error.toString())
 });
@@ -651,14 +654,14 @@ function getDirs(rootDir, cb) {
 function channelSetup(element, guild) {
 
     console.log('Setting Up Channel:'.white + element.name + " from " + guild.name)
-  //  DB.get(guild.id).channels[element.id] =
+    //  DB.get(guild.id).channels[element.id] =
     //element.mods = DB.get(guild.id).channels[element.id].modules;
- var GGD =  DB.get(guild.id)
-                GGD.channels[element.id] = cdfal
-                DB.set(guild.id,GGD)
-        var gg= DB.get(guild.id)
-        gg.channels[element.id].name = element.name
-        DB.set(guild.id,gg)
+    var GGD =  DB.get(guild.id)
+    GGD.channels[element.id] = cdfal
+    DB.set(guild.id,GGD)
+    var gg= DB.get(guild.id)
+    gg.channels[element.id].name = element.name
+    DB.set(guild.id,gg)
 
 }
 
@@ -687,9 +690,9 @@ var serverSetup = function serverSetup(guild) {
                 var GGD =  DB.get(guild.id)
                 GGD.channels[element.id] = cdfal
                 DB.set(guild.id,GGD)
-        var gg= DB.get(guild.id)
-        gg.channels[element.id].name = element.name
-        DB.set(guild.id,gg)
+                var gg= DB.get(guild.id)
+                gg.channels[element.id].name = element.name
+                DB.set(guild.id,gg)
 
                 // element.mods = DB.get(guild.id).channels[element.id].modules;
 
@@ -749,7 +752,7 @@ Array.prototype.remove = function () {
 
 
 
-    paramAdd: function paramAdd(target, param, val) {
+paramAdd: function paramAdd(target, param, val) {
 
 
 
@@ -759,205 +762,205 @@ Array.prototype.remove = function () {
 
 
 
-        try {
+    try {
 
-         //   param = param.split('.');
-          //  if ((param.length == 1)) {
+        //   param = param.split('.');
+        //  if ((param.length == 1)) {
 
-                if (target instanceof Discord.User) {
+        if (target instanceof Discord.User) {
 
-                    var Umodules = userDB.get(target.id)
-                      if (param.includes('.')){
-                        param = param.split('.')
-                        Umodules.modules[param[0]][param[1]].push(val)
-                        }else{
-                        Umodules.modules[param].push(val)
-                        }
-                    userDB.set(target.id, Umodules)
+            var Umodules = userDB.get(target.id)
+            if (param.includes('.')){
+                param = param.split('.')
+                Umodules.modules[param[0]][param[1]].push(val)
+            }else{
+                Umodules.modules[param].push(val)
+            }
+            userDB.set(target.id, Umodules)
 
-                }
-
-                if (target instanceof Discord.Guild) {
-
-                    var Smodules = DB.get(target.id)
-                       if (param.includes('.')){
-                        param = param.split('.')
-                        Smodules.modules[param[0]][param[1]].push(val)
-                        }else{
-                        Smodules.modules[param].push(val)
-                        }
-                    DB.set(target.id, Smodules)
-
-                }
-                if (target instanceof Discord.Channel) {
-
-                    var Tchannel = DB.get(target.guild.id)
-
-                      if (param.includes('.')){
-                        param = param.split('.')
-                        Tchannel.channels[target.id].modules[param[0]][param[1]].push(val)
-                        }else{
-                        Tchannel.channels[target.id].modules[param].push(val)
-                        }
-                    DB.set(target.guild.id, Tchannel)
-
-                }
-          //  }
-        } catch (err) {
-            console.log('ERROR JSON'.bgRed.white.bold)
-            console.log(err.stack)
         }
-    };
-    paramRemove: function paramRemove(target, param, val) {
-        try {
+
+        if (target instanceof Discord.Guild) {
+
+            var Smodules = DB.get(target.id)
+            if (param.includes('.')){
+                param = param.split('.')
+                Smodules.modules[param[0]][param[1]].push(val)
+            }else{
+                Smodules.modules[param].push(val)
+            }
+            DB.set(target.id, Smodules)
+
+        }
+        if (target instanceof Discord.Channel) {
+
+            var Tchannel = DB.get(target.guild.id)
+
+            if (param.includes('.')){
+                param = param.split('.')
+                Tchannel.channels[target.id].modules[param[0]][param[1]].push(val)
+            }else{
+                Tchannel.channels[target.id].modules[param].push(val)
+            }
+            DB.set(target.guild.id, Tchannel)
+
+        }
+        //  }
+    } catch (err) {
+        console.log('ERROR JSON'.bgRed.white.bold)
+        console.log(err.stack)
+    }
+};
+paramRemove: function paramRemove(target, param, val) {
+    try {
 
         //    param = param.split('.');
-         //   if ((param.length == 1)) {
+        //   if ((param.length == 1)) {
 
-     if (target instanceof Discord.User) {
+        if (target instanceof Discord.User) {
 
-                    var Umodules = userDB.get(target.id)
-                      if (param.includes('.')){
-                        param = param.split('.')
-                        Umodules.modules[param[0]][param[1]].remove(val)
-                        }else{
-                        Umodules.modules[param].remove(val)
-                        }
-                    userDB.set(target.id, Umodules)
+            var Umodules = userDB.get(target.id)
+            if (param.includes('.')){
+                param = param.split('.')
+                Umodules.modules[param[0]][param[1]].remove(val)
+            }else{
+                Umodules.modules[param].remove(val)
+            }
+            userDB.set(target.id, Umodules)
 
-                }
-
-                if (target instanceof Discord.Guild) {
-
-                    var Smodules = DB.get(target.id)
-                       if (param.includes('.')){
-                        param = param.split('.')
-                        Smodules.modules[param[0]][param[1]].remove(val)
-                        }else{
-                        Smodules.modules[param].remove(val)
-                        }
-                    DB.set(target.id, Smodules)
-
-                }
-                if (target instanceof Discord.Channel) {
-
-                    var Tchannel = DB.get(target.guild.id)
-
-                      if (param.includes('.')){
-                        param = param.split('.')
-                        Tchannel.channels[target.id].modules[param[0]][param[1]].remove(val)
-                        }else{
-                        Tchannel.channels[target.id].modules[param].remove(val)
-                        }
-                    DB.set(target.guild.id, Tchannel)
-
-                }
-          //  }
-
-        } catch (err) {
-            console.log('ERROR JSON'.bgRed.white.bold)
-            console.log(err.stack)
         }
-    };
-    paramIncrement: function paramIncrement(target, param, val) {
-        try {
+
+        if (target instanceof Discord.Guild) {
+
+            var Smodules = DB.get(target.id)
+            if (param.includes('.')){
+                param = param.split('.')
+                Smodules.modules[param[0]][param[1]].remove(val)
+            }else{
+                Smodules.modules[param].remove(val)
+            }
+            DB.set(target.id, Smodules)
+
+        }
+        if (target instanceof Discord.Channel) {
+
+            var Tchannel = DB.get(target.guild.id)
+
+            if (param.includes('.')){
+                param = param.split('.')
+                Tchannel.channels[target.id].modules[param[0]][param[1]].remove(val)
+            }else{
+                Tchannel.channels[target.id].modules[param].remove(val)
+            }
+            DB.set(target.guild.id, Tchannel)
+
+        }
+        //  }
+
+    } catch (err) {
+        console.log('ERROR JSON'.bgRed.white.bold)
+        console.log(err.stack)
+    }
+};
+paramIncrement: function paramIncrement(target, param, val) {
+    try {
 
 
 
-                   if (target instanceof Discord.User) {
+        if (target instanceof Discord.User) {
 
-                    var Umodules = userDB.get(target.id)
-                       if (param.includes('.')){
-                        param = param.split('.')
-                        Umodules.modules[param[0]][param[1]] += val
-                        }else{
-                        Umodules.modules[param] += val
-                        }
-                    userDB.set(target.id, Umodules)
+            var Umodules = userDB.get(target.id)
+            if (param.includes('.')){
+                param = param.split('.')
+                Umodules.modules[param[0]][param[1]] += val
+            }else{
+                Umodules.modules[param] += val
+            }
+            userDB.set(target.id, Umodules)
 
-                }
+        }
 
-                if (target instanceof Discord.Guild) {
+        if (target instanceof Discord.Guild) {
 
-                    var Smodules = DB.get(target.id)
-                      if (param.includes('.')){
-                        param = param.split('.')
-                        Smodules.modules[param[0]][param[1]] += val
-                        }else{
-                        Smodules.modules[param] += val
-                        }
-                    DB.set(target.id, Smodules)
+            var Smodules = DB.get(target.id)
+            if (param.includes('.')){
+                param = param.split('.')
+                Smodules.modules[param[0]][param[1]] += val
+            }else{
+                Smodules.modules[param] += val
+            }
+            DB.set(target.id, Smodules)
 
-                }
-                if (target instanceof Discord.Channel) {
+        }
+        if (target instanceof Discord.Channel) {
 
-                    var Tchannel = DB.get(target.guild.id)
+            var Tchannel = DB.get(target.guild.id)
 
-                      if (param.includes('.')){
-                        param = param.split('.')
-                        Tchannel.channels[target.id].modules[param[0]][param[1]] += val
-                        }else{
-                        Tchannel.channels[target.id].modules[param] += val
-                        }
-                    DB.set(target.guild.id, Tchannel)
+            if (param.includes('.')){
+                param = param.split('.')
+                Tchannel.channels[target.id].modules[param[0]][param[1]] += val
+            }else{
+                Tchannel.channels[target.id].modules[param] += val
+            }
+            DB.set(target.guild.id, Tchannel)
 
-                }
+        }
 
-            } catch (err) {
-                console.log('ERROR JSON'.bgRed.white.bold)
-                console.log(err.stack)
+    } catch (err) {
+        console.log('ERROR JSON'.bgRed.white.bold)
+        console.log(err.stack)
+    }
+
+};
+
+paramDefine: function paramDefine(target, param, val) {
+    try {
+
+        if (target instanceof Discord.User) {
+
+            var Umodules = userDB.get(target.id)
+
+            if (param.includes('.')){
+                param = param.split('.')
+                Umodules.modules[param[0]][param[1]] = val
+            }else{
+                Umodules.modules[param] = val
             }
 
-    };
+            userDB.set(target.id, Umodules)
 
-    paramDefine: function paramDefine(target, param, val) {
-        try {
-
-              if (target instanceof Discord.User) {
-
-                    var Umodules = userDB.get(target.id)
-
-                    if (param.includes('.')){
-                        param = param.split('.')
-                        Umodules.modules[param[0]][param[1]] = val
-                        }else{
-                        Umodules.modules[param] = val
-                        }
-
-                    userDB.set(target.id, Umodules)
-
-                }
-
-                if (target instanceof Discord.Guild) {
-
-                    var Smodules = DB.get(target.id)
-                    if (param.includes('.')){
-                        param = param.split('.')
-                        Smodules.modules[param[0]][param[1]] = val
-                        }else{
-                        Smodules.modules[param] = val
-                        }
-                    DB.set(target.id, Smodules)
-
-                }
-                if (target instanceof Discord.Channel) {
-
-                    var Tchannel = DB.get(target.guild.id)
-
-                       if (param.includes('.')){
-                        param = param.split('.')
-                        Tchannel.channels[target.id].modules[param[0]][param[1]] = val
-                        }else{
-                        Tchannel.channels[target.id].modules[param] = val
-                        }
-                    DB.set(target.guild.id, Tchannel)
-
-                }
-        } catch (err) {
-            console.log('ERROR JSON'.bgRed.white.bold)
-            console.log(err.stack)
         }
-    };
+
+        if (target instanceof Discord.Guild) {
+
+            var Smodules = DB.get(target.id)
+            if (param.includes('.')){
+                param = param.split('.')
+                Smodules.modules[param[0]][param[1]] = val
+            }else{
+                Smodules.modules[param] = val
+            }
+            DB.set(target.id, Smodules)
+
+        }
+        if (target instanceof Discord.Channel) {
+
+            var Tchannel = DB.get(target.guild.id)
+
+            if (param.includes('.')){
+                param = param.split('.')
+                Tchannel.channels[target.id].modules[param[0]][param[1]] = val
+            }else{
+                Tchannel.channels[target.id].modules[param] = val
+            }
+            DB.set(target.guild.id, Tchannel)
+
+        }
+    } catch (err) {
+        console.log('ERROR JSON'.bgRed.white.bold)
+        console.log(err.stack)
+    }
+};
 
 
 
@@ -968,20 +971,20 @@ function updatePerms(tgt, Server) {
             case Server.member(tgt).id == Server.ownerID:
 
                 paramDefine(tgt, 'PERMS', 0);
-              //  console.log(tgt.username + "PERMS  " + 0)
+                //  console.log(tgt.username + "PERMS  " + 0)
                 break;
             case Server.member(tgt).hasPermission("ADMINISTRATOR"):
             case Server.member(tgt).hasPermission("BAN_MEMBERS"):
                 paramDefine(tgt, 'PERMS', 1);
-             //   console.log(tgt.username + "PERMS  " + 1)
+                //   console.log(tgt.username + "PERMS  " + 1)
                 break;
             case Server.member(tgt).hasPermission("MANAGE_GUILD"):
                 paramDefine(tgt, 'PERMS', 2);
-              //  console.log(tgt.username + "   MG GLD PERMS  " + 2)
+                //  console.log(tgt.username + "   MG GLD PERMS  " + 2)
                 break;
             case Server.member(tgt).hasPermission("KICK_MEMBERS"):
                 paramDefine(tgt, 'PERMS', 2);
-             //   console.log(tgt.username + "    KIK PERMS  " + 2)
+                //   console.log(tgt.username + "    KIK PERMS  " + 2)
                 break;
 
 
@@ -1074,20 +1077,20 @@ function randomize(min, max) {
 }
 
 function gamechange(bot) {
-        try {
-            delete require.cache[require.resolve(`./resources/lists/playing.js`)];
-            var gamelist = require("./resources/lists/playing.js");
-            var max = gamelist.games.length-1
-            var rand = randomize(0,max)
-          bot.user.setGame(gamelist.games[rand]).then().catch(err=>{console.log(err)});
+    try {
+        delete require.cache[require.resolve(`./resources/lists/playing.js`)];
+        var gamelist = require("./resources/lists/playing.js");
+        var max = gamelist.games.length-1
+        var rand = randomize(0,max)
+        bot.user.setGame(gamelist.games[rand]).then().catch(err=>{console.log(err)});
 
-          // return
+        // return
 
 
-        } catch (e) {
-            console.log(e)
-        }
-    };
+    } catch (e) {
+        console.log(e)
+    }
+};
 
 function updateEXP(TG, event) {
     let userData = userDB.get(TG.id).modules;
@@ -1125,9 +1128,9 @@ function updateEXP(TG, event) {
                                 Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
                                     try {
                                         var level = userData.level.toString()
-                                    } catch (err) {
-                                        var level = "00"
-                                    }
+                                        } catch (err) {
+                                            var level = "00"
+                                            }
                                     var next = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2));
                                     if (level.length == 1) {
                                         level = `0${level}`
@@ -1173,7 +1176,7 @@ ${err.stack}
 `,
             'color': '#C04',
             'ts': Date.now() / 1000
-      }]
+        }]
     })
 });
 
