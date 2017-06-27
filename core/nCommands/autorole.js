@@ -91,10 +91,10 @@ var init = function (message, userDB, DB) {
     } // REMOVE
 
 
-//    message.delete(8000);
+    message.delete(8000);
 
 var modPass=false
-  //  var modPass = gear.hasPerms(Server,Member);
+    var modPass = gear.hasPerms(Server,Member);
 
     if (!modPass) {
          message.reply(mm('CMD.moderatioNeeded', {
@@ -108,15 +108,15 @@ var modPass=false
 
 
 
-     //   let autoroles = !DB.get(Server.id).modules.AUTOROLES
+        let autoroles = !DB.get(Server.id).modules.AUTOROLES
         let output = "aaa"
-  //    /*
+
       for (var i ; i < autoroles.length; i++){
 
             output += autoroles[i].name+"\n"
 
         }
-//*/
+
         message.reply('```\n'+"output"+'```')
 
     } // LIST
