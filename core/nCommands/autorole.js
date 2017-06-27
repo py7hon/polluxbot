@@ -22,9 +22,7 @@ var init = function (message,userDB,DB) {
     var MSG = message.content;
     var bot = message.botUser
     var args = MSG.toLowerCase().split(' ').slice(1)[0]
-
-
-    var argsV = MSG.toLowerCase().split(' ').slice(1)[1]
+    var argsV = MSG().split(' ').slice(1)[1]
 
     var LANG = message.lang;
 
@@ -32,11 +30,11 @@ var init = function (message,userDB,DB) {
 
     message.delete(8000);
 
-var modPass=true
+var modPass=false
   //  var modPass = gear.hasPerms(Server,Member);
 
     if (!modPass) {
-        return message.reply(mm('CMD.moderatioNeeded', {
+         message.reply(mm('CMD.moderatioNeeded', {
             lngs: LANG
         })).catch(console.error);
     }
@@ -87,6 +85,11 @@ var modPass=true
 
     if (args === "list" || args === "l" ){
 
+
+        let dbmod = !DB.get(Server.id).modules
+        if (!dbmod.AUTOROLES){
+            gear.paramDefine(Server,"AUTOROLES",[])
+        }
         let autoroles = !DB.get(Server.id).modules.AUTOROLES
         let output = ""
         for (var i ; i < autoroles.length; i++){
