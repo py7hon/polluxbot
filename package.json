@@ -1,8 +1,8 @@
 {
-  "name": "polluxbot",
-  "version": "2.1.0",
-  "description": "",
-  "homepage": "",
+  "name": "Pollux",
+  "version": "2.5.0",
+  "description": "Discord bot",
+  "homepage": "http://pollux.lucasflicky.com",
   "author": {
     "name": "LucasFlicky",
     "email": "lucasflicky@hotmail.com",
@@ -33,9 +33,9 @@
     "i18next-node-fs-backend": "^0.1.3",
     "icy": "^2.1.0",
     "jimp": "latest",
-    "mongoose": "^4.8.1",
+
     "node-opus": "^0.2.4",
-    "self-reload-json": "^0.2.0",
+
     "shortid": "^2.2.6",
     "socket.io-client": "^1.6.0",
     "spotify-web-api-node": "^2.4.0",
