@@ -32,7 +32,7 @@ const gdfal = {
         MODROLE: {},
         LANGUAGE: 'en',
         DISABLED: ['cog']
-        ,AUTOROLES{}
+        ,AUTOROLES:{}
         ,statistics:{
             commandsUsed:{}
             ,rubyHistory: 0
