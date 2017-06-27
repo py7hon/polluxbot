@@ -1,3 +1,4 @@
+
 const Discord = require("discord.js");
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
@@ -6,10 +7,9 @@ var mm = locale.getT();
 
 var cmd = 'roleme';
 
-var init = function (message,userDB,DB) {
+var init = function (message, userDB, DB) {
 
 
-    try{
 
 
 
@@ -28,7 +28,21 @@ var init = function (message,userDB,DB) {
 
     //-------MAGIC----------------
 
-    message.delete(8000);
+
+
+           try{
+         let dbmod = !DB.get(Server.id).modules
+        if (!dbmod.AUTOROLES){
+            gear.paramDefine(Server,"AUTOROLES",[])
+        }
+
+    }catch(err){
+        message.reply("Autoroles empty resolve failed")
+    }
+
+
+
+//    message.delete(8000);
 
 var modPass=false
   //  var modPass = gear.hasPerms(Server,Member);
@@ -86,10 +100,7 @@ var modPass=false
     if (args === "list" || args === "l" ){
 
 
-        let dbmod = !DB.get(Server.id).modules
-        if (!dbmod.AUTOROLES){
-            gear.paramDefine(Server,"AUTOROLES",[])
-        }
+
         let autoroles = !DB.get(Server.id).modules.AUTOROLES
         let output = ""
         for (var i ; i < autoroles.length; i++){
@@ -103,9 +114,6 @@ var modPass=false
     } // LIST
 
 
-    }catch(err){
-        message.reply(err)
-    }
 
 }
 
