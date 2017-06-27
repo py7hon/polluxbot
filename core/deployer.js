@@ -53,7 +53,14 @@ DB.get(message.guild.id).modules.GOODNAME = "Ruby"
             try {
                 delete require.cache[require.resolve(`./nCommands/${command}.js`)];
                 commandFile = require(`./nCommands/${command}.js`);
-            } catch (e) {}
+            } catch (err) {
+
+                        if (message.guild.name.includes("POLLUX")&&msg.channel.name.includes("beta")){
+
+       message.channel.sendMessage("```"+err.stack+"```")
+      }
+
+            }
             break;
 
     }
@@ -83,7 +90,10 @@ DB.get(message.guild.id).modules.GOODNAME = "Ruby"
     console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
 } catch (err) {
     console.log((err.stack).red)
+      if (message.guild.name.includes("POLLUX")){
 
+       message.channel.sendMessage("```"+err.stack+"```")
+      }
 }
 
 };
@@ -119,9 +129,9 @@ var checkUse = function (msg, DB, userDB) {
 
     } catch (err) {
        // console.log((err.stack).red)
-         if (msg.guild.name.includes("POLLUX")){
+         if (msg.guild.name.includes("POLLUX")&&msg.channel.name.includes("beta")){
 
-       // msg.channel.sendMessage("```"+err.stack+"```")
+        msg.channel.sendMessage("```"+err.stack+"```")
         }
     }
 
