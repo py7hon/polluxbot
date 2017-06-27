@@ -8,6 +8,11 @@ var cmd = 'roleme';
 
 var init = function (message,userDB,DB) {
 
+
+    try{
+
+
+
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -27,7 +32,7 @@ var init = function (message,userDB,DB) {
 
     message.delete(8000);
 
-var modpass=true
+var modPass=true
   //  var modPass = gear.hasPerms(Server,Member);
 
     if (!modPass) {
@@ -94,6 +99,10 @@ var modpass=true
 
     } // LIST
 
+
+    }catch(err){
+        message.reply(err)
+    }
 
 }
 
