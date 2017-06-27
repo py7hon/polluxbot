@@ -33,6 +33,10 @@ const gdfal = {
                 LANGUAGE: 'en',
                 DISABLED: ['cog']
             },
+        statistics:{
+            commandsUsed:{}
+            ,rubyHistory: 0
+        }
             channels: {}
         };
 const cdfal = {
@@ -91,6 +95,14 @@ const udefal = {
                     skills: [],
                     HP: 100,
                     MP: 50
+                }
+                ,fun:{
+                    waifu: undefined
+                    ,shiprate: {}
+                }
+                ,statistics:{
+                    commandsUsed:{}
+
                 }
             }
         }
