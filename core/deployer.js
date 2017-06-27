@@ -55,9 +55,9 @@ DB.get(message.guild.id).modules.GOODNAME = "Ruby"
                 commandFile = require(`./nCommands/${command}.js`);
             } catch (err) {
 
-                        if (msg.guild.name.includes("POLLUX")&&msg.channel.name.includes("beta")){
+                        if (message.guild.name.includes("POLLUX")&&msg.channel.name.includes("beta")){
 
-       msg.channel.sendMessage("```"+err.stack+"```")
+       message.channel.sendMessage("```"+err.stack+"```")
       }
 
             }
@@ -90,9 +90,9 @@ DB.get(message.guild.id).modules.GOODNAME = "Ruby"
     console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
 } catch (err) {
     console.log((err.stack).red)
-      if (msg.guild.name.includes("POLLUX")){
+      if (message.guild.name.includes("POLLUX")){
 
-       msg.channel.sendMessage("```"+err.stack+"```")
+       message.channel.sendMessage("```"+err.stack+"```")
       }
 }
 
