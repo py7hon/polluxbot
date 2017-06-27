@@ -33,8 +33,8 @@ var init = function (message, userDB, DB) {
 ///*
            try{
          let dbmod = !DB.get(Server.id).modules
-        if (!dbmod.AUTOROLES){
-            gear.paramDefine(Server,"AUTOROLES",[])
+        if (dbmod.AUTOROLES === undefined){
+           // gear.paramDefine(Server,"AUTOROLES",[])
         }
 
     }catch(err){
@@ -65,7 +65,7 @@ var init = function (message, userDB, DB) {
                 lngs: LANG
             })).catch(console.error);
         }
-        gear.paramAdd (Server,"AUTOROLES",Target)
+        gear.paramAdd(Server,"AUTOROLES",Target)
 
         return message.reply(mm('CMD.roleAdded', {          //TEMPORARY
             lngs: LANG
@@ -84,7 +84,7 @@ var init = function (message, userDB, DB) {
         }
         gear.paramRemove (Server,"AUTOROLES",Target)
 
-        return message.reply(mm('CMD.roleAdded', {          //TEMPORARY
+        return message.reply(mm('CMD.roleunAdded', {          //TEMPORARY
             lngs: LANG
         })).catch(console.error);
 
@@ -108,12 +108,11 @@ var modPass=false
 
 
 
-        let autoroles = !DB.get(Server.id).modules.AUTOROLES
-        let output = "aaa"
+        var autorolese = DB.get(Server.id).modules.AUTOROLES
+        var output = ""
+      for (var i=0 ; i < autorolese.length; i++){
 
-      for (var i ; i < autoroles.length; i++){
-
-            output += autoroles[i].name+"\n"
+            output += autorolese[i].name+"\n"
 
         }
 
