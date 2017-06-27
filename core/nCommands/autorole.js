@@ -17,14 +17,14 @@ var init = function (message, userDB, DB) {
     var MSG = message.content;
     var bot = message.botUser
     var args = MSG.toLowerCase().split(' ').slice(1)[0]
-    var argsV = MSG().split(' ').slice(1)[1]
+    var argsV = MSG.split(' ').slice(1)[1]
 
     var LANG = message.lang;
 
     //-------MAGIC----------------
 
 
-/*
+///*
            try{
          let dbmod = !DB.get(Server.id).modules
         if (!dbmod.AUTOROLES){
@@ -90,7 +90,7 @@ var modPass=false
         })).catch(console.error);
     }
 
-/*
+///*
 
     if (args === "list" || args === "l" ){
 
@@ -98,15 +98,16 @@ var modPass=false
 
      //   let autoroles = !DB.get(Server.id).modules.AUTOROLES
         let output = "aaa"
-      /*  for (var i ; i < autoroles.length; i++){
+  //    /*
+      for (var i ; i < autoroles.length; i++){
 
             output += autoroles[i].name+"\n"
 
         }
-*/
+//*/
         message.reply('```\n'+"output"+'```')
 
- //   } // LIST
+    } // LIST
 
 
 
