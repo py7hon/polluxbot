@@ -557,6 +557,7 @@ bot.on("guildDelete", (guild) => {
 bot.on('guildMemberAdd', (member) => {
     var Server = member.guild
 
+
     if (member.guild.id == "")
         if (Server) {
             if (typeof (Server.hi) !== 'undefined' && Server.joinText !== '' && Server.joinText) {
@@ -585,6 +586,7 @@ bot.on('guildMemberAdd', (member) => {
                     if (err) return;
                 });
             }
+
         }
 })
 
