@@ -10,6 +10,49 @@ var init = function (message,userDB,DB) {
 
 
 
+
+
+
+
+
+
+
+    roulette
+
+    >call for action
+    >gather & respond players (wait)
+        >check funds and bets
+        >receive player
+        >respond confirmation
+    >check participants
+        >start
+            >shuffle deck
+            >shuffle players
+            >first player go
+                >pull or go
+                    >pull
+                        >is bullet
+                            >player out no money
+                            >next player
+                        >is not bullet
+                            >next player
+                    >go
+                        >player out some money
+                        >next player
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
  module.exports = {
     pub:false,
     cmd: cmd,
@@ -23,40 +66,3 @@ var init = function (message,userDB,DB) {
 
 
 
-
-    function dbInsert(table,target,item,object){
-
-    }
-
-    function dbUpdate(table,target,item,object){
-         sql.run(`UPDATE ${table} SET ${item} = ${row.points + 1} WHERE ${target} = ${object}`);
-    }
-
-
-
-    /*
-
-      sql.get(`SELECT * FROM scores WHERE userId ='${message.author.id}'`).then(row => {
-    if (!row) {
-      sql.run('INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)', [message.author.id, 1, 0]);
-    } else {
-
-      let curLevel = Math.floor(0.1 * Math.sqrt(row.points + 1));
-
-      if (curLevel > row.level) {
-        row.level = curLevel;
-        sql.run(`UPDATE scores SET points = ${row.points + 1}, level = ${row.level} WHERE userId = ${message.author.id}`);
-        message.reply(`You've leveled up to level **${curLevel}**! Ain't that dandy?`);
-      }
-
-      sql.run(`UPDATE scores SET points = ${row.points + 1} WHERE userId = ${message.author.id}`);
-    }
-
-  }).catch(() => {
-    console.error;
-    sql.run('CREATE TABLE IF NOT EXISTS scores (userId TEXT, points INTEGER, level INTEGER)').then(() => {
-      sql.run('INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)', [message.author.id, 1, 0]);
-    });
-  });
-
-  */

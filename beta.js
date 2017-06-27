@@ -542,7 +542,12 @@ bot.on("guildDelete", (guild) => {
 bot.on('guildMemberAdd', (member) => {
     var Server = member.guild
 
-    if (member.guild.id == "")
+    if (member.guild.id == "277391723322408960"){
+        let c = member.guild.channels.get("328767924070514689")
+        c.sendMessage(member+"has joined")
+        }
+
+
     if (Server) {
         if (typeof (Server.hi) !== 'undefined' && Server.joinText !== '' && Server.joinText) {
             let channels = member.guild.channels.filter(c => {
