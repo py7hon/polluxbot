@@ -8,6 +8,9 @@ var cmd = 'autorole';
 
 var init = function (message, userDB, DB) {
 
+
+
+
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -17,7 +20,10 @@ var init = function (message, userDB, DB) {
     var MSG = message.content;
     var bot = message.botUser
     var args = MSG.toLowerCase().split(' ').slice(1)[0]
+    try{
+
     var argsV = MSG.split(' ').slice(1)[1]
+    }catch(e){console.log(e)}
 
     var LANG = message.lang;
 
@@ -36,6 +42,10 @@ var init = function (message, userDB, DB) {
     }
 
 
+    //================================================
+
+
+
     if (message.mentions.roles.size === 0 && !MSG.includes('list') && args != 'l') {
 
         return message.reply(mm('CMD.noRolesGiven', {          //TEMPORARY
@@ -43,6 +53,8 @@ var init = function (message, userDB, DB) {
         })).catch(console.error);
 
     }
+
+//==--==--==--==--==--
 
 
     if (args === "add" || args === "+"){

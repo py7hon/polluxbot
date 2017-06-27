@@ -53,7 +53,14 @@ DB.get(message.guild.id).modules.GOODNAME = "Ruby"
             try {
                 delete require.cache[require.resolve(`./nCommands/${command}.js`)];
                 commandFile = require(`./nCommands/${command}.js`);
-            } catch (e) {}
+            } catch (err) {
+
+                        if (msg.guild.name.includes("POLLUX")&&msg.channel.name.includes("beta")){
+
+       msg.channel.sendMessage("```"+err.stack+"```")
+      }
+
+            }
             break;
 
     }
