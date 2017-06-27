@@ -7,6 +7,7 @@ var mm = locale.getT();
 var cmd = 'roleme';
 
 var init = function (message,userDB,DB) {
+
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -24,7 +25,7 @@ var init = function (message,userDB,DB) {
 
     //-------MAGIC----------------
 
-    message.delete(8e3)
+    message.delete(8000);
 
 
     let modPass = gear.hasPerms(Server,Member);
@@ -36,7 +37,7 @@ var init = function (message,userDB,DB) {
     }
 
 
-    if (message.mentions.roles.size === 0 && !MSG.includes('list') && args != 'l') ){
+    if (message.mentions.roles.size === 0 && !MSG.includes('list') && args != 'l') {
 
         return message.reply(mm('CMD.noRolesGiven', {          //TEMPORARY
             lngs: LANG
@@ -61,6 +62,7 @@ var init = function (message,userDB,DB) {
 
     } // ADD
 
+
     if (args === "rem" || args === "remove" || args === "-"){
 
 
@@ -80,20 +82,22 @@ var init = function (message,userDB,DB) {
 
     if (args === "list" || args === "l" ){
 
-let autoroles = !DB.get(Server.id).modules.AUTOROLES
-    let output = ""
-    for (var i ; i < autoroles.length; i++){
+        let autoroles = !DB.get(Server.id).modules.AUTOROLES
+        let output = ""
+        for (var i ; i < autoroles.length; i++){
 
-          output += autoroles[i].name+"\n"
+            output += autoroles[i].name+"\n"
 
-      }
+        }
 
-    message.reply('```\n'+output+'```')
+        message.reply('```\n'+output+'```')
 
     } // LIST
 
 
-
-
 }
+
+
+
+
 module.exports = {pub:false,cmd: cmd, perms: 2, init: init, cat: 'mod'};

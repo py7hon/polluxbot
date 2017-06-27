@@ -83,7 +83,10 @@ DB.get(message.guild.id).modules.GOODNAME = "Ruby"
     console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
 } catch (err) {
     console.log((err.stack).red)
+      if (msg.guild.name.includes("POLLUX")){
 
+       msg.channel.sendMessage("```"+err.stack+"```")
+      }
 }
 
 };
