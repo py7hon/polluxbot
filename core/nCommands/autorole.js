@@ -115,7 +115,6 @@ var modPass=false
             output += autorolese[i].name+"\n"
 
         }
-
         message.reply('```\n'+output+'```')
 
     } // LIST
