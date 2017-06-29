@@ -82,7 +82,7 @@ var init = function (message, userDB, DB) {
                 lngs: LANG
             })).catch(console.error);
         }
-        gear.paramRemove (Server,"AUTOROLES",Target)
+        gear.paramRemove(Server,"AUTOROLES",Target)
 
         return message.reply(mm('CMD.roleunAdded', {          //TEMPORARY
             lngs: LANG

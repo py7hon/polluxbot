@@ -70,15 +70,8 @@ module.exports = {
 
 
 
-
-
-
-
-
         try {
 
-            //   param = param.split('.');
-            //  if ((param.length == 1)) {
 
             if (target instanceof Discord.User) {
 
@@ -98,16 +91,19 @@ module.exports = {
 
             if (target instanceof Discord.Guild) {
 
-                var Smodules = main.DB.get(target.id)
-                if  (!Smodules.modules[param]){Smodules.modules[param] =[]}
+                     var Smodules = main.DB.get(target.id)
+            if (param.includes('.')) {
+                param = param.split('.')
+                   if (!Smodules.modules[param[0]][param[1]]){
+                        Smodules.modules[param[0]][param[1]]=[]
+                    }
+                Smodules.modules[param[0]][param[1]].push(val)
+            } else {
+                  console.log("INCLUDES")
+                Smodules.modules[param].push(val)
+            }
 
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Smodules.modules[param[0]][param[1]].push(val)
-                } else {
-                    Smodules.modules[param].push(val)
-                }
-                main.DB.set(target.id, Smodules)
+            main.DB.set(target.id, Smodules)
 
             }
             if (target instanceof Discord.Channel) {
@@ -182,6 +178,7 @@ module.exports = {
             console.log(err.stack)
         }
     },
+
     paramIncrement: function paramIncrement(target, param, val) {
         try {
 
