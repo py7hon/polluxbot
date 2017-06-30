@@ -46,8 +46,6 @@ module.exports = {
 
 
     emoji: function emoji(emo) {
-        console.log("emo")
-        console.log(emo)
 
             delete require.cache[require.resolve(`../resources/lists/emoji.js`)];
             var emojia = require("../resources/lists/emoji.js");
@@ -292,12 +290,14 @@ module.exports = {
 
 
 
-hasPerms: function hasPerms(Server,Member){
+hasPerms: function hasPerms(Member){
+
+    let Server = Member.guild
     var DB = main.DB;
     var modpass = false;
     if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size >= 1) {
-        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
-    } else if (Member.hasPermission("MANAGE_SERVER")||Member.hasPermission("ADMINISTRATOR")) {
+        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE.id);
+    } else if (Server.owner.id === Member.id ||Member.hasPermission("ADMINISTRATOR")) {
         modPass = true;
     };
 

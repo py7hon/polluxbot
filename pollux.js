@@ -33,25 +33,35 @@ const userDB = new PersistentCollection({
 
 //SERVS
 const gdfal = {
-    name: "",
-    modules: {
-        NSFW: true,
-        GOODIES: true,
-        LEVELS: true,
-        LVUP: true,
-        DROPS: false,
-        GOODMOJI: emojya,
-        GOODNAME: 'Ruby',
-        ANNOUNCE: false,
-        PREFIX: "+",
-        MODROLE: {},
-        LANGUAGE: 'en',
-        DISABLED: ['cog'],
-        AUTOROLES: [],
-        statistics: {
-            commandsUsed: {},
-            rubyHistory: 0
-        }
+        name: "",
+        modules: {
+            GREET: {
+                hi: false,
+                joinText: "Welcome to the Server %username%!",
+                greetChan: {}
+            },
+              FWELL: {
+                hi: false,
+                joinText: "%username% has left us!",
+                greetChan: {}
+            },
+            NSFW: true,
+            GOODIES: true,
+            LEVELS: true,
+            LVUP: true,
+            DROPS: false,
+            GOODMOJI: emojya,
+            GOODNAME: 'Ruby',
+            ANNOUNCE: false,
+            PREFIX: "+",
+            MODROLE: {},
+            LANGUAGE: 'en',
+            DISABLED: ['cog'],
+            AUTOROLES: [],
+            statistics: {
+                commandsUsed: {},
+                rubyHistory: 0
+            }
 
     },
 
@@ -278,7 +288,7 @@ bot.on('ready', () => {
 
 //Check Commands
 
-deployer.pullComms()
+//deployer.pullComms()
 
 
 
@@ -304,6 +314,19 @@ Array.prototype.remove = function () {
 //=======================================//
 
 
+
+
+
+var cd = function (argamassa, fx, timeout, respfn) {
+    var onCooldown = false;
+    return function () {
+        if (!onCooldown) {
+            fx.apply(argamassa, arguments);
+            onCooldown = true;
+            setTimeout(function () {onCooldown = false;}, timeout);
+        }else{try{respfn()}catch(err){}}
+    }
+}
 
 function getDirs(rootDir, cb) {
     fs.readdir(rootDir, function (err, files) {
@@ -405,9 +428,6 @@ function userSetup(user) {
 
 function paramAdd(target, param, val) {
 
-
-
-           }
 
     try {
 
@@ -511,6 +531,7 @@ function paramRemove(target, param, val) {
 };
 
 function paramIncrement(target, param, val) {
+    console.log("increment")
     try {
 
         if (target instanceof Discord.User) {
@@ -613,35 +634,28 @@ function updatePerms(tgt, Server) {
 
         switch (true) {
             case Server.member(tgt).id == Server.ownerID:
-
                 return 0;
-
                 break;
+
             case Server.member(tgt).hasPermission("ADMINISTRATOR"):
-            case Server.member(tgt).hasPermission("BAN_MEMBERS"):
-                return 1;
-
-                break;
             case Server.member(tgt).hasPermission("MANAGE_GUILD"):
-                return 2;
-
+                return 1;
                 break;
+
             case Server.member(tgt).hasPermission("KICK_MEMBERS"):
                 return 2;
-
                 break;
-
 
             default:
                 return 3;
                 break;
+
         }
     } catch (err) {}
 
-    if (DB.get(Server.id).modules.MODROLE.name) {
-        if (Server.member(tgt).roles.exists('name', DB.get(Server.id).modules.MODROLE.name)) {
-            paramDefine(tgt, 'PERMS', 2)
-            console.log(tgt.username + "PERMS plus " + 2)
+    if (DB.get(Server.id).modules.MODROLE.id) {
+        if (Server.member(tgt).roles.has(DB.get(Server.id).modules.MODROLE.id)) {
+            return 2
         }
     }
 
@@ -662,10 +676,10 @@ function dropGoodies(event) {
     if (typeof CHN.DROPSLY != 'number') {
         CHN.DROPSLY = 0
     }
-    var droprate = randomize(1, 8000)
+    var droprate = randomize(1, 5000)
     if (GLD.name == "Discord Bots") return;
     console.log(droprate)
-    if (droprate > 1889 && droprate < 2000) {
+    if (droprate == 1234) {
         console.log('DROP')
         var pack;
         var prefie = DB.get(Server.id).modules.PREFIX || "+"
@@ -676,18 +690,57 @@ function dropGoodies(event) {
             emoji: GOODMOJI,
             prefix: prefie
         })).then(function (r) {
-            bot.on('message', m => {
-                if (m.content == m.DB.get(guild.id).modules.PREFIX + "pick") {
+
+
+            if (isNaN(CHN.DROPSLY)) {
+                CHN.DROPSLY = 1
+            } else {
+                CHN.DROPSLY += 1
+
+            }
+            console.log("------------=========== ::: NATURAL DROP".bgGreen.white)
+
+            return new Promise(async resolve => {
+
+                var oldDropsly = CHN.DROPSLY
+                const responses = await CHN.awaitMessages(msg2 =>
+                    msg2.author.id === message.author.id && (msg2.content === '+pick'), {
+                        maxMatches: 1
+                    }
+                );
+                if (responses.size === 0) {} else {
+                    if (oldDropsly > CHN.DROPSLY) {
+                        r.delete();
+                        return resolve(true);
+                    }
+                    let Picker = responses.first().author
+
+
+                    console.log("----------- SUCCESSFUL PICK by" + Picker.username)
+                    message.channel.sendMessage(mm('$.pick', {
+                        lngs: LANG,
+                        good: GOOD,
+                        user: Picker.username,
+                        count: CHN.DROPSLY,
+                        emoji: ""
+                    }) + " " + emojya).then(function (c) {
+                        message.delete()
+                        c.delete(500000)
+                    }).catch();
+
+                    gear.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
+                    gear.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
+                    CHN.DROPSLY = 0
+
                     r.delete().catch()
+                    return resolve(true);
                 }
             })
-        }).catch()
-        CHN.DROPSLY += 1
 
-        // modules[bot.user.id].expenseTracker.drops++
-        // modules[bot.user.id].rubys--
-        console.log("------------=========== ::: NATURAL DROP".bgGreen.white)
+        }).catch()
+
     }
+
     if (droprate == 777) {
         var mm = multilang.getT();
         event.channel.sendFile(paths.BUILD + 'rubypot.png', mm('$.rareDrop', {
@@ -696,20 +749,61 @@ function dropGoodies(event) {
             emoji: GOODMOJI,
             prefix: event.DB.get(Server.id).modules.PREFIX
         })).then(function (r) {
-            bot.on('message', m => {
-                if (m.content == m.DB.get(guild.id).modules.PREFIX + "pick") {
+
+            if (isNaN(CHN.DROPSLY)) {
+                CHN.DROPSLY = 10
+            } else {
+                CHN.DROPSLY += 10
+
+            }
+        console.log("------------=========== ::: NATURAL RARE DROP ::: ===".bgGreen.yellow.bold)
+
+            return new Promise(async resolve => {
+
+                var oldDropsly = CHN.DROPSLY
+                const responses = await CHN.awaitMessages(msg2 =>
+                    msg2.author.id === message.author.id && (msg2.content === '+pick'), {
+                        maxMatches: 1
+                    }
+                );
+                if (responses.size === 0) {} else {
+                    if (oldDropsly > CHN.DROPSLY) {
+                        r.delete();
+                        return resolve(true);
+                    }
+                    let Picker = responses.first().author
+
+
+                    console.log("----------- SUCCESSFUL PICK by" + Picker.username)
+                    message.channel.sendMessage(mm('$.pick', {
+                        lngs: LANG,
+                        good: GOOD,
+                        user: Picker.username,
+                        count: CHN.DROPSLY,
+                        emoji: ""
+                    }) + " " + emojya).then(function (c) {
+                        message.delete()
+                        c.delete(500000)
+                    }).catch();
+
+                    gear.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
+                    gear.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
+                    CHN.DROPSLY = 0
+
                     r.delete().catch()
+                    return resolve(true);
+
                 }
             })
-        }).catch()
-        CHN.DROPSLY += 10
 
-        // modules[bot.user.id].expenseTracker.drops += 10
-        //modules[bot.user.id].rubys -= 10
-        console.log("------------=========== ::: NATURAL RARE DROP ::: ===".bgGreen.yellow.bold)
+        }).catch()
+
+
+
     }
 
-} //<<<<<<<<<< IMPORTANT REVISE THIS
+
+} //<<<<<<<<<< IMPORTANT REVISE THIS // REVISED, revision 1
 
 function randomize(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -745,10 +839,9 @@ function updateEXP(TG, event) {
     if (curLevel > userData.level) {
         // Level up!
         paramIncrement(TG, 'level', 1)
+        var overallevel = userDB.get(TG.id).modules.level;
 
-
-        // event.reply(`upou pro level **${curLevel}**!`);
-        console.log("LEVEL UP EVENT FOR ".bgBlue + TG)
+        console.log("LEVEL UP EVENT FOR ".bgBlue + caller)
         if (event.guild.name == "Discord Bots") return;
         let img = TG.defaultAvatarURL.substr(0, TG.defaultAvatarURL.length - 10)
         if (TG.avatarURL) {
@@ -768,15 +861,15 @@ function updateEXP(TG, event) {
                             Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
                                 Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
                                     try {
-                                        var level = userData.level.toString()
+                                        var level = overallevel.toString()
                                     } catch (err) {
-                                        var level = "00"
+                                        var level = ""+userDB.get(TG.id).modules.level
                                     }
                                     var next = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2));
                                     if (level.length == 1) {
                                         level = `0${level}`
                                     } else if (level === undefined) {
-                                        level = `XX`
+                                        level = `0${userDB.get(TG.id).modules.level}`
                                     }
                                     cart.print(head, 153, 3, event.guild.member(TG).displayName);
                                     cart.print(sub, 336, 45, `${level}`);
@@ -791,7 +884,6 @@ function updateEXP(TG, event) {
                                         }
 
                                     })
-                                    //cart.write(`${paths.CARDS}/up/${caller}.png`)
                                 })
                             });
                         });
@@ -800,10 +892,43 @@ function updateEXP(TG, event) {
             });
         });
     }
-}
+} // REVISED
 
+function commandFire(message,Server,Channel,Author){
+                message.botUser = bot;
+                message.akairo = client;
+                message.prefix = DB.get(Server.id).modules.PREFIX;
 
+                let forbiddens = DB.get(Server.id).channels[Channel.id].modules.DISABLED
+                console.log(forbiddens)
+                let MDLE = deployer.checkModule(message)
 
+                if (forbiddens.includes(MDLE)){
+                    return message.reply("forbidden")
+                }
+
+                var mm = multilang.getT();
+
+                switch (deployer.checkUse(message, DB, userDB)) {
+
+                    case "DISABLED":
+                        message.reply(mm('CMD.disabledModule', {
+                            lngs: message.lang,
+                            module: message.content.substr(message.prefix.length).split(' ')[0]
+                        }))
+
+                        break;
+                    case "NO PRIVILEGES":
+                        message.reply(mm('CMD.insuperms', {
+                            lngs: message.lang,
+                            prefix: message.prefix
+                        }))
+                        break;
+                    default:
+                        deployer.run(message, userDB, DB); //aqui nóis vai!
+                        break;
+                }
+            }
 
 
 bot.login(cfg.token).then(loginSuccess());
@@ -818,19 +943,20 @@ bot.login(cfg.token).then(loginSuccess());
 //==-------------------------------------------
 // COMMANDS (MESSAGES)
 
+
+// XP SPAM PROTECTION
+var gibexp = cd(console, paramIncrement, 5000);
+var plzDrop = cd(console, dropGoodies, 5000);
+// ==============================================
+
 bot.on("message", (message) => {
 
-
-
-
+    //Set Them Up
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
     var Target = message.mentions.users.first() || Author;
     var MSG = message.content;
-
-
-
 
 
     //---  LOGS     ---------------------------------------------------------
@@ -849,17 +975,10 @@ bot.on("message", (message) => {
         }
     }
     //--- END LOGS   ---------------------------------------------------------
-
-
     if (Author.bot) return;
     //-- NO BOTS PAST HERE ---------------------------------------------------
 
     if (Server && !Author.bot) {
-
-
-
-
-
 
         //==-------------------------------------------
         // SIDE COMMANDS
@@ -892,7 +1011,6 @@ bot.on("message", (message) => {
             }
         }
 
-
         if (DB.get(Server.id).modules.REACTIONS != undefined) {
             let servdata = DB.get(Server.id).modules
             if (servdata.REACTIONS[MSG]) {
@@ -914,8 +1032,9 @@ bot.on("message", (message) => {
         userSetup(Target);
         //  ------
 
-        paramIncrement(Author, 'exp', 1)
+gibexp(Author, 'exp', randomize(1,10))  // EXP GIVEAWAY
 
+        // POLLUX PERMS 101
 
         /*
         -= ::PERMS:: =-
@@ -927,23 +1046,19 @@ bot.on("message", (message) => {
         5 = FORBIDDEN
         */
 
-
-        updatePerms(Author, Server)
-        updatePerms(Target, Server)
-
-
-
+        Author.PLXpems = updatePerms(Author, Server)
+        Target.PLXpems = updatePerms(Target, Server)
 
         // DONE WITH PERMS ---//
 
+        //A NEW CHANNEL? --------------------------------------------
         if (DB.get(Server.id).channels[Channel.id] == undefined) {
             channelSetup(Channel, Server);
         }
 
-
-
+        //TRY level shit
+        //------------------------------------------------------------
         try {
-
             if (DB.get(Server.id).modules && !DB.get(Server.id).modules.DISABLED.includes("level")) {
                 updateEXP(Author, message)
             } else if (DB.get(Server.id).modules && !DB.get(Server.id).channels[Channel.id].modules.DISABLED.includes("level")) {
@@ -951,102 +1066,77 @@ bot.on("message", (message) => {
             }
 
         } catch (err) {
-            serverSetup(Server)
+            serverSetup(Server) // maybe no server
         }
 
+        //TRY gemdrop shit
+        //------------------------------------------------------------
         try {
 
             if (DB.get(Server.id).modules && !DB.get(Server.id).modules.DISABLED.includes("drop")) {
-                dropGoodies(message)
+                plzDrop(message)
             } else if (!DB.get(Server.id).channels[Channel.id].modules.DISABLED.includes("drop")) {
-                dropGoodies(message)
+                plzDrop(message)
             }
 
         } catch (err) {
             serverSetup(Server)
         }
 
-
-
+        //========================//
 
         //Wave 1
         if (Server && typeof (DB.get(Server.id).modules.LANGUAGE) !== 'undefined' && DB.get(Server.id).modules.LANGUAGE && DB.get(Server.id).modules.LANGUAGE !== '') {
-            message.lang = [DB.get(Server.id).modules.LANGUAGE, 'en'];
+               let langua = "en"
+            if (Server.region === 'brazil'){
+                langua = "dev"
+           }
+            message.lang = [DB.get(Server.id).modules.LANGUAGE, langua];
+        }else{
+            let langua = "en"
+            if (Server.region === 'brazil'){
+                langua = "dev"
+           }
+            paramDefine(Server,"LANGUAGE",langua)
         }
-
-
 
 
         //Wave 2 -- CHECK PREFIX
         if (Server && typeof (DB.get(Server.id).modules.PREFIX) !== 'undefined' && DB.get(Server.id).modules.PREFIX && DB.get(Server.id).modules.PREFIX !== '') {
+
             //-- START PREFIX
             if (message.content.startsWith(DB.get(Server.id).modules.PREFIX)) {
-                message.botUser = bot;
-                message.akairo = client;
-                message.prefix = DB.get(Server.id).modules.PREFIX;
 
-                //deployer.checkModule(message)
-
-                // console.log('check ' + message)
-
-                var mm = multilang.getT();
-
-                switch (deployer.checkUse(message, DB, userDB)) {
-
-                    case "DISABLED":
-                        message.reply(mm('CMD.disabledModule', {
-                            lngs: message.lang,
-                            module: message.content.substr(message.prefix.length).split(' ')[0]
-                        }))
-
-
-                        break;
-                    case "NO PRIVILEGES":
-                        message.reply(mm('CMD.moderationNeeded', {
-                            lngs: message.lang,
-                            prefix: message.prefix
-                        }))
-                        break;
-                    default:
-                        //console.log('OK go')
-                        deployer.run(message, userDB, DB);
-                        break;
-                }
-                // deployer.checkUse(message)
-
-
+                commandFire(message,Server,Channel,Author)
 
             } else {
-                /*
 
+                if (cleber){
 
-                       //-- IS MENTION BOT
-                        if (message.guild && !message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {}
-                        //-- KLEBER
-                        if (message.guild && !!message.mentions.users.get(bot.user.id) && !message.content.startsWith(prefix) && !message.author.bot) {
-                            cleverbot.setNick(cfg.name)
-                            cleverbot.create(function (err, session) {
-                                message.channel.startTyping()
-                                cleverbot.ask(message.content, function (err, response) {
-                                    message.reply(response);
-                                    message.channel.stopTyping();
-                                    console.log(colors.blue("Cleverbot chat: " + message.content + " // " + response))
-                                })
-                            })
-                        }
+                }else{
 
-                       */
+                   if (message.guild && !message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {
+
+                console.log("nonstandsa")
+                     console.log(message.content)
+                     let msg = message;
+                     let M=message.content;
+                     msg.content = DB.get(Server.id).modules.PREFIX + M.substr(M.indexOf(">")+2)
+
+                     console.log(msg.content)
+                     commandFire(msg,Server,Channel,Author)
+
+                 }
+
+                   }
+
             }
         } else {
+            //CHECK COMMANDS INSIDE PM
             if (message.content.startsWith(prefix)) {
                 message.botUser = bot;
                 message.prefix = prefix;
                 deployer.commCheck(message);
-            } else {
-                if (message.guild && !message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {}
-                if (message.guild && !!message.mentions.users.get(bot.user.id) && message.guild.id !== '110373943822540800' && !message.content.startsWith(prefix) && !message.author.bot) {
-                    if (!cfg.token) {}
-                }
             }
         }
     } else {
@@ -1089,56 +1179,48 @@ bot.on("guildDelete", (guild) => {
 bot.on('guildMemberAdd', (member) => {
     var Server = member.guild
 
+   // if (member.guild.id == "")
 
-    if (member.guild.id == "")
         if (Server) {
-            if (typeof (Server.hi) !== 'undefined' && Server.joinText !== '' && Server.joinText) {
+            if (typeof (DB.get(Server.id).modules.GREET.hi) !== 'undefined' && DB.get(Server.id).modules.GREET.joinText !== '' && DB.get(Server.id).modules.GREET.joinText) {
+
+
                 let channels = member.guild.channels.filter(c => {
-                    return (c.id === Server.joinChannel)
+                    return (c.id === DB.get(Server.id).modules.GREET.greetChan.id)
                 });
                 let channel = channels.first();
-                let content = Server.joinText.replace('%user%', member.user);
+                let content = DB.get(Server.id).modules.GREET.joinText.replace('%username%', member.user.username);
                 content = content.replace('%server%', member.guild.name);
                 try {
                     channel.sendMessage(content);
                 } catch (e) {}
             }
-            if (typeof (Server.roles) !== 'undefined' && Server.roles.length > 0) {
-                async.each(Server.roles, (role, cb) => {
-                    if (role.default) {
-                        member.addRole(role.id).then(memberNew => {
-                            return cb();
-                        }).catch(err => cb(err));
-                    } else {
-                        async.setImmediate(() => {
-                            return cb();
-                        });
-                    }
-                }, (err) => {
-                    if (err) return;
-                });
-            }
+
+
 
         }
 })
 
 bot.on('guildMemberRemove', (member) => {
     var Server = member.guild
-    if (Server) {
-        if (typeof (Server.bye) !== 'undefined' && Server.leaveText !== '' && Server.leaveText) {
-            try {
+        if (Server) {
+            if (typeof (DB.get(Server.id).modules.FWELL.hi) !== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !== '' && DB.get(Server.id).modules.FWELL.joinText) {
+
+
                 let channels = member.guild.channels.filter(c => {
-                    return (c.id === Server.leaveChannel)
+                    return (c.id === DB.get(Server.id).modules.FWELL.greetChan.id)
                 });
                 let channel = channels.first();
-                let content = Server.leaveText.replace('%user%', member.user.username);
-                content = content.replace('%guild%', member.guild.name);
+                let content = DB.get(Server.id).modules.FWELL.joinText.replace('%username%', member.user.username);
+                content = content.replace('%server%', member.guild.name);
                 try {
                     channel.sendMessage(content);
                 } catch (e) {}
-            } catch (e) {}
+            }
+
+
+
         }
-    }
 })
 
 bot.on('error', (error) => {

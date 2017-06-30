@@ -4,113 +4,25 @@ const path = require('path');
 var cfg = require('../config.js');
 
 
-var deploy = function (message, userDB, DB) {
+//MDLE -- returns module
+var checkModule = function (msg) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-    var bot = message.botUser
-    var command = message.content.substr(DB.get(message.guild.id).modules.PREFIX.length).split(' ')[0]
-    let commandFile;
     try {
-       // console.log(command)
-    //    console.log(DB[message.guild.id].modules.GOODNAME.toLowerCase())
+        let command = msg.content.substr(msg.prefix.length).split(' ')[0];
+        let commandFile = require(`./commands/${command}.js`);
+        return commandFile.mod;
 
-
-
-
-
-if (!DB.get(message.guild.id).modules){
-DB.get(message.guild.id).modules.GOODNAME = "Ruby"
+    } catch (err) {}
 }
 
 
-        switch (true) {
-            //case command == DB[message.guild.id].modules.GOODNAME.toLowerCase():
-            //case command == DB[message.guild.id].modules.GOODNAME.toLowerCase() + "s":
-            case command == "$":
-             case command == "ruby":
-             case command == "rubys":
-        commandFile = require(`./nCommands/cash.js`);
-        break;
-        case command == DB.get(message.guild.id).modules.GOODNAME.toLowerCase() + 'rank':
-            commandFile = require(`./nCommands/cashrank.js`);
-            break;
-                 case command == 'incinerate':
-            commandFile = require(`./nCommands/clear.js`);
-            break;
-
-        default:
-            try {
-                delete require.cache[require.resolve(`./nCommands/${command}.js`)];
-                commandFile = require(`./nCommands/${command}.js`);
-            } catch (err) {
-
-                        if (message.guild.name.includes("POLLUX")&&msg.channel.name.includes("beta")){
-
-       message.channel.sendMessage("```"+err.stack+"```")
-      }
-
-            }
-            break;
-
-    }
-
-    /*
-
-    if (command == DB[message.guild.id].modules.GOODNAME.toLowerCase()||command == DB[message.guild.id].modules.GOODNAME.toLowerCase()+"s"||command=="$") {
-
-        commandFile = require(`./nCommands/cash.js`);
-
-
-    } else if (command == DB[message.guild.id].modules.GOODNAME.toLowerCase() + 'rank') {
-
-        commandFile = require(`./nCommands/cashrank.js`);
-    } else {
-        try {
-            delete require.cache[require.resolve(`./nCommands/${command}.js`)];
-            commandFile = require(`./nCommands/${command}.js`);
-        } catch (e) {}
-    }
-    */
-
-    //if (commandFile.skynet && message.guild.id!='248285312353173505') return;
-
-    commandFile.init(message, userDB, DB);
-
-    console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
-} catch (err) {
-    console.log((err.stack).red)
-      if (message.guild.name.includes("POLLUX")){
-
-       message.channel.sendMessage("```"+err.stack+"```")
-      }
-}
-
-};
-
-var pullComms = function () {
-    return commands;
-};
-
-var pushComms = function (t) {
-    commands = t;
-};
+//USBT -- returns usability
 var checkUse = function (msg, DB, userDB) {
 
     try {
         let command = msg.content.substr(msg.prefix.length).split(' ')[0];
 
-        let commandFile = require(`./nCommands/${command}.js`);
+        let commandFile = require(`./commands/${command}.js`);
 
         switch (true) {
 
@@ -118,7 +30,7 @@ var checkUse = function (msg, DB, userDB) {
             case DB.get(msg.guild.id).channels[msg.channel.id].modules.DISABLED.includes(commandFile.cmd):
                 return "DISABLED";
                 break;
-            case userDB.get(msg.author.id).modules.PERMS > commandFile.perms:
+            case msg.author.PLXpems > commandFile.perms:
                 return "NO PRIVILEGE";
                 break;
             default:
@@ -126,39 +38,81 @@ var checkUse = function (msg, DB, userDB) {
                 break;
         }
 
-
     } catch (err) {
-       // console.log((err.stack).red)
-         if (msg.guild.name.includes("POLLUX")&&msg.channel.name.includes("beta")){
+        // console.log((err.stack).red)
 
-        msg.channel.sendMessage("```"+err.stack+"```")
-        }
     }
 
-
 }
+
+
+var deploy = function (message, userDB, DB) {
+
+
+    var bot = message.botUser
+    var command = message.content.substr(DB.get(message.guild.id).modules.PREFIX.length).split(' ')[0]
+    let commandFile;
+    try {
+
+
+        if (!DB.get(message.guild.id).modules) {
+            DB.get(message.guild.id).modules.GOODNAME = "Ruby"
+        }
+
+        switch (true) {
+
+            case command == "$":
+            case command == "ruby":
+            case command == "rubys":
+                commandFile = require(`./commands/cash.js`);
+                break;
+            case command == DB.get(message.guild.id).modules.GOODNAME.toLowerCase() + 'rank':
+                commandFile = require(`./commands/cashrank.js`);
+                break;
+            case command == 'incinerate':
+                commandFile = require(`./commands/clear.js`);
+                break;
+
+            default:
+                try {
+                    delete require.cache[require.resolve(`./commands/${command}.js`)];
+                    commandFile = require(`./commands/${command}.js`);
+                } catch (err) { }
+                break;
+
+        }
+
+        commandFile.init(message, userDB, DB);
+
+        console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
+    } catch (err) {
+        console.log((err.stack).red)
+    }
+
+};
+
+var pullComms = function () {
+    return commands;
+};
+
+
+var pushComms = function (t) {
+    commands = t;
+};
+
+
+
+
 var checkPerms = function (msg) {
 
     try {
         let command = msg.content.substr(msg.prefix.length).split(' ')[0];
-        let commandFile = require(`./nCommands/${command}.js`);
-        commandFile.perms;
-        //console.log(commandFile.perms)
-    } catch (err) {
-        //console.log(err.stack)
-    }
-}
-var checkModule = function (msg) {
+        let commandFile = require(`./commands/${command}.js`);
+        return commandFile.perms;
 
-    try {
-        let command = msg.content.substr(msg.prefix.length).split(' ')[0];
-        let commandFile = require(`./nCommands/${command}.js`);
-        commandFile.mod;
-        //console.log(commandFile.mod)
-    } catch (err) {
-        //console.log(err.stack)
-    }
+    } catch (err) {}
 }
+
 
 
 var commCheck = function (msg, userDB, DB) {
@@ -166,11 +120,12 @@ var commCheck = function (msg, userDB, DB) {
         let command = msg.content.substr(msg.prefix.length).split(' ')[0];
 
         commands[command].init(msg, userDB, DB);
-    } catch (err) {
-        //  console.log(err.stack)
-    }
+    } catch (err) {}
 };
- module.exports = {
+
+
+
+module.exports = {
     commCheck: commCheck,
     run: deploy,
     pullComms: pullComms,
