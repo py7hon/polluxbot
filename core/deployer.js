@@ -82,6 +82,8 @@ var deploy = function (message, userDB, DB) {
 
         }
 
+
+
         commandFile.init(message, userDB, DB);
 
 

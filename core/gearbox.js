@@ -1,14 +1,11 @@
 const Discord = require("discord.js");
 var paths = require("./paths.js");
 var cfg = require('../config.js');
-const main = require('../' + cfg.main + '.js')
+const main = require('../pollux.js')
 const Jimp = require("jimp");
 const fs = require("fs");
 //var emoji = require("../resources/lists/emoji.js");
 //var playing = require("../resources/lists/playing.js");
-
-
-
 
 
 Array.prototype.remove = function () {
