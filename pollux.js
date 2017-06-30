@@ -958,7 +958,7 @@ bot.on("message", (message) => {
     var MSG = message.content;
 
 
-    /*
+
 
     //---  LOGS     ---------------------------------------------------------
     if (Server) {
@@ -974,7 +974,7 @@ bot.on("message", (message) => {
                 console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
             }
         }
-    } */
+    }
     //--- END LOGS   ---------------------------------------------------------
     if (Author.bot) return;
     //-- NO BOTS PAST HERE ---------------------------------------------------
