@@ -961,18 +961,18 @@ bot.on("message", (message) => {
 
 
     //---  LOGS     ---------------------------------------------------------
-    if (Server) {
+    if (Server && Server.name!="Discord Bots") {
+
+
         var logserver = Server.name + " "
         var logchan = " #" + Channel.name + " "
         var logusr = " " + Author.username + ": "
         var logmsg = MSG
-        if (Server.name == "Discord Bots" && (MSG.includes('px+') || MSG.toLowerCase().includes('pollux'))) {
-            console.log(" @ " + logserver.bgRed.blue.bold + logchan.bgRed.yellow + " - " + logusr.bold + ": " + logmsg.gray + "\n")
-        } else {
-            if (Author.username == "Pollux" || MSG.toLowerCase().includes('pollux') || (Server.name != "Discord Bots" )) {
+
+            if (Author.username == "Pollux" || MSG.toLowerCase().includes('pollux') || MSG.startsWith("+")) {
 
                 console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
-            }
+
         }
     }
     //--- END LOGS   ---------------------------------------------------------
@@ -980,8 +980,7 @@ bot.on("message", (message) => {
     //-- NO BOTS PAST HERE ---------------------------------------------------
 
     if (Server && !Author.bot) {
-
-        //==-------------------------------------------
+ //==-------------------------------------------
         // SIDE COMMANDS
 
         fs.readFile("./core/collateral_triggers.json", 'utf8', (err, data) => {
@@ -1111,20 +1110,21 @@ gibexp(Author, 'exp', randomize(1,10))  // EXP GIVEAWAY
                 commandFire(message,Server,Channel,Author)
 
             } else {
+
                 let cleber = false
                 if (cleber){
 
                 }else{
 
-                   if (message.guild && !message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {
+                   if (message.guild && message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {
 
 
-                     console.log(message.content)
+                   // console.log("I WILL MANGLE")
                      let msg = message;
                      let M=message.content;
                      msg.content = DB.get(Server.id).modules.PREFIX + M.substr(M.indexOf(">")+2)
 
-                     console.log(msg.content)
+                  //   console.log(msg.content)
                      commandFire(msg,Server,Channel,Author)
 
                  }
@@ -1137,6 +1137,9 @@ gibexp(Author, 'exp', randomize(1,10))  // EXP GIVEAWAY
             if (message.content.startsWith(prefix)) {
                 message.botUser = bot;
                 message.prefix = prefix;
+                deployer.commCheck(message);
+            }else{
+
                 deployer.commCheck(message);
             }
         }
@@ -1286,6 +1289,7 @@ ${err.stack}
         }]
     })
 });
+
 
 
 

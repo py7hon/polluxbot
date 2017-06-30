@@ -15,7 +15,7 @@ exports.run = (bot, message) => {
 
     Jimp.read(`${paths.BUILD}illegal.jpg`).then(function (illegal) {
        
-        Jimp.loadFont(paths.FONTS + 'blackTXT.fnt').then(function (sub) {
+        Jimp.loadFont(paths.FONTS + 'arial_narrow.fnt').then(function (sub) {
             //textHolder.print(sub, 0, 0, A);
             textHolder.print(sub, 0, 0, A, 128);
             textHolder.rotate(7);

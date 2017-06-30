@@ -1,5 +1,5 @@
-const fs = require("fs");
 const Discord = require("discord.js")
+const fs = require("fs");
 const Jimp = require("jimp");
 const Cafe = require("../archetypes/Cafe");
 var gear = require("../gearbox.js");
@@ -23,7 +23,7 @@ var init = function (message, userDB, DB) {
     var bot = message.botUser
     var args = MSG.split(' ').slice(1)
     var LANG = message.lang;
-const  rubymoj = bot.emojis.get('276878246589497344')
+    const rubymoj = bot.emojis.get('276878246589497344')
     var nope = mm('CMD.noDM', {
         lngs: LANG
     });
@@ -41,7 +41,7 @@ const  rubymoj = bot.emojis.get('276878246589497344')
     }
 
     Author.menuproc = true
-    emb = new Discord.RichEmbed();
+    var emb = new Discord.RichEmbed();
 
     message.author.order = []
 
@@ -52,11 +52,7 @@ const  rubymoj = bot.emojis.get('276878246589497344')
     //emb.setAuthor('Pollux Statistics',bot.user.avatarURL,'https://github.com/LucasFlicky/polluxbot')
     //emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/'+a+'.gif?raw=true')
 
-
-
-
-
-var emojya = bot.emojis.get('276878246589497344')
+    var emojya = bot.emojis.get('276878246589497344')
     let GOODMOJI = emojya
     let GOOD = 'Ruby'
     if (DB.get(Server.id).modules.GOODMOJI) {
@@ -69,15 +65,9 @@ var emojya = bot.emojis.get('276878246589497344')
     //message.channel.sendEmbed(emb)
 
 
-
-
-
     if (Cafe.orderActive(Author.id)) {
         return message.reply(`Command already ongoing for this user.`);
     }
-
-
-
 
     const ORD = new Cafe(message);
 
@@ -97,12 +87,7 @@ var emojya = bot.emojis.get('276878246589497344')
         //--start shit
 
         const balance = await userDB.get(Author.id).modules.goodies;
-
-
-
         await transaction(message, balance);
-
-
         ORD.finish();
 
     });
@@ -127,8 +112,6 @@ var emojya = bot.emojis.get('276878246589497344')
         }
         return cart
     }
-
-
     function cost(cart) {
         var total = 0;
         for (var i = 0; i < cart.length; i++) {
@@ -137,15 +120,8 @@ var emojya = bot.emojis.get('276878246589497344')
         }
         return total;
     }
-
-
-
-
     function transaction(msg, balance) {
 
-        return new Promise(async resolve => {
-            //const cart = [playerHand];
-            //let stateCart = hands[0];
 
             var a = mm('menu.cake', {
                 lngs: LANG
@@ -166,8 +142,8 @@ var emojya = bot.emojis.get('276878246589497344')
                 lngs: LANG
             }).toLowerCase()
 
-
-            const responses = await Channel.awaitMessages(msg2 =>
+        return new Promise(async resolve => {
+            const responses = await msg.channel.awaitMessages(msg2 =>
                 msg2.author.id === msg.author.id && (
                     msg2.content.includes('cancel') ||
                     msg2.content === 'c' ||
@@ -177,19 +153,21 @@ var emojya = bot.emojis.get('276878246589497344')
                     msg2.content.includes(d) ||
                     msg2.content.includes(f) ||
                     msg2.content.includes(e)
-
                 ), {
                     maxMatches: 1,
                     time: 11e3
                 }
             );
 
+
+            console.log(responses)
+
             if (responses.size === 0) {
                 message.reply(mm('menu.goaway', {
                     lngs: LANG
                 }));
                 ORD.finish();
-                // break;
+
             }
 
 
@@ -197,19 +175,19 @@ var emojya = bot.emojis.get('276878246589497344')
 
             const action = responses.first().content.toLowerCase();
 
-                    if (action.includes('cancel') || action === 'c') {
+            if (action.includes('cancel') || action === 'c') {
 
                 message.reply("CANCEL");
                 ORD.finish();
                 return resolve(true);
-               }
+            }
 
 
             var sumcalc = [];
-        var totale = 0;
-             sumcalc = checkout(action)
+            var totale = 0;
+            sumcalc = checkout(action)
 
-             totale = cost(sumcalc)
+            totale = cost(sumcalc)
 
             message.channel.sendMessage(` ${icon}
 **Total:** ${totale}
@@ -220,26 +198,26 @@ OK?
 \`c\` cancel`)
 
 
-                    const responsesB = await Channel.awaitMessages(msg2B =>
-                        msg2B.author.id === msg.author.id && (
-                            msg2B.content.includes('cancel') ||
-                            msg2B.content === 'c' ||
-                            msg2B.content.includes('ok')
-                        ), {
-                            maxMatches: 1,
-                            time: 11e3
-                        }
-                    );
+            const responsesB = await Channel.awaitMessages(msg2B =>
+                msg2B.author.id === msg.author.id && (
+                    msg2B.content.includes('cancel') ||
+                    msg2B.content === 'c' ||
+                    msg2B.content.includes('ok')
+                ), {
+                    maxMatches: 1,
+                    time: 11e3
+                }
+            );
 
-                    if (responsesB.size === 0) {
-                        message.reply(mm('menu.goaway', {
-                            lngs: LANG
-                        }));
-                        ORD.finish();
-                        // break;
-                    }
+            if (responsesB.size === 0) {
+                message.reply(mm('menu.goaway', {
+                    lngs: LANG
+                }));
+                ORD.finish();
+                // break;
+            }
 
-                    const actionB = responsesB.first().content.toLowerCase();
+            const actionB = responsesB.first().content.toLowerCase();
 
 
 
@@ -254,29 +232,37 @@ OK?
 
                 message.reply("CANCEL")
                 ORD.finish()
-            }else{
+            } else {
 
 
-                if (balance < totale){
-                      message.reply(mm('$.noFundsGeneric', {lngs: LANG, goods:"Ruby"}) + rubymoj);
-                     return resolve(true);
-                }else{
+                if (balance < totale) {
+                    message.reply(mm('$.noFundsGeneric', {
+                        lngs: LANG,
+                        goods: "Ruby"
+                    }) + rubymoj);
+                    return resolve(true);
+                } else {
 
 
 
-            var factor = gear.randomize(10, 50)
-            message.channel.sendMessage(mm('menu.chargeA', {lngs: LANG,total:totale})+ rubymoj +mm('menu.chargeB', {lngs: LANG}))
-            gear.paramIncrement(Author, "goodies", -totale)
-            let entrega = "There you go: " + icon + ". \n `you got " + exfinni + " bonus EXP `";
-            gear.paramIncrement(Author, "exp", exfinni)
+                    var factor = gear.randomize(10, 50)
+                    message.channel.sendMessage(mm('menu.chargeA', {
+                        lngs: LANG,
+                        total: totale
+                    }) + rubymoj + mm('menu.chargeB', {
+                        lngs: LANG
+                    }))
+                    gear.paramIncrement(Author, "goodies", -totale)
+                    let entrega = "There you go: " + icon + ". \n `you got " + exfinni + " bonus EXP `";
+                    gear.paramIncrement(Author, "exp", exfinni)
 
-            setTimeout(function () {
-                message.reply(entrega)
-                ORD.finish()
-                return resolve(true);
-            }, 1000 * factor)
+                    setTimeout(function () {
+                        message.reply(entrega)
+                        ORD.finish()
+                        return resolve(true);
+                    }, 1000 * factor)
 
-            //}
+                    //}
                 }
 
             }
@@ -285,88 +271,7 @@ OK?
     }
 
 
-
-
-
-}
-
-
-
-
-
-
-
-module.exports = {
-    pub: true,
-    cmd: cmd,
-    perms: 3,
-    init: init,
-    cat: 'misc'
 };
-
-            /*
-                                     var fff = filtVa => {
-                                         if (filtVa.author != message.author) return false;
-
-                                         switch (true){
-                                             case filtVa.content.toLowerCase().includes('cade o meu'):
-                                             case filtVa.content.toLowerCase().includes('cade meu'):
-                                             case filtVa.content.toLowerCase().includes('onde ta'):
-                                             case filtVa.content.toLowerCase().includes('e o meu'):
-                                             case filtVa.content.toLowerCase().includes('meu pedido'):
-                                             case filtVa.content.toLowerCase().includes('meu cafe'):
-                                             case filtVa.content.toLowerCase().includes('meu rango'):
-                                             case filtVa.content.toLowerCase().includes('que eu pedi'):
-                                             case filtVa.content.toLowerCase().includes('cade as'):
-                                             case filtVa.content.toLowerCase().includes('vai demorar'):
-                                             case filtVa.content.toLowerCase().includes('tá demorando'):
-                                             case filtVa.content.toLowerCase().includes('ta demorando'):
-                                             case filtVa.content.toLowerCase().includes('que demora'):
-                                                                         return true;
-                                                 break;
-                                             default:
-                                                 return false;
-                                                 break
-
-
-                                         }
-                                     }
-
-            Author.menuproca = 0
-                                     bot.once("message",colad=> {
-                                         if (colad.author == Author) return;
-                                         if (Author.menuproc == true)
-                                         Author.menuproca++
-
-
-                                         if (colad.size == 0) return console.log("timeout 3");
-                var resp = [
-                    "Calma, já vai sair :confounded:",
-                    "Só mais um pouquinho",
-                    "Só um instante, já trago",
-                    "Tá quase pronto, peraí",
-                    "Já vai, já vai...",
-                    "Tá saindo, aguarda aí",
-                    "ESPERA PORRA CACETE CARALHO SENÃO VOU CUSPIR EM TUDO"
-                ]
-                Channel.sendMessage(resp[Author.menuproca])
-
-
-                                     }).catch()
-
-
-        }).catch()
-
-
-    }).catch()
-
-
-
-    // message.channel.sendMessage("Vou dar uma volta, quando te decidir me chama")
-
-}
-
- */
 
 
 module.exports = {
