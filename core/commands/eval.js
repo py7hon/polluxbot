@@ -18,11 +18,19 @@ var args = MSG.split(' ').slice(1)[1]
 var LANG = message.lang;
 
 //-------MAGIC----------------
+
+
+
+
     try{
 
 
 
   if (Author.id != '88120564400553984') return message.reply('Only my master can send me direct orders. now begone!');
+
+    if (args = "2+2"){
+        return Channel.sendMessage("```Tá me achando com cara de calculadora, palhaço? ```").then(m=>{ setTimeout(c=>Channel.sendMessage("```(A propósito, são 4) ```"),1000 )})
+    }
 
 
      const params = MSG.split(" ").slice(1);

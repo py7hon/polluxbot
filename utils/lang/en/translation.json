@@ -21,7 +21,7 @@
          , "cashInfinite": "You're a cheating bastard."
          , "goodDrop": "HEY EY GOYS! A {{good}} {{emoji}} has dropped! Whoever types `{{prefix}}pick` first will keep it!"
          , "rareDrop": "HOLY CRAPZORS! An entire chest of {{good}}s {{emoji}}! type `{{prefix}}pick` and take it ALL!"
-         , "userDrop": "{{user}} has dropped a {{good}} {{emoji}} at the channel! type `{{prefix}}pick` and take it!"
+         , "userDrop": "{{user}} has dropped **{{amt}}x** {{good}} {{emoji}} at the channel! type `{{prefix}}pick` and take it!"
          , "cantDrop": "I guess you have no {{goods}} to be dropped..."
          , "pick": "{{user}} picked **{{count}}** {{good}}(s)!"
          , "earnings": "Earnings"

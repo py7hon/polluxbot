@@ -21,7 +21,7 @@
          , "cashInfinite": "Você é um cheater"
          , "goodDrop": "OLHA GENTE! Um {{good}} {{emoji}}! quem digitar `{{prefix}}pick` primeiro leva!"
          , "rareDrop": "EITA PORRA! Um baú cheio de {{good}}s {{emoji}}! quem digitar `{{prefix}}pick` primeiro leva TUDO!"
-         , "userDrop": "{{user}} largou um {{good}} {{emoji}} na sala! quem digitar `{{prefix}}pick` primeiro leva!"
+         , "userDrop": "{{user}} largou **{{amt}}x** {{good}} {{emoji}} na sala! quem digitar `{{prefix}}pick` primeiro leva!"
          , "cantDrop": "Você não tem {{goods}} pra dropar..."
          , "pick": "{{user}} pegou **{{count}}** {{good}}(s) {{emoji}}!"
          , "earnings": "Ganhos"

@@ -14,7 +14,7 @@ var init = function (message, userDB, DB) {
     var Target = message.mentions.users.first() || Author;
     var MSG = message.content;
     var bot = message.botUser
-    var args = MSG.split(' ').slice(1)[1]
+    var args = MSG.split(' ').slice(1)
     var LANG = message.lang;
 
     //-------MAGIC----------------
@@ -31,16 +31,17 @@ var init = function (message, userDB, DB) {
         GOOD = DB.get(Server.id).modules.GOODNAME
     }
 
-
+ var dropAmy = parseInt(args[0]) || 1
 
     console.log("------------DROP by" + Author)
     // message.guild.defaultChannel.sendMessage()
-    if (userData.goodies >= 1) {
+    if (userData.goodies >= dropAmy) {
 
-        gear.paramIncrement(Author, 'goodies', -1)
-        gear.paramIncrement(Author, 'expenses.drops', 1)
+        gear.paramIncrement(Author, 'goodies', -dropAmy)
+        gear.paramIncrement(Author, 'expenses.drops', dropAmy)
         message.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', mm('$.userDrop', {
             lngs: LANG,
+            amt: dropAmy,
             emoji: GOODMOJI,
             good: GOOD,
             user: Author.username,
@@ -49,9 +50,9 @@ var init = function (message, userDB, DB) {
 
 
                if (isNaN(Channel.DROPSLY)) {
-            Channel.DROPSLY = 1
+            Channel.DROPSLY = dropAmy
         } else {
-            Channel.DROPSLY += 1
+            Channel.DROPSLY += dropAmy
         }
         message.delete(1000)
 
@@ -60,7 +61,7 @@ var init = function (message, userDB, DB) {
 
                 var oldDropsly = Channel.DROPSLY
                 const responses = await Channel.awaitMessages(msg2 =>
-                    msg2.author.id === message.author.id && (msg2.content === '+pick'), {
+                    msg2.content === '+pick', {
                         maxMatches: 1
                     }
                 );

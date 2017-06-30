@@ -703,7 +703,7 @@ function dropGoodies(event) {
 
                 var oldDropsly = CHN.DROPSLY
                 const responses = await CHN.awaitMessages(msg2 =>
-                    msg2.author.id === message.author.id && (msg2.content === '+pick'), {
+                    msg2.content === '+pick', {
                         maxMatches: 1
                     }
                 );
@@ -1115,11 +1115,11 @@ gibexp(Author, 'exp', randomize(1,10))  // EXP GIVEAWAY
                 if (cleber){
 
                 }else{
+                    try{
 
-                   if (message.guild && message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {
+                    var usr = message.mentions.users.first()
+                   if (message.guild && usr.id == bot.user.id && !message.author.bot) {
 
-
-                   // console.log("I WILL MANGLE")
                      let msg = message;
                      let M=message.content;
                      msg.content = DB.get(Server.id).modules.PREFIX + M.substr(M.indexOf(">")+2)
@@ -1129,7 +1129,8 @@ gibexp(Author, 'exp', randomize(1,10))  // EXP GIVEAWAY
 
                  }
 
-                   }
+                   }catch(err){}
+                    }
 
             }
         } else {
