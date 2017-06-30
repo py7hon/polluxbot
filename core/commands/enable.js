@@ -3,7 +3,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
-var cmd = 'disable';
+var cmd = 'enable';
 
 var init = function (message,userDB,DB) {
 
@@ -36,15 +36,7 @@ var init = function (message,userDB,DB) {
         return;
     }
 
-
-    var modPass = false
-
-    if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size >= 1) {
-        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
-    } else if (Member.hasPermission("MANAGE_SERVER")) {
-        modPass = true;
-    };
-
+ var modPass = gear.hasPerms(Member)
 
     if (!modPass) {
         return message.reply(mm('CMD.moderatioNeeded', {
@@ -81,20 +73,20 @@ var init = function (message,userDB,DB) {
     }
 
 
-    var disaMS = mm('CMD.disabledSer', {
+    var disaMS = mm('CMD.enabledSer', {
         lngs: LANG,
         module: module
     })
-    var disaMC = mm('CMD.disabledChn', {
+    var disaMC = mm('CMD.enabledChn', {
         lngs: LANG,
         module: module,
         channel: Channel.name
     })
-    var disaCS = mm('CMD.disabledComSer', {
+    var disaCS = mm('CMD.enabledComSer', {
         lngs: LANG,
         command: module
     })
-    var disaCC = mm('CMD.disabledComChn', {
+    var disaCC = mm('CMD.enabledComChn', {
         lngs: LANG,
         command: module,
         channel: Channel.name
@@ -102,12 +94,11 @@ var init = function (message,userDB,DB) {
 
 
 
-
     if (sc == 'S') {
         Server.channels.forEach(e=>{
 
-        if (module in DB.get(e.id).modules) {
-            gear.paramDefine(e, module, false)
+        if (module in DB.get(e.guild.id).channels[e.id].modules) {
+            gear.paramDefine(e, module, true)
             message.reply(disaMS)
         } else {
             imComm(message, sc)
@@ -116,8 +107,8 @@ var init = function (message,userDB,DB) {
         })
     } else {
 
-       if (module in DB.get(message.guild.id).channels[Channel.id].modules) {
-            gear.paramDefine(Channel, module, false)
+        if (module in DB.get(message.guild.id).channels[message.channel.id].modules) {
+            gear.paramDefine(Channel, module, true)
             message.reply(disaMC)
         } else {
             imComm(message, sc)
@@ -132,20 +123,17 @@ var init = function (message,userDB,DB) {
             let command = msg.content.substr(msg.prefix.length).split(' ')[1];
             let commandFile = require(`./${command}.js`);
             if (scope == 'S') {
+                                     Server.channels.forEach(e=>{
 
-
-                        Server.channels.forEach(e=>{
-
-   gear.paramAdd(e, 'DISABLED', command)
+   gear.paramRemove(e, 'DISABLED', command)
 
         })
-
-
-                gear.paramAdd(Server, 'DISABLED', command)
+                gear.paramRemove(Server, 'DISABLED', command)
                 message.reply(disaCS)
+
             }
             if (scope == 'C') {
-                gear.paramAdd(Channel, 'DISABLED', command)
+                gear.paramRemove(Channel, 'DISABLED', command)
                 message.reply(disaCC)
             }
         } catch (err) {
