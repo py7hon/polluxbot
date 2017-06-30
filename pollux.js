@@ -1110,7 +1110,7 @@ gibexp(Author, 'exp', randomize(1,10))  // EXP GIVEAWAY
                 commandFire(message,Server,Channel,Author)
 
             } else {
-
+                let cleber = false
                 if (cleber){
 
                 }else{
