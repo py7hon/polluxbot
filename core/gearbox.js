@@ -4,8 +4,9 @@ var cfg = require('../config.js');
 const main = require('../' + cfg.main + '.js')
 const Jimp = require("jimp");
 const fs = require("fs");
-//ar emoji = require("../resources/lists/emoji.js");
+//var emoji = require("../resources/lists/emoji.js");
 //var playing = require("../resources/lists/playing.js");
+
 
 
 
@@ -49,9 +50,6 @@ module.exports = {
 
             delete require.cache[require.resolve(`../resources/lists/emoji.js`)];
             var emojia = require("../resources/lists/emoji.js");
-        console.log("emja")
-            console.log(emojia)
-
             if (emojia[emo]===undefined) return "";
             return emojia[emo];
     },

@@ -525,13 +525,12 @@ function paramRemove(target, param, val) {
         //  }
 
     } catch (err) {
-        console.log('ERROR JSON'.bgRed.white.bold)
-        console.log(err.stack)
+
     }
 };
 
 function paramIncrement(target, param, val) {
-    console.log("increment")
+
     try {
 
         if (target instanceof Discord.User) {
@@ -900,7 +899,7 @@ function commandFire(message,Server,Channel,Author){
                 message.prefix = DB.get(Server.id).modules.PREFIX;
 
                 let forbiddens = DB.get(Server.id).channels[Channel.id].modules.DISABLED
-                console.log(forbiddens)
+
                 let MDLE = deployer.checkModule(message)
 
                 if (forbiddens.includes(MDLE)){
@@ -959,6 +958,8 @@ bot.on("message", (message) => {
     var MSG = message.content;
 
 
+    /*
+
     //---  LOGS     ---------------------------------------------------------
     if (Server) {
         var logserver = Server.name + " "
@@ -968,12 +969,12 @@ bot.on("message", (message) => {
         if (Server.name == "Discord Bots" && (MSG.includes('px+') || MSG.toLowerCase().includes('pollux'))) {
             console.log(" @ " + logserver.bgRed.blue.bold + logchan.bgRed.yellow + " - " + logusr.bold + ": " + logmsg.gray + "\n")
         } else {
-            if (Author.username == "Pollux" || MSG.toLowerCase().includes('pollux') || (Server.name != "Discord Bots" && logmsg.startsWith("+"))) {
+            if (Author.username == "Pollux" || MSG.toLowerCase().includes('pollux') || (Server.name != "Discord Bots" )) {
 
                 console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
             }
         }
-    }
+    } */
     //--- END LOGS   ---------------------------------------------------------
     if (Author.bot) return;
     //-- NO BOTS PAST HERE ---------------------------------------------------
@@ -1117,7 +1118,7 @@ gibexp(Author, 'exp', randomize(1,10))  // EXP GIVEAWAY
 
                    if (message.guild && !message.mentions.users.has('id', bot.user.id) && !message.author.equals(bot.user) && !message.author.bot) {
 
-                console.log("nonstandsa")
+
                      console.log(message.content)
                      let msg = message;
                      let M=message.content;
@@ -1182,6 +1183,19 @@ bot.on('guildMemberAdd', (member) => {
    // if (member.guild.id == "")
 
         if (Server) {
+
+             let defaultgreet = {
+                hi: false,
+                joinText: "Welcome to the Server %username%!",
+                greetChan: {}
+            }
+
+            if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET===undefined){
+    paramDefine(Server,"GREET",defaultgreet)
+}
+
+
+
             if (typeof (DB.get(Server.id).modules.GREET.hi) !== 'undefined' && DB.get(Server.id).modules.GREET.joinText !== '' && DB.get(Server.id).modules.GREET.joinText) {
 
 
@@ -1204,6 +1218,16 @@ bot.on('guildMemberAdd', (member) => {
 bot.on('guildMemberRemove', (member) => {
     var Server = member.guild
         if (Server) {
+                     let defaultgreetB = {
+                hi: false,
+                joinText: "%username% has left us!",
+                greetChan: {}
+            }
+if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL===undefined){
+    paramDefine(Server,"FWELL",defaultgreetB)
+}
+
+
             if (typeof (DB.get(Server.id).modules.FWELL.hi) !== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !== '' && DB.get(Server.id).modules.FWELL.joinText) {
 
 

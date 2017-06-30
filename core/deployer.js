@@ -84,9 +84,10 @@ var deploy = function (message, userDB, DB) {
 
         commandFile.init(message, userDB, DB);
 
+
         console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
     } catch (err) {
-        console.log((err.stack).red)
+      //  console.log((err.stack).red)
     }
 
 };

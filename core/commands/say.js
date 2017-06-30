@@ -1,4 +1,4 @@
-
+var gear = require("../gearbox.js");
 var cmd = 'say';
 
 var init = function (message,userDB,DB) {
