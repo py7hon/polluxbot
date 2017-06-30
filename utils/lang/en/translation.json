@@ -23,7 +23,7 @@
          , "rareDrop": "HOLY CRAPZORS! An entire chest of {{good}}s {{emoji}}! type `{{prefix}}pick` and take it ALL!"
          , "userDrop": "{{user}} has dropped a {{good}} {{emoji}} at the channel! type `{{prefix}}pick` and take it!"
          , "cantDrop": "I guess you have no {{goods}} to be dropped..."
-         , "pick": "{{user}} picked **{{count}}** {{good}}(s) {{emoji}}!"
+         , "pick": "{{user}} picked **{{count}}** {{good}}(s)!"
          , "earnings": "Earnings"
          , "expenses": "Expenses"
          , "lewdery": "Lewdery"
@@ -48,6 +48,7 @@
          , "aviOK": "Oki-doki, my new photo now is this one:"
      }
      , "CMD": {
+         "denied":"You are not authorized to use this. This commands requires a Elevation Rank of {{rankNeed}}, your Rank is {{rankMe}}. Contact the Server owner.",
          "incorrectUsage": "Oh, no no, that's not how you use this command, use it like {{usage}}. E.g.: {{example}}"
          , "disabledModule": ":no_entry_sign: Our master has declared {{module}} forbidden here."
          , "genericInvalid": "Invalid Command"

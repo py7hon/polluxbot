@@ -1,5 +1,6 @@
 module.exports = {
     //POLLUX ORIGINAL
+
     ruby: "<:ruby:276878246589497344> ",
     salt: "<:salty:277280624900046849> ",
     cacetinho: "<:fruki:249731487530876929> ",
@@ -51,7 +52,7 @@ module.exports = {
 ,xul:'<:Xul:328605869757693965> '
 ,"zul'jin":'<:Zuljin:328605870067941386> '
 ,valla:'<:Valla:328605870147764229> '
-    ,anubarak:'<:Anubarak:328606052880744459> '
+,"anub'arak":'<:Anubarak:328606052880744459> '
 ,abathur:'<:Abathur:328606052788731915> '
 ,alarak:'<:Alarak:328606052956241922> '
 ,artanis:'<:Artanis:328606053115625473> '
@@ -61,12 +62,12 @@ module.exports = {
 ,brightwing:'<:Brightwing:328606056747892736> '
 ,cassia:'<:Cassia:328606056697561100> '
 ,chen:'<:Chen:328606056790097923> '
-,butcher:'<:Butcher:328606056957870081> '
+,thebutcher:'<:Butcher:328606056957870081> '
 ,cho:'<:Cho:328606057259597824> '
 ,"cho'gall":'<:Cho:328606057259597824><:Gall:328606059151360000>'
 ,chromie:'<:Chromie:328606057293283328> '
 ,dehaka:'<:Dehaka:328606057834479619> '
-,etc:'<:ETC:328606057914040322> '
+,"e.t.c.":'<:ETC:328606057914040322> '
 ,dva:'<:D:328606057972629505> '
 ,diablo:'<:Diablo:328606058115235851> '
 ,gall:'<:Gall:328606059151360000> '
@@ -89,11 +90,11 @@ module.exports = {
 ,murky:'<:Murky:328606060661440512> '
 ,malfurion:'<:Malfurion:328606060665503754> '
 ,jaina:'<:Jaina:328606059964923904> '
-,liming:'<:LiMing:328606060640468992> '
+,'li-ming':'<:LiMing:328606060640468992> '
 ,malthael:'<:Malthael:328606060652789770> '
 ,nova:'<:Nova:328606060673761290> '
 ,lili:'<:LiLi:328606060699058176> '
-,kaelthas:'<:Kaelthas:328606060321570819> '
+,"kael'thas":'<:Kaelthas:328606060321570819> '
 ,ragnaros:'<:Ragnaros:328606062682963969> '
 ,probius:'<:Probius:328606062917844994> '
 }

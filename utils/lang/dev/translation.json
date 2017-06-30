@@ -48,6 +48,7 @@
          , "aviOK": "Okei, troquei minha foto por essa daqui:"
      }
      , "CMD": {
+         "denied":"Você não tem autorização para usar esse comando. Ele requer  Permissões de nível {{rankNeed}}, seu nível de permissão é {{rankMe}}. Contate o dono do server.",
          "incorrectUsage": "Comando incorreto, use {{usage}}. Exemplo: {{example}}"
          , "disabledModule": ":no_entry_sign: O módulo {{module}} foi desabilitado aqui."
          , "genericInvalid": "Ordem inválida"
