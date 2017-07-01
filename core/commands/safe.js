@@ -32,19 +32,20 @@ var LANG = message.lang;
             }
             else {
                 //message.reply('http:' + url)
-                emb.setImage(url)
-               emb.setTitle("s a f e")
+               // emb.setImage(url)
+               emb.setTitle(":heart: S a f e b o o r u")
+               emb.setDescription("Provided by "+Author)
                 console.log(url)
                   emb.setColor('#ff97cf')
 
-
-                    message.channel.sendEmbed(emb,message.author+' ').then(function (m) {
+                    message.channel.sendEmbed(emb)
+                    message.channel.sendFile(url).then(function (m) {
                 m.react('👍').catch()
                 m.react('👎').catch()
                 m.react('❤').catch()
                 m.react('😠').catch()
 
-            }).catch()
+            }).catch(e=>message.channel.sendMessage(url))
             }
         })
     };

@@ -1,35 +1,207 @@
+var Discord = require("discord.js");
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
-var cmd = 'dbx';
+var cmd = 'svinfo';
 
 var init = function (message,userDB,DB) {
 
 
+var Server = message.guild;
+var Channel = message.channel;
+var Author = message.author;
+if (Author.bot) return;
+var Member = Server.member(Author);
+var Target = message.mentions.users.first() || Author;
+var MSG = message.content;
+var bot = message.botUser
+var args = MSG.split(' ').slice(1)[1]
+var LANG = message.lang;
+
 var G = message.guild
 
- message.reply(
-    "```"+`
-Server Info:
 
-${DB.get(G.id).name}
-${G.memberCount} Members
-${G.channels.size} Channels
+    String.prototype.toHHMMSS = function () {
+    var sec_num = parseInt(this, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var days   = Math.floor(hours / 24);
 
-Owner: ${G.owner.displayName}
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
 
-${DB.get(G.id).modules.DISABLED}
-${DB.get(G.id).modules.PREFIX}
-${DB.get(G.id).modules.LANGUAGE}
-${DB.get(G.id).modules.GOODMOJI}
-${DB.get(G.id).modules.GOODNAME}
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    var time    = hours+'h '+minutes+'m '+seconds+'s';
+        days > 1 ? time = days+" days " : time = time
+    return time;
+}
+
+    var time = bot.uptime/100;
+    var uptime = (time + "").toHHMMSS();
 
 
-`+"``` "+`${G.iconURL}`
 
- )
+
+
+
+ emb =    new Discord.RichEmbed();
+
+
+
+var ruby    = gear.emoji("ruby")
+var On      = gear.emoji("check")
+var Off     = gear.emoji("xmark")
+
+        emb.setColor('#e83774')
+    emb.title = "_____________"
+
+a = gear.randomize(2,4)
+    emb.setAuthor(Server.name,Server.iconURL,'')
+    emb.setFooter("Server created at")
+    emb.setTimestamp(Server.createdAt)
+    emb.setThumbnail(Server.iconURL)
+
+
+  //emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/display.png")
+  // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
+    //emb.description = "Os Top-5 mais rubificadoss do server"
+
+
+function flag(){
+
+
+        let R = Server.region
+        switch (true) {
+            case R.includes("eu-"):
+                return ":flag_eu: +" + R.substr(3)[0].toUpperCase();
+                break;
+            case R.includes("us-"):
+                return ":flag_us: " + R.substr(3)[0].toUpperCase();
+                break;
+            case R.includes("brazil"):
+                return ":flag_br:";
+                break;
+            case R.includes("singapore"):
+                return ":flag_sg:";
+                break;
+            case R.includes("hongkong"):
+                return ":flag_hk:";
+                break;
+            case R.includes("russia"):
+                return ":flag_ru:";
+                break;
+            case R.includes("sydney"):
+                return ":flag_au:";
+                break;
+            default:
+                return ":map: " + R;
+                break;
+
+        }
+    }
+function flagLang(){
+
+
+        let R = DB.get(G.id).modules.LANGUAGE
+        switch (true) {
+            case R == "en":
+                return ":flag_gb:";
+                break;
+                 case R == "dev":
+                return ":flag_br:";
+                break;
+                 case R == "pt":
+                return ":flag_br:";
+                break;
+            default:
+                return "flag_ca: " + R;
+                break;
+
+        }
+    }
+
+    var flag = flag()
+    var flagLang = flagLang()
+
+var TC = Server.channels.filter(c=>c.type=="text")
+var VC = Server.channels.filter(c=>c.type=="voice")
+var OM = Server.members.filter(m=>m.presence.status=="offline").size
+var online = (Server.members.size)-OM
+
+var modrole;
+
+    if (DB.get(G.id).modules.MODROLE.id != undefined) {modrole = G.roles.get(DB.get(G.id).modules.MODROLE.id);}else{modrole = "NONE";}
+
+var autoroles = 0// DB.get(G.id).modules.AUTOROLES.length || "0"
+var lang = DB.get(G.id).modules.LANGUAGE
+var greet = DB.get(G.id).modules.GREET
+var bye = DB.get(G.id).modules.FWELL
+var mods = DB.get(G.id).modules.DISABLED
+mods = mods.remove("cog")
+
+    var a = et(DB.get(G.id).modules.NSFW)
+    var b = et(DB.get(G.id).modules.LVUP)
+    var c = et(DB.get(G.id).modules.DROPS)
+
+    emb.addField(":tophat: Owner", Server.owner.user , true)
+
+    emb.addField(":coffee: Main Channel",Server.defaultChannel, true)
+   emb.addField(" :scales: Moderation Role", modrole , true)
+   emb.addField(" :busts_in_silhouette: Members",online +"/"+ Server.members.size, true)
+
+
+
+    emb.addField(":hash: Channels","```"+ TC.size +"```", true)
+   emb.addField(" :microphone2: Voice Channels ","```"+VC.size +"```", true)
+
+
+   emb.addField(" :package: Auto Roles","```"+ autoroles +"```", true)
+   emb.addField(" :package: Roles ","```"+ Server.roles.size +"```", true)
+
+   emb.addField("Region",flag, true)
+   emb.addField("Language", flagLang , true)
+
+
+   emb.addField(" :inbox_tray: Greeting Message ","`"+greet.joinText+"`" +et(greet.hi), false)
+   emb.addField(" :outbox_tray: Bye Message ","`"+bye.joinText +"`"+et(bye.hi), false)
+
+  emb.addField(":gear: SuperModules",`:up: ${a}
+${ruby}${b}
+:underage: ${c}`, true)
+  emb.addField(":gear: Disabled Commands","```."+ mods +"```", true)
+
+
+
+//  emb.addField("  :calendar_spiral: Creation Date", Server.createdAt , true)
+
+
+    message.channel.sendEmbed(emb)
+
+
+
+
+    function et(inp){
+        if (inp===true){return On}
+        if (inp===false){return Off}
+        if (inp===undefined){return"---"}
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

@@ -8,6 +8,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
+
 var cmd = 'rule34';
 
 var init = function (message,userDB,DB) {
@@ -29,16 +30,12 @@ var init = function (message,userDB,DB) {
         return;
     }
 
-    let GOODMOJI = ':gem:'
-let GOOD = 'Gem'
-if (DB.get(Server.id).modules) {
-    GOODMOJI = DB.get(Server.id).modules
-}
+    let GOODMOJI = gear.emoji('ruby')
+let GOOD = 'Ruby'
+
 if (DB.get(Server.id).modules.GOODNAME) {
     GOOD = DB.get(Server.id).modules.GOODNAME
 }
-
-return message.reply("Rule34 Temporarily Unavailable");
 
 
         if (gear.checkGoods(5, Author) == false) {
@@ -52,27 +49,30 @@ return message.reply("Rule34 Temporarily Unavailable");
 
         console.log("PUTARIA INVOKED by " + Author.username + "-------------\n")
         let query = message.content.split(" ");
-        !query[1] ? query[1] = "furry" : query[1] = query[1];
-        getter.getRandomLewd(query[1], (url) => {
+        !query[1] ? query[1] = "pointy_ears" : query[1] = query[1];
+
+        getter.getRandomLewd(query[1], async(url) => {
             if (url === undefined) {
                 message.reply(mm('forFun.nsfw404',{lngs:LANG}))
             }
             else {
                 //message.channel.sendMessage()
                 //message.reply("http:" + url);
-                 emb =    new Discord.RichEmbed();
+                             var msg_ax = GOODMOJI + mm('forFun.nsfwCheckout',{lngs:LANG,emoji:""})
+                 emb =await new Discord.RichEmbed();
                       emb.setColor('#b41212')
-                      emb.setTitle(':underage:')
+                      emb.setTitle(':underage: RULE 34')
+                      emb.setDescription(msg_ax)
 
-                emb.setImage("http:" + url)
-                var msg_ax = mm('forFun.nsfwCheckout',{lngs:LANG,emoji:GOODMOJI})
-                    message.channel.sendEmbed(emb,message.author+msg_ax).then(function (m) {
+              var image = ("http:" + url)
+                 message.channel.sendEmbed(emb)
+                    message.channel.sendFile(image).then(function (m) {
                 m.react('👍')
                 m.react('👎')
                 m.react('❤')
                 m.react('😠')
 
-            })
+            }).catch(e=>message.channel.sendMessage(image))
 
 
             }

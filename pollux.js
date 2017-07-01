@@ -960,6 +960,9 @@ bot.on("message", (message) => {
 
 
 
+
+
+
     //---  LOGS     ---------------------------------------------------------
     if (Server && Server.name!="Discord Bots") {
 
@@ -1055,6 +1058,25 @@ gibexp(Author, 'exp', randomize(1,10))  // EXP GIVEAWAY
         if (DB.get(Server.id).channels[Channel.id] == undefined) {
             channelSetup(Channel, Server);
         }
+                let defaultgreet = {
+                hi: false,
+                joinText: "Welcome to the Server %username%!",
+                greetChan: {}
+            }
+
+            if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET===undefined){
+    paramDefine(Server,"GREET",defaultgreet)
+}
+
+            let defaultgreetB = {
+                hi: false,
+                joinText: "%username% has left us!",
+                greetChan: {}
+            }
+if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL===undefined){
+    paramDefine(Server,"FWELL",defaultgreetB)
+}
+
 
         //TRY level shit
         //------------------------------------------------------------

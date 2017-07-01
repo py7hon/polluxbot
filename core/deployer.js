@@ -77,7 +77,9 @@ var deploy = function (message, userDB, DB) {
                 try {
                     delete require.cache[require.resolve(`./commands/${command}.js`)];
                     commandFile = require(`./commands/${command}.js`);
-                } catch (err) { }
+                } catch (err) {
+                 console.log((err.stack).red)
+                }
                 break;
 
         }
@@ -89,7 +91,7 @@ var deploy = function (message, userDB, DB) {
 
         console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
     } catch (err) {
-      //  console.log((err.stack).red)
+
     }
 
 };

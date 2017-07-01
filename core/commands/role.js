@@ -128,12 +128,12 @@ para sair use \`+roleme out [role]\`
 
     function fR(role, memb) {
         var a = Server.roles.find('name', role);
-        memb.addRole(a).then(a => message.channel.sendMessage(":white_check_mark: Adicionei **" + memb.displayName + "** ao grupo de **" + role + "** !")).catch(e => message.channel.sendMessage("Erro!"))
+        memb.addRole(a).then(a => message.channel.sendMessage(":white_check_mark: Adicionei **" + memb.displayName + "** ao grupo de **" + role + "** !")).catch(e => message.channel.sendMessage("Erro!"); console.log(e))
     }
 
     function xR(role, memb) {
         var a = Server.roles.find('name', role);
-        memb.removeRole(a).then(a => message.channel.sendMessage(":no_entry: Removi **" + memb.displayName + "** do grupo de **" + role + "** !")).catch(e => message.channel.sendMessage("Erro!"))
+        memb.removeRole(a).then(a => message.channel.sendMessage(":no_entry: Removi **" + memb.displayName + "** do grupo de **" + role + "** !")).catch(e => message.channel.sendMessage("Erro!"); console.log(e))
     }
 }
 module.exports = {
