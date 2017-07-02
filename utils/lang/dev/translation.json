@@ -64,11 +64,17 @@
          , "enabledChn": "O módulo {{module}} foi habilitado no canal #{{channel}}"
          , "enabledComSer": "O comando {{command}} foi habilitado Globalmente"
          , "enabledComChn": "O comando {{command}} foi habilitado no canal #{{channel}}"
-         , "kikNone": "tu precisa me dizer de quem eu vou chutar a bunda"
+         , "kinNone": "tu precisa me dizer de quem eu vou chutar a bunda"
          , "kik404": "deu ruim, não achei esse maluco"
-         , "unperm": "Por algum raio de razão eu não posso kickar esse cara. MIMDÁ PERMISSÃO"
+         , "unperm": "Por algum raio de razão eu não tenho permissões. MIMDÁ PERMISSÃO"
          , "jas": "Ok, me dá um segundo..."
          , "didkik": ":boot: Meti um pé na bunda de {{target}}."
+         , "autoroleunAdded": "Cargo {{role}} removido da lista de Autoroles."
+         , "modroleunAdded": "Cargo {{role}} removido da lista de Moderação."
+         , "noRoleHere": "Este Cargo não está na lista."
+         , "noRolesGiven": "Nenhum cargo foi apontado."
+         , "roleAdded": "Cargo adicionado!"
+         , "roleAlreadyHere": "Cargo já incluído!"
      }
      , "dict": {
          "coinHeads": "cara"
@@ -81,7 +87,9 @@
          , "third": "3rd"
          , "fourth": "4th"
          , "fifth": "5th"
-         , "infinite": "infinite"
+         , "infinite": "Infinitos"
+         , "autoRolesforThis": "Cargos auto-definíveis deste Servidor"
+         , "none": "Nenhum"
      }
      , "profile": {
          "persotexUpdate": "Seu texto pessoal mudou para: \n {{pstext}} \n Digite `{{prefix}}profile` para visualizar ele em seu ProfileCard."

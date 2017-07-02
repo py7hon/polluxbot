@@ -32,6 +32,7 @@
          , "drops": "Drops"
          , "balance": "Balance"
          , "total": "Total"
+
      }
      , "forFun": {
          "saltLVL": "{{target}}' Salt Level is **{{amount}}%** {{emoji}}"
@@ -66,9 +67,15 @@
          , "enabledComChn": "The command {{command}}  has been enabled in the channel #{{channel}}"
          , "kinNone": "first things first, tell me the name of the guy i be kickin'"
          , "kin404": "whoopsie, I think I cannot find this guy :<"
-         , "unperm": "For some hell of a reason i god no perms to kick him. GIMME PERMS"
+         , "unperm": "For some hell of a reason i god no perms to do this. GIMME PERMS"
          , "jas": "Okei, just a sec..."
          , "didkik": ":boot: Kicked {{target}}'s ass away from here."
+          , "autoroleunAdded": "Role {{role}} removed from Autoroles."
+         , "modroleunAdded": "Role {{role}} removed from Modrole."
+         , "noRoleHere": "This Role is not in the list"
+         , "noRolesGiven": "No Role was mentioned"
+         , "roleAdded": "Role Added!"
+         , "roleAlreadyHere": "Role already here!"
      }
      , "dict": {
          "coinHeads": "heads"
@@ -82,6 +89,8 @@
          , "fourth": "4th"
          , "fifth": "5th"
          , "infinite": "infinite"
+           , "autoRolesforThis": "Auto assignable Roles for this Server"
+         , "none": "None"
      }
      , "profile": {
          "persotexUpdate": "Your personal text is now: \n {{pstext}} \n Use `{{prefix}}profile` to see it on your ProfileCard."

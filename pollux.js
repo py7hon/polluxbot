@@ -39,12 +39,12 @@ const gdfal = {
             GREET: {
                 hi: false,
                 joinText: "Welcome to the Server %username%!",
-                greetChan: {}
+                greetChan: ""
             },
               FWELL: {
                 hi: false,
                 joinText: "%username% has left us!",
-                greetChan: {}
+                greetChan: ""
             },
             NSFW: true,
             GOODIES: true,
@@ -444,7 +444,7 @@ var serverSetup = function serverSetup(guild) {
             }
         });
     }else{
-        normaliseGUILD(guild)
+     //   normaliseGUILD(guild)
     }
 
 
@@ -471,7 +471,7 @@ function userSetup(user) {
         userDB.set(user.id, uu)
 
     }else{
-        normaliseUSER(user)
+     //   normaliseUSER(user)
     }
 }
 
@@ -1110,7 +1110,7 @@ gibexp(Author, 'exp', randomize(1,10))  // EXP GIVEAWAY
                 let defaultgreet = {
                 hi: false,
                 joinText: "Welcome to the Server %username%!",
-                greetChan: {}
+                greetChan: ""
             }
 
             if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET===undefined){
@@ -1120,7 +1120,7 @@ gibexp(Author, 'exp', randomize(1,10))  // EXP GIVEAWAY
             let defaultgreetB = {
                 hi: false,
                 joinText: "%username% has left us!",
-                greetChan: {}
+                greetChan: ""
             }
 if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL===undefined){
     paramDefine(Server,"FWELL",defaultgreetB)
@@ -1262,7 +1262,7 @@ bot.on('guildMemberAdd', (member) => {
              let defaultgreet = {
                 hi: false,
                 joinText: "Welcome to the Server %username%!",
-                greetChan: {}
+                greetChan: ""
             }
 
             if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET===undefined){
@@ -1275,7 +1275,7 @@ bot.on('guildMemberAdd', (member) => {
 
 
                 let channels = member.guild.channels.filter(c => {
-                    return (c.id === DB.get(Server.id).modules.GREET.greetChan.id)
+                    return (c.id === DB.get(Server.id).modules.GREET.greetChan)
                 });
                 let channel = channels.first();
                 let content = DB.get(Server.id).modules.GREET.joinText.replace('%username%', member.user.username);
@@ -1296,7 +1296,7 @@ bot.on('guildMemberRemove', (member) => {
                      let defaultgreetB = {
                 hi: false,
                 joinText: "%username% has left us!",
-                greetChan: {}
+                greetChan: ""
             }
 if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL===undefined){
     paramDefine(Server,"FWELL",defaultgreetB)
@@ -1307,7 +1307,7 @@ if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL===undefi
 
 
                 let channels = member.guild.channels.filter(c => {
-                    return (c.id === DB.get(Server.id).modules.FWELL.greetChan.id)
+                    return (c.id === DB.get(Server.id).modules.FWELL.greetChan)
                 });
                 let channel = channels.first();
                 let content = DB.get(Server.id).modules.FWELL.joinText.replace('%username%', member.user.username);
