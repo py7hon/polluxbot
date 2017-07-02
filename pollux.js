@@ -34,6 +34,7 @@ const userDB = new PersistentCollection({
 //SERVS
 const gdfal = {
         name: "",
+        ID: "",
         modules: {
             GREET: {
                 hi: false,
@@ -71,10 +72,11 @@ const gdfal = {
 //CHANS
 const cdfal = {
     name: "",
+    ID: "",
     modules: {
         DROPSLY: 0,
 
-        NSFW: true,
+        NSFW: false,
         GOODIES: true,
         LEVELS: true,
         LVUP: true,
@@ -86,6 +88,7 @@ const cdfal = {
 //USRS
 const udefal = {
     name: "",
+    ID: "",
     modules: {
         PERMS: 3,
         level: 0,
@@ -249,10 +252,12 @@ console.log('Ready to Rock!')
 bot.on('ready', () => {
 
 
-    bot.guilds.forEach(g => {
-        g.members.forEach(m => {
+    bot.guilds.forEach(async g => {
+      await  normaliseGUILD(g)
 
+        g.members.forEach(async m => {
 
+await normaliseUSER(m)
 
             //  dvv.addUser(m.user,false);
             //    dvv.find('name',m.user.id);
@@ -314,6 +319,43 @@ Array.prototype.remove = function () {
 //=======================================//
 
 
+function normaliseGUILD(SERV){
+
+      var GG = DB.get(SERV.id)
+             GG.ID = SERV.id
+             GG.iconURL = SERV.iconURL
+
+
+                DB.set(SERV.id, GG)
+
+}
+
+function normaliseUSER(User){
+
+
+    try{
+
+
+  var Umodules = userDB.get(User.id)
+
+  //console.log(User.id)
+             Umodules.ID = User.id
+             Umodules.username = User.username
+             Umodules.discriminator = User.discriminator
+             Umodules.tag = User.tag
+             Umodules.avatarURL = User.avatarURL
+
+    if (Umodules.modules.goodies<0){
+        Umodules.modules.goodies = 0
+    }
+    Umodules.modules.goodies = parseInt(Umodules.modules.goodies)
+
+                userDB.set(User.id, Umodules)
+    }catch(err){
+     //   console.log("not this")
+    }
+}
+
 
 
 
@@ -362,6 +404,7 @@ function channelSetup(element, guild) {
     DB.set(guild.id, GGD)
     var gg = DB.get(guild.id)
     gg.channels[element.id].name = element.name
+    gg.channels[element.id].ID = element.id
     DB.set(guild.id, gg)
 
 }
@@ -380,6 +423,7 @@ var serverSetup = function serverSetup(guild) {
 
         var gg = DB.get(guild.id)
         gg.name = guild.name
+        gg.ID = guild.id
         DB.set(guild.id, gg)
 
 
@@ -399,6 +443,8 @@ var serverSetup = function serverSetup(guild) {
 
             }
         });
+    }else{
+        normaliseGUILD(guild)
     }
 
 
@@ -421,8 +467,11 @@ function userSetup(user) {
 
         var uu = userDB.get(user.id)
         uu.name = user.name
+        uu.ID = user.id
         userDB.set(user.id, uu)
 
+    }else{
+        normaliseUSER(user)
     }
 }
 

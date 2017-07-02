@@ -40,6 +40,9 @@ var emojya = bot.emojis.get('276878246589497344')
         console.log(i +'---------------')
 
 
+
+
+
         if (i.name == 'Pollux') {}
         else {
             rankItem.name = i.name

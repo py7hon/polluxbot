@@ -39,7 +39,7 @@ var LANG = message.lang;
     return time;
 }
 
-    var time = bot.uptime/100;
+    var time = bot.uptime/1000;
     var uptime = (time + "").toHHMMSS();
 
 
