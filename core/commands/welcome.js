@@ -76,7 +76,7 @@ var input="X"
             return Channel.sendMessage(v.tellChn);
         }
         let offset = MSG.indexOf("channel") + 7
-        gear.paramDefine(Server, "GREET.greetChan", message.mentions.channels.first())
+        gear.paramDefine(Server, "GREET.greetChan", message.mentions.channels.first().id)
         return Channel.sendMessage(v.inCX);
     }
 
@@ -84,6 +84,7 @@ var input="X"
 
     if (DB.get(Server.id).modules.GREET.hi === true) {
         gear.paramDefine(Server, "GREET.hi", false)
+        gear.paramDefine(Server, "GREET.greetChan", message.channel.id)
         return Channel.sendMessage(v.inOFF);
 
     } else {
