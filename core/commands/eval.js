@@ -45,5 +45,6 @@ var LANG = message.lang;
     } catch(err) {
       message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${(err)}\n\`\`\``);
     }
-  }catch(err){console.log(err)}}
+  }catch(err){console.log(err)}
+}
 module.exports = {pub:false,cmd: cmd, perms: 0, init: init, cat: 'misc'};
