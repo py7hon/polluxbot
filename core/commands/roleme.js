@@ -20,11 +20,25 @@ var argsV = MSG.toLowerCase().split(' ').slice(1)[1]
 
 var LANG = message.lang;
 
+
+    function ifEmpty(){
+
+    var kek = require("./autorole.js")
+    var clone = message
+    clone.content = "+autorole list"
+    return kek.init(clone,userDB,DB)
+    }
+
+
 //-------MAGIC----------------
 
 Target = Server.member(Target)
+console.log(args)
+    if (args =="help" || args ==""|| args ===undefined){
 
-    if (args =="help"){
+        return ifEmpty()
+        /*
+
         message.channel.sendMessage(`
 **__Autoroles Disponíveis:__**
 *Jogo/Role [keyword]*
@@ -35,7 +49,8 @@ Target = Server.member(Target)
 
 Exemplo \`+roleme hots\` >> Adiciona a Role *Heroes of the Storm*
 para sair use \`+roleme out [role]\`
-    `)}
+    `)*/
+    }
 
 var mem=Member
 
@@ -43,84 +58,76 @@ var mem=Member
 
 
 
+    var AUTROLS = DB.get(Server.id).modules.AUTOROLES
+
+var roleadd_confirm     = mm('CMD.roleadCom', {
+            lngs: LANG
+        });
+    var rolenotfound     = mm('CMD.nosuchrole', {
+            lngs: LANG
+        });
+var roleremove_confirm  = mm('CMD.rolermCom', {
+            lngs: LANG
+        });
+
 
 
 
 
 //--------------------------------------
 
+ var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
 
 
 
     if (args=="out"){
-        switch (argsV){
-  case "overwatch":
-              case "ow":
-         xR("Overwatch",mem);
-        break;
- case "left4dead":
- case "left4dead2":
- case "l4d":
- case "l4d2":
-              case "ow":
-         xR("Left 4 Dead 2",mem);
-        break;
-    case "paladins":
+        var argum = MSG.substr((message.prefix +" out"+ cmd).length +1)
 
-    xR("Paladins",mem);
-        break;
-        case "hots":
-        case "heroes":
-    xR("Heróis do Toró",mem);
-        break;
-        case "gw2":
-        case "guildwars2":
-    xR("Guild Wars II",mem);
-        break;
-          case "perv":
-    xR("Perv",mem);
-        break;
+
+               for (var i=0; i<AUTROLS.length;i++){
+
+            if (AUTROLS[i][1] == argum){
+               return xR(argum,Server.member(Author))
             }
+
+        }
+        message.reply(rolenotfound)
+
+
+
     }else{
-        switch (args){
-  case "overwatch":
-              case "ow":
-         fR("Overwatch",mem);
-        break;
-                 case "left4dead":
- case "left4dead2":
- case "l4d":
- case "l4d2":
-              case "ow":
-         fR("Left 4 Dead 2",mem);
-        break;
-    case "paladins":
+        var argum = MSG.substr((message.prefix + cmd).length +1)
 
-    fR("Paladins",mem);
-        break;
-        case "hots":
-        case "heroes":
-    fR("Heróis do Toró",mem);
-        break;
-        case "gw2":
-        case "guildwars2":
-    fR("Guild Wars II",mem);
-        break;
-          case "perv":
-    fR("Perv",mem);
-        break;
+           for (var i=0; i<AUTROLS.length;i++){
+
+            if (AUTROLS[i][1] == argum){
+               return fR(argum,Server.member(Author))
             }
+
+        }
+        message.reply(rolenotfound)
+
     }
+
+
+
+
+
+
+
+
+
 
 
 
 function fR(role,memb){
         var a = Server.roles.find('name', role);
-        memb.addRole(a).then(a => message.channel.sendMessage(":white_check_mark: Adicionei **"+memb.displayName+"** ao grupo de **"+role+"** !")).catch(e=> message.channel.sendMessage("Erro!"))
+        memb.addRole(a).then(a => message.channel.sendMessage(roleadd_confirm)).catch(e=> message.channel.sendMessage(noPermsMe))
             }
+
 function xR(role,memb){
         var a = Server.roles.find('name', role);
-        memb.removeRole(a).then(a => message.channel.sendMessage(":no_entry: Removi **"+memb.displayName+"** do grupo de **"+role+"** !")).catch(e=> message.channel.sendMessage("Erro!"))
+        memb.removeRole(a).then(a => message.channel.sendMessage(roleremove_confirm)).catch(e=> message.channel.sendMessage(noPermsMe))
             }
 }
  module.exports = {pub:false,cmd: cmd, perms: 3, init: init, cat: 'info'};
