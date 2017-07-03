@@ -165,8 +165,7 @@ var async = require('async')
 var skynet = '248285312353173505'
 var colors = require('colors');
 var timer;
-const {
-    AkairoClient
+const {    AkairoClient
 } = require('discord-akairo');
 const client = new AkairoClient({
     ownerID: '88120564400553984',
