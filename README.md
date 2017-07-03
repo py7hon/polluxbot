@@ -1,6 +1,6 @@
 
 # **POLLUX**
-Discord Bot
+Discord Bot [![Build Status](https://travis-ci.org/LucasFlicky/polluxbot.svg?branch=master)](https://travis-ci.org/LucasFlicky/polluxbot)
 
 |     |    |
 |:-------------|-------------:|
