@@ -3,7 +3,7 @@
 Discord Bot 
 
 [![Build Status](https://travis-ci.org/LucasFlicky/polluxbot.svg?branch=master)](https://travis-ci.org/LucasFlicky/polluxbot)
-[![Discord](https://discordapp.com/api/guilds/277391723322408960/widget.png)](https://discord.gg/ay48h7Q)
+[![Discord](https://discordapp.com/api/guilds/248285312353173505/widget.png)](https://discord.gg/ay48h7Q)
 
 |     |    |
 |:-------------|-------------:|
