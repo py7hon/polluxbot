@@ -38,7 +38,7 @@
          , "booru404": "Não achei nada com essas tags"
          , "nsfw404": "Teus pornô são tão bizarros que nem achei saporra"
          , "nsfwNope": ":no_entry_sign: Comandos NSFW não são permitidos neste Canal"
-         , "nsfwNofunds": "você não tem {{goods}}s suficientes para comprar putaria. Você precisa pelo menos **5**"
+         , "nsfwNofunds": "você não tem {{goods}}s suficientes para comprar putaria. Você precisa pelo menos **5**. Descole Rubys com `{{prefix}}daily`"
          , "nsfwCheckout": "Foram debitados 5 {{emoji}} de sua conta."
          , "airwaifu": ":airplane: Aerowaifu do Dia."
          , "leadUnap": "Se você não aparece aqui, digite `{{prefix}}profile` para ver seu Level"
@@ -73,8 +73,12 @@
          , "modroleunAdded": "Cargo {{role}} removido da lista de Moderação."
          , "noRoleHere": "Este Cargo não está na lista."
          , "noRolesGiven": "Nenhum cargo foi apontado."
+          , "nosuchrole": "Não encontrei essa Role, digite o nome exatamente igual!"
          , "roleAdded": "Cargo adicionado!"
          , "roleAlreadyHere": "Cargo já incluído!"
+         , "incinerate": "Taquei fogo em {{amt}} mensagens! Se reclamarem taco em {{amtB}}"
+         , "roleadCom": "Adicionei **{{user}}** ao grupo de **{{group}}** !"
+         , "rolermCom": "Removi **{{user}}** do grupo de **{{group}}** !"
      }
      , "dict": {
          "coinHeads": "cara"
@@ -154,6 +158,12 @@
          ,"cancel" : "Nuke Abortado!"
          ,"timeout" : "Nuke Timeout! Nada foi alterado"
          ,"completed" : "Informações e definições do Server resetadas. Teste o comando **+ping**"
+     }
+     ,"greet":{
+         "byeOFF":"Bye Message disabled!"
+         ,"byeON":"Bye Message enabled in this channel!"
+         ,"helloOFF":"Welcome Message disabled!"
+         ,"helloON":"Welcome Message enabled in this channel!"
      }
 
  }

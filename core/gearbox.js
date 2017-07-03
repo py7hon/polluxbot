@@ -286,18 +286,16 @@ module.exports = {
 
 
 hasPerms: function hasPerms(Member){
-
     let Server = Member.guild
     var DB = main.DB;
-    var modpass = false;
+    var modPass = false;
     if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size >= 1) {
         modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE.id);
-    } else if (Server.owner.id === Member.id ||Member.hasPermission("ADMINISTRATOR")) {
+    }
+    if (Server.owner.id === Member.id ||Member.hasPermission("ADMINISTRATOR")) {
         modPass = true;
     };
-
 return modPass;
-
 },
 
 

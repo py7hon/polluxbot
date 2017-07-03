@@ -37,16 +37,16 @@ if (DB.get(Server.id).modules.GOODNAME) {
     GOOD = DB.get(Server.id).modules.GOODNAME
 }
 
-
+/*
         if (gear.checkGoods(5, Author) == false) {
-            message.reply(mm('forFun.nsfwNofunds',{lngs:LANG, goods:GOOD}));
+            message.reply(mm('forFun.nsfwNofunds',{lngs:LANG, goods:GOOD,prefix:message.prefix}));
             return;
         }
         gear.paramIncrement(bot.user,'goodies',5)
         gear.paramIncrement(bot.user,'earnings.putaria',5)
         gear.paramIncrement(Author,'goodies',-5)
         gear.paramIncrement(Author,'expenses.putaria',5)
-
+*/
         console.log("PUTARIA INVOKED by " + Author.username + "-------------\n")
         let query = message.content.split(" ");
         !query[1] ? query[1] = "pointy_ears" : query[1] = query[1];
@@ -58,7 +58,7 @@ if (DB.get(Server.id).modules.GOODNAME) {
             else {
                 //message.channel.sendMessage()
                 //message.reply("http:" + url);
-                             var msg_ax = GOODMOJI + mm('forFun.nsfwCheckout',{lngs:LANG,emoji:""})
+                             var msg_ax = "**Query:** " +query[1] +"\nby "+Author//GOODMOJI + mm('forFun.nsfwCheckout',{lngs:LANG,emoji:""})
                  emb =await new Discord.RichEmbed();
                       emb.setColor('#b41212')
                       emb.setTitle(':underage: RULE 34')

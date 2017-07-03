@@ -1,5 +1,6 @@
 var cmd = 'announce';
 var locale = require('../../utils/multilang_b');
+var gear = require('../gearbox');
 var mm = locale.getT();
 var init = function (message) {
     var Server = message.guild;
@@ -22,13 +23,13 @@ var init = function (message) {
     }
 
 
-    var tgt = message.guild.member(Target)
-    if (modPass) {
+  //  var tgt = message.guild.member(Target)
+
 var anno = mm('dict.announce',{lngs:LANG})
-        Server.defaultChannel.sendMessage(`${anno}
+        Server.defaultChannel.sendMessage(`**${anno}:**
 ` + MSG.substr(10))
 
-    } 
+
 };
 
  module.exports = {

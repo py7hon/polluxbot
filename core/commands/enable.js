@@ -20,7 +20,8 @@ var init = function (message,userDB,DB) {
     var LANG = message.lang;
 
     //-------MAGIC----------------
-
+   var On      = gear.emoji("check")
+var Off     = gear.emoji("xmark")
 
     if (message.channel.type == 'dm') {
         message.reply(mm('CMD.noDM', {
@@ -38,8 +39,9 @@ var init = function (message,userDB,DB) {
 
  var modPass = gear.hasPerms(Member)
 
+
     if (!modPass) {
-        return message.reply(mm('CMD.moderatioNeeded', {
+        return message.reply(mm('CMD.moderationNeeded', {
             lngs: LANG
         })).catch(console.error);
     }
@@ -60,6 +62,8 @@ var init = function (message,userDB,DB) {
         case 's':
         case 'server':
         case 'guild':
+        case 'g':
+        case 'global':
             sc = 'S'
             break;
         case 'c':
@@ -73,20 +77,20 @@ var init = function (message,userDB,DB) {
     }
 
 
-    var disaMS = mm('CMD.enabledSer', {
+    var disaMS = On + mm('CMD.enabledSer', {
         lngs: LANG,
         module: module
     })
-    var disaMC = mm('CMD.enabledChn', {
+    var disaMC = On + mm('CMD.enabledChn', {
         lngs: LANG,
         module: module,
         channel: Channel.name
     })
-    var disaCS = mm('CMD.enabledComSer', {
+    var disaCS = On + mm('CMD.enabledComSer', {
         lngs: LANG,
         command: module
     })
-    var disaCC = mm('CMD.enabledComChn', {
+    var disaCC = On + mm('CMD.enabledComChn', {
         lngs: LANG,
         command: module,
         channel: Channel.name

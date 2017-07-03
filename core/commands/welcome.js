@@ -34,14 +34,15 @@ var init = function (message, userDB, DB) {
 if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET===undefined){
     gear.paramDefine(Server,"GREET",defaultgreet)
 }
-
+   var On      = gear.emoji("check")
+var Off     = gear.emoji("xmark")
 
 var input="X"
     var v = {
-        inON: mm('greet.helloON', {
+        inON: On+mm('greet.helloON', {
             lngs: LANG
         }),
-        inOFF: mm('greet.helloOFF', {
+        inOFF: Off+mm('greet.helloOFF', {
             lngs: LANG
         }),
         inTX: mm('greet.inTex', {
@@ -84,6 +85,7 @@ var input="X"
 
     if (DB.get(Server.id).modules.GREET.hi === true) {
         gear.paramDefine(Server, "GREET.hi", false)
+        gear.paramDefine(Server, "GREET.greetChan", "")
         gear.paramDefine(Server, "GREET.greetChan", message.channel.id)
         return Channel.sendMessage(v.inOFF);
 

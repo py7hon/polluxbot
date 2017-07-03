@@ -60,18 +60,12 @@ var mem=Member
 
     var AUTROLS = DB.get(Server.id).modules.AUTOROLES
 
-var roleadd_confirm     = mm('CMD.roleadCom', {
-            lngs: LANG
-        });
+   var On      = gear.emoji("check")
+var Off     = gear.emoji("xmark")
+
     var rolenotfound     = mm('CMD.nosuchrole', {
             lngs: LANG
         });
-var roleremove_confirm  = mm('CMD.rolermCom', {
-            lngs: LANG
-        });
-
-
-
 
 
 //--------------------------------------
@@ -121,13 +115,33 @@ var roleremove_confirm  = mm('CMD.rolermCom', {
 
 
 function fR(role,memb){
+    message.delete()
+    var roleadd_confirm     = On+ mm('CMD.roleadCom', {
+            lngs: LANG,
+    user: memb.displayName,
+    group: role
+        });
+
+
+
+
         var a = Server.roles.find('name', role);
-        memb.addRole(a).then(a => message.channel.sendMessage(roleadd_confirm)).catch(e=> message.channel.sendMessage(noPermsMe))
+        memb.addRole(a).then(a => message.channel.sendMessage(roleadd_confirm)).then(e=>e.delete(5000)).catch(e=> message.channel.sendMessage(noPermsMe))
             }
 
 function xR(role,memb){
+    message.delete()
+
+    var roleremove_confirm  =Off+ mm('CMD.rolermCom', {
+            lngs: LANG,
+           user: memb.displayName,
+    group: role
+        });
+
+
+
         var a = Server.roles.find('name', role);
-        memb.removeRole(a).then(a => message.channel.sendMessage(roleremove_confirm)).catch(e=> message.channel.sendMessage(noPermsMe))
+        memb.removeRole(a).then(a => message.channel.sendMessage(roleremove_confirm)).then(e=>e.delete(5000)).catch(e=> message.channel.sendMessage(noPermsMe))
             }
 }
  module.exports = {pub:false,cmd: cmd, perms: 3, init: init, cat: 'info'};

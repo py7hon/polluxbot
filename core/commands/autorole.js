@@ -37,7 +37,7 @@ var init = function (message, userDB, DB) {
     var AUTROLS = DB.get(Server.id).modules.AUTOROLES
 
 
-  message.delete(10000);
+ // message.delete(10000);
 
 
 
@@ -73,8 +73,8 @@ var init = function (message, userDB, DB) {
         var downput = ""
         for (var i = 0; i < autorolese.length; i++) {
 
-            output += Server.roles.get(autorolese[i][0]) + "\n"
-            downput += ": `" + message.prefix + "roleme " + autorolese[i][1] + "`" + "\n"
+            output += ":small_blue_diamond:   "+Server.roles.get(autorolese[i][0]) + " \n"
+            downput += ":small_orange_diamond:  : `" + message.prefix + "roleme " + autorolese[i][1] + "`" + " \n"
 
         }
 

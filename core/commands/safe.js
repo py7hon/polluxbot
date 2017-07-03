@@ -34,7 +34,7 @@ var LANG = message.lang;
                 //message.reply('http:' + url)
                // emb.setImage(url)
                emb.setTitle(":heart: S a f e b o o r u")
-               emb.setDescription("Provided by "+Author)
+               emb.setDescription("**Query:** "+query[1].replace(/_/g," ").replace(/\+/g," | ")+"\nAsked by "+Author)
                 console.log(url)
                   emb.setColor('#ff97cf')
 

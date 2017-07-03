@@ -4,27 +4,41 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
-var cmd = 'role';
+var cmd = 'roleme';
 
-var init = function (message, userDB, DB) {
-    var Server = message.guild;
-    var Channel = message.channel;
-    var Author = message.author;
-    if (Author.bot) return;
-    var Member = Server.member(Author);
-    var Target = message.mentions.users.first() || Author;
-    var MSG = message.content;
-    var bot = message.botUser
-    var args = MSG.toLowerCase().split(' ').slice(1)[0]
-    var argsV = MSG.toLowerCase().split(' ').slice(1)[1]
+var init = function (message,userDB,DB) {
+var Server = message.guild;
+var Channel = message.channel;
+var Author = message.author;
+if (Author.bot) return;
+var Member = Server.member(Author);
+var Target = message.mentions.users.first() || Author;
+var MSG = message.content;
+var bot = message.botUser
+var args = MSG.toLowerCase().split(' ').slice(1)[0]
+var argsV = MSG.toLowerCase().split(' ').slice(1)[1]
 
-    var LANG = message.lang;
+var LANG = message.lang;
 
-    //-------MAGIC----------------
 
-    Target = Server.member(Target)
+    function ifEmpty(){
 
-    if (args == "help") {
+    var kek = require("./autorole.js")
+    var clone = message
+    clone.content = "+autorole list"
+    return kek.init(clone,userDB,DB)
+    }
+
+
+//-------MAGIC----------------
+
+Target = Server.member(Target)
+console.log(args)
+    if (args =="help" || args ==""|| args ===undefined){
+
+        return ifEmpty()
+        /*
+
         message.channel.sendMessage(`
 **__Autoroles Disponíveis:__**
 *Jogo/Role [keyword]*
@@ -35,111 +49,99 @@ var init = function (message, userDB, DB) {
 
 Exemplo \`+roleme hots\` >> Adiciona a Role *Heroes of the Storm*
 para sair use \`+roleme out [role]\`
-    `)
+    `)*/
     }
 
-    var mem = Member
+var mem=Member
 
-    //--------------------------------------
-
-
+//--------------------------------------
 
 
 
+    var AUTROLS = DB.get(Server.id).modules.AUTOROLES
+
+   var On      = gear.emoji("check")
+var Off     = gear.emoji("xmark")
+
+    var rolenotfound     = mm('CMD.nosuchrole', {
+            lngs: LANG
+        });
 
 
-    //--------------------------------------
+//--------------------------------------
+
+ var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
 
 
 
+    if (args=="out"){
+        var argum = MSG.substr((message.prefix +" out"+ cmd).length +1)
 
-    if (args == "out") {
 
-        switch (argsV) {
-            case "overwatch":
-            case "ow":
-                xR("Overwatch", mem);
-                break;
-            case "left4dead":
-            case "left4dead2":
-            case "l4d":
-            case "l4d2":
-            case "ow":
-                xR("Left 4 Dead 2", mem);
-                break;
-            case "paladins":
+               for (var i=0; i<AUTROLS.length;i++){
 
-                xR("Paladins", mem);
-                break;
-            case "awesomenauts":
-            case "nauts":
+            if (AUTROLS[i][1] == argum){
+               return xR(argum,Server.member(Author))
+            }
 
-                xR("Awesomenauts", mem);
-                break;
-            case "hots":
-            case "heroes":
-                xR("Heróis do Toró", mem);
-                break;
-            case "gw2":
-            case "guildwars2":
-                xR("Guild Wars II", mem);
-                break;
-            case "perv":
-                xR("Perv", mem);
-                break;
         }
-    } else {
-        switch (args) {
-            case "overwatch":
-            case "ow":
-                fR("Overwatch", mem);
-                break;
-            case "awesomenauts":
-            case "nauts":
+        message.reply(rolenotfound)
 
-                fR("Awesomenauts", mem);
-                break;
-            case "left4dead":
-            case "left4dead2":
-            case "l4d":
-            case "l4d2":
-            case "ow":
-                fR("Left 4 Dead 2", mem);
-                break;
-            case "paladins":
 
-                fR("Paladins", mem);
-                break;
-            case "hots":
-            case "heroes":
-                fR("Heróis do Toró", mem);
-                break;
-            case "gw2":
-            case "guildwars2":
-                fR("Guild Wars II", mem);
-                break;
-            case "perv":
-                fR("Perv", mem);
-                break;
+
+    }else{
+        var argum = MSG.substr((message.prefix + cmd).length +1)
+
+           for (var i=0; i<AUTROLS.length;i++){
+
+            if (AUTROLS[i][1] == argum){
+               return fR(argum,Server.member(Author))
+            }
+
         }
+        message.reply(rolenotfound)
+
     }
 
 
 
-    function fR(role, memb) {
+
+
+
+
+
+
+
+
+
+function fR(role,memb){
+    message.delete()
+    var roleadd_confirm     = On+ mm('CMD.roleadCom', {
+            lngs: LANG,
+    user: memb.displayName,
+    group: role
+        });
+
+
+
+
         var a = Server.roles.find('name', role);
-        memb.addRole(a).then(a => message.channel.sendMessage(":white_check_mark: Adicionei **" + memb.displayName + "** ao grupo de **" + role + "** !")).catch(e => message.channel.sendMessage("Erro!"); console.log(e))
-    }
+        memb.addRole(a).then(a => message.channel.sendMessage(roleadd_confirm)).then(e=>e.delete(5000)).catch(e=> message.channel.sendMessage(noPermsMe))
+            }
 
-    function xR(role, memb) {
+function xR(role,memb){
+    message.delete()
+
+    var roleremove_confirm  =Off+ mm('CMD.rolermCom', {
+            lngs: LANG,
+           user: memb.displayName,
+    group: role
+        });
+
+
+
         var a = Server.roles.find('name', role);
-        memb.removeRole(a).then(a => message.channel.sendMessage(":no_entry: Removi **" + memb.displayName + "** do grupo de **" + role + "** !")).catch(e => message.channel.sendMessage("Erro!"); console.log(e))
-    }
+        memb.removeRole(a).then(a => message.channel.sendMessage(roleremove_confirm)).then(e=>e.delete(5000)).catch(e=> message.channel.sendMessage(noPermsMe))
+            }
 }
-module.exports = {
-    pub: false,
-    cmd: cmd,
-    perms: 3,
-    init: init,
-    cat: 'info'
-};
+ module.exports = {pub:false,cmd: cmd, perms: 3, init: init, cat: 'info'};

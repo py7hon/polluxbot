@@ -39,7 +39,7 @@
          , "booru404": "Whoopsie, i couldn't find nothing with those tags"
          , "nsfw404": "Your porn is so freaking bizarre that i couldn't find this anywhere"
          , "nsfwNope": ":no_entry_sign: NSFW Commands are not allowed in this channel, sweetie"
-         , "nsfwNofunds": "you got no {{goods}}s enough to buy naugthy stuffz. Gimme **5**{{goods}} and then we talk."
+         , "nsfwNofunds": "you got no {{goods}}s enough to buy naugthy stuffz. Gimme **5**{{goods}} and then we talk. Get Rubys with `{{prefix}}daily`"
          , "nsfwCheckout": "5 {{emoji}} has been debited from your funds."
          , "airwaifu": ":airplane: Aerowaifu of the Day."
          , "leadUnap": "If you don't see yourself here, type `{{prefix}}profile` to see your Level"
@@ -76,13 +76,19 @@
          , "noRolesGiven": "No Role was mentioned"
          , "roleAdded": "Role Added!"
          , "roleAlreadyHere": "Role already here!"
+         , "nosuchrole": "I couldn't find this role, type its name exactly!"
+
+
+         , "incinerate": "I've just set fire into {{amt}} Messages! If you don't like it i'll burn {{amtB}} next time."
+         , "roleadCom": "Added **{{user}}** to the **{{group}}** group!"
+         , "rolermCom": "Removed **{{user}}** from the **{{group}}** group!"
      }
      , "dict": {
          "coinHeads": "heads"
          , "coinTails": "tails"
          , "qnt": "quantidy"
          , "res": "result"
-         , "announce": ":mega: Announce"
+         , "announce": ":mega: Announcement"
          , "first": "1st"
          , "second": "2nd"
          , "third": "3rd"
@@ -154,5 +160,10 @@
          ,"cancel" : "Nuke Aborted!"
          ,"timeout" : "Nuke Timed Out!"
          ,"completed" : "Server Info has been successfully wiped and reset. Try using **+ping**"
+     }     ,"greet":{
+         "byeOFF":"Bye Message disabled!"
+         ,"byeON":"Bye Message enabled in this channel!"
+         ,"helloOFF":"Welcome Message disabled!"
+         ,"helloON":"Welcome Message enabled in this channel!"
      }
  }

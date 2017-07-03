@@ -37,13 +37,10 @@ var emojya = bot.emojis.get('276878246589497344')
     var ranked = []
      userDB.forEach(j=>{
             var i = JSON.parse(j)
-        console.log(i +'---------------')
 
 
 
-
-
-        if (i.name == 'Pollux') {}
+        if (i.name == 'Pollux' ||i.name == undefined) {}
         else {
             rankItem.name = i.name
             rankItem.goodies = i.modules.goodies

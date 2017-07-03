@@ -81,7 +81,8 @@ var init = function (message, userDB, DB) {
             return Channel.sendMessage(v.tellChn);
         }
         let offset = MSG.indexOf("channel") + 7
-        gear.paramDefine(Server, "FWELL.greetChan", message.mentions.channels.first())
+        gear.paramDefine(Server, "FWELL.greetChan", "")
+        gear.paramDefine(Server, "FWELL.greetChan", message.channel.id)
         return Channel.sendMessage(v.outCX);
     }
 
@@ -94,6 +95,8 @@ var init = function (message, userDB, DB) {
     } else {
 
         gear.paramDefine(Server, "FWELL.hi", true)
+        gear.paramDefine(Server, "FWELL.greetChan", "")
+        gear.paramDefine(Server, "FWELL.greetChan", message.channel.id)
         return Channel.sendMessage(v.outON);
     }
 

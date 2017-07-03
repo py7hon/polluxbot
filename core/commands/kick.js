@@ -61,7 +61,7 @@ var LANG = message.lang;
         img = Target.avatarURL.substr(0, Target.avatarURL.length - 10);
     }
 
-
+ kickMember.kick().then(kik=>{
     Jimp.read(img).then(function (face) {
         face.resize(126, 126)
         Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
@@ -78,7 +78,7 @@ var LANG = message.lang;
 
 
                     message.channel.sendFile(image, 'kicked.png', didkik).then(m => {
-                        kickMember.kick()
+
                     }).catch(console.error)
                 })
 
@@ -87,7 +87,7 @@ var LANG = message.lang;
         });
     });
 
-
+ }).catch(e=>{message.reply(noPermsMe)})
 
 
 

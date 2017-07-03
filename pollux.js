@@ -444,7 +444,7 @@ var serverSetup = function serverSetup(guild) {
             }
         });
     }else{
-     //   normaliseGUILD(guild)
+        normaliseGUILD(guild)
     }
 
 
@@ -471,7 +471,7 @@ function userSetup(user) {
         userDB.set(user.id, uu)
 
     }else{
-     //   normaliseUSER(user)
+        normaliseUSER(user)
     }
 }
 
@@ -1021,17 +1021,24 @@ bot.on("message", (message) => {
         var logusr = " " + Author.username + ": "
         var logmsg = MSG
 
-            if (Author.username == "Pollux" || MSG.toLowerCase().includes('pollux') || MSG.startsWith("+")) {
+        //    if (Author.username == "Pollux" || MSG.toLowerCase().includes('pollux') || MSG.startsWith("+")) {
 
                 console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
 
-        }
+       // }
     }
     //--- END LOGS   ---------------------------------------------------------
     if (Author.bot) return;
     //-- NO BOTS PAST HERE ---------------------------------------------------
 
     if (Server && !Author.bot) {
+
+        let args = message.content.toLowerCase().split(' ').slice(1)[0]
+        if (message.guild.deadlock){
+            if (args == message.guild.deadlock) return;
+        }
+
+
  //==-------------------------------------------
         // SIDE COMMANDS
 
@@ -1271,7 +1278,7 @@ bot.on('guildMemberAdd', (member) => {
 
 
 
-            if (typeof (DB.get(Server.id).modules.GREET.hi) !== 'undefined' && DB.get(Server.id).modules.GREET.joinText !== '' && DB.get(Server.id).modules.GREET.joinText) {
+            if (typeof (DB.get(Server.id).modules.GREET.hi) !== 'undefined' && DB.get(Server.id).modules.GREET.joinText !== '' && DB.get(Server.id).modules.GREET.hi==true) {
 
 
                 let channels = member.guild.channels.filter(c => {
@@ -1303,14 +1310,14 @@ if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL===undefi
 }
 
 
-            if (typeof (DB.get(Server.id).modules.FWELL.hi) !== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !== '' && DB.get(Server.id).modules.FWELL.joinText) {
+            if (typeof (DB.get(Server.id).modules.FWELL.hi) !== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !== '' && DB.get(Server.id).modules.FWELL.hi == true) {
 
 
                 let channels = member.guild.channels.filter(c => {
                     return (c.id === DB.get(Server.id).modules.FWELL.greetChan)
                 });
                 let channel = channels.first();
-                let content = DB.get(Server.id).modules.FWELL.joinText.replace('%username%', member.user.username);
+                let content = DB.get(Server.id).modules.FWELL.joinText.replace('%username%', member.user);
                 content = content.replace('%server%', member.guild.name);
                 try {
                     channel.sendMessage(content);

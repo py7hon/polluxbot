@@ -10,7 +10,7 @@ var mm = locale.getT();
 
 var cmd = 'globalnotice';
 
-var init = function (message,userDB,DB) {
+var init = function async (message,userDB,DB) {
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -26,7 +26,7 @@ var init = function (message,userDB,DB) {
 
     if (!message.author.id == '88120564400553984') return;
 
-console.log(DB[message.guild.id].modules.announcements)
+console.log(DB.get(message.guild.id).modules.announcements)
 
 
 
@@ -40,7 +40,7 @@ console.log(DB[message.guild.id].modules.announcements)
 
     emb.setAuthor('Pollux Maintainance',bot.user.avatarURL,'https://discord.gg/ay48h7Q')
     emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/4.gif?raw=true')
-    emb.setFooter('Use +mute_notices para desativar estes avisos. +unmute_notices para reativar.')
+  //  emb.setFooter('Use +mute_notices para desativar estes avisos. +unmute_notices para reativar.')
 
 
   //emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/display.png")

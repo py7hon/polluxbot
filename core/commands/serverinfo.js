@@ -135,16 +135,16 @@ var modrole;
 
     if (DB.get(G.id).modules.MODROLE.id != undefined) {modrole = G.roles.get(DB.get(G.id).modules.MODROLE.id);}else{modrole = "NONE";}
 
-var autoroles = 0// DB.get(G.id).modules.AUTOROLES.length || "0"
+var autoroles = DB.get(G.id).modules.AUTOROLES.length
 var lang = DB.get(G.id).modules.LANGUAGE
 var greet = DB.get(G.id).modules.GREET
 var bye = DB.get(G.id).modules.FWELL
 var mods = DB.get(G.id).modules.DISABLED
 mods = mods.remove("cog")
 
-    var a = et(DB.get(G.id).modules.NSFW)
-    var b = et(DB.get(G.id).modules.LVUP)
-    var c = et(DB.get(G.id).modules.DROPS)
+    var c = et(DB.get(G.id).modules.NSFW)
+    var a = et(DB.get(G.id).modules.LVUP)
+    var b = et(DB.get(G.id).modules.DROPS)
 
     emb.addField(":tophat: Owner", Server.owner.user , true)
 
@@ -165,12 +165,12 @@ mods = mods.remove("cog")
    emb.addField("Language", flagLang , true)
 
 
-   emb.addField(" :inbox_tray: Greeting Message ","`"+greet.joinText+"`" +et(greet.hi), false)
-   emb.addField(" :outbox_tray: Bye Message ","`"+bye.joinText +"`"+et(bye.hi), false)
+   emb.addField(" :inbox_tray: Greeting Message ","`"+greet.joinText+"`" +et(greet.hi)+" @ "+Server.channels.get(greet.greetChan), false)
+   emb.addField(" :outbox_tray: Bye Message ","`"+bye.joinText +"`"+et(bye.hi)+" @ "+Server.channels.get(bye.greetChan), false)
 
-  emb.addField(":gear: SuperModules",`:up: ${a}
-${ruby}${b}
-:underage: ${c}`, true)
+  emb.addField(":gear: SuperModules",`:up: ${a} LevelUp Messages
+${ruby}${b} Ruby Drops
+:underage: ${c} NSFW Master-Switch`, true)
   emb.addField(":gear: Disabled Commands","```."+ mods +"```", true)
 
 

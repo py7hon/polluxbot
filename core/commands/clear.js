@@ -30,14 +30,17 @@ var LANG = message.lang;
 
 
 
-    if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size >= 1){
-        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
-    }else if(Member.hasPermission("MANAGE_SERVER")){
-        modPass = true;
-    };
-if (!modPass) return message.reply(noperms);
+   var modPass = gear.hasPerms(Member)
+
+    if (!modPass) {
+        return message.reply(mm('CMD.moderatioNeeded', {
+            lngs: LANG
+        })).catch(console.error);
+    }
 
     let cmdd = message.content.split(' ');
+
+
 
 
             if (typeof (cmdd[1]) !== 'undefined') {
@@ -58,7 +61,13 @@ if (!modPass) return message.reply(noperms);
                 } else {
                    Channel.fetchMessages({before: message.id, limit: number}).then(mbk => {
                         Channel.bulkDelete(mbk).then(() => {
-                            message.reply(":fire: DELETED "+number).then(m=> {m.delete(15000);message.delete()});
+
+
+
+
+                           var burn = mm('CMD.incinerate', {lngs: LANG,amt: number,amtB: (number*2)})
+
+                            message.reply(":fire:  "+burn).then(m=> {m.delete(15000);message.delete()});
                         }).catch(err => {
                             message.reply(lerror);
 
