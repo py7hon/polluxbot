@@ -33,9 +33,6 @@
     "i18next-node-fs-backend": "^0.1.3",
     "icy": "^2.1.0",
     "jimp": "latest",
-
-    "node-opus": "^0.2.4",
-
     "shortid": "^2.2.6",
     "socket.io-client": "^1.6.0",
     "spotify-web-api-node": "^2.4.0",
