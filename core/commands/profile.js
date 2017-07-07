@@ -186,7 +186,7 @@ rep:   ${rep}
 
               if (level.length == 4) level = "MAX";
               var ovlat = new Jimp(40, 40, function (err, image) {});
-              ovlat.print(levelf, 0, 0, `${level}`, 50, Jimp.ALIGN_FONT_RIGHT);
+              ovlat.print(levelf, 0, 0, `${level}`, 50);
               ovlat.autocrop(false)
               ovlat.contain(45, 20, Jimp.HORIZONTAL_ALIGN_CENTER)
 
@@ -199,28 +199,28 @@ rep:   ${rep}
 
 
               var srank = new Jimp(60, 16, function (err, image) {});
-              srank.print(ranks, 0, 0, `${serverank}`, 50, Jimp.ALIGN_FONT_RIGHT);
+              srank.print(ranks, 0, 0, `${serverank}`, 50);
               srank.autocrop(false)
               srank.contain(50, 10, Jimp.HORIZONTAL_ALIGN_RIGHT)
 
               var grank = new Jimp(60, 16, function (err, image) {});
-              grank.print(ranks, 0, 0, `${globalrank}`, 50, Jimp.ALIGN_FONT_RIGHT);
+              grank.print(ranks, 0, 0, `${globalrank}`, 50);
               grank.autocrop(false)
               grank.contain(50, 10, Jimp.HORIZONTAL_ALIGN_RIGHT)
 
               var rrank = new Jimp(60, 16, function (err, image) {});
-              rrank.print(ranks, 0, 0, `${rubys}`, 50, Jimp.ALIGN_FONT_RIGHT);
+              rrank.print(ranks, 0, 0, `${rubys}`, 50);
               rrank.autocrop(false)
               rrank.contain(50, 10, Jimp.HORIZONTAL_ALIGN_RIGHT)
 
               var reputation = new Jimp(30, 16, function (err, image) {});
-              reputation.print(rfont, 0, 0, `${rep}`, 30, Jimp.ALIGN_FONT_RIGHT);
+              reputation.print(rfont, 0, 0, `${rep}`, 30);
               reputation.autocrop()
              // reputation.contain(30, 10, Jimp.HORIZONTAL_ALIGN_CENTER)
 
 
               var paasento = new Jimp(100, 16, function (err, image) {});
-              paasento.print(ranks, 0, 0, `${percent}% (${exp})`, 100, Jimp.ALIGN_FONT_RIGHT);
+              paasento.print(ranks, 0, 0, `${percent}% (${exp})`, 100);
               paasento.autocrop(false)
               paasento.contain(100, 10, Jimp.HORIZONTAL_ALIGN_RIGHT)
 
