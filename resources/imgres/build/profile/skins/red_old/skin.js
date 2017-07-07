@@ -1,14 +1,14 @@
  module.exports = {
 
 //text
-      font1: "HEADING.fnt"  
+      font1: "HEADING.fnt"
      ,font2: "TXT.fnt"
      ,font3: "TXT.fnt"
      ,invisible: "TXT.fnt"
 
      //positions
-   
-   
+
+
    //USER NAME
 
      ,nameX: 153          // name X position
@@ -16,23 +16,23 @@
      ,nameF: "f1"          // name Font (f1, f2, f3, inv [for invisible] )
 
    // USER LEVEL
-   
+
      ,levelX: 425             //  X position
      ,levelY: 37            //  Y position
      ,levelF: "f1"          //  Font (f1, f2, f3, inv [for invisible] )
-   
+
    //GEMS / RUBYS / CASH
 
-     ,moneyX: 290           //  X position  
-     ,moneyY: 160           //  Y position    
-     ,moneyF:  "f1"         //  Font (f1, f2, f3, inv [for invisible] )      
+     ,moneyX: 290           //  X position
+     ,moneyY: 160           //  Y position
+     ,moneyF:  "f1"         //  Font (f1, f2, f3, inv [for invisible] )
 
    //EXP POINTS
      ,expX: 74              //  X position
      ,expY: 253             //  Y position
      ,expF:  "f2"              //  Font (f1, f2, f3, inv [for invisible] )
 
-   
+
    //JOIN DATE
      ,joinX: 172            //  X position
      ,joinY: 66             //  Y position
@@ -50,7 +50,7 @@
      ,barH: 18                //Level Bar  Height
 
    //Profile Picture
-   
+
      ,propicX: 18             //  X position
      ,propicY: 20             //  Y position
      ,propicHW: 126           //  Width and Height

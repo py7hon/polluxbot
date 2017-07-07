@@ -41,6 +41,27 @@
 
 try{
 
+
+
+     //AVOID SELF REP AND NO REP
+
+     let noSelf = mm('reput.noSelf', {
+         lngs: LANG
+
+     })
+     let noTarget = mm('reput.noTarget', {
+         lngs: LANG
+     })
+
+     if (message.mentions.users.size === 0) {
+         return message.reply(noTarget)
+     }
+     if (message.mentions.users.first().id == Author.id) {
+         return message.reply(noSelf)
+     }
+     //------
+
+
      //Resolve Undefined
      if (userDB.get(Author.id).modules.repdaily == undefined) {
          gear.paramDefine(Author, "repdaily", 0)
@@ -50,27 +71,6 @@ try{
      }
      //-----------
 
-
-     //AVOID SELF REP AND NO REP
-
-     let noSelf = mm('reput.noSelf', {
-         lngs: LANG,
-         who: Author.username,
-         target: Target.username
-     })
-     let noTarget = mm('reput.noTarget', {
-         lngs: LANG,
-         who: Author.username,
-         target: Target.username
-     })
-
-     if (message.mentions.users.size == 0) {
-         return message.reply(noTarget)
-     }
-     if (message.mentions.users.first().id == Author.id) {
-         return message.reply(noSelf)
-     }
-     //------
 
 
      var now = new Date().getTime();
