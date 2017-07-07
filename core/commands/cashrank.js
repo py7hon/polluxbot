@@ -40,7 +40,7 @@ var emojya = bot.emojis.get('276878246589497344')
 
 
 
-        if (i.name == 'Pollux' ||i.name == undefined) {}
+       if (i.name == 'Pollux' ||i.name == undefined) {}
         else {
             rankItem.name = i.name
             rankItem.goodies = i.modules.goodies
@@ -56,7 +56,7 @@ var emojya = bot.emojis.get('276878246589497344')
     emb.setColor('#e22449')
     emb.title = "WEALTH RANK"
     emb.setAuthor('Pollux', bot.user.avatarURL, 'https://github.com/LucasFlicky/polluxbot')
-        //emb.setFooter('Se você não aparece aqui, digite +ruby para ver quantos Rubys você tem')
+        emb.setFooter('If you are not being displayed here, contact the creator immediately for a fix.')
     emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/resources/imgres/emoji/ruby.png")
         // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
         //    emb.description = "Os Top-5 mais rubificadoss do server"

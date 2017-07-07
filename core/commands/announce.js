@@ -17,7 +17,7 @@ var init = function (message) {
  var modPass = gear.hasPerms(Member)
 
     if (!modPass) {
-        return message.reply(mm('CMD.moderatioNeeded', {
+        return message.reply(mm('CMD.moderationNeeded', {
             lngs: LANG
         })).catch(console.error);
     }

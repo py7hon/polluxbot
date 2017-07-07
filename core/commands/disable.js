@@ -41,7 +41,7 @@ var init = function (message,userDB,DB) {
 
 
     if (!modPass) {
-        return message.reply(mm('CMD.moderatioNeeded', {
+        return message.reply(mm('CMD.moderationNeeded', {
             lngs: LANG
         })).catch(console.error);
     }

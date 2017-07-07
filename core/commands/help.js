@@ -51,10 +51,36 @@ ${mm('help.joinSupp', {
 
 
 
-
     console.log("HELP INVOKED")
   //  message.reply(mm('help.checkYeDM',{lngs:LANG}))
-    message.reply("See my command list at: http://pollux.lucasflicky.com/commands")
+
+let helpol = mm('help.polHelp', {lngs: LANG})
+let heldesc = mm('help.helpText', {lngs: LANG})
+let supserv = mm('help.supserv', {lngs: LANG})
+let commlist = mm('help.commlist', {lngs: LANG})
+let inviteme = mm('help.inviteme', {lngs: LANG})
+let useful = mm('help.useful', {lngs: LANG})
+
+
+let suplink     = "https://discord.gg/ay48h7Q"
+let commlink    = "http://pollux.lucasflicky.com/commands"
+let invitelink  = "http://goo.gl/qkGqqU"
+
+    const Discord = require("discord.js");
+ emb =    new Discord.RichEmbed();
+
+
+
+    emb.setTitle(helpol)
+    emb.setColor("#eb4190")
+    emb.setDescription(heldesc)
+    emb.setThumbnail(message.botUser.user.avatarURL)
+    emb.addField(":sos: "+supserv,suplink,false)
+    emb.addField(":hash: "+commlist,commlink,false)
+    emb.addField(":heart_decoration: "+inviteme,invitelink,false)
+    emb.setFooter(useful+" +stats | +serverinfo | +logs | pollux+nuke | +invite")
+
+  setTimeout(t=>message.channel.sendEmbed(emb),1000)
 };
 
  module.exports = {

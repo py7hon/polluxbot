@@ -7,7 +7,7 @@ var cmd = 'vapor';
 
 var init = function (message,userDB,DB) {
 
-
+console.log("VAPOR")
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -25,8 +25,9 @@ var init = function (message,userDB,DB) {
 
     const voiceChannel = message.member.voiceChannel;
     if (!voiceChannel) {
-      return message.reply(`Entra num voice channel antes caraio!`);
+      return message.reply(`Enter a Voice Channel!`);
     }
+       message.reply(`Joining your voice channel and playing some vape!`);
     voiceChannel.join()
       .then(connnection => {
         let stream = yt('https://www.youtube.com/watch?v=cU8HrO7XuiE', {audioonly: true});

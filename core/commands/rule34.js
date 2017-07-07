@@ -59,7 +59,7 @@ if (DB.get(Server.id).modules.GOODNAME) {
                 //message.channel.sendMessage()
                 //message.reply("http:" + url);
                              var msg_ax = "**Query:** " +query[1] +"\nby "+Author//GOODMOJI + mm('forFun.nsfwCheckout',{lngs:LANG,emoji:""})
-                 emb =await new Discord.RichEmbed();
+                 var emb = new Discord.RichEmbed();
                       emb.setColor('#b41212')
                       emb.setTitle(':underage: RULE 34')
                       emb.setDescription(msg_ax)

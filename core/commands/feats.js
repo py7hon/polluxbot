@@ -65,6 +65,10 @@ Support: https://discord.gg/ay48h7Q
 
 `
 
+      emb.addField('+ban [@user] [reason]',"Bans a member", false)
+      emb.addField('+color [RGB]',"~COLORS~", false)
+      emb.addField('+vaporwave',"Plays Vapor on VC", false)
+      emb.addField('+logs [channel]',"Logs info into a channel", false)
       emb.addField('pollux+nuke',"Deletes server info (bot database) Admin-only", false)
       emb.addField('+chinese [text]',"Writes stuff in pseudo-chinese", false)
       emb.addField('+rotation-hots',"Updated with Hero Icons", false)

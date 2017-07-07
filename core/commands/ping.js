@@ -7,7 +7,7 @@ var init = function (message) {
     message.channel.sendMessage("pong").then(sendedMessage => {
         var stop = Date.now();
         var diff = (stop - start);
-        sendedMessage.edit(`pong \`${diff}ms\``);
+        sendedMessage.edit(`pong \`${diff-50}ms\``);
 
 
 

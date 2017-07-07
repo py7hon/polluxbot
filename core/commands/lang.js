@@ -27,15 +27,14 @@ var LANG = message.lang;
     var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
 
 
+ var modPass = gear.hasPerms(Member)
 
 
-    if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size >= 1){
-        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
-    }else if(Member.hasPermission("MANAGE_SERVER")){
-        modPass = true;
-    }else if(Member.hasPermission("ADMINISTRATOR")){
-        modPass = true;
-    };
+    if (!modPass) {
+        return message.reply(mm('CMD.moderationNeeded', {
+            lngs: LANG
+        })).catch(console.error);
+    }
 
 
 

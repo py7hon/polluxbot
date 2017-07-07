@@ -45,7 +45,7 @@ var emojya = bot.emojis.get('276878246589497344')
         gear.paramIncrement(Target, 'goodies', donate)
         gear.paramIncrement(Target, 'earnings.trade', donate)
 
-        message.channel.sendMessage( mm('$.giveGoods' , {lngs:LANG, donate:donate, emoji:GOODMOJI, target:Target.username,author:Author.username })).then(function (c) {
+        message.channel.sendMessage( mm('$.giveGoods' , {lngs:LANG, donate:donate, emoji:"Ruby", target:Target.username,author:Author.username })).then(function (c) {
             message.delete(5000)
         })
         gear.writePoints(points, caller)

@@ -133,7 +133,7 @@ var online = (Server.members.size)-OM
 
 var modrole;
 
-    if (DB.get(G.id).modules.MODROLE.id != undefined) {modrole = G.roles.get(DB.get(G.id).modules.MODROLE.id);}else{modrole = "NONE";}
+    if (DB.get(G.id).modules.MODROLE != undefined) {modrole = G.roles.get(DB.get(G.id).modules.MODROLE);}else{modrole = "NONE";}
 
 var autoroles = DB.get(G.id).modules.AUTOROLES.length
 var lang = DB.get(G.id).modules.LANGUAGE

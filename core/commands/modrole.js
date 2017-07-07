@@ -37,7 +37,7 @@ var modPass = gear.hasPerms(Member);
 }catch(err){console.log(err)}
 
     if (!modPass) {
-         return message.reply(mm('CMD.moderatioNeeded', {
+         return message.reply(mm('CMD.moderationNeeded', {
             lngs: LANG
         })).catch(console.error);
     }
@@ -63,9 +63,10 @@ var modPass = gear.hasPerms(Member);
     }
 
 
-
+console.log(role)
 
  gear.paramDefine(Server,"MODROLE",role)
+   message.reply("DEFINED "+role)
 
 
 }

@@ -42,7 +42,7 @@
             card = input
             url = "https://www.fantasymasters.co.kr/FM_Image/FM_image/fm/shop/Cardmarket/L_images/" + card + "L.jpg"
             Jimp.read(url).then(function (base) {
-                base.crop(25, 45, 240, 196)
+               // base.crop(25, 45, 240, 196)
                 base.getBuffer(Jimp.MIME_PNG, function (err, image) {
                     message.channel.sendFile(image)
                 })

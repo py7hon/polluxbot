@@ -274,7 +274,54 @@ module.exports = {
             console.log(err.stack)
         }
     },
+ superDefine: function superDefine(target, param, val) {
+        try {
 
+            if (target instanceof Discord.User) {
+
+                var Umodules = main.userDB.get(target.id)
+
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Umodules[param[0]][param[1]] = val
+                } else {
+                    Umodules[param] = val
+                }
+
+                main.userDB.set(target.id, Umodules)
+
+            }
+
+            if (target instanceof Discord.Guild) {
+
+                var Smodules = main.DB.get(target.id)
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Smodules[param[0]][param[1]] = val
+                } else {
+                    Smodules[param] = val
+                }
+                main.DB.set(target.id, Smodules)
+
+            }
+            if (target instanceof Discord.Channel) {
+
+                var Tchannel = main.DB.get(target.guild.id)
+
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Tchannel.channels[target.id][param[0]][param[1]] = val
+                } else {
+                    Tchannel.channels[target.id][param] = val
+                }
+                main.DB.set(target.guild.id, Tchannel)
+
+            }
+        } catch (err) {
+            console.log('ERROR JSON'.bgRed.white.bold)
+            console.log(err.stack)
+        }
+    },
     checkGoods: function checkGoods(amount, invoker) {
         if (main.userDB.get(invoker.id).modules.goodies >= amount) {
             return true;
@@ -289,10 +336,17 @@ hasPerms: function hasPerms(Member){
     let Server = Member.guild
     var DB = main.DB;
     var modPass = false;
-    if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size >= 1) {
-        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE.id);
-    }
+try{
+
+        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
+}catch(e)
+{
+    message.channel.sendMessage("noMod Role defined")
+}
     if (Server.owner.id === Member.id ||Member.hasPermission("ADMINISTRATOR")) {
+        modPass = true;
+    };
+     if (Member.hasPermission("MANAGE_GUILD")) {
         modPass = true;
     };
 return modPass;

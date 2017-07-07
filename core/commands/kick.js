@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
@@ -15,29 +16,36 @@ var Target = message.mentions.users.first() || Author;
 var MSG = message.content;
 var bot = message.botUser
 var args = MSG.split(' ').slice(1)
+var reason = MSG.split(' ').slice(2)
 var LANG = message.lang;
+
+ reason = reason.toString().replace(/,/g," ")
+
+
 
 //-------MAGIC----------------
     const Jimp = require("jimp");
     var paths = require("../paths.js");
-
-
     var modPass = false
 
-
     var noperms     =   mm('CMD.moderationNeeded', {lngs:LANG})
+    var KICKED     =   mm('dict.kicked', {lngs:LANG})
+    var wasKICKED     =   mm('dict.waskicked', {lngs:LANG})
+    var REASON     =   mm('dict.reason', {lngs:LANG})
+    var RESPO     =   mm('dict.responsible', {lngs:LANG})
     var whokik      =   mm('CMD.kinNone', {lngs:LANG})
     var nope        =   mm('CMD.kin404', {lngs:LANG})
     var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
     var justasec    =   mm('CMD.jas', {lngs:LANG})
     var didkik      =   mm('CMD.didkik', {lngs:LANG, target:Target.username})
+    var noReason      =   mm('CMD.noReason', {lngs:LANG, target:Target.username})
 
-
+   if (reason=="") {reason = noReason };
 
    var modPass = gear.hasPerms(Member)
 
     if (!modPass) {
-        return message.reply(mm('CMD.moderatioNeeded', {
+        return message.reply(mm('CMD.moderationNeeded', {
             lngs: LANG
         })).catch(console.error);
     }
@@ -60,8 +68,46 @@ var LANG = message.lang;
     if (Target.avatarURL) {
         img = Target.avatarURL.substr(0, Target.avatarURL.length - 10);
     }
+var namae = kickMember.displayName
 
  kickMember.kick().then(kik=>{
+
+
+     let logchan = DB.get(Server.id).modules.LOGCHANNEL
+     let advchan = DB.get(Server.id).modules.ADVLOG
+     let actchan = DB.get(Server.id).modules.ACTLOG
+     let modchan = DB.get(Server.id).modules.MODLOG
+
+
+   // if( advchan && Server.channels.has(advchan)){chanpoint = Server.channels.get(advchan)}
+  //  if( actchan && Server.channels.has(actchan)){chanpoint = Server.channels.get(actchan)}
+    if( logchan && Server.channels.has(logchan)){chanpoint = Server.channels.get(logchan)}
+    if( modchan && Server.channels.has(modchan)){chanpoint = Server.channels.get(modchan)}
+
+
+   if (chanpoint){
+
+var id =  Target.id
+var mess = message
+var emb = new Discord.RichEmbed;
+
+     emb.setThumbnail(Target.avatarURL)
+       emb.setTitle(":boot: "+KICKED);
+emb.setDescription(`**${Target.username+"#"+Target.discriminator}** ${wasKICKED}`);
+//emb.addField("Channel",mess.channel,true)
+emb.addField(REASON, reason ,true)
+emb.addField(RESPO,Author,true)
+//emb.addField("Message",mess.content,true)
+ emb.setColor("#f54510");
+var ts = new Date
+emb.setFooter("Kick",Target.avatarURL)
+emb.setTimestamp(ts)
+
+   chanpoint.sendEmbed(emb).catch()
+
+         }
+
+
     Jimp.read(img).then(function (face) {
         face.resize(126, 126)
         Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
@@ -79,7 +125,7 @@ var LANG = message.lang;
 
                     message.channel.sendFile(image, 'kicked.png', didkik).then(m => {
 
-                    }).catch(console.error)
+                    }).catch(e=>{message.reply("Não me deixaram postar a imagem pica do Jazz aqui mas kickei ele igual")})
                 })
 
             });
@@ -87,9 +133,13 @@ var LANG = message.lang;
         });
     });
 
- }).catch(e=>{message.reply(noPermsMe)})
 
 
+
+ }).catch(e=>{message.reply(e)})
+
+
+    message.delete(1000)
 
 }
  module.exports = {pub:true,cmd: cmd, perms: 2, init: init, cat: 'misc'};

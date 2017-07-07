@@ -8,6 +8,13 @@ var mm = locale.getT();
 var cmd = 'puto';
 var LANG = ""
 var init = function (message, userDB, DB) {
+
+
+ message.channel.sendFile("https://pbs.twimg.com/media/Cvi3xACWAAAqFoW.jpg")
+
+
+
+    /*
         var Server = message.guild;
         var Channel = message.channel;
         var Author = message.author;
@@ -60,7 +67,7 @@ var init = function (message, userDB, DB) {
 
 
                 })
-                                                 }
+                                        */         }
 
                  module.exports = {
                     pub:true,

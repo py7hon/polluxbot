@@ -9,8 +9,7 @@
 /npm-debug.log
 /config.js
 /core/masterreactions.json
-*.jpg
-*.png
+
 /undefined
 /.gitignore
 / ./node_modules

@@ -59,14 +59,15 @@ var ram = parseFloat(Math.round(os.totalmem()) / 1000)-parseFloat(Math.round(os.
 
 a = gear.randomize(2,4)
     emb.setAuthor('Pollux Statistics',bot.user.avatarURL,'https://pollux.LucasFlicky.com/')
-   // emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/'+a+'.gif?raw=true')
+//   emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/'+a+'.gif?raw=true')
 
 
   //emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/display.png")
   // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
     //emb.description = "Os Top-5 mais rubificadoss do server"
 
-      emb.addField(':hash:   Channels',"```"+(bot.channels.size+8e2)+"```", true)
+      emb.addField(':hash:   Channels ',"```"+(bot.channels.size+8e2)+"```", true)
+   //   emb.addField(':hash:   Voice Channels',"```"+()+"```", true)
       emb.addField(':cityscape:   Servers',"```"+(bot.guilds.size+313)+"```", true)
       emb.addField(':busts_in_silhouette:   Users',"```"+(bot.users.size+5e3)+"```", true)
       emb.addField(':satellite_orbital:   Ping',"```"+parseFloat(Math.round(bot.ping * 100) / 100).toFixed(0)+'ms'+"```", true)
@@ -79,7 +80,7 @@ a = gear.randomize(2,4)
  emb.addField('Invite','http://goo.gl/qkGqqU', true)
  emb.addField('Commands','http://pollux.lucasflicky.com/commands', true)
  emb.addField('Support Server','https://discord.gg/ay48h7Q', true)
-  emb.setFooter("Heart kept beating by 2x "+os.cpus()[0].model,url)
+  emb.setFooter(bot.guilds.size+": Heart kept beating by 2x "+os.cpus()[0].model,url)
 
 
 

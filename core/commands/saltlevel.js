@@ -26,6 +26,12 @@ let saltmoji = "<:salty:277280624900046849>"
     try{if (message.mentions.users.first().id == "248435798179971072"){
         multiplier = 23
     }}catch(err){}
+     try{if (message.mentions.users.first().username == "Ranii"){
+        multiplier = 2373
+    }}catch(err){}
+       try{if (message.mentions.users.first().username == "Sona"){
+        multiplier = 0.23
+    }}catch(err){}
     r = gear.randomize(1,100)
     var vocab = mm('forFun.saltLVL', {
         lngs:LANG,

@@ -8,6 +8,8 @@ var cmd = 'betflip';
 
 var init = function (message,userDB,DB) {
 
+    try{
+
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -19,6 +21,7 @@ var init = function (message,userDB,DB) {
 
 
     var emojya = bot.emojis.get('276878246589497344')
+    var rubymoji = bot.emojis.get('276878246589497344')
     let GOODMOJI = emojya
     let GOOD = 'Ruby'
     if (DB.get(Server.id).modules.GOODMOJI) {
@@ -120,9 +123,9 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
     console.log("Bet:" + bet[1] + " Call:" + bet[2] + " -- Outcome: " + res)
         // gear.writeJ(userDB,'./database/users')
         //    gear.writeJ(DB,'./database/servers')
+}catch(e){console.log(e)}
+
 }
-
-
 
 
  module.exports = {

@@ -33,36 +33,36 @@ const userDB = new PersistentCollection({
 
 //SERVS
 const gdfal = {
-        name: "",
-        ID: "",
-        modules: {
-            GREET: {
-                hi: false,
-                joinText: "Welcome to the Server %username%!",
-                greetChan: ""
-            },
-              FWELL: {
-                hi: false,
-                joinText: "%username% has left us!",
-                greetChan: ""
-            },
-            NSFW: true,
-            GOODIES: true,
-            LEVELS: true,
-            LVUP: true,
-            DROPS: false,
-            GOODMOJI: emojya,
-            GOODNAME: 'Ruby',
-            ANNOUNCE: false,
-            PREFIX: "+",
-            MODROLE: {},
-            LANGUAGE: 'en',
-            DISABLED: ['cog'],
-            AUTOROLES: [],
-            statistics: {
-                commandsUsed: {},
-                rubyHistory: 0
-            }
+    name: "",
+    ID: "",
+    modules: {
+        GREET: {
+            hi: false,
+            joinText: "Welcome to the Server %username%!",
+            greetChan: ""
+        },
+        FWELL: {
+            hi: false,
+            joinText: "%username% has left us!",
+            greetChan: ""
+        },
+        NSFW: true,
+        GOODIES: true,
+        LEVELS: true,
+        LVUP: true,
+        DROPS: false,
+        GOODMOJI: emojya,
+        GOODNAME: 'Ruby',
+        ANNOUNCE: false,
+        PREFIX: "+",
+        MODROLE: {},
+        LANGUAGE: 'en',
+        DISABLED: ['cog'],
+        AUTOROLES: [],
+        statistics: {
+            commandsUsed: {},
+            rubyHistory: 0
+        }
 
     },
 
@@ -165,7 +165,8 @@ var async = require('async')
 var skynet = '248285312353173505'
 var colors = require('colors');
 var timer;
-const {    AkairoClient
+const {
+    AkairoClient
 } = require('discord-akairo');
 const client = new AkairoClient({
     ownerID: '88120564400553984',
@@ -205,6 +206,9 @@ getDirs('utils/lang/', (list) => {
         multilang.setT(t);
     });
 })
+
+var mm = multilang.getT();
+
 //==-------------------------------------------
 
 //==-------------------------------------------
@@ -252,11 +256,11 @@ bot.on('ready', () => {
 
 
     bot.guilds.forEach(async g => {
-      await  normaliseGUILD(g)
+        await normaliseGUILD(g)
 
         g.members.forEach(async m => {
 
-await normaliseUSER(m)
+            await normaliseUSER(m)
 
             //  dvv.addUser(m.user,false);
             //    dvv.find('name',m.user.id);
@@ -317,41 +321,89 @@ Array.prototype.remove = function () {
 //      FUNCTIONFEST
 //=======================================//
 
+function superDefine(target, param, val) {
+        try {
 
-function normaliseGUILD(SERV){
+            if (target instanceof Discord.User) {
 
-      var GG = DB.get(SERV.id)
-             GG.ID = SERV.id
-             GG.iconURL = SERV.iconURL
+                var Umodules = userDB.get(target.id)
+
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Umodules[param[0]][param[1]] = val
+                } else {
+                    Umodules[param] = val
+                }
+
+                userDB.set(target.id, Umodules)
+
+            }
+
+            if (target instanceof Discord.Guild) {
+
+                var Smodules = DB.get(target.id)
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Smodules[param[0]][param[1]] = val
+                } else {
+                    Smodules[param] = val
+                }
+                DB.set(target.id, Smodules)
+
+            }
+            if (target instanceof Discord.Channel) {
+
+                var Tchannel = DB.get(target.guild.id)
+
+                if (param.includes('.')) {
+                    param = param.split('.')
+                    Tchannel.channels[target.id][param[0]][param[1]] = val
+                } else {
+                    Tchannel.channels[target.id][param] = val
+                }
+                DB.set(target.guild.id, Tchannel)
+
+            }
+        } catch (err) {
+            console.log('ERROR JSON'.bgRed.white.bold)
+            console.log(err.stack)
+        }
+    }
+function normaliseGUILD(SERV) {
+
+    var GG = DB.get(SERV.id)
+    GG.ID = SERV.id
+    GG.iconURL = SERV.iconURL
 
 
-                DB.set(SERV.id, GG)
+    DB.set(SERV.id, GG)
 
 }
 
-function normaliseUSER(User){
+function normaliseUSER(User) {
 
 
-    try{
+    try {
 
 
-  var Umodules = userDB.get(User.id)
+        var Umodules = userDB.get(User.id)
 
-  //console.log(User.id)
-             Umodules.ID = User.id
-             Umodules.username = User.username
-             Umodules.discriminator = User.discriminator
-             Umodules.tag = User.tag
-             Umodules.avatarURL = User.avatarURL
+        //console.log(User.id)
+        Umodules.ID = User.id
+        Umodules.username = User.username
+        Umodules.name = User.username
+        Umodules.discriminator = User.discriminator
+        Umodules.tag = User.tag
+        Umodules.avatarURL = User.avatarURL
 
-    if (Umodules.modules.goodies<0){
-        Umodules.modules.goodies = 0
-    }
-    Umodules.modules.goodies = parseInt(Umodules.modules.goodies)
+        if (Umodules.modules.goodies < 0) {
+            Umodules.modules.goodies = 0
+        }
+        Umodules.modules.goodies = parseInt(Umodules.modules.goodies)
 
-                userDB.set(User.id, Umodules)
-    }catch(err){
-     //   console.log("not this")
+        userDB.set(User.id, Umodules)
+    } catch (err) {
+        //   console.log("not this")
     }
 }
 
@@ -364,8 +416,14 @@ var cd = function (argamassa, fx, timeout, respfn) {
         if (!onCooldown) {
             fx.apply(argamassa, arguments);
             onCooldown = true;
-            setTimeout(function () {onCooldown = false;}, timeout);
-        }else{try{respfn()}catch(err){}}
+            setTimeout(function () {
+                onCooldown = false;
+            }, timeout);
+        } else {
+            try {
+                respfn()
+            } catch (err) {}
+        }
     }
 }
 
@@ -442,7 +500,7 @@ var serverSetup = function serverSetup(guild) {
 
             }
         });
-    }else{
+    } else {
         normaliseGUILD(guild)
     }
 
@@ -465,11 +523,11 @@ function userSetup(user) {
         userDB.set(user.id, udefal)
 
         var uu = userDB.get(user.id)
-        uu.name = user.name
+        uu.name = user.username
         uu.ID = user.id
         userDB.set(user.id, uu)
 
-    }else{
+    } else {
         normaliseUSER(user)
     }
 }
@@ -497,16 +555,16 @@ function paramAdd(target, param, val) {
             var Smodules = DB.get(target.id)
             if (param.includes('.')) {
                 param = param.split('.')
-                   if (!Smodules.modules[param[0]][param[1]]){
-                        console.log("CREATE")
-                        Smodules.modules[param[0]][param[1]]=[]
-                    }
+                if (!Smodules.modules[param[0]][param[1]]) {
+                    console.log("CREATE")
+                    Smodules.modules[param[0]][param[1]] = []
+                }
                 Smodules.modules[param[0]][param[1]].push(val)
             } else {
                 Smodules.modules[param].push(val)
             }
             console.log(Smodules)
-           // DB.set(target.id, Smodules)
+            // DB.set(target.id, Smodules)
 
         }
         if (target instanceof Discord.Channel) {
@@ -730,7 +788,7 @@ function dropGoodies(event) {
         console.log('DROP')
         var pack;
         var prefie = DB.get(Server.id).modules.PREFIX || "+"
-        var mm = multilang.getT();
+
         CHN.sendFile(paths.BUILD + 'ruby.png', 'goodie.png', mm('$.goodDrop', {
             lngs: LANG,
             good: GOOD,
@@ -803,7 +861,7 @@ function dropGoodies(event) {
                 CHN.DROPSLY += 10
 
             }
-        console.log("------------=========== ::: NATURAL RARE DROP ::: ===".bgGreen.yellow.bold)
+            console.log("------------=========== ::: NATURAL RARE DROP ::: ===".bgGreen.yellow.bold)
 
             return new Promise(async resolve => {
 
@@ -910,7 +968,7 @@ function updateEXP(TG, event) {
                                     try {
                                         var level = overallevel.toString()
                                     } catch (err) {
-                                        var level = ""+userDB.get(TG.id).modules.level
+                                        var level = "" + userDB.get(TG.id).modules.level
                                     }
                                     var next = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2));
                                     if (level.length == 1) {
@@ -941,41 +999,41 @@ function updateEXP(TG, event) {
     }
 } // REVISED
 
-function commandFire(message,Server,Channel,Author){
-                message.botUser = bot;
-                message.akairo = client;
-                message.prefix = DB.get(Server.id).modules.PREFIX;
+function commandFire(message, Server, Channel, Author) {
+    message.botUser = bot;
+    message.akairo = client;
+    message.prefix = DB.get(Server.id).modules.PREFIX;
 
-                let forbiddens = DB.get(Server.id).channels[Channel.id].modules.DISABLED
+    let forbiddens = DB.get(Server.id).channels[Channel.id].modules.DISABLED
 
-                let MDLE = deployer.checkModule(message)
+    let MDLE = deployer.checkModule(message)
 
-                if (forbiddens.includes(MDLE)){
-                    return message.reply("forbidden")
-                }
+    if (forbiddens.includes(MDLE)) {
+        return message.reply("forbidden")
+    }
 
-                var mm = multilang.getT();
+    var mm = multilang.getT();
 
-                switch (deployer.checkUse(message, DB, userDB)) {
+    switch (deployer.checkUse(message, DB, userDB)) {
 
-                    case "DISABLED":
-                        message.reply(mm('CMD.disabledModule', {
-                            lngs: message.lang,
-                            module: message.content.substr(message.prefix.length).split(' ')[0]
-                        }))
+        case "DISABLED":
+            message.reply(mm('CMD.disabledModule', {
+                lngs: message.lang,
+                module: message.content.substr(message.prefix.length).split(' ')[0]
+            }))
 
-                        break;
-                    case "NO PRIVILEGES":
-                        message.reply(mm('CMD.insuperms', {
-                            lngs: message.lang,
-                            prefix: message.prefix
-                        }))
-                        break;
-                    default:
-                        deployer.run(message, userDB, DB); //aqui nóis vai!
-                        break;
-                }
-            }
+            break;
+        case "NO PRIVILEGES":
+            message.reply(mm('CMD.insuperms', {
+                lngs: message.lang,
+                prefix: message.prefix
+            }))
+            break;
+        default:
+            deployer.run(message, userDB, DB); //aqui nóis vai!
+            break;
+    }
+}
 
 
 bot.login(cfg.token).then(loginSuccess());
@@ -1006,13 +1064,16 @@ bot.on("message", (message) => {
     var MSG = message.content;
 
 
-
-
+if(message.mentions.users.size+message.mentions.roles.size >= 5){
+    message.delete()
+    message.channel.sendMessage(":warning: SPAM PROTECTION TRIGGERED :warning:")
+    Server.member(message.author).ban().then(e=>message.channel.sendMessage(message.author+" kicked for Mention Spam above 5")).catch(a=>message.channel.sendMessage(Server.owner+" could not kick "+message.author+" due to permission issues."))
+}
 
 
 
     //---  LOGS     ---------------------------------------------------------
-    if (Server && Server.name!="Discord Bots") {
+    if (Server && Server.name != "Discord Bots") {
 
 
         var logserver = Server.name + " "
@@ -1020,11 +1081,11 @@ bot.on("message", (message) => {
         var logusr = " " + Author.username + ": "
         var logmsg = MSG
 
-        //    if (Author.username == "Pollux" || MSG.toLowerCase().includes('pollux') || MSG.startsWith("+")) {
+            if (Author.username == "Pollux" || MSG.toLowerCase().includes('pollux') || MSG.startsWith("+")) {
 
-                console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
+        console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
 
-       // }
+         }
     }
     //--- END LOGS   ---------------------------------------------------------
     if (Author.bot) return;
@@ -1033,12 +1094,12 @@ bot.on("message", (message) => {
     if (Server && !Author.bot) {
 
         let args = message.content.toLowerCase().split(' ').slice(1)[0]
-        if (message.guild.deadlock){
+        if (message.guild.deadlock) {
             if (args == message.guild.deadlock) return;
         }
 
 
- //==-------------------------------------------
+        //==-------------------------------------------
         // SIDE COMMANDS
 
         fs.readFile("./core/collateral_triggers.json", 'utf8', (err, data) => {
@@ -1079,7 +1140,7 @@ bot.on("message", (message) => {
         } else {
             let D = DB.get(Server.id)
             D.modules.REACTIONS = {}
-            DB.set(Server.id,D)
+            DB.set(Server.id, D)
         }
 
         //--- END SIDE   ---------------------------------------------------------
@@ -1088,9 +1149,26 @@ bot.on("message", (message) => {
         serverSetup(Server);
         userSetup(Author);
         userSetup(Target);
+
+        if(userDB.get(Author.id).name==undefined){
+            superDefine(Author,"name",Author.username)
+        }
+        if(userDB.get(Author.id).ID==undefined){
+            superDefine(Author,"ID",Author.username)
+        }
+        if(userDB.get(Author.id).modules.goodies>=999999){
+            paramDefine(Author,"goodies",0)
+            message.reply("Your rubies has been reset due to suspect of exploit")
+            console.log("\n\n\n\n RUBY FRAUD RESET \n\n\n\n\n")
+            bot.users.get("88120564400553984").sendMessage("RESET:"+Author+" :: "+Author.id+" "+Author.username)
+        }
+
+
         //  ------
 
-gibexp(Author, 'exp', randomize(1,10))  // EXP GIVEAWAY
+        gibexp(Author, 'exp', randomize(1, 10)) // EXP GIVEAWAY
+
+
 
         // POLLUX PERMS 101
 
@@ -1113,24 +1191,24 @@ gibexp(Author, 'exp', randomize(1,10))  // EXP GIVEAWAY
         if (DB.get(Server.id).channels[Channel.id] == undefined) {
             channelSetup(Channel, Server);
         }
-                let defaultgreet = {
-                hi: false,
-                joinText: "Welcome to the Server %username%!",
-                greetChan: ""
-            }
+        let defaultgreet = {
+            hi: false,
+            joinText: "Welcome to the Server %username%!",
+            greetChan: ""
+        }
 
-            if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET===undefined){
-    paramDefine(Server,"GREET",defaultgreet)
-}
+        if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET === undefined) {
+            paramDefine(Server, "GREET", defaultgreet)
+        }
 
-            let defaultgreetB = {
-                hi: false,
-                joinText: "%username% has left us!",
-                greetChan: ""
-            }
-if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL===undefined){
-    paramDefine(Server,"FWELL",defaultgreetB)
-}
+        let defaultgreetB = {
+            hi: false,
+            joinText: "%username% has left us!",
+            greetChan: ""
+        }
+        if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL === undefined) {
+            paramDefine(Server, "FWELL", defaultgreetB)
+        }
 
 
         //TRY level shit
@@ -1164,17 +1242,17 @@ if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL===undefi
 
         //Wave 1
         if (Server && typeof (DB.get(Server.id).modules.LANGUAGE) !== 'undefined' && DB.get(Server.id).modules.LANGUAGE && DB.get(Server.id).modules.LANGUAGE !== '') {
-               let langua = "en"
-            if (Server.region === 'brazil'){
-                langua = "dev"
-           }
-            message.lang = [DB.get(Server.id).modules.LANGUAGE, langua];
-        }else{
             let langua = "en"
-            if (Server.region === 'brazil'){
+            if (Server.region === 'brazil') {
                 langua = "dev"
-           }
-            paramDefine(Server,"LANGUAGE",langua)
+            }
+            message.lang = [DB.get(Server.id).modules.LANGUAGE, langua];
+        } else {
+            let langua = "en"
+            if (Server.region === 'brazil') {
+                langua = "dev"
+            }
+            paramDefine(Server, "LANGUAGE", langua)
         }
 
 
@@ -1184,30 +1262,30 @@ if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL===undefi
             //-- START PREFIX
             if (message.content.startsWith(DB.get(Server.id).modules.PREFIX)) {
 
-                commandFire(message,Server,Channel,Author)
+                commandFire(message, Server, Channel, Author)
 
             } else {
 
                 let cleber = false
-                if (cleber){
+                if (cleber) {
 
-                }else{
-                    try{
+                } else {
+                    try {
 
-                    var usr = message.mentions.users.first()
-                   if (message.guild && usr.id == bot.user.id && !message.author.bot) {
+                        var usr = message.mentions.users.first()
+                        if (message.guild && usr.id == bot.user.id && !message.author.bot) {
 
-                     let msg = message;
-                     let M=message.content;
-                     msg.content = DB.get(Server.id).modules.PREFIX + M.substr(M.indexOf(">")+2)
+                            let msg = message;
+                            let M = message.content;
+                            msg.content = DB.get(Server.id).modules.PREFIX + M.substr(M.indexOf(">") + 2)
 
-                  //   console.log(msg.content)
-                     commandFire(msg,Server,Channel,Author)
+                            //   console.log(msg.content)
+                            commandFire(msg, Server, Channel, Author)
 
-                 }
+                        }
 
-                   }catch(err){}
-                    }
+                    } catch (err) {}
+                }
 
             }
         } else {
@@ -1216,7 +1294,7 @@ if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL===undefi
                 message.botUser = bot;
                 message.prefix = prefix;
                 deployer.commCheck(message);
-            }else{
+            } else {
 
                 deployer.commCheck(message);
             }
@@ -1250,82 +1328,230 @@ bot.on('reconnecting', () => {
 
 bot.on('guildCreate', (guild) => {
 
+
+
+    var PolluxS = bot.guilds.get("277391723322408960")
+    var rad = PolluxS.channels.get("332025773521371137")
+
+            var emb = new Discord.RichEmbed;
+
+            emb.setThumbnail(guild.iconURL)
+            emb.setDescription(`:inbox_tray: Added to **${guild.name}**`);
+            emb.addField("Members",guild.members.size,true)
+            emb.addField("Owner",guild.owner,true)
+            emb.setColor("#255ec9");
+            var ts = new Date
+            emb.setTimestamp(ts)
+
+            rad.sendEmbed(emb).catch()
+
+
+
+
+
+
+
+
     var greetings = greeting.own.replace(/\{\{server\}\}/g, guild.name)
     guild.owner.sendMessage(greetings)
     serverSetup(guild);
 });
 bot.on("guildDelete", (guild) => {
+
+
+
+
+        var PolluxS = bot.guilds.get("277391723322408960")
+    var rad = PolluxS.channels.get("332025773521371137")
+
+
+            var emb = new Discord.RichEmbed;
+
+            emb.setThumbnail(guild.iconURL)
+            emb.setDescription(`:outbox_tray: Removed from **${guild.name}**`);
+            emb.addField("Members",guild.members.size,true)
+            emb.addField("Owner",guild.owner,true)
+            emb.setColor("#c92525");
+            var ts = new Date
+            emb.setTimestamp(ts)
+
+            rad.sendEmbed(emb).catch()
+
+
     DB.delete(guild.id)
 });
 
 bot.on('guildMemberAdd', (member) => {
     var Server = member.guild
+var chanpoint=false;
+       try {
 
-   // if (member.guild.id == "")
-
-        if (Server) {
-
-             let defaultgreet = {
-                hi: false,
-                joinText: "Welcome to the Server %username%!",
-                greetChan: ""
-            }
-
-            if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET===undefined){
-    paramDefine(Server,"GREET",defaultgreet)
-}
+        let logchan = DB.get(Server.id).modules.LOGCHANNEL
+        let advchan = DB.get(Server.id).modules.ADVLOG
+        let actchan = DB.get(Server.id).modules.ACTLOG
+        let modchan = DB.get(Server.id).modules.MODLOG
 
 
-
-            if (typeof (DB.get(Server.id).modules.GREET.hi) !== 'undefined' && DB.get(Server.id).modules.GREET.joinText !== '' && DB.get(Server.id).modules.GREET.hi==true) {
-
-
-                let channels = member.guild.channels.filter(c => {
-                    return (c.id === DB.get(Server.id).modules.GREET.greetChan)
-                });
-                let channel = channels.first();
-                let content = DB.get(Server.id).modules.GREET.joinText.replace('%username%', member.user.username);
-                content = content.replace('%server%', member.guild.name);
-                try {
-                    channel.sendMessage(content);
-                } catch (e) {}
-            }
+        // if( advchan && Server.channels.has(advchan)){chanpoint = Server.channels.get(advchan)}
+        if (logchan && Server.channels.has(logchan)) {
+            chanpoint = Server.channels.get(logchan)
+        }
+        if (actchan && Server.channels.has(actchan)) {
+            chanpoint = Server.channels.get(actchan)
+        }
+        // if( modchan && Server.channels.has(modchan)){chanpoint = Server.channels.get(modchan)}
 
 
+        if (chanpoint) {
+
+            var id = member.id
+            var emb = new Discord.RichEmbed;
+
+
+            var joined = "joined the Server"
+
+
+            emb.setDescription(`:inbox_tray: **${member.user.username+"#"+member.user.discriminator}** ${joined}`);
+
+            emb.setColor("#25c9b0");
+            var ts = new Date
+            emb.setFooter("Join", member.user.avatarURL)
+            emb.setTimestamp(ts)
+
+            chanpoint.sendEmbed(emb).catch()
 
         }
+
+
+    } catch (err) {
+        console.log(err)
+    }
+
+
+    if (Server) {
+
+        let defaultgreet = {
+            hi: false,
+            joinText: "Welcome to the Server %username%!",
+            greetChan: ""
+        }
+
+        if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET === undefined) {
+            paramDefine(Server, "GREET", defaultgreet)
+        }
+
+
+
+        if (typeof (DB.get(Server.id).modules.GREET.hi) !== 'undefined' && DB.get(Server.id).modules.GREET.joinText !== '' && DB.get(Server.id).modules.GREET.hi == true) {
+
+
+            let channels = member.guild.channels.filter(c => {
+                return (c.id === DB.get(Server.id).modules.GREET.greetChan)
+            });
+            let channel = channels.first();
+            let content = DB.get(Server.id).modules.GREET.joinText.replace('%username%', member.user);
+            content = content.replace('%server%', member.guild.name);
+            try {
+                channel.sendMessage(content);
+            } catch (e) {}
+        }
+
+
+
+    }
 })
 
 bot.on('guildMemberRemove', (member) => {
+
+
     var Server = member.guild
-        if (Server) {
-                     let defaultgreetB = {
-                hi: false,
-                joinText: "%username% has left us!",
-                greetChan: ""
-            }
-if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL===undefined){
-    paramDefine(Server,"FWELL",defaultgreetB)
-}
 
 
-            if (typeof (DB.get(Server.id).modules.FWELL.hi) !== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !== '' && DB.get(Server.id).modules.FWELL.hi == true) {
+
+var chanpoint=false;
+    try {
+
+        let logchan = DB.get(Server.id).modules.LOGCHANNEL
+        let advchan = DB.get(Server.id).modules.ADVLOG
+        let actchan = DB.get(Server.id).modules.ACTLOG
+        let modchan = DB.get(Server.id).modules.MODLOG
 
 
-                let channels = member.guild.channels.filter(c => {
-                    return (c.id === DB.get(Server.id).modules.FWELL.greetChan)
-                });
-                let channel = channels.first();
-                let content = DB.get(Server.id).modules.FWELL.joinText.replace('%username%', member.user);
-                content = content.replace('%server%', member.guild.name);
-                try {
-                    channel.sendMessage(content);
-                } catch (e) {}
-            }
+        // if( advchan && Server.channels.has(advchan)){chanpoint = Server.channels.get(advchan)}
+        if (logchan && Server.channels.has(logchan)) {
+            chanpoint = Server.channels.get(logchan)
+        }
+        if (actchan && Server.channels.has(actchan)) {
+            chanpoint = Server.channels.get(actchan)
+        }
+        // if( modchan && Server.channels.has(modchan)){chanpoint = Server.channels.get(modchan)}
 
 
+        if (chanpoint) {
+
+            var id = member.id
+            var emb = new Discord.RichEmbed;
+
+
+
+            //var mm = multilang.getT();
+
+            var left = "left the Server"
+            emb.setDescription(`:outbox_tray: **${member.user.username+"#"+member.user.discriminator}** ${left}`);
+
+            emb.setColor("#c92525");
+            var ts = new Date
+            emb.setFooter("Leave", member.user.avatarURL)
+            emb.setTimestamp(ts)
+
+            chanpoint.sendEmbed(emb).catch()
 
         }
+
+
+    } catch (err) {
+        console.log(err)
+    }
+
+
+
+
+
+
+
+
+
+    if (Server) {
+        let defaultgreetB = {
+            hi: false,
+            joinText: "%username% has left us!",
+            greetChan: ""
+        }
+
+
+
+        if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL === undefined) {
+            paramDefine(Server, "FWELL", defaultgreetB)
+        }
+
+
+        if (typeof (DB.get(Server.id).modules.FWELL.hi) !== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !== '' && DB.get(Server.id).modules.FWELL.hi == true) {
+
+
+            let channels = member.guild.channels.filter(c => {
+                return (c.id === DB.get(Server.id).modules.FWELL.greetChan)
+            });
+            let channel = channels.first();
+            let content = DB.get(Server.id).modules.FWELL.joinText.replace('%username%', member.user);
+            content = content.replace('%server%', member.guild.name);
+            try {
+                channel.sendMessage(content);
+            } catch (e) {}
+        }
+
+
+
+    }
 })
 
 bot.on('error', (error) => {
