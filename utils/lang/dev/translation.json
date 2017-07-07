@@ -163,5 +163,11 @@
         "byeON": "Bye Message enabled in this channel!",
         "helloOFF": "Welcome Message disabled!",
         "helloON": "Welcome Message enabled in this channel!"
+    },
+    "reput": {
+        "noSelf": "Hey hey espertaralho. Você não pode dar Rep pra si mesmo!",
+        "noTarget": "Me diz pra quem vai esse +Rep, ao menos que você esteja dando Rep pro vácuo.",
+        "confirm": ":fleur_de_lis:  **{{who}}** gentilmente deu **+1Rep** para **{{target}}**. Que mimo~",
+        "cooldown": "Calmaê rapá! Você vai poder dar Rep de novo dentro de {{remaining}}"
     }
 }
