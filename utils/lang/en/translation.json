@@ -164,11 +164,10 @@
         "helloOFF": "Welcome Message disabled! That's not nice to not greet your guests. :X",
         "helloON": "Welcome Message enabled in this channel! I'll be sure that everyone receives a happy HELLO in their faces as soon as they join~ !"
     },
-    "reput":{
-        "noSelf":"Hey hey smart ass! You cannot rep yourself!",
-"noTarget":"Tell me who to +Rep, unless you're Repping the vacuum.",
-"confirm":":fleur_de_lis:  **{{who}}** has kindly added **+1Rep** to **{{target}}**. How sweet~",
-"cooldown":"Hold up dude! You can rep again in {{remaining}}. Be patient."
-
+    "reput": {
+        "noSelf": "Hey hey smart ass! You cannot rep yourself!",
+        "noTarget": "Tell me who to +Rep, unless you're Repping the vacuum.",
+        "confirm": ":fleur_de_lis:  **{{who}}** has kindly added **+1Rep** to **{{target}}**. How sweet~",
+        "cooldown": "Hold up dude! You can rep again in {{remaining}}. Be patient."
     }
 }
