@@ -89,11 +89,16 @@ gear.superDefine(Target,"ID",Target.id)
         })
 
 
+    if(userDB.get(Target.id).modules.bgID==undefined){          gear.paramDefine(Target,"bgID","0") }
+    if(userDB.get(Target.id).modules.rep==undefined){           gear.paramDefine(Target,"rep",0) }
+    if(userDB.get(Target.id).modules.bgInventory==undefined){   gear.paramDefine(Target,"bgInventory",[0]) }
+
+
     let join = message.guild.member(Target).joinedAt
     let joinstamp = `${join.getDate()}/${join.getMonth()+1}/${join.getFullYear()} - ${join.toLocaleTimeString()}`;
 
     var favcolor    = (userDB.get(Target.id).modules.favcolor || "2211EB")
-    var backgroundId    = (userDB.get(Target.id).modules.bgID || 0)
+    var backgroundId    = userDB.get(Target.id).modules.bgID
     var medals      = (userDB.get(Target.id).modules.medals || [])
     var persotex    = (userDB.get(Target.id).modules.persotext || "I have no personal text because i'm lazy as a sloth.")
     var nametag     = Target.username + "#" + Target.discriminator
@@ -111,7 +116,7 @@ gear.superDefine(Target,"ID",Target.id)
      var percent     = (((Number(exp) - Number(exptoThis)) / frameofact)*100).toFixed(0)
    // var percent     = ((Number(exptoThis) / exptoNex)*100).toFixed(0)
     var membSince   = joinstamp
-    var rep         = (userDB.get(Target.id).modules.rep || 0)
+    var rep         = userDB.get(Target.id).modules.rep
     var propic      = (Target.avatarURL || Target.defaultAvatarURL)
     rep = rep.toString()
 

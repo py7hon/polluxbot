@@ -1,5 +1,5 @@
  String.prototype.toHHMMSS = function () {
-     var sec_num = parseInt(this, 10); // don't forget the second param
+     var sec_num = parseInt(this, 10);
      var hours = Math.floor(sec_num / 3600);
      var days = Math.floor(hours / 24);
 
@@ -27,7 +27,7 @@
 
  var cmd = 'rep';
 
- var init = function (message,userDB,DB) {
+ var init = function (message, userDB, DB) {
      var Server = message.guild;
      var Channel = message.channel;
      var Author = message.author;
@@ -41,83 +41,71 @@
 
 
 
-
-     if(message.mentions.users.size == 0){
-         return message.reply("No one to Rep")
+     //Resolve Undefined
+     if (d == undefined) {
+         gear.paramDefine(Author, "repdaily", 0)
      }
-       if(message.mentions.users.first().id == Author.id){
-         return message.reply("Can't Rep Self")
+     if (userDB.get(Target.id).modules.rep == undefined) {
+         gear.paramDefine(message.mentions.users.first(), 'rep', 0)
      }
-
-var emoj = bot.emojis.get('276878246589497344')
-
-     let GOODMOJI = DB.get(Server.id).modules.GOODMOJI || emoj
-     let GOOD = DB.get(Server.id).modules.GOODNAME || 'Ruby'
+     //-----------
 
 
+     //AVOID SELF REP AND NO REP
 
-     // day one 1485938511477 + 86400000
-var d = userDB.get(Author.id).modules.repdaily
+     let noSelf = mm('reput.noSelf', {
+         lngs: LANG,
+         who: Author.username,
+         target: Target.username
+     })
+     let noTarget = mm('reput.noTarget', {
+         lngs: LANG,
+         who: Author.username,
+         target: Target.username
+     })
 
-if (d == undefined){gear.paramDefine(Author,"repdaily",0)}
-     const D = 1000 * 60 * 60 * 24 * 1
+     if (message.mentions.users.size == 0) {
+         return message.reply(noTarget)
+     }
+     if (message.mentions.users.first().id == Author.id) {
+         return message.reply(noSelf)
+     }
+     //------
+
 
      var now = new Date().getTime();
-     var day = 86400000
+     var day = 3000000
      var dly = userDB.get(Author.id).modules.repdaily
-  //   var streak = userDB.get(Author.id).modules.dyStreak
-  //   1486025790272
+
+
      if ((now - dly) >= day) {
-         if ((now - dly) < (day * 2)) {
-           //  gear.paramIncrement(Author, 'dyStreak', 1)
-         } else {
-            // gear.paramDefine(Author, 'dyStreak', 0)
-         }
-         var dailyGet = mm('$.dailyGet', {
+
+         let repConfirm = mm('reput.confirm', {
              lngs: LANG,
-             emoji: '',
-             goods: GOOD
+             who: Author.username,
+             target: Target.username
          })
 
+         Channel.sendMessage(repConfirm)
 
-         message.reply("+1 Rep "+message.mentions.users.first().username)
-         if (userDB.get(Target.id).modules.rep == undefined){
-             gear.paramDefine(message.mentions.users.first(), 'rep', 0)
-         }
-
-          gear.paramIncrement(message.mentions.users.first(), 'rep', 1)
-
+         gear.paramIncrement(message.mentions.users.first(), 'rep', 1)
          gear.paramDefine(Author, 'repdaily', now)
 
-         if (streak == 10) {
-             var dailyStreak = mm('$.dailyStreak', {
-                 lngs: LANG,
-                 emoji: ''
-
-             })
-
-           //  message.channel.sendMessage("streak")
-         }
-
-
-
      } else {
-         var r = day - (now - dly)
-         var remain = (r / 1000 + "").toHHMMSS();
-         var dailyNope = mm('$.dailyNope', {
+         let r = day - (now - dly)
+         let remain = (r / 1000 + "").toHHMMSS();
+         let repCooldown = mm('reput.cooldown', {
              lngs: LANG,
-             emoji: '',
              remaining: remain
          })
-         message.reply("Cooldown: "+remain)
+         Channel.sendMessage(repCooldown)
      }
-
 
 
 
  }
-  module.exports = {
-     pub:true,
+ module.exports = {
+     pub: true,
      cmd: cmd,
      perms: 3,
      init: init,
