@@ -39,10 +39,10 @@
      var args = MSG.split(' ').slice(1)[1]
      var LANG = message.lang;
 
-
+try{
 
      //Resolve Undefined
-     if (d == undefined) {
+     if (userDB.get(Author.id).modules.repdaily == undefined) {
          gear.paramDefine(Author, "repdaily", 0)
      }
      if (userDB.get(Target.id).modules.rep == undefined) {
@@ -101,7 +101,7 @@
          Channel.sendMessage(repCooldown)
      }
 
-
+}catch(e){console.log(e)}
 
  }
  module.exports = {
