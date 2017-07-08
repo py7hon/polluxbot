@@ -62,7 +62,7 @@ var LANG = message.lang;
             case 'pt-pt':
             case 'pt-eu':
             message.reply(":flag_pt: Okei, a partir de agora eu falo Português! Não é o de Portugal mas toma uma bandeirinha.");
-            gear.paramDefine(Server,'LANGUAGE','dev');
+            gear.paramDefine(Server,'LANGUAGE','pt-eu');
             break;
         case 'ru':
             message.reply(":flag_ru: Cyka Blyat this is still under development, do not use");
