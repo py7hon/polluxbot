@@ -68,7 +68,7 @@
         "kin404": "whoopsie, I think I cannot find this guy :< Isn't he already gone? Does he even exist? Ain't your imagination? YOU SURE???",
         "unperm": "For some hell of a reason I got no perms to do this. GIMME PERMS GODAMMIT",
         "jas": "Okei, just a sec...",
-        "didkik": ":boot: Kicked {{target}}'s ass away from here.",
+        "didkik": ":boot: Kicked {{target}}'s ass away from here.\n **Reason:** *{{reason}}*",
         "autoroleunAdded": "Role **{{role}}** removed from Autoroles.",
         "modroleunAdded": "Role **{{role}}** is no more a Modrole. Are you atempting a coup?",
         "noRoleHere": "This Role is not in the list. Double-check your shit, please.",
@@ -78,7 +78,9 @@
         "nosuchrole": "Um, I couldn't find this role, type its name exactly! Case-sensitive and shit.",
         "incinerate": "I've just set fire into {{amt}} Messages! If you don't like it i'll burn {{amtB}} next time.",
         "roleadCom": "Yo! Now **{{user}}** is included in the **{{group}}** group! WELCOME TO THE BOAT!",
-        "rolermCom": "Well, **{{user}}** is no longer part of the **{{group}}** group! I wonder why."
+        "rolermCom": "Well, **{{user}}** is no longer part of the **{{group}}** group! I wonder why.",
+        "kbanNone": "Tell me in whose ass i'm gonna shove this hammer, before I do it at yours!",
+        "didban": ":hammer: Banned the hell out of {{target}} from here. \n **Reason:** *{{reason}}*"
     },
     "dict": {
         "coinHeads": "heads",
@@ -93,7 +95,13 @@
         "fifth": "5th",
         "infinite": "infinite",
         "autoRolesforThis": "Self-assignable Roles for this Server",
-        "none": "None"
+        "none": "None",
+        "reason": "Reason",
+        "responsible": "Responsible",
+        "banned": "BANNED",
+        "kicked": "KICKED",
+        "wasbanned": "was **banned**",
+        "waskicked": "was **kicked**"
     },
     "profile": {
         "persotexUpdate": "Yooo. All set! Your personal text is now: \n {{pstext}} \n Use `{{prefix}}profile` to see this beautiful line on your ~~not so beautiful~~ ProfileCard. Teehee~"
