@@ -38,10 +38,10 @@ var LANG = message.lang;
     var nope        =   mm('CMD.kin404', {lngs:LANG})
     var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
     var justasec    =   mm('CMD.jas', {lngs:LANG})
-    var didban      =   mm('CMD.didban', {lngs:LANG, target:Target.username})
     var noReason      =   mm('CMD.noReason', {lngs:LANG, target:Target.username})
 
    if (reason=="") {reason = noReason };
+    var didban      =   mm('CMD.didban', {lngs:LANG, target:Target.username,reason:reason})
 
    var modPass = gear.hasPerms(Member)
 
