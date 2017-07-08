@@ -78,9 +78,13 @@
         "nosuchrole": "Hm... Não encontrei esse Cargo, digite o nome exatamente igual! Com maiúsculas e essas merdas.",
         "incinerate": "Taquei fogo em {{amt}} mensagens! Se reclamarem taco em {{amtB}}",
         "roleadCom": "Yo! Agora **{{user}}** faz parte do grupo de **{{group}}** ! BEM-VINDO À BARCA!",
+        "superRoleadCom": "Certinho. Incluí **{{user}}** no Cargo **{{group}}**!",
+        "superRolermCom": "Feito. Removi **{{user}}** do Cargo **{{group}}**!",
+        "superRoleNope": "**{{user}}** não faz parte do Cargo **{{group}}**!",
         "rolermCom": "Bom, **{{user}}** não faz mais parte do grupo de **{{group}}** ! Me pergunto por quê.",
-        "kbanNone": "tu precisa me dizer no cu de quem eu vou enfiar esse martelo. Antes que euenfie no teu!",
-        "didban": ":hammer: Botei {{target}} pra fora daqui na base da marretada. \n Motivo:{{reason}}"
+        "kbanNone": "tu precisa me dizer no cu de quem eu vou enfiar esse martelo. Antes que euenfie no teu!"
+        ,"didban": ":hammer: Botei {{target}} pra fora daqui na base da marretada. \n Motivo:{{reason}}"
+
     },
     "dict": {
         "coinHeads": "cara",

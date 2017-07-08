@@ -54,15 +54,19 @@ var LANG = message.lang;
             message.reply(":flag_us: Alright, I will now speak English!");
             gear.paramDefine(Server,'LANGUAGE','en');
             break;
+         case 'pt-br':
+                  message.reply(":flag_br: Okei, a partir de agora eu falo Português! Bandeira do Brasil porque ninguém liga pra Portugal.");
+            gear.paramDefine(Server,'LANGUAGE','dev');
+            break;
          case 'pt':
          case 'portuguese':
-            message.reply(":flag_br: Okei, a partir de agora eu falo Português! Bandeira do Brasil porque ninguém liga pra Portugal.");
+            message.reply(":flag_br: Okei, a partir de agora eu falo Português! Bandeira do Brasil é mais falado que o Portugal. ¯\\_(ツ)_/¯ \n *para Português-Europeu use:* `+speak pt-eu`");
             gear.paramDefine(Server,'LANGUAGE','dev');
             break;
             case 'pt-pt':
             case 'pt-eu':
-            message.reply(":flag_pt: Okei, a partir de agora eu falo Português! Não é o de Portugal mas toma uma bandeirinha.");
-            gear.paramDefine(Server,'LANGUAGE','pt-eu');
+            message.reply(":flag_pt: Ok, a partir de agora falo português, o legítimo, porque ninguém quer saber do Brasil. ¯\\_(ツ)_/¯ ");
+            gear.paramDefine(Server,'LANGUAGE','pt');
             break;
         case 'ru':
             message.reply(":flag_ru: Cyka Blyat this is still under development, do not use");

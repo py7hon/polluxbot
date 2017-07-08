@@ -1,150 +1,181 @@
- {
-     "$": {
-         "insuFloor": "Você não tem {{goods}}s suficientes. Você precisa pelo menos **{{number}}** {{emoji}}"
-         , "insuBet": "Aposte pelo menos {{number}}"
-         , "noFunds": " cê não tá com essa bola toda não... Você só tem {{number}} {{goods}}(s)"
-         , "coinVictory": "Yay! {{result}}! Você ganhou **{{prize}}** {{emoji}}"
-         , "coinDefeat": "Putz, {{result}}! Você perdeu..."
-         , "dailyGet": "{{emoji}} Você recebeu 100 {{goods}}s de bônus diário~"
-         , "dailyNope": "{{emoji}} Você já pegou o seu bônus diário, ele estará disponível novamente em: **{{remaining}}**"
-         , "dailyStreak": "{{emoji}} Você recebeu mais 500 {{goods}}s por coletar 10 dias seguidos!"
-         , "noFundsGeneric": "você não tem {{goods}}s suficientes"
-         , "giveGoods": "{{author}} deu **{{donate}}** {{goods}}s para **{{target}}** !"
-         , "hasAmount": "{{target}} tem {{goods}} {{goodname}}s."
-         , "youAmount": "Você tem {{goods}} {{goodname}}(s). {{comment}}"
-         , "cash10": "Você é um pleb pé rapado"
-         , "cash100": "Você tá bem ok"
-         , "cash500": "Você tá bem na fita"
-         , "cash1000": "Você é semi-rico"
-         , "cash5000": "Você é RYCAAAA"
-         , "cash10000": "Você é um fuckin magnata"
-         , "cashInfinite": "Você é um cheater"
-         , "goodDrop": "OLHA GENTE! Um {{good}} {{emoji}}! quem digitar `{{prefix}}pick` primeiro leva!"
-         , "rareDrop": "EITA PORRA! Um baú cheio de {{good}}s {{emoji}}! quem digitar `{{prefix}}pick` primeiro leva TUDO!"
-         , "userDrop": "{{user}} largou um {{good}} {{emoji}} na sala! quem digitar `{{prefix}}pick` primeiro leva!"
-         , "cantDrop": "Você não tem {{goods}} pra dropar..."
-         , "pick": "{{user}} pegou **{{count}}** {{good}}(s) {{emoji}}!"
-         , "earnings": "Ganhos"
-         , "expenses": "Gastos"
-         , "lewdery": "Putaria"
-         , "gambling": "Jogatina"
-         , "trades": "Trades"
-         , "drops": "Drops"
-         , "balance": "Balanço"
-         , "total": "Total"
-     }
-     , "forFun": {
-         "saltLVL": "O nível de sal de {{target}} é de **{{amount}}%** {{emoji}}"
-         , "booru404": "Não achei nada com essas tags"
-         , "nsfw404": "Teus pornô são tão bizarros que nem achei saporra"
-         , "nsfwNope": ":no_entry_sign: Comandos NSFW não são permitidos neste Canal"
-         , "nsfwNofunds": "você não tem {{goods}}s suficientes para comprar putaria. Você precisa pelo menos **5**"
-         , "nsfwCheckout": "Foram debitados 5 {{emoji}} de sua conta."
-         , "airwaifu": ":airplane: Aerowaifu do Dia."
-         , "leadUnap": "Se você não aparece aqui, digite `{{prefix}}profile` para ver seu Level"
-     }
-     , "misc": {
-         "memberSince": "{{target}} é membro desde: {{joinedstamp}}"
-         , "aviOK": "Okei, troquei minha foto por essa daqui:"
-     }
-     , "CMD": {
-         "incorrectUsage": "Comando incorreto, use {{usage}}. Exemplo: {{example}}"
-         , "disabledModule": ":no_entry_sign: O módulo {{module}} foi desabilitado aqui."
-         , "genericInvalid": "Ordem inválida"
-         , "prefixChng": "Mudei o prefixo dos meus comandos para {{prefix}}, experimente `{{prefix}}stats` para testar."
-         , "moderationNeeded": "Apenas Moderadores podem executar este comando. Configure um Cargo de Moderação usando `{{prefix}}modrole [Cargo]`"
-         , "noDM": "Não usável em DM"
-         , "chooseAmod": "Selecione um módulo"
-         , "disabledSer": "O módulo {{module}} foi desabilitado Globalmente"
-         , "disabledChn": "O módulo {{module}} foi desabilitado no canal #{{channel}}"
-         , "disabledComSer": "O comando {{command}} foi desabilitado Globalmente"
-         , "disabledComChn": "O comando {{command}} foi desabilitado no canal #{{channel}}"
-         , "enabledSer": "O módulo {{module}} foi habilitado Globalmente"
-         , "enabledChn": "O módulo {{module}} foi habilitado no canal #{{channel}}"
-         , "enabledComSer": "O comando {{command}} foi habilitado Globalmente"
-         , "enabledComChn": "O comando {{command}} foi habilitado no canal #{{channel}}"
-         , "kikNone": "tu precisa me dizer de quem eu vou chutar a bunda"
-         , "kik404": "deu ruim, não achei esse maluco"
-         , "unperm": "Por algum raio de razão eu não posso kickar esse cara. MIMDÁ PERMISSÃO"
-         , "jas": "Ok, me dá um segundo..."
-         , "didkik": ":boot: Meti um pé na bunda de {{target}}."
-     }
-     , "dict": {
-         "coinHeads": "cara"
-         , "coinTails": "coroa"
-         , "qnt": "quantidade"
-         , "res": "resultado"
-         , "announce": ":mega: Anúncio"
-         , "first": "1st"
-         , "second": "2nd"
-         , "third": "3rd"
-         , "fourth": "4th"
-         , "fifth": "5th"
-         , "infinite": "infinite"
-     }
-     , "profile": {
-         "persotexUpdate": "Seu texto pessoal mudou para: \n {{pstext}} \n Digite `{{prefix}}profile` para visualizar ele em seu ProfileCard."
-     }
-     , "builds": {
-         "memberSince": "Membro Desde:"
-         , "level": "Level:"
-         , "levelUp": "Level Up!"
-         , "genProf": "Gerando ProfileCard..."
-     }
-     , "help": {
-         "checkYeDM": "Te enviei uns lance em pvt, dá um zóio."
-         , "availableComms": "Comandos Disponíves"
-         , "airwaifu": "Waifus aeroplanares"
-         , "announce": "Anuncia uma mensagem no canal #general do Server"
-         , "balance": "Seu extrato bancário de goodies gastos"
-         , "disable": "Desabilita módulos ou Comandos"
-         , "drop": "Larga um goodie no canal para alguem pegar"
-         , "enable": "Habilita módulos ou Comandos"
-         , "flip": "Cara ou Coroa, é isso aí."
-         , "give": "Faz uma doação de X goodies para @fulaninho"
-         , "joined": "Retorna a data e o momento em que você ou @fulaninho entrou no Server"
-         , "kick": "Expulsa @fulaninho"
-         , "level": "Retorna o seu Nível ou de @fulaninho"
-         , "personalTxt": "Define um texto pessoal para o seu Profile Card"
-         , "pick": "Junta goodies jogados na sala"
-         , "prefixSet": "Define um novo Prefixo para os meus comandos."
-         , "profile": "Mostra o Profilecard seu ou de @fulaninho"
-         , "rank": "Ranking do **SERVER** em ordem de EXP"
-         , "cash": "Sua quantidade atual de goodies"
-         , "stats": "Informação chata e aleatória de robô"
-         , "switch": "Troca minha foto"
-         , "joinSupp": "Entre no Server de Suporte"
-         , "invite": "Me convide para participar do seu Server~"
-         , "disableNuisance": "Desabilite eventos automáticos:\n Drop de Goodies/Rubys: {{prefix}}disable DROPS \n Imagens de Level Up: {{prefix}}disable LVUP"
-         , "cashrank": "Ranking **GLOBAL** de {{good}}s. Alternativamente `{{prefix}}{{good}}`"
-         , "cashrank": "Ranking **GLOBAL** de {{good}}s. Alternativamente `{{prefix}}{{good}}`"
-        ,"daily":"{{good}}s de graça todo dia."
-        ,"help":"Você provavelmente sabe o que isso faz"
-        ,"rule34":"Busca uns Hentai por aí"
-        ,"safe":"Imagens bonitas do Safebooru"
-        ,"ping":"Pong"
-        ,"speak or lang":"Trocar o idioma, atualmente suportando: `{{langs}}`"
-        ,"betflip":"Aposte {{good}}s virando uma moeda"
-     }
-     ,"menu": {
-         "cake": "Bolo"
-         ,"tart": "Torta"
-         ,"coffee": "Café"
-         ,"donut": "Donut"
-         ,"donut2": "Rosca"
-         ,"eggplant": "Berinjela"
-         ,"custard": "Pudim"
-         ,"goaway": "Eu vou dar uma volta enquanto tu te decide, qualquer coisa só chamar~"
-           ,"chargeA": "Ive charged {{total}} "
-         ,"chargeB": " from your account. I'll be back in a minute with yout order!"
-     }
-       ,"nuke":{
-        "confirm" : " :radioactive: **__Isto irá resetar todas configurações específicas do Server, incluindo:__**\n```\n -Prefixo\n -ModRoles (Cargos de Moderação)\n -Comandos e Módulos Habilitados/Desabilitados\n -Drops de Rubys vão mudar para OFF\n -Mensagens de LevelUp vão mudar para ON\n -Reactions customizadas vão ser apagadas \n```\n -Este nuke será notificado no Server de Suporte\n -Você não poderá usar o comando nuke por 48 hours em caso de uso indevido. Recorrência ira bloquear o comando no Server.\n\n\n **Realmente quer que eu mande nukes?**\n Envie **ok** para sim, **c** para cancelar."
-         ,"confirmB" : "**Escreva a razão do Nuke para confirmar**\n Envie **c** para cancelar."
-         ,"start" : ":radioactive: **NUKE EM ANDAMENTO** :radioactive: "
-         ,"cancel" : "Nuke Abortado!"
-         ,"timeout" : "Nuke Timeout! Nada foi alterado"
-         ,"completed" : "Informações e definições do Server resetadas. Teste o comando **+ping**"
-     }
-
- }
+{
+    "$": {
+        "insuFloor": "Tu não tens Rubys suficientes. Precisas de pelo menos **{{number}}** {{emoji}}",
+        "insuBet": "Aposta pelo menos {{number}}",
+        "noFunds": "Eu acho que não tens dinheiro para esta aposta... Tu tens {{number}} Rubys",
+        "coinVictory": "Boa! {{result}}! Tu gahaste **{{prize}}** Rubys {{emoji}}",
+        "coinDefeat": "Oops, {{result}}! Perdeste...",
+        "dailyGet": "{{emoji}} Recebeste 100 Rubys do teu bónus diário~",
+        "dailyNope": "{{emoji}} Ei! Tu já resgataste o teu bónus diário, tempo restante para o próximo: **{{remaining}}**",
+        "dailyStreak": "{{emoji}} Tu ganhaste mais 500 rubys por os coletares 10 dias seguidos!",
+        "noFundsGeneric": "Rubys insuficientes",
+        "giveGoods": "{{author}} deu **{{donate}}** Rubys a **{{target}}** !",
+        "hasAmount": "{{target}} tem {{goods}} Rubys.",
+        "youAmount": "Tu tens {{goods}} Rubys. {{comment}}",
+        "cash10": "És uma porra dum plebeu.",
+        "cash100": "Estás OK na vida.",
+        "cash500": "Estás na boa.",
+        "cash1000": "És semi-rico",
+        "cash5000": "És super RICO",
+        "cash10000": "Roubaste um banco?",
+        "cashInfinite": "És um cheater do caralho",
+        "goodDrop": "Pessoal! Um Ruby {{emoji}} está no chão! Quem escrever `{{prefix}}pick` primeiro fica com ele!",
+        "rareDrop": "CUM CARALHO! Um baú inteiro de Rubys {{emoji}}! Escreve `{{prefix}}pick` e leva TUDO!",
+        "userDrop": "{{user}} deixou cair **{{amt}}x** Rubys {{emoji}} no canal! Escreve `{{prefix}}pick` e leva!",
+        "cantDrop": "Acho que não tens Rubys para deixares cair...",
+        "pick": "{{user}} apanhou **{{count}}** Rubys!",
+        "earnings": "Ganhos",
+        "expenses": "Despesas",
+        "lewdery": "Lewderia",
+        "gambling": "Apostas",
+        "trades": "Trocas",
+        "drops": "Drops",
+        "balance": "Dinheiro",
+        "total": "Total"
+    },
+    "forFun": {
+        "saltLVL": "O nível de sal de {{target}} é **{{amount}}%** {{emoji}}",
+        "booru404": "Oops, não encontrei nada com essas tags. Vê se tu tens tudo certo, querido!",
+        "nsfw404": "Puto, o teu porno é tão bizarro que eu não encontrei isso em lado nenhum. Tenta algo menos estranho",
+        "nsfwNope": ":no_entry_sign: Comandos NSFW não são permitidos aqui, querido! Pede ao Admin por permissões!",
+        "nsfwNofunds": "Não tens Rubys para comprar coisas marotas. Dá-me **5**Rubys e depois falamos. Ganha Rubys com `{{prefix}}daily`",
+        "nsfwCheckout": "5 {{emoji}} foram debitados dos teus fundos.",
+        "airwaifu": ":airplane: Esta Aerowaifu foi cuidadosamente escolhida por ti.",
+        "leadUnap": "Se não te vês aqui, escreve `{{prefix}}profile` para veres o teu nível. Talvez tu és podre mesmo."
+    },
+    "misc": {
+        "memberSince": "{{target}} é um membro desde: {{joinedstamp}}",
+        "aviOK": "Oki-doki, a minha nova foto é esta. Tu podes mudar a minha foto outra vez em {{cooldown}}"
+    },
+    "CMD": {
+        "denied": "Não estás autorizado a usar isto. Este comando requer um rank elevado a {{rankNeed}}, o teu rank é {{rankMe}}. Contacta o dono do servidor ou um Mod.",
+        "incorrectUsage": "Oh, não não, não é assim que tu usas este comando, usa-o assim: {{usage}}. Ex.: {{example}}",
+        "disabledModule": ":no_entry_sign: O nosso mestre declarou {{module}} proibido aqui. Ora bolas.",
+        "genericInvalid": "Uh-oh... Comando inválido ;-;",
+        "prefixChng": "Oh well, now my prefix is {{prefix}}, try it out using `{{prefix}}stats`. ",
+        "moderationNeeded": "You can't use this command, you need either **Manage Server** perms, or set a Modrole. Set a Modrole using `{{prefix}}modrole [Role]`",
+        "noDM": "My bad, i can't respond to this command via DM",
+        "chooseAmod": "Choose a module, would you.",
+        "disabledSer": "The **{{module}}** module has been disabled **Globally**. ",
+        "disabledChn": "The {{module}} module has been disabled in the channel #{{channel}}",
+        "disabledComSer": "The **{{command}}** command has been disabled **Globally**\n",
+        "disabledComChn": "The **{{command}}** command has been disabled in the channel #{{channel}}",
+        "enabledSer": "The **{{module}}** module has been enabled **Globally**",
+        "enabledChn": "The **{{module}}** module has been enabled in the channel #{{channel}}",
+        "enabledComSer": "The **{{command}}** command has been enabled **Globally**",
+        "enabledComChn": "The **{{command}}** command   has been enabled in the channel #{{channel}}",
+        "kinNone": "first things first, tell me the name of the guy i be kickin'. Before I kick you instead.",
+        "kin404": "whoopsie, I think I cannot find this guy :< Isn't he already gone? Does he even exist? Ain't your imagination? YOU SURE???",
+        "unperm": "For some hell of a reason I got no perms to do this. GIMME PERMS GODAMMIT",
+        "jas": "Okei, just a sec...",
+        "didkik": ":boot: Kicked {{target}}'s ass away from here.\n **Reason:** *{{reason}}*",
+        "autoroleunAdded": "Role **{{role}}** removed from Autoroles.",
+        "modroleunAdded": "Role **{{role}}** is no more a Modrole. Are you atempting a coup?",
+        "noRoleHere": "This Role is not in the list. Double-check your shit, please.",
+        "noRolesGiven": "No Role was mentioned, are you doing it right?",
+        "roleAdded": "Hell yea! Role Added, everything is in place~ ! :heart:",
+        "roleAlreadyHere": "Hey, mister, this Role is already here!",
+        "nosuchrole": "Um, I couldn't find this role, type its name exactly! Case-sensitive and shit.",
+        "incinerate": "I've just set fire into {{amt}} Messages! If you don't like it i'll burn {{amtB}} next time.",
+        "roleadCom": "Yo! Now **{{user}}** is included in the **{{group}}** group! WELCOME TO THE BOAT!",
+        "rolermCom": "Well, **{{user}}** is no longer part of the **{{group}}** group! I wonder why.",
+        "kbanNone": "Tell me in whose ass i'm gonna shove this hammer, before I do it at yours!",
+        "didban": ":hammer: Banned the hell out of {{target}} from here. \n **Reason:** *{{reason}}*"
+    },
+    "dict": {
+        "coinHeads": "heads",
+        "coinTails": "tails",
+        "qnt": "quantidy",
+        "res": "result",
+        "announce": ":mega: Announcement",
+        "first": "1st",
+        "second": "2nd",
+        "third": "3rd",
+        "fourth": "4th",
+        "fifth": "5th",
+        "infinite": "infinite",
+        "autoRolesforThis": "Self-assignable Roles for this Server",
+        "none": "None",
+        "reason": "Reason",
+        "responsible": "Responsible",
+        "banned": "BANNED",
+        "kicked": "KICKED",
+        "wasbanned": "was **banned**",
+        "waskicked": "was **kicked**"
+    },
+    "profile": {
+        "persotexUpdate": "Yooo. All set! Your personal text is now: \n {{pstext}} \n Use `{{prefix}}profile` to see this beautiful line on your ~~not so beautiful~~ ProfileCard. Teehee~"
+    },
+    "builds": {
+        "memberSince": "Member since:",
+        "level": "Level:",
+        "levelUp": "Level Up!",
+        "genProf": "Hold on, generating your super duper ProfileCard thingy..."
+    },
+    "help": {
+        "checkYeDM": "Psst! I sent you some stuffz in DM, give it a look.",
+        "availableComms": "Available Commands",
+        "airwaifu": "Aeroplanatic Waifu Material",
+        "announce": "Announces something in the #general Channel (or equivalent, you get it)",
+        "balance": "Your balance of expenses and earnings of goodies. What have you been spending shit on.",
+        "disable": "Disable Modules or Commands",
+        "drop": "Drops a Ruby somewhere for someone to pick",
+        "enable": "Enables Modules or Commands",
+        "flip": "Heads or Tails, and that's it. Just don't get bankrupt, I don't work with loans.",
+        "give": "Donate X goodies to @someguy",
+        "joined": "Gives you the date that you or @someguy joined the Server",
+        "kick": "Kicks @someguy, as it says in the tin",
+        "level": "Gives your level or @someguy's level",
+        "personalTxt": "Set a personal text for your Profile Card",
+        "pick": "Loot the goods scattered by the channel",
+        "prefixSet": "Define a new prefix for my commands.",
+        "profile": "Shows your or @someguy's ProfileCard",
+        "rank": "**SERVER** Ranking by EXP",
+        "cash": "Your current funds",
+        "stats": "Robot-ish boring random info",
+        "switch": "Changes my Display Picture",
+        "joinSupp": "Join my Support Server for reporting bugs and suggesting feats",
+        "invite": "Invite me for yout server~",
+        "disableNuisance": "Disable Annoying responses:\n Goodies/Rubys: ${message.prefix}disable DROPS \n  Level Up: ${message.prefix}disable LVUP",
+        "cashrank": "**GLOBAL** {{good}}s Ranking. Alternatively `{{prefix}}{{good}}`",
+        "daily": "Free {{good}}s everyday.",
+        "help": "You probably know what this does",
+        "rule34": "Get Lewd Stuff",
+        "safe": "Cute pics from Safebooru",
+        "ping": "Pong",
+        "speak or lang": "Change the language I speak, currently Available: `{{langs}}`",
+        "betflip": "Bet {{good}}s flipping a BRL coin"
+    },
+    "menu": {
+        "cake": "Cake",
+        "tart": "Tart",
+        "coffee": "Coffee",
+        "donut": "Donut",
+        "donut2": "Doughtnut",
+        "eggplant": "Eggplant",
+        "custard": "Pudding",
+        "goaway": "Since I have stuff to do. I'm gonna look around while you decide. Call me again when you're done.",
+        "chargeA": "I've charged {{total}} ",
+        "chargeB": " from your account. I'll be back in a minute with your order! Okay~ ?"
+    },
+    "nuke": {
+        "confirm": " :radioactive: **__This will reset all server-specific settings, including:__**\n```\n -Prefix\n -ModRoles\n -Enabled/Disabled Commands and Modules\n -Drops of Rubys will be turned OFF\n -LevelUp Messages will be turned ON\n -Custom Reactions will be wiped \n -Log Channels\n```\n -This nuke will be notified in my Support Server. For everyone to see how much you fucked up. \n -You will be unable to Nuke for 48 hours if you abuse this command I decide whether you're abusing or not. Recurring abuse and I block the command at this server.\n\n\n **Do you really wish me to send nukes?** \n send **ok** for yes, **c** for cancel.",
+        "confirmB": "**Write the nuke reason below to confirm**\n Send **c** for cancel.",
+        "start": ":radioactive: **NUKING SERVER INFO** :radioactive: ",
+        "cancel": "Nuke Aborted! ",
+        "timeout": "Nuke Timed Out!",
+        "completed": "Server Info has been successfully wiped and reset. Try using **+serverinfo** to see if everything was properly reset. I'm no responsible for any afterward Nuclear Fallout contamination."
+    },
+    "greet": {
+        "byeOFF": "Bye Message disabled! Say bye to bye. Got it? \nBye...\nto **Bye**\nHahahah... haha.. oh, well, it's gone. Thank you!",
+        "byeON": "Bye Message enabled in this channel! Even though they aren't going to see it, at least I'm polite to bid farewell.",
+        "helloOFF": "Welcome Message disabled! That's not nice to not greet your guests. :X",
+        "helloON": "Welcome Message enabled in this channel! I'll be sure that everyone receives a happy HELLO in their faces as soon as they join~ !"
+    },
+    "reput": {
+        "noSelf": "Hey hey smart ass! You cannot rep yourself!",
+        "noTarget": "Tell me who to +Rep, unless you're Repping the vacuum.",
+        "confirm": ":fleur_de_lis:  **{{who}}** has kindly added **+1Rep** to **{{target}}**. How sweet~",
+        "cooldown": "Hold up dude! You can rep again in {{remaining}}. Be patient."
+    }
+}
