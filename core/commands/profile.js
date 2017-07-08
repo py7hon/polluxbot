@@ -89,11 +89,14 @@ gear.superDefine(Target,"ID",Target.id)
         })
 
 
+
+
     if(userDB.get(Target.id).modules.bgID==undefined){          gear.paramDefine(Target,"bgID","0") }
     if(userDB.get(Target.id).modules.rep==undefined){           gear.paramDefine(Target,"rep",0) }
     if(userDB.get(Target.id).modules.bgInventory==undefined){   gear.paramDefine(Target,"bgInventory",[0]) }
     if(userDB.get(Target.id).modules.medalInventory==undefined){   gear.paramDefine(Target,"medalInventory",[]) }
-    if(userDB.get(Target.id).modules.medals==undefined){   gear.paramDefine(Target,"medals",[]) }
+    if(userDB.get(Target.id).modules.medals==undefined){   gear.paramDefine(Target,"medals",[0,0,0,0,0,0,0,0]) }
+    if(userDB.get(Target.id).modules.medals.length==0){   gear.paramDefine(Target,"medals",[0,0,0,0,0,0,0,0]) }
 
 
     let join = message.guild.member(Target).joinedAt
@@ -101,7 +104,7 @@ gear.superDefine(Target,"ID",Target.id)
 
     var favcolor    = (userDB.get(Target.id).modules.favcolor || "2211EB")
     var backgroundId    = userDB.get(Target.id).modules.bgID
-    var medals      = (userDB.get(Target.id).modules.medals || [])
+    var medals      = (userDB.get(Target.id).modules.medals || [0,0,0,0,0,0,0,0])
     var persotex    = (userDB.get(Target.id).modules.persotext || "I have no personal text because i'm lazy as a sloth.")
     var nametag     = Target.username + "#" + Target.discriminator
     var nickname    = Server.member(Target).displayName
@@ -122,10 +125,7 @@ gear.superDefine(Target,"ID",Target.id)
     var propic      = (Target.avatarURL || Target.defaultAvatarURL)
     rep = rep.toString()
     var medals = userDB.get(Target.id).modules.medals
-   if(Author.username=="Flicksie"){
 
-     medals = ["burger","burger","burger","burger","burger","burger","burger","burger"]
-   }
 
     var m = `
 
@@ -148,7 +148,22 @@ rep:   ${rep}
 //    message.reply(m)
 }catch(e){console.log(e)}
 
+
+      return new Promise(async resolve => {
+
+
     var skin = userDB.get(Target.id).modules.skin
+
+   console.log(__dirname)
+    Jimp.read(paths.MEDALS+ medals[0]+'.png').then(function (md1) {
+    Jimp.read(paths.MEDALS+ medals[1]+'.png').then(function (md2) {
+    Jimp.read(paths.MEDALS+ medals[2]+'.png').then(function (md3) {
+    Jimp.read(paths.MEDALS+ medals[3]+'.png').then(function (md4) {
+    Jimp.read(paths.MEDALS+ medals[4]+'.png').then(function (md5) {
+    Jimp.read(paths.MEDALS+ medals[5]+'.png').then(function (md6) {
+    Jimp.read(paths.MEDALS+ medals[6]+'.png').then(function (md7) {
+    Jimp.read(paths.MEDALS+ medals[7]+'.png').then(function (md8) {
+
 
     Jimp.read(paths.SKINS + skin + '/mainframe.png').then(function (frame) {
     Jimp.read(paths.SKINS + skin + '/mainframe.png').then(function (frameB) {
@@ -184,7 +199,7 @@ rep:   ${rep}
           Jimp.loadFont(paths.FONTS + "product_12_grey_bold.fnt").then(function (tag) {
           Jimp.loadFont(paths.FONTS + "roboto_20_bold.fnt").then(function (name) {
           Jimp.loadFont(paths.FONTS + "visitor_18_white.fnt").then(function (rfont) {
-          Jimp.loadFont(paths.FONTS + "product_12_grey_bold.fnt").then(function (ranks) {
+          Jimp.loadFont(paths.FONTS + "product_12_grey_bold.fnt").then( async function (ranks) {
 
 
 
@@ -241,20 +256,17 @@ rep:   ${rep}
               frame.composite(reputation, 8, 30) //+25 down
               frame.composite(paasento, 60, 258) //+25 down
 
-              var displays = new Jimp(214, 25, 0x00000011,function (err, image) {});
-for(var i=0;i<8;i++){
+              var displays = new Jimp(214, 25, 0x00000000,function (err, image) {});
 
-             var image = new Jimp(25, 25, 0xff000011,function (err, image) {
-                 Jimp.read(paths.MEDALS +`${medals[i]}.png`).then(function (im) {
-              image.composite(im, 0, 0) //+25 down
+              displays.composite(md1, 0 * 27, 0) //+25 down
+              displays.composite(md2, 1 * 27, 0) //+25 down
+              displays.composite(md3, 2 * 27, 0) //+25 down
+              displays.composite(md4, 3 * 27, 0) //+25 down
+              displays.composite(md5, 4 * 27, 0) //+25 down
+              displays.composite(md6, 5 * 27, 0) //+25 down
+              displays.composite(md7, 6 * 27, 0) //+25 down
+              displays.composite(md8, 7 * 27, 0) //+25 down
 
-
-});
-});
-              displays.composite(image, i*27, 0) //+25 down
-
-
-}
 
               frame.composite(displays, 169, 245) //+25 down
 
@@ -262,6 +274,7 @@ for(var i=0;i<8;i++){
 
               frame.getBuffer(Jimp.MIME_PNG, function (err, image) {
                   message.channel.sendFile(image)
+                  return resolve(true);
               })
 
 
@@ -281,7 +294,16 @@ for(var i=0;i<8;i++){
     }).catch(e=>console.log(e))
     }).catch(e=>console.log(e))
 
+    }).catch(e=>console.log(e))
+    }).catch(e=>console.log(e))
+    }).catch(e=>console.log(e))
+    }).catch(e=>console.log(e))
+    }).catch(e=>console.log(e))
+    }).catch(e=>console.log(e))
+    }).catch(e=>console.log(e))
+    }).catch(e=>console.log(e))
 
+      })
 
     /*
 

@@ -4,7 +4,7 @@
     , GLASS: "../resources/misc/glassavi/"
     , ROUND: "../resources/misc/roundify/"
     , CARDS: "../resources/imgres/usercards/"
-    , MEDALS: "../resources/imgres/medals/"
+    , MEDALS: "./resources/imgres/medals/"
     , BUILD: "./resources/imgres/build/"
     , PROFILE: "resources/imgres/build/profile/"
     , SKINS: "resources/imgres/build/profile/skins/"
