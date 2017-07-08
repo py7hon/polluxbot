@@ -92,6 +92,8 @@ gear.superDefine(Target,"ID",Target.id)
     if(userDB.get(Target.id).modules.bgID==undefined){          gear.paramDefine(Target,"bgID","0") }
     if(userDB.get(Target.id).modules.rep==undefined){           gear.paramDefine(Target,"rep",0) }
     if(userDB.get(Target.id).modules.bgInventory==undefined){   gear.paramDefine(Target,"bgInventory",[0]) }
+    if(userDB.get(Target.id).modules.medalInventory==undefined){   gear.paramDefine(Target,"medalInventory",[]) }
+    if(userDB.get(Target.id).modules.medals==undefined){   gear.paramDefine(Target,"medals",[]) }
 
 
     let join = message.guild.member(Target).joinedAt
@@ -119,7 +121,11 @@ gear.superDefine(Target,"ID",Target.id)
     var rep         = userDB.get(Target.id).modules.rep
     var propic      = (Target.avatarURL || Target.defaultAvatarURL)
     rep = rep.toString()
+    var medals = userDB.get(Target.id).modules.medals
+   if(Author.username=="Flicksie"){
 
+     medals = ["burger","burger","burger","burger","burger","burger","burger","burger"]
+   }
 
     var m = `
 
@@ -197,7 +203,7 @@ rep:   ${rep}
               frame.print(name, 162, 138, `${nickname}`);
               frame.print(tag, 170, 168, `${nametag}`);
               var lorembox = new Jimp(220, 45, 0x00000000,function (err, image) {});
-              lorembox.print(lorem, 0, 0, `${persotex.normalize('NFD').replace(/[\u0300-\u036f]/g, "")}`,180);
+              lorembox.print(lorem, 0, 0, `${persotex}`,180);
              // kalk.contain(226, 25, Jimp.HORIZONTAL_ALIGN_LEFT);
               frame.composite(lorembox, 165, 188) //+25 down
 
@@ -235,8 +241,22 @@ rep:   ${rep}
               frame.composite(reputation, 8, 30) //+25 down
               frame.composite(paasento, 60, 258) //+25 down
 
+              var displays = new Jimp(214, 25, 0x00000011,function (err, image) {});
+for(var i=0;i<8;i++){
+
+             var image = new Jimp(25, 25, 0xff000011,function (err, image) {
+                 Jimp.read(paths.MEDALS +`${medals[i]}.png`).then(function (im) {
+              image.composite(im, 0, 0) //+25 down
 
 
+});
+});
+              displays.composite(image, i*27, 0) //+25 down
+
+
+}
+
+              frame.composite(displays, 169, 245) //+25 down
 
 
 
