@@ -64,23 +64,11 @@
         "enabledChn": "O módulo **{{module}}** foi habilitado no canal #{{channel}}",
         "enabledComSer": "O comando **{{command}}** foi habilitado **Globalmente**",
         "enabledComChn": "O comando **{{command}}** foi habilitado no canal #{{channel}}",
-
-
         "kinNone": "tu precisa me dizer de quem eu vou chutar a bunda. Antes que eu chute a sua!",
-        "kbanNone": "tu precisa me dizer no cu de quem eu vou enfiar esse martelo. Antes que euenfie no teu!",
         "kin404": "Opsie, não achei esse cara :< Ele ainda está por aqui? Ele sequer existe? Não é sua imaginação? TEM CERTEZA???",
-
-
-
         "unperm": "Por algum raio de razão eu não tenho permissões. MIMDÁ PERMISSÃO",
-
         "jas": "Ok, me dá um segundo...",
         "didkik": ":boot: Meti um pé na bunda de {{target}}. \n Motivo:{{reason}}",
-        "didban": ":hammer: Botei {{target}} pra fora daqui na base da marretada. \n Motivo:{{reason}}",
-
-
-
-
         "autoroleunAdded": "Cargo **{{role}}** removido da lista de Autoroles.",
         "modroleunAdded": "Cargo **{{role}}** removido da lista de Moderação.",
         "noRoleHere": "Este Cargo não está na lista.",
@@ -89,8 +77,10 @@
         "roleAlreadyHere": "Ei, desculpa, esse Cargo já está incluído!",
         "nosuchrole": "Hm... Não encontrei esse Cargo, digite o nome exatamente igual! Com maiúsculas e essas merdas.",
         "incinerate": "Taquei fogo em {{amt}} mensagens! Se reclamarem taco em {{amtB}}",
-        "roleadCom": "Yo! Agora **{{user}}** faz parte do grupo de **{{group}}** ! BEM-VINDO À BARCA!"
-        ,"rolermCom": "Bom, **{{user}}** não faz mais parte do grupo de **{{group}}** ! Me pergunto por quê."
+        "roleadCom": "Yo! Agora **{{user}}** faz parte do grupo de **{{group}}** ! BEM-VINDO À BARCA!",
+        "rolermCom": "Bom, **{{user}}** não faz mais parte do grupo de **{{group}}** ! Me pergunto por quê.",
+        "kbanNone": "tu precisa me dizer no cu de quem eu vou enfiar esse martelo. Antes que euenfie no teu!",
+        "didban": ":hammer: Botei {{target}} pra fora daqui na base da marretada. \n Motivo:{{reason}}"
     },
     "dict": {
         "coinHeads": "cara",
