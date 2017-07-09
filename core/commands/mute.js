@@ -20,11 +20,7 @@ var init = function (message, userDB, DB) {
 
     var LANG = message.lang;
     try {
-
-
-
         var modPass = gear.hasPerms(Member)
-
 
         if (!modPass) {
             return message.reply(mm('CMD.moderationNeeded', {
