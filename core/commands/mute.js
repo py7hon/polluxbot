@@ -37,7 +37,7 @@ var init = function (message, userDB, DB) {
 
         Target = Server.member(Target)
 
-        if (MSG.split(" ")[2] != undefined) {
+        if (MSG.split(" ")[2] != undefined && !isNaN(MSG.split(" ")[2])) {
 
             var time = Number(MSG.split(" ")[2])
             var timeTx = MSG.split(" ")[2] + " minutes."
