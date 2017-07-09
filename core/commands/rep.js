@@ -74,10 +74,14 @@ try{
 
 
      var now = new Date().getTime();
+try{
 
     if(Author.createdTimestamp < (now-360000)){
-        return (":warning:")
+        return message.reply(":warning:")
     }
+}catch(e){
+
+}
      var day = 3000000
 
 
