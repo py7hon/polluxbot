@@ -79,7 +79,7 @@
         "incinerate": "I've just set fire into {{amt}} Messages! If you don't like it i'll burn {{amtB}} next time.",
         "roleadCom": "Yo! Now **{{user}}** is included in the **{{group}}** group! WELCOME TO THE BOAT!",
         "rolermCom": "Well, **{{user}}** is no longer part of the **{{group}}** group! I wonder why.",
-        "kbanNone": "Tell me in whose ass i'm gonna shove this hammer, before I do it at yours!",
+        "banNone": "Tell me in whose ass i'm gonna shove this hammer, before I do it at yours!",
         "didban": ":hammer: Banned the hell out of {{target}} from here. \n **Reason:** *{{reason}}*"
     },
     "dict": {

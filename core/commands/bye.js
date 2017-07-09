@@ -48,10 +48,7 @@ var init = function (message, userDB, DB) {
             lngs: LANG
         }),
 
-        outTX: mm('greet.outTex', {
-            lngs: LANG,
-            outtex: output
-        }),
+
         outCX: mm('greet.outChan', {
                 lngs: LANG,
                 outtex: output
@@ -71,8 +68,14 @@ var init = function (message, userDB, DB) {
         if (args.length == 2) {
             return Channel.sendMessage(v.tellMsg);
         }
-        let offset = MSG.indexOf("msg") + 3
+
+
+        let offset = MSG.indexOf("msg") + 2
         gear.paramDefine(Server, "FWELL.joinText", MSG.substr(offset))
+         v.outTX = mm('greet.outTex', {
+            lngs: LANG,
+            wtxt: MSG.substr(offset)
+        })
         return Channel.sendMessage(v.outTX);
 
     }
@@ -80,7 +83,7 @@ var init = function (message, userDB, DB) {
         if (args.length == 2) {
             return Channel.sendMessage(v.tellChn);
         }
-        let offset = MSG.indexOf("channel") + 7
+        let offset = MSG.indexOf("channel") + 6
         gear.paramDefine(Server, "FWELL.greetChan", "")
         gear.paramDefine(Server, "FWELL.greetChan", message.channel.id)
         return Channel.sendMessage(v.outCX);

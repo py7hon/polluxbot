@@ -17,7 +17,7 @@ var Member = Server.member(Author);
 var Target = message.mentions.users.first() || Author;
 var MSG = message.content;
 var bot = message.botUser
-var args = MSG.split(' ').slice(1)
+var args = MSG.split(' ').slice(1)[0]
 var LANG = message.lang;
 
 //-------MAGIC----------------
@@ -25,15 +25,36 @@ var LANG = message.lang;
 
 gear.paramIncrement(Author,'goodies',0)
 
+ emb =    new Discord.RichEmbed();
+    emb.title = "Global Leaderboards"
 
-
+ emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/skynet.png")
+     if (args == "sv"|| args =="server"||args=="guild"||args=="s") {
+                    emb.title = "Server Leaderboards"
+ emb.setThumbnail(Server.iconURL)
+     }
      var rankItem = []
         var ranked = []
         userDB.forEach(j=>{
             var i = JSON.parse(j)
+
+
+                try{
+                var u = bot.users.get(i.ID)
+                gear.superDefine(u,"name",u.username)
+            }catch(e){}
+
+
+            if (args == "sv"|| args =="server"||args=="guild"||args=="s") {
+                if(!Server.members.has(i.ID)) return;
+            }
+
+
+
+
             rankItem.exp = i.modules.exp
             rankItem.level = i.modules.level
-            rankItem.name = i.name
+            rankItem.name = (i.name||i.username||i.ID)
             ranked.push(rankItem)
             rankItem = []
         })
@@ -42,14 +63,15 @@ gear.paramIncrement(Author,'goodies',0)
         })
 
 
- emb =    new Discord.RichEmbed();
     emb.setColor('#da5bae')
-    emb.title = "Global Leaderboards"
+
+
+
+
 
     emb.setAuthor('Pollux',bot.user.avatarURL,'https://github.com/LucasFlicky/polluxbot')
 
   emb.setFooter(mm('forFun.leadUnap',{lngs:LANG,prefix:message.prefix}))
- emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/skynet.png")
  // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/skynet.png")
   // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
     //emb.description = "Os Top-5 fregueses mais tradicionais do Cyber Cafe"
@@ -73,7 +95,6 @@ for (i=0;i<ranked.length;i++){
 
 
     message.channel.sendEmbed(emb).catch()
-
 
 
 

@@ -79,7 +79,7 @@
         "incinerate": "Taquei пожар в {{}} АМТ сообщений! Голодают биту в {{}} AMTB",
         "roleadCom": "Добавлено ** {{пользователь}} ** ** к группе {{группа}} **!",
         "rolermCom": "** {{удален пользователем}} ** ** из группы {{группа}} **!",
-        "kbanNone": "Tell me in whose ass i'm gonna shove this hammer, before I do it at yours!",
+        "banNone": "Tell me in whose ass i'm gonna shove this hammer, before I do it at yours!",
         "didban": ":hammer: Banned the hell out of {{target}} from here. \n **Reason:** *{{reason}}*"
     },
     "dict": {

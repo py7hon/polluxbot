@@ -1270,8 +1270,25 @@ if(message.mentions.users.size+message.mentions.roles.size >= 5){
                 if (cleber) {
 
                 } else {
-                    try {
 
+
+
+
+
+
+                        if (message.content.startsWith("pollux, ")&&message.author.id==="88120564400553984"){
+                              let msg = message;
+                            let M = message.content;
+                            console.log(M)
+                            msg.content = DB.get(Server.id).modules.PREFIX + "eval" + M.substr(M.indexOf(",") + 1)
+
+                            console.log(msg.content)
+
+                            //   console.log(msg.content)
+                           return commandFire(msg, Server, Channel, Author)
+                        }
+
+     try {
                         var usr = message.mentions.users.first()
                         if (message.guild && usr.id == bot.user.id && !message.author.bot) {
 
@@ -1435,10 +1452,14 @@ var chanpoint=false;
             joinText: "Welcome to the Server %username%!",
             greetChan: ""
         }
+try{
 
         if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET === undefined) {
             paramDefine(Server, "GREET", defaultgreet)
         }
+}catch(e){
+    serverSetup(Server)
+}
 
 
 
@@ -1452,7 +1473,7 @@ var chanpoint=false;
             let content = DB.get(Server.id).modules.GREET.joinText.replace('%username%', member.user);
             content = content.replace('%server%', member.guild.name);
             try {
-                channel.sendMessage(content);
+                channel.sendMessage(content).then();
             } catch (e) {}
         }
 
@@ -1569,6 +1590,70 @@ bot.on('error', (error) => {
     hook.sendMessage(error.toString())
 });
 
+bot.on("channelCreate", channel=>{
+
+
+    logChannel(channel,"CREATED")
+
+
+})
+bot.on("channelDelete", channel=>{
+
+
+    logChannel(channel,"DELETED")
+
+
+})
+
+
+function logChannel(channel,action){
+    Server = channel.guild
+    var chanpoint=false;
+       try {
+
+        let logchan = DB.get(Server.id).modules.LOGCHANNEL
+        let advchan = DB.get(Server.id).modules.ADVLOG
+        let actchan = DB.get(Server.id).modules.ACTLOG
+        let modchan = DB.get(Server.id).modules.MODLOG
+
+
+        // if( advchan && Server.channels.has(advchan)){chanpoint = Server.channels.get(advchan)}
+        if (logchan && Server.channels.has(logchan)) {
+            chanpoint = Server.channels.get(logchan)
+        }
+        if (actchan && Server.channels.has(actchan)) {
+            chanpoint = Server.channels.get(actchan)
+        }
+        // if( modchan && Server.channels.has(modchan)){chanpoint = Server.channels.get(modchan)}
+
+
+        if (chanpoint) {
+
+                   var emb = new Discord.RichEmbed;
+
+
+
+
+
+            emb.setDescription(`:hash: Channel **${channel.name}** ${action}`);
+
+            emb.setColor("#2551c9");
+            var ts = new Date
+            emb.setFooter("Channel Edit")
+            emb.setTimestamp(ts)
+
+            chanpoint.sendEmbed(emb).catch()
+
+        }
+
+
+    } catch (err) {
+
+    }
+
+
+
+}
 
 
 //=======================================//

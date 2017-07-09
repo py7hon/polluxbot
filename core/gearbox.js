@@ -23,6 +23,34 @@ Array.prototype.remove = function () {
 
 module.exports = {
 
+
+   normaliseUSER: function normaliseUSER(User) {
+
+
+    try {
+
+
+        var Umodules = userDB.get(User.id)
+
+        //console.log(User.id)
+        Umodules.ID = User.id
+        Umodules.username = User.username
+        Umodules.name = User.username
+        Umodules.discriminator = User.discriminator
+        Umodules.tag = User.tag
+        Umodules.avatarURL = User.avatarURL
+
+        if (Umodules.modules.goodies < 0) {
+            Umodules.modules.goodies = 0
+        }
+        Umodules.modules.goodies = parseInt(Umodules.modules.goodies)
+
+        userDB.set(User.id, Umodules)
+    } catch (err) {
+        //   console.log("not this")
+    }
+},
+
     randomize: function randomize(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     },

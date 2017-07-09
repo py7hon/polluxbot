@@ -90,14 +90,28 @@ gear.superDefine(Target,"ID",Target.id)
 
 
 
+if (userDB.get(Target.id).modules.bgID == undefined) {
+    gear.paramDefine(Target, "bgID", "0")
+}
+if (userDB.get(Target.id).modules.rep == undefined) {
+    gear.paramDefine(Target, "rep", 0)
+}
+if (userDB.get(Target.id).modules.bgInventory == undefined) {
+    gear.paramDefine(Target, "bgInventory", [0])
+}
+if (userDB.get(Target.id).modules.medalInventory == undefined) {
+    gear.paramDefine(Target, "medalInventory", [])
+}
+if (userDB.get(Target.id).modules.medals == undefined) {
+    gear.paramDefine(Target, "medals", [0, 0, 0, 0, 0, 0, 0, 0])
+}
+if (userDB.get(Target.id).modules.medals.length == 0) {
+    gear.paramDefine(Target, "medals", [0, 0, 0, 0, 0, 0, 0, 0])
+}
 
-    if(userDB.get(Target.id).modules.bgID==undefined){          gear.paramDefine(Target,"bgID","0") }
-    if(userDB.get(Target.id).modules.rep==undefined){           gear.paramDefine(Target,"rep",0) }
-    if(userDB.get(Target.id).modules.bgInventory==undefined){   gear.paramDefine(Target,"bgInventory",[0]) }
-    if(userDB.get(Target.id).modules.medalInventory==undefined){   gear.paramDefine(Target,"medalInventory",[]) }
-    if(userDB.get(Target.id).modules.medals==undefined){   gear.paramDefine(Target,"medals",[0,0,0,0,0,0,0,0]) }
-    if(userDB.get(Target.id).modules.medals.length==0){   gear.paramDefine(Target,"medals",[0,0,0,0,0,0,0,0]) }
-
+if (Target.bot && Target.id != "271394014358405121") {
+    gear.paramDefine(Target, "bgID", "bot")
+}
 
     let join = message.guild.member(Target).joinedAt
     let joinstamp = `${join.getDate()}/${join.getMonth()+1}/${join.getFullYear()} - ${join.toLocaleTimeString()}`;
@@ -179,15 +193,26 @@ rep:   ${rep}
           frame.composite(bg, 43,14 )
           frame.composite(frameB, 0,0 )
           frame.composite(photo, 56,73 )
+try {
+    levbar.resize(parseInt(Number(percent)), 6)
 
-        levbar.resize(parseInt(Number(percent)),6)
-          frame.composite(levbar, 54,276 )
+} catch (e) {
 
-              sidebar.color([
+    levbar.resize(100, 6)
+    levbar.color([
 
-                                            {
-                                                apply: 'mix',
-                                                params: [favcolor, 50]
+        {
+            apply: 'mix',
+            params: ["#FF0000", 50]
+                                            }])
+}
+frame.composite(levbar, 54, 276)
+
+sidebar.color([
+
+    {
+        apply: 'mix',
+        params: [favcolor, 50]
                                             }])
 
         //sidebar.normalize();
@@ -213,7 +238,7 @@ rep:   ${rep}
            //   ovlat.autocrop(false)
             //  ovlat.contain(45, 20, Jimp.HORIZONTAL_ALIGN_CENTER)
 
-              frame.composite(ovlat, 347, 20)
+              frame.composite(ovlat, 345, 20)
 
               frame.print(name, 162, 138, `${nickname}`);
               frame.print(tag, 170, 168, `${nametag}`);

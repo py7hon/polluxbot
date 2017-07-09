@@ -68,15 +68,19 @@ var input="X"
         if (args.length == 2) {
             return Channel.sendMessage(v.tellMsg);
         }
-        let offset = MSG.indexOf("msg") + 3
+        let offset = MSG.indexOf("msg") + 2
         gear.paramDefine(Server, "GREET.joinText", MSG.substr(offset))
+         v.inTX = mm('greet.inTex', {
+            lngs: LANG,
+            wtxt: MSG.substr(offset)
+        })
         return Channel.sendMessage(v.inTX);
     }
     if (args.length >= 2 && args[0] === "channel") {
         if (args.length == 2) {
             return Channel.sendMessage(v.tellChn);
         }
-        let offset = MSG.indexOf("channel") + 7
+        let offset = MSG.indexOf("channel") + 6
         gear.paramDefine(Server, "GREET.greetChan", message.mentions.channels.first().id)
         return Channel.sendMessage(v.inCX);
     }
@@ -86,11 +90,12 @@ var input="X"
     if (DB.get(Server.id).modules.GREET.hi === true) {
         gear.paramDefine(Server, "GREET.hi", false)
         gear.paramDefine(Server, "GREET.greetChan", "")
-        gear.paramDefine(Server, "GREET.greetChan", message.channel.id)
         return Channel.sendMessage(v.inOFF);
 
     } else {
         gear.paramDefine(Server, "GREET.hi", true)
+        gear.paramDefine(Server, "GREET.greetChan", "")
+        gear.paramDefine(Server, "GREET.greetChan", message.channel.id)
         return Channel.sendMessage(v.inON);
     }
 

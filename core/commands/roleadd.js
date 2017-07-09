@@ -22,6 +22,14 @@ var init = function (message, userDB, DB) {
         try {
 
 
+ var modPass = gear.hasPerms(Member)
+
+
+    if (!modPass) {
+        return message.reply(mm('CMD.moderationNeeded', {
+            lngs: LANG
+        })).catch(console.error);
+    }
 
 
             //-------MAGIC----------------
@@ -52,7 +60,7 @@ var init = function (message, userDB, DB) {
             return fR(args, Server.member(Target))
 
             function fR(role, memb) {
-                message.delete()
+                message.delete(50000)
                 var roleadd_confirm = On + mm('CMD.superRoleadCom', {
                     lngs: LANG,
                     user: memb.displayName,
@@ -61,7 +69,7 @@ var init = function (message, userDB, DB) {
                 var a = Server.roles.find('name', role);
                // message.reply(role)
                 if (a == undefined) return message.reply(rolenotfound);
-                memb.addRole(a).then(a => message.channel.sendMessage(roleadd_confirm)).then(e => e.delete(5000)).catch(e => message.channel.sendMessage(noPermsMe))
+                memb.addRole(a).then(a => message.channel.sendMessage(roleadd_confirm)).then(e => e.delete(600000)).catch(e => message.channel.sendMessage(noPermsMe))
             }
         } catch (e) {
             console.log(e)

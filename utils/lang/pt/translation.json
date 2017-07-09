@@ -79,7 +79,7 @@
         "incinerate": "Eu queimei {{amt}} messages! Se reclamarem, queimo {{amtB}} da próxima vez.",
         "roleadCom": "Boa! Agora o **{{user}}** está incluido no grupo **{{group}}**! BEM-VINDO AO BARCO!",
         "rolermCom": "Bom, o **{{user}}** já não faz parte do grupo **{{group}}**. Pergunto-me porquê.. :thinking:",
-        "kbanNone": "Diz-me no cú de quem é que eu vou enfiar este martelo, antes que eu enfie no teu!",
+        "banNone": "Diz-me no cú de quem é que eu vou enfiar este martelo, antes que eu enfie no teu!",
         "didban": ":hammer: Enfiei o BanHammer no cú de {{target}} daqui pra fora. **Razão:** *{{reason}}*"
     },
     "dict": {

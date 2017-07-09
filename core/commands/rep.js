@@ -74,7 +74,13 @@ try{
 
 
      var now = new Date().getTime();
+
+    if(Author.createdTimestamp < (now-360000)){
+        return (":warning:")
+    }
      var day = 3000000
+
+
      var dly = userDB.get(Author.id).modules.repdaily
 
 

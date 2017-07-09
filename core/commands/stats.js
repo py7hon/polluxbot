@@ -40,7 +40,7 @@ var LANG = message.lang;
 }
 
     var time = bot.uptime/1000;
-    var uptime = (time + "").toHHMMSS();
+    var uptime = (os.uptime() + "").toHHMMSS();
 
 
 

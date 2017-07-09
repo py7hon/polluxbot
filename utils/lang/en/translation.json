@@ -56,6 +56,11 @@
         "moderationNeeded": "You can't use this command, you need either **Manage Server** perms, or set a Modrole. Set a Modrole using `{{prefix}}modrole [Role]`",
         "noDM": "My bad, i can't respond to this command via DM",
         "chooseAmod": "Choose a module, would you.",
+
+        "superRoleadCom": "Alrighty. **{{user}}** received the **{{group}}** Role!",
+        "superRolermCom": "Done. **{{user}}** no longer belongs to the **{{group}}** Role!",
+        "superRoleNope": "**{{user}}** does not have the Role **{{group}}**!",
+
         "disabledSer": "The **{{module}}** module has been disabled **Globally**. ",
         "disabledChn": "The {{module}} module has been disabled in the channel #{{channel}}",
         "disabledComSer": "The **{{command}}** command has been disabled **Globally**\n",
@@ -79,7 +84,7 @@
         "incinerate": "I've just set fire into {{amt}} Messages! If you don't like it i'll burn {{amtB}} next time.",
         "roleadCom": "Yo! Now **{{user}}** is included in the **{{group}}** group! WELCOME TO THE BOAT!",
         "rolermCom": "Well, **{{user}}** is no longer part of the **{{group}}** group! I wonder why.",
-        "kbanNone": "Tell me in whose ass i'm gonna shove this hammer, before I do it at yours!",
+        "banNone": "Tell me in whose ass i'm gonna shove this hammer, before I do it at yours!",
         "didban": ":hammer: Banned the hell out of {{target}} from here. \n **Reason:** *{{reason}}*"
     },
     "dict": {
@@ -143,8 +148,14 @@
         "rule34": "Get Lewd Stuff",
         "safe": "Cute pics from Safebooru",
         "ping": "Pong",
-        "speak or lang": "Change the language I speak, currently Available: `{{langs}}`",
-        "betflip": "Bet {{good}}s flipping a BRL coin"
+        "speak or lang": "Change the language I speak, currently Available: `{{langs}}`"
+        ,"betflip": "Bet {{good}}s flipping a BRL coin"
+
+        ,"supserv": "Support Server"
+        ,"commlist": "Command List"
+        ,"inviteme": "Invite me to your server~"
+        ,"polHelp": "Pollux Help"
+        ,"helpText": "These are the basics for helping me to use you! I've also sent a DM in case you get this message out of sight!"
     },
     "menu": {
         "cake": "Cake",

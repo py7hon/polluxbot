@@ -29,6 +29,8 @@
     "discord-akairo": "^7.4.2",
     "discord.js": "^10.0.1",
     "djs-collection-persistent": "^0.1.3",
+    "google-translate": "^2.0.5",
+    "google-translate-api": "^2.3.0",
     "i18next": "^3.5.2",
     "i18next-node-fs-backend": "^0.1.3",
     "icy": "^2.1.0",

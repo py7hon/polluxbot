@@ -17,16 +17,64 @@ var bot = message.botUser
 var args = MSG.split(' ').slice(1)[1]
 var LANG = message.lang;
 
+        String.prototype.toHHMMSS = function () {
+    var sec_num = parseInt(this, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var days   = Math.floor(hours / 24);
+
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    var time    = hours+'h '+minutes+'m '+seconds+'s';
+        days > 1 ? time = days+" days " : time = time
+    return time;
+}
+
+
 //-------MAGIC----------------
+const params = MSG.split(" ").slice(1);
+var code = params.join(" ").toLowerCase();
+
+if (code.includes("minha id")){
+    return Channel.sendMessage("Sua ID é "+Author.id)
+}
+    if (code.includes("id de")){
+    return Channel.sendMessage("A ID de "+Target.username+" é "+Target.id)
+}
+        if (code.includes("sua id")){
+    return Channel.sendMessage("Minha ID é "+bot.user.id)
+}
+if (code.includes("server id")){
+    return Channel.sendMessage("A ID deste Server é "+Server.id)
+}
+    if (code.includes("channel id")){
+    return Channel.sendMessage("A ID deste Canal é "+Server.id)
+}
+        if (code.includes("canais neste")){
+    return Channel.sendMessage("Temos "+Server.channels.size+" Canais neste Server")
+}
+            if (code.includes("pessoas neste")||code.includes("usuários neste")||code.includes("membros neste")||(code.includes("membros")&&code.includes("quantos"))){
+    return Channel.sendMessage("Temos "+Server.members.size+" Pessoas neste Server")
+}
 
 
-
-
-    try{
 
 
 
   if (Author.id != '88120564400553984') return message.reply('Only my master can send me direct orders. now begone!');
+
+
+      try{
+
+                if (code.includes("suspender")){
+                    message.reply("Poi~ Suspending activities, master!")
+                    message.channel.send(":mobile_phone_off: Pollux shutting down.").then(e=>  process.exit(1))
+
+}
+
 
     if (args == "2+2"){
         return Channel.sendMessage("```Tá me achando com cara de calculadora, palhaço? ```").then(m=>{ setTimeout(c=>Channel.sendMessage("```(A propósito, são 4) ```"),1000 )})

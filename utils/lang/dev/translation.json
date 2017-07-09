@@ -82,7 +82,7 @@
         "superRolermCom": "Feito. Removi **{{user}}** do Cargo **{{group}}**!",
         "superRoleNope": "**{{user}}** não faz parte do Cargo **{{group}}**!",
         "rolermCom": "Bom, **{{user}}** não faz mais parte do grupo de **{{group}}** ! Me pergunto por quê.",
-        "kbanNone": "tu precisa me dizer no cu de quem eu vou enfiar esse martelo. Antes que euenfie no teu!"
+        "banNone": "tu precisa me dizer no cu de quem eu vou enfiar esse martelo. Antes que euenfie no teu!"
         ,"didban": ":hammer: Botei {{target}} pra fora daqui na base da marretada. \n Motivo:{{reason}}"
 
     },
@@ -147,8 +147,9 @@
         "rule34": "Busca uns Hentai por aí",
         "safe": "Imagens bonitas do Safebooru",
         "ping": "Pong",
-        "speak or lang": "Trocar o idioma, atualmente eu falo: `{{langs}}`",
-        "betflip": "Aposte {{good}}s virando uma moeda"
+        "speak or lang": "Trocar o idioma, atualmente eu falo: `{{langs}}`"
+        ,"betflip": "Aposte {{good}}s virando uma moeda"
+        ,"betflip": "Aposte {{good}}s virando uma moeda"
     },
     "menu": {
         "cake": "Bolo",
@@ -174,7 +175,11 @@
         "byeOFF": "Mensagens de despedida desabilitadas. Despeça-se das despedidas. Sacou?\nDespedir...\ndas **despedidas**\nHahuashuahus...haha..ah..oh... ok, tudo bem, tá desativado. Obrigado!",
         "byeON": "Mensagens de despedida habilitadas neste canal! Mesmo que eles não vão ver, pelo menos sou educadinha~",
         "helloOFF": "Mensagem de boas-vindas desabilitada! Não é legal não cumprimentar seus convidados... :X",
-        "helloON": "Mensagens de boas-vindas habilitadas neste canal! Vou me certificar de que todo mundo vai receber um alegre e espontâneo OLAR em suas respectivas fuças assim que entrarem~ :heart:"
+        "helloON": "Mensagens de boas-vindas habilitadas neste canal! Vou me certificar de que todo mundo vai receber um alegre e espontâneo OLAR em suas respectivas fuças assim que entrarem~ :heart:",
+        "inTex":" Mensagem de boas-vindas alterada! \n\n {{wtxt}}",
+        "outTex":" Mensagem de despedida alterada! \n\n {{wtxt}}",
+        "tellmeMSG":" Mensagem muito curta ou nenhuma mensagem identificada!",
+        "tellmeCHN":" Canal não especificado!"
     },
     "reput": {
         "noSelf": "Hey hey espertaralho. Você não pode dar Rep pra si mesmo!",
