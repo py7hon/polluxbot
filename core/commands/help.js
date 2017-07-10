@@ -13,7 +13,7 @@ var init = function (message,userDB,DB) {
 
         txt3 = `
 
-**COMMAND LIST:** http://pollux.lucasflicky.com/commands.html
+**COMMAND LIST:** http://pollux.fun/commands.html
 
 
 ${mm('help.disableNuisance', {
@@ -63,7 +63,7 @@ let useful = mm('help.useful', {lngs: LANG})
 
 
 let suplink     = "https://discord.gg/ay48h7Q"
-let commlink    = "http://pollux.lucasflicky.com/commands"
+let commlink    = "http://pollux.fun/commands"
 let invitelink  = "http://goo.gl/qkGqqU"
 
     const Discord = require("discord.js");

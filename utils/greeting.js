@@ -31,7 +31,7 @@ Anyone with **Manage Server** permissions can use Mod-Only commands except for t
 \`\`\`
 *< > are optional params*
 
-For help with commands check http://pollux.lucasflicky.com/commands`,
+For help with commands check http://pollux.fun/commands`,
    adm: `**Greetings, dear new boss!** If you're reading this is because you, or someone of trust from a server you administrate invited me to it.
 Specifically, I was added to **{{server}}**! Let me introduce myself:
 
@@ -63,7 +63,7 @@ Anyone with **Manage Server** permissions can use Mod-Only commands except for t
 \`\`\`
 *< > are optional params*
 
-For help with commands check http://pollux.lucasflicky.com/commands`
+For help with commands check http://pollux.fun/commands`
 
 
 

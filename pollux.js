@@ -1318,7 +1318,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 5){
         }
     } else {
         console.log(message.content)
-        message.reply("Sorry sweetie, don't send stuff for me here. I'll have DM support someday in the future. If you are here for help check http://pollux.lucasflicky.com/commands");
+        message.reply("Sorry sweetie, don't send stuff for me here. I'll have DM support someday in the future. If you are here for help check http://pollux.fun/commands");
         return;
     }
 })

@@ -58,7 +58,7 @@ var ram = parseFloat(Math.round(os.totalmem()) / 1000)-parseFloat(Math.round(os.
     emb.title = "---"
 
 a = gear.randomize(2,4)
-    emb.setAuthor('Pollux Statistics',bot.user.avatarURL,'https://pollux.LucasFlicky.com/')
+    emb.setAuthor('Pollux Statistics',bot.user.avatarURL,'https://pollux.fun/')
 //   emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/'+a+'.gif?raw=true')
 
 
@@ -78,7 +78,7 @@ a = gear.randomize(2,4)
 
  emb.addField('Donate',"https://patreon.com/Pollux                  '", true)
  emb.addField('Invite','http://goo.gl/qkGqqU', true)
- emb.addField('Commands','http://pollux.lucasflicky.com/commands', true)
+ emb.addField('Commands','http://pollux.fun/commands', true)
  emb.addField('Support Server','https://discord.gg/ay48h7Q', true)
   emb.setFooter(bot.guilds.size+": Heart kept beating by 2x "+os.cpus()[0].model,url)
 

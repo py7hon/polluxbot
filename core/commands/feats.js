@@ -52,14 +52,14 @@ var LANG = message.lang;
     emb.title = "Listing newly added or modified Commands and Features"
 
 a = gear.randomize(2,4)
-    emb.setAuthor('Pollux Encore',bot.user.avatarURL,'http://pollux.lucasflicky.com')
+    emb.setAuthor('Pollux Encore',bot.user.avatarURL,'http://pollux.fun')
     emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/'+a+'.gif?raw=true')
 
 
   //emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/display.png")
   // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
-    emb.description = `Invite: http://www.pollux.lucasflicky.com/invite
-Commands: http://www.pollux.lucasflicky.com/commands
+    emb.description = `Invite: http://www.pollux.fun/invite
+Commands: http://www.pollux.fun/commands
 Support: https://discord.gg/ay48h7Q
 
 
