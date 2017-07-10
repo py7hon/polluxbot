@@ -163,6 +163,16 @@ rep:   ${rep}
 }catch(e){console.log(e)}
 
 
+    if (backgroundId.length < 10){
+
+    var backgroundIMAGE = paths.BUILD + 'profile/BGS/bg_'+backgroundId+'.png'
+    }else{
+
+    var backgroundIMAGE = "http://files.pollux.fun/"+args+".png"
+    }
+
+
+
       return new Promise(async resolve => {
 
 
@@ -185,7 +195,7 @@ rep:   ${rep}
     Jimp.read(paths.SKINS + skin + '/levbar.png').then(function (levbar) {
     Jimp.read(propic).then(function (photo) {
     Jimp.read(paths.SKINS + skin + '/lenna.png').then(function (lenna) {
-    Jimp.read(paths.BUILD + 'profile/BGS/bg_'+backgroundId+'.png').then(function (bg) {
+    Jimp.read(backgroundIMAGE).then(function (bg) {
 
         photo.resize(100,100)
          photo.mask(lenna, 0, 0)
