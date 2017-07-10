@@ -1575,14 +1575,21 @@ var chanpoint=false;
     }
 })
 
-bot.on('error', (error) => {
-    if (!error) return;
+bot.on('error', (err) => {
+    if (!err    ) return;
     console.log(error.toString().red);
     hook.sendSlackMessage({
         'username': 'Pollux Core Reporter',
         'attachments': [{
             'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-            'pretext': `Minor error! Check console`,
+            'pretext': `Minor error! Check console
+
+**${err}**
+
+
+${err.stack}
+
+`,
             'color': '#ffdc49',
             'ts': Date.now() / 1000
         }]
