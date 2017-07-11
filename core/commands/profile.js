@@ -12,6 +12,7 @@ var mm = locale.getT();
 var cmd = 'profile';
 
 var init = function (message, userDB, DB) {
+    try{
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -161,16 +162,23 @@ rep:   ${rep}
 
 //    message.reply(m)
 }catch(e){console.log(e)}
+console.log("==============="+backgroundId)
+console.log("==============="+backgroundId.toString().length)
+var backgroundIMAGE = paths.BUILD + 'profile/BGS/bg_'+backgroundId+'.png'
+    if (backgroundId.toString().length < 10){
 
-
-    if (backgroundId.length < 10){
-
-    var backgroundIMAGE = paths.BUILD + 'profile/BGS/bg_'+backgroundId+'.png'
+     backgroundIMAGE = paths.BUILD + 'profile/BGS/bg_'+backgroundId+'.png'
     }else{
 
-    var backgroundIMAGE = "http://files.pollux.fun/"+args+".png"
+     backgroundIMAGE = "http://files.pollux.fun/"+backgroundId+".png"
     }
+console.log("==============="+backgroundIMAGE)
 
+
+    if(bot.guilds.get("277391723322408960").members.has(Target.id)){
+        medals.unshift("pollux")
+        medals.pop(1)
+    }
 
 
       return new Promise(async resolve => {
@@ -473,7 +481,7 @@ sidebar.color([
 
 */
 
-
+    }catch(e){console.log(e)}
 };
 module.exports = {
     pub: true,

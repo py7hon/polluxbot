@@ -144,7 +144,9 @@ const udefal = {
 
 //  DATABASE END
 //----------------------------
+var dash = require("../pollux-dash/server.js")
 
+dash.init(bot,DB,userDB)
 
 //=======================================//
 //      TOOLSET
@@ -1101,6 +1103,8 @@ if(message.mentions.users.size+message.mentions.roles.size >= 5){
 
         //==-------------------------------------------
         // SIDE COMMANDS
+try{
+
 
         fs.readFile("./core/collateral_triggers.json", 'utf8', (err, data) => {
             data = JSON.parse(data)
@@ -1116,7 +1120,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 5){
                 }
             }
         });
-
+}catch(e){}
         if (message.content.endsWith('now illegal')) {
 
             let illegal = require(`./core/sidecommands/nowillegal.js`);
@@ -1693,5 +1697,6 @@ module.exports = {
     userDB: userDB,
     DB: DB,
     serverSetup: serverSetup,
-    userSetup: serverSetup
+    userSetup: serverSetup,
+    bot:bot
 };
