@@ -16,12 +16,19 @@ var init = function (message,userDB,DB) {
     var Target = message.mentions.users.first() || Author;
     var MSG = message.content;
     var bot = message.botUser
-    var args = MSG.split(' ').slice(1)
+
+    var args = MSG.split(' ').slice(1)[0]
     var LANG = message.lang;
     //-------MAGIC----------------
 
     gear.paramIncrement(Author,'goodies',0)
       gear.paramIncrement(Author,'goodies',0)
+
+
+
+
+
+
 
 var emojya = bot.emojis.get('276878246589497344')
     let GOODMOJI = emojya
@@ -39,6 +46,9 @@ var emojya = bot.emojis.get('276878246589497344')
             var i = JSON.parse(j)
 
 
+   if (args == "sv"|| args =="server"||args=="guild"||args=="s") {
+        if(!Server.members.has(i.ID)) return;
+     }
 
        if (i.name == 'Pollux' ||i.name == undefined) {}
         else {
