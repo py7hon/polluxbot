@@ -46,9 +46,9 @@ var init = function (message, userDB, DB) {
 
     message.reply(gener).then(m => m.delete(5000))
 
-    let img = Target.defaultAvatarURL.substr(0, Target.defaultAvatarURL.length - 10)
+    let img = Target.defaultAvatarURL.substr(0, Target.defaultAvatarURL.length - 10).replace(/gif/g,"png")
     if (Target.avatarURL) {
-        img = Target.avatarURL.substr(0, Target.avatarURL.length - 10);
+        img = Target.avatarURL.substr(0, Target.avatarURL.length - 10).replace(/gif/g,"png");
     }
 
     let tgtData = userDB.get(Target.id).modules;
@@ -137,7 +137,7 @@ if (Target.bot && Target.id != "271394014358405121") {
    // var percent     = ((Number(exptoThis) / exptoNex)*100).toFixed(0)
     var membSince   = joinstamp
     var rep         = userDB.get(Target.id).modules.rep
-    var propic      = (Target.avatarURL || Target.defaultAvatarURL)
+    var propic      = (Target.avatarURL.replace(/gif/g,"png") || Target.defaultAvatarURL.replace(/gif/g,"png"))
     rep = rep.toString()
     var medals = userDB.get(Target.id).modules.medals
 
