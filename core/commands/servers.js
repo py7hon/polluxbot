@@ -92,7 +92,7 @@ for (i=0;i<ranked.length;i++){
     if (i < 5){
          console.log(ranked[i])
          console.log(medals[i])
-      emb.addField(medals[i]+" :: ID - "+ranked[i].id,"```"+ranked[i].name+"```", false)
+      emb.addField(medals[i],"```"+ranked[i].name+"``` \n  ID - "+ranked[i].id, false)
       emb.addField('Região :'+ranked[i].level,'**'+ranked[i].exp + '** Membros', true)
        var parsent =  (ranked[i].bots / ranked[i].exp)*100
       emb.addField("Bots",ranked[i].bots+" "+ff.emoji("botTag")+" ("+parsent.toFixed(2)+"%)", true)
