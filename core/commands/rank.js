@@ -67,9 +67,6 @@ gear.paramIncrement(Author,'goodies',0)
     emb.setColor('#da5bae')
 
 
-
-
-
     emb.setAuthor('Pollux',bot.user.avatarURL,'https://github.com/LucasFlicky/polluxbot')
 
   emb.setFooter(mm('forFun.leadUnap',{lngs:LANG,prefix:message.prefix}))
