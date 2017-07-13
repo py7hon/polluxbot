@@ -1,4 +1,4 @@
-var ff = require("../functionfest.js");
+
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
@@ -38,7 +38,7 @@ var init = function (message,userDB,DB) {
     }
 
 
-    var modPass = ff.hasPerms(Member,DB)
+    var modPass = gear.hasPerms(Member,DB)
 
 
     if (!modPass) {

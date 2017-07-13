@@ -8,7 +8,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 const Discord = require("discord.js");
-var ff = require("../functionfest.js");
+
 
 
 var cmd = 'gw2';
@@ -139,7 +139,7 @@ var thumb;
         emb.setColor('#9b57e0')
     emb.title = "X"
 
-//a = ff.randomize(2,4)
+//a = gear.randomize(2,4)
   //  emb.setAuthor('Pollux Statistics',bot.user.avatarURL,'https://github.com/LucasFlicky/polluxbot')
 //    emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/'+a+'.gif?raw=true')
 

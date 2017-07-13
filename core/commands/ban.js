@@ -1,4 +1,4 @@
-var ff = require("../functionfest.js");
+
 const Discord = require('discord.js');
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
@@ -44,7 +44,7 @@ var LANG = message.lang;
    if (reason=="") {reason = noReason };
     var didban      =   mm('CMD.didban', {lngs:LANG, target:Target.username,reason:reason})
 
-   var modPass = ff.hasPerms(Member,DB)
+   var modPass = gear.hasPerms(Member,DB)
 
     if (!modPass) {
         return message.reply(mm('CMD.moderationNeeded', {

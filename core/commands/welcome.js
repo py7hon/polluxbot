@@ -2,7 +2,7 @@ var paths = require("../paths.js");
 var gear = require("../gearbox.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
-var ff = require("../functionfest.js");
+
 
 var cmd = 'greet';
 
@@ -20,7 +20,7 @@ var init = function (message, userDB, DB) {
     var args = MSG.split(' ').slice(1)
     var LANG = message.lang;
 
-    var modPass = ff.hasPerms(Member,DB)
+    var modPass = gear.hasPerms(Member,DB)
 
     if (!modPass) {
         return message.reply(mm('CMD.moderationNeeded', {
@@ -36,8 +36,8 @@ var init = function (message, userDB, DB) {
 if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET===undefined){
     gear.paramDefine(Server,"GREET",defaultgreet)
 }
-   var On      = ff.emoji("check")
-var Off     = ff.emoji("xmark")
+   var On      = gear.emoji("check")
+var Off     = gear.emoji("xmark")
 
 var input="X"
     var v = {

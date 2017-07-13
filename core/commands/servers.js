@@ -1,4 +1,4 @@
-var ff = require("../functionfest.js");
+
 const Discord = require("discord.js");
 const arraySort = require('array-sort')
 const fs = require("fs");
@@ -95,7 +95,7 @@ for (i=0;i<ranked.length;i++){
       emb.addField(medals[i],"```"+ranked[i].name+"``` \n  ID - "+ranked[i].id, false)
       emb.addField('Região :'+ranked[i].level,'**'+ranked[i].exp + '** Membros', true)
        var parsent =  (ranked[i].bots / ranked[i].exp)*100
-      emb.addField("Bots",ranked[i].bots+" "+ff.emoji("botTag")+" ("+parsent.toFixed(2)+"%)", true)
+      emb.addField("Bots",ranked[i].bots+" "+gear.emoji("botTag")+" ("+parsent.toFixed(2)+"%)", true)
     }
 }
 

@@ -1,6 +1,6 @@
 var cmd = 'ahegao';
 var gear = require("../gearbox.js");
-var ff = require("../functionfest.js");
+
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
@@ -19,7 +19,7 @@ var init = function (message,userDB,DB) {
 
 
 
-    var rand = ff.randomize(1,7)
+    var rand = gear.randomize(1,7)
 
     message.channel.sendFile(paths.BUILD+"ahegao/"+rand+".jpg")
 

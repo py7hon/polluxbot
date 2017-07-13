@@ -1,4 +1,4 @@
-var ff = require("../functionfest.js");
+
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
@@ -33,7 +33,7 @@ let saltmoji = "<:salty:277280624900046849>"
        try{if (message.mentions.users.first().username == "Sona"){
         multiplier = 0.23
     }}catch(err){}
-    r = ff.randomize(1,100)
+    r = gear.randomize(1,100)
     var vocab = mm('forFun.saltLVL', {
         lngs:LANG,
         target: Target.username,

@@ -1,7 +1,7 @@
 var gear = require("../gearbox.js");
 var cmd = 'background';
 var Jimp = require("jimp")
-var ff = require("../functionfest.js");
+
 
 var init = function (message,userDB,DB) {
 
@@ -26,7 +26,7 @@ var args = message.content.split(" ").slice(1)[0]
 
     gear.paramDefine(message.author,"bgID",args)
 
- message.channel.sendMessage(ff.emoji('check')+" Background **OK**")
+ message.channel.sendMessage(gear.emoji('check')+" Background **OK**")
 
      })
 //    if (message.author.id != '88120564400553984') return message.reply('Only my master can send me direct orders. now begone!');

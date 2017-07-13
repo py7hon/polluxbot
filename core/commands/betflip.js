@@ -3,7 +3,7 @@ var gear = require("../gearbox.js");
 const fs = require("fs");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
-var ff = require("../functionfest.js");
+
 
 var cmd = 'betflip';
 
@@ -91,7 +91,7 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
     gear.paramIncrement(Author, 'goodies', -parseInt(bet[1]))
     gear.paramIncrement(Author, 'expenses.jogatina', parseInt(bet[1]))
 
-    var coin = ff.randomize(1, 2);
+    var coin = gear.randomize(1, 2);
     var res = ""
     var ros = ""
     coin == 1 ? res = coinHeads : res = coinTails;

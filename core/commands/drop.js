@@ -1,7 +1,7 @@
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
-var ff = require("../functionfest.js");
+
 var mm = locale.getT();
 
 var cmd = 'drop';
@@ -22,7 +22,7 @@ var init = function (message, userDB, DB) {
 
     var userData = userDB.get(Author.id).modules
 
-    var emojya = ff.emoji("ruby")
+    var emojya = gear.emoji("ruby")
     let GOODMOJI = emojya
     let GOOD = 'Ruby'
     if (DB.get(Server.id).modules.GOODMOJI) {

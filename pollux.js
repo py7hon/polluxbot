@@ -11,25 +11,27 @@ var bot = new Discord.Client({
 
 var cfg = require('./config.js');
 
-var ff = require("./core/functionfest.js");
+var gear = require("./core/gearbox.js");
 
 var defaults = require("./utils/defaults.js")  // Database Defaults
 
 var emojya = bot.emojis.get('276878246589497344')
 
+var DB = gear.DB
+var userDB = gear.userDB
 
 //=======================================//
 //      DATABASE
 //=======================================//
 
 
-const PersistentCollection = require('djs-collection-persistent');
-const DB = new PersistentCollection({
-    name: "DB"
-});
-const userDB = new PersistentCollection({
-    name: 'userDB'
-});
+//const PersistentCollection = require('djs-collection-persistent');
+//const DB = new PersistentCollection({
+ //   name: "DB"
+//});
+//const userDB = new PersistentCollection({
+//    name: 'userDB'
+//});
 
 //==-------------------------------------------
 // DEFAULTS
@@ -120,12 +122,12 @@ function loginSuccess() {
     let tx = `Successful Login!`;
     let color = '#49c7ff';
 
-    ff.sendSlack(name, tx, undefined, color)
+    gear.sendSlack(name, tx, undefined, color)
 
     setInterval(function () {
         var date = new Date();
         if (date.getSeconds() === 0) {
-            ff.gamechange(bot)
+            gear.gamechange(bot)
         }
     }, 1000);
 }
@@ -137,11 +139,11 @@ bot.on('ready', () => {
 
     bot.guilds.forEach(async g => {
         if (!DB.get(g.id)) return serverSetup(g);
-        await ff.normaliseGUILD(g,DB)
+        await gear.normaliseGUILD(g,DB)
 
         g.members.forEach(async m => {
             if (!userDB.get(m.id)) return userSetup(m.user);
-            await ff.normaliseUSER(m, userDB, DB)
+            await gear.normaliseUSER(m, userDB, DB)
 
         })
     })
@@ -160,7 +162,7 @@ let name = 'Pollux Core Reporter';
 let tx = `All systems go! I am ready to rock, master!`;
 let color = '#3ed844';
 
-ff.sendSlack(name, tx, undefined, color)
+gear.sendSlack(name, tx, undefined, color)
 
 });
 
@@ -334,7 +336,7 @@ var serverSetup = function serverSetup(guild) {
         });
     } else {
 
-        ff.normaliseGUILD(guild,DB)
+        gear.normaliseGUILD(guild,DB)
     }
 
 }
@@ -352,7 +354,7 @@ function userSetup(user) {
         userDB.set(user.id, uu)
 
     } else {
-        ff.normaliseUSER(user, userDB, DB)
+        gear.normaliseUSER(user, userDB, DB)
     }
 } //DB
 
@@ -610,7 +612,7 @@ bot.login(cfg.token).then(loginSuccess());
 
 // XP SPAM PROTECTION
 var gibexp = cd(console, paramIncrement, 5000);
-var plzDrop = cd(console, ff.dropGoodies, 5000);
+var plzDrop = cd(console, gear.dropGoodies, 5000);
 // ==============================================
 
 bot.on("message", (message) => {
@@ -695,7 +697,7 @@ try{
             let servdata = DB.get(Server.id).modules
             if (servdata.REACTIONS[MSG]) {
                 let max = servdata.REACTIONS[MSG].length
-                let goer = ff.randomize(0, max)
+                let goer = gear.randomize(0, max)
                 return Channel.sendMessage(servdata.REACTIONS[MSG][goer])
             }
         } else {
@@ -727,7 +729,7 @@ try{
 
         //  ------
 
-        gibexp(Author, 'exp', ff.randomize(1, 10)) // EXP GIVEAWAY
+        gibexp(Author, 'exp', gear.randomize(1, 10)) // EXP GIVEAWAY
 
 
 
@@ -743,8 +745,8 @@ try{
         5 = FORBIDDEN
         */
 
-        Author.PLXpems = ff.updatePerms(Author, Server, DB)
-        Target.PLXpems = ff.updatePerms(Target, Server, DB)
+        Author.PLXpems = gear.updatePerms(Author, Server, DB)
+        Target.PLXpems = gear.updatePerms(Target, Server, DB)
 
         // DONE WITH PERMS ---//
 
@@ -776,9 +778,9 @@ try{
         //------------------------------------------------------------
         try {
             if (DB.get(Server.id).modules && !DB.get(Server.id).modules.DISABLED.includes("level")) {
-                ff.updateEXP(Author, message, DB, userDB)
+                gear.updateEXP(Author, message, DB, userDB)
             } else if (DB.get(Server.id).modules && !DB.get(Server.id).channels[Channel.id].modules.DISABLED.includes("level")) {
-                ff.updateEXP(Author, message, DB, userDB)
+                gear.updateEXP(Author, message, DB, userDB)
             }
 
         } catch (err) {
@@ -889,7 +891,7 @@ bot.on('reconnecting', () => {
     let pretext = `SELF RESTART TRIGGERED! Gimme a second to still myself.`;
     let color = '#ffb249';
 
-    ff.sendSlack(username, pretext, undefined, color)
+    gear.sendSlack(username, pretext, undefined, color)
 
 });
 
@@ -1141,19 +1143,19 @@ ${err.stack}
 `
 let color =  '#ffdc49'
 
-ff.sendSlack(name, txb, tx, color)
+gear.sendSlack(name, txb, tx, color)
 
     hook.sendMessage(error.toString())
 });
 
 bot.on("channelCreate", channel=>{
 
-    ff.logChannel(channel,"CREATED",DB)
+    gear.logChannel(channel,"CREATED",DB)
 
 })
 bot.on("channelDelete", channel=>{
 
-    ff.logChannel(channel,"DELETED",DB)
+    gear.logChannel(channel,"DELETED",DB)
 
 })
 
@@ -1161,7 +1163,7 @@ process.on('unhandledRejection', function(reason, p){
     console.log("Possibly Unhandled Rejection at: Promise \n".red, "\n\n reason: ".red, reason.stack);
 
 
-    ff.sendSlack("Promise Breaker","Promise Rejection: "+reason,reason.stack,"#ffcd25" )
+    gear.sendSlack("Promise Breaker","Promise Rejection: "+reason,reason.stack,"#ffcd25" )
 });
 
 
@@ -1187,7 +1189,7 @@ ${err.stack}
 `
     let color = '#C04'
 
-    ff.sendSlack(name, txb, tx, color)
+    gear.sendSlack(name, txb, tx, color)
 
 });
 

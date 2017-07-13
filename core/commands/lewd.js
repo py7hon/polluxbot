@@ -1,4 +1,4 @@
-var ff = require("../functionfest.js");
+
 const fs = require("fs");
 const getter = require("booru-getter");
 var gear = require("../gearbox.js");
@@ -31,7 +31,7 @@ var init = function (message,userDB,DB) {
         return;
     }
 
-    let GOODMOJI = ff.emoji('ruby')
+    let GOODMOJI = gear.emoji('ruby')
 let GOOD = 'Ruby'
 
 if (DB.get(Server.id).modules.GOODNAME) {

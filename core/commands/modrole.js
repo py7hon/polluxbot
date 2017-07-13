@@ -1,4 +1,4 @@
-var ff = require("../functionfest.js");
+
 const Discord = require("discord.js");
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
@@ -34,7 +34,7 @@ var modPass=false
 
 try{
 
-var modPass = ff.hasPerms(Member,DB);
+var modPass = gear.hasPerms(Member,DB);
 }catch(err){console.log(err)}
 
     if (!modPass) {

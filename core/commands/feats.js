@@ -3,7 +3,7 @@ var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
-var ff = require("../functionfest.js");
+
 
 var cmd = 'stats';
 
@@ -52,7 +52,7 @@ var LANG = message.lang;
         emb.setColor('#e05757')
     emb.title = "Listing newly added or modified Commands and Features"
 
-a = ff.randomize(2,4)
+a = gear.randomize(2,4)
     emb.setAuthor('Pollux Encore',bot.user.avatarURL,'http://pollux.fun')
     emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/'+a+'.gif?raw=true')
 

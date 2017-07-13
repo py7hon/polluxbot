@@ -4,7 +4,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 var os = require('os');
-var ff = require("../functionfest.js");
+
 
 var cmd = 'stats';
 
@@ -57,7 +57,7 @@ var ram = parseFloat(Math.round(os.totalmem()) / 1000)-parseFloat(Math.round(os.
         emb.setColor('#e83774')
     emb.title = "---"
 
-a = ff.randomize(2,4)
+a = gear.randomize(2,4)
     emb.setAuthor('Pollux Statistics',bot.user.avatarURL,'https://pollux.fun/')
 //   emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/'+a+'.gif?raw=true')
 

@@ -1,4 +1,4 @@
-var ff = require("../functionfest.js");
+
 var gear = require("../gearbox.js");
 var cmd = 'emoji';
 
@@ -11,7 +11,7 @@ var init = function (message,userDB,DB) {
 var output="";
     for (i=0; i<args.length;i++){
 
-  output += ff.emoji(args[i])
+  output += gear.emoji(args[i])
 
     }
 

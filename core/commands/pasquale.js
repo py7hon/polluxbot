@@ -1,6 +1,6 @@
 var gear = require("../gearbox.js");
 var cmd = 'say';
-var ff = require("../functionfest.js");
+
 
 var init = function (message,userDB,DB) {
 
@@ -15,7 +15,7 @@ var init = function (message,userDB,DB) {
     ]
 
 
-var  pasq=imgsrc[ff.randomize(0,imgsrc.length)]
+var  pasq=imgsrc[gear.randomize(0,imgsrc.length)]
 // message.channel.sendMessage()
  message.channel.sendFile(pasq)
 

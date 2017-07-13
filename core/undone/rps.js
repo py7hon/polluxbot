@@ -1,13 +1,13 @@
 var paths = require("../paths.js");
 const fs = require("fs");
-var ff = require("../functionfest.js");
+
 var pass = 0
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     console.log("------------RPS by" + caller)
     var stuff = message.content.split(' ')
 
 
-    if (stuff.lenght < 2) {
+    if (stugear.lenght < 2) {
        var donation = 0 //return message.reply("Precisa alguém pra desafiar e uma quantia pra apostar");
     }
     //if(isNaN(parseInt(stuff[1]))){
@@ -61,7 +61,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         var me = 0
         var you = 0
         console.log(challenged.bot)
-        if (challenged.bot == true){you=ff.randomize(1,3)}
+        if (challenged.bot == true){you=gear.randomize(1,3)}
         message.channel.sendMessage("rps envie :gem: :scissors: ou :page_facing_up: por PM").then(function (msg) {
 
                 setTimeout(function () {

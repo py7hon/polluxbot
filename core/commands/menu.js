@@ -6,7 +6,7 @@ var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
-var ff = require("../functionfest.js");
+
 
 var cmd = 'menu';
 
@@ -49,7 +49,7 @@ var init = function (message, userDB, DB) {
     emb.setColor('#e0579b')
     emb.title = "MENU"
 
-    a = ff.randomize(2, 4)
+    a = gear.randomize(2, 4)
     //emb.setAuthor('Pollux Statistics',bot.user.avatarURL,'https://github.com/LucasFlicky/polluxbot')
     //emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/'+a+'.gif?raw=true')
 
@@ -246,7 +246,7 @@ OK?
 
 
 
-                    var factor = ff.randomize(10, 50)
+                    var factor = gear.randomize(10, 50)
                     message.channel.sendMessage(mm('menu.chargeA', {
                         lngs: LANG,
                         total: totale
