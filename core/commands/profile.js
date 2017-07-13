@@ -12,6 +12,8 @@ var mm = locale.getT();
 var cmd = 'profile';
 
 var init = function (message, userDB, DB) {
+      var start = Date.now();
+      message.reply(gener).then(generatorMSG => {
     try{
     var Server = message.guild;
     var Channel = message.channel;
@@ -44,7 +46,9 @@ var init = function (message, userDB, DB) {
     }
     //CHECK PROFS LV ETC ---
 
-    message.reply(gener).then(m => m.delete(5000))
+
+
+
 
     let img = Target.defaultAvatarURL.substr(0, Target.defaultAvatarURL.length - 10).replace(/gif/g,"png")
     if (Target.avatarURL) {
@@ -316,7 +320,12 @@ sidebar.color([
 
 
               frame.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                  message.channel.sendFile(image)
+                  message.channel.sendFile(image).then(picsent=>{
+                       var stop = Date.now();
+                        var diff = (stop - start);
+                        message.channel.sendMessage("Generated in `"+diff/1000+"s`")
+
+                  })
                   return resolve(true);
               })
 
@@ -481,7 +490,9 @@ sidebar.color([
 
 */
 
-    }catch(e){console.log(e)}
+    }catch(e){console.log(message.channel.sendMessage("**ERROR**"))}
+      }).catch(message.channel.sendMessage("**ERROR**"))
+
 };
 module.exports = {
     pub: true,
