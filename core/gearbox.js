@@ -1,13 +1,14 @@
 const Discord = require("discord.js");
 var paths = require("./paths.js");
 var cfg = require('../config.js');
-const main = require('../pollux.js')
-var ff = require("./functionfest.js");
+//const main = require('../pollux.js')
+//var ff = require("./functionfest.js");
 const Jimp = require("jimp");
 const fs = require("fs");
 
 //var emoji = require("../resources/lists/emoji.js");
 //var playing = require("../resources/lists/playing.js");
+const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
 
 
 Array.prototype.remove = function () {
