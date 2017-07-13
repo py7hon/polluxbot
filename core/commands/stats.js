@@ -39,9 +39,9 @@ var LANG = message.lang;
     return time;
 }
 
-    var time = bot.uptime/1000;
+
     var uptime = (os.uptime() + "").toHHMMSS();
-    var botuptime = (bot.uptime+"").toHHMMSS();
+    var botuptime = (bot.uptime/1000+"").toHHMMSS();
 
 
 
