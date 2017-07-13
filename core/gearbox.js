@@ -125,7 +125,7 @@ DB:DB,
     },
 
 
-    updateEXP: function updateEXP(TG, event, DB, userDB) {
+    updateEXP: function updateEXP(TG, event,db,usdb) {
         let userData = userDB.get(TG.id).modules;
         var caller = TG.username // Checar Caller
 
@@ -194,7 +194,7 @@ DB:DB,
 
 
 
-    updatePerms: function updatePerms(tgt, Server, DB) {
+    updatePerms: function updatePerms(tgt, Server, DaB) {
         try {
 
             switch (true) {
@@ -313,8 +313,8 @@ DB:DB,
                             c.delete(500000)
                         }).catch();
 
-                        gear.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
-                        gear.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
+                        paramIncrement(Picker, 'goodies', CHN.DROPSLY)
+                        paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
                         CHN.DROPSLY = 0
 
                         r.delete().catch()
@@ -371,8 +371,8 @@ DB:DB,
                             c.delete(500000)
                         }).catch();
 
-                        gear.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
-                        gear.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
+                        paramIncrement(Picker, 'goodies', CHN.DROPSLY)
+                        paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
                         CHN.DROPSLY = 0
 
                         r.delete().catch()
