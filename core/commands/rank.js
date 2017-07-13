@@ -54,7 +54,8 @@ gear.paramIncrement(Author,'goodies',0)
 
             rankItem.exp = i.modules.exp
             rankItem.level = i.modules.level
-            rankItem.name = (i.name||i.username||i.ID)
+            //rankItem.name = (i.name||i.username||i.ID)
+            rankItem.name = (i.name||i.username)
             ranked.push(rankItem)
             rankItem = []
         })

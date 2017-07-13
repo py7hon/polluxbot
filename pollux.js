@@ -1,5 +1,5 @@
-var Discord = require("discord.js");
-
+//Discord Start
+const Discord = require("discord.js");
 var bot = new Discord.Client({
     messageCacheMaxSize: 4048,
     messageCacheLifetime: 1680,
@@ -9,40 +9,19 @@ var bot = new Discord.Client({
     disabledEvents: ['typingStart', 'typingStop', 'guildMemberSpeaking']
 });
 
-var cfg = require('./config.js');
+// Get Tokens
+const cfg = require('./config.js');
 
+//Gearbox assemble!
 var gear = require("./core/gearbox.js");
 
+//Database load!
+const DB = gear.DB
+const userDB = gear.userDB
 var defaults = require("./utils/defaults.js")  // Database Defaults
 
-var emojya = bot.emojis.get('276878246589497344')
-
-var DB = gear.DB
-var userDB = gear.userDB
-
-//=======================================//
-//      DATABASE
-//=======================================//
-
-
-//const PersistentCollection = require('djs-collection-persistent');
-//const DB = new PersistentCollection({
- //   name: "DB"
-//});
-//const userDB = new PersistentCollection({
-//    name: 'userDB'
-//});
-
-//==-------------------------------------------
-// DEFAULTS
-
-//SERVS
-
-
-//  DATABASE END
-//----------------------------
-var dash = require("../pollux-dash/server.js")
-
+//DASHBOARD INIT
+const dash = require("../pollux-dash/server.js")
 dash.init(bot,DB,userDB)
 
 //=======================================//
@@ -50,19 +29,15 @@ dash.init(bot,DB,userDB)
 //======================================//
 
 var deployer = require('./core/deployer.js'); // <------------- I DUN LIKE DIS << FIX
-
-
 //==-------------------------------------------
 // UTILITY
 
 var fs = require("fs");
 var paths = require("./core/paths.js");
-const greeting = require('./utils/greeting');
-var cleverbot = require("cleverbot"); // <------------- REVIEW  DIS << NEEDS $ for CB fee
-cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
-var async = require('async')
-var skynet = '248285312353173505'
-var colors = require('colors');
+var emojya = bot.emojis.get('276878246589497344');
+//var cleverbot = require("cleverbot"); // <------------- REVIEW  DIS << NEEDS $ for CB fee
+//cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
+var async = require('async');
 var timer;
 const {
     AkairoClient
@@ -71,20 +46,19 @@ const client = new AkairoClient({
     ownerID: '88120564400553984',
     prefix: '+'
 });
-
-
+const Jimp = require("jimp");
+const greeting = require('./utils/greeting');
+const skynet = '248285312353173505';
+const colors = require('colors');
 //==-------------------------------------------
-
 
 
 //==-------------------------------------------
 // MULTILANG
 
-const Jimp = require("jimp");
 var i18next = require('i18next');
 var multilang = require('./utils/multilang_b');
 var Backend = require('i18next-node-fs-backend');
-
 var backendOptions = {
     loadPath: './utils/lang/{{lng}}/{{ns}}.json',
     addPath: './utils/lang/{{lng}}/{{ns}}.missing.json',
@@ -105,15 +79,9 @@ getDirs('utils/lang/', (list) => {
         multilang.setT(t);
     });
 })
-
 var mm = multilang.getT();
 
 //==-------------------------------------------
-
-//==-------------------------------------------
-// HOOKS
-//const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
-
 
 function loginSuccess() {
     console.log('LOGGED IN!'.bgGreen.white.bold)
@@ -124,22 +92,23 @@ function loginSuccess() {
 
     gear.sendSlack(name, tx, undefined, color)
 
+// ACTIONS OVER TIME ▼▼▼▼▼▼▼▼▼▼
+
     setInterval(function () {
         var date = new Date();
         if (date.getSeconds() === 0) {
             gear.gamechange(bot)
         }
     }, 1000);
+// ACTIONS OVER TIME ▲▲▲▲▲▲▲▲▲
 }
-
-//var dvv = require('./database.js')
 
 console.log('Ready to Rock!')
 bot.on('ready', () => {
 
     bot.guilds.forEach(async g => {
         if (!DB.get(g.id)) return serverSetup(g);
-        await gear.normaliseGUILD(g,DB)
+        await gear.normaliseGUILD(g, DB)
 
         g.members.forEach(async m => {
             if (!userDB.get(m.id)) return userSetup(m.user);
@@ -147,34 +116,25 @@ bot.on('ready', () => {
 
         })
     })
-bot.user.setStatus('online')
+    bot.user.setStatus('online')
 
     // bot.user.setGame(`Flicky draws Silenyte stuff`, 'https://www.twitch.tv/LucasFlicky').then().catch();
 
-//bot.user.setGame(`Neverwinter Nights`).then().catch();
+    //bot.user.setGame(`Neverwinter Nights`).then().catch();
 
-async.parallel(bot.guilds.forEach(G => serverSetup(G)))
+    async.parallel(bot.guilds.forEach(G => serverSetup(G)))
 
-userSetup(bot.user)
+    userSetup(bot.user)
 
-let name = 'Pollux Core Reporter';
+    let name = 'Pollux Core Reporter';
 
-let tx = `All systems go! I am ready to rock, master!`;
-let color = '#3ed844';
+    let tx = `All systems go! I am ready to rock, master!`;
+    let color = '#3ed844';
 
-gear.sendSlack(name, tx, undefined, color)
-
+    gear.sendSlack(name, tx, undefined, color)
 });
 
-//Check Commands
-
-//deployer.pullComms()
-
-
-
-//=====================================             EVENTS
-
-
+//=====================================
 
 Array.prototype.remove = function () {
     var what, a = arguments,
@@ -193,54 +153,6 @@ Array.prototype.remove = function () {
 //      FUNCTIONFEST
 //=======================================//
 
-function superDefine(target, param, val) {
-        try {
-
-            if (target instanceof Discord.User) {
-
-                var Umodules = userDB.get(target.id)
-
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Umodules[param[0]][param[1]] = val
-                } else {
-                    Umodules[param] = val
-                }
-
-                userDB.set(target.id, Umodules)
-
-            }
-
-            if (target instanceof Discord.Guild) {
-
-                var Smodules = DB.get(target.id)
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Smodules[param[0]][param[1]] = val
-                } else {
-                    Smodules[param] = val
-                }
-                DB.set(target.id, Smodules)
-
-            }
-            if (target instanceof Discord.Channel) {
-
-                var Tchannel = DB.get(target.guild.id)
-
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Tchannel.channels[target.id][param[0]][param[1]] = val
-                } else {
-                    Tchannel.channels[target.id][param] = val
-                }
-                DB.set(target.guild.id, Tchannel)
-
-            }
-        } catch (err) {
-            console.log('ERROR JSON'.bgRed.white.bold)
-            console.log(err.stack)
-        }
-    } //DB
 
 var cd = function (argamassa, fx, timeout, respfn) {
     var onCooldown = false;
@@ -266,46 +178,6 @@ var cd = function (argamassa, fx, timeout, respfn) {
         }
     }
 }  //detatch
-
-function getDirs(rootDir, cb) {
-    fs.readdir(rootDir, function (err, files) {
-        var dirs = [];
-        for (var i = 0; i < files.length; ++i) {
-            var file = files[i];
-            if (file[0] !== '.') {
-                var filePath = rootDir + '/' + file;
-                fs.stat(filePath, function (err, stat) {
-                    if (stat.isDirectory()) {
-                        dirs.push(this.file);
-                    }
-                    if (files.length === (this.index + 1)) {
-                        return cb(dirs);
-                    }
-                }.bind({
-                    index: i,
-                    file: file
-                }));
-            }
-        }
-    })
-} //detatch
-
-
-function channelSetup(element, guild) {
-
-    console.log('Setting Up Channel:'.white + element.name + " from " + guild.name)
-    //  DB.get(guild.id).channels[element.id] =
-    //element.mods = DB.get(guild.id).channels[element.id].modules;
-    var GGD = DB.get(guild.id)
-    GGD.channels[element.id] = defaults.cdfal
-    DB.set(guild.id, GGD)
-    var gg = DB.get(guild.id)
-    gg.channels[element.id].name = element.name
-    gg.channels[element.id].ID = element.id
-    DB.set(guild.id, gg)
-
-} //DB
-
 var serverSetup = function serverSetup(guild) {
 
 
@@ -340,7 +212,43 @@ var serverSetup = function serverSetup(guild) {
     }
 
 }
+//===
+function getDirs(rootDir, cb) {
+    fs.readdir(rootDir, function (err, files) {
+        var dirs = [];
+        for (var i = 0; i < files.length; ++i) {
+            var file = files[i];
+            if (file[0] !== '.') {
+                var filePath = rootDir + '/' + file;
+                fs.stat(filePath, function (err, stat) {
+                    if (stat.isDirectory()) {
+                        dirs.push(this.file);
+                    }
+                    if (files.length === (this.index + 1)) {
+                        return cb(dirs);
+                    }
+                }.bind({
+                    index: i,
+                    file: file
+                }));
+            }
+        }
+    })
+} //detatch
+function channelSetup(element, guild) {
 
+    console.log('Setting Up Channel:'.white + element.name + " from " + guild.name)
+    //  DB.get(guild.id).channels[element.id] =
+    //element.mods = DB.get(guild.id).channels[element.id].modules;
+    var GGD = DB.get(guild.id)
+    GGD.channels[element.id] = defaults.cdfal
+    DB.set(guild.id, GGD)
+    var gg = DB.get(guild.id)
+    gg.channels[element.id].name = element.name
+    gg.channels[element.id].ID = element.id
+    DB.set(guild.id, gg)
+
+} //DB
 function userSetup(user) {
 
     if (!userDB.get(user.id)) {
@@ -357,209 +265,6 @@ function userSetup(user) {
         gear.normaliseUSER(user, userDB, DB)
     }
 } //DB
-
-function paramAdd(target, param, val) {
-
-
-    try {
-
-        if (target instanceof Discord.User) {
-
-            var Umodules = userDB.get(target.id)
-            if (param.includes('.')) {
-                param = param.split('.')
-                Umodules.modules[param[0]][param[1]].push(val)
-            } else {
-                Umodules.modules[param].push(val)
-            }
-            userDB.set(target.id, Umodules)
-
-        }
-
-        if (target instanceof Discord.Guild) {
-
-            var Smodules = DB.get(target.id)
-            if (param.includes('.')) {
-                param = param.split('.')
-                if (!Smodules.modules[param[0]][param[1]]) {
-                    console.log("CREATE")
-                    Smodules.modules[param[0]][param[1]] = []
-                }
-                Smodules.modules[param[0]][param[1]].push(val)
-            } else {
-                Smodules.modules[param].push(val)
-            }
-            console.log(Smodules)
-            // DB.set(target.id, Smodules)
-
-        }
-        if (target instanceof Discord.Channel) {
-
-            var Tchannel = DB.get(target.guild.id)
-
-            if (param.includes('.')) {
-                param = param.split('.')
-                Tchannel.channels[target.id].modules[param[0]][param[1]].push(val)
-            } else {
-                Tchannel.channels[target.id].modules[param].push(val)
-            }
-            DB.set(target.guild.id, Tchannel)
-
-        }
-
-    } catch (err) {
-        console.log('ERROR JSON'.bgRed.white.bold)
-        console.log(err.stack)
-    }
-};
-
-function paramRemove(target, param, val) {
-    try {
-
-        if (target instanceof Discord.User) {
-
-            var Umodules = userDB.get(target.id)
-            if (param.includes('.')) {
-                param = param.split('.')
-                Umodules.modules[param[0]][param[1]].remove(val)
-            } else {
-                Umodules.modules[param].remove(val)
-            }
-            userDB.set(target.id, Umodules)
-
-        }
-
-        if (target instanceof Discord.Guild) {
-
-            var Smodules = DB.get(target.id)
-            if (param.includes('.')) {
-                param = param.split('.')
-                Smodules.modules[param[0]][param[1]].remove(val)
-            } else {
-                Smodules.modules[param].remove(val)
-            }
-            DB.set(target.id, Smodules)
-
-        }
-        if (target instanceof Discord.Channel) {
-
-            var Tchannel = DB.get(target.guild.id)
-
-            if (param.includes('.')) {
-                param = param.split('.')
-                Tchannel.channels[target.id].modules[param[0]][param[1]].remove(val)
-            } else {
-                Tchannel.channels[target.id].modules[param].remove(val)
-            }
-            DB.set(target.guild.id, Tchannel)
-
-        }
-        //  }
-
-    } catch (err) {
-
-    }
-};
-
-function paramIncrement(target, param, val) {
-
-    try {
-
-        if (target instanceof Discord.User) {
-
-            var Umodules = userDB.get(target.id)
-            if (param.includes('.')) {
-                param = param.split('.')
-                Umodules.modules[param[0]][param[1]] += val
-            } else {
-                Umodules.modules[param] += val
-            }
-            userDB.set(target.id, Umodules)
-
-        }
-
-        if (target instanceof Discord.Guild) {
-
-            var Smodules = DB.get(target.id)
-            if (param.includes('.')) {
-                param = param.split('.')
-                Smodules.modules[param[0]][param[1]] += val
-            } else {
-                Smodules.modules[param] += val
-            }
-            DB.set(target.id, Smodules)
-
-        }
-        if (target instanceof Discord.Channel) {
-
-            var Tchannel = DB.get(target.guild.id)
-
-            if (param.includes('.')) {
-                param = param.split('.')
-                Tchannel.channels[target.id].modules[param[0]][param[1]] += val
-            } else {
-                Tchannel.channels[target.id].modules[param] += val
-            }
-            DB.set(target.guild.id, Tchannel)
-
-        }
-
-    } catch (err) {
-        console.log('ERROR JSON'.bgRed.white.bold)
-        console.log(err.stack)
-    }
-
-};
-
-function paramDefine(target, param, val) {
-    try {
-
-        if (target instanceof Discord.User) {
-
-            var Umodules = userDB.get(target.id)
-
-            if (param.includes('.')) {
-                param = param.split('.')
-                Umodules.modules[param[0]][param[1]] = val
-            } else {
-                Umodules.modules[param] = val
-            }
-
-            userDB.set(target.id, Umodules)
-
-        }
-
-        if (target instanceof Discord.Guild) {
-
-            var Smodules = DB.get(target.id)
-            if (param.includes('.')) {
-                param = param.split('.')
-                Smodules.modules[param[0]][param[1]] = val
-            } else {
-                Smodules.modules[param] = val
-            }
-            DB.set(target.id, Smodules)
-
-        }
-        if (target instanceof Discord.Channel) {
-
-            var Tchannel = DB.get(target.guild.id)
-
-            if (param.includes('.')) {
-                param = param.split('.')
-                Tchannel.channels[target.id].modules[param[0]][param[1]] = val
-            } else {
-                Tchannel.channels[target.id].modules[param] = val
-            }
-            DB.set(target.guild.id, Tchannel)
-
-        }
-    } catch (err) {
-        console.log('ERROR JSON'.bgRed.white.bold)
-        console.log(err.stack)
-    }
-};
-
 function commandFire(message, Server, Channel, Author) {
     message.botUser = bot;
     message.akairo = client;
@@ -596,7 +301,6 @@ function commandFire(message, Server, Channel, Author) {
     }
 }
 
-
 bot.login(cfg.token).then(loginSuccess());
 
 
@@ -605,13 +309,11 @@ bot.login(cfg.token).then(loginSuccess());
 //      BOT EVENT HANDLER
 //=======================================//
 
-
-//==-------------------------------------------
+//==---------------------------------
 // COMMANDS (MESSAGES)
 
-
 // XP SPAM PROTECTION
-var gibexp = cd(console, paramIncrement, 5000);
+var gibexp = cd(console, gear.paramIncrement, 5000);
 var plzDrop = cd(console, gear.dropGoodies, 5000);
 // ==============================================
 
@@ -624,14 +326,11 @@ bot.on("message", (message) => {
     var Target = message.mentions.users.first() || Author;
     var MSG = message.content;
 
-
-if(message.mentions.users.size+message.mentions.roles.size >= 5){
+if(message.mentions.users.size+message.mentions.roles.size >= 6){
     message.delete()
     message.channel.sendMessage(":warning: SPAM PROTECTION TRIGGERED :warning:")
     Server.member(message.author).ban().then(e=>message.channel.sendMessage(message.author+" kicked for Mention Spam above 5")).catch(a=>message.channel.sendMessage(Server.owner+" could not kick "+message.author+" due to permission issues."))
 }
-
-
 
     //---  LOGS     ---------------------------------------------------------
     if (Server && Server.name != "Discord Bots") {
@@ -663,7 +362,6 @@ if(message.mentions.users.size+message.mentions.roles.size >= 5){
         //==-------------------------------------------
         // SIDE COMMANDS
 try{
-
 
         fs.readFile("./core/collateral_triggers.json", 'utf8', (err, data) => {
             data = JSON.parse(data)
@@ -720,18 +418,13 @@ try{
             superDefine(Author,"ID",Author.username)
         }
         if(userDB.get(Author.id).modules.goodies>=999999){
-            paramDefine(Author,"goodies",0)
+            gear.paramDefine(Author,"goodies",0)
             message.reply("Your rubies has been reset due to suspect of exploit")
             console.log("\n\n\n\n RUBY FRAUD RESET \n\n\n\n\n")
             bot.users.get("88120564400553984").sendMessage("RESET:"+Author+" :: "+Author.id+" "+Author.username)
         }
-
-
         //  ------
-
         gibexp(Author, 'exp', gear.randomize(1, 10)) // EXP GIVEAWAY
-
-
 
         // POLLUX PERMS 101
 
@@ -761,7 +454,7 @@ try{
         }
 
         if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET === undefined) {
-            paramDefine(Server, "GREET", defaultgreet)
+            gear.paramDefine(Server, "GREET", defaultgreet)
         }
 
         let defaultgreetB = {
@@ -770,7 +463,7 @@ try{
             greetChan: ""
         }
         if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL === undefined) {
-            paramDefine(Server, "FWELL", defaultgreetB)
+            gear.paramDefine(Server, "FWELL", defaultgreetB)
         }
 
 
@@ -815,7 +508,7 @@ try{
             if (Server.region === 'brazil') {
                 langua = "dev"
             }
-            paramDefine(Server, "LANGUAGE", langua)
+            gear.paramDefine(Server, "LANGUAGE", langua)
         }
 
 
@@ -823,7 +516,7 @@ try{
         if (Server && typeof (DB.get(Server.id).modules.PREFIX) !== 'undefined' && DB.get(Server.id).modules.PREFIX && DB.get(Server.id).modules.PREFIX !== '') {
 
             //-- START PREFIX
-            if (message.content.startsWith(DB.get(Server.id).modules.PREFIX)) {
+            if (message.content.startsWith(DB.get(Server.id).modules.PREFIX)||message.content.startsWith("p!")) {
 
                 commandFire(message, Server, Channel, Author)
 
@@ -867,7 +560,7 @@ try{
             //CHECK COMMANDS INSIDE PM
             if (message.content.startsWith(prefix)) {
                 message.botUser = bot;
-                message.prefix = prefix;
+                message.content.startsWith("p!") ? message.prefix = "p!" : message.prefix = prefix;
                 deployer.commCheck(message);
             } else {
 
@@ -1010,16 +703,13 @@ var chanpoint=false;
 try{
 
         if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET === undefined) {
-            paramDefine(Server, "GREET", defaultgreet)
+            gear.paramDefine(Server, "GREET", defaultgreet)
         }
 }catch(e){
     serverSetup(Server)
 }
 
-
-
         if (typeof (DB.get(Server.id).modules.GREET.hi) !== 'undefined' && DB.get(Server.id).modules.GREET.joinText !== '' && DB.get(Server.id).modules.GREET.hi == true) {
-
 
             let channels = member.guild.channels.filter(c => {
                 return (c.id === DB.get(Server.id).modules.GREET.greetChan)
@@ -1031,18 +721,12 @@ try{
                 channel.sendMessage(content).then();
             } catch (e) {}
         }
-
-
-
     }
 })
 
 bot.on('guildMemberRemove', (member) => {
 
-
     var Server = member.guild
-
-
 
 var chanpoint=false;
     try {
@@ -1089,14 +773,6 @@ var chanpoint=false;
         console.log(err)
     }
 
-
-
-
-
-
-
-
-
     if (Server) {
         let defaultgreetB = {
             hi: false,
@@ -1104,15 +780,12 @@ var chanpoint=false;
             greetChan: ""
         }
 
-
-
         if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL === undefined) {
-            paramDefine(Server, "FWELL", defaultgreetB)
+            gear.paramDefine(Server, "FWELL", defaultgreetB)
         }
 
 
         if (typeof (DB.get(Server.id).modules.FWELL.hi) !== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !== '' && DB.get(Server.id).modules.FWELL.hi == true) {
-
 
             let channels = member.guild.channels.filter(c => {
                 return (c.id === DB.get(Server.id).modules.FWELL.greetChan)
@@ -1124,9 +797,6 @@ var chanpoint=false;
                 channel.sendMessage(content);
             } catch (e) {}
         }
-
-
-
     }
 })
 
@@ -1159,20 +829,16 @@ bot.on("channelDelete", channel=>{
 
 })
 
+//=======================================//
+//      PROCESS EVENT HANDLER
+//=======================================//
+
 process.on('unhandledRejection', function(reason, p){
     console.log("Possibly Unhandled Rejection at: Promise \n".red, "\n\n reason: ".red, reason.stack);
 
 
     gear.sendSlack("Promise Breaker","Promise Rejection: "+reason,reason.stack,"#ffcd25" )
 });
-
-
-
-//=======================================//
-//      PROCESS EVENT HANDLER
-//=======================================//
-
-
 
 process.on('uncaughtException', function (err) {
 
@@ -1193,8 +859,7 @@ ${err.stack}
 
 });
 
-
-
+//---------------------------------------------------------------------------------------- END
 
 module.exports = {
     userDB: userDB,
