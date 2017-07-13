@@ -240,12 +240,6 @@ function superDefine(target, param, val) {
         }
     } //DB
 
-
-
-
-
-
-
 var cd = function (argamassa, fx, timeout, respfn) {
     var onCooldown = false;
     return function () {
@@ -313,9 +307,6 @@ function channelSetup(element, guild) {
 var serverSetup = function serverSetup(guild) {
 
 
-
-
-
     if (!DB.get(guild.id)||DB.get(guild.id)==undefined) {
 
         console.log(('          --- - - - - = = = = = = Setting Up Guild:'.yellow + guild.name).bgBlue)
@@ -326,7 +317,6 @@ var serverSetup = function serverSetup(guild) {
         gg.name = guild.name
         gg.ID = guild.id
         DB.set(guild.id, gg)
-
 
 
         guild.channels.forEach(element => {
@@ -340,8 +330,6 @@ var serverSetup = function serverSetup(guild) {
                 gg.channels[element.id].name = element.name
                 DB.set(guild.id, gg)
 
-                // element.mods = DB.get(guild.id).channels[element.id].modules;
-
             }
         });
     } else {
@@ -349,14 +337,7 @@ var serverSetup = function serverSetup(guild) {
         ff.normaliseGUILD(guild,DB)
     }
 
-
-
-    /*guild.members.forEach(memb => {
-        if (!memb.user.bot) {
-            userSetup(memb.user)
-        }
-    })*/
-} //DB
+}
 
 function userSetup(user) {
 
@@ -850,11 +831,6 @@ try{
                 if (cleber) {
 
                 } else {
-
-
-
-
-
 
                         if (message.content.startsWith("pollux, ")&&message.author.id==="88120564400553984"){
                               let msg = message;
