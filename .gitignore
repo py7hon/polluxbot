@@ -30,7 +30,5 @@
 /data/
 /hooks.js
 /secure-file/beta.js
-/core/commands/stats.js
-/core/commands/info.js
 /core/commands/_normalise.js
 /core/undone/rps.js
