@@ -85,6 +85,7 @@ var init = function (message, userDB, DB) {
                     }) + " " + emojya).then(function (c) {
 
                         c.delete(500000)
+                        r.delete(0)
                     }).catch();
 
                     gear.paramIncrement(Picker, 'goodies', Channel.DROPSLY)
