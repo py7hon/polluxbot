@@ -143,7 +143,7 @@ try{
         let forNext = Math.trunc(Math.pow((userData.level + 1) / 0.18, 2));
         if (curLevel > userData.level) {
             // Level up!
-            paramIncrement(TG, 'level', 1)
+            this.paramIncrement(TG, 'level', 1)
             var overallevel = userDB.get(TG.id).modules.level;
 
             console.log("LEVEL UP EVENT FOR ".bgBlue + caller)
