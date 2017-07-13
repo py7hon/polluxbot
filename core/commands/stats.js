@@ -72,7 +72,7 @@ a = ff.randomize(2,4)
       emb.addField(':cityscape:   Servers',"```"+(bot.guilds.size)+"```", true)
       emb.addField(':busts_in_silhouette:   Users',"```"+(bot.users.size)+"```", true)
       emb.addField(':satellite_orbital:   Ping',"```"+parseFloat(Math.round(bot.ping * 100) / 100).toFixed(0)+'ms'+"```", true)
-      emb.addField(':control_knobs:    RAM Usage',"```"+ram.toFixed(0)/1000+" MB```", false)
+      emb.addField(':control_knobs:    RAM Usage',"```"+ram.toFixed(0)/1000+" MB```", true)
       emb.addField(':electric_plug:   Uptime',"```Process:"+botuptime+" Server:"+uptime+"```", false)
 
      let url ="http://icons.veryicon.com/png/Love/Valentine/heart.png"
