@@ -12,6 +12,9 @@ var mm = locale.getT();
 var cmd = 'profile';
 
 var init = function (message, userDB, DB) {
+    try{
+
+
       var start = Date.now();
       message.reply(gener).then(generatorMSG => {
     try{
@@ -492,6 +495,7 @@ sidebar.color([
 
     }catch(e){console.log(message.channel.sendMessage("**ERROR**"))}
       }).catch(message.channel.sendMessage("**ERROR**"))
+    }catch(e){console.log(e)}
 
 };
 module.exports = {
