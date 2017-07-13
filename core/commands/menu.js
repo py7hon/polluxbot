@@ -168,7 +168,7 @@ var init = function (message, userDB, DB) {
                     lngs: LANG
                 }));
                 ORD.finish();
-
+                return resolve(true);
             }
 
 
@@ -215,7 +215,7 @@ OK?
                     lngs: LANG
                 }));
                 ORD.finish();
-                // break;
+                return resolve(true);
             }
 
             const actionB = responsesB.first().content.toLowerCase();
