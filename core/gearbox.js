@@ -132,7 +132,7 @@ try{
         var  userData = this.userDB.get(TG.id).modules;
 }catch(e){console.log(e)}
 try{
-        var  userData = userDB.get(TG.id).modules;
+    //    var  userData = userDB.get(TG.id).modules;
 }catch(e){console.log("2:    "+e)}
         var caller = TG.username // Checar Caller
 
