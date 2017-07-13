@@ -81,7 +81,7 @@ a = ff.randomize(2,4)
  emb.addField('Invite','http://goo.gl/qkGqqU', true)
  emb.addField('Commands','http://pollux.fun/commands', true)
  emb.addField('Support Server','https://discord.gg/ay48h7Q', true)
-  emb.setFooter(bot.guilds.size+": Heart kept beating by "+os.cpus().length+"x "+os.cpus()[0].model,url)
+  emb.setFooter("Heart kept beating by "+os.cpus().length+"x "+os.cpus()[0].model,url)
 
 
 
