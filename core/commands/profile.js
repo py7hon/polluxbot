@@ -497,7 +497,7 @@ sidebar.color([
       }
 
 
-};
+
 module.exports = {
     pub: true,
     cmd: cmd,
