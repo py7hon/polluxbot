@@ -3,6 +3,7 @@ var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
+var ff = require("../functionfest.js");
 
 var cmd = 'autorole';
 
@@ -84,7 +85,7 @@ var init = function (message, userDB, DB) {
 
 
 
-        a = gear.randomize(2, 4)
+        a = ff.randomize(2, 4)
 
         // emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/'+a+'.gif?raw=true')
 
@@ -109,7 +110,7 @@ var init = function (message, userDB, DB) {
 
     try {
 
-        var modPass = gear.hasPerms(Member);
+        var modPass = ff.hasPerms(Member,DB);
     } catch (err) {
         console.log(err)
     }

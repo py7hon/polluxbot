@@ -1,3 +1,4 @@
+var ff = require("../functionfest.js");
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
@@ -20,8 +21,8 @@ var init = function (message,userDB,DB) {
     var LANG = message.lang;
 
     //-------MAGIC----------------
-   var On      = gear.emoji("check")
-var Off     = gear.emoji("xmark")
+   var On      = ff.emoji("check")
+var Off     = ff.emoji("xmark")
 
     if (message.channel.type == 'dm') {
         message.reply(mm('CMD.noDM', {
@@ -37,7 +38,7 @@ var Off     = gear.emoji("xmark")
         return;
     }
 
- var modPass = gear.hasPerms(Member)
+ var modPass = ff.hasPerms(Member,DB)
 
 
     if (!modPass) {

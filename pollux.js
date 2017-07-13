@@ -11,6 +11,9 @@ var bot = new Discord.Client({
 
 var cfg = require('./config.js');
 
+var ff = require("./core/functionfest.js");
+
+var defaults = require("./utils/defaults.js")  // Database Defaults
 
 var emojya = bot.emojis.get('276878246589497344')
 
@@ -32,115 +35,7 @@ const userDB = new PersistentCollection({
 // DEFAULTS
 
 //SERVS
-const gdfal = {
-    name: "",
-    ID: "",
-    modules: {
-        GREET: {
-            hi: false,
-            joinText: "Welcome to the Server %username%!",
-            greetChan: ""
-        },
-        FWELL: {
-            hi: false,
-            joinText: "%username% has left us!",
-            greetChan: ""
-        },
-        NSFW: true,
-        GOODIES: true,
-        LEVELS: true,
-        LVUP: true,
-        DROPS: false,
-        GOODMOJI: emojya,
-        GOODNAME: 'Ruby',
-        ANNOUNCE: false,
-        PREFIX: "+",
-        MODROLE: {},
-        LANGUAGE: 'en',
-        DISABLED: ['cog'],
-        AUTOROLES: [],
-        statistics: {
-            commandsUsed: {},
-            rubyHistory: 0
-        }
 
-    },
-
-    channels: {}
-};
-
-//CHANS
-const cdfal = {
-    name: "",
-    ID: "",
-    modules: {
-        DROPSLY: 0,
-
-        NSFW: false,
-        GOODIES: true,
-        LEVELS: true,
-        LVUP: true,
-        DROPS: true,
-        DISABLED: ['cog']
-    }
-};
-
-//USRS
-const udefal = {
-    name: "",
-    ID: "",
-    modules: {
-        PERMS: 3,
-        level: 0,
-        exp: 0,
-        goodies: 0,
-        coins: 0,
-        medals: [],
-        expenses: {
-            putaria: 0,
-            jogatina: 0,
-            drops: 0,
-            trade: 0
-        },
-        earnings: {
-            putaria: 0,
-            jogatina: 0,
-            drops: 0,
-            trade: 0
-        },
-        dyStreak: 5,
-        daily: 1486595162497,
-        persotext: "",
-
-        skin: 'default',
-        skinsAvailable: ['default'],
-
-        build: {
-            STR: 10,
-            DEX: 10,
-            CON: 10,
-            INT: 10,
-            WIS: 10,
-            CHA: 10,
-            weaponA: "none",
-            weaponB: "none",
-            shield: "none",
-            armor: "none",
-            invent: [],
-            skills: [],
-            HP: 100,
-            MP: 50
-        },
-        fun: {
-            waifu: undefined,
-            shiprate: {}
-        },
-        statistics: {
-            commandsUsed: {}
-
-        }
-    }
-}
 
 //  DATABASE END
 //----------------------------
@@ -215,40 +110,24 @@ var mm = multilang.getT();
 
 //==-------------------------------------------
 // HOOKS
-const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
-
-
-
-
-
+//const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
 
 
 function loginSuccess() {
     console.log('LOGGED IN!'.bgGreen.white.bold)
-    hook.sendSlackMessage({
-        'username': 'Pollux Core Reporter',
-        'attachments': [{
-            'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-            'pretext': `Successful Login!`,
-            'color': '#49c7ff',
 
-            'ts': Date.now() / 1000
-        }]
-    })
+    let name = 'Pollux Core Reporter';
+    let tx = `Successful Login!`;
+    let color = '#49c7ff';
 
+    ff.sendSlack(name, tx, undefined, color)
 
     setInterval(function () {
         var date = new Date();
         if (date.getSeconds() === 0) {
-            gamechange(bot)
+            ff.gamechange(bot)
         }
-
-
     }, 1000);
-
-
-
-
 }
 
 //var dvv = require('./database.js')
@@ -256,45 +135,34 @@ function loginSuccess() {
 console.log('Ready to Rock!')
 bot.on('ready', () => {
 
-
     bot.guilds.forEach(async g => {
-        await normaliseGUILD(g)
+        if (!DB.get(g.id)) return serverSetup(g);
+        await ff.normaliseGUILD(g,DB)
 
         g.members.forEach(async m => {
+            if (!userDB.get(m.id)) return userSetup(m.user);
+            await ff.normaliseUSER(m, userDB, DB)
 
-            await normaliseUSER(m)
-
-            //  dvv.addUser(m.user,false);
-            //    dvv.find('name',m.user.id);
         })
     })
-
-
-    bot.user.setStatus('online')
+bot.user.setStatus('online')
 
     // bot.user.setGame(`Flicky draws Silenyte stuff`, 'https://www.twitch.tv/LucasFlicky').then().catch();
 
-    //bot.user.setGame(`Neverwinter Nights`).then().catch();
+//bot.user.setGame(`Neverwinter Nights`).then().catch();
 
-    async.parallel(bot.guilds.forEach(G => serverSetup(G)))
+async.parallel(bot.guilds.forEach(G => serverSetup(G)))
 
-    userSetup(bot.user)
-    hook.sendSlackMessage({
-        'username': 'Pollux Core Reporter',
-        'attachments': [{
-            'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-            'pretext': `All systems go! I am ready to rock, master!`,
-            'color': '#3ed844',
+userSetup(bot.user)
 
-            'ts': Date.now() / 1000
-        }]
-    })
+let name = 'Pollux Core Reporter';
 
+let tx = `All systems go! I am ready to rock, master!`;
+let color = '#3ed844';
 
-
+ff.sendSlack(name, tx, undefined, color)
 
 });
-
 
 //Check Commands
 
@@ -370,44 +238,10 @@ function superDefine(target, param, val) {
             console.log('ERROR JSON'.bgRed.white.bold)
             console.log(err.stack)
         }
-    }
-function normaliseGUILD(SERV) {
-
-    var GG = DB.get(SERV.id)
-    GG.ID = SERV.id
-    GG.iconURL = SERV.iconURL
+    } //DB
 
 
-    DB.set(SERV.id, GG)
 
-}
-
-function normaliseUSER(User) {
-
-
-    try {
-
-
-        var Umodules = userDB.get(User.id)
-
-        //console.log(User.id)
-        Umodules.ID = User.id
-        Umodules.username = User.username
-        Umodules.name = User.username
-        Umodules.discriminator = User.discriminator
-        Umodules.tag = User.tag
-        Umodules.avatarURL = User.avatarURL
-
-        if (Umodules.modules.goodies < 0) {
-            Umodules.modules.goodies = 0
-        }
-        Umodules.modules.goodies = parseInt(Umodules.modules.goodies)
-
-        userDB.set(User.id, Umodules)
-    } catch (err) {
-        //   console.log("not this")
-    }
-}
 
 
 
@@ -418,16 +252,24 @@ var cd = function (argamassa, fx, timeout, respfn) {
         if (!onCooldown) {
             fx.apply(argamassa, arguments);
             onCooldown = true;
+            try{
+
             setTimeout(function () {
                 onCooldown = false;
             }, timeout);
+            }catch(err){
+                onCooldown = false;
+                console.log("HERE")
+                console.error
+            }
+
         } else {
             try {
                 respfn()
             } catch (err) {}
         }
     }
-}
+}  //detatch
 
 function getDirs(rootDir, cb) {
     fs.readdir(rootDir, function (err, files) {
@@ -450,7 +292,7 @@ function getDirs(rootDir, cb) {
             }
         }
     })
-}
+} //detatch
 
 
 function channelSetup(element, guild) {
@@ -459,14 +301,14 @@ function channelSetup(element, guild) {
     //  DB.get(guild.id).channels[element.id] =
     //element.mods = DB.get(guild.id).channels[element.id].modules;
     var GGD = DB.get(guild.id)
-    GGD.channels[element.id] = cdfal
+    GGD.channels[element.id] = defaults.cdfal
     DB.set(guild.id, GGD)
     var gg = DB.get(guild.id)
     gg.channels[element.id].name = element.name
     gg.channels[element.id].ID = element.id
     DB.set(guild.id, gg)
 
-}
+} //DB
 
 var serverSetup = function serverSetup(guild) {
 
@@ -474,11 +316,11 @@ var serverSetup = function serverSetup(guild) {
 
 
 
-    if (!DB.get(guild.id)) {
+    if (!DB.get(guild.id)||DB.get(guild.id)==undefined) {
 
         console.log(('          --- - - - - = = = = = = Setting Up Guild:'.yellow + guild.name).bgBlue)
 
-        DB.set(guild.id, gdfal)
+        DB.set(guild.id, defaults.gdfal)
 
         var gg = DB.get(guild.id)
         gg.name = guild.name
@@ -492,7 +334,7 @@ var serverSetup = function serverSetup(guild) {
                 console.log('Setting Up Channel:'.white + element.name)
 
                 var GGD = DB.get(guild.id)
-                GGD.channels[element.id] = cdfal
+                GGD.channels[element.id] = defaults.cdfal
                 DB.set(guild.id, GGD)
                 var gg = DB.get(guild.id)
                 gg.channels[element.id].name = element.name
@@ -503,7 +345,8 @@ var serverSetup = function serverSetup(guild) {
             }
         });
     } else {
-        normaliseGUILD(guild)
+
+        ff.normaliseGUILD(guild,DB)
     }
 
 
@@ -513,16 +356,14 @@ var serverSetup = function serverSetup(guild) {
             userSetup(memb.user)
         }
     })*/
-}
-
-
+} //DB
 
 function userSetup(user) {
 
     if (!userDB.get(user.id)) {
         console.log('Setting Up Member:' + user.username)
 
-        userDB.set(user.id, udefal)
+        userDB.set(user.id, defaults.udefal)
 
         var uu = userDB.get(user.id)
         uu.name = user.username
@@ -530,9 +371,9 @@ function userSetup(user) {
         userDB.set(user.id, uu)
 
     } else {
-        normaliseUSER(user)
+        ff.normaliseUSER(user, userDB, DB)
     }
-}
+} //DB
 
 function paramAdd(target, param, val) {
 
@@ -736,271 +577,6 @@ function paramDefine(target, param, val) {
     }
 };
 
-function updatePerms(tgt, Server) {
-    try {
-
-        switch (true) {
-            case Server.member(tgt).id == Server.ownerID:
-                return 0;
-                break;
-
-            case Server.member(tgt).hasPermission("ADMINISTRATOR"):
-            case Server.member(tgt).hasPermission("MANAGE_GUILD"):
-                return 1;
-                break;
-
-            case Server.member(tgt).hasPermission("KICK_MEMBERS"):
-                return 2;
-                break;
-
-            default:
-                return 3;
-                break;
-
-        }
-    } catch (err) {}
-
-    if (DB.get(Server.id).modules.MODROLE.id) {
-        if (Server.member(tgt).roles.has(DB.get(Server.id).modules.MODROLE.id)) {
-            return 2
-        }
-    }
-
-}
-
-function dropGoodies(event) {
-    var CHN = event.channel
-    var GLD = event.guild
-    var LANG = event.lang;
-    let GOODMOJI = emojya
-    let GOOD = 'Ruby'
-    if (DB.get(Server.id).modules) {
-        GOODMOJI = DB.get(Server.id).modules.GOODMOJI
-    }
-    if (DB.get(Server.id).modules) {
-        GOOD = DB.get(Server.id).modules.GOODNAME
-    }
-    if (typeof CHN.DROPSLY != 'number') {
-        CHN.DROPSLY = 0
-    }
-    var droprate = randomize(1, 5000)
-    if (GLD.name == "Discord Bots") return;
-    console.log(droprate)
-    if (droprate == 1234) {
-        console.log('DROP')
-        var pack;
-        var prefie = DB.get(Server.id).modules.PREFIX || "+"
-
-        CHN.sendFile(paths.BUILD + 'ruby.png', 'goodie.png', mm('$.goodDrop', {
-            lngs: LANG,
-            good: GOOD,
-            emoji: GOODMOJI,
-            prefix: prefie
-        })).then(function (r) {
-
-
-            if (isNaN(CHN.DROPSLY)) {
-                CHN.DROPSLY = 1
-            } else {
-                CHN.DROPSLY += 1
-
-            }
-            console.log("------------=========== ::: NATURAL DROP".bgGreen.white)
-
-            return new Promise(async resolve => {
-
-                var oldDropsly = CHN.DROPSLY
-                const responses = await CHN.awaitMessages(msg2 =>
-                    msg2.content === '+pick', {
-                        maxMatches: 1
-                    }
-                );
-                if (responses.size === 0) {} else {
-                    if (oldDropsly > CHN.DROPSLY) {
-                        r.delete();
-                        return resolve(true);
-                    }
-                    let Picker = responses.first().author
-
-
-                    console.log("----------- SUCCESSFUL PICK by" + Picker.username)
-                    message.channel.sendMessage(mm('$.pick', {
-                        lngs: LANG,
-                        good: GOOD,
-                        user: Picker.username,
-                        count: CHN.DROPSLY,
-                        emoji: ""
-                    }) + " " + emojya).then(function (c) {
-                        message.delete()
-                        c.delete(500000)
-                    }).catch();
-
-                    gear.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
-                    gear.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
-                    CHN.DROPSLY = 0
-
-                    r.delete().catch()
-                    return resolve(true);
-                }
-            })
-
-        }).catch()
-
-    }
-
-    if (droprate == 777) {
-        var mm = multilang.getT();
-        event.channel.sendFile(paths.BUILD + 'rubypot.png', mm('$.rareDrop', {
-            lngs: LANG,
-            good: GOOD,
-            emoji: GOODMOJI,
-            prefix: event.DB.get(Server.id).modules.PREFIX
-        })).then(function (r) {
-
-            if (isNaN(CHN.DROPSLY)) {
-                CHN.DROPSLY = 10
-            } else {
-                CHN.DROPSLY += 10
-
-            }
-            console.log("------------=========== ::: NATURAL RARE DROP ::: ===".bgGreen.yellow.bold)
-
-            return new Promise(async resolve => {
-
-                var oldDropsly = CHN.DROPSLY
-                const responses = await CHN.awaitMessages(msg2 =>
-                    msg2.author.id === message.author.id && (msg2.content === '+pick'), {
-                        maxMatches: 1
-                    }
-                );
-                if (responses.size === 0) {} else {
-                    if (oldDropsly > CHN.DROPSLY) {
-                        r.delete();
-                        return resolve(true);
-                    }
-                    let Picker = responses.first().author
-
-
-                    console.log("----------- SUCCESSFUL PICK by" + Picker.username)
-                    message.channel.sendMessage(mm('$.pick', {
-                        lngs: LANG,
-                        good: GOOD,
-                        user: Picker.username,
-                        count: CHN.DROPSLY,
-                        emoji: ""
-                    }) + " " + emojya).then(function (c) {
-                        message.delete()
-                        c.delete(500000)
-                    }).catch();
-
-                    gear.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
-                    gear.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
-                    CHN.DROPSLY = 0
-
-                    r.delete().catch()
-                    return resolve(true);
-
-                }
-            })
-
-        }).catch()
-
-
-
-    }
-
-
-} //<<<<<<<<<< IMPORTANT REVISE THIS // REVISED, revision 1
-
-function randomize(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function gamechange(bot) {
-    try {
-        delete require.cache[require.resolve(`./resources/lists/playing.js`)];
-        var gamelist = require("./resources/lists/playing.js");
-        var max = gamelist.games.length - 1
-        var rand = randomize(0, max)
-        bot.user.setGame(gamelist.games[rand]).then().catch(err => {
-            console.log(err)
-        });
-
-        // return
-
-
-    } catch (e) {
-        console.log(e)
-    }
-};
-
-function updateEXP(TG, event) {
-    let userData = userDB.get(TG.id).modules;
-    var caller = TG.username // Checar Caller
-
-
-    //LEVEL UP CHECKER
-    //-----------------------------------------------------
-    let curLevel = Math.floor(0.18 * Math.sqrt(userData.exp));
-    let forNext = Math.trunc(Math.pow((userData.level + 1) / 0.18, 2));
-    if (curLevel > userData.level) {
-        // Level up!
-        paramIncrement(TG, 'level', 1)
-        var overallevel = userDB.get(TG.id).modules.level;
-
-        console.log("LEVEL UP EVENT FOR ".bgBlue + caller)
-        if (event.guild.name == "Discord Bots") return;
-        let img = TG.defaultAvatarURL.substr(0, TG.defaultAvatarURL.length - 10)
-        if (TG.avatarURL) {
-            img = TG.avatarURL.substr(0, TG.avatarURL.length - 10);
-        }
-        var guild = event.guild
-        Jimp.read(img).then(function (user) {
-            Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
-                Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
-                    user.resize(126, 126)
-                    user.mask(glass, 0, 0)
-                    var air = {}
-                    Jimp.read(paths.BUILD + "note.png").then(function (photo) {
-                        photo.composite(user, 0, 0)
-                        photo.mask(lenna, 0, 0)
-                        Jimp.read(paths.BUILD + "profile/skins/" + userData.skin + '/levelcard.png').then(function (cart) {
-                            Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
-                                Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
-                                    try {
-                                        var level = overallevel.toString()
-                                    } catch (err) {
-                                        var level = "" + userDB.get(TG.id).modules.level
-                                    }
-                                    var next = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2));
-                                    if (level.length == 1) {
-                                        level = `0${level}`
-                                    } else if (level === undefined) {
-                                        level = `0${userDB.get(TG.id).modules.level}`
-                                    }
-                                    cart.print(head, 153, 3, event.guild.member(TG).displayName);
-                                    cart.print(sub, 336, 45, `${level}`);
-                                    cart.composite(photo, 18, 20)
-
-                                    cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                                        if (DB.get(guild.id).modules.LVUP) {
-                                            if (DB.get(guild.id).channels[event.channel.id].modules.LVUP) {
-
-                                                event.channel.sendFile(image)
-                                            }
-                                        }
-
-                                    })
-                                })
-                            });
-                        });
-                    });
-                });
-            });
-        });
-    }
-} // REVISED
-
 function commandFire(message, Server, Channel, Author) {
     message.botUser = bot;
     message.akairo = client;
@@ -1053,7 +629,7 @@ bot.login(cfg.token).then(loginSuccess());
 
 // XP SPAM PROTECTION
 var gibexp = cd(console, paramIncrement, 5000);
-var plzDrop = cd(console, dropGoodies, 5000);
+var plzDrop = cd(console, ff.dropGoodies, 5000);
 // ==============================================
 
 bot.on("message", (message) => {
@@ -1112,7 +688,7 @@ try{
             if (data[MSG]) {
                 let jet = require(`./core/sidecommands/${data[MSG]}.js`);
                 try {
-                    jet.run(bot, message, DB, gdfal)
+                    jet.run(bot, message, DB, defaults.gdfal)
                     return
                 } catch (err) {
                     hook.sendMessage(err)
@@ -1138,7 +714,7 @@ try{
             let servdata = DB.get(Server.id).modules
             if (servdata.REACTIONS[MSG]) {
                 let max = servdata.REACTIONS[MSG].length
-                let goer = randomize(0, max)
+                let goer = ff.randomize(0, max)
                 return Channel.sendMessage(servdata.REACTIONS[MSG][goer])
             }
         } else {
@@ -1170,7 +746,7 @@ try{
 
         //  ------
 
-        gibexp(Author, 'exp', randomize(1, 10)) // EXP GIVEAWAY
+        gibexp(Author, 'exp', ff.randomize(1, 10)) // EXP GIVEAWAY
 
 
 
@@ -1186,8 +762,8 @@ try{
         5 = FORBIDDEN
         */
 
-        Author.PLXpems = updatePerms(Author, Server)
-        Target.PLXpems = updatePerms(Target, Server)
+        Author.PLXpems = ff.updatePerms(Author, Server, DB)
+        Target.PLXpems = ff.updatePerms(Target, Server, DB)
 
         // DONE WITH PERMS ---//
 
@@ -1219,9 +795,9 @@ try{
         //------------------------------------------------------------
         try {
             if (DB.get(Server.id).modules && !DB.get(Server.id).modules.DISABLED.includes("level")) {
-                updateEXP(Author, message)
+                ff.updateEXP(Author, message, DB, userDB)
             } else if (DB.get(Server.id).modules && !DB.get(Server.id).channels[Channel.id].modules.DISABLED.includes("level")) {
-                updateEXP(Author, message)
+                ff.updateEXP(Author, message, DB, userDB)
             }
 
         } catch (err) {
@@ -1233,9 +809,9 @@ try{
         try {
 
             if (DB.get(Server.id).modules && !DB.get(Server.id).modules.DISABLED.includes("drop")) {
-                plzDrop(message)
+                plzDrop(message,DB,userDB)
             } else if (!DB.get(Server.id).channels[Channel.id].modules.DISABLED.includes("drop")) {
-                plzDrop(message)
+                plzDrop(message,DB,userDB)
             }
 
         } catch (err) {
@@ -1330,21 +906,16 @@ try{
 // COMMANDS (MESSAGES)
 //==-------------------------------------------
 
-
 bot.on('reconnecting', () => {
     console.log("Reconnect".bgRed)
-    hook.sendSlackMessage({
-        'username': 'Pollux Core Reporter',
-        'attachments': [{
-            'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-            'pretext': `SELF RESTART TRIGGERED! Gimme a second to still myself.`,
-            'color': '#ffb249',
 
-            'ts': Date.now() / 1000
-        }]
-    })
+    let username = 'Pollux Core Reporter';
+    let pretext = `SELF RESTART TRIGGERED! Gimme a second to still myself.`;
+    let color = '#ffb249';
+
+    ff.sendSlack(username, pretext, undefined, color)
+
 });
-
 
 
 bot.on('guildCreate', (guild) => {
@@ -1581,90 +1152,40 @@ var chanpoint=false;
 
 bot.on('error', (err) => {
     if (!err    ) return;
-    console.log(error.toString().red);
-    hook.sendSlackMessage({
-        'username': 'Pollux Core Reporter',
-        'attachments': [{
-            'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-            'pretext': `Minor error! Check console
-
+let name = "Pollux Core Reporter"
+let txb = "Minor error! Check console"
+let tx = `
 **${err}**
 
 
 ${err.stack}
 
-`,
-            'color': '#ffdc49',
-            'ts': Date.now() / 1000
-        }]
-    })
+`
+let color =  '#ffdc49'
+
+ff.sendSlack(name, txb, tx, color)
+
     hook.sendMessage(error.toString())
 });
 
 bot.on("channelCreate", channel=>{
 
-
-    logChannel(channel,"CREATED")
-
+    ff.logChannel(channel,"CREATED",DB)
 
 })
 bot.on("channelDelete", channel=>{
 
-
-    logChannel(channel,"DELETED")
-
+    ff.logChannel(channel,"DELETED",DB)
 
 })
 
-
-function logChannel(channel,action){
-    Server = channel.guild
-    var chanpoint=false;
-       try {
-
-        let logchan = DB.get(Server.id).modules.LOGCHANNEL
-        let advchan = DB.get(Server.id).modules.ADVLOG
-        let actchan = DB.get(Server.id).modules.ACTLOG
-        let modchan = DB.get(Server.id).modules.MODLOG
+process.on('unhandledRejection', function(reason, p){
+    console.log("Possibly Unhandled Rejection at: Promise \n".red, "\n\n reason: ".red, reason.stack);
 
 
-        // if( advchan && Server.channels.has(advchan)){chanpoint = Server.channels.get(advchan)}
-        if (logchan && Server.channels.has(logchan)) {
-            chanpoint = Server.channels.get(logchan)
-        }
-        if (actchan && Server.channels.has(actchan)) {
-            chanpoint = Server.channels.get(actchan)
-        }
-        // if( modchan && Server.channels.has(modchan)){chanpoint = Server.channels.get(modchan)}
+    ff.sendSlack("Promise Breaker","Promise Rejection: "+reason,reason.stack,"#ffcd25" )
+});
 
-
-        if (chanpoint) {
-
-                   var emb = new Discord.RichEmbed;
-
-
-
-
-
-            emb.setDescription(`:hash: Channel **${channel.name}** ${action}`);
-
-            emb.setColor("#2551c9");
-            var ts = new Date
-            emb.setFooter("Channel Edit")
-            emb.setTimestamp(ts)
-
-            chanpoint.sendEmbed(emb).catch()
-
-        }
-
-
-    } catch (err) {
-
-    }
-
-
-
-}
 
 
 //=======================================//
@@ -1674,20 +1195,22 @@ function logChannel(channel,action){
 
 
 process.on('uncaughtException', function (err) {
+
+
     console.log('EXCEPTION: '.bgRed.white.bold + err);
-    hook.sendSlackMessage({
-        'username': 'Pollux Core Reporter',
-        'attachments': [{
-            'avatar': 'https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg',
-            'pretext': `__**System has Sustained a Crash Event**__
+    console.log(err.stack);
+
+    let name = 'Pollux Core Reporter'
+    let txb = '__**System has Sustained a Crash Event**__'
+    let tx = `
 
 **${err}**
 ${err.stack}
-`,
-            'color': '#C04',
-            'ts': Date.now() / 1000
-        }]
-    })
+`
+    let color = '#C04'
+
+    ff.sendSlack(name, txb, tx, color)
+
 });
 
 

@@ -1,3 +1,4 @@
+var ff = require("../functionfest.js");
 const Discord = require("discord.js");
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
@@ -20,7 +21,7 @@ var init = function (message, userDB, DB) {
 
     var LANG = message.lang;
     try {
-        var modPass = gear.hasPerms(Member)
+        var modPass = ff.hasPerms(Member,DB)
 
         if (!modPass) {
             return message.reply(mm('CMD.moderationNeeded', {

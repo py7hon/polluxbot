@@ -1,3 +1,4 @@
+var ff = require("../functionfest.js");
 var gear = require("../gearbox.js");
 var cmd = 'color';
 var paths = require("../paths.js");
@@ -14,7 +15,7 @@ var init = function (message,userDB,DB) {
             var bot = message.botUser
             var args = MSG.split(' ').slice(1)[0]
           //  var input = args[0].toUpperCase()
-message.reply(gear.emoji("check"))
+message.reply(ff.emoji("check"))
             gear.paramDefine(Author,"favcolor",args)
          var hex = parseInt((args+"FF").replace(/^#/, ''), 16);
 

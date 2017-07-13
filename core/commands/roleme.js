@@ -1,3 +1,4 @@
+var ff = require("../functionfest.js");
 const Discord = require("discord.js");
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
@@ -60,8 +61,8 @@ var mem=Member
 
     var AUTROLS = DB.get(Server.id).modules.AUTOROLES
 
-   var On      = gear.emoji("check")
-var Off     = gear.emoji("xmark")
+   var On      = ff.emoji("check")
+var Off     = ff.emoji("xmark")
 
     var rolenotfound     = mm('CMD.nosuchrole', {
             lngs: LANG

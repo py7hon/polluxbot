@@ -1,6 +1,7 @@
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
+var ff = require("../functionfest.js");
 var mm = locale.getT();
 
 var cmd = 'drop';
@@ -21,7 +22,7 @@ var init = function (message, userDB, DB) {
 
     var userData = userDB.get(Author.id).modules
 
-    var emojya = gear.emoji("ruby")
+    var emojya = ff.emoji("ruby")
     let GOODMOJI = emojya
     let GOOD = 'Ruby'
     if (DB.get(Server.id).modules.GOODMOJI) {
@@ -31,7 +32,7 @@ var init = function (message, userDB, DB) {
         GOOD = DB.get(Server.id).modules.GOODNAME
     }
 
- var dropAmy = parseInt(args[0]) || 1
+    var dropAmy = parseInt(args[0]) || 1
 
     console.log("------------DROP by" + Author)
     // message.guild.defaultChannel.sendMessage()
@@ -46,15 +47,15 @@ var init = function (message, userDB, DB) {
             good: GOOD,
             user: Author.username,
             prefix: message.prefix
-        }).replace(/\&lt;/g,"<").replace(/\&gt;/g,">")).then(function (r) {
+        }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">")).then(function (r) {
 
 
-               if (isNaN(Channel.DROPSLY)) {
-            Channel.DROPSLY = dropAmy
-        } else {
-            Channel.DROPSLY += dropAmy
-        }
-        message.delete(1000)
+            if (isNaN(Channel.DROPSLY)) {
+                Channel.DROPSLY = dropAmy
+            } else {
+                Channel.DROPSLY += dropAmy
+            }
+            message.delete(1000)
 
 
             return new Promise(async resolve => {
@@ -64,12 +65,13 @@ var init = function (message, userDB, DB) {
                     msg2.content === '+pick', {
                         maxMatches: 1
                     }
-                );
+                ).catch("DROP.JS 67 -- ERROR");
                 if (responses.size === 0) {} else {
                     if (oldDropsly > Channel.DROPSLY) {
-                        r.delete();
-                    return resolve(true);
+
+                        return resolve(true);
                     }
+
                     let Picker = responses.first().author
 
 
@@ -81,7 +83,7 @@ var init = function (message, userDB, DB) {
                         count: Channel.DROPSLY,
                         emoji: ""
                     }) + " " + emojya).then(function (c) {
-                        message.delete()
+
                         c.delete(500000)
                     }).catch();
 
@@ -89,19 +91,20 @@ var init = function (message, userDB, DB) {
                     gear.paramIncrement(Picker, 'earnings.drops', Channel.DROPSLY)
                     Channel.DROPSLY = 0
 
-                    r.delete().catch()
+
                     return resolve(true);
 
                 }
+                return resolve(true);
             })
 
         }).catch()
 
-       } else {
+    } else {
         message.reply(mm('$.cantDrop', {
             lngs: LANG,
             goods: GOOD
-        }));
+        })).catch();
     }
 
 }
@@ -112,4 +115,4 @@ module.exports = {
     perms: 3,
     init: init,
     cat: 'misc'
-};
+}

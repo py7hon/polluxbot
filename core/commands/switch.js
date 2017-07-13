@@ -1,6 +1,7 @@
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
+var ff = require("../functionfest.js");
 var mm = locale.getT();
 
 var cmd = 'switch';
@@ -17,7 +18,7 @@ var av;
     if (args && args > 0 && args < 8 ){
          av = args
     }else{
-        av = gear.randomize(1,7)
+        av = ff.randomize(1,7)
     }
 
     var vocab = mm('misc.aviOK', {lngs: LANG})

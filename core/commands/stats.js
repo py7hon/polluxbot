@@ -4,7 +4,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 var os = require('os');
-
+var ff = require("../functionfest.js");
 
 var cmd = 'stats';
 
@@ -57,7 +57,7 @@ var ram = parseFloat(Math.round(os.totalmem()) / 1000)-parseFloat(Math.round(os.
         emb.setColor('#e83774')
     emb.title = "---"
 
-a = gear.randomize(2,4)
+a = ff.randomize(2,4)
     emb.setAuthor('Pollux Statistics',bot.user.avatarURL,'https://pollux.fun/')
 //   emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/'+a+'.gif?raw=true')
 
@@ -66,10 +66,10 @@ a = gear.randomize(2,4)
   // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
     //emb.description = "Os Top-5 mais rubificadoss do server"
 
-      emb.addField(':hash:   Channels ',"```"+(bot.channels.size+8e2)+"```", true)
+      emb.addField(':hash:   Channels ',"```"+(bot.channels.size)+"```", true)
    //   emb.addField(':hash:   Voice Channels',"```"+()+"```", true)
-      emb.addField(':cityscape:   Servers',"```"+(bot.guilds.size+313)+"```", true)
-      emb.addField(':busts_in_silhouette:   Users',"```"+(bot.users.size+5e3)+"```", true)
+      emb.addField(':cityscape:   Servers',"```"+(bot.guilds.size)+"```", true)
+      emb.addField(':busts_in_silhouette:   Users',"```"+(bot.users.size)+"```", true)
       emb.addField(':satellite_orbital:   Ping',"```"+parseFloat(Math.round(bot.ping * 100) / 100).toFixed(0)+'ms'+"```", true)
       emb.addField(':electric_plug:   Uptime',"```"+uptime+"```", true)
       emb.addField(':control_knobs:    RAM Usage',"```"+ram.toFixed(0)/1000+" MB```", true)

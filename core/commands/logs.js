@@ -1,3 +1,4 @@
+var ff = require("../functionfest.js");
 const Discord = require("discord.js");
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
@@ -30,7 +31,7 @@ var init = function (message, userDB, DB) {
     var modPass = false
 
     try {
-        var modPass = gear.hasPerms(Member);
+        var modPass = ff.hasPerms(Member,DB);
     } catch (err) {
         console.log(err)
     }
@@ -113,7 +114,7 @@ console.log(destination[i])
             READ_MESSAGES: true
         }).then(f => {
 
-            message.channel.sendMessage(gear.emoji("check") + " Successfully defined `" + dest + "` as " + Server.channels.get(chan)).then(m => m.delete(5000)).catch()
+            message.channel.sendMessage(ff.emoji("check") + " Successfully defined `" + dest + "` as " + Server.channels.get(chan)).then(m => m.delete(5000)).catch()
             gear.paramDefine(Server, dest, chan)
         }).catch(e => {
             message.reply(mm('CMD.unpermB', {

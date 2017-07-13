@@ -1,3 +1,4 @@
+var ff = require("../functionfest.js");
 const Discord = require("discord.js");
 const arraySort = require('array-sort')
 const fs = require("fs");
@@ -27,7 +28,7 @@ gear.paramIncrement(Author,'goodies',0)
 
  emb =    new Discord.RichEmbed();
     emb.title = "Server Leaderboards"
-    emb.description = "Servers sort by Member Count"
+    emb.description = "Servers sort by Member Count: No Servers with bot count > 15%"
 
  emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/6.png")
      if (args == "sv"|| args =="server"||args=="guild"||args=="s") {
@@ -36,9 +37,20 @@ gear.paramIncrement(Author,'goodies',0)
      }
      var rankItem = []
         var ranked = []
+        var iter = 0
+        var aiter = 0
+        var baiter = 0
         bot.guilds.forEach(i=>{
 
+
+            iter++
+            aiter = (i.members.size + aiter)
+
             var botamt = i.members.filter(m=> m.user.bot).size
+            baiter = ((i.members.size - i.members.filter(m=> m.user.bot).size)+ baiter)
+          var  psent = (botamt / i.members.size)*100
+if(psent >= 15) return;
+
 
 
                         if (i.id=="110373943822540800")return;
@@ -64,7 +76,7 @@ gear.paramIncrement(Author,'goodies',0)
 
     emb.setAuthor('Pollux',bot.user.avatarURL,'https://github.com/LucasFlicky/polluxbot')
 
-  //emb.setFooter(mm('forFun.leadUnap',{lngs:LANG,prefix:message.prefix}))
+ emb.setFooter("Mean Server Size: "+(aiter/ iter ).toFixed(2)+" || Nonbots: "+(baiter/ iter ).toFixed(2))
  // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/skynet.png")
   // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
     //emb.description = "Os Top-5 fregueses mais tradicionais do Cyber Cafe"
@@ -83,7 +95,7 @@ for (i=0;i<ranked.length;i++){
       emb.addField(medals[i]+" :: ID - "+ranked[i].id,"```"+ranked[i].name+"```", false)
       emb.addField('Região :'+ranked[i].level,'**'+ranked[i].exp + '** Membros', true)
        var parsent =  (ranked[i].bots / ranked[i].exp)*100
-      emb.addField("Bots",ranked[i].bots+" "+gear.emoji("botTag")+" ("+parsent.toFixed(2)+"%)", true)
+      emb.addField("Bots",ranked[i].bots+" "+ff.emoji("botTag")+" ("+parsent.toFixed(2)+"%)", true)
     }
 }
 

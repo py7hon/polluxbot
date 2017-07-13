@@ -1,4 +1,5 @@
 var paths = require("../paths.js");
+var ff = require("../functionfest.js");
 var gear = require("../gearbox.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
@@ -18,7 +19,7 @@ var init = function (message, userDB, DB) {
     var args = MSG.split(' ').slice(1)
     var LANG = message.lang;
 
-    var modPass = gear.hasPerms(Member)
+    var modPass = ff.hasPerms(Member,DB)
 
     if (!modPass) {
         return message.reply(mm('CMD.moderationNeeded', {

@@ -3,6 +3,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 var fs = require('fs');
+var ff = require("../functionfest.js");
 var cmd = 'speak or lang';
 
 var init = function (message,userDB,DB) {
@@ -28,7 +29,7 @@ var LANG = message.lang;
 
 
 
- var modPass = gear.hasPerms(Member)
+ var modPass = ff.hasPerms(Member,DB)
 
 
     if (!modPass) {

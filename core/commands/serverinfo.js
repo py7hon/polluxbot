@@ -1,8 +1,10 @@
+var ff = require("../functionfest.js");
 var Discord = require("discord.js");
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
+var ff = require("../functionfest.js");
 
 var cmd = 'svinfo';
 
@@ -51,14 +53,14 @@ var G = message.guild
 
 
 
-var ruby    = gear.emoji("ruby")
-var On      = gear.emoji("check")
-var Off     = gear.emoji("xmark")
+var ruby    = ff.emoji("ruby")
+var On      = ff.emoji("check")
+var Off     = ff.emoji("xmark")
 
         emb.setColor('#e83774')
     emb.title = "_____________"
 
-a = gear.randomize(2,4)
+a = ff.randomize(2,4)
     emb.setAuthor(Server.name,Server.iconURL,'')
     emb.setFooter("Server created at")
     emb.setTimestamp(Server.createdAt)

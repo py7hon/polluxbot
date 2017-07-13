@@ -2,8 +2,10 @@ const Discord = require("discord.js");
 var paths = require("./paths.js");
 var cfg = require('../config.js');
 const main = require('../pollux.js')
+var ff = require("./functionfest.js");
 const Jimp = require("jimp");
 const fs = require("fs");
+
 //var emoji = require("../resources/lists/emoji.js");
 //var playing = require("../resources/lists/playing.js");
 
@@ -24,75 +26,12 @@ Array.prototype.remove = function () {
 module.exports = {
 
 
-   normaliseUSER: function normaliseUSER(User) {
+    //DB OPS
 
-
-    try {
-
-
-        var Umodules = userDB.get(User.id)
-
-        //console.log(User.id)
-        Umodules.ID = User.id
-        Umodules.username = User.username
-        Umodules.name = User.username
-        Umodules.discriminator = User.discriminator
-        Umodules.tag = User.tag
-        Umodules.avatarURL = User.avatarURL
-
-        if (Umodules.modules.goodies < 0) {
-            Umodules.modules.goodies = 0
-        }
-        Umodules.modules.goodies = parseInt(Umodules.modules.goodies)
-
-        userDB.set(User.id, Umodules)
-    } catch (err) {
-        //   console.log("not this")
-    }
-},
-
-    randomize: function randomize(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    },
-    gamechange: function gamechange(gamein=false) {
-        try {
-            if (gamein!=false)return gamein;
-            delete require.cache[require.resolve(`../resources/lists/playing.js`)];
-            var gamelist = require("../resources/lists/playing.js");
-            var max = gamelist.games.length
-            var rand = this.randomize(0,max)
-
-           return gamelist.games[rand]
-
-
-        } catch (e) {
-            console.log(e)
-        }
-    },
-
-
-    emoji: function emoji(emo) {
-
-            delete require.cache[require.resolve(`../resources/lists/emoji.js`)];
-            var emojia = require("../resources/lists/emoji.js");
-            if (emojia[emo]===undefined) return "";
-            return emojia[emo];
-    },
-
-
-    writeJ: function writeJ(a, b) {
-        fs.writeFile(b + '.json', JSON.stringify(a, null, 4), (err) => {
-            console.log('-')
-        });
-    },
 
     paramAdd: function paramAdd(target, param, val) {
 
-
-
-
         try {
-
 
             if (target instanceof Discord.User) {
 
@@ -143,8 +82,9 @@ module.exports = {
             }
             //  }
         } catch (err) {
-            console.log('ERROR JSON'.bgRed.white.bold)
+            console.log('ERROR ONWRITE == PARAM ADD'.bgRed.white.bold)
             console.log(err.stack)
+
 
         }
     },
@@ -199,7 +139,6 @@ module.exports = {
             console.log(err.stack)
         }
     },
-
     paramIncrement: function paramIncrement(target, param, val) {
         try {
 
@@ -253,7 +192,6 @@ module.exports = {
         }
 
     },
-
     paramDefine: function paramDefine(target, param, val) {
         try {
 
@@ -302,7 +240,7 @@ module.exports = {
             console.log(err.stack)
         }
     },
- superDefine: function superDefine(target, param, val) {
+    superDefine: function superDefine(target, param, val) {
         try {
 
             if (target instanceof Discord.User) {
@@ -360,40 +298,8 @@ module.exports = {
 
 
 
-hasPerms: function hasPerms(Member){
-    let Server = Member.guild
-    var DB = main.DB;
-    var modPass = false;
-try{
-
-        modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
-}catch(e)
-{
-    message.channel.sendMessage("noMod Role defined")
-}
-    if (Server.owner.id === Member.id ||Member.hasPermission("ADMINISTRATOR")) {
-        modPass = true;
-    };
-     if (Member.hasPermission("MANAGE_GUILD")) {
-        modPass = true;
-    };
-return modPass;
-},
-
-
-
     //OLDS
 
-
-    drops: 0,
-    vacuum: [],
-    ongoing: false,
-    writePoints: function writePoints(points, caller) {
-        fs.writeFile('../points.json', JSON.stringify(points), (err) => {
-            //console.log("JSON Write event on " + caller + "'s activity -------------\n")
-            if (err) console.log("JSON ERROR  on " + caller + "'s activity -------------\n" + err)
-        });
-    },
     checkAdm: function checkAdm(origin, target) {
         try {
 
@@ -416,24 +322,7 @@ return modPass;
             return "none"
         }
     },
-    checkment: function checkment(message) {
 
-        if (!message.mentions.users.size) {
-
-            return message.author
-
-        } else {
-
-            return message.mentions.users.first()
-        }
-    },
-    checkRubys: function checkRubys(amount, invoker) {
-        if (invoker.rubys >= amount) {
-            return true;
-        } else {
-            return false;
-        }
-    },
     glassify: function glassify(img, call, msg = false) {
 
             Jimp.read(img).then(function (user) {

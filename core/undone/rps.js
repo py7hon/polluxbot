@@ -1,5 +1,6 @@
 var paths = require("../paths.js");
 const fs = require("fs");
+var ff = require("../functionfest.js");
 var pass = 0
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     console.log("------------RPS by" + caller)
@@ -60,7 +61,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         var me = 0
         var you = 0
         console.log(challenged.bot)
-        if (challenged.bot == true){you=gear.randomize(1,3)}
+        if (challenged.bot == true){you=ff.randomize(1,3)}
         message.channel.sendMessage("rps envie :gem: :scissors: ou :page_facing_up: por PM").then(function (msg) {
 
                 setTimeout(function () {
