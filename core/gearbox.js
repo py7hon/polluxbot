@@ -228,6 +228,7 @@ try{
 
             modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
         } catch (e) {
+
             message.channel.sendMessage("noMod Role defined")
         }
         if (Server.owner.id === Member.id || Member.hasPermission("ADMINISTRATOR")) {
