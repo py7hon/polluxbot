@@ -14,11 +14,9 @@ var cmd = 'profile';
 var init = function (message, userDB, DB) {
     try{
 
-    var gener = mm('builds.genProf', {
-        lngs: LANG
-    });
+
       var start = Date.now();
-      message.reply(gener).then(generatorMSG => {
+
     try{
     var Server = message.guild;
     var Channel = message.channel;
@@ -37,7 +35,9 @@ var init = function (message, userDB, DB) {
     var nope = mm('CMD.noDM', {
         lngs: LANG
     });
-
+    var gener = mm('builds.genProf', {
+        lngs: LANG
+    });
     var inf = mm('dict.infinite', {
         lngs: LANG
     });
@@ -49,7 +49,7 @@ var init = function (message, userDB, DB) {
     }
     //CHECK PROFS LV ETC ---
 
-
+   message.reply(gener).then(generatorMSG => {
 
 
 
