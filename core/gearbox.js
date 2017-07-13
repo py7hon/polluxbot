@@ -125,7 +125,7 @@ DB:DB,
     },
 
 
-    updateEXP: function updateEXP(TG, event,db,usdb) {
+    updateEXP: function updateEXP(TG, event,DB,userDB) {
         let userData = userDB.get(TG.id).modules;
         var caller = TG.username // Checar Caller
 
