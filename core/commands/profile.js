@@ -494,7 +494,7 @@ sidebar.color([
 */
 
     })}catch(e){console.log(message.channel.sendMessage("**ERROR**"))}
-      }).catch(message.channel.sendMessage("**ERROR**"))
+      }
 
 
 };
