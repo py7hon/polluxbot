@@ -11,7 +11,7 @@ var mm = locale.getT();
 
 var cmd = 'profile';
 
-var init = function (message, userDB, DB) {
+var init = async function (message, userDB, DB) {
 
 
 
@@ -191,8 +191,11 @@ console.log("==============="+backgroundIMAGE)
     }
 
   generatorMSG.edit(gener+"\n `Processing Background`").catch()
+
+
       return new Promise(async resolve => {
 
+        generatorMSG.edit(gener + "\n `Sending Buffer`").catch()
 
     var skin = userDB.get(Target.id).modules.skin
 
@@ -206,7 +209,6 @@ console.log("==============="+backgroundIMAGE)
     Jimp.read(paths.MEDALS+ medals[6]+'.png').then(function (md7) {
     Jimp.read(paths.MEDALS+ medals[7]+'.png').then(function (md8) {
 
-          generatorMSG.edit(gener+"\n `Reading Medal Info`").catch()
 
     Jimp.read(paths.SKINS + skin + '/mainframe.png').then(function (frame) {
     Jimp.read(paths.SKINS + skin + '/mainframe.png').then(function (frameB) {
@@ -216,7 +218,6 @@ console.log("==============="+backgroundIMAGE)
     Jimp.read(paths.SKINS + skin + '/lenna.png').then(function (lenna) {
     Jimp.read(backgroundIMAGE).then(function (bg) {
 
-          generatorMSG.edit(gener+"\n `Building Card`").catch()
 
         photo.resize(100,100)
          photo.mask(lenna, 0, 0)
@@ -249,7 +250,6 @@ sidebar.color([
         //sidebar.normalize();
           frame.composite(sidebar,0,0 )
 
-  generatorMSG.edit(gener+"\n `Writing Text`").catch()
 
           Jimp.loadFont(paths.FONTS + "product_24_black_bold.fnt").then(function (levelf) {
           Jimp.loadFont(paths.FONTS + "roboto_12.fnt").then(function (lorem) {
@@ -260,7 +260,6 @@ sidebar.color([
 
 
 
-  generatorMSG.edit(gener+"\n `Calculating Number Info`").catch()
 
 
 
@@ -270,7 +269,7 @@ sidebar.color([
            //   ovlat.autocrop(false)
             //  ovlat.contain(45, 20, Jimp.HORIZONTAL_ALIGN_CENTER)
 
-              frame.composite(ovlat, 345, 20)
+             await frame.composite(ovlat, 345, 20)
 
               frame.print(name, 162, 138, `${nickname}`);
               frame.print(tag, 170, 168, `${nametag}`);
@@ -306,7 +305,6 @@ sidebar.color([
             //  paasento.autocrop(false)
              // paasento.contain(100, 10, Jimp.HORIZONTAL_ALIGN_RIGHT)
 
-  generatorMSG.edit(gener+"\n `Compositing`").catch()
               frame.composite(srank, 105, 185) //+25 down
               frame.composite(grank, 105, 210) //+25 down
               frame.composite(rrank, 105, 235) //+25 down
@@ -324,16 +322,16 @@ sidebar.color([
               displays.composite(md7, 6 * 27, 0) //+25 down
               displays.composite(md8, 7 * 27, 0) //+25 down
 
-
               frame.composite(displays, 169, 245) //+25 down
 
-  generatorMSG.edit(gener+"\n `Sending Buffer`").catch()
+
 
               frame.getBuffer(Jimp.MIME_PNG, function (err, image) {
                   message.channel.sendFile(image).then(picsent=>{
                        var stop = Date.now();
                         var diff = (stop - start);
                         generatorMSG.edit("DONE! \n Generated in `"+diff/1000+"s`").catch()
+                     // generatorMSG.delete(8000)
 
                   })
                   return resolve(true);
