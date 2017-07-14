@@ -33,6 +33,7 @@ const userDB = new PersistentCollection({
 module.exports = {
         DB: DB,
         userDB: userDB,
+        hook:hook,
 
     sendSlack: async function sendSlack(hookname = "PolluxHOOK", pretex="**Hook**", text = "", col = "#2551c9", avi = "https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg") {
 //return;
@@ -49,6 +50,7 @@ module.exports = {
         }).catch()
 
     },
+
 
     normaliseUSER: function normaliseUSER(User, userDB, DB) {
 
@@ -720,7 +722,19 @@ try{
             console.log(err.stack)
         }
     },
+    sendDebug: function sendDebug(msg){
+        let response = `
+**Server:** ${msg.guild.name}
+**Channel:** ${msg.channel.name}
+**Author:** ${msg.author} :: ${msg.author.username}#${msg.author.discriminator}
+**Message:**
+${msg.content}
 
+**PERMS:** \`\`\`${msg.guild.member(msg.botUser).permissions.serialize()}\`\`\`
+
+`;
+        return response
+    }
     //OLDS
 
     getFlair: function getFlair(origin, target) {

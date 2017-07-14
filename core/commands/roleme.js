@@ -86,7 +86,7 @@ var Off     = gear.emoji("xmark")
             }
 
         }
-        message.reply(rolenotfound)
+        message.reply(rolenotfound).catch(gear.sendDebug(message))
 
 
 
@@ -100,7 +100,7 @@ var Off     = gear.emoji("xmark")
             }
 
         }
-        message.reply(rolenotfound)
+        message.reply(rolenotfound).catch(gear.sendDebug(message))
 
     }
 
@@ -127,11 +127,11 @@ function fR(role,memb){
 
 
         var a = Server.roles.find('name', role);
-        memb.addRole(a).then(a => message.channel.sendMessage(roleadd_confirm)).then(e=>e.delete(5000)).catch(e=> message.channel.sendMessage(noPermsMe))
+        memb.addRole(a).then(a => message.channel.sendMessage(roleadd_confirm)).then(e=>e.delete(5000)).catch(e=> message.channel.sendMessage(noPermsMe).catch(gear.sendDebug(message)))
             }
 
 function xR(role,memb){
-    message.delete()
+    message.delete().catch(gear.sendDebug(message))
 
     var roleremove_confirm  =Off+ mm('CMD.rolermCom', {
             lngs: LANG,
@@ -142,7 +142,7 @@ function xR(role,memb){
 
 
         var a = Server.roles.find('name', role);
-        memb.removeRole(a).then(a => message.channel.sendMessage(roleremove_confirm)).then(e=>e.delete(5000)).catch(e=> message.channel.sendMessage(noPermsMe))
+        memb.removeRole(a).then(a => message.channel.sendMessage(roleremove_confirm)).then(e=>e.delete(5000)).catch(e=> message.channel.sendMessage(noPermsMe).catch(gear.sendDebug(message)))
             }
 }
  module.exports = {pub:false,cmd: cmd, perms: 3, init: init, cat: 'info'};
