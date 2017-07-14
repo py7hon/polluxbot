@@ -614,15 +614,17 @@ bot.on('guildCreate', (guild) => {
 
 
 
+    if (guild.region=="brazil"){
+      var greetings = greeting.ownPt
+    }else{
+       var greetings = greeting.own
+    }
 
-
-    var greetings = greeting.own.replace(/\{\{server\}\}/g, guild.name)
+    var greetings = greetings.replace(/\{\{server\}\}/g, guild.name)
     guild.owner.sendMessage(greetings)
     serverSetup(guild);
 });
 bot.on("guildDelete", (guild) => {
-
-
 
 
         var PolluxS = bot.guilds.get("277391723322408960")
