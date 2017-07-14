@@ -9,6 +9,10 @@ var checkModule = function (msg) {
 
     try {
         let command = msg.content.substr(msg.prefix.length).split(' ')[0];
+        if (msg.content.startsWith("p!")){
+        let command = msg.content.substr("p!".length).split(' ')[0];
+
+        }
         let commandFile = require(`./commands/${command}.js`);
         return commandFile.mod;
 
