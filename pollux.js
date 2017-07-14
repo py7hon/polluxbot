@@ -834,7 +834,7 @@ bot.on("channelDelete", channel=>{
 //=======================================//
 
 process.on('unhandledRejection', function(reason, p){
-    console.log("Possibly Unhandled Rejection at: Promise \n".red, "\n\n reason: ".red, reason.stack);
+    console.log("Possibly Unhandled Rejection at: Promise \n".red,p, "\n\n reason: ".red, reason.stack);
 
 
     gear.sendSlack("Promise Breaker","Promise Rejection: "+reason,reason.stack,"#ffcd25" )
