@@ -327,7 +327,7 @@ sidebar.color([
 
 
               frame.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                  message.channel.sendFile(image).then(picsent=>{
+                  message.channel.send(undefined,{file:{attachment:image,name:"file"}}).then(picsent=>{
                        var stop = Date.now();
                         var diff = (stop - start);
                         generatorMSG.edit("DONE! \n Generated in `"+diff/1000+"s`").catch()

@@ -92,7 +92,7 @@ if (code.includes("server id")){
 
       message.channel.sendCode("xl", gear.clean(evaled));
     } catch(err) {
-      message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${(err)}\n\`\`\``);
+      message.channel.send(`\`ERROR\` \`\`\`xl\n${(err)}\n\`\`\``);
     }
   }catch(err){console.log(err)}
 }

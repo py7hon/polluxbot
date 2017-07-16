@@ -734,7 +734,7 @@ ${msg.content}
 
 `;
         return response
-    }
+    },
     //OLDS
 
     getFlair: function getFlair(origin, target) {
