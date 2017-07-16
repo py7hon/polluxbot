@@ -162,7 +162,7 @@ var init = function (message, userDB, DB) {
 
 
                                         cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                                            message.channel.send({files:[image]})
+                                            message.channel.send({files:[{attachment:image,name:"file.png"}]})
                                         })
 
                                     })

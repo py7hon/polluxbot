@@ -44,7 +44,7 @@
             Jimp.read(url).then(function (base) {
                // base.crop(25, 45, 240, 196)
                 base.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                    message.channel.send({files:[image]})
+                    message.channel.send({files:[{attachment:image,name:"file.png"}]})
                 })
             })
         }
