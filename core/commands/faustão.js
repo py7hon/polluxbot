@@ -26,7 +26,7 @@ var init = function (message,userDB,DB) {
 message.channel.createWebhook('Faustão',"http://static2.blastingnews.com/media/photogallery/2015/4/21/660x290/b_290x290/globo-fara-programa-para-revelar-novo-faustao_309513.jpg")
  .then(async w => {
     await w.edit("Faustão","https://abrilvejasp.files.wordpress.com/2016/12/faustao-popp.jpg?quality=70&strip=info&w=600")
-    w.sendMessage(fausto[gear.randomize(0,11)])
+    w.send(fausto[gear.randomize(0,11)])
     w.delete()
 })
  .catch(console.error)

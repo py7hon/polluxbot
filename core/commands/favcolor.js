@@ -23,7 +23,7 @@ message.reply(gear.emoji("check"))
                     Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
                     img.mask(lenna, 0, 0)
   img.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                    message.channel.sendFile(image)
+                    message.channel.send({files:[image]})
 
 
 

@@ -1,13 +1,14 @@
 //Discord Start
 const Discord = require("discord.js");
-var bot = new Discord.Client({
+var bot = new Discord.Client();
+/*var bot = new Discord.Client({
     messageCacheMaxSize: 4048,
     messageCacheLifetime: 1680,
     messageSweepInterval: 2600,
     disableEveryone: true,
     fetchAllMembers: true,
     disabledEvents: ['typingStart', 'typingStop', 'guildMemberSpeaking']
-});
+});*/
 
 // Get Tokens
 const cfg = require('./config.js');
@@ -136,7 +137,7 @@ bot.on('ready', () => {
 
 //=====================================
 
-Array.prototype.remove = function () {
+Array.prototype.removeire = function removeire() {
     var what, a = arguments,
         L = a.length,
         ax;
@@ -148,6 +149,7 @@ Array.prototype.remove = function () {
     }
     return this;
 };
+
 
 //=======================================//
 //      FUNCTIONFEST
@@ -319,6 +321,8 @@ var plzDrop = cd(console, gear.dropGoodies, 5000);
 
 bot.on("message", (message) => {
 
+
+
     //Set Them Up
     var Server = message.guild;
     var Channel = message.channel;
@@ -328,8 +332,8 @@ bot.on("message", (message) => {
 
 if(message.mentions.users.size+message.mentions.roles.size >= 6){
     message.delete()
-    message.channel.sendMessage(":warning: SPAM PROTECTION TRIGGERED :warning:")
-    Server.member(message.author).ban().then(e=>message.channel.sendMessage(message.author+" kicked for Mention Spam above 5")).catch(a=>message.channel.sendMessage(Server.owner+" could not kick "+message.author+" due to permission issues."))
+    message.channel.send(":warning: SPAM PROTECTION TRIGGERED :warning:")
+    Server.member(message.author).ban().then(e=>message.channel.send(message.author+" kicked for Mention Spam above 5")).catch(a=>message.channel.send(Server.owner+" could not kick "+message.author+" due to permission issues."))
 }
 
     //---  LOGS     ---------------------------------------------------------
@@ -372,7 +376,7 @@ try{
                     jet.run(bot, message, DB, defaults.gdfal)
                     return
                 } catch (err) {
-                    hook.sendMessage(err)
+                    hook.send(err)
                     return
                 }
             }
@@ -386,7 +390,7 @@ try{
                 return
             } catch (err) {
                 console.log('ERROR')
-                hook.sendMessage(err)
+                hook.send(err)
                 return
             }
         }
@@ -396,7 +400,7 @@ try{
             if (servdata.REACTIONS[MSG]) {
                 let max = servdata.REACTIONS[MSG].length
                 let goer = gear.randomize(0, max)
-                return Channel.sendMessage(servdata.REACTIONS[MSG][goer])
+                return Channel.send(servdata.REACTIONS[MSG][goer])
             }
         } else {
             let D = DB.get(Server.id)
@@ -421,7 +425,7 @@ try{
             gear.paramDefine(Author,"goodies",0)
             message.reply("Your rubies has been reset due to suspect of exploit")
             console.log("\n\n\n\n RUBY FRAUD RESET \n\n\n\n\n")
-            bot.users.get("88120564400553984").sendMessage("RESET:"+Author+" :: "+Author.id+" "+Author.username)
+            bot.users.get("88120564400553984").send("RESET:"+Author+" :: "+Author.id+" "+Author.username)
         }
         //  ------
         gibexp(Author, 'exp', gear.randomize(1, 10)) // EXP GIVEAWAY
@@ -607,7 +611,7 @@ bot.on('guildCreate', (guild) => {
             var ts = new Date
             emb.setTimestamp(ts)
 
-            rad.sendEmbed(emb).catch()
+            rad.send({embed:emb}).catch()
 
 
 
@@ -621,7 +625,7 @@ bot.on('guildCreate', (guild) => {
     }
 
     var greetings = greetings.replace(/\{\{server\}\}/g, guild.name)
-    guild.owner.sendMessage(greetings)
+    guild.owner.send(greetings)
     serverSetup(guild);
 });
 bot.on("guildDelete", (guild) => {
@@ -642,7 +646,7 @@ bot.on("guildDelete", (guild) => {
             var ts = new Date
             emb.setTimestamp(ts)
 
-            rad.sendEmbed(emb).catch()
+            rad.send({embed:emb}).catch()
 
 
     DB.delete(guild.id)
@@ -685,7 +689,7 @@ var chanpoint=false;
             emb.setFooter("Join", member.user.avatarURL)
             emb.setTimestamp(ts)
 
-            chanpoint.sendEmbed(emb).catch()
+            chanpoint.send({embed:emb}).catch()
 
         }
 
@@ -720,7 +724,7 @@ try{
             let content = DB.get(Server.id).modules.GREET.joinText.replace('%username%', member.user);
             content = content.replace('%server%', member.guild.name);
             try {
-                channel.sendMessage(content).then();
+                channel.send(content).then();
             } catch (e) {}
         }
     }
@@ -766,7 +770,7 @@ var chanpoint=false;
             emb.setFooter("Leave", member.user.avatarURL)
             emb.setTimestamp(ts)
 
-            chanpoint.sendEmbed(emb).catch()
+            chanpoint.send({embed:emb}).catch()
 
         }
 
@@ -796,7 +800,7 @@ var chanpoint=false;
             let content = DB.get(Server.id).modules.FWELL.joinText.replace('%username%', member.user);
             content = content.replace('%server%', member.guild.name);
             try {
-                channel.sendMessage(content);
+                channel.send(content);
             } catch (e) {}
         }
     }
@@ -817,7 +821,7 @@ let color =  '#ffdc49'
 
 gear.sendSlack(name, txb, tx, color)
 
-    hook.sendMessage(error.toString())
+    hook.send(error.toString())
 });
 
 bot.on("channelCreate", channel=>{

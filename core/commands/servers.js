@@ -101,7 +101,7 @@ for (i=0;i<ranked.length;i++){
 
 
 
-    message.channel.sendEmbed(emb).catch()
+    message.channel.send({embed:emb}).catch()
 
 
 

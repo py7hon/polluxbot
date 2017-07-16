@@ -84,7 +84,7 @@ var medals = [':first_place: 1st',
             emb.addField(GOOD + 's', ranked[i].goodies + "" + GOODMOJI, true)
         }
     }
-    message.channel.sendEmbed(emb)
+    message.channel.send({embed:emb})
 
 }
  module.exports = {

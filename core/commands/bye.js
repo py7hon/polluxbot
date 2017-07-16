@@ -90,8 +90,6 @@ var init = function (message, userDB, DB) {
         return Channel.send(v.outCX);
     }
 
-
-
     if (DB.get(Server.id).modules.FWELL.hi === true) {
         gear.paramDefine(Server, "FWELL.hi", false)
         return Channel.send(v.outOFF);
@@ -103,10 +101,6 @@ var init = function (message, userDB, DB) {
         gear.paramDefine(Server, "FWELL.greetChan", message.channel.id)
         return Channel.send(v.outON);
     }
-
-
-
-
 
 }
 module.exports = {

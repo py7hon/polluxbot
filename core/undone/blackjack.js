@@ -66,7 +66,7 @@ if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
             keepgo: true,
 
         };
-        message.channel.sendMessage("Ok, vamos jogar Blackjack. Estilo vegas! Você puxa as suas até parar e depois eu puxo.");
+        message.channel.send("Ok, vamos jogar Blackjack. Estilo vegas! Você puxa as suas até parar e depois eu puxo.");
         let dealer = {
             hand: [pile[0], pile[2], pile[4], pile[6], pile[8]],
             sum: function dsum(s) {
@@ -105,15 +105,15 @@ if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
         function conclusion(end) {
             switch (end) {
                 case 'victory':
-                    message.channel.sendMessage("Certo, toma aqui teus " + parseInt(bet * 2.4) + " "+RUBYMOJI+" Rubys de prêmio");
+                    message.channel.send("Certo, toma aqui teus " + parseInt(bet * 2.4) + " "+RUBYMOJI+" Rubys de prêmio");
                     userData.rubys += parseInt(bet * 2.4);
                     break;
                 case 'defeat':
-                    message.channel.sendMessage("Boa sorte da próxima vez.");
+                    message.channel.send("Boa sorte da próxima vez.");
 
                     break;
                 case 'tie':
-                    message.channel.sendMessage("Bom, pega seus " + parseInt(bet * 2.4) + " "+RUBYMOJI+" rubys");
+                    message.channel.send("Bom, pega seus " + parseInt(bet * 2.4) + " "+RUBYMOJI+" rubys");
                     userData.rubys += parseInt(bet * 2.4);
                     break;
             }
@@ -127,7 +127,7 @@ if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
             return console.log('===================================')
         };
         setTimeout(function () {
-            message.channel.sendMessage(`:one: Hit
+            message.channel.send(`:one: Hit
 :two: Stand`)
         }, 2000)
     };*/
@@ -166,9 +166,9 @@ if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
         function enough() {
             //-------------------------------------------
             if ((dealer.sum() >= player.sum()) && (dealer.sum() <= 21)) {
-                message.channel.sendMessage('Eu paro...')
+                message.channel.send('Eu paro...')
             } else {
-                message.channel.sendMessage('Ow porra...')
+                message.channel.send('Ow porra...')
             }
 
 
@@ -268,7 +268,7 @@ return
 
             console.log('player KeepGo END')
 
-            message.channel.sendMessage('Ok, minha vez').then(function (c) {
+            message.channel.send('Ok, minha vez').then(function (c) {
 
 
 
@@ -284,7 +284,7 @@ return
                         dealer.round++
                             console.log('keepgo dealer')
 
-                        message.channel.sendMessage(dealer.hand[dealer.round].icon)
+                        message.channel.send(dealer.hand[dealer.round].icon)
 
 
                     }
@@ -308,7 +308,7 @@ return
         if (ongoing == true) {
              drawCards(300,800);
             setTimeout(function () {
-                message.channel.sendMessage(`:one: Hit
+                message.channel.send(`:one: Hit
 :two: Stand`).then(function (m) {
 
 
@@ -329,7 +329,7 @@ return
 
                                     setTimeout(function () {
                                         if (ongoing === true && player.keepgo === true) {
-                                            message.channel.sendMessage(`:one: Hit
+                                            message.channel.send(`:one: Hit
 :two: Stand`).then(function (mm) {
 
 
@@ -352,7 +352,7 @@ return
 
                                                                 setTimeout(function () {
                                                                     if (ongoing === true && player.keepgo === true) {
-                                                                        message.channel.sendMessage(`:one: Hit
+                                                                        message.channel.send(`:one: Hit
 :two: Stand
 Turn 4`).then(function (mmm) {
 

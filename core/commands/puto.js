@@ -10,7 +10,7 @@ var LANG = ""
 var init = function (message, userDB, DB) {
 
 
- message.channel.sendFile("https://pbs.twimg.com/media/Cvi3xACWAAAqFoW.jpg")
+ message.channel.send({files:["https://pbs.twimg.com/media/Cvi3xACWAAAqFoW.jpg" ]})
 
 
 
@@ -59,7 +59,7 @@ var init = function (message, userDB, DB) {
                           base.print(sub, 235, 25, a.toString());
                           base.print(sub, 322, 65, s.toString());
                         base.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                            message.channel.sendFile(image)
+                            message.channel.send({files:[image]})
 
 
                         })

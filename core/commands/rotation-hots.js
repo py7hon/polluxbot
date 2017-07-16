@@ -100,7 +100,7 @@ ${gear.emoji(rotation[0][9].replace(".","").replace(" ","").toLowerCase())}${rot
             emb.addField('Level 15',`${gear.emoji(rotation[4].replace(".","").replace(" ","").toLowerCase())}${rotation[4]}`, true)
 
 
-    message.channel.sendEmbed(emb)
+    message.channel.send({embed:emb})
 
 
 

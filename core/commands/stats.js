@@ -85,7 +85,7 @@ a = gear.randomize(2,4)
 
 
 
-    message.channel.sendEmbed(emb)
+    message.channel.send({embed:emb})
 
 
 

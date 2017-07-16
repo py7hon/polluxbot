@@ -63,7 +63,7 @@ var init = function (message, userDB, DB) {
         GOOD = DB.get(Server.id).modules.GOODNAME
     }
 
-    //message.channel.sendEmbed(emb)
+    //message.channel.send({embed:emb})
 
 
     if (Cafe.orderActive(Author.id)) {
@@ -83,7 +83,7 @@ var init = function (message, userDB, DB) {
     emb.addField(ORD.MENU[4][2] + " " + ORD.MENU[4][1], "**" + ORD.MENU[4][0] + "** Rubys " + rubymoj, true)
 
 
-    return message.channel.sendEmbed(emb).then(async() => {
+    return message.channel.send({embed:emb}).then(async() => {
 
         //--start shit
 
@@ -190,7 +190,7 @@ var init = function (message, userDB, DB) {
 
             totale = cost(sumcalc)
 
-            message.channel.sendMessage(` ${icon}
+            message.channel.send(` ${icon}
 **Total:** ${totale}
 
 OK?
@@ -247,7 +247,7 @@ OK?
 
 
                     var factor = gear.randomize(10, 50)
-                    message.channel.sendMessage(mm('menu.chargeA', {
+                    message.channel.send(mm('menu.chargeA', {
                         lngs: LANG,
                         total: totale
                     }) + rubymoj + mm('menu.chargeB', {

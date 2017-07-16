@@ -24,7 +24,7 @@ var av;
     var vocab = mm('misc.aviOK', {lngs: LANG})
 
     bot.user.setAvatar( './avis/'+av+'.png').catch(e=> message.reply(e));
-    message.channel.sendFile('./avis/'+av+'.png','avatar.png',vocab)
+    message.channel.send(vocab,{files:['./avis/'+av+'.png']})
     }
 
  module.exports = {

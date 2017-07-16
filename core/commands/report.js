@@ -18,8 +18,8 @@ __**BUG REPORT FILED**__
 
 `
 
-   a.sendMessage(essage)
-   b.sendMessage(essage)
+   a.send(essage)
+   b.send(essage)
     message.reply(":fax: **A BUG REPORT HAS BEEN ISSUED DIRECTLY TO THE CREATOR AND AT THE SUPPORT SERVER, EXPECT AN ANSWER SOON. IF THIS WAS A TEST, YOU JUST GOT BANNED FROM USING THIS COMMAND EVER AGAIN **")
 
 }catch(e){console.log(e)}

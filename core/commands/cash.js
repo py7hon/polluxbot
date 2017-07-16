@@ -99,7 +99,7 @@ var emoj = bot.emojis.get('276878246589497344')
 
     }
 
-    return message.channel.sendMessage(vocab.heHas)
+    return message.channel.send(vocab.heHas)
 }
 
  module.exports = {

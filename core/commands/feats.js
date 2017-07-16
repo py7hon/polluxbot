@@ -79,7 +79,7 @@ Support: https://discord.gg/ay48h7Q
 
 
 
-    message.channel.sendEmbed(emb)
+    message.channel.send({embed:emb})
 
 
 

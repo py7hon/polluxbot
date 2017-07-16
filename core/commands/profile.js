@@ -480,7 +480,7 @@ sidebar.color([
 
 
                                         cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                                            message.channel.sendFile(image)
+                                            message.channel.send({files:[image]})
                                         })
 
                                     })
@@ -498,7 +498,7 @@ sidebar.color([
 
 */
 
-    })}catch(e){console.log(message.channel.sendMessage("**ERROR**"))}
+    })}catch(e){console.log(message.channel.send("**ERROR**"))}
       }
 
 

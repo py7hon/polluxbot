@@ -15,7 +15,7 @@ var output="";
 
     }
 
-    message.channel.sendMessage(output)
+    message.channel.send(output)
 
 
 

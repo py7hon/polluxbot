@@ -70,7 +70,7 @@ var init = function (message, userDB, DB) {
                 var a = Server.roles.find('name', role);
                // message.reply(role)
                 if (a == undefined) return message.reply(rolenotfound);
-                memb.addRole(a).then(a => message.channel.sendMessage(roleadd_confirm)).then(e => e.delete(600000)).catch(e => message.channel.sendMessage(noPermsMe))
+                memb.addRole(a).then(a => message.channel.send(roleadd_confirm)).then(e => e.delete(600000)).catch(e => message.channel.send(noPermsMe))
             }
         } catch (e) {
             console.log(e)

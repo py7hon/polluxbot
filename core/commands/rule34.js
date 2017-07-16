@@ -57,7 +57,7 @@ if (DB.get(Server.id).modules.GOODNAME) {
                 message.reply(mm('forFun.nsfw404',{lngs:LANG}))
             }
             else {
-                //message.channel.sendMessage()
+                //message.channel.send()
                 //message.reply("http:" + url);
                              var msg_ax = "**Query:** " +query[1] +"\nby "+Author//GOODMOJI + mm('forFun.nsfwCheckout',{lngs:LANG,emoji:""})
                  var emb = new Discord.RichEmbed();
@@ -66,14 +66,14 @@ if (DB.get(Server.id).modules.GOODNAME) {
                       emb.setDescription(msg_ax)
 
               var image = ("http:" + url)
-                 message.channel.sendEmbed(emb)
-                    message.channel.sendFile(image).then(function (m) {
+                 message.channel.send({embed:emb})
+                    message.channel.send({files:[image]}).then(function (m) {
                 m.react('👍')
                 m.react('👎')
                 m.react('❤')
                 m.react('😠')
 
-            }).catch(e=>message.channel.sendMessage(image))
+            }).catch(e=>message.channel.send(image))
 
 
             }

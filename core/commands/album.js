@@ -107,7 +107,7 @@ spotifyApi.searchAlbums('Love')
         }
 
 
-    message.channel.sendEmbed(emb)
+    message.channel.send({embed:emb})
 
 
   }, function(err) {

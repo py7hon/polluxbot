@@ -87,7 +87,7 @@ var init = function (message, userDB, DB) {
 
                     roleout(time, role)
                     logThis(time,timeTx)
-                    return message.channel.sendMessage(`**${Target.displayName}** was MUTED for ${timeTx}`)
+                    return message.channel.send(`**${Target.displayName}** was MUTED for ${timeTx}`)
 
                 }).catch(console.error)
 
@@ -99,7 +99,7 @@ var init = function (message, userDB, DB) {
 
             roleout(time, role)
             logThis(time,timeTx)
-            return message.channel.sendMessage(`**${Target.displayName}** was MUTED for ${timeTx}`)
+            return message.channel.send(`**${Target.displayName}** was MUTED for ${timeTx}`)
 
         } else if (Server.roles.has(muteRole)) {
 
@@ -107,7 +107,7 @@ var init = function (message, userDB, DB) {
 
             roleout(time, muteRole)
             logThis(time,timeTx)
-            return message.channel.sendMessage(`**${Target.displayName}** was MUTED for ${timeTx}`)
+            return message.channel.send(`**${Target.displayName}** was MUTED for ${timeTx}`)
 
         }
 
@@ -156,7 +156,7 @@ var init = function (message, userDB, DB) {
                 emb.setFooter("Mute", Target.user.avatarURL)
                 emb.setTimestamp(ts)
 
-                chanpoint.sendEmbed(emb).catch()
+                chanpoint.send({embed:emb}).catch()
 
 
                 var RevokeEmb = new Discord.RichEmbed;

@@ -27,7 +27,7 @@ var LANG = message.lang;
     }
 const RRLT = new Russia(message);
 
-    return message.channel.sendMessage("emb").then(async() => {
+    return message.channel.send("emb").then(async() => {
 
         //--start shit
 
@@ -53,7 +53,7 @@ const RRLT = new Russia(message);
         return new Promise(async resolve => {
 
 
-            message.channel.sendMessage("prompt")
+            message.channel.send("prompt")
 
 
                   const responses = await Channel.awaitMessages(msg2 =>

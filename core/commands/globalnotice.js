@@ -55,7 +55,7 @@ var init = function async (message,userDB,DB) {
 
 
 
-    message.channel.sendEmbed(emb)
+    message.channel.send({embed:emb})
 
 
 
@@ -65,7 +65,7 @@ var init = function async (message,userDB,DB) {
 
      //   if (DB.get(bot.guilds.array()[i].id).modules.announcements === true) {
 
-            bot.guilds.array()[i].defaultChannel.sendEmbed(emb)
+            bot.guilds.array()[i].defaultChannel.send({embed:emb})
 
 
      //   }

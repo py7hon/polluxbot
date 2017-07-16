@@ -42,7 +42,7 @@ if (!modPass) return message.reply(noperms);
 
 
 
-    message.channel.sendMessage(mm('nuke.confirm', {
+    message.channel.send(mm('nuke.confirm', {
         lngs: LANG
     })).then(async() => {
 
@@ -78,7 +78,7 @@ if (!modPass) return message.reply(noperms);
 
 
 
-            message.channel.sendMessage(mm('nuke.confirmB', {
+            message.channel.send(mm('nuke.confirmB', {
                 lngs: LANG
             }));
 
@@ -108,7 +108,7 @@ if (!modPass) return message.reply(noperms);
                 return resolve(true);
             } else {
 
-                message.channel.sendMessage(mm('nuke.start', {
+                message.channel.send(mm('nuke.start', {
                     lngs: LANG
                 }));
 
@@ -120,7 +120,7 @@ if (!modPass) return message.reply(noperms);
                 }
                 DB.set(Server.id, gdfal)
                 nukealert(message,why)
-                message.channel.sendMessage(mm('nuke.completed', {
+                message.channel.send(mm('nuke.completed', {
                     lngs: LANG
                 }));
 

@@ -97,7 +97,7 @@ var init = function (message, userDB, DB) {
         });
 
         var a = Server.roles.find('name', role);
-        memb.addRole(a).then(a => message.channel.sendMessage(roleadd_confirm)).then(e => e.delete(5000)).catch(e => message.channel.sendMessage(noPermsMe).catch(gear.sendDebug(message)))
+        memb.addRole(a).then(a => message.channel.send(roleadd_confirm)).then(e => e.delete(5000)).catch(e => message.channel.send(noPermsMe).catch(gear.sendDebug(message)))
     }
 
     function xR(role, memb) {
@@ -110,7 +110,7 @@ var init = function (message, userDB, DB) {
         });
 
         var a = Server.roles.find('name', role);
-        memb.removeRole(a).then(a => message.channel.sendMessage(roleremove_confirm)).then(e => e.delete(5000)).catch(e => message.channel.sendMessage(noPermsMe).catch(gear.sendDebug(message)))
+        memb.removeRole(a).then(a => message.channel.send(roleremove_confirm)).then(e => e.delete(5000)).catch(e => message.channel.send(noPermsMe).catch(gear.sendDebug(message)))
     }
 }
 module.exports = {

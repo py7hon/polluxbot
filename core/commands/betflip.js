@@ -103,7 +103,7 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
             prize: bet[1]*2,
             emoji: ""
         })+emojya
-        message.channel.sendFile(paths.BUILD + ros, ros, vicPrompt )
+        message.channel.send(vicPrompt,{files:[paths.BUILD + ros]})
 
         gear.paramIncrement(Author, 'goodies', parseInt(bet[1] * 2))
         gear.paramIncrement(Author, 'earnings.jogatina', parseInt(bet[1] * 2))
@@ -114,7 +114,7 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
             lngs: message.lang,
             result:res
         })
-        message.channel.sendFile(paths.BUILD + ros, ros, dftPrompt)
+        message.channel.send(dftPrompt,{files:[paths.BUILD + ros]})
 
         gear.paramIncrement(BOT, 'goodies', parseInt(bet[1]))
         gear.paramIncrement(BOT, 'earnings.jogatina', parseInt(bet[1]))

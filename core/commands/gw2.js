@@ -153,7 +153,7 @@ var thumb;
             emb.addField('X',`Y`, true)
 
 
-    message.channel.sendEmbed(emb)
+    message.channel.send({embed:emb})
 
 
 

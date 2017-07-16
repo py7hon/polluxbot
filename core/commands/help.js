@@ -40,7 +40,7 @@ ${mm('help.joinSupp', {
 `
 
 
-            message.author.sendMessage(txt3).catch()
+            message.author.send(txt3).catch()
 
 
     //----Mess
@@ -80,7 +80,7 @@ let invitelink  = "http://goo.gl/qkGqqU"
     emb.addField(":heart_decoration: "+inviteme,invitelink,false)
     emb.setFooter(useful+" +stats | +serverinfo | +logs | pollux+nuke | +invite")
 
-  setTimeout(t=>message.channel.sendEmbed(emb),1000)
+  setTimeout(t=>message.channel.send({embed:emb}),1000)
 };
 
  module.exports = {

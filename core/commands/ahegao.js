@@ -21,7 +21,7 @@ var init = function (message,userDB,DB) {
 
     var rand = gear.randomize(1,7)
 
-    message.channel.sendFile(paths.BUILD+"ahegao/"+rand+".jpg")
+    message.channel.send({files:[paths.BUILD+"ahegao/"+rand+".jpg"]})
 
 };
 
