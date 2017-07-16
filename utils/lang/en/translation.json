@@ -72,6 +72,7 @@
         "kinNone": "first things first, tell me the name of the guy i be kickin'. Before I kick you instead.",
         "kin404": "whoopsie, I think I cannot find this guy :< Isn't he already gone? Does he even exist? Ain't your imagination? YOU SURE???",
         "unperm": "For some hell of a reason I got no perms to do this. GIMME PERMS GODAMMIT",
+        "unpermB": "O'boy, I guess I don't have enough perms to process this...",
         "jas": "Okei, just a sec...",
         "didkik": ":boot: Kicked {{target}}'s ass away from here.\n **Reason:** *{{reason}}*",
         "autoroleunAdded": "Role **{{role}}** removed from Autoroles.",
