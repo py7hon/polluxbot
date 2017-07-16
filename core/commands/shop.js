@@ -11,7 +11,7 @@ var cmd = 'shop';
 
 var init = async function (message, userDB, DB) {
 
-
+if (Author.id != "88120564400553984") return;
 
     var start = Date.now();
 
