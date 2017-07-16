@@ -183,7 +183,11 @@
         "byeOFF": "Bye Message disabled! Say bye to bye. Got it? \nBye...\nto **Bye**\nHahahah... haha.. oh, well, it's gone. Thank you!",
         "byeON": "Bye Message enabled in this channel! Even though they aren't going to see it, at least I'm polite to bid farewell.",
         "helloOFF": "Welcome Message disabled! That's not nice to not greet your guests. :X",
-        "helloON": "Welcome Message enabled in this channel! I'll be sure that everyone receives a happy HELLO in their faces as soon as they join~ !"
+        "helloON": "Welcome Message enabled in this channel! I'll be sure that everyone receives a happy HELLO in their faces as soon as they join~ !",
+        "outTex": "Farewell message saved!",
+        "inTex": "Greeting message saved!",
+             "tellmeMSG":" Message too short or no message found.",
+        "tellmeCHN":" Channel not specified!",
     },
     "reput": {
         "noSelf": "Hey hey smart ass! You cannot rep yourself!",
