@@ -142,7 +142,7 @@ var lang = DB.get(G.id).modules.LANGUAGE
 var greet = DB.get(G.id).modules.GREET
 var bye = DB.get(G.id).modules.FWELL
 var mods = DB.get(G.id).modules.DISABLED
-mods = mods.remove("cog")
+mods = mods.removeire("cog")
 
     var c = et(DB.get(G.id).modules.NSFW)
     var a = et(DB.get(G.id).modules.LVUP)
@@ -180,7 +180,7 @@ ${ruby}${b} Ruby Drops
 //  emb.addField("  :calendar_spiral: Creation Date", Server.createdAt , true)
 
 
-    message.channel.sendEmbed(emb)
+    message.channel.send({embed:emb})
 
 
 

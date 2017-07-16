@@ -55,7 +55,7 @@ console.log(DB.get(message.guild.id).modules.announcements)
 
 
 
-    message.channel.sendEmbed(emb)
+    message.channel.send({embed:emb})
 
 
 

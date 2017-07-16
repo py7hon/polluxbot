@@ -39,13 +39,13 @@ var emojya = bot.emojis.get('276878246589497344')
     var donate = parseInt(args[0])
     if (gear.checkGoods(donate, Author) == true) {
 
-        // message.guild.defaultChannel.sendMessage()
+        // message.guild.defaultChannel.send()
         gear.paramIncrement(Author, 'goodies', -donate)
         gear.paramIncrement(Author, 'expenses.trade', donate)
         gear.paramIncrement(Target, 'goodies', donate)
         gear.paramIncrement(Target, 'earnings.trade', donate)
 
-        message.channel.sendMessage( mm('$.giveGoods' , {lngs:LANG, donate:donate, emoji:"Ruby", target:Target.username,author:Author.username })).then(function (c) {
+        message.channel.send( mm('$.giveGoods' , {lngs:LANG, donate:donate, emoji:"Ruby", target:Target.username,author:Author.username })).then(function (c) {
             message.delete(5000)
         })
         gear.writePoints(points, caller)

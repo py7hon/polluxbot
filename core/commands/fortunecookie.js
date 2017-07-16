@@ -50,7 +50,7 @@ var init = function (message, userDB, DB) {
                 var txt = $(a).html();
                 if ($(a).html() === null) txt = $(this).text();
 
-            //    message.channel.sendMessage("```html\n" + txt + "```")
+            //    message.channel.send("```html\n" + txt + "```")
                 //  message.reply(a.text())
 
 
@@ -75,7 +75,7 @@ var init = function (message, userDB, DB) {
                         kalk.rotate(11);
                             base.composite(kalk, 192, 91);
                         base.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                            message.channel.sendFile(image, 'cookie.png', message.author + " ")
+                            message.channel.send(message.author + " ",{files:[image]}).catch()
 
                         })
                     })

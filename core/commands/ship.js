@@ -40,7 +40,7 @@ gear.shuffle(verbose)
     let aa = eit[0].substr(Math.floor(eit[0].length/2-0.2))
     let bb = eit[1].slice(0,-Math.floor(eit[1].length/2-0.2))
 
- message.channel.sendMessage(v[0]+bb+aa+v[1])
+ message.channel.send(v[0]+bb+aa+v[1])
     }catch(e){console.log(e)}
 
 }

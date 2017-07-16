@@ -16,7 +16,7 @@ var Target = message.mentions.users.first() || Author;
 
 
 
-    message.channel.sendMessage( Target.username+' está no Level **'+userDB.get(Target.id).modules.level+'**')
+    message.channel.send( Target.username+' está no Level **'+userDB.get(Target.id).modules.level+'**')
 }
 
  module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'misc'};

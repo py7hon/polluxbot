@@ -18,20 +18,20 @@ var init = function (message,userDB,DB) {
     var originServer = bot.guilds.get(args.toString())
     if (originServer.owner == originServer.member(Author) && Server.owner == Server.member(Author)) {
 
-        Channel.sendMessage('This Server: ' + Server.name + ", Owner: " + Server.owner);
-        Channel.sendMessage('That Server: ' + originServer.name + ", Owner: " + originServer.owner);
-        Channel.sendMessage('Great, you own both!');
+        Channel.send('This Server: ' + Server.name + ", Owner: " + Server.owner);
+        Channel.send('That Server: ' + originServer.name + ", Owner: " + originServer.owner);
+        Channel.send('Great, you own both!');
 
     } else {
 
-        Channel.sendMessage('This Server: ' + Server.name + ", Owner: " + Server.owner);
-        Channel.sendMessage('That Server: ' + originServer.name + ", Owner: " + originServer.owner);
-        return Channel.sendMessage('Whoops, you dont own both servers!');
+        Channel.send('This Server: ' + Server.name + ", Owner: " + Server.owner);
+        Channel.send('That Server: ' + originServer.name + ", Owner: " + originServer.owner);
+        return Channel.send('Whoops, you dont own both servers!');
 
     };
 
     if (!Server.member(bot.user).hasPermission('ADMINISTRATOR')) {
-        return Channel.sendMessage('Oh, i do not have admin rights for this :/');
+        return Channel.send('Oh, i do not have admin rights for this :/');
     };
 
     var roleList = "";
@@ -43,9 +43,9 @@ var init = function (message,userDB,DB) {
 `
     });
 
-    Channel.sendMessage('__**All these roles are being cloned from that server:**__');
-    Channel.sendMessage(roleList + "\n");
-    Channel.sendMessage('Confirm? `!yes` or `!no`').then(m => {
+    Channel.send('__**All these roles are being cloned from that server:**__');
+    Channel.send(roleList + "\n");
+    Channel.send('Confirm? `!yes` or `!no`').then(m => {
 
         var filterV = false;
         var filter = ma => ma.content.startsWith('!yes') && ma.author == message.author && filterV != true;

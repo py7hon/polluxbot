@@ -100,7 +100,7 @@ var init = function (message, userDB, DB) {
         }
         emb.addField('Role ', output, true)
         emb.addField('Command ', downput, true)
-        message.channel.sendEmbed(emb).catch(e => console.log(e.stack))
+        message.channel.send({embed:emb}).catch(e => console.log(e.stack))
 
     } // LIST
 

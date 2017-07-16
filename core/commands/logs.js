@@ -114,7 +114,7 @@ console.log(destination[i])
             READ_MESSAGES: true
         }).then(f => {
 
-            message.channel.sendMessage(gear.emoji("check") + " Successfully defined `" + dest + "` as " + Server.channels.get(chan)).then(m => m.delete(5000)).catch()
+            message.channel.send(gear.emoji("check") + " Successfully defined `" + dest + "` as " + Server.channels.get(chan)).then(m => m.delete(5000)).catch()
             gear.paramDefine(Server, dest, chan)
         }).catch(e => {
             message.reply(mm('CMD.unpermB', {

@@ -24,7 +24,7 @@ var emoj = bot.emojis.get('276878246589497344')
    if (!Target) return;
 message.reply(Target.members.size + " user(s) bears the "+Target.name+" Role")
    Target.members.slice(0, 10).forEach((e,a,d) => {
-                          Channel.sendMessage(e.displayName)
+                          Channel.send(e.displayName)
 
    } )
 }

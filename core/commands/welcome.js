@@ -4,7 +4,7 @@ var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
 
-var cmd = 'greet';
+var cmd = 'welcome';
 
 
 
@@ -68,23 +68,23 @@ var input="X"
 
     if (args.length >= 2 && args[0] === "msg") {
         if (args.length == 2) {
-            return Channel.sendMessage(v.tellMsg);
+            return Channel.send(v.tellMsg);
         }
-        let offset = MSG.indexOf("msg") + 2
+        let offset = MSG.indexOf("msg") + 3
         gear.paramDefine(Server, "GREET.joinText", MSG.substr(offset))
          v.inTX = mm('greet.inTex', {
             lngs: LANG,
             wtxt: MSG.substr(offset)
         })
-        return Channel.sendMessage(v.inTX);
+        return Channel.send(v.inTX);
     }
     if (args.length >= 2 && args[0] === "channel") {
         if (args.length == 2) {
-            return Channel.sendMessage(v.tellChn);
+            return Channel.send(v.tellChn);
         }
-        let offset = MSG.indexOf("channel") + 6
+        let offset = MSG.indexOf("channel") + 7
         gear.paramDefine(Server, "GREET.greetChan", message.mentions.channels.first().id)
-        return Channel.sendMessage(v.inCX);
+        return Channel.send(v.inCX);
     }
 
 
@@ -92,13 +92,13 @@ var input="X"
     if (DB.get(Server.id).modules.GREET.hi === true) {
         gear.paramDefine(Server, "GREET.hi", false)
         gear.paramDefine(Server, "GREET.greetChan", "")
-        return Channel.sendMessage(v.inOFF);
+        return Channel.send(v.inOFF);
 
     } else {
         gear.paramDefine(Server, "GREET.hi", true)
         gear.paramDefine(Server, "GREET.greetChan", "")
         gear.paramDefine(Server, "GREET.greetChan", message.channel.id)
-        return Channel.sendMessage(v.inON);
+        return Channel.send(v.inON);
     }
 
 

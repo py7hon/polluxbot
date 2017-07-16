@@ -89,7 +89,7 @@ try{
              target: Target.username
          })
 
-         Channel.sendMessage(repConfirm)
+         Channel.send(repConfirm)
 
          gear.paramIncrement(message.mentions.users.first(), 'rep', 1)
          gear.paramDefine(Author, 'repdaily', now)
@@ -101,7 +101,7 @@ try{
              lngs: LANG,
              remaining: remain
          })
-         Channel.sendMessage(repCooldown)
+         Channel.send(repCooldown)
      }
 
 }catch(e){console.log(e)}

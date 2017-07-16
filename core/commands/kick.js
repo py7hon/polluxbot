@@ -104,7 +104,7 @@ var ts = new Date
 emb.setFooter("Kick",Target.avatarURL)
 emb.setTimestamp(ts)
 
-   chanpoint.sendEmbed(emb).catch()
+   chanpoint.send({embed:emb}).catch()
 
          }
 
@@ -120,11 +120,11 @@ emb.setTimestamp(ts)
             Jimp.read(paths.BUILD + "jazz.png").then(function (jazz) {
                 jazz.composite(face, 80, 31);
                 //jazz.write(`${paths.ROUND}/${caller}2.png`);
-                message.channel.sendMessage(justasec)
+                message.channel.send(justasec)
                 jazz.getBuffer(Jimp.MIME_PNG, function (err, image) {
 
 
-                    message.channel.sendFile(image, 'kicked.png', didkik).then(m => {
+                    message.channel.send(didkik,{files:[image]}).then(m => {
 
                     }).catch(e=>{message.reply("Não me deixaram postar a imagem pica do Jazz aqui mas kickei ele igual")})
                 })

@@ -38,14 +38,14 @@ var LANG = message.lang;
                 console.log(url)
                   emb.setColor('#ff97cf')
 
-                    message.channel.sendEmbed(emb)
-                    message.channel.sendFile(url).then(function (m) {
+                    message.channel.send({embed:emb})
+                    message.channel.send({files:[url]}).then(function (m) {
                 m.react('👍').catch()
                 m.react('👎').catch()
                 m.react('❤').catch()
                 m.react('😠').catch()
 
-            }).catch(e=>message.channel.sendMessage(url))
+            }).catch(e=>message.channel.send(url))
             }
         })
     };

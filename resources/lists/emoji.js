@@ -28,6 +28,26 @@ module.exports = {
     xmark: "<:xmark:314349398824058880> ",
     empty: "<:empty:314349398723264512> "
 
+
+
+    //MEDALS
+
+,hyruleshield:'<:hyruleShield:335866552878366731> '
+,gardevoir:'<:gardevoir:335866552912183298> '
+,burger:'<:burger:335866553545523200> '
+,fruki:'<:fruki:335866553239076865> '
+,snes:'<:snes:335866555978219521> '
+,"undefined":'<:undefined:335866556166701058> '
+,miku:'<:miku:335866556275752960> '
+,n3ds:'<:n3DS:335866556653502464> '
+,twitch:'<:twitch:335866556909223936> '
+,patreon:'<:patreon:335866556871344128> '
+,pollux:'<:pollux:335866556909355018> '
+
+
+
+
+
         //HEROES
        ,raynor:'<:Raynor:328605865257074688> '
 ,rexxar:'<:Rexxar:328605865328246784> '
@@ -74,7 +94,7 @@ module.exports = {
 ,falstad:'<:Falstad:328606059084382228> '
 ,genji:'<:Genji:328606059612733441> '
 ,greymane:'<:Greymane:328606059361075203> '
-,guldan:'<:Guldan:328606059654545409> '
+,"gul'dan":'<:Guldan:328606059654545409> '
 ,gazlowe:'<:Gazlowe:328606059931631626> '
 ,illidan:'<:Illidan:328606059801346048> '
 ,leoric:'<:Leoric:328606059809996803> '

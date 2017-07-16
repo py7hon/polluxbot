@@ -67,46 +67,40 @@ var init = function (message, userDB, DB) {
 
     if (args.length >= 2 && args[0] === "msg") {
         if (args.length == 2) {
-            return Channel.sendMessage(v.tellMsg);
+            return Channel.send(v.tellMsg);
         }
 
 
-        let offset = MSG.indexOf("msg") + 2
+        let offset = MSG.indexOf("msg") + 3
         gear.paramDefine(Server, "FWELL.joinText", MSG.substr(offset))
          v.outTX = mm('greet.outTex', {
             lngs: LANG,
             wtxt: MSG.substr(offset)
         })
-        return Channel.sendMessage(v.outTX);
+        return Channel.send(v.outTX);
 
     }
     if (args.length >= 2 && args[0] === "channel") {
         if (args.length == 2) {
-            return Channel.sendMessage(v.tellChn);
+            return Channel.send(v.tellChn);
         }
-        let offset = MSG.indexOf("channel") + 6
+        let offset = MSG.indexOf("channel") + 7
         gear.paramDefine(Server, "FWELL.greetChan", "")
         gear.paramDefine(Server, "FWELL.greetChan", message.channel.id)
-        return Channel.sendMessage(v.outCX);
+        return Channel.send(v.outCX);
     }
-
-
 
     if (DB.get(Server.id).modules.FWELL.hi === true) {
         gear.paramDefine(Server, "FWELL.hi", false)
-        return Channel.sendMessage(v.outOFF);
+        return Channel.send(v.outOFF);
 
     } else {
 
         gear.paramDefine(Server, "FWELL.hi", true)
         gear.paramDefine(Server, "FWELL.greetChan", "")
         gear.paramDefine(Server, "FWELL.greetChan", message.channel.id)
-        return Channel.sendMessage(v.outON);
+        return Channel.send(v.outON);
     }
-
-
-
-
 
 }
 module.exports = {

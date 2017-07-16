@@ -84,7 +84,7 @@ var emoj = bot.emojis.get('276878246589497344')
 
              })
 
-             message.channel.sendMessage(emoj+dailyStreak)
+             message.channel.send(emoj+dailyStreak)
          }
 
          gear.paramIncrement(Author, 'goodies', 100)

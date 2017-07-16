@@ -40,25 +40,25 @@ const params = MSG.split(" ").slice(1);
 var code = params.join(" ").toLowerCase();
 
 if (code.includes("minha id")){
-    return Channel.sendMessage("Sua ID é "+Author.id)
+    return Channel.send("Sua ID é "+Author.id)
 }
     if (code.includes("id de")){
-    return Channel.sendMessage("A ID de "+Target.username+" é "+Target.id)
+    return Channel.send("A ID de "+Target.username+" é "+Target.id)
 }
         if (code.includes("sua id")){
-    return Channel.sendMessage("Minha ID é "+bot.user.id)
+    return Channel.send("Minha ID é "+bot.user.id)
 }
 if (code.includes("server id")){
-    return Channel.sendMessage("A ID deste Server é "+Server.id)
+    return Channel.send("A ID deste Server é "+Server.id)
 }
     if (code.includes("channel id")){
-    return Channel.sendMessage("A ID deste Canal é "+Server.id)
+    return Channel.send("A ID deste Canal é "+Server.id)
 }
         if (code.includes("canais neste")){
-    return Channel.sendMessage("Temos "+Server.channels.size+" Canais neste Server")
+    return Channel.send("Temos "+Server.channels.size+" Canais neste Server")
 }
             if (code.includes("pessoas neste")||code.includes("usuários neste")||code.includes("membros neste")||(code.includes("membros")&&code.includes("quantos"))){
-    return Channel.sendMessage("Temos "+Server.members.size+" Pessoas neste Server")
+    return Channel.send("Temos "+Server.members.size+" Pessoas neste Server")
 }
 
 
@@ -78,7 +78,7 @@ if (code.includes("server id")){
 
 
     if (args == "2+2"){
-        return Channel.sendMessage("```Tá me achando com cara de calculadora, palhaço? ```").then(m=>{ setTimeout(c=>Channel.sendMessage("```(A propósito, são 4) ```"),1000 )})
+        return Channel.send("```Tá me achando com cara de calculadora, palhaço? ```").then(m=>{ setTimeout(c=>Channel.send("```(A propósito, são 4) ```"),1000 )})
     }
 
 
@@ -92,7 +92,7 @@ if (code.includes("server id")){
 
       message.channel.sendCode("xl", gear.clean(evaled));
     } catch(err) {
-      message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${(err)}\n\`\`\``);
+      message.channel.send(`\`ERROR\` \`\`\`xl\n${(err)}\n\`\`\``);
     }
   }catch(err){console.log(err)}
 }

@@ -114,12 +114,12 @@ var ts = new Date
 emb.setFooter("Ban",Target.avatarURL)
 emb.setTimestamp(ts)
 
-   chanpoint.sendEmbed(emb).catch()
+   chanpoint.send({embed:emb}).catch()
 
          }
 
 
-        message.channel.sendMessage(didban)
+        message.channel.send(didban)
 
 
 

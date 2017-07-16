@@ -24,7 +24,7 @@ Jimp.read(img).then(function (photo) {
 
         console.log("Success".green)
         photo.getBuffer(Jimp.MIME_PNG, function (err, image) {
-            message.channel.sendFile(image)
+            message.channel.send({files:[image]})
         })
 
     })

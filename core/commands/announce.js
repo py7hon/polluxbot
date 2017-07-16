@@ -27,7 +27,7 @@ var init = function (message) {
   //  var tgt = message.guild.member(Target)
 
 var anno = mm('dict.announce',{lngs:LANG})
-        Server.defaultChannel.sendMessage(`**${anno}:**
+        Server.defaultChannel.send(`**${anno}:**
 ` + MSG.substr(10))
 
 

@@ -16,11 +16,11 @@ class Cafe {
         this.MENU = [
 
           // PRICE  | NAME                                      | EMOJ               |EXP        | EXTRA TRIGG
-            [48,         mm('menu.cake', {lngs: LANG}),         ":cake:",            200,        []         ],
-            [16,          mm('menu.coffee',{lngs: LANG}),        ":coffee:",          50,         []         ],
-            [24,         mm('menu.donut',{lngs: LANG}),         ":doughnut:",        100,        []         ],
+            [96,         mm('menu.cake', {lngs: LANG}),         ":cake:",            200,        []         ],
+            [32,          mm('menu.coffee',{lngs: LANG}),        ":coffee:",          50,         []         ],
+            [48,         mm('menu.donut',{lngs: LANG}),         ":doughnut:",        100,        []         ],
             [200,        mm('menu.eggplant',{lngs: LANG}),      ":eggplant:",        100,        []         ],
-            [38,        mm('menu.custard',{lngs: LANG}),      ":custard:",        100,        []         ],
+            [76,        mm('menu.custard',{lngs: LANG}),      ":custard:",        100,        []         ],
 
         ]
 	}

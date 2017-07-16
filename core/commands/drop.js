@@ -35,19 +35,19 @@ var init = function (message, userDB, DB) {
     var dropAmy = parseInt(args[0]) || 1
 
     console.log("------------DROP by" + Author)
-    // message.guild.defaultChannel.sendMessage()
+    // message.guild.defaultChannel.send()
     if (userData.goodies >= dropAmy) {
 
         gear.paramIncrement(Author, 'goodies', -dropAmy)
         gear.paramIncrement(Author, 'expenses.drops', dropAmy)
-        message.channel.sendFile(paths.BUILD + 'ruby.png', 'Ruby.png', mm('$.userDrop', {
+        message.channel.send(mm('$.userDrop', {
             lngs: LANG,
             amt: dropAmy,
             emoji: GOODMOJI,
             good: GOOD,
             user: Author.username,
             prefix: message.prefix
-        }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">")).then(function (r) {
+        }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">"),{files:[paths.BUILD + 'ruby.png']}).then(function (r) {
 
 
             if (isNaN(Channel.DROPSLY)) {
@@ -76,7 +76,7 @@ var init = function (message, userDB, DB) {
 
 
                     console.log("----------- SUCCESSFUL PICK by" + Picker.username)
-                    message.channel.sendMessage(mm('$.pick', {
+                    message.channel.send(mm('$.pick', {
                         lngs: LANG,
                         good: GOOD,
                         user: Picker.username,

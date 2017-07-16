@@ -62,7 +62,7 @@ setTimeout(fu=>{
 
         if (newMember.id == '248435798179971072' && newMember.presence.game.name.toLowerCase() == "for honor") {
             console.log('HONOR')
-            sky.defaultChannel.sendMessage("O gay do " + newMember + " já tá jogando aquele jogo de viado de novo.")
+            sky.defaultChannel.send("O gay do " + newMember + " já tá jogando aquele jogo de viado de novo.")
 
         }
 
@@ -70,7 +70,7 @@ setTimeout(fu=>{
         if ((newMember.presence.game.name.toLowerCase() == "heroes of the storm")&&(oldMember.presence.game.name.toLowerCase() != "heroes of the storm")) {
             console.log('HERO')
             var herois = sky.roles.find('name', 'Herois do Toró')
-            sky.defaultChannel.sendMessage(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.").then(jjm=>{jjm.delete(600000)}).catch()
+            sky.defaultChannel.send(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.").then(jjm=>{jjm.delete(600000)}).catch()
 
             var team = 0
             newMember.guild.presences.forEach(e => {
@@ -78,22 +78,22 @@ setTimeout(fu=>{
             })
 
             if (team > 1 && team < 6){
-                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(5-team)+" e fecha o time.").then(jjm=>{jjm.delete(600000)}).catch()
+                sky.defaultChannel.send("Temos **"+team+"** malucos jogando, faltam "+(5-team)+" e fecha o time.").then(jjm=>{jjm.delete(600000)}).catch()
             }
             if (team > 5 && team < 10){
-                sky.defaultChannel.sendMessage("Temos **"+team+"** malucos jogando, faltam "+(10-team)+" e temos dois times!!!").then(jjm=>{jjm.delete(600000)}).catch()
+                sky.defaultChannel.send("Temos **"+team+"** malucos jogando, faltam "+(10-team)+" e temos dois times!!!").then(jjm=>{jjm.delete(600000)}).catch()
             }
              if (team == 5){
-                sky.defaultChannel.sendMessage("FECHOU TIME!!!").then(jjm=>{jjm.delete(600000)}).catch()
+                sky.defaultChannel.send("FECHOU TIME!!!").then(jjm=>{jjm.delete(600000)}).catch()
             }
 if (team == 10){
-                sky.defaultChannel.sendMessage("FECHOU DOIS TIMES!!!").then(jjm=>{jjm.delete(600000)}).catch()
+                sky.defaultChannel.send("FECHOU DOIS TIMES!!!").then(jjm=>{jjm.delete(600000)}).catch()
             }
 
         }
     } catch (e) {
         if (newMember.id == '248435798179971072' && oldMember.presence.game.name.toLowerCase() == "for honor" && !newMember.presence.game) {
-            sky.defaultChannel.sendMessage(" Juba acabou de sair do jogo de viado dele.")
+            sky.defaultChannel.send(" Juba acabou de sair do jogo de viado dele.")
 
         }
     }
@@ -115,20 +115,20 @@ if (!message.guild) return;
 
     if (message.content.includes('mad scientist')||message.content.includes('mado saient')){
 
-        message.channel.sendMessage('https://www.youtube.com/watch?v=gjTzz8cOxBU')
+        message.channel.send('https://www.youtube.com/watch?v=gjTzz8cOxBU')
     }
 
     if (message.content.startsWith(prefix + "salty")) {
-        message.channel.sendFile(REACTIONS + "juba.png")
+        message.channel.send({files:[REACTIONS + "juba.png"]})
     };
 
     if (message.content.startsWith(prefix + "vidal")) {
-        message.channel.sendFile(REACTIONS + "vidaru.png")
+        message.channel.send({files:[REACTIONS + "vidaru.png"]})
 
     };
 
     if (message.content.startsWith(prefix + "several")) {
-        message.channel.sendFile(REACTIONS + "several.png")
+        message.channel.send({files:[REACTIONS + "several.png"]})
 
     };
 

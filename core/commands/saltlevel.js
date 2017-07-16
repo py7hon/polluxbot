@@ -41,7 +41,7 @@ let saltmoji = "<:salty:277280624900046849>"
         emoji: saltmoji,
        interpolation: {'escapeValue': false}
     })
-    message.channel.sendMessage(vocab)
+    message.channel.send(vocab)
 }
 
  module.exports = {

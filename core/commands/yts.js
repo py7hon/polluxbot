@@ -44,7 +44,7 @@ var init = function (message, userDB, DB) {
 
         }
             list += "**c**: :small_blue_diamond: Cancel \n"
-        message.channel.sendMessage(list).then(msg => {
+        message.channel.send(list).then(msg => {
 
             return new Promise(async resolve => {
 
@@ -91,7 +91,7 @@ var init = function (message, userDB, DB) {
 
 
 
-                message.channel.sendMessage(":arrow_forward:  Now playing: **" + play[parseInt(responses.first().content) - 1]+"**")
+                message.channel.send(":arrow_forward:  Now playing: **" + play[parseInt(responses.first().content) - 1]+"**")
                 //  message.reply(`Joining your voice channel and playing some vape!`);
 
                 var connection = botvoice

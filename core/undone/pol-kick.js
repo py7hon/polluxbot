@@ -38,7 +38,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet, modul
             Jimp.read(paths.BUILD + "jazz.png").then(function (jazz) {
                 jazz.composite(face, 80, 31);
                 //jazz.write(`${paths.ROUND}/${caller}2.png`);
-                message.channel.sendMessage('Ok, me dá um segundo...')
+                message.channel.send('Ok, me dá um segundo...')
                 jazz.getBuffer(Jimp.MIME_PNG, function (err, image) {
 
 

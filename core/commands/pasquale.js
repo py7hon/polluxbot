@@ -16,8 +16,8 @@ var init = function (message,userDB,DB) {
 
 
 var  pasq=imgsrc[gear.randomize(0,imgsrc.length)]
-// message.channel.sendMessage()
- message.channel.sendFile(pasq)
+// message.channel.send()
+ message.channel.send({files:[pasq]})
 
 }
  module.exports = {

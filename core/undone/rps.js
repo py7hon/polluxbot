@@ -62,11 +62,11 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         var you = 0
         console.log(challenged.bot)
         if (challenged.bot == true){you=gear.randomize(1,3)}
-        message.channel.sendMessage("rps envie :gem: :scissors: ou :page_facing_up: por PM").then(function (msg) {
+        message.channel.send("rps envie :gem: :scissors: ou :page_facing_up: por PM").then(function (msg) {
 
                 setTimeout(function () {
             if (challenged.bot == true){
-                message.channel.sendMessage('Recebi a escolha do Jogador Desafiado: '+challenged.username)
+                message.channel.send('Recebi a escolha do Jogador Desafiado: '+challenged.username)
             }
         }, 2000);
             bot.on('message', m => {
@@ -76,7 +76,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
                 }
                 if (m.author == challenger) {
 
-                    message.channel.sendMessage('Recebi a escolha do Jogador Desafiante: '+challenger.username)
+                    message.channel.send('Recebi a escolha do Jogador Desafiante: '+challenger.username)
                     var mee = m.content.toLowerCase()
                     switch (mee) {
                     case '💎':
@@ -125,19 +125,19 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
                  if (me > 0 && you > 0) {
                         if (me == 1) {
                             if (you == 1) {
-                                message.channel.sendMessage(`
+                                message.channel.send(`
 ${message.author.username} jogou:  :gem:
 ${tgt.username} jogou:  :gem:
 EMPATE`)
                             }
                             else if (you == 2) {
-                                message.channel.sendMessage(`
+                                message.channel.send(`
 ${message.author.username} jogou:  :gem:
 ${tgt.username} jogou:  :page_facing_up:
 ${message.author.username} PERDEU`)
                             }
                             else if (you == 3) {
-                                message.channel.sendMessage(`
+                                message.channel.send(`
 ${message.author.username} jogou:  :gem:
 ${tgt.username} jogou:  :scissors:
 ${message.author.username} VENCEU`)
@@ -145,19 +145,19 @@ ${message.author.username} VENCEU`)
                         }
                         else if (me == 3) {
                             if (you == 1) {
-                                message.channel.sendMessage(`
+                                message.channel.send(`
 ${message.author.username} jogou:  :scissors:
 ${tgt.username} jogou:  :gem:
 ${message.author.username} PERDEU`)
                             }
                             else if (you == 2) {
-                                message.channel.sendMessage(`
+                                message.channel.send(`
 ${message.author.username} jogou:  :scissors:
 ${tgt.username} jogou:  :page_facing_up:
 ${message.author.username} VENCEU`)
                             }
                             else if (you == 3) {
-                                message.channel.sendMessage(`
+                                message.channel.send(`
 ${message.author.username} jogou:  :scissors:
 ${tgt.username} jogou:  :scissors:
  EMPATE`)
@@ -165,19 +165,19 @@ ${tgt.username} jogou:  :scissors:
                         }
                         else if (me == 2) {
                             if (you == 1) {
-                                message.channel.sendMessage(`
+                                message.channel.send(`
 ${message.author.username} jogou:  :page_facing_up:
 ${tgt.username} jogou:  :gem:
 ${message.author.username} VENCEU`)
                             }
                             else if (you == 2) {
-                                message.channel.sendMessage(`
+                                message.channel.send(`
 ${message.author.username} jogou:  :page_facing_up:
 ${tgt.username} jogou:  :page_facing_up:
 EMPATE`)
                             }
                             else if (you == 3) {
-                                message.channel.sendMessage(`
+                                message.channel.send(`
 ${message.author.username} jogou:  :page_facing_up:
 ${tgt.username} jogou:  :scissors:
 ${message.author.username}  PERDEU`)

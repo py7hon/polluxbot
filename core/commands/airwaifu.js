@@ -38,7 +38,7 @@ if (Author.bot) return;
             emb.setTitle(':airplane: Aerowaifu do Dia')
 
 
-            message.channel.sendEmbed(emb).then(function (m) {
+            message.channel.send({embed:emb}).then(function (m) {
                 m.react('👍').catch()
                 m.react('👎').catch()
                 m.react('❤').catch()

@@ -71,7 +71,7 @@ var emojya = bot.emojis.get('276878246589497344')
 **${tra}**: ${userDB.get(Target.id).modules.expenses.trade}
 
       `, true)
-    message.channel.sendEmbed(emb)
+    message.channel.send({embed:emb})
 }
  module.exports = {
     pub:true,

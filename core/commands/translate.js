@@ -97,7 +97,7 @@ translate(args, {to:langua }).then(res => {
 
 
   //  console.error(res.from.language.iso);
-    message.channel.sendMessage("**"+args+"** "+flag+">>"+SVflag+" "+res.text)
+    message.channel.send("**"+args+"** "+flag+">>"+SVflag+" "+res.text)
 
     //=> nl
 }).catch(err => {

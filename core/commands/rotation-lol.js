@@ -63,7 +63,7 @@ var init = function (message, userDB, DB) {
             emb.addField(rotation[i], `_`, true)
         }
 
-        message.channel.sendEmbed(emb)
+        message.channel.send({embed:emb})
 
     })
 }

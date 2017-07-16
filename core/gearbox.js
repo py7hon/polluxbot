@@ -6,7 +6,7 @@ const paths = require("./paths.js");
 const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
 
 
-Array.prototype.remove = function () {
+Array.prototype.removeire = function removeire() {
     var what, a = arguments,
         L = a.length,
         ax;
@@ -176,7 +176,7 @@ try{
                                             if (DB.get(guild.id).modules.LVUP) {
                                                 if (DB.get(guild.id).channels[event.channel.id].modules.LVUP) {
 
-                                                    event.channel.sendFile(image)
+                                                    event.channel.send({files:[image]})
                                                 }
                                             }
 
@@ -230,7 +230,7 @@ try{
             modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
         } catch (e) {
 
-            message.channel.sendMessage("noMod Role defined")
+            message.channel.send("noMod Role defined")
         }
         if (Server.owner.id === Member.id || Member.hasPermission("ADMINISTRATOR")) {
             modPass = true;
@@ -271,12 +271,12 @@ try{
             var pack;
             var prefie = DB.get(Server.id).modules.PREFIX || "+"
 
-            CHN.sendFile(paths.BUILD + 'ruby.png', 'goodie.png', mm('$.goodDrop', {
+            CHN.send(mm('$.goodDrop', {
                 lngs: LANG,
                 good: GOOD,
                 emoji: GOODMOJI,
                 prefix: prefie
-            })).then(function (r) {
+            }),{files:[paths.BUILD + 'ruby.png']}).then(function (r) {
 
                 if (isNaN(CHN.DROPSLY)) {
                     CHN.DROPSLY = 1
@@ -299,14 +299,14 @@ try{
                             r.delete().catch(e=>{
                                 let v = "Couldnt Delete R at 295"
                                 console.log(v);
-                                hook.sendMessage(v)
+                                hook.send(v)
                             });
                             return resolve(true);
                         }
                         let Picker = responses.first().author
 
                         console.log("----------- SUCCESSFUL PICK by" + Picker.username)
-                        message.channel.sendMessage(mm('$.pick', {
+                        message.channel.send(mm('$.pick', {
                             lngs: LANG,
                             good: GOOD,
                             user: Picker.username,
@@ -324,7 +324,7 @@ try{
                         r.delete().catch(e=>{
                                 let v = "Couldnt Delete R at 322"
                                 console.log(v);
-                                hook.sendMessage(v)
+                                hook.send(v)
                             });
                         return resolve(true);
                     }
@@ -333,18 +333,18 @@ try{
                 }).catch(e => {
                     let v = "Ruby Send Forbidden: "+message.guild.name+" C: "+message.channel.name
                     console.log(v);
-                    hook.sendMessage(v)
+                    hook.send(v)
                 });
                 }
 
         if (droprate == 777) {
             var mm = multilang.getT();
-            event.channel.sendFile(paths.BUILD + 'rubypot.png', mm('$.rareDrop', {
+            event.channel.send(mm('$.rareDrop', {
                 lngs: LANG,
                 good: GOOD,
                 emoji: GOODMOJI,
                 prefix: event.DB.get(Server.id).modules.PREFIX
-            })).then(function (r) {
+            }),{files:[paths.BUILD + 'rubypot.png']}).then(function (r) {
 
                 if (isNaN(CHN.DROPSLY)) {
                     CHN.DROPSLY = 10
@@ -371,7 +371,7 @@ try{
 
 
                         console.log("----------- SUCCESSFUL PICK by" + Picker.username)
-                        message.channel.sendMessage(mm('$.pick', {
+                        message.channel.send(mm('$.pick', {
                             lngs: LANG,
                             good: GOOD,
                             user: Picker.username,
@@ -381,17 +381,17 @@ try{
                             message.delete().catch(e=>{
                                 let v = "Couldnt Delete Message at 377"
                                 console.log(v);
-                                hook.sendMessage(v)
+                                hook.send(v)
                             });
                             c.delete(500000).catch(e=>{
                                 let v = "Couldnt Delete R at 382"
                                 console.log(v);
-                                hook.sendMessage(v)
+                                hook.send(v)
                             });
                         }).catch(e=>{
                                 let v = "Couldnt Send PickPot at 388"
                                 console.log(v);
-                                hook.sendMessage(v)
+                                hook.send(v)
                             });
 
                         this.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
@@ -400,7 +400,7 @@ try{
                         r.delete().catch(e=>{
                                 let v = "Couldnt Delete R at 396"
                                 console.log(v);
-                                hook.sendMessage(v)
+                                hook.send(v)
                             });
                         return resolve(true);
 
@@ -441,7 +441,7 @@ try{
                 emb.setFooter("Channel Edit")
                 emb.setTimestamp(ts)
 
-                chanpoint.sendEmbed(emb).catch()
+                chanpoint.send({embed:emb}).catch()
 
             }
 
@@ -527,9 +527,9 @@ try{
                 var Umodules = userDB.get(target.id)
                 if (param.includes('.')) {
                     param = param.split('.')
-                    Umodules.modules[param[0]][param[1]].remove(val)
+                    Umodules.modules[param[0]][param[1]].removeire(val)
                 } else {
-                    Umodules.modules[param].remove(val)
+                    Umodules.modules[param].removeire(val)
                 }
                 userDB.set(target.id, Umodules)
 
@@ -540,9 +540,9 @@ try{
                 var Smodules = DB.get(target.id)
                 if (param.includes('.')) {
                     param = param.split('.')
-                    Smodules.modules[param[0]][param[1]].remove(val)
+                    Smodules.modules[param[0]][param[1]].removeire(val)
                 } else {
-                    Smodules.modules[param].remove(val)
+                    Smodules.modules[param].removeire(val)
                 }
                 DB.set(target.id, Smodules)
 
@@ -553,9 +553,9 @@ try{
 
                 if (param.includes('.')) {
                     param = param.split('.')
-                    Tchannel.channels[target.id].modules[param[0]][param[1]].remove(val)
+                    Tchannel.channels[target.id].modules[param[0]][param[1]].removeire(val)
                 } else {
-                    Tchannel.channels[target.id].modules[param].remove(val)
+                    Tchannel.channels[target.id].modules[param].removeire(val)
                 }
                 DB.set(target.guild.id, Tchannel)
 
@@ -734,7 +734,7 @@ ${msg.content}
 
 `;
         return response
-    }
+    },
     //OLDS
 
     getFlair: function getFlair(origin, target) {

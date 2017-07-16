@@ -10,14 +10,14 @@ var init = function (message,userDB,DB) {
         var LANG = message.lang;
         var coin = gear.randomize(1, 2);
         if (coin == 1) {
-            message.channel.sendFile(paths.BUILD + 'heads.png', 'heads.png', mm('dict.coinHeads', {
+            message.channel.send(mm('dict.coinHeads', {
                 lngs: LANG
-            }))
+            }),{files:[paths.BUILD + 'heads.png']}).catch()
         }
         else {
-            message.channel.sendFile(paths.BUILD + 'tails.png', 'tails.png', mm('dict.coinTails', {
+            message.channel.send(mm('dict.coinTails', {
                 lngs: LANG
-            }))
+            }),{files:[paths.BUILD + 'tails.png']})
         }
 }
          module.exports = {
