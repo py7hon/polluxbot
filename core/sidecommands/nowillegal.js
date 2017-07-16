@@ -22,7 +22,7 @@ exports.run = (bot, message) => {
  console.log(3);
             illegal.composite(textHolder, 320, 135);
             illegal.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                message.channel.send({files:[image]})
+                message.channel.send({files:[{attachment:image,name:"file.png"}]})
             })
 
             console.log('Illegal - Done');

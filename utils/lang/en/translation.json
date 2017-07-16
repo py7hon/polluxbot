@@ -150,9 +150,7 @@
         "safe": "Cute pics from Safebooru",
         "ping": "Pong",
         "speak or lang": "Change the language I speak, currently Available: `{{langs}}`",
-        "betflip": "Bet {{good}}s flipping a BRL coin"
-
-            ,
+        "betflip": "Bet {{good}}s flipping a BRL coin",
         "supserv": "Support Server",
         "commlist": "Command List",
         "inviteme": "Invite me to your server~",
@@ -187,7 +185,7 @@
         "outTex": "Farewell message saved!",
         "inTex": "Greeting message saved!",
              "tellmeMSG":" Message too short or no message found.",
-        "tellmeCHN":" Channel not specified!",
+        "tellmeCHN":" Channel not specified!"
     },
     "reput": {
         "noSelf": "Hey hey smart ass! You cannot rep yourself!",

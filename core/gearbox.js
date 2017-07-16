@@ -176,7 +176,7 @@ try{
                                             if (DB.get(guild.id).modules.LVUP) {
                                                 if (DB.get(guild.id).channels[event.channel.id].modules.LVUP) {
 
-                                                    event.channel.send({files:[image]})
+                                                    event.channel.send({files:[{attachment:image,name:"file.png"}]})
                                                 }
                                             }
 

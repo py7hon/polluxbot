@@ -59,7 +59,7 @@ var init = function (message, userDB, DB) {
                           base.print(sub, 235, 25, a.toString());
                           base.print(sub, 322, 65, s.toString());
                         base.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                            message.channel.send({files:[image]})
+                            message.channel.send({files:[{attachment:image,name:"file.png"}]})
 
 
                         })

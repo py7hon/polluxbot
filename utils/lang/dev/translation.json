@@ -180,7 +180,7 @@
         "inTex":" Mensagem de boas-vindas alterada! \n\n {{wtxt}}",
         "outTex":" Mensagem de despedida alterada! \n\n {{wtxt}}",
         "tellmeMSG":" Mensagem muito curta ou nenhuma mensagem identificada!",
-        "tellmeCHN":" Canal não especificado!",
+        "tellmeCHN":" Canal não especificado!"
 
     },
     "reput": {

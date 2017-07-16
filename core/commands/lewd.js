@@ -67,7 +67,7 @@ if (DB.get(Server.id).modules.GOODNAME) {
 
               var image = ("http:" + url)
                  message.channel.send({embed:emb})
-                    message.channel.send({files:[image]}).then(function (m) {
+                    message.channel.send({files:[{attachment:image,name:"file.png"}]}).then(function (m) {
                 m.react('👍')
                 m.react('👎')
                 m.react('❤')
