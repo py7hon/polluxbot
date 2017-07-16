@@ -327,7 +327,7 @@ sidebar.color([
 
 
               frame.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                  message.channel.send(undefined,{file:{attachment:image,name:"file"}}).then(picsent=>{
+                  message.channel.send({files:[{attachment:image,name:"file.png"}]}).then(picsent=>{
                        var stop = Date.now();
                         var diff = (stop - start);
                         generatorMSG.edit("DONE! \n Generated in `"+diff/1000+"s`").catch()
@@ -480,7 +480,7 @@ sidebar.color([
 
 
                                         cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                                            message.channel.send({files:[image]})
+                                            message.channel.send({files:[{attachment:image,name:"file.png"}]})
                                         })
 
                                     })

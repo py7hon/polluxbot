@@ -21,7 +21,8 @@ var init = function (message,userDB,DB) {
                     Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
                     img.mask(lenna, 0, 0)
   img.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                    message.channel.send({files:[image]})
+      console.log(image)
+                    message.channel.send({files:[{attachment:image,name:"file.png"}]})
 
 
 
