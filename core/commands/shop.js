@@ -11,7 +11,7 @@ var cmd = 'shop';
 
 var init = async function (message, userDB, DB) {
 
-if (Author.id != "88120564400553984") return;
+
 
     var start = Date.now();
 
@@ -25,7 +25,7 @@ if (Author.id != "88120564400553984") return;
     var bot = message.botUser
     var args = MSG.split(' ').slice(1)[0]
 
-
+if (Author.id != "88120564400553984") return;
     var tint = (args || "0000FF")
     var LANG = message.lang;
 
