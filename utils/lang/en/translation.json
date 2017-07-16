@@ -148,14 +148,15 @@
         "rule34": "Get Lewd Stuff",
         "safe": "Cute pics from Safebooru",
         "ping": "Pong",
-        "speak or lang": "Change the language I speak, currently Available: `{{langs}}`"
-        ,"betflip": "Bet {{good}}s flipping a BRL coin"
+        "speak or lang": "Change the language I speak, currently Available: `{{langs}}`",
+        "betflip": "Bet {{good}}s flipping a BRL coin"
 
-        ,"supserv": "Support Server"
-        ,"commlist": "Command List"
-        ,"inviteme": "Invite me to your server~"
-        ,"polHelp": "Pollux Help"
-        ,"helpText": "These are the basics for helping me to use you! I've also sent a DM in case you get this message out of sight!"
+            ,
+        "supserv": "Support Server",
+        "commlist": "Command List",
+        "inviteme": "Invite me to your server~",
+        "polHelp": "Pollux Help",
+        "helpText": "These are the basics for helping me to use you! I've also sent a DM in case you get this message out of sight!"
     },
     "menu": {
         "cake": "Cake",
@@ -188,5 +189,20 @@
         "noTarget": "Tell me who to +Rep, unless you're Repping the vacuum.",
         "confirm": ":fleur_de_lis:  **{{who}}** has kindly added **+1Rep** to **{{target}}**. How sweet~",
         "cooldown": "Hold up dude! You can rep again in {{remaining}}. Be patient."
+    },
+    "shop": {
+          "whatShop": "What Shop?",
+        "medalShop": "Medal Shop",
+        "bgShop": "Background Shop",
+        "goodShop": "Goodies Shop",
+        "useBelow": "Use the Reactions below",
+        "noFundsFormal": "Use the Reactions below",
+        "noFundsResponse": "Use the Reactions below",
+        "processing":"Processing Purchase",
+        "youSure":"Is that it?",
+        "confirmed":"Medal acquisition confirmed!",
+        "cancelled":"Changed your mind? Well, purchase cancelled!",
+        "timeout":"You think too much! Combe back when you know what you want.",
+        "alreadyPosess":"You already own this medal!"
     }
 }
