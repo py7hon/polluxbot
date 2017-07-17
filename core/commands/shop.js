@@ -25,7 +25,7 @@ var init = async function (message, userDB, DB) {
     var bot = message.botUser
     var args = MSG.split(' ').slice(1)[0]
 
-if (Author.id != "88120564400553984") return;
+
     var tint = (args || "0000FF")
     var LANG = message.lang;
 
@@ -310,8 +310,46 @@ function buildPage(page) {
     emb.setColor("#e12f55")
     emb.setTitle(medalEmoj + " "+v.medalShop.toUpperCase())
     for (i = 0; i < menuArr.length; i++) {
+
+
+        let emojifile = menuArr[i][1];
+       let namemede = menuArr[i][0];
+       let pricet =  menuArr[i][2];
+
+          let inv = userDB.get(Author.id).modules.medalInventory
+
+          var owned = false;
+          for (a = 0; a < inv.length; a++) {
+              var o = inv[a].includes(emojifile)
+              if (o == true) {
+                owned = true
+              }
+          }
+
+            let pricetag = gear.emoji("ruby") + " **" + pricet + "** Rubys"
+        if (owned){
+            pricetag = ":label: Sold Out!"
+        }else{
+            let pricetag = gear.emoji("ruby") + " **" + pricet + "** Rubys"
+        }
+
+        /*
+
+         let pricetaggie = gear.emoji("ruby") + " **" + menuArr[i][2] + "** Rubys"
+
+        console.log(menuArr[i])
+
+        checkOwnership(menuArr[i][1])
+
+
+          if (){
+              pricetaggie = ":label: **Sold Out**"
+          }
+        */
+
+
         // emb.addField("1","1",true)
-        emb.addField(nums[i + 1], gear.emoji(menuArr[i][1]) + " **" + menuArr[i][0] + "** \n" + gear.emoji("ruby") + " **" + menuArr[i][2] + "** Rubys", true)
+        emb.addField(nums[i + 1], gear.emoji(emojifile) + " **" + namemede + "** \n" + pricetag, true)
     }
 
     return {
@@ -366,7 +404,14 @@ ${v.youSure}`)
                 if (rea.emoji == check && rea.count > 1) {
 
                     let inv= userDB.get(Author.id).modules.medalInventory
-                    if(inv.includes(medal_file)){
+                    let myMedal = [medal_file,name]
+
+               for (i=0;i<inv.length;i++){
+                   var ownd = inv[i].includes(name)
+                    if (ownd == true) break;
+               }
+
+                    if(ownd){
 
                         Channel.send(v.alreadyPosess).then(m => m.delete(2500))
                         return refresh(index, m, v.alreadyPosess)
@@ -377,7 +422,7 @@ ${v.youSure}`)
                     m2.delete()
                     message.reply(check + " "+v.confirmed)
                     message.delete()
-                    return gear.paramAdd(Author, "medalInventory", medal_file)
+                    return gear.paramAdd(Author, "medalInventory", [medal_file,name])
                 }
                 if (rea.emoji == xmark && rea.count > 1) {
                     //m.delete()
@@ -471,7 +516,12 @@ async function pageResolve(m, menuPage, index) {
                 let item = [finder.icon,
                 finder.price,
                 finder.name]
-                processCheckout(item, index, m)
+
+           if(checkOwnership(finder.icon)){
+                 return refresh(index, m, v.alreadyPosess)
+           }
+
+            processCheckout(item, index, m)
 
             }
             //equalsARROW
@@ -491,6 +541,22 @@ async function pageResolve(m, menuPage, index) {
     })
 
 }
+
+      function checkOwnership(item) {
+          let inv = userDB.get(Author.id).modules.medalInventory
+try{
+
+
+          for (i = 0; i < inv.length; i++) {
+              var ownd = inv[i].includes(item)
+              if (ownd == true) {
+                  return true
+                  break;
+              }
+          }
+}catch(e){}
+      }
+
 async function refresh(index, m, optm) {
     await m.clearReactions();
     return callB(index, true, m, optm);

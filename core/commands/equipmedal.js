@@ -16,6 +16,16 @@ var init = function (message, userDB, DB) {
     }
 
 
+    //MEDAL PROTOTYPE
+
+    {
+        name:
+        file:
+    }
+
+
+
+
     message.reply("```js\n" + string + "```").then(function (r) {
 
 

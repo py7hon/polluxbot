@@ -25,7 +25,7 @@ var init = async function (message, userDB, DB) {
     var bot = message.botUser
     var args = MSG.split(' ').slice(1)[0]
 
-    if (Author.id != "88120564400553984") return;
+
     var tint = (args || "0000FF")
     var LANG = message.lang;
 
@@ -232,7 +232,7 @@ var init = async function (message, userDB, DB) {
         noFundsResponse: mm("$.noFunds", {
             lngs: LANG
         }),
-        equip: mm("medals.equip", {
+        equip: mm("medals.equipSlot", {
             lngs: LANG
         }),
         youSure: mm("shop.youSure", {
@@ -264,11 +264,13 @@ var init = async function (message, userDB, DB) {
     emb.setColor("#5743c6")
     emb.setTitle(v.whatShop)
     emb.addField(v.bgShop, bkgEmoj, true)
-    emb.addField(v.medalShop, medalEmoj, true)
+    emb.addField("v.medalShop", medalEmoj, true)
     emb.addField(v.goodShop, toolsEmoj, true)
     emb.setFooter(v.useBelow)
 
     //Machine
+
+
     callB(0);
 
 
@@ -299,8 +301,9 @@ var init = async function (message, userDB, DB) {
         let menuArr = menu[currentPage]; // MENU IS GLOBAL
         let pageObj = createpage(menu[currentPage]); // reaction pagination
         let emb = new Discord.RichEmbed
-        emb.setColor("#e12f55")
-        emb.setTitle(medalEmoj + " " + v.medalShop.toUpperCase())
+        emb.setColor("#e18f2f")
+        emb.setTitle( ":diamond_shape_with_a_dot_inside:  EQUIP MEDALS ")
+        emb.setDescription("Choose the desired medal to equip")
         for (i = 0; i < menuArr.length; i++) {
 
             emb.addField(nums[i + 1], gear.emoji(menuArr[i][0]) + " **" + menuArr[i][1] + "**", true)
@@ -318,11 +321,11 @@ var init = async function (message, userDB, DB) {
 
 
 
-
+        console.log(item)
         let icon = gear.emoji(item[0])
-        let medal_file = item[0]
-        let price = item[1]
-        let name = item[2]
+        let medal_file = item
+       // let price = item[1]
+        let name = item[1]
 
 
         let processing = new Discord.RichEmbed;
@@ -365,14 +368,43 @@ var init = async function (message, userDB, DB) {
 
                           pseudoequip[finder-1] = medal_file;
                           processing.setDescription(getEquips(pseudoequip))
-                          m.edit({embed:processing})
 
+                         m.edit("Confirm Position?", {
+                             embed: processing
+                         }).then(async me => {
+                             await me.clearReactions()
+                             await me.react(check)
+                             await me.react(xmark)
+
+
+                             return new Promise(async resolve => {
+                                 const responses = await m2.awaitReactions(react =>
+                                     react.users.has(Author.id), {
+                                         maxEmojis: 1,
+                                         time: 20000
+                                     }
+                                 ).catch();
+                                 if (responses.size === 0) {} else {
+                                     let rea = responses.first()
+                                     if (rea.emoji == check && rea.count >1){
+
+                                         let u = userDB.get(message.author.id);
+                                         console.log(medal_file)
+                                         u.modules.medals[finder-1] = medal_file
+                                         userDB.set(Author.id,u)
+                                         me.delete();
+                                         return message.reply("OK")
+
+                                     }
+                                     if (rea.emoji == xmark && rea.count >1){
+                                         return callB(index, true, m, undefined, processing)
+                                     }
+                                 }
+                             })
+                         })
 
 
                     }
-
-
-
 
                     if (rea.emoji == check && rea.count > 1) {
 
@@ -403,10 +435,9 @@ var init = async function (message, userDB, DB) {
 
         })
 
-
     }
 
-    async function callB(index, recycle, messIn, optMsg) {
+    async function callB(index, recycle, messIn, optMsg, neoEmb) {
 
         console.log("FUNCTION: callB \n INDEX: " + index) //undefined?
         let current = index;
@@ -418,6 +449,12 @@ var init = async function (message, userDB, DB) {
             //TOSS
             return message.channel.sendEmbed(menuPage.embed).then(async m => pageResolve(m, menuPage, current))
         }
+
+        if (neoEmb){
+                let item = menuPage.menuArr
+                   return  processCheckout(item, index, messIn)
+        }
+
         return messIn.edit(optMsg, {
             embed: menuPage.embed
         }).then(async m => pageResolve(m, menuPage, current))
@@ -479,7 +516,9 @@ var init = async function (message, userDB, DB) {
                 if (finder && rea.count > 1) {
                    //return message.reply("ok" + finder)
 
-                    let item = menuPage.menuArr
+                    let item = menuPage.menuArr[finder-1]
+
+
                     processCheckout(item, index, m)
 
                 }
