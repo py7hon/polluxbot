@@ -185,11 +185,6 @@ var backgroundIMAGE = paths.BUILD + 'profile/BGS/bg_'+backgroundId+'.png'
 console.log("==============="+backgroundIMAGE)
 
 
-    if(bot.guilds.get("277391723322408960").members.has(Target.id)){
-        medals.unshift("pollux")
-        medals.pop(1)
-    }
-
   generatorMSG.edit(gener+"\n `Processing Background`").catch()
 
 
@@ -200,15 +195,17 @@ console.log("==============="+backgroundIMAGE)
     var skin = userDB.get(Target.id).modules.skin
 
    console.log(__dirname)
-    Jimp.read(paths.MEDALS+ medals[0]+'.png').then(function (md1) {
-    Jimp.read(paths.MEDALS+ medals[1]+'.png').then(function (md2) {
-    Jimp.read(paths.MEDALS+ medals[2]+'.png').then(function (md3) {
-    Jimp.read(paths.MEDALS+ medals[3]+'.png').then(function (md4) {
-    Jimp.read(paths.MEDALS+ medals[4]+'.png').then(function (md5) {
-    Jimp.read(paths.MEDALS+ medals[5]+'.png').then(function (md6) {
-    Jimp.read(paths.MEDALS+ medals[6]+'.png').then(function (md7) {
-    Jimp.read(paths.MEDALS+ medals[7]+'.png').then(function (md8) {
 
+
+
+    Jimp.read(paths.MEDALS+ medals[0][0]+'.png').then(function (md1) {
+    Jimp.read(paths.MEDALS+ medals[1][0]+'.png').then(function (md2) {
+    Jimp.read(paths.MEDALS+ medals[2][0]+'.png').then(function (md3) {
+    Jimp.read(paths.MEDALS+ medals[3][0]+'.png').then(function (md4) {
+    Jimp.read(paths.MEDALS+ medals[4][0]+'.png').then(function (md5) {
+    Jimp.read(paths.MEDALS+ medals[5][0]+'.png').then(function (md6) {
+    Jimp.read(paths.MEDALS+ medals[6][0]+'.png').then(function (md7) {
+    Jimp.read(paths.MEDALS+ medals[7][0]+'.png').then(function (md8) {
 
     Jimp.read(paths.SKINS + skin + '/mainframe.png').then(function (frame) {
     Jimp.read(paths.SKINS + skin + '/mainframe.png').then(function (frameB) {

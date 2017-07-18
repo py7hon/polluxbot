@@ -19,7 +19,7 @@
      days > 1 ? time = days + " dias " : time = time
      return time;
  }
-
+const Discord = require("discord.js")
  var gear = require("../gearbox.js");
  var paths = require("../paths.js");
  var locale = require('../../utils/multilang_b');
@@ -36,7 +36,7 @@
      var Target = message.mentions.users.first() || Author;
      var MSG = message.content;
      var bot = message.botUser
-     var args = MSG.split(' ').slice(1)[1]
+     var args = MSG.split(' ').slice(1)[0]
      var LANG = message.lang;
 
      if (!DB.get(Server.id).modules.GOODIES) {
@@ -52,29 +52,60 @@ var emoj = bot.emojis.get('276878246589497344')
      let GOODMOJI = DB.get(Server.id).modules.GOODMOJI || emoj
      let GOOD = DB.get(Server.id).modules.GOODNAME || 'Ruby'
 
+     if (!userDB.get(bot.user.id).dailyEpoch) {
+         gear.superDefine(bot.user, "dailyEpoch", 1500271200000)
+     }
+     if (!userDB.get(bot.user.id).epochStamp) {
+         gear.superDefine(bot.user, "epochStamp", new Date(1500271200000))
+     }
+     if (!userDB.get(Author.id).modules.daily) {
+         gear.paramDefine(Author, "daily", 1500271199999)
+     }
 
 
-     // day one 1485938511477 + 86400000
 
-     const D = 1000 * 60 * 60 * 24 * 1
 
      var now = new Date().getTime();
      var day = 86400000
-     var dly = userDB.get(Author.id).modules.daily
+     var userEpoch = userDB.get(Author.id).modules.daily
      var streak = userDB.get(Author.id).modules.dyStreak
-     1486025790272
-     if ((now - dly) >= day) {
-         if ((now - dly) < (day * 2)) {
+     var globalEpoch =  userDB.get(bot.user.id).dailyEpoch
+     var next = globalEpoch+86400000
+
+
+
+
+          if (args == "help" || args == "?" || args == "reset" || args == "epoch"){
+         let e = new Discord.RichEmbed
+
+          var r = next
+          //var R = -();
+
+
+         var remain = (Math.abs((now-next)/1000)+ "").toHHMMSS();
+         e.setTitle(gear.emoji("ruby")+" Last Global Dailies Refresh")
+         e.setDescription(remain)
+         e.setTimestamp(userDB.get(bot.user.id).epochStamp)
+         e.setColor("#d13d54")
+         return Channel.send({embed:e}).catch(e=>console.log(e))
+     }
+
+
+
+     if (userEpoch < globalEpoch) {
+
+         if (((userEpoch - globalEpoch) / 86400000) <= 2) {
              gear.paramIncrement(Author, 'dyStreak', 1)
          } else {
              gear.paramDefine(Author, 'dyStreak', 0)
          }
+
+         //CONFIRM DAILY
          var dailyGet = mm('$.dailyGet', {
              lngs: LANG,
              emoji: '',
              goods: GOOD
          })
-
 
          message.reply(emoj+dailyGet)
          if (streak == 10) {
@@ -85,13 +116,14 @@ var emoj = bot.emojis.get('276878246589497344')
              })
 
              message.channel.send(emoj+dailyStreak)
+               gear.paramIncrement(Author, 'goodies', 500)
          }
 
          gear.paramIncrement(Author, 'goodies', 100)
-         gear.paramDefine(Author, 'daily', now)
+         gear.paramDefine(Author, 'daily', globalEpoch)
 
      } else {
-         var r = day - (now - dly)
+         var r = Math.abs(now-next);
          var remain = (r / 1000 + "").toHHMMSS();
          var dailyNope = mm('$.dailyNope', {
              lngs: LANG,
@@ -100,6 +132,7 @@ var emoj = bot.emojis.get('276878246589497344')
          })
          message.reply(emoj+dailyNope)
      }
+
 
 
 

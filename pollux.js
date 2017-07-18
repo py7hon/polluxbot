@@ -97,8 +97,32 @@ function loginSuccess() {
 
     setInterval(function () {
         var date = new Date();
+
+        if (date.getHours() === 3){
+
+            let epc = date.getTime()
+                gear.superDefine(bot.user,"epochStamp",date)
+            if (!userDB.get(bot.user.id).dailyEpoch){
+                gear.superDefine(bot.user,"dailyEpoch",epc)
+            }
+
+            var botEntry = userDB.get(bot.user.id)
+            try{
+            botEntry.dailyEpoch = epc
+            }catch(e){
+            botEntry.dailyEpoch= epc
+            }
+            if (isNaN(botEntry.dailyEpoch)){
+            botEntry.dailyEpoch= epc
+            }
+
+            userDB.set(bot.user.id,botEntry)
+
+        }
         if (date.getSeconds() === 0) {
+
             gear.gamechange(bot)
+
         }
     }, 1000);
 // ACTIONS OVER TIME ▲▲▲▲▲▲▲▲▲
@@ -119,7 +143,7 @@ bot.on('ready', () => {
     })
     bot.user.setStatus('online')
 
-    // bot.user.setGame(`Flicky draws Silenyte stuff`, 'https://www.twitch.tv/LucasFlicky').then().catch();
+  //   bot.user.setGame(`coding Pollux`, 'https://www.twitch.tv/theFlicky').then().catch();
 
     //bot.user.setGame(`Neverwinter Nights`).then().catch();
 
@@ -604,9 +628,10 @@ bot.on('guildCreate', (guild) => {
 
             emb.setThumbnail(guild.iconURL)
             emb.setDescription(`:inbox_tray: Added to **${guild.name}**`);
-            emb.addField("Members",guild.members.size,false)
+            emb.addField("Members",guild.members.size,true)
+            emb.addField("Region",guild.region,true)
             emb.addField("Owner",guild.owner,true)
-            emb.addField("Owner Tag",guild.owner.username+"#"+guild.owner.discriminator,true)
+            emb.addField("Owner Tag",guild.owner.user.tag,true)
             emb.setColor("#255ec9");
             var ts = new Date
             emb.setTimestamp(ts)
