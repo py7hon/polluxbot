@@ -67,7 +67,6 @@
         "kinNone": "tu precisa me dizer de quem eu vou chutar a bunda. Antes que eu chute a sua!",
         "kin404": "Opsie, não achei esse cara :< Ele ainda está por aqui? Ele sequer existe? Não é sua imaginação? TEM CERTEZA???",
         "unperm": "Por algum raio de razão eu não tenho permissões. MIMDÁ PERMISSÃO",
-        "unpermB": "Rapaz, acho que não tenho Permissões para processar este comando.",
         "jas": "Ok, me dá um segundo...",
         "didkik": ":boot: Meti um pé na bunda de {{target}}. \n Motivo:{{reason}}",
         "autoroleunAdded": "Cargo **{{role}}** removido da lista de Autoroles.",
@@ -79,13 +78,14 @@
         "nosuchrole": "Hm... Não encontrei esse Cargo, digite o nome exatamente igual! Com maiúsculas e essas merdas.",
         "incinerate": "Taquei fogo em {{amt}} mensagens! Se reclamarem taco em {{amtB}}",
         "roleadCom": "Yo! Agora **{{user}}** faz parte do grupo de **{{group}}** ! BEM-VINDO À BARCA!",
+        "rolermCom": "Bom, **{{user}}** não faz mais parte do grupo de **{{group}}** ! Me pergunto por quê.",
+        "kbanNone": "tu precisa me dizer no cu de quem eu vou enfiar esse martelo. Antes que euenfie no teu!",
+        "didban": ":hammer: Botei {{target}} pra fora daqui na base da marretada. \n Motivo:{{reason}}",
         "superRoleadCom": "Certinho. Incluí **{{user}}** no Cargo **{{group}}**!",
         "superRolermCom": "Feito. Removi **{{user}}** do Cargo **{{group}}**!",
         "superRoleNope": "**{{user}}** não faz parte do Cargo **{{group}}**!",
-        "rolermCom": "Bom, **{{user}}** não faz mais parte do grupo de **{{group}}** ! Me pergunto por quê.",
-        "banNone": "tu precisa me dizer no cu de quem eu vou enfiar esse martelo. Antes que euenfie no teu!"
-        ,"didban": ":hammer: Botei {{target}} pra fora daqui na base da marretada. \n Motivo:{{reason}}"
-
+        "banNone": "tu precisa me dizer no cu de quem eu vou enfiar esse martelo. Antes que euenfie no teu!",
+        "unpermB": "Rapaz, acho que não tenho Permissões para processar este comando."
     },
     "dict": {
         "coinHeads": "cara",
@@ -148,9 +148,13 @@
         "rule34": "Busca uns Hentai por aí",
         "safe": "Imagens bonitas do Safebooru",
         "ping": "Pong",
-        "speak or lang": "Trocar o idioma, atualmente eu falo: `{{langs}}`"
-        ,"betflip": "Aposte {{good}}s virando uma moeda"
-        ,"betflip": "Aposte {{good}}s virando uma moeda"
+        "speak or lang": "Trocar o idioma, atualmente eu falo: `{{langs}}`",
+        "betflip": "Aposte {{good}}s virando uma moeda",
+        "supserv": "Servidor de Suporte",
+        "commlist": "Lista de Comandos",
+        "inviteme": "Me convide para seu serivdor",
+        "polHelp": "Ajuda da Pollux",
+        "helpText": "Estes são os básicos para te ajudar a usar meus serviços! Também te enviei uma DM caso esta mensagem suma!"
     },
     "menu": {
         "cake": "Bolo",
@@ -177,11 +181,10 @@
         "byeON": "Mensagens de despedida habilitadas neste canal! Mesmo que eles não vão ver, pelo menos sou educadinha~",
         "helloOFF": "Mensagem de boas-vindas desabilitada! Não é legal não cumprimentar seus convidados... :X",
         "helloON": "Mensagens de boas-vindas habilitadas neste canal! Vou me certificar de que todo mundo vai receber um alegre e espontâneo OLAR em suas respectivas fuças assim que entrarem~ :heart:",
-        "inTex":" Mensagem de boas-vindas alterada! \n\n {{wtxt}}",
-        "outTex":" Mensagem de despedida alterada! \n\n {{wtxt}}",
-        "tellmeMSG":" Mensagem muito curta ou nenhuma mensagem identificada!",
-        "tellmeCHN":" Canal não especificado!"
-
+        "inTex": " Mensagem de boas-vindas alterada! \n\n {{wtxt}}",
+        "outTex": " Mensagem de despedida alterada! \n\n {{wtxt}}",
+        "tellmeMSG": " Mensagem muito curta ou nenhuma mensagem identificada!",
+        "tellmeCHN": " Canal não especificado!"
     },
     "reput": {
         "noSelf": "Hey hey espertaralho. Você não pode dar Rep pra si mesmo!",
@@ -201,8 +204,6 @@
         "confirmed": "Certo! Você comprou esta medalhinha~",
         "cancelled": "Mudou de idéia?... Tudo bem, compra cancelada!",
         "timeout": "Pensou demais! Volta quando souber exatamente o que quer.",
-        "alreadyPosess":"Você já tem esta medalha!"
+        "alreadyPosess": "Você já tem esta medalha!"
     }
-
-
 }
