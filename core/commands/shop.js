@@ -373,7 +373,7 @@ function processCheckout(item, index, m) {
     };
     let processing = new Discord.RichEmbed;
     processing.setColor("#2bb955")
-    m.clearReactions();
+     m.clearReactions().catch(e=>{         message.reply("I need MANAGE MESSAGES and ADD REACTIONS Permissions to do this correctly, please contact the server administrator");            });
     processing.setTitle(v.processing)
     processing.setDescription(`${icon} ${name} :: ${gear.emoji("ruby")}**${price}**
 ${v.youSure}`)
@@ -558,7 +558,7 @@ try{
       }
 
 async function refresh(index, m, optm) {
-    await m.clearReactions();
+    await  m.clearReactions().catch(e=>{         message.reply("I need MANAGE MESSAGES and ADD REACTIONS Permissions to do this correctly, please contact the server administrator");             });;
     return callB(index, true, m, optm);
 }
 

@@ -330,7 +330,7 @@ var init = async function (message, userDB, DB) {
 
         let processing = new Discord.RichEmbed;
         processing.setColor("#2bb955")
-        m.clearReactions();
+        m.clearReactions().catch(e=>{         message.reply("I need MANAGE MESSAGES and ADD REACTIONS Permissions to do this correctly, please contact the server administrator");            });
         processing.setTitle(v.equip) // EQUIP THIS?
         processing.setDescription(equipArray);
 
@@ -372,7 +372,7 @@ var init = async function (message, userDB, DB) {
                          m.edit("Confirm Position?", {
                              embed: processing
                          }).then(async me => {
-                             await me.clearReactions()
+                             await me.clearReactions().catch(e=>{         message.reply("I need MANAGE MESSAGES and ADD REACTIONS Permissions to do this correctly, please contact the server administrator");            });
                              await me.react(check)
                              await me.react(xmark)
 
@@ -540,7 +540,7 @@ var init = async function (message, userDB, DB) {
 
     }
     async function refresh(index, m, optm) {
-        await m.clearReactions();
+        await m.clearReactions().catch(e=>{         message.reply("I need MANAGE MESSAGES and ADD REACTIONS Permissions to do this correctly, please contact the server administrator");            });
         return callB(index, true, m, optm);
     }
 
