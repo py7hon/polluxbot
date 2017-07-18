@@ -64,8 +64,8 @@ module.exports = {
             Umodules.name = User.username
             Umodules.discriminator = User.discriminator
             Umodules.tag = User.tag
-            Umodules.modules.medalInventory = []
-            Umodules.modules.medals = [0,0,0,0,0,0,0,0]
+            //Umodules.modules.medalInventory = []
+           // Umodules.modules.medals = [0,0,0,0,0,0,0,0]
             Umodules.avatarURL = User.avatarURL
 
             if (Umodules.modules.goodies < 0) {
