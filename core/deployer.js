@@ -57,12 +57,9 @@ var deploy = function (message, userDB, DB) {
     var command = message.content.substr(DB.get(message.guild.id).modules.PREFIX.length).split(' ')[0]
     let commandFile;
     try {
-
-
         if (!DB.get(message.guild.id).modules) {
             DB.get(message.guild.id).modules.GOODNAME = "Ruby"
         }
-
         switch (true) {
 
             case command == "$":

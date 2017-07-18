@@ -143,7 +143,7 @@ bot.on('ready', () => {
     })
     bot.user.setStatus('online')
 
-     bot.user.setGame(`coding Pollux`, 'https://www.twitch.tv/theFlicky').then().catch();
+  //   bot.user.setGame(`coding Pollux`, 'https://www.twitch.tv/theFlicky').then().catch();
 
     //bot.user.setGame(`Neverwinter Nights`).then().catch();
 
@@ -628,9 +628,10 @@ bot.on('guildCreate', (guild) => {
 
             emb.setThumbnail(guild.iconURL)
             emb.setDescription(`:inbox_tray: Added to **${guild.name}**`);
-            emb.addField("Members",guild.members.size,false)
+            emb.addField("Members",guild.members.size,true)
+            emb.addField("Region",guild.region,true)
             emb.addField("Owner",guild.owner,true)
-            emb.addField("Owner Tag",guild.owner.username+"#"+guild.owner.discriminator,true)
+            emb.addField("Owner Tag",guild.owner.user.tag,true)
             emb.setColor("#255ec9");
             var ts = new Date
             emb.setTimestamp(ts)

@@ -11,8 +11,8 @@ if (message.mentions.users.size <2){
     if (message.mentions.users.size >2){
    return message.reply("I can only ship two people! This is not a gang bang.")
 }
-   let  eit=[ message.mentions.users.first().username
-    , message.mentions.users.last().username]
+   let  eit=[ message.guild.member(message.mentions.users.first()).displayName
+    , message.guild.member(message.mentions.users.last()).displayName]
     gear.shuffle(eit)
 
    let  verbose = [

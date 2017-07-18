@@ -70,14 +70,19 @@ var emoj = bot.emojis.get('276878246589497344')
      var userEpoch = userDB.get(Author.id).modules.daily
      var streak = userDB.get(Author.id).modules.dyStreak
      var globalEpoch =  userDB.get(bot.user.id).dailyEpoch
+     var next = globalEpoch+86400000
+
 
 
 
           if (args == "help" || args == "?" || args == "reset" || args == "epoch"){
          let e = new Discord.RichEmbed
-          var r = Math.abs(now - globalEpoch);
+
+          var r = next
           //var R = -();
-         var remain = (r / 1000 + "").toHHMMSS();
+
+
+         var remain = (Math.abs((now-next)/1000)+ "").toHHMMSS();
          e.setTitle(gear.emoji("ruby")+" Last Global Dailies Refresh")
          e.setDescription(remain)
          e.setTimestamp(userDB.get(bot.user.id).epochStamp)
@@ -111,13 +116,14 @@ var emoj = bot.emojis.get('276878246589497344')
              })
 
              message.channel.send(emoj+dailyStreak)
+               gear.paramIncrement(Author, 'goodies', 500)
          }
 
          gear.paramIncrement(Author, 'goodies', 100)
          gear.paramDefine(Author, 'daily', globalEpoch)
 
      } else {
-         var r = -(now - userEpoch);
+         var r = Math.abs(now-next);
          var remain = (r / 1000 + "").toHHMMSS();
          var dailyNope = mm('$.dailyNope', {
              lngs: LANG,
@@ -126,6 +132,7 @@ var emoj = bot.emojis.get('276878246589497344')
          })
          message.reply(emoj+dailyNope)
      }
+
 
 
 
