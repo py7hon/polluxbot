@@ -85,7 +85,9 @@
         "superRolermCom": "Feito. Removi **{{user}}** do Cargo **{{group}}**!",
         "superRoleNope": "**{{user}}** não faz parte do Cargo **{{group}}**!",
         "banNone": "tu precisa me dizer no cu de quem eu vou enfiar esse martelo. Antes que euenfie no teu!",
-        "unpermB": "Rapaz, acho que não tenho Permissões para processar este comando."
+        "unpermB": "Rapaz, acho que não tenho Permissões para processar este comando.",
+        "cantFindChannel":"Não encontrei esse canal não :/ na dúvida tenta usar #mention",
+        "noChannelGiven": "Vou logar essas atividades onde? Na sua testa? Especifique um canal!"
     },
     "dict": {
         "coinHeads": "cara",
@@ -106,7 +108,8 @@
         "banned": "BANIDO",
         "kicked": "EXPULSO",
         "wasbanned": "foi **banido**",
-        "waskicked": "foi **expulso**"
+        "waskicked": "foi **expulso**",
+        "usage": "Como usar:"
     },
     "profile": {
         "persotexUpdate": "Woo, tudo certinho! Seu texto pessoal mudou para: \n {{pstext}} \n Digite `{{prefix}}profile` para visualizar esta linda frase no seu ~~não tão lindo~~ ProfileCard. Hihihi~"
@@ -115,8 +118,10 @@
         "memberSince": "Membro Desde:",
         "level": "Nível:",
         "levelUp": "Level Up!",
-        "genProf": "Segura aí, estou montando o seu super duper ProfileCard lindão..."
+        "genProf": "Segura aí, estou montando o seu super duper ProfileCard lindão...",
+        "hisProf": "Segura aí, estou montando o super duper ProfileCard lindão desta pessoa..."
     },
+    "helpkey":"ajuda",
     "help": {
         "checkYeDM": "Te enviei uns lance em pvt, dá um zóio.",
         "availableComms": "Comandos Disponíves",
@@ -148,13 +153,16 @@
         "rule34": "Busca uns Hentai por aí",
         "safe": "Imagens bonitas do Safebooru",
         "ping": "Pong",
-        "speak or lang": "Trocar o idioma, atualmente eu falo: `{{langs}}`",
+        "lang": "Trocar o idioma, atualmente eu falo: `{{langs}}`",
         "betflip": "Aposte {{good}}s virando uma moeda",
         "supserv": "Servidor de Suporte",
         "commlist": "Lista de Comandos",
         "inviteme": "Me convide para seu serivdor",
         "polHelp": "Ajuda da Pollux",
-        "helpText": "Estes são os básicos para te ajudar a usar meus serviços! Também te enviei uma DM caso esta mensagem suma!"
+        "helpText": "Estes são os básicos para te ajudar a usar meus serviços! Também te enviei uma DM caso esta mensagem suma!",
+        "commUsage": "Como usar o comando: ",
+        "logs": "Define canais para monitorar atividades do Servidor",
+        "ahegao": "アヘ顔 (Ahegao) - Sempre útil em alguns momentos"
     },
     "menu": {
         "cake": "Bolo",
@@ -205,5 +213,22 @@
         "cancelled": "Mudou de idéia?... Tudo bem, compra cancelada!",
         "timeout": "Pensou demais! Volta quando souber exatamente o que quer.",
         "alreadyPosess": "Você já tem esta medalha!"
+    },
+    "equip":{
+
+    },
+    "usage":{
+        "logs":"`{{prefix}}logs #canal`\n Define todos os logs no Canal definido.\n\n`{{prefix}}logs mod #canal`\n Define logs de moderação (Bans, Kicks e Mutes) no Canal definido.\n\n`{{prefix}}logs atv #canal`\n Define logs de atividade (Membros que entram e saem, mudança de nicks) no Canal definido. \n\n`{{prefix}}logs adv #canal`\n Define logs avançados (Mensagens deletadas, editadas, ativações ou desativações de módulos) no Canal definido.\n\n`{{prefix}}logs mod #canal delete`\n Remove o Canal definido da lista de Logs.",
+        "ahegao": "Simples, apenas digite `{{prefix}}ahegao` e você recebe um アヘ顔"
+    },
+    "logs":{
+        "success":"Pronto, defini o Canal {{channel}} como o canal de {{CHNTYPE}}!",
+        "successDelete":"Feito, o Canal {{channel}} não é mais canal de {{CHNTYPE}}!",
+        "failure":"Opsie! Acho que deu errado. Desculpa. :< ",
+        "modLogs":"LOGS DE MODERAÇÃO",
+        "actLogs":"LOGS DE ATIVIDADE",
+        "advLogs":"LOGS AVANÇADOS",
+        "logChan":"LOGS GERAIS"
+
     }
 }
