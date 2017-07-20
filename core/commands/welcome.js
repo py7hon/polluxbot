@@ -77,11 +77,12 @@ var input="X"
 
     }
 
-    if (args.length >= 2 && args[0] === "time") {
 
-        if (typeof args[1] == "number"){
+    if (args.length == 2 && args[0] == "time") {
+
+        if (!isNaN(Number(args[1]))){
             let num = parseInt(args[1])
-        gear.paramDefine(Serer,"GREET.hiDEL",num*1000)
+        gear.paramDefine(Server,"GREET.hiDEL",num*1000)
             return message.reply(mm('greet.timer', {
             lngs: LANG,
             timeMin: num
@@ -89,6 +90,7 @@ var input="X"
         }
 
     }
+
 
 
     if (args.length >= 2 && args[0] === "msg") {

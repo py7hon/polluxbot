@@ -40,17 +40,18 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
     }
 
 
+    if (args.length == 2 && args[0] == "time") {
 
-        if (args.length >= 2 && args[0] === "time") {
-
-        if (typeof args[1] == "number"){
+        if (!isNaN(Number(args[1]))){
             let num = parseInt(args[1])
-        gear.paramDefine(Serer,"FWELL.hiDEL",num*1000)
+        gear.paramDefine(Server,"FWELL.hiDEL",num*1000)
             return message.reply(mm('greet.timerby', {
             lngs: LANG,
             timeMin: num
         }))
         }
+
+    }
 
     }
 
