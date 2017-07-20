@@ -44,6 +44,12 @@ if (Author.id=="88120564400553984"){
 
 //if (fs.existsSync('./utils/lang/'+args)) {
      switch(args){
+        case 'de':
+        case 'deutsch':
+        case 'german':
+               message.reply(":flag_de: >Deutsche is currently being translated. Notice that this Translation is still incomplete<");
+            gear.paramDefine(Server,'LANGUAGE','de');
+             break;
         case 'en':
         case 'english':
             message.reply(":flag_ca: Alright, I will now speak English! Canadian flag because fuck you, that's why.");

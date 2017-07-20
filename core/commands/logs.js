@@ -26,6 +26,15 @@ var init = function (message, userDB, DB) {
 
 
 
+//HELP TRIGGER
+let helpkey = mm("helpkey",{lgns:LANG})
+if (MSG.length == (message.prefix + cmd).length || MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message,"mod")
+}
+//------------
+
+
+
     message.delete(8000);
 
     var modPass = false
@@ -43,22 +52,31 @@ var init = function (message, userDB, DB) {
 
 
 
+var LG = mm("logs.logChan",{lngs:LANG})
+var MD = mm("logs.modLogs",{lngs:LANG})
+var AC = mm("logs.actLogs",{lngs:LANG})
+var AV = mm("logs.advLogs",{lngs:LANG})
+var failure = mm("logs.failure",{lngs:LANG})
 
 
     var argument = MSG.substr((message.prefix + cmd).length + 1)
     var destination = ["LOGCHANNEL", "MODLOG", "ACTLOG", "ADVLOG"]
+    var friendlYdestination = [ LG,MD,AC,AV]
 
     if (MSG.startsWith(prefix + cmd + " mod")) {
         var argument = MSG.substr((prefix + cmd + " mod").length + 1)
         var destination = ["MODLOG"]
+         var friendlYdestination = [MD]
     }
     if (MSG.startsWith(prefix + cmd + " adv")) {
         var argument = MSG.substr((prefix + cmd + " adv").length + 1)
         var destination = ["ADVLOG"]
+         var friendlYdestination = [AV]
     }
     if (MSG.startsWith(prefix + cmd + " activity")) {
         var argument = MSG.substr((prefix + cmd + " activity").length + 1)
         var destination = ["ACTLOG"]
+         var friendlYdestination = [AC]
     }
 
 
@@ -71,7 +89,40 @@ var init = function (message, userDB, DB) {
 
 
 
+if (MSG.includes("del")){
 
+        for (var i = 0; i < destination.length; i++) {
+
+console.log(destination[i])
+    let    dest = destination[i]
+    let    destA = friendlYdestination[i]
+        var errored = false;
+        Server.channels.get(chan).overwritePermissions(bot.user, {
+            SEND_MESSAGES: true,
+            READ_MESSAGES: true
+        }).then(f => {
+
+           message.channel.send(gear.emoji("check") + mm('logs.successDelete', {
+                lngs: LANG,
+                channel: Server.channels.get(chan),
+                CHNTYPE: destA
+            }) ).then(m => m.delete(25000)).catch()
+               gear.paramDefine(Server, dest, "")
+        }).catch(e => {
+            message.reply(mm('CMD.unpermB', {
+                lngs: LANG
+            })).catch(console.error);
+
+        })
+
+
+    }
+
+
+
+
+    return
+}
 
 
 
@@ -108,13 +159,18 @@ var init = function (message, userDB, DB) {
 
 console.log(destination[i])
     let    dest = destination[i]
+    let    destA = friendlYdestination[i]
         var errored = false;
         Server.channels.get(chan).overwritePermissions(bot.user, {
             SEND_MESSAGES: true,
             READ_MESSAGES: true
         }).then(f => {
 
-            message.channel.send(gear.emoji("check") + " Successfully defined `" + dest + "` as " + Server.channels.get(chan)).then(m => m.delete(5000)).catch()
+            message.channel.send(gear.emoji("check") + mm('logs.success', {
+                lngs: LANG,
+                channel: Server.channels.get(chan),
+                CHNTYPE: destA
+            }) ).then(m => m.delete(25000)).catch()
             gear.paramDefine(Server, dest, chan)
         }).catch(e => {
             message.reply(mm('CMD.unpermB', {

@@ -20,7 +20,7 @@ var init = function (message,userDB,DB) {
     var tgtData = userDB.get(Target.id).modules
 
 
-
+try{
 var emojya = bot.emojis.get('276878246589497344')
     let GOODMOJI = emojya
     let GOOD = 'Ruby'
@@ -32,11 +32,13 @@ var emojya = bot.emojis.get('276878246589497344')
     }
 
 
-    if (args.lenght < 2) {
-        message.reply("Ordem inválida")
-        return;
-    }
     var donate = parseInt(args[0])
+
+
+    if (args.lenght < 2 || isNaN(donate) || message.mentions.size === 0){
+        return gear.usage(cmd,message,mm)
+    }
+
     if (gear.checkGoods(donate, Author) == true) {
 
         // message.guild.defaultChannel.send()
@@ -45,7 +47,7 @@ var emojya = bot.emojis.get('276878246589497344')
         gear.paramIncrement(Target, 'goodies', donate)
         gear.paramIncrement(Target, 'earnings.trade', donate)
 
-        message.channel.send( mm('$.giveGoods' , {lngs:LANG, donate:donate, emoji:"Ruby", target:Target.username,author:Author.username })).then(function (c) {
+       return  message.channel.send( mm('$.giveGoods' , {lngs:LANG, donate:donate, emoji:gear.emoji('ruby'), target:Target.username,author:Author.username })).then(function (c) {
             message.delete(5000)
         })
         gear.writePoints(points, caller)
@@ -53,7 +55,10 @@ var emojya = bot.emojis.get('276878246589497344')
         message.reply(mm('$.noFundsGeneric',{lngs:LANG,goods:GOOD}))
         return;
     }
-}
+
+
+
+}catch(e){message.reply(e.stack)}}
 
  module.exports = {
     pub:true,

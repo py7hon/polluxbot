@@ -11,6 +11,24 @@ var init = function (message,userDB,DB) {
     var LANG = message.lang;
 
 
+    try{
+
+        let helpkey = mm("helpkey",{lgns:LANG})
+if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
+
+    const Discord = require("discord.js");
+    let emb = new Discord.RichEmbed
+    emb.setDescription(mm('usage.askingHelpForHelp', {
+                    lngs: LANG,
+
+                    prefix: message.prefix,
+
+                }))
+    return  message.channel.send({embed:emb});
+}
+
+    }catch(e){console.log(e)}
+
         txt3 = `
 
 **COMMAND LIST:** http://pollux.fun/commands.html

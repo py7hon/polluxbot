@@ -211,46 +211,45 @@ var init = async function (message, userDB, DB) {
 
     //Verbose
     var v = {
-        whatShop: mm("shop.whatShop", {
+        equipMenu: mm("equip.equip", {
             lngs: LANG
         }),
-        medalShop: mm("shop.medalShop", {
+        success: mm("equip.success", {
             lngs: LANG
         }),
-        bgShop: mm("shop.bgShop", {
+        choose: mm("equip.choose", {
             lngs: LANG
         }),
-        goodShop: mm("shop.goodShop", {
+        equip: mm("equip.equipSlot", {
             lngs: LANG
         }),
-        useBelow: mm("shop.useBelow", {
+        youSure: mm("equip.youSure", {
             lngs: LANG
         }),
-        noFundsFormal: mm("shop.noFundsFormal", {
+        confirmed: mm("equip.confirmed", {
             lngs: LANG
         }),
-        noFundsResponse: mm("$.noFunds", {
+        cancelled: mm("equip.cancelled", {
             lngs: LANG
         }),
-        equip: mm("medals.equipSlot", {
+        timeout: mm("equip.timeout", {
             lngs: LANG
         }),
-        youSure: mm("shop.youSure", {
-            lngs: LANG
-        }),
-        confirmed: mm("shop.confirmed", {
-            lngs: LANG
-        }),
-        cancelled: mm("shop.cancelled", {
-            lngs: LANG
-        }),
-        timeout: mm("shop.timeout", {
-            lngs: LANG
-        }),
-        alreadyPosess: mm("shop.alreadyPosess", {
+        pleaseWaitReas: mm("equip.pleaseWaitReas", {
             lngs: LANG
         })
     }
+
+    var perms = {
+        MNG_MESS: mm("permission.MNG_MESS", {
+            lngs: LANG
+        }),
+        ADD_REA: mm("permission.ADD_REA", {
+            lngs: LANG
+        })
+
+    }
+
 
     // Emojifest
     const medalEmoj = "🎖";
@@ -260,13 +259,7 @@ var init = async function (message, userDB, DB) {
     const xmark = bot.emojis.get("314349398824058880") || "❌";
 
     //Choose Shop
-    let emb = new Discord.RichEmbed
-    emb.setColor("#5743c6")
-    emb.setTitle(v.whatShop)
-    emb.addField(v.bgShop, bkgEmoj, true)
-    emb.addField("v.medalShop", medalEmoj, true)
-    emb.addField(v.goodShop, toolsEmoj, true)
-    emb.setFooter(v.useBelow)
+
 
     //Machine
 
@@ -302,8 +295,8 @@ var init = async function (message, userDB, DB) {
         let pageObj = createpage(menu[currentPage]); // reaction pagination
         let emb = new Discord.RichEmbed
         emb.setColor("#e18f2f")
-        emb.setTitle( ":diamond_shape_with_a_dot_inside:  EQUIP MEDALS ")
-        emb.setDescription("Choose the desired medal to equip")
+        emb.setTitle(":diamond_shape_with_a_dot_inside:" + v.equipMenu)
+        emb.setDescription(v.choose)
         for (i = 0; i < menuArr.length; i++) {
 
             emb.addField(nums[i + 1], gear.emoji(menuArr[i][0]) + " **" + menuArr[i][1] + "**", true)
@@ -324,13 +317,22 @@ var init = async function (message, userDB, DB) {
         console.log(item)
         let icon = gear.emoji(item[0])
         let medal_file = item
-       // let price = item[1]
+        // let price = item[1]
         let name = item[1]
 
 
         let processing = new Discord.RichEmbed;
         processing.setColor("#2bb955")
-        m.clearReactions().catch(e=>{         message.reply("I need MANAGE MESSAGES and ADD REACTIONS Permissions to do this correctly, please contact the server administrator");            });
+        m.clearReactions().catch(e => {
+            message.reply(
+
+                mm("error.iNeedThesePerms", {
+                    lngs: LANG,
+                    PERMSLIST: `**${perms.MNG_MESS}**`
+                })
+
+            );
+        });
         processing.setTitle(v.equip) // EQUIP THIS?
         processing.setDescription(equipArray);
 
@@ -362,46 +364,55 @@ var init = async function (message, userDB, DB) {
 
                     //equals ARRitm
                     if (finder && rea.count > 1) {
-                       // return message.reply("ok" + finder)
+                        // return message.reply("ok" + finder)
 
-                         let pseudoequip = userDB.get(message.author.id).modules.medals;
+                        let pseudoequip = userDB.get(message.author.id).modules.medals;
 
-                          pseudoequip[finder-1] = medal_file;
-                          processing.setDescription(getEquips(pseudoequip))
+                        pseudoequip[finder - 1] = medal_file;
+                        processing.setDescription(getEquips(pseudoequip))
 
-                         m.edit("Confirm Position?", {
-                             embed: processing
-                         }).then(async me => {
-                             await me.clearReactions().catch(e=>{         message.reply("I need MANAGE MESSAGES and ADD REACTIONS Permissions to do this correctly, please contact the server administrator");            });
-                             await me.react(check)
-                             await me.react(xmark)
+                        m.edit(v.youSure, {
+                            embed: processing
+                        }).then(async me => {
+                            await me.clearReactions().catch(e => {
+                                message.reply(mm("error.iNeedThesePerms", {
+                                    lngs: LANG,
+                                    PERMSLIST: `**${perms.MNG_MESS}**`
+                                }));
+                            });
+                            await me.react(check)
+                            await me.react(xmark)
 
 
-                             return new Promise(async resolve => {
-                                 const responses = await m2.awaitReactions(react =>
-                                     react.users.has(Author.id), {
-                                         maxEmojis: 1,
-                                         time: 20000
-                                     }
-                                 ).catch();
-                                 if (responses.size === 0) {} else {
-                                     let rea = responses.first()
-                                     if (rea.emoji == check && rea.count >1){
+                            return new Promise(async resolve => {
+                                const responses = await m2.awaitReactions(react =>
+                                    react.users.has(Author.id), {
+                                        maxEmojis: 1,
+                                        time: 20000
+                                    }
+                                ).catch();
+                                if (responses.size === 0) {} else {
+                                    let rea = responses.first()
+                                    if (rea.emoji == check && rea.count > 1) {
 
-                                         let u = userDB.get(message.author.id);
-                                         console.log(medal_file)
-                                         u.modules.medals[finder-1] = medal_file
-                                         userDB.set(Author.id,u)
-                                         me.delete();
-                                         return message.reply("OK")
+                                        let u = userDB.get(message.author.id);
+                                        console.log(medal_file)
+                                        u.modules.medals[finder - 1] = medal_file
+                                        userDB.set(Author.id, u)
+                                        me.delete();
+                                        return message.reply(check + v.success)
 
-                                     }
-                                     if (rea.emoji == xmark && rea.count >1){
-                                         return callB(index, true, m, undefined, processing)
-                                     }
-                                 }
-                             })
-                         })
+                                    }
+                                    if (rea.emoji == xmark && rea.count > 1) {
+
+                                        message.reply(xmark + v.cancelled)
+                                        m.delete();
+                                        message.delete();
+                                        return
+                                    }
+                                }
+                            })
+                        })
 
 
                     }
@@ -450,9 +461,9 @@ var init = async function (message, userDB, DB) {
             return message.channel.sendEmbed(menuPage.embed).then(async m => pageResolve(m, menuPage, current))
         }
 
-        if (neoEmb){
-                let item = menuPage.menuArr
-                   return  processCheckout(item, index, messIn)
+        if (neoEmb) {
+            let item = menuPage.menuArr
+            return processCheckout(item, index, messIn)
         }
 
         return messIn.edit(optMsg, {
@@ -514,9 +525,9 @@ var init = async function (message, userDB, DB) {
                 }
                 //equals ARRitm
                 if (finder && rea.count > 1) {
-                   //return message.reply("ok" + finder)
+                    //return message.reply("ok" + finder)
 
-                    let item = menuPage.menuArr[finder-1]
+                    let item = menuPage.menuArr[finder - 1]
 
 
                     processCheckout(item, index, m)
@@ -540,7 +551,12 @@ var init = async function (message, userDB, DB) {
 
     }
     async function refresh(index, m, optm) {
-        await m.clearReactions().catch(e=>{         message.reply("I need MANAGE MESSAGES and ADD REACTIONS Permissions to do this correctly, please contact the server administrator");            });
+        await m.clearReactions().catch(e => {
+            message.reply(mm("error.iNeedThesePerms", {
+                lngs: LANG,
+                PERMSLIST: `**${perms.MNG_MESS}**`
+            }));
+        });
         return callB(index, true, m, optm);
     }
 

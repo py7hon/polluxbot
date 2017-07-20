@@ -1,11 +1,11 @@
+
 var reroute;
-var setT = (t) => {
-    reroute = t;
-};
-var getT = () => {
-    return reroute;
-};
- module.exports = {
-    setT: setT
-    , getT: getT
+module.exports = {
+    getT: function getT(){
+        return reroute;
+    },
+    setT: function setT(t){
+        reroute = t;
+    },
+
 };
