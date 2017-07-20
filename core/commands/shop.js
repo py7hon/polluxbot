@@ -173,14 +173,32 @@ rep:   ${rep}
 //Set global menu <---- Pull this from external JSON or smth
 var menu = [
                  [
-                 ["Fruki Guaraná", "fruki", 400]
+                 ["Fruki Guaraná", "fruki", 953]
                  , ["Twitch", "twitch", 400]
                  , ["SNES Controller", "snes", 400]
-                 , ["Hylian Shield", "hyruleshield", 400]
+                 , ["Hylian Shield", "hyruleshield", 600]
                  , ["Hamburger", "burger", 400]
-                 , ["Gardevoir", "gardevoir", 400]
+                 , ["Gardevoir", "gardevoir", 520]
              ], [
-                  ["Pollux", "pollux", 1400]
+                  ["Heroes of the Storm", "heroes", 500]
+                  ,["League of Legends", "league", 800]
+                  ,["Counter Strike", "counterstrike", 600]
+                  ,["Pokéball", "pokeball", 1000]
+                  ,["Overwatch", "overwatch", 850]
+                  ,["Megaman: Sigma", "megamansigma", 1400]
+              ], [
+                  ["Osu!", "osu", 500]
+                  ,["Nintendo 3DS", "n3ds", 800]
+                  ,["Dark Magician Girl", "darkmagirl", 1000]
+                  ,["Pikachu", "pikachu", 1700]
+                  ,["Beyblade", "beyblade", 600]
+                  ,["Pollux", "pollux", 10000]
+             ], [
+
+                  ["Japan Flag", "japan", 1200]
+                  ,["Germany Flag", "germany", 1000]
+                  ,["Brazil Flag", "brazil", 1000]
+                  ,["Portugal Flag", "portugal", 1000]
              ]
                         ]
 
@@ -218,7 +236,7 @@ emb.setColor("#5743c6")
 emb.setTitle(v.whatShop)
 emb.addField(v.bgShop, bkgEmoj, true)
 emb.addField(v.medalShop, medalEmoj, true)
-emb.addField(v.goodShop, toolsEmoj, true)
+//emb.addField(v.goodShop, toolsEmoj, true)
 emb.setFooter(v.useBelow)
 
 
@@ -230,8 +248,8 @@ message.channel.send({
     //Add Options
     await msg.react(bkgEmoj)
     await msg.react(medalEmoj)
-    await msg.react(toolsEmoj)
-    await msg.react(xmark)
+    //await msg.react(toolsEmoj)
+     msg.react(xmark)
 
     //Check Inputs
     return new Promise(async resolve => {
@@ -261,7 +279,8 @@ message.channel.send({
             //if Background
             if (rea.emoji == bkgEmoj) {
                 msg.delete();
-                return message.reply("Unavailable");
+
+                return message.reply("Use `+background`")
               //  return callA(0) // call s shop
             }
             //if Medal
@@ -422,6 +441,7 @@ ${v.youSure}`)
                     m2.delete()
                     message.reply(check + " "+v.confirmed)
                     message.delete()
+                    gear.paramIncrement(Author, "goodies", -price)
                     return gear.paramAdd(Author, "medalInventory", [medal_file,name])
                 }
                 if (rea.emoji == xmark && rea.count > 1) {
@@ -464,13 +484,14 @@ async function loadMedalShop(m, menuPage, index) {
     for (i = 0; i < menuPage.menuArr.length; i++) {
         await m.react(nums[i + 1]);
     }
+    await m.react(xmark)
     if (index !== 0) {
-        await m.react("◀");
+         m.react("◀");
     }
     if (index != menu.length - 1) {
-        await m.react("▶");
+         m.react("▶");
     }
-    await m.react(xmark)
+
 
 }
 async function pageResolve(m, menuPage, index) {
