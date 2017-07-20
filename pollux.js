@@ -13,17 +13,6 @@ var bot = new Discord.Client();
 // Get Tokens
 const cfg = require('./config.js');
 
-//Gearbox assemble!
-var gear = require("./core/gearbox.js");
-
-//Database load!
-const DB = gear.DB
-const userDB = gear.userDB
-var defaults = require("./utils/defaults.js")  // Database Defaults
-
-//DASHBOARD INIT
-const dash = require("../pollux-dash/server.js")
-dash.init(bot,DB,userDB)
 
 //=======================================//
 //      TOOLSET
@@ -65,6 +54,9 @@ var backendOptions = {
     addPath: './utils/lang/{{lng}}/{{ns}}.missing.json',
     jsonIndent: 2
 };
+
+
+
 getDirs('utils/lang/', (list) => {
     i18next.use(Backend).init({
         backend: backendOptions,
@@ -72,19 +64,38 @@ getDirs('utils/lang/', (list) => {
         fallbacklngs: false,
         preload: list,
         load: 'all'
-    }, (err, t) => {
+    }, async (err, t) => {
         if (err) {
             console.log(err)
         }
 
-        multilang.setT(t);
+        await multilang.setT(t);
     });
 })
+
 var mm = multilang.getT();
+
+
+
+
+//Gearbox assemble!
+var gear = require("./core/gearbox.js");
+
+//Database load!
+const DB = gear.DB
+const userDB = gear.userDB
+var defaults = require("./utils/defaults.js")  // Database Defaults
+
+//DASHBOARD INIT
+const dash = require("../pollux-dash/server.js")
+dash.init(bot,DB,userDB)
+
+var drops = require("./core/archetypes/drops.js")
 
 //==-------------------------------------------
 
-function loginSuccess() {
+async function loginSuccess() {
+
     console.log('LOGGED IN!'.bgGreen.white.bold)
 
     let name = 'Pollux Core Reporter';
@@ -178,6 +189,8 @@ Array.prototype.removeire = function removeire() {
 //=======================================//
 //      FUNCTIONFEST
 //=======================================//
+
+
 
 
 var cd = function (argamassa, fx, timeout, respfn) {
@@ -340,7 +353,7 @@ bot.login(cfg.token).then(loginSuccess());
 
 // XP SPAM PROTECTION
 var gibexp = cd(console, gear.paramIncrement, 5000);
-var plzDrop = cd(console, gear.dropGoodies, 5000);
+var plzDrop = cd(console,  drops.dropGoodies, 5000);
 // ==============================================
 
 bot.on("message", (message) => {
@@ -355,6 +368,7 @@ bot.on("message", (message) => {
     var MSG = message.content;
 
 if(message.mentions.users.size+message.mentions.roles.size >= 6){
+    return
     message.delete()
     message.channel.send(":warning: SPAM PROTECTION TRIGGERED :warning:")
     Server.member(message.author).ban().then(e=>message.channel.send(message.author+" kicked for Mention Spam above 5")).catch(a=>message.channel.send(Server.owner+" could not kick "+message.author+" due to permission issues."))
@@ -742,6 +756,12 @@ try{
 
         if (typeof (DB.get(Server.id).modules.GREET.hi) !== 'undefined' && DB.get(Server.id).modules.GREET.joinText !== '' && DB.get(Server.id).modules.GREET.hi == true) {
 
+               if(DB.get(Server.id).modules.GREET.hiDEL === undefined){
+                   gear.paramDefine(Server,"GREET.hiDEL",5000)
+               }
+
+            let delTime = DB.get(Server.id).modules.GREET.hiDEL || 5000;
+
             let channels = member.guild.channels.filter(c => {
                 return (c.id === DB.get(Server.id).modules.GREET.greetChan)
             });
@@ -749,7 +769,11 @@ try{
             let content = DB.get(Server.id).modules.GREET.joinText.replace('%username%', member.user);
             content = content.replace('%server%', member.guild.name);
             try {
-                channel.send(content).then();
+                channel.send(content).then(m=>{
+                    if(delTime){
+                        m.delete(deltime)
+                    }
+                });
             } catch (e) {}
         }
     }
@@ -814,6 +838,12 @@ var chanpoint=false;
         if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL === undefined) {
             gear.paramDefine(Server, "FWELL", defaultgreetB)
         }
+       if(DB.get(Server.id).modules.FWELL.hiDEL === undefined){
+                   gear.paramDefine(Server,"FWELL.hiDEL",5000)
+               }
+
+            let delTime = DB.get(Server.id).modules.FWELL.hiDEL || 5000;
+
 
 
         if (typeof (DB.get(Server.id).modules.FWELL.hi) !== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !== '' && DB.get(Server.id).modules.FWELL.hi == true) {
@@ -825,7 +855,11 @@ var chanpoint=false;
             let content = DB.get(Server.id).modules.FWELL.joinText.replace('%username%', member.user);
             content = content.replace('%server%', member.guild.name);
             try {
-                channel.send(content);
+                channel.send(content).then(m=>{
+                    if(delTime){
+                        m.delete(deltime)
+                    }
+                });
             } catch (e) {}
         }
     }

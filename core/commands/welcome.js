@@ -20,6 +20,19 @@ var init = function (message, userDB, DB) {
     var args = MSG.split(' ').slice(1)
     var LANG = message.lang;
 
+
+
+
+
+    let helpkey = mm("helpkey",{lgns:LANG})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message,"mod");
+}
+
+
+
+
+
     var modPass = gear.hasPerms(Member,DB)
 
     if (!modPass) {
@@ -61,9 +74,21 @@ var input="X"
         tellChn: mm('greet.tellmeCHN', {
             lngs: LANG
         })
+
     }
 
+    if (args.length >= 2 && args[0] === "time") {
 
+        if (typeof args[1] == "number"){
+            let num = parseInt(args[1])
+        gear.paramDefine(Serer,"GREET.hiDEL",num*1000)
+            return message.reply(mm('greet.timer', {
+            lngs: LANG,
+            timeMin: num
+        }))
+        }
+
+    }
 
 
     if (args.length >= 2 && args[0] === "msg") {
