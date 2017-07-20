@@ -185,7 +185,9 @@
         "outTex": "Farewell message saved!",
         "inTex": "Greeting message saved!",
              "tellmeMSG":" Message too short or no message found.",
-        "tellmeCHN":" Channel not specified!"
+        "tellmeCHN":" Channel not specified!",
+             "timer":"Ok, I'm gonna delete Welcome Messages after {{timeMin}} Seconds!",
+        "timerby":"Ok, I'm gonna delete Bye Messages after {{timeMin}} Seconds!"
     },
     "reput": {
         "noSelf": "Hey hey smart ass! You cannot rep yourself!",

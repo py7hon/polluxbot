@@ -193,7 +193,9 @@
         "inTex": " Mensagem de boas-vindas alterada! \n\n {{wtxt}}",
         "outTex": " Mensagem de despedida alterada! \n\n {{wtxt}}",
         "tellmeMSG": " Mensagem muito curta ou nenhuma mensagem identificada!",
-        "tellmeCHN": " Canal não especificado!"
+        "tellmeCHN": " Canal não especificado!",
+             "timer":"Ok, vou excluir mensagens de  Boas Vindas após {{timeMin}} Segundos!",
+        "timerby":"Ok, vou excluir mensagens de  Despedida após {{timeMin}} Segundos!"
     },
     "reput": {
         "noSelf": "Hey hey espertaralho. Você não pode dar Rep pra si mesmo!",
