@@ -48,9 +48,9 @@ var mm = locale.getT();
             }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">"),{files:[paths.BUILD + 'ruby.png']}).then(function (r) {
 
                 if (isNaN(CHN.DROPSLY)) {
-                    CHN.DROPSLY = 1
+                    CHN.DROPSLY = 10
                 } else {
-                    CHN.DROPSLY += 1
+                    CHN.DROPSLY += 10
                 }
                 console.log("------------=========== ::: NATURAL DROP".bgGreen.white)
 
@@ -116,9 +116,9 @@ var mm = locale.getT();
             }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">"),{files:[paths.BUILD + 'rubypot.png']}).then(function (r) {
 
                 if (isNaN(CHN.DROPSLY)) {
-                    CHN.DROPSLY = 10
+                    CHN.DROPSLY = 500
                 } else {
-                    CHN.DROPSLY += 10
+                    CHN.DROPSLY += 500
 
                 }
                 console.log("------------=========== ::: NATURAL RARE DROP ::: ===".bgGreen.yellow.bold)

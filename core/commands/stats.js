@@ -22,10 +22,6 @@ var LANG = message.lang;
 
 //-------MAGIC----------------
 
-    var aux = 0
-    if(Server.name=="BR PROGRAMMERS"){
-        aux = 500
-    }
 
     String.prototype.toHHMMSS = function () {
     var sec_num = parseInt(this, 10); // don't forget the second param
@@ -70,11 +66,11 @@ a = gear.randomize(2,4)
   // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
     //emb.description = "Os Top-5 mais rubificadoss do server"
 
-      emb.addField(':hash:   Channels ',"```"+(bot.channels.size+aux*10)+"```", true)
+      emb.addField(':hash:   Channels ',"```"+(bot.channels.size)+"```", true)
       emb.addField(':microphone2:   Voice Channels ',"```"+(bot.voiceConnections.size)+"```", true)
    //   emb.addField(':hash:   Voice Channels',"```"+()+"```", true)
       emb.addField(':cityscape:   Servers',"```"+(bot.guilds.size+aux)+"```", true)
-      emb.addField(':busts_in_silhouette:   Users',"```"+(bot.users.size+aux*100)+"```", true)
+      emb.addField(':busts_in_silhouette:   Users',"```"+(bot.users.size)+"```", true)
       emb.addField(':satellite_orbital:   Ping',"```"+parseFloat(Math.round(bot.ping * 100) / 100).toFixed(0)+'ms'+"```", true)
       emb.addField(':control_knobs:    RAM Usage',"```"+ram.toFixed(0)/1000+" MB```", true)
       emb.addField(':electric_plug:   Uptime',"```Process:"+(botuptime+1000)+" Server:"+uptime+"```", false)
