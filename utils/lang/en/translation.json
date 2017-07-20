@@ -56,11 +56,6 @@
         "moderationNeeded": "You can't use this command, you need either **Manage Server** perms, or set a Modrole. Set a Modrole using `{{prefix}}modrole [Role]`",
         "noDM": "My bad, i can't respond to this command via DM",
         "chooseAmod": "Choose a module, would you.",
-
-        "superRoleadCom": "Alrighty. **{{user}}** received the **{{group}}** Role!",
-        "superRolermCom": "Done. **{{user}}** no longer belongs to the **{{group}}** Role!",
-        "superRoleNope": "**{{user}}** does not have the Role **{{group}}**!",
-
         "disabledSer": "The **{{module}}** module has been disabled **Globally**. ",
         "disabledChn": "The {{module}} module has been disabled in the channel #{{channel}}",
         "disabledComSer": "The **{{command}}** command has been disabled **Globally**\n",
@@ -72,7 +67,6 @@
         "kinNone": "first things first, tell me the name of the guy i be kickin'. Before I kick you instead.",
         "kin404": "whoopsie, I think I cannot find this guy :< Isn't he already gone? Does he even exist? Ain't your imagination? YOU SURE???",
         "unperm": "For some hell of a reason I got no perms to do this. GIMME PERMS GODAMMIT",
-        "unpermB": "O'boy, I guess I don't have enough perms to process this...",
         "jas": "Okei, just a sec...",
         "didkik": ":boot: Kicked {{target}}'s ass away from here.\n **Reason:** *{{reason}}*",
         "autoroleunAdded": "Role **{{role}}** removed from Autoroles.",
@@ -85,8 +79,15 @@
         "incinerate": "I've just set fire into {{amt}} Messages! If you don't like it i'll burn {{amtB}} next time.",
         "roleadCom": "Yo! Now **{{user}}** is included in the **{{group}}** group! WELCOME TO THE BOAT!",
         "rolermCom": "Well, **{{user}}** is no longer part of the **{{group}}** group! I wonder why.",
+        "kbanNone": "Tell me in whose ass i'm gonna shove this hammer, before I do it at yours!",
+        "didban": ":hammer: Banned the hell out of {{target}} from here. \n **Reason:** *{{reason}}*",
+        "superRoleadCom": "Alrighty. **{{user}}** received the **{{group}}** Role!",
+        "superRolermCom": "Done. **{{user}}** no longer belongs to the **{{group}}** Role!",
+        "superRoleNope": "**{{user}}** does not have the Role **{{group}}**!",
         "banNone": "Tell me in whose ass i'm gonna shove this hammer, before I do it at yours!",
-        "didban": ":hammer: Banned the hell out of {{target}} from here. \n **Reason:** *{{reason}}*"
+        "unpermB": "O'boy, I guess I don't have enough perms to process this...",
+        "cantFindChannel": "Um... I couldn't find this channel :/ if you're not sure, try using #channel",
+        "noChannelGiven": "Ok, and where i'm gonna log these activities? On your face? Tell me a channel to log into!"
     },
     "dict": {
         "coinHeads": "heads",
@@ -107,7 +108,8 @@
         "banned": "BANNED",
         "kicked": "KICKED",
         "wasbanned": "was **banned**",
-        "waskicked": "was **kicked**"
+        "waskicked": "was **kicked**",
+        "usage": "Usage:"
     },
     "profile": {
         "persotexUpdate": "Yooo. All set! Your personal text is now: \n {{pstext}} \n Use `{{prefix}}profile` to see this beautiful line on your ~~not so beautiful~~ ProfileCard. Teehee~"
@@ -116,7 +118,8 @@
         "memberSince": "Member since:",
         "level": "Level:",
         "levelUp": "Level Up!",
-        "genProf": "Hold on, generating your super duper ProfileCard thingy..."
+        "genProf": "Hold on, generating your super duper ProfileCard thingy...",
+        "hisProf": "Hold on! I'm building the super duper ProfileCard of this person..."
     },
     "help": {
         "checkYeDM": "Psst! I sent you some stuffz in DM, give it a look.",
@@ -155,7 +158,11 @@
         "commlist": "Command List",
         "inviteme": "Invite me to your server~",
         "polHelp": "Pollux Help",
-        "helpText": "These are the basics for helping me to use you! I've also sent a DM in case you get this message out of sight!"
+        "helpText": "These are the basics for helping me to use you! I've also sent a DM in case you get this message out of sight!",
+        "lang": "Change my language, currently I can speak: `{{langs}}`",
+        "commUsage": "How to use: ",
+        "logs": "Set channels to log Server's activities",
+        "ahegao": "アヘ顔 (Ahegao) - You never know when this can come in handy."
     },
     "menu": {
         "cake": "Cake",
@@ -182,12 +189,15 @@
         "byeON": "Bye Message enabled in this channel! Even though they aren't going to see it, at least I'm polite to bid farewell.",
         "helloOFF": "Welcome Message disabled! That's not nice to not greet your guests. :X",
         "helloON": "Welcome Message enabled in this channel! I'll be sure that everyone receives a happy HELLO in their faces as soon as they join~ !",
-        "outTex": "Farewell message saved!",
         "inTex": "Greeting message saved!",
+
              "tellmeMSG":" Message too short or no message found.",
         "tellmeCHN":" Channel not specified!",
              "timer":"Ok, I'm gonna delete Welcome Messages after {{timeMin}} Seconds!",
-        "timerby":"Ok, I'm gonna delete Bye Messages after {{timeMin}} Seconds!"
+        "timerby":"Ok, I'm gonna delete Bye Messages after {{timeMin}} Seconds!",
+
+        "outTex": "Farewell message saved!"
+
     },
     "reput": {
         "noSelf": "Hey hey smart ass! You cannot rep yourself!",
@@ -196,18 +206,31 @@
         "cooldown": "Hold up dude! You can rep again in {{remaining}}. Be patient."
     },
     "shop": {
-          "whatShop": "What Shop?",
+        "whatShop": "What Shop?",
         "medalShop": "Medal Shop",
         "bgShop": "Background Shop",
         "goodShop": "Goodies Shop",
         "useBelow": "Use the Reactions below",
         "noFundsFormal": "Use the Reactions below",
-        "noFundsResponse": "Use the Reactions below",
-        "processing":"Processing Purchase",
-        "youSure":"Is that it?",
-        "confirmed":"Medal acquisition confirmed!",
-        "cancelled":"Changed your mind? Well, purchase cancelled!",
-        "timeout":"You think too much! Combe back when you know what you want.",
-        "alreadyPosess":"You already own this medal!"
+        "processing": "Processing Purchase",
+        "youSure": "Is that it?",
+        "confirmed": "Medal acquisition confirmed!",
+        "cancelled": "Changed your mind? Well, purchase cancelled!",
+        "timeout": "You think too much! Combe back when you know what you want.",
+        "alreadyPosess": "You already own this medal!"
+    },
+    "helpkey": "help",
+    "usage": {
+        "logs": " `{{prefix}}logs #channel`\n Set all logs at the chosen Channel.\n\n`{{prefix}}logs mod #channel`\n Set moderation logs (Bans, Kicks and Mutes) at the chosen Channel.\n\n`{{prefix}}logs atv #channel`\n Set Activity logs (Members in and out, nickname edits) at the chosen Channel.\n\n`{{prefix}}logs adv #channel`\n Set Advanced Logs (Deleted and edited messages, Channels created, Activation or Deactivation of modules) at the chosen Channel.\n\n`{{prefix}}logs mod #channel delete`\nLogs will no more be sent to this Channel",
+        "ahegao": "Quite simple, just type `{{prefix}}ahegao` and you get a アヘ顔"
+    },
+    "logs": {
+        "success": "Done! I've set {{channel}} as the Channel for {{CHNTYPE}}!",
+        "successDelete": "All set! I've made {{channel}} no longer the Channel for {{CHNTYPE}}!",
+        "failure": "Oopsie... something went wrong, sorry :<",
+        "modLogs": "MODERATION LOGS",
+        "actLogs": "ACTIVITY LOGS",
+        "advLogs": "ADVANCED LOGS",
+        "logChan": "GENERAL LOGS"
     }
 }
