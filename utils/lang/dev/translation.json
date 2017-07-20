@@ -86,8 +86,9 @@
         "superRoleNope": "**{{user}}** não faz parte do Cargo **{{group}}**!",
         "banNone": "tu precisa me dizer no cu de quem eu vou enfiar esse martelo. Antes que euenfie no teu!",
         "unpermB": "Rapaz, acho que não tenho Permissões para processar este comando.",
-        "cantFindChannel":"Não encontrei esse canal não :/ na dúvida tenta usar #mention",
-        "noChannelGiven": "Vou logar essas atividades onde? Na sua testa? Especifique um canal!"
+        "cantFindChannel": "Não encontrei esse canal não :/ na dúvida tenta usar #mention",
+        "noChannelGiven": "Vou logar essas atividades onde? Na sua testa? Especifique um canal!",
+        "noReason": "Motivo não especificado"
     },
     "dict": {
         "coinHeads": "cara",
@@ -121,7 +122,7 @@
         "genProf": "Segura aí, estou montando o seu super duper ProfileCard lindão...",
         "hisProf": "Segura aí, estou montando o super duper ProfileCard lindão desta pessoa..."
     },
-    "helpkey":"ajuda",
+    "helpkey": "ajuda",
     "help": {
         "checkYeDM": "Te enviei uns lance em pvt, dá um zóio.",
         "availableComms": "Comandos Disponíves",
@@ -129,7 +130,7 @@
         "announce": "Anuncia uma mensagem no canal #general (ou equivalente, cê entendeu) do Server ",
         "balance": "Seu extrato bancário de Rubys gastos. Resumindo: no que você anda gastando.",
         "disable": "Desabilita módulos ou Comandos",
-        "drop": "Larga um Ruby no canal para alguem pegar",
+        "drop": "Solta um ou mais Rubys no canal para alguem pegar.",
         "enable": "Habilita módulos ou Comandos",
         "flip": "Cara ou Coroa, é isso aí. Só não vá a falência porque não trabalho com empréstimos.",
         "give": "Faz uma doação de X goodies para @fulaninho",
@@ -200,6 +201,14 @@
         "confirm": ":fleur_de_lis:  **{{who}}** gentilmente deu **+1Rep** para **{{target}}**. Que mimo~",
         "cooldown": "Calmaê rapá! Você vai poder dar Rep de novo dentro de {{remaining}}"
     },
+    "error": {
+        "iNeedThesePerms": "As seguintes permissões me faltam para proceder com esse comando direito:\n{{PERMSLIST}}"
+    },
+
+    "permission": {
+        "MNG_MESS": "GERENCIAR MENSAGENS",
+        "ADD_REA": "ADICIONAR REAÇÕES"
+    },
     "shop": {
         "whatShop": "Qual loja deseja acessar?",
         "medalShop": "Loja de Medalhas",
@@ -214,21 +223,66 @@
         "timeout": "Pensou demais! Volta quando souber exatamente o que quer.",
         "alreadyPosess": "Você já tem esta medalha!"
     },
-    "equip":{
+    "equip": {
+        "nomedals": "Você não tem medalhas pra equipar não, amigo... Mas você pode comprar algumas!",
+        "equipSlot": "Escolhe aí o Slot para equipar sua nova medalha!",
+        "pleaseWaitReas": "Espere até que todas as reactions antes do X carreguem!",
+        "timeout": "Acho que você esqueceu de terminar de equipar. Quando quiser de novo me chama!",
+        "cancelled": "Bom, já que você não vai equipar agora. Eu vou guardar sua medalha pra outra hora~",
+        "youSure": "Vai equipar aqui mesmo?",
+        "equip": "EQUIPAR MEDALHAS",
+        "choose": "Escolha uma medalha para equipar em seu Profilecard",
+        "success": "Lindo! Agora você tem uma medalha nova no seu Profilecard~~",
+        "confirmed": "Lindo! Agora você tem uma medalha nova no seu Profilecard~~"
 
     },
-    "usage":{
-        "logs":"`{{prefix}}logs #canal`\n Define todos os logs no Canal definido.\n\n`{{prefix}}logs mod #canal`\n Define logs de moderação (Bans, Kicks e Mutes) no Canal definido.\n\n`{{prefix}}logs atv #canal`\n Define logs de atividade (Membros que entram e saem, mudança de nicks) no Canal definido. \n\n`{{prefix}}logs adv #canal`\n Define logs avançados (Mensagens deletadas, editadas, ativações ou desativações de módulos) no Canal definido.\n\n`{{prefix}}logs mod #canal delete`\n Remove o Canal definido da lista de Logs.",
-        "ahegao": "Simples, apenas digite `{{prefix}}ahegao` e você recebe um アヘ顔"
+    "usage": {
+        "logs": "`{{prefix}}logs #canal`\n Define todos os logs no Canal definido.\n\n`{{prefix}}logs mod #canal`\n Define logs de moderação (Bans, Kicks e Mutes) no Canal definido.\n\n`{{prefix}}logs atv #canal`\n Define logs de atividade (Membros que entram e saem, mudança de nicks) no Canal definido. \n\n`{{prefix}}logs adv #canal`\n Define logs avançados (Mensagens deletadas, editadas, ativações ou desativações de módulos) no Canal definido.\n\n`{{prefix}}logs mod #canal delete`\n Remove o Canal definido da lista de Logs.",
+        "ahegao": "Simples, apenas digite `{{prefix}}ahegao` e você recebe um アヘ顔",
+        "askingHelpForHelp": "Are you fuckin' serious?",
+        airwaifu: "`{{prefix}}airwaifu` ou `{{prefix}}aerowaifu`",
+        "announce": "`{{prefix}}announce [mensagem para anunciar]` Ex: `{{prefix}}announce A partir de agora o churros é grátis!`",
+        "balance": "`{{prefix}}balance` Se for muito difícil pra você, nem use.",
+        "disable": "`{{prefix}}disable [comando ou módulo] <escopo>`\n Desabilita comandos específicos no escopo desejado. (Canal ou Servidor)\n\n`{{prefix}}disable nsfw c`\n Desabilita comandos do módulo NSFW no canal.\n\n`{{prefix}}disable say s`\n Desabilita o comando `{{prefix}}say` no Servidor inteiro",
+        "drop": "`{{prefix}}drop [X]`\n e salve-se quem puder. Quem der `{{prefix}}pick` primeiro pega eles todos!"
+
+
+            ,
+        "enable": "`{{prefix}}enable [comando ou módulo] <escopo>`\n Habilita comandos específicos no escopo desejado. (Canal ou Servidor)\n\n`{{prefix}}enable nsfw c`\n Habilita comandos do módulo NSFW no canal.\n\n`{{prefix}}enable say s`\n Habilita o comando `{{prefix}}say` no Servidor inteiro"
+
+
+            ,
+        "flip": "`{{prefix}}flip` e aguarde",
+        "give": "`{{prefix}}give [X] @fulaninho` para dar X Rubys para seu amiguinho.",
+        "joined": "`{{prefix}}joined @fulaninho` ou `{{prefix}}joined` para si próprio.",
+        "kick": "`{{prefix}}kick @fulaninho <motivo>`\nExpulsa @fulaninho do server, o motivo é opcional, para caso de moderação avançada.",
+        "level": "`{{prefix}}level @fulaninho` ou `{{prefix}}level` para si próprio.",
+        "personalTxt": "`{{prefix}}personaltxt [texto]` Difícil né?",
+        "pick": "Eu acho que você é inteligente o bastante pra saber como usa isso",
+        "prefixSet": "`{{prefix}}prefixSet [prefixo]` cuidado pra não fazer merda.\nExemplo: `{{prefix}}prefixSet pol.`",
+        "profile": "`{{prefix}}profile` para o seu ou `{{prefix}}profile @fulaninho` para o de alguém",
+        "rank": "`{{prefix}}rank` = Global\n`{{prefix}}rank server` = Servidor",
+        "cash": "`{{prefix}}cash`,`{{prefix}}ruby`,`{{prefix}}$`\n Você também pode marcar alguém pra saber quantos Rubys ela tem.",
+        "stats": "Não tem mistério, `{{prefix}}stats`",
+        "switch": "`{{prefix}}switch [X]` Escolha com sabedoria e não abuse.",
+        "invite": "Você só precisava não incluir HELP na porra do comando...",
+        "cashrank": "`{{prefix}}cashrank` ou `{{prefix}}rubyrank` = Global\n`{{prefix}}cashrank server` ou `{{prefix}}rubyrank server` = Somente este Servidor"
+
+            ,
+        "rule34": "`{{prefix}}rule34 [tags]`\nPara uma tag com espaços use _ :`{{prefix}}rule34 blue_hair`\n Para mais de uma tag use + :`{{prefix}}rule34 blue_hair+pointy_ears`\nPara não vir coisas de uma certa tag, use - antes dela: `{{prefix}}rule34 blue_hair+pointy_ears+-furry`",
+        "safe": "`{{prefix}}safe [tags]`\nPara uma tag com espaços use _ :`{{prefix}}safe blue_hair`\n Para mais de uma tag use + :`{{prefix}}safe blue_hair+pointy_ears`\nPara não vir coisas de uma certa tag, use - antes dela: `{{prefix}}safe blue_hair+pointy_ears+-furry`",
+        "ping": "Cê precisa mesmo de ajuda pra um comando de PING? Apaputaqueopariu.",
+        "lang": "`{{prefix}}lang [idioma]` ou `{{prefix}}speak [idioma]`\nIdiomas suportados são:\n{{LNGS_LIST}}",
+        "betflip": "`{{prefix}}betflip 5 [cara | coroa]` Lembrando que é CARA ou COROA no idioma configurado em mim!"
     },
-    "logs":{
-        "success":"Pronto, defini o Canal {{channel}} como o canal de {{CHNTYPE}}!",
-        "successDelete":"Feito, o Canal {{channel}} não é mais canal de {{CHNTYPE}}!",
-        "failure":"Opsie! Acho que deu errado. Desculpa. :< ",
-        "modLogs":"LOGS DE MODERAÇÃO",
-        "actLogs":"LOGS DE ATIVIDADE",
-        "advLogs":"LOGS AVANÇADOS",
-        "logChan":"LOGS GERAIS"
+    "logs": {
+        "success": "Pronto, defini o Canal {{channel}} como o canal de {{CHNTYPE}}!",
+        "successDelete": "Feito, o Canal {{channel}} não é mais canal de {{CHNTYPE}}!",
+        "failure": "Opsie! Acho que deu errado. Desculpa. :< ",
+        "modLogs": "LOGS DE MODERAÇÃO",
+        "actLogs": "LOGS DE ATIVIDADE",
+        "advLogs": "LOGS AVANÇADOS",
+        "logChan": "LOGS GERAIS"
 
     }
 }
