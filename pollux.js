@@ -1,14 +1,14 @@
 //Discord Start
 const Discord = require("discord.js");
-var bot = new Discord.Client();
-/*var bot = new Discord.Client({
+
+var bot = new Discord.Client({
     messageCacheMaxSize: 4048,
     messageCacheLifetime: 1680,
     messageSweepInterval: 2600,
     disableEveryone: true,
     fetchAllMembers: true,
     disabledEvents: ['typingStart', 'typingStop', 'guildMemberSpeaking']
-});*/
+});
 
 // Get Tokens
 const cfg = require('./config.js');
@@ -90,7 +90,7 @@ var defaults = require("./utils/defaults.js")  // Database Defaults
 const dash = require("../pollux-dash/server.js")
 dash.init(bot,DB,userDB)
 
-var drops = require("./core/archetypes/drops.js")
+
 
 //==-------------------------------------------
 
@@ -353,7 +353,7 @@ bot.login(cfg.token).then(loginSuccess());
 
 // XP SPAM PROTECTION
 var gibexp = cd(console, gear.paramIncrement, 5000);
-var plzDrop = cd(console,  drops.dropGoodies, 5000);
+var plzDrop = cd(console,  gear.dropGoodies, 5000);
 // ==============================================
 
 bot.on("message", (message) => {
@@ -533,6 +533,7 @@ try{
             }
 
         } catch (err) {
+            console.log(err)
             serverSetup(Server)
         }
 

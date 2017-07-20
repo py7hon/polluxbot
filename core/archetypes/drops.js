@@ -1,18 +1,21 @@
-const Jimp = require("jimp");
 const Discord = require("discord.js");
-const fs = require("fs");
-const gear = require('../gearbox.js')
+var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
+
+
+module.exports = {
+    runb: function dropGoodies(event, DB, userDB) {
+
 var mm = locale.getT();
 
-var dropGoodies = function dropGoodies(event, DB, userDB) {
 
 
+        var Server = event.guild
         var CHN = event.channel
         var GLD = event.guild
         var LANG = event.lang;
-        let GOODMOJI = emoji("ruby")
+        let GOODMOJI =gear.emoji("ruby")
         let GOOD = 'Ruby'
         if (DB.get(Server.id).modules) {
             GOODMOJI = DB.get(Server.id).modules.GOODMOJI
@@ -23,10 +26,16 @@ var dropGoodies = function dropGoodies(event, DB, userDB) {
         if (typeof CHN.DROPSLY != 'number') {
             CHN.DROPSLY = 0
         }
-        var droprate = randomize(1, 5000)
+        var droprate = gear.randomize(1, 10000)
         if (GLD.name == "Discord Bots") return;
         console.log(droprate)
-        if (droprate == 1234) {
+        if (droprate == 1234||
+            droprate == 4728||
+            droprate == 2525||
+            droprate == 8714||
+            droprate == 8586||
+            droprate == 3223||
+            droprate == 4321 ) {
             console.log('DROP')
             var pack;
             var prefie = DB.get(Server.id).modules.PREFIX || "+"
@@ -36,7 +45,7 @@ var dropGoodies = function dropGoodies(event, DB, userDB) {
                 good: GOOD,
                 emoji: GOODMOJI,
                 prefix: prefie
-            }),{files:[paths.BUILD + 'ruby.png']}).then(function (r) {
+            }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">"),{files:[paths.BUILD + 'ruby.png']}).then(function (r) {
 
                 if (isNaN(CHN.DROPSLY)) {
                     CHN.DROPSLY = 1
@@ -72,13 +81,13 @@ var dropGoodies = function dropGoodies(event, DB, userDB) {
                             user: Picker.username,
                             count: CHN.DROPSLY,
                             emoji: ""
-                        }) + " " + emoji("ruby")).then(function (c) {
+                        }) + " " +gear.emoji("ruby")).then(function (c) {
                             message.delete()
                             c.delete(500000)
                         }).catch();
 
-                        this.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
-                        this.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
+                        gear.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
+                        gear.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
                         CHN.DROPSLY = 0
 
                         r.delete().catch(e=>{
@@ -104,7 +113,7 @@ var dropGoodies = function dropGoodies(event, DB, userDB) {
                 good: GOOD,
                 emoji: GOODMOJI,
                 prefix: event.DB.get(Server.id).modules.PREFIX
-            }),{files:[paths.BUILD + 'rubypot.png']}).then(function (r) {
+            }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">"),{files:[paths.BUILD + 'rubypot.png']}).then(function (r) {
 
                 if (isNaN(CHN.DROPSLY)) {
                     CHN.DROPSLY = 10
@@ -137,7 +146,7 @@ var dropGoodies = function dropGoodies(event, DB, userDB) {
                             user: Picker.username,
                             count: CHN.DROPSLY,
                             emoji: ""
-                        }) + " " + emoji("ruby")).then(function (c) {
+                        }) + " " +gear.emoji("ruby")).then(function (c) {
                             message.delete().catch(e=>{
                                 let v = "Couldnt Delete Message at 377"
                                 console.log(v);
@@ -154,8 +163,8 @@ var dropGoodies = function dropGoodies(event, DB, userDB) {
                                 hook.send(v)
                             });
 
-                        this.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
-                        this.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
+                        gear.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
+                        gear.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
                         CHN.DROPSLY = 0
                         r.delete().catch(e=>{
                                 let v = "Couldnt Delete R at 396"
@@ -170,8 +179,7 @@ var dropGoodies = function dropGoodies(event, DB, userDB) {
             }).catch()
         }
 
-    };
+    }
 
-module.exports = {
-    dropGoodies:dropGoodies
+
 }

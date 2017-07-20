@@ -577,7 +577,12 @@ ${msg.content}
     },
 
 
+    dropGoodies: function(a,b,c){
+    delete require.cache[require.resolve("./archetypes/drops.js") ];
+  let drops = require("./archetypes/drops.js")
+    return drops.runb(a,b,c)
 
+},
 
     usage: function usage(cmd,m,third){
           delete require.cache[require.resolve("./archetypes/usage.js")];
