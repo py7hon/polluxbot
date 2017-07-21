@@ -195,6 +195,8 @@ var menu = [
                   ,["Pollux", "pollux", 10000]
              ], [
 
+                  ["Starcraft II", "starcraft", 720],
+                  ["Umbreon", "umbreon", 800],
                   ["Japan Flag", "japan", 1200]
                   ,["Germany Flag", "germany", 1000]
                   ,["Brazil Flag", "brazil", 1000]

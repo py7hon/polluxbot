@@ -90,7 +90,7 @@ var medals = [':first_place: 1st',
             emb.addField(GOOD + 's', ranked[i].goodies + "" + GOODMOJI, true)
         }
     }
-    message.channel.send({embed:emb})
+    message.channel.send({embed:emb}).catch(e=>{message.reply(mm("error.iNeedThesePerms",{lngs:LANG,PERMSLIST:"`SEND ATTACHMENTS`"}))})
 
 }
  module.exports = {

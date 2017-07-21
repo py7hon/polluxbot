@@ -67,7 +67,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
                 var oldDropsly = Channel.DROPSLY
                 const responses = await Channel.awaitMessages(msg2 =>
-                    msg2.content === '+pick', {
+                    msg2.content === message.prefix+'pick', {
                         maxMatches: 1
                     }
                 ).catch("DROP.JS 67 -- ERROR");

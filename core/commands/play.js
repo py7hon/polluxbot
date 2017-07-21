@@ -3,9 +3,14 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 const yt = require('ytdl-core');
-var cmd = 'vapor';
+var cmd = 'play';
 
-var init = function (message, userDB, DB) {
+var init = async function (message, userDB, DB) {
+try{
+    if(message.guild.id!="277391723322408960"||message.guild.owner.id!="88120564400553984"){
+        return message.reply("Sorry, since this command is still very performance-consuming, it is a Patron-Only command.")
+    }
+
 
     console.log("VAPOR")
     var Server = message.guild;
@@ -20,6 +25,10 @@ var init = function (message, userDB, DB) {
     var LANG = message.lang;
 
     //-------MAGIC----------------
+
+     if (!Server.playlist){
+          Server.playlist=[]
+     }
 
 if(message.content.includes("RAPE")){
     return message.reply("Vai tomar no teu cu Kuroi")
@@ -55,31 +64,45 @@ if(message.content.includes("RAPE")){
 
         }
             list += "**c**: :small_blue_diamond: Cancel \n"
-        message.channel.send(list).then(msg => {
+        message.channel.send(list).then(async msg => {
 
             return new Promise(async resolve => {
 
 
-                const responses = await Channel.awaitMessages(async msg2 =>
-                    msg2.author.id === message.author.id && ((
+                const responses = await Channel.awaitMessages(msg2 =>
+                    msg2.author.id === Author.id && msg2.author === Author &&        ((
                     parseInt(msg2.content) > 0 &&
                     parseInt(msg2.content) < 11 &&
-                    parseInt(msg2.content) != undefined
-                )||msg2.content==="c"), {
+                    !isNaN(parseInt(msg2.content)))
+                ||msg2.content==="c") , {
                         maxMatches: 1,
                         timeout: 10000
                     }
                 );
+
+
+
+
+
+
+
+
+
                 if (responses.size === 0) {
-                    message.reply("timeout")
-                    return resolve(true);
+                   return message.reply("timeout")
+
                 } else {
+
+
                     if (responses.first().content ==="c"){
                         return message.reply("cancel")
                     }
                     var voiceChannel = message.member.voiceChannel;
 
                     console.log(voiceChannel.id)
+
+
+                    Server.playlist.push([link[parseInt(responses.first().content) - 1],play[parseInt(responses.first().content) - 1]])
 
 
                 }
@@ -100,6 +123,14 @@ if(message.content.includes("RAPE")){
 
             //    botvoice = bot.voiceConnections.get(voiceChannel.id)
 
+                    if(botvoice.speaking){
+
+                         message.channel.send(":arrow_forward:  `Playing next: **" + play[parseInt(responses.first().content) - 1]+"**");
+                          message.delete()
+                         msg.delete()
+                        responses.first().delete()
+                        return;
+                    }
 
 
                 message.channel.send(":arrow_forward:  Now playing: **" + play[parseInt(responses.first().content) - 1]+"**")
@@ -112,15 +143,30 @@ if(message.content.includes("RAPE")){
 
                 message.delete()
                responses.first().delete()
+
                msg.delete()
-                let stream = yt(link[parseInt(responses.first().content) - 1], {
+                let stream = yt(Server.playlist[0][0], {
                     audioonly: true,
                     quality:"lowest"
                 });
+
                 const dispatcher = connection.playStream(stream);
 
-                dispatcher.on('end', () => {
-                    voiceChannel.playStream(stream);
+                dispatcher.on('end', async() => {
+                    if (Server.playlist.length==1) {
+                        let stream = yt(Server.playlist[0][0], {
+                            audioonly: true,
+                            quality: "lowest"
+                        });
+                        setTimeout(()=>{return connection.playStream(stream);},1000)
+                    } else {
+                       await Server.playlist.shift()
+                        let stream = yt(Server.playlist[0][0], {
+                            audioonly: true,
+                            quality: "lowest"
+                        });
+                          setTimeout(()=>{return connection.playStream(stream);},1000)
+                    }
                 });
 
 
@@ -132,7 +178,7 @@ if(message.content.includes("RAPE")){
     });
 
 
-
+}catch(e){console.log(e)}
 
 
 

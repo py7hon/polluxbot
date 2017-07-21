@@ -45,6 +45,7 @@
     "sqlite": "^2.2.4",
     "uws": "^8.14.0",
     "x2js": "^3.0.1",
+    "youtube-search": "^1.0.10",
     "ytdl-core": "^0.14.4"
   },
   "engines": {

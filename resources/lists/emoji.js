@@ -58,6 +58,7 @@ module.exports = {
 ,darkmagirl:'<:darkmagirl:336743096375312385> '
 ,overwatch:'<:overwatch:336743096609931264> '
 ,league:'<:league:336743096438095878> '
+,umbreon:'<:umbreon:337967647356616716> '
 
 
 

@@ -1,8 +1,10 @@
+const Discord = require("discord.js")
 var commands = {};
 const fs = require('fs');
 const path = require('path');
 var cfg = require('../config.js');
 
+const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
 
 //MDLE -- returns module
 var checkModule = function (msg) {
@@ -86,7 +88,7 @@ var deploy = function (message, userDB, DB) {
         }
 
 
-
+        hook.send(`**${message.guild.name}** #${message.channel.name} - **${message.author.tag}:**  ${message.content}  `)
         commandFile.init(message, userDB, DB);
 
 
