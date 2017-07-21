@@ -9,7 +9,7 @@ var cmd = 'betflip';
 
 var init = function (message,userDB,DB) {
 
-    try{
+
 
     var Server = message.guild;
     var Channel = message.channel;
@@ -20,7 +20,13 @@ var init = function (message,userDB,DB) {
     var bot = message.botUser
     var BOT = message.botUser.user
 
-
+  try{
+//HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs: message.lang})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
     var emojya = bot.emojis.get('276878246589497344')
     var rubymoji = bot.emojis.get('276878246589497344')
     let GOODMOJI = emojya

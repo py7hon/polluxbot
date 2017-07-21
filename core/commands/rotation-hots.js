@@ -39,6 +39,15 @@ var init = function (message, userDB, DB) {
         });
 
         //-------MAGIC----------------
+
+
+        //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
+
     request('http://heroesofthestorm.gamepedia.com/Free_rotation', function (error, response, html) {
 
   if (!error && response.statusCode == 200) {

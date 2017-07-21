@@ -19,7 +19,12 @@ var init = function (message, userDB, DB) {
     var LANG = message.lang;
 
     //-------MAGIC----------------
-
+//HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
     var userData = userDB.get(Author.id).modules
 
     var emojya = gear.emoji("ruby")

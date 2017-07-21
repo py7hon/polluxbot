@@ -771,8 +771,8 @@ try{
             content = content.replace('%server%', member.guild.name);
             try {
                 channel.send(content).then(m=>{
-                    if(delTime){
-                        m.delete(deltime)
+                    if(delTime && delTime > 0){
+                        m.delete(delTime)
                     }
                 });
             } catch (e) {}
@@ -857,8 +857,8 @@ var chanpoint=false;
             content = content.replace('%server%', member.guild.name);
             try {
                 channel.send(content).then(m=>{
-                    if(delTime){
-                        m.delete(deltime)
+                     if(delTime && delTime > 0){
+                        m.delete(delTime)
                     }
                 });
             } catch (e) {}

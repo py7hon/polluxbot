@@ -16,7 +16,12 @@ var init = function (message,userDB,DB) {
     var LANG = message.lang;
 
     //-------MAGIC----------------
-
+    //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
         let join = Server.member(Target).joinedAt
         let datestamp = `${join.getDate()}-${join.getMonth()+1}-${join.getFullYear()} : ${join.toLocaleTimeString()}`;
 

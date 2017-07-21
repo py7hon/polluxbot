@@ -21,11 +21,12 @@ var init = function (message, userDB, DB) {
 
 
 
-
-    let helpkey = mm("helpkey",{lgns:LANG})
+//HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
 if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
-    return gear.usage(cmd,message,"mod");
+    return gear.usage(cmd,message);
 }
+//------------
 
 
 
@@ -53,7 +54,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
     }
 
-    }
+
 
 
     let defaultfare = {

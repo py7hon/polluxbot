@@ -19,7 +19,12 @@ var init = function (message, userDB, DB) {
     var argsV = MSG.toLowerCase().split(' ').slice(1)[1]
 
     var LANG = message.lang;
-
+    //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
 
     function ifEmpty() {
 
@@ -89,7 +94,7 @@ var init = function (message, userDB, DB) {
 
 
     function fR(role, memb) {
-        message.delete()
+
         var roleadd_confirm = On + mm('CMD.roleadCom', {
             lngs: LANG,
             user: memb.displayName,
@@ -98,10 +103,11 @@ var init = function (message, userDB, DB) {
 
         var a = Server.roles.find('name', role);
         memb.addRole(a).then(a => message.channel.send(roleadd_confirm)).then(e => e.delete(5000)).catch(e => message.channel.send(noPermsMe).catch(gear.sendDebug(message)))
+        message.delete(5000).catch()
     }
 
     function xR(role, memb) {
-        message.delete().catch(gear.sendDebug(message))
+
 
         var roleremove_confirm = Off + mm('CMD.rolermCom', {
             lngs: LANG,
@@ -111,6 +117,7 @@ var init = function (message, userDB, DB) {
 
         var a = Server.roles.find('name', role);
         memb.removeRole(a).then(a => message.channel.send(roleremove_confirm)).then(e => e.delete(5000)).catch(e => message.channel.send(noPermsMe).catch(gear.sendDebug(message)))
+           message.delete(5000).catch(gear.sendDebug(message))
     }
 }
 module.exports = {

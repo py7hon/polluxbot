@@ -19,7 +19,14 @@ var args = MSG.split(' ').slice(1)[1]
 var LANG = message.lang;
 
 //-------MAGIC----------------
- var emb =    new Discord.RichEmbed();
+
+        //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
+    var emb =    new Discord.RichEmbed();
 
         console.log("SAFEBOORU INVOKED by " + Author.name + "-------------\n")
         console.log(1) ;

@@ -21,7 +21,12 @@ var LANG = message.lang;
 
 //-------MAGIC----------------
 
-
+    //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
     String.prototype.toHHMMSS = function () {
     var sec_num = parseInt(this, 10); // don't forget the second param
     var hours   = Math.floor(sec_num / 3600);

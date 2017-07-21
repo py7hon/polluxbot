@@ -4,7 +4,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 var fs = require('fs');
-var cmd = 'speak or lang';
+var cmd = 'clear';
 
 var init = function (message,userDB,DB) {
 var Server = message.guild;
@@ -22,7 +22,12 @@ var LANG = message.lang;
 
        var modPass = false
 
-
+//HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
     var noperms     =   mm('CMD.moderationNeeded', {lngs:LANG})
     var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
     var justasec    =   mm('CMD.jas', {lngs:LANG})

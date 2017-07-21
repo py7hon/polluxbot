@@ -13,7 +13,7 @@ var init = function (message,userDB,DB) {
 
     try{
 
-        let helpkey = mm("helpkey",{lgns:LANG})
+        let helpkey = mm("helpkey",{lngs:message.lang})
 if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
 
     const Discord = require("discord.js");

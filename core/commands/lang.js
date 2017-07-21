@@ -4,7 +4,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 var fs = require('fs');
-var cmd = 'speak or lang';
+var cmd = 'lang';
 
 var init = function (message,userDB,DB) {
 var Server = message.guild;
@@ -18,9 +18,15 @@ var bot = message.botUser
 var args = MSG.split(' ').slice(1)[0]
 var LANG = message.lang;
 
+    try{
 //-------MAGIC----------------
-
-
+    //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
+    return gear.usage(cmd,message,"language");
+}
+//------------
+    }catch(e){console.log(e)}
     var modPass = false
 
 

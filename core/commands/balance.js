@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const arraySort = require('array-sort')
 const Jimp = require("jimp");
+const gear = require("../gearbox.js");
 const fs = require("fs");
 var paths = require("../paths.js");
 var cmd = 'balance';
@@ -22,6 +23,12 @@ var init = function (message,userDB,DB) {
     var LANG = message.lang;
     emb = new Discord.RichEmbed();
 
+//HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
 
     var bal =  mm('$.balance',{lngs:LANG});
     var put =  mm('$.lewdery',{lngs:LANG});

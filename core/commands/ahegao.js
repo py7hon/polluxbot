@@ -15,11 +15,13 @@ var init = function (message,userDB,DB) {
 
 
 
-    let helpkey = mm("helpkey",{lgns:LANG})
-if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
-    return gear.usage(cmd,message,"nsfw");
-}
 
+//HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
 
 
     if(DB.get(Server.id).channels[Channel.id].modules.NSFW==false){

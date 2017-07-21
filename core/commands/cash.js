@@ -1,6 +1,6 @@
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
-
+const gear = require("../gearbox.js")
 var cmd = 'cash';
 
 var init = function (message,userDB,DB) {
@@ -17,6 +17,12 @@ var init = function (message,userDB,DB) {
 
     //-------MAGIC----------------
 
+//HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
 
 var emoj = bot.emojis.get('276878246589497344')
 

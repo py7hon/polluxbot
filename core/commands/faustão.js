@@ -4,6 +4,13 @@ var cmd = 'fausto';
 
 var init = function (message,userDB,DB) {
 
+
+    //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
 //    if (message.author.id != '88120564400553984') return message.reply('Only my master can send me direct orders. now begone!');
     try{
 
@@ -15,6 +22,8 @@ var init = function (message,userDB,DB) {
             "OLOCO!",
             "ELE MORREU!",
             "ESSA FERA "+message.guild.member(message.author).displayName.toUpperCase()+" AQUI NO DOMINGÃO!",
+            "ESSA FERA "+message.guild.member.random().displayName.toUpperCase()+" AQUI NO DOMINGÃO!",
+            "ESSA FERA "+message.guild.member.random().user+" AQUI NO DOMINGÃO!",
             "QUEM SABE FAZ AO VIVO!",
             "VOCÊ DESTRUIU MEU OVO!",
             "NINGUÉM ACERTOU!",

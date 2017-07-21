@@ -4,7 +4,7 @@ var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 var fs = require('fs');
 
-var cmd = 'speak or lang';
+var cmd = 'speak';
 
 var init = function (message,userDB,DB) {
 var Server = message.guild;
@@ -26,7 +26,12 @@ var LANG = message.lang;
 
     var noperms     =   mm('CMD.moderationNeeded', {lngs:LANG})
     var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
-
+    //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
 
 
  var modPass = gear.hasPerms(Member,DB)

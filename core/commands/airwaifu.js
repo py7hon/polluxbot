@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const getter = require("booru-getter");
 const fs = require("fs");
+const gear = require("../gearbox.js")
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
@@ -19,8 +20,15 @@ if (Author.bot) return;
 
     var success = mm('forFun.airwaifu',{lngs:LANG})
     var fail = mm('forFun.booru404',{lngs:LANG})
+try{
+//HELP TRIGGER
+    let helpkey = mm("helpKeyword",{lngs:LANG})
 
-
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
+}catch(e){console.log(e)}
     let query = 'airplane+-comic+-animated'
     console.log("AIRWAIFU INVOKED by " + Author + "-------------\n")
 

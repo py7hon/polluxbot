@@ -10,7 +10,7 @@ var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
 
-var cmd = 'lewd';
+var cmd = 'rule34';
 
 var init = function (message,userDB,DB) {
     var Server = message.guild;
@@ -25,7 +25,12 @@ var init = function (message,userDB,DB) {
     var LANG = message.lang;
 
     //-------MAGIC----------------
-
+    //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
     if(DB.get(Server.id).channels[Channel.id].modules.NSFW==false){
         message.reply(mm('forFun.nsfwNope',{lngs:LANG}));
         return;

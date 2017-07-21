@@ -5,7 +5,7 @@ var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
-var cmd = 'kick';
+var cmd = 'ban';
 
 var init = function (message,userDB,DB) {
 var Server = message.guild;
@@ -22,6 +22,12 @@ var LANG = message.lang;
 
  reason = reason.toString().replace(/,/g," ")
 
+//HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
 
 
 //-------MAGIC----------------

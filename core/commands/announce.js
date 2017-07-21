@@ -1,4 +1,4 @@
-var ff = require("../functionfest.js");
+
 var cmd = 'announce';
 var locale = require('../../utils/multilang_b');
 var gear = require('../gearbox');
@@ -14,8 +14,14 @@ var init = function (message) {
     if (Author.bot) return;
 
   var LANG = message.lang;
+//HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
 
- var modPass = ff.hasPerms(Member,DB)
+ var modPass = gear.hasPerms(Member,DB)
 
     if (!modPass) {
         return message.reply(mm('CMD.moderationNeeded', {

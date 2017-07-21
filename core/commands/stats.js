@@ -22,7 +22,7 @@ var LANG = message.lang;
 
 //-------MAGIC----------------
 
-
+try{
     String.prototype.toHHMMSS = function () {
     var sec_num = parseInt(this, 10); // don't forget the second param
     var hours   = Math.floor(sec_num / 3600);
@@ -43,6 +43,14 @@ var LANG = message.lang;
     var uptime = (os.uptime() + "").toHHMMSS();
     var botuptime = (bot.uptime/1000+"").toHHMMSS();
 
+
+
+//HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
 
 
 
@@ -69,7 +77,7 @@ a = gear.randomize(2,4)
       emb.addField(':hash:   Channels ',"```"+(bot.channels.size)+"```", true)
       emb.addField(':microphone2:   Voice Channels ',"```"+(bot.voiceConnections.size)+"```", true)
    //   emb.addField(':hash:   Voice Channels',"```"+()+"```", true)
-      emb.addField(':cityscape:   Servers',"```"+(bot.guilds.size+aux)+"```", true)
+      emb.addField(':cityscape:   Servers',"```"+(bot.guilds.size)+"```", true)
       emb.addField(':busts_in_silhouette:   Users',"```"+(bot.users.size)+"```", true)
       emb.addField(':satellite_orbital:   Ping',"```"+parseFloat(Math.round(bot.ping * 100) / 100).toFixed(0)+'ms'+"```", true)
       emb.addField(':control_knobs:    RAM Usage',"```"+ram.toFixed(0)/1000+" MB```", true)
@@ -89,7 +97,7 @@ a = gear.randomize(2,4)
 
 
 
-
+}catch(e){console.log(e)}
 
 }
  module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'info'};

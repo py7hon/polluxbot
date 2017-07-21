@@ -22,7 +22,12 @@ var LANG = message.lang;
 
  reason = reason.toString().replace(/,/g," ")
 
-
+    //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
 
 //-------MAGIC----------------
     const Jimp = require("jimp");

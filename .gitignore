@@ -4,6 +4,7 @@
 /bower_components/
 /backup/
 *.exe
+*.mp3
 *.psd
 /points.json
 /npm-debug.log

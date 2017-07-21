@@ -4,6 +4,13 @@ var cmd = 'chinese';
 
 
 var init = function (message, userDB, DB) {
+//HELP TRIGGER
+
+if (message.content.substr(message.prefix.length + cmd.length)<=2){
+    return gear.usage(cmd,message);
+}
+//------------
+
 
     var phrase = message.content.substr(message.prefix.length + cmd.length+1);
     var decomp = phrase.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase();

@@ -21,7 +21,18 @@ var init = function (message, userDB, DB) {
 
     //-------MAGIC----------------
 
-
+if(message.content.includes("RAPE")){
+    return message.reply("Vai tomar no teu cu Kuroi")
+}
+    if(message.content.includes("gemi")){
+    return message.reply("Vai tomar no teu cu Kuroi")
+}
+    if(message.content.includes("zap")){
+    return message.reply("Vai tomar no teu cu Kuroi")
+}
+    if(message.content.includes("windows")){
+    return message.reply("Vai tomar no teu cu Kuroi")
+}
 
     var search = require('youtube-search');
 

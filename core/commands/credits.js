@@ -17,7 +17,12 @@ var init = function (message,userDB,DB) {
 
     //-------MAGIC----------------
 
-
+//HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
 var emojya = bot.emojis.get('276878246589497344')
     let GOODMOJI = emojya
     let GOOD = 'Ruby'

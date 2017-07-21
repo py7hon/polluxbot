@@ -5,6 +5,13 @@ var cmd = 'say';
 var init = function (message,userDB,DB) {
 
 //    if (message.author.id != '88120564400553984') return message.reply('Only my master can send me direct orders. now begone!');
+    //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
+
 
     var imgsrc =[
         "http://bp.i.uol.com.br/arquivo/legacy/camera/pasquale01.jpg",

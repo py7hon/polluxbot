@@ -15,6 +15,13 @@ var init = function (message,userDB,DB) {
             var bot = message.botUser
             var args = MSG.split(' ').slice(1)[0]
           //  var input = args[0].toUpperCase()
+
+            //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
+//------------
 message.reply(gear.emoji("check"))
             gear.paramDefine(Author,"favcolor",args)
          var hex = parseInt((args+"FF").replace(/^#/, ''), 16);
