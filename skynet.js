@@ -18,10 +18,6 @@ var Backend = require('i18next-node-fs-backend');
 var fs = require("fs");
 var paths = require("./core/paths.js");
 var skynet = '248285312353173505'
-    //var SelfReloadJSON = require('self-reload-json');
-var DB = JSON.parse(fs.readFileSync('./database/servers.json', 'utf8'));
-var userDB = JSON.parse(fs.readFileSync('./database/users.json', 'utf8'));
-
 
 //var DB= new SelfReloadJSON();
 //var userDB =new SelfReloadJSON('./database/users.json');
@@ -41,7 +37,7 @@ const client = new AkairoClient({
     prefix: '+'
 });
 
-bot.login(cfg.token).then(() => {
+bot.login(cfg.tokenOS).then(() => {
 
 });
 

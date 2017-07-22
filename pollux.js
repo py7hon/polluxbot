@@ -1,6 +1,6 @@
 //Discord Start
 const Discord = require("discord.js");
-
+var rq = require("request");
 var bot = new Discord.Client({
     messageCacheMaxSize: 4048,
     messageCacheLifetime: 1680,
@@ -140,7 +140,10 @@ async function loginSuccess() {
 }
 
 console.log('Ready to Rock!')
-bot.on('ready', () => {
+bot.on('ready', async () => {
+
+
+   /*
 
     bot.guilds.forEach(async g => {
         if (!DB.get(g.id)) return serverSetup(g);
@@ -151,14 +154,14 @@ bot.on('ready', () => {
             await gear.normaliseUSER(m, userDB, DB)
 
         })
-    })
+    })*/
     bot.user.setStatus('online')
 
   //   bot.user.setGame(`coding Pollux`, 'https://www.twitch.tv/theFlicky').then().catch();
 
     //bot.user.setGame(`Neverwinter Nights`).then().catch();
 
-    async.parallel(bot.guilds.forEach(G => serverSetup(G)))
+/*    async.parallel(bot.guilds.forEach(G => serverSetup(G)))*/
 
     userSetup(bot.user)
 
@@ -167,7 +170,10 @@ bot.on('ready', () => {
     let tx = `All systems go! I am ready to rock, master!`;
     let color = '#3ed844';
 
-    gear.sendSlack(name, tx, undefined, color)
+    await gear.sendSlack(name, tx, undefined, color)
+
+     postGCount(bot.guilds.size)
+
 });
 
 //=====================================
@@ -923,7 +929,79 @@ ${err.stack}
 
     gear.sendSlack(name, txb, tx, color)
 
+
+
+
+
 });
+
+
+function postGCount(g) {
+
+
+
+
+
+    console.log(cfg.dborg)
+
+    let rqORG = {
+        headers: {
+            Authorization: cfg.dborg
+        },
+        url: `https://discordbots.org/api/bots/271394014358405121/stats`,
+        method: 'POST',
+           body: { server_count: g },
+  json: true
+    };
+    rq(rqORG, function (err, response, body) {
+        if (err) {
+          console.log("ORG");
+            console.log(err)
+        }
+          console.log("ORG");
+        //  console.log(response);
+  console.log(body);
+    });
+
+        let rqOptions = {
+        headers: {
+            Authorization: cfg.pwTok
+        },
+        url: `https://bots.discord.pw/api/bots/271394014358405121/stats`,
+        method: 'POST',
+      body: { server_count: g },
+  json: true
+    };
+    rq(rqOptions, function (err, response, body) {
+             if (err) {
+          console.log("PW");
+            console.log(err)
+        }
+          console.log("PW");
+        //  console.log(response);
+  console.log(body);
+    });
+/*
+
+    });
+
+    let rqCarbon = {
+        url: `https://www.carbonitex.net/discord/data/botdata.php`,
+        method: 'POST',
+        json: {
+            "server_count": g,
+            "key": cfg.carbon_token //SOON
+        }
+    };
+
+    rq(rqCarbon, function (err, response, body) {
+        if (err) {
+            console.log(err)
+        }
+
+    });
+*/
+}
 
 //---------------------------------------------------------------------------------------- END
 

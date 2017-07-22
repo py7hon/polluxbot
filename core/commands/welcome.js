@@ -93,7 +93,15 @@ var input="X"
 
 
 
-    if (args.length >= 2 && args[0] === "msg") {
+    if (args.length >= 2
+
+
+
+
+
+
+
+        && args[0] === "msg") {
         if (args.length == 2) {
             return Channel.send(v.tellMsg);
         }

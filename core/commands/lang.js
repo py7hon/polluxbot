@@ -18,7 +18,7 @@ var bot = message.botUser
 var args = MSG.split(' ').slice(1)[0]
 var LANG = message.lang;
 
-    try{
+
 //-------MAGIC----------------
     //HELP TRIGGER
     let helpkey = mm("helpkey",{lngs:message.lang})
@@ -26,10 +26,8 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
     return gear.usage(cmd,message,"language");
 }
 //------------
-    }catch(e){console.log(e)}
+
     var modPass = false
-
-
     var noperms     =   mm('CMD.moderationNeeded', {lngs:LANG})
     var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
 
@@ -38,7 +36,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 
 
     if (!modPass) {
-        return message.reply(mm('CMD.moderationNeeded', {
+       return message.reply(mm('CMD.moderationNeeded', {
             lngs: LANG
         })).catch(console.error);
     }

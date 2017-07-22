@@ -42,6 +42,7 @@ module.exports = {
             lngs: m.lang,
             prefix: m.prefix
         }), false)
+        console.log(third)
         if (third == "language"){
              emb.addField("**" + mm("usage.speakAvailable", {
             lngs: m.lang

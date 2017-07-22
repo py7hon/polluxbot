@@ -101,7 +101,7 @@ module.exports = {
 
                     var oldDropsly = CHN.DROPSLY
                     const responses = await CHN.awaitMessages(msg2 =>
-                        msg2.author.id === message.author.id && (msg2.content === message.prefix+'pick'), {
+                        msg2.author.id === message.author.id && (msg2.content === message.prefix + 'pick'), {
                             maxMatches: 1
                         }
                     );
@@ -147,6 +147,14 @@ module.exports = {
                         });
                         return resolve(true);
 
+
+
+
+
+
+
+
+
                     }
                 })
             } catch (e) {
@@ -171,7 +179,7 @@ module.exports = {
 
                     var oldDropsly = CHN.DROPSLY
                     const responses = await CHN.awaitMessages(msg2 =>
-                        msg2.content === message.prefix+'pick', {
+                        msg2.content === message.prefix + 'pick', {
                             maxMatches: 1
                         }
                     );

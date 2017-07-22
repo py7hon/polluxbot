@@ -30,6 +30,42 @@ module.exports = {
 
 
 
+    ,idle:'<:idle:338148353831469056> '
+,bot:'<:Bot:338148354007629845> '
+,dnd:'<:dnd:338148354200698882> '
+,api:'<:Api:338148353906966530> '
+,pcengine:'<:PcEngine:338148354548826113> '
+,discord:'<:Discord:338148354544631808> '
+,offline:'<:offline:338148354754215936> '
+,online:'<:online:338148354808610816> '
+,module:'<:Module:338148598057533441> '
+,google:'<:Google:338148597927378945> '
+,console:'<:Console:338148598103408651> '
+,connected:'<:Connected:338148598049144834> '
+,pikachuflat:'<:Pikachu:338148598212460544> '
+,sourcecode:'<:SourceCode:338148598397009940> '
+,mczombie:'<:McZombie:338148598183362560> '
+,fork:'<:Fork:338148598099345409> '
+,wifilogo:'<:Wifilogo:338148598397272064> '
+,wifirouter:'<:WifiRouter:338148598418112512> '
+,motherboard:'<:MotherBoard:338149666912862209> '
+,workstation:'<:Workstation:338149667172909066> '
+,wacomtablet:'<:WacomTablet:338149666841559043> '
+,fidgetspinner:'<:fidgetspinner:338150912566755329> '
+,loser:'<:Loser:338150912688128000> '
+,winner:'<:Winner:338150912696647680> '
+,mute:'<:Mute:338151856759111681> '
+    ,play:'<:PLay:338151857199513600> '
+,unmute:'<:Unmute:338151856931078145> '
+,pause:'<:Pause:338151856947855362> '
+,youtube:'<:Youtube:338151857014833153> '
+,youtube:'<:Youtube:338151857224417281> '
+    ,stop:'<:Stop:338151857379606528> '
+,privacy:'<:Privacy:338152581429985281> '
+
+
+
+
     //MEDALS
 
 ,hyruleshield:'<:hyruleShield:335866552878366731> '

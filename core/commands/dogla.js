@@ -53,7 +53,7 @@ var init = function (message, userDB, DB) {
                 ovlay.rotate(-6);
                 base.composite(ovlay, 100, 24);
                 base.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                    message.channel.send('dogla.png',message.author+" ",{files:[image]})
+                    message.channel.send({files:[{attachment:image,name:"file.png"}]})
 
 
                 })
@@ -73,7 +73,7 @@ var init = function (message, userDB, DB) {
                 ovlay.rotate(-6);
                 base.composite(ovlay, 100, 24);
                 base.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                    message.channel.send('dogla.png',message.author+" ",{files:[image]})
+                    message.channel.send({files:[{attachment:image,name:"file.png"}]})
 
 
                 })
@@ -94,7 +94,7 @@ var init = function (message, userDB, DB) {
                 ovlay.rotate(-6);
                 base.composite(ovlay, 100, 24);
                 base.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                    message.channel.send('dogla.png',message.author+" ",{files:[image]})
+                    message.channel.send({files:[{attachment:image,name:"file.png"}]})
 
 
                 })
@@ -126,7 +126,7 @@ var init = function (message, userDB, DB) {
                 ovlay.rotate(-6);
                 base.composite(ovlay, 0, 24);
                     base.getBuffer(Jimp.MIME_PNG, function (err, image) {
-                      message.channel.send(message.author+" ",{files:[image]})
+                     message.channel.send({files:[{attachment:image,name:"file.png"}]})
 
                     })
             })
