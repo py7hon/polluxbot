@@ -42,13 +42,14 @@ var emojya = bot.emojis.get('276878246589497344')
 
 
     var donate = parseInt(args[0])
-
+  donate=Math.abs(donate)
 
     if (args.lenght < 2 || isNaN(donate) || message.mentions.size === 0){
         return gear.usage(cmd,message,mm)
     }
 
     if (gear.checkGoods(donate, Author) == true) {
+
 
         // message.guild.defaultChannel.send()
         gear.paramIncrement(Author, 'goodies', -donate)
@@ -59,7 +60,7 @@ var emojya = bot.emojis.get('276878246589497344')
        return  message.channel.send( mm('$.giveGoods' , {lngs:LANG, donate:donate, emoji:gear.emoji('ruby'), target:Target.username,author:Author.username })).then(function (c) {
             message.delete(5000)
         })
-        gear.writePoints(points, caller)
+       // gear.writePoints(points, caller)
     } else {
         message.reply(mm('$.noFundsGeneric',{lngs:LANG,goods:GOOD}))
         return;

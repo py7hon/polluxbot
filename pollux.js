@@ -360,8 +360,15 @@ bot.login(cfg.token).then(loginSuccess());
 // XP SPAM PROTECTION
 var gibexp = cd(console, gear.paramIncrement, 5000);
 var plzDrop = cd(console,  gear.dropGoodies, 5000);
+var aaaAAA = cd(console,  aAaA, 15000);
 // ==============================================
+function aAaA(message){
 
+   if (message.content.includes('AAAAAAA')) {
+
+           return message.channel.send({files:["./resources/imgres/reactions/aaaa.jpg"]})
+        }
+}
 bot.on("message", (message) => {
 
 
@@ -439,6 +446,7 @@ try{
             }
         }
 
+
         if (DB.get(Server.id).modules.REACTIONS != undefined) {
             let servdata = DB.get(Server.id).modules
             if (servdata.REACTIONS[MSG]) {
@@ -453,7 +461,7 @@ try{
         }
 
         //--- END SIDE   ---------------------------------------------------------
-
+        aaaAAA(message)
         //  SETUPS
         serverSetup(Server);
         userSetup(Author);
@@ -778,7 +786,7 @@ try{
             try {
                 channel.send(content).then(m=>{
                     if(delTime && delTime > 0){
-                        m.delete(delTime)
+                        //m.delete(delTime)
                     }
                 });
             } catch (e) {}

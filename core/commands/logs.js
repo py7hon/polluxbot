@@ -97,31 +97,19 @@ console.log(destination[i])
     let    dest = destination[i]
     let    destA = friendlYdestination[i]
         var errored = false;
-        Server.channels.get(chan).overwritePermissions(bot.user, {
-            SEND_MESSAGES: true,
-            READ_MESSAGES: true
-        }).then(f => {
 
-           message.channel.send(gear.emoji("check") + mm('logs.successDelete', {
+            gear.paramDefine(Server, dest, chan)
+            message.channel.send(gear.emoji("check") + mm('logs.success', {
                 lngs: LANG,
                 channel: Server.channels.get(chan),
                 CHNTYPE: destA
-            }) ).then(m => m.delete(25000)).catch()
-               gear.paramDefine(Server, dest, "")
-        }).catch(e => {
-            message.reply(mm('CMD.unpermB', {
-                lngs: LANG
-            })).catch(console.error);
+            }) ).then(m => m.delete(25000).catch()).catch();
 
-        })
 
 
     }
 
 
-
-
-    return
 }
 
 
@@ -160,24 +148,15 @@ console.log(destination[i])
 console.log(destination[i])
     let    dest = destination[i]
     let    destA = friendlYdestination[i]
-        var errored = false;
-        Server.channels.get(chan).overwritePermissions(bot.user, {
-            SEND_MESSAGES: true,
-            READ_MESSAGES: true
-        }).then(f => {
 
+            gear.paramDefine(Server, dest, chan)
             message.channel.send(gear.emoji("check") + mm('logs.success', {
                 lngs: LANG,
                 channel: Server.channels.get(chan),
                 CHNTYPE: destA
             }) ).then(m => m.delete(25000)).catch()
-            gear.paramDefine(Server, dest, chan)
-        }).catch(e => {
-            message.reply(mm('CMD.unpermB', {
-                lngs: LANG
-            })).catch(console.error);
-            errored = true;
-        })
+
+        }
 
 
 
@@ -186,9 +165,6 @@ console.log(destination[i])
 
 
 
-
-
-}
 
 
 

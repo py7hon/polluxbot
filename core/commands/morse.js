@@ -1,3 +1,4 @@
+var Discord = require("discord.js");
 var gear = require("../gearbox.js");
 var morse = require("morse-mp3");
 var morset = require("morse");
@@ -27,7 +28,17 @@ try{
               //  message.delete()
 
              let mo = morset.encode(string)
-           message.reply(mo.replace(/ /g," / "))
+
+             emb = new Discord.RichEmbed
+            emb.setAuthor("We get signal!")
+            emb.setFooter("Radio Operator | Zero Wing","http://i.imgur.com/tda07NK.png")
+            emb.setColor("#5745a3")
+    emb.setThumbnail("https://telegraph.p3k.io/assets/telegraph-icon-white.png")
+    let output = mo.replace(/\.\.\.\.\.\.\./g," ")
+    emb.setDescription("*\"WHAT?\"*\n```"+output+"```\n"+gear.emoji("wifirouter")+" Transmitted to your voice channel!")
+           message.channel.send({embed:emb}).catch(e=>message.channel.send(output).catch(e=>message.channel.send("Morse Code Too Long")))
+
+
                const dispatcher = connection.playStream(exportFile);
 
            //     dispatcher.on('end', () => {
@@ -37,7 +48,7 @@ try{
 
 
 
-}catch(e){console.log(e)}
+}catch(e){gear.hook.send(e.error)}
 
 
 

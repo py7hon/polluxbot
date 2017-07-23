@@ -196,16 +196,20 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
     let inventory = userDB.get(message.author.id).modules.medalInventory
 
+if (inventory == undefined){
+    gear.paramDefine(Author,"medalInventory",[])
+     inventory = userDB.get(message.author.id).modules.medalInventory
 
+}
 
-    if (inventory.length == 0) return Channel.send("nomedals");
+    if (inventory.length == 0) return Channel.send("No Medals to Equip");
     console.log(inventory)
 
     var equipArray = getEquips(userDB.get(message.author.id).modules.medals)
 
     var menu = []
-    for (i = 0; i < inventory.length; i += 6) {
-        menu.push(inventory.slice(i, i + 6))
+    for (i = 0; i < inventory.length; i += 5) {
+        menu.push(inventory.slice(i, i + 5))
     }
 
 
@@ -310,6 +314,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
             emb.addField(nums[i + 1], gear.emoji(menuArr[i][0]) + " **" + menuArr[i][1] + "**", true)
         }
+            emb.addField(":negative_squared_cross_mark:", "UNEQUIP", true)
 
         return {
             embed: emb,
@@ -442,6 +447,13 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                         message.delete()
                         return gear.paramAdd(Author, "medalInventory", medal_file)
                     }
+
+
+
+
+
+
+
                     if (rea.emoji == xmark && rea.count > 1) {
                         //m.delete()
                         return refresh(index, m)
@@ -487,6 +499,8 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
         for (i = 0; i < menuPage.menuArr.length; i++) {
             await m.react(nums[i + 1]);
         }
+                   await m.react("❎");
+
         if (index !== 0) {
             await m.react("◀");
         }
@@ -535,13 +549,23 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                 //equals ARRitm
                 if (finder && rea.count > 1) {
                     //return message.reply("ok" + finder)
-
                     let item = menuPage.menuArr[finder - 1]
-
 
                     processCheckout(item, index, m)
 
                 }
+
+
+                       if (rea.emoji == "❎" && rea.count > 1) {
+                    //return message.reply("ok" + finder)
+                    let item = [0,0]
+
+                    processCheckout(item, index, m)
+
+                }
+
+
+
                 //equalsARROW
                 if (rea.emoji == "▶" && rea.count > 1) {
                     console.log("index " + index)

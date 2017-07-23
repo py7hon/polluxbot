@@ -27,7 +27,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
     return  message.channel.send({embed:emb});
 }
 
-    }catch(e){console.log(e)}
+    }catch(e){gear.hook.send(e.error)}
 
         txt3 = `
 

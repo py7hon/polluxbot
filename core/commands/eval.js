@@ -48,7 +48,7 @@ if (code.includes("minha id")){
         if (code.includes("sua id")){
     return Channel.send("Minha ID é "+bot.user.id)
 }
-if (code.includes("server id")){
+if (code.includes("server id")||code.includes("id desse server")){
     return Channel.send("A ID deste Server é "+Server.id)
 }
     if (code.includes("channel id")){

@@ -81,7 +81,7 @@ module.exports = {
                     good: GOOD,
                     emoji: GOODMOJI,
                     prefix: event.DB.get(Server.id).modules.PREFIX
-                }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">")).then(m => processDropRare(m)).catch(e => console.log(e))
+                }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">")).then(m => processDropRare(m)).catch(e => gear.hook.send(e.error))
             })
         }
 
@@ -159,7 +159,7 @@ module.exports = {
                 })
             } catch (e) {
                 let v = "Ruby Send Forbidden: " + r.guild.name + " C: " + r.channel.name
-                console.log(e);
+                gear.hook.send(e.error);
                 hook.send(v)
             }
         }
@@ -221,7 +221,7 @@ module.exports = {
                 })
             } catch (e) {
                 let v = "Ruby Send Forbidden: " + r.guild.name + " C: " + r.channel.name
-                console.log(e);
+                gear.hook.send(e.error);
                 hook.send(v)
             }
         }

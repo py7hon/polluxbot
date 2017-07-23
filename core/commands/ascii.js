@@ -27,7 +27,7 @@ console.log()
     }
 
        }
-}catch(e){console.log(e)}
+}catch(e){gear.hook.send(e.error)}
      console.log(string)
 
 

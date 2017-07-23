@@ -41,7 +41,7 @@ gear.shuffle(verbose)
     let bb = eit[1].slice(0,-Math.floor(eit[1].length/2-0.2))
 
  message.channel.send(v[0]+bb+aa+v[1])
-    }catch(e){console.log(e)}
+    }catch(e){gear.hook.send(e.error)}
 
 }
  module.exports = {

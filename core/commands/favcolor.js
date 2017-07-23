@@ -16,11 +16,13 @@ var init = function (message,userDB,DB) {
             var args = MSG.split(' ').slice(1)[0]
           //  var input = args[0].toUpperCase()
 
+
+            try{
             //HELP TRIGGER
     let helpkey = mm("helpkey",{lngs:message.lang})
 if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
     return gear.usage(cmd,message);
-}
+}}catch(e){gear.hook.send(e.error)}
 //------------
 message.reply(gear.emoji("check"))
             gear.paramDefine(Author,"favcolor",args)

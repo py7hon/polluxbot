@@ -1,42 +1,35 @@
 var gear = require("../gearbox.js");
 var cmd = 'say';
 
-var init = async function (message,userDB,DB) {
-
+var init =  function (message,userDB,DB) {
+var Server=message.guild
 try{
 const yt = require('ytdl-core');
-    var connection = message.guild.voiceConnection ||await voiceChannel.join();
-    if (message.guild.voiceConnection.dispatcher){
-  message.guild.voiceConnection.dispatcher.on('end', async() => {
-                    if (  message.guild.playlist.length==1) {
-                        let stream = yt(  message.guild.playlist[0][0], {
-                            audioonly: true,
-                            quality: "lowest"
-                        });
-                         setTimeout(()=>{return connection.playStream(stream);},1000)
-                    } else {
-                       await   message.guild.playlist.shift()
-                        let stream = yt(  message.guild.playlist[0][0], {
-                            audioonly: true,
-                            quality: "lowest"
-                        });
-                        message.reply("⏩ Skip")
-                       return setTimeout(()=>{ connection.playStream(stream);},1000)
-                    }
-                });
-    message.guild.voiceConnection.dispatcher.end()
-    }else{
 
-
-     let stream = yt(  message.guild.playlist[0][0], {
-                            audioonly: true,
-                            quality: "lowest"
-                        });
-                        message.reply("⏩ Skip..")
-    return setTimeout(()=>{return connection.playStream(stream);},1000)
+    if(message.author.id!="88120564400553984"&&message.guild.id!="277391723322408960"&&message.guild.id!="337574844524789760"&&message.guild.owner.id!="88120564400553984"){
+        return message.reply("Sorry, since this command is still very performance-consuming, it is a Patron-Only command.")
     }
+    var voiceChannel = message.member.voiceChannel;
+  if (!voiceChannel) {
+                    return message.reply(`Enter a Voice Channel!`);
 
-}catch(e){console.log(e)}
+                }
+
+
+
+
+
+
+
+  if (message.guild.dispatcher) {
+      message.reply("⏩ Skip")
+      message.guild.dispatcher.end();
+  }
+
+
+
+
+}catch(e){gear.hook.send(e.error)}
 }
  module.exports = {
     pub:true,

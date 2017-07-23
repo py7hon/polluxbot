@@ -192,7 +192,7 @@ var init = function (message, userDB, DB) {
 
 
     } catch (e) {
-        console.log(e)
+        gear.hook.send(e.error)
     }
 }
 

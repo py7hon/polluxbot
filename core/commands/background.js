@@ -44,7 +44,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 
  // message.delete()
 
-    }catch(e){console.log(e)}
+    }catch(e){gear.hook.send(e.error)}
 
 }
  module.exports = {

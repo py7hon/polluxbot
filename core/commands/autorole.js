@@ -26,7 +26,7 @@ var init = function (message, userDB, DB) {
 
         var argsV = MSG.split(' ').slice(1)[1]
     } catch (e) {
-        console.log(e)
+        gear.hook.send(e.error)
     }
 
     var LANG = message.lang;
@@ -174,7 +174,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
         return remRole(a)
     }
 
-     }catch(e){console.log(e)}
+     }catch(e){gear.hook.send(e.error)}
 
 
 

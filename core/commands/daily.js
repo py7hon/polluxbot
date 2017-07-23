@@ -47,6 +47,13 @@ const Discord = require("discord.js")
          return;
      }
 
+
+
+       var b = "Get a boost on yout dailies and 1000"+gear.emoji("ruby")+" by upvoting me at discordbots.org and then using `+reward`"
+          if(LANG == "dev"||LANG=="pt"){
+       b = "Ganhe um bonus em suas dailies e mais 1000"+gear.emoji("ruby")+" votando em mim no discordbots.org e em seguida usando `+reward`"
+        }
+
 var emoj = bot.emojis.get('276878246589497344')
 
      let GOODMOJI = DB.get(Server.id).modules.GOODMOJI || emoj
@@ -87,7 +94,7 @@ var emoj = bot.emojis.get('276878246589497344')
          e.setDescription(remain)
          e.setTimestamp(userDB.get(bot.user.id).epochStamp)
          e.setColor("#d13d54")
-         return Channel.send({embed:e}).catch(e=>console.log(e))
+         return Channel.send({embed:e}).catch(e=>gear.hook.send(e.error))
      }
 
 
@@ -105,7 +112,7 @@ var emoj = bot.emojis.get('276878246589497344')
              lngs: LANG,
              emoji: '',
              goods: GOOD
-         })
+         })+"\n"+b
 
          message.reply(emoj+dailyGet)
          if (streak == 10) {
@@ -121,6 +128,19 @@ var emoj = bot.emojis.get('276878246589497344')
 
          gear.paramIncrement(Author, 'goodies', 100)
          gear.paramDefine(Author, 'daily', globalEpoch)
+
+
+            if(userDB.get(Author.id).upvote == true){
+         gear.paramIncrement(Author, 'goodies', 50)
+     var a = "And more **50** "+gear.emoji("ruby")+" for upvoting me!"
+
+          if(LANG == "dev"||LANG=="pt"){
+       a = "E mais **50** "+gear.emoji("ruby")+" por ter votado em mim!"
+        }
+                message.channel.send(a)
+    }
+
+
 
      } else {
          var r = Math.abs(now-next);

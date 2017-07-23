@@ -6,11 +6,10 @@ const yt = require('ytdl-core');
 var cmd = 'play';
 
 var init = async function (message, userDB, DB) {
-try{
-    if(message.guild.id!="277391723322408960"||message.guild.owner.id!="88120564400553984"){
+
+    if (message.author.id != "88120564400553984" && message.guild.id != "277391723322408960" && message.guild.id != "337574844524789760" && message.guild.owner.id != "88120564400553984") {
         return message.reply("Sorry, since this command is still very performance-consuming, it is a Patron-Only command.")
     }
-
 
     console.log("VAPOR")
     var Server = message.guild;
@@ -26,28 +25,21 @@ try{
 
     //-------MAGIC----------------
 
-     if (!Server.playlist){
-          Server.playlist=[]
-     }
 
-if(message.content.includes("RAPE")){
-    return message.reply("Vai tomar no teu cu Kuroi")
-}
-    if(message.content.includes("gemi")){
-    return message.reply("Vai tomar no teu cu Kuroi")
-}
-    if(message.content.includes("zap")){
-    return message.reply("Vai tomar no teu cu Kuroi")
-}
-    if(message.content.includes("windows")){
-    return message.reply("Vai tomar no teu cu Kuroi")
-}
+
+    if (DB.get(Server.id).playlist != undefined) {
+        SPL = DB.get(Server.id).playlist
+    } else {
+
+        SPL = []
+    }
+
 
     var search = require('youtube-search');
 
     var opts = {
         maxResults: 10,
-        type:"video",
+        type: "video",
         key: 'AIzaSyB459p_ith_k86GLNPUHaq6EfsfEOOOKoU'
     };
 
@@ -55,130 +47,122 @@ if(message.content.includes("RAPE")){
         if (err) return console.log(err);
 
         var list = ""
-        var play = []
+        var playle = []
         var link = []
         for (i = 0; i < results.length; i++) {
             list += "**" + (i + 1) + "**: :small_blue_diamond:  " + results[i].title + "\n"
-            play.push(results[i].title)
+            playle.push(results[i].title)
+
             link.push(results[i].link)
 
         }
-            list += "**c**: :small_blue_diamond: Cancel \n"
+
+        list += "**c**: :small_blue_diamond: Cancel \n"
+      //  message.delete()
         message.channel.send(list).then(async msg => {
 
+
+
             return new Promise(async resolve => {
-
-
                 const responses = await Channel.awaitMessages(msg2 =>
-                    msg2.author.id === Author.id && msg2.author === Author &&        ((
-                    parseInt(msg2.content) > 0 &&
-                    parseInt(msg2.content) < 11 &&
-                    !isNaN(parseInt(msg2.content)))
-                ||msg2.content==="c") , {
+                    msg2.author.id === Author.id && msg2.author === Author && ((
+                            parseInt(msg2.content) > 0 &&
+                            parseInt(msg2.content) < 11 &&
+                            !isNaN(parseInt(msg2.content))) ||
+                        msg2.content === "c"), {
                         maxMatches: 1,
-                        timeout: 10000
+                        timeout: 20000
                     }
+
                 );
 
 
 
-
-
-
-
-
-
                 if (responses.size === 0) {
-                   return message.reply("timeout")
+                    message.reply("timeout")
+                    return resolve(true)
 
                 } else {
 
 
-                    if (responses.first().content ==="c"){
-                        return message.reply("cancel")
+msg.delete()
+
+                    if (responses.first().content === "c") {
+                        message.reply("cancel");
+                        return resolve(true)
                     }
                     var voiceChannel = message.member.voiceChannel;
 
-                    console.log(voiceChannel.id)
-
-
-                    Server.playlist.push([link[parseInt(responses.first().content) - 1],play[parseInt(responses.first().content) - 1]])
 
 
                 }
                 if (!voiceChannel) {
                     message.reply(`Enter a Voice Channel!`);
-                    return resolve(true);
-                }
-                var botvoice = bot.voiceConnections.get(voiceChannel)
-                console.log(botvoice)
-
-                if (!botvoice) {
-                    console.log("OJK")
-                   botvoice =  await voiceChannel.join()
-
-                    console.log("OJK2")
-
+                    return resolve(true)
                 }
 
-            //    botvoice = bot.voiceConnections.get(voiceChannel.id)
+                var botvoice = message.member.voiceChannel
 
-                    if(botvoice.speaking){
+                if (!message.guild.voiceConnections) {
 
-                         message.channel.send(":arrow_forward:  `Playing next: **" + play[parseInt(responses.first().content) - 1]+"**");
-                          message.delete()
-                         msg.delete()
-                        responses.first().delete()
-                        return;
-                    }
+                    await botvoice.join().then(connection => {
 
 
-                message.channel.send(":arrow_forward:  Now playing: **" + play[parseInt(responses.first().content) - 1]+"**")
-                //  message.reply(`Joining your voice channel and playing some vape!`);
+                        var a = link[parseInt(responses.first().content) - 1]
+                        var b = playle[parseInt(responses.first().content) - 1]
+                        var c = message.author.tag
+                        SPL.push([a, b, c])
 
-                var connection = botvoice
+                        gear.superDefine(Server, "playlist", SPL)
 
-               // console.log(botvoice)
-                console.log(connection+"\n CONNECT")
+responses.first().delete()
+                        if (connection.speaking) {
 
-                message.delete()
-               responses.first().delete()
+                            message.channel.send(":new: Playing next: **" + b + "**");
+                            message.delete()
+                            msg.delete()
+                            responses.first().delete();
+                            return resolve(true)
 
-               msg.delete()
-                let stream = yt(Server.playlist[0][0], {
-                    audioonly: true,
-                    quality:"lowest"
-                });
-
-                const dispatcher = connection.playStream(stream);
-
-                dispatcher.on('end', async() => {
-                    if (Server.playlist.length==1) {
-                        let stream = yt(Server.playlist[0][0], {
-                            audioonly: true,
-                            quality: "lowest"
-                        });
-                        setTimeout(()=>{return connection.playStream(stream);},1000)
-                    } else {
-                       await Server.playlist.shift()
-                        let stream = yt(Server.playlist[0][0], {
-                            audioonly: true,
-                            quality: "lowest"
-                        });
-                          setTimeout(()=>{return connection.playStream(stream);},1000)
-                    }
-                });
-
+                        }
+        message.channel.send(":arrow_forward:  Now playing: **" + SPL[0][1] + "**")
+                        play(connection, Server, SPL)
+                        return resolve(true)
+                    })
+                }
 
 
 
             })
-
         })
-    });
+    })
+return
+
+    function play(conn, guild, pl) {
+
+        guild.dispatcher = conn.playStream(yt(SPL[0][0], {
+            audioonly: true,
+            quality: "lowest"
+        }))
 
 
-}catch(e){console.log(e)}
+
+
+        guild.dispatcher.on("end", () => {
+                SPL.shift();
+
+                if (SPL[0]) play(conn, guild);
+                else conn.disconnect();
+            gear.superDefine(Server, "playlist", SPL)
+                console.log(DB.get(Server.id).playlist)
+
+            }
+
+        );
+
+    }
+
+
 
 
 

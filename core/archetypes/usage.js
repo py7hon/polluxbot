@@ -52,7 +52,7 @@ module.exports = {
         m.channel.send({
             embed: emb
         })
-    }catch(e){console.log(e)}
+    }catch(e){gear.hook.send(e.error)}
     }
 
 

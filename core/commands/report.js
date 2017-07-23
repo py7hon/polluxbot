@@ -22,7 +22,7 @@ __**BUG REPORT FILED**__
    b.send(essage)
     message.reply(":fax: **A BUG REPORT HAS BEEN ISSUED DIRECTLY TO THE CREATOR AND AT THE SUPPORT SERVER, EXPECT AN ANSWER SOON. IF THIS WAS A TEST, YOU JUST GOT BANNED FROM USING THIS COMMAND EVER AGAIN **")
 
-}catch(e){console.log(e)}
+}catch(e){gear.hook.send(e.error)}
 }
  module.exports = {
     pub:true,

@@ -80,7 +80,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
                 memb.addRole(a).then(a => message.channel.send(rolerem_confirm)).then(e => e.delete(120000)).catch(e => message.channel.send(noPermsMe))
             }
         } catch (e) {
-            console.log(e)
+            gear.hook.send(e.error)
         }
         }
 

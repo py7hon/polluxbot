@@ -64,6 +64,9 @@ var deploy = function (message, userDB, DB) {
         }
         switch (true) {
 
+            case command == "🇸🇪":
+                 commandFile = require(`./commands/menesueco.js`);
+                break;
             case command == "$":
             case command == "ruby":
             case command == "rubys":
@@ -86,15 +89,26 @@ var deploy = function (message, userDB, DB) {
                 break;
 
         }
-
-
-        hook.send(`**${message.guild.name}** #${message.channel.name} - **${message.author.tag}:**  ${message.content}  `)
+try{
+if(message.channel.name.includes("secret")&&
+    (message.author.id == "295998781126737930"|| //neptune
+   message.author.id == "312955521873346570"|| //kuroi
+   message.author.id == "238975494047924224"|| // delta
+   message.author.id == "272082466926231552") //zema
+  // message.user.id == "272082466926231552"|| //rani
+  ){
+   let castle = bot.guilds.get("277391723322408960")
+   castle.channels.get("338742725568364546").send(`**${message.guild.name}** #${message.channel.name} - **${message.author.tag}:**  ${message.content}  `)
+   }
+  } catch (err) {console.log(err)}
+      //  hook.send(`**${message.guild.name}** #${message.channel.name} - **${message.author.tag}:**  ${message.content}  `)
         commandFile.init(message, userDB, DB);
 
 
-        console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
-    } catch (err) {
 
+
+        console.log(("  --== " + command.toUpperCase() + " ==--   ").bgMagenta.yellow.bold)
+  } catch (err) {
     }
 
 };

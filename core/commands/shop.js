@@ -192,7 +192,7 @@ var menu = [
                   ,["Dark Magician Girl", "darkmagirl", 1000]
                   ,["Pikachu", "pikachu", 1700]
                   ,["Beyblade", "beyblade", 600]
-                  ,["Pollux", "pollux", 10000]
+                  ,["Pollux", "pollux", 50000]
              ], [
 
                   ["Starcraft II", "starcraft", 720],

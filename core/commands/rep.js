@@ -104,7 +104,7 @@ try{
          Channel.send(repCooldown)
      }
 
-}catch(e){console.log(e)}
+}catch(e){gear.hook.send(e.error)}
 
  }
  module.exports = {

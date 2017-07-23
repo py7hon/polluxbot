@@ -28,7 +28,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
     return gear.usage(cmd,message);
 }
 //------------
-}catch(e){console.log(e)}
+}catch(e){gear.hook.send(e.error)}
     let query = 'airplane+-comic+-animated'
     console.log("AIRWAIFU INVOKED by " + Author + "-------------\n")
 

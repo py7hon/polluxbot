@@ -171,7 +171,7 @@ rep:   ${rep}
 `
 
 //    message.reply(m)
-}catch(e){console.log(e)}
+}catch(e){gear.hook.send(e.error)}
 console.log("==============="+backgroundId)
 console.log("==============="+backgroundId.toString().length)
 var backgroundIMAGE = paths.BUILD + 'profile/BGS/bg_'+backgroundId+'.png'
@@ -336,29 +336,29 @@ sidebar.color([
 
 
 
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
 
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
 
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
-    }).catch(e=>console.log(e))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
+    }).catch(e=>gear.hook.send(e.error))
 
       })
 

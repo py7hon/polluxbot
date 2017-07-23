@@ -129,7 +129,7 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
     }
     console.log("Bet:" + bet[1] + " Call:" + bet[2] + " -- Outcome: " + res)
 
-}catch(e){console.log(e)}
+}catch(e){gear.hook.send(e.error)}
 
 }
 

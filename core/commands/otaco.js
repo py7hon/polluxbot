@@ -24,10 +24,19 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 }
 //------------
 try{
-  fs.readdir(paths.BUILD+"otaco/", function (err, files) {
+  fs.readdir(paths.BUILD+"frenes/otaco/", function (err, files) {
       let rand = gear.randomize(0,files.length-1);
-      let filepath = paths.BUILD+"otaco/"+files[rand]
-    message.channel.send({files:[filepath]})
+      var filepath = paths.BUILD+"frenes/otaco/"+files[rand]
+
+
+    message.channel.send({files:[filepath]}).then(m=>{
+
+          if (filepath.includes("apito")){
+
+          setTimeout(c=>{Channel.send("CU").then(m=>{setTimeout(c=>{Channel.send("DE").then(m=>{setTimeout(c=>{Channel.send("APITO").then(m=>{})},1200)})},1200)})},1200)
+      }
+
+    })
   })
 
 }catch(err){console.log(err)}
