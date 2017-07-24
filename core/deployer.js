@@ -15,8 +15,8 @@ function determine(msg){
     let aliases = JSON.parse(fs.readFileSync("./core/aliases.json", 'utf8'));
 
     let command;
-    if (aliases[query]) command = aliases[query];
-    else command = query;
+    if (aliases[query]) command = aliases[query].toLowerCase();
+    else command = query.toLowerCase();
 
     let path = ""
     let files = fs.readdirSync(__dirname + "/modules")
