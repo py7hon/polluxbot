@@ -13,15 +13,15 @@
     ,"grana":"cash"
 
 
-    ,"rubyrank":"cashrank"
-    ,"$rank":"cashrank"
-    ,"rubinerank":"cashrank"
-    ,"$rk":"cashrank"
-
     ,"leaderboards":"rank"
     ,"top":"rank"
     ,"xprank":"rank"
     ,"rk":"rank"
+
+       ,"rubyrank":"cashrank"
+    ,"$rank":"cashrank"
+    ,"rubinerank":"cashrank"
+    ,"$rk":"cashrank"
 
 
     ,"greet":"welcome"
