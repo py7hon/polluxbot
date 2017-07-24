@@ -327,7 +327,7 @@ function commandFire(message, Server, Channel, Author) {
 
     if (!DTMN) return;
 
-    let MDLE_B = deployer.checkModuleNEW(DTMN);
+    let MDLE_B = deployer.checkModule(DTMN);
 
 
     //let MDLE = deployer.checkModule(message)
@@ -341,7 +341,7 @@ function commandFire(message, Server, Channel, Author) {
 
 
 
-    switch (deployer.checkUseNEW(DTMN, DB, message)) {
+    switch (deployer.checkUse(DTMN, DB, message)) {
 
         case "DISABLED":
             message.reply(mm('CMD.disabledModule', {
@@ -640,10 +640,10 @@ try{
             if (message.content.startsWith(prefix)) {
                 message.botUser = bot;
                 message.content.startsWith("p!") ? message.prefix = "p!" : message.prefix = prefix;
-                deployer.commCheck(message);
+
             } else {
 
-                deployer.commCheck(message);
+
             }
         }
     } else {
