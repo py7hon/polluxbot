@@ -41,9 +41,9 @@ try{
 
                const dispatcher = connection.playStream(exportFile);
 
-           //     dispatcher.on('end', () => {
-             //       voiceChannel.playFile(exportFile);
-            //    });
+                dispatcher.on('end', () => {
+                    voiceChannel.disconnect();
+                });
 
 
 
