@@ -232,5 +232,7 @@
         "actLogs": "ACTIVITY LOGS",
         "advLogs": "ADVANCED LOGS",
         "logChan": "GENERAL LOGS"
-    }
+    },
+    "leftServ":"has left the Server",
+    "joinServ":"has joined the Server"
 }

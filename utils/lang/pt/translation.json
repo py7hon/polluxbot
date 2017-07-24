@@ -177,5 +177,7 @@
         "noTarget": "Diz-me a quem eu faça +Rep, a não ser que estás a dar Rep ao aspirador.",
         "confirm": ":fleur_de_lis: **{{who}}** deu gentilmente **+1Rep** a **{{target}}**. Tão querido~",
         "cooldown": "Espera, meu! Podes dar rep de novo em {{remaining}}. Sê paciente -.-"
-    }
+    },
+        "leftServ":"deixou o Servidor",
+    "joinServ":"se juntou ao Servidor"
 }
