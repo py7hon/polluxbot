@@ -65,17 +65,18 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
             return new Promise(async resolve => {
 
-                var oldDropsly = Channel.DROPSLY
-                const responses = await Channel.awaitMessages(msg2 =>
-                    msg2.content === message.prefix+'pick', {
-                        maxMatches: 1
-                    }
-                ).catch("DROP.JS 67 -- ERROR");
-                if (responses.size === 0) {} else {
-                    if (oldDropsly > Channel.DROPSLY) {
+                        var oldDropsly = Channel.DROPSLY
+                        const responses = await Channel.awaitMessages(msg2 =>
+                            msg2.content === message.prefix + 'pick' ||
+                            msg2.content === DB.get(msg2.guild.id).modules.PREFIX + 'pick', {
+                                maxMatches: 1
+                            }
+                        ).catch("DROP.JS 67 -- ERROR");
+                        if (responses.size === 0) {} else {
+                            if (oldDropsly > Channel.DROPSLY) {
 
-                        return resolve(true);
-                    }
+                                return resolve(true);
+                            }
 
                     let Picker = responses.first().author
 

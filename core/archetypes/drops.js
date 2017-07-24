@@ -101,7 +101,7 @@ module.exports = {
 
                     var oldDropsly = CHN.DROPSLY
                     const responses = await CHN.awaitMessages(msg2 =>
-                        msg2.author.id === message.author.id && (msg2.content === message.prefix + 'pick'), {
+                        msg2.author.id === message.author.id && (msg2.content === message.prefix + 'pick'||msg2.content === DB.get(msg2.guild.id).modules.PREFIX + 'pick'), {
                             maxMatches: 1
                         }
                     );
