@@ -7,6 +7,18 @@ const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
 module.exports = {
     determine: function determine(msg) {
         let query = msg.content.substr(msg.prefix.length).split(' ')[0];
+
+        let imgreactions = JSON.parse(fs.readFileSync("./core/imgreactions.json", 'utf8'));
+        if(imgreactions[query]){
+            return {
+                reaction: imgreactions[query],
+                path: null,
+                module: "img",
+                cat: "instant"
+            }
+        }
+
+
         let aliases = JSON.parse(fs.readFileSync("./core/aliases.json", 'utf8'));
 
         let command;
@@ -15,7 +27,6 @@ module.exports = {
 
         let path = ""
         let files = fs.readdirSync(__dirname + "/modules")
-
 
         for (i = 0; i < files.length; i++) {
             let filedir = __dirname + "/modules/" + files[i]
@@ -27,11 +38,11 @@ module.exports = {
                 let pathTo = filedir + "/" + command + ".js";
 
                 let comm = require(pathTo)
-
                 return {
                     path: pathTo,
                     cat: comm.cat,
-                    module: files[i]
+                    module: files[i],
+                    reaction: false
                 }
 
             }
@@ -39,15 +50,16 @@ module.exports = {
         return false
 
     },
-    checkModule: function checkModuleNEW(DTMN) {
+    checkModule: function checkModule(DTMN) {
 
         return DTMN.module
     },
-    checkCategory: function checkCategoryNEW(DTMN) {
+    checkCategory: function checkCategory(DTMN) {
 
         return DTMN.cat
     },
-    checkUse: function checkUseNEW(DTMN, DB, msg) {
+    checkUse: function checkUse(DTMN, DB, msg) {
+
         try {
             let commandFile = require(DTMN.path);
             switch (true) {
@@ -64,6 +76,7 @@ module.exports = {
                     break;
             }
         } catch (err) {
+            return true;
             console.log((err.stack).red)
         }
     },
