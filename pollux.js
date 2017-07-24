@@ -310,6 +310,10 @@ function userSetup(user) {
         gear.normaliseUSER(user, userDB, DB)
     }
 } //DB
+
+
+
+
 function commandFire(message, Server, Channel, Author) {
     message.botUser = bot;
     message.akairo = client;
@@ -317,15 +321,27 @@ function commandFire(message, Server, Channel, Author) {
 
     let forbiddens = DB.get(Server.id).channels[Channel.id].modules.DISABLED
 
-    let MDLE = deployer.checkModule(message)
+    let DTMN = deployer.determine(message)
 
-    if (forbiddens.includes(MDLE)) {
+    // DTMN = [PATH, CAT, MODULE]
+
+    if (!DTMN) return;
+
+    let MDLE_B = deployer.checkModuleNEW(DTMN);
+
+
+    //let MDLE = deployer.checkModule(message)
+
+    if (forbiddens.includes(MDLE_B)) {
         return message.reply("forbidden")
     }
 
     var mm = multilang.getT();
 
-    switch (deployer.checkUse(message, DB, userDB)) {
+
+
+
+    switch (deployer.checkUseNEW(DTMN, DB, message)) {
 
         case "DISABLED":
             message.reply(mm('CMD.disabledModule', {
@@ -334,17 +350,21 @@ function commandFire(message, Server, Channel, Author) {
             }))
 
             break;
-        case "NO PRIVILEGES":
+        case "NO ELEVATION":
             message.reply(mm('CMD.insuperms', {
                 lngs: message.lang,
                 prefix: message.prefix
             }))
             break;
         default:
-            deployer.run(message, userDB, DB); //aqui nóis vai!
+
+            deployer.run(DTMN.path, message, userDB, DB); //aqui nóis vai!
             break;
     }
 }
+
+
+
 
 bot.login(cfg.token).then(loginSuccess());
 
@@ -445,7 +465,9 @@ try{
                 return
             }
         }
-
+    if (DB.get(Server.id)==undefined){
+        serverSetup(Server)
+    }
 
         if (DB.get(Server.id).modules.REACTIONS != undefined) {
             let servdata = DB.get(Server.id).modules
