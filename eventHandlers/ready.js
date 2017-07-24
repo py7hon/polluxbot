@@ -6,6 +6,9 @@ var defaults = require("../utils/defaults.js") // Database Defaults
 module.exports = {
     run: async function run(gear, DB, userDB, bot) {
 
+
+        require("../core/cherry.js").listen(bot, DB, userDB, gear)
+
         /*
 
          bot.guilds.forEach(async g => {
