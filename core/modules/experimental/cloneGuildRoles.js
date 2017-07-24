@@ -71,7 +71,7 @@ var init = function (message,userDB,DB) {
 
             message.reply('Done!, i cloned a total of ' + sack.length + ' roles!');
             sack = [];
-            m.delete();
+            m.delete().catch();
             return;
 
         }).catch();

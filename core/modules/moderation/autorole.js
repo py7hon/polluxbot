@@ -219,7 +219,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
     if (args === "rem" || args === "remove" || args === "-") {
 
-        message.delete();
+        message.delete().catch();
         remRole(Target)
 
     } // REMOVE

@@ -32,7 +32,7 @@ var argument = MSG.substr((message.prefix + cmd).length +1)
     //-------MAGIC----------------
 
 
-        message.delete(8000);
+        message.delete(8000).catch();
 
 var modPass=false
 

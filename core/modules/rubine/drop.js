@@ -89,8 +89,8 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                         emoji: ""
                     }) + " " + emojya).then(function (c) {
 
-                        c.delete(500000)
-                        r.delete(0)
+                        c.delete(500000).catch()
+                        r.delete(0).catch()
                     }).catch();
 
                     gear.paramIncrement(Picker, 'goodies', Channel.DROPSLY)

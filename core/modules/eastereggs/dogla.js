@@ -40,7 +40,7 @@ var init = function (message, userDB, DB) {
     var txt = MSG.substr((message.prefix + cmd).length + 1)
 
     if (txt.startsWith("http://")||txt.startsWith("https://")) {
-        message.delete()
+        message.delete().catch()
         if (txt.includes("imgur") && (!txt.includes('png') && !txt.includes('jpg') && !txt.includes('gif'))) {
             txt = txt + ".png"
         }
@@ -106,7 +106,7 @@ var init = function (message, userDB, DB) {
     }else {
 
         if (txt =="") return message.reply("ERROR");
-            message.delete(5000)
+            message.delete(5000).catch()
 
         //   cart.print(eval(skinfo.persotextF), skinfo.persotextX  , skinfo.persotextY , `${texp}`, skinfo.persotextWmax);
 

@@ -34,7 +34,6 @@ module.exports = {
                     module: files[i]
                 }
 
-
             }
         }
         return false

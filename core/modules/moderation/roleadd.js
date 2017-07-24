@@ -66,7 +66,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
             return fR(args, Server.member(Target))
 
             function fR(role, memb) {
-                message.delete(50000)
+                message.delete(50000).catch()
                 var roleadd_confirm = On + mm('CMD.superRoleadCom', {
                     lngs: LANG,
                     user: memb.displayName,

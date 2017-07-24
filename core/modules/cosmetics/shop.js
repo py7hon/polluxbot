@@ -264,9 +264,9 @@ message.channel.send({
             } // has no foolproof for custom added reactions yet
         ).catch();
         if (responses.size === 0) {
-            msg.delete();
+            msg.delete().catch();
             message.reply(v.timeout);
-            message.delete();
+            message.delete().catch();
         } else {
 
             let rea = responses.first()
@@ -274,25 +274,25 @@ message.channel.send({
             // if X
             if (rea.emoji == xmark) {
                 message.reply(xmark + v.cancelled)
-                msg.delete();
-                message.delete();
+                msg.delete().catch();
+                message.delete().catch();
                 return
             }
             //if Background
             if (rea.emoji == bkgEmoj) {
-                msg.delete();
+                msg.delete().catch();
 
                 return message.reply("Use `+background`")
               //  return callA(0) // call s shop
             }
             //if Medal
             if (rea.emoji == medalEmoj) {
-                msg.delete();
+                msg.delete().catch();
                 return callB(0) // call s shop
             }
             //if Goodies
             if (rea.emoji == toolsEmoj) {
-                msg.delete();
+                msg.delete().catch();
                 return message.reply("Unavailable");
                // return callC(0) // call s shop
             }
@@ -389,7 +389,7 @@ function processCheckout(item, index, m) {
 
     let funds = gear.checkGoods(price, Author)
     if (!funds) {
-        Channel.send(v.noFundsResponse).then(m => m.delete(2500))
+        Channel.send(v.noFundsResponse).then(m => m.delete(2500).catch())
         return refresh(index, m, v.noFundsFormal)
     };
     let processing = new Discord.RichEmbed;
@@ -434,15 +434,15 @@ ${v.youSure}`)
 
                     if(ownd){
 
-                        Channel.send(v.alreadyPosess).then(m => m.delete(2500))
+                        Channel.send(v.alreadyPosess).then(m => m.delete(2500).catch())
                         return refresh(index, m, v.alreadyPosess)
 
                     }
 
 
-                    m2.delete()
+                    m2.delete().catch()
                     message.reply(check + " "+v.confirmed)
-                    message.delete()
+                    message.delete().catch()
                     gear.paramIncrement(Author, "goodies", -price)
                     return gear.paramAdd(Author, "medalInventory", [medal_file,name])
                 }
@@ -517,9 +517,9 @@ async function pageResolve(m, menuPage, index) {
         ).catch();
 
         if (responses.size === 0) {
-            m.delete();
+            m.delete().catch();
             message.reply(v.timeout);
-            message.delete();
+            message.delete().catch();
         } else {
 
             let rea = responses.first()
@@ -528,8 +528,8 @@ async function pageResolve(m, menuPage, index) {
             if (rea.emoji == xmark) {
 
                 message.reply(xmark + v.cancelled)
-                m.delete();
-                message.delete();
+                m.delete().catch();
+                message.delete().catch();
                 return
             }
             //equals ARRitm

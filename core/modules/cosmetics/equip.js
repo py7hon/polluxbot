@@ -413,7 +413,7 @@ if (inventory == undefined){
                                         console.log(medal_file)
                                         u.modules.medals[finder - 1] = medal_file
                                         userDB.set(Author.id, u)
-                                        me.delete();
+                                        me.delete().catch();
                                         return message.reply(check + v.success)
 
                                     }
@@ -442,9 +442,9 @@ if (inventory == undefined){
                         }
 
 
-                        m2.delete()
+                        m2.delete().catch()
                         message.reply(check + " " + v.confirmed)
-                        message.delete()
+                        message.delete().catch()
                         return gear.paramAdd(Author, "medalInventory", medal_file)
                     }
 
@@ -531,9 +531,9 @@ if (inventory == undefined){
             ).catch();
 
             if (responses.size === 0) {
-                m.delete();
+                m.delete().catch();
                 message.reply(v.timeout);
-                message.delete();
+                message.delete().catch();
             } else {
 
                 let rea = responses.first()
@@ -543,7 +543,7 @@ if (inventory == undefined){
 
                     message.reply(xmark + v.cancelled)
                     m.delete();
-                    message.delete();
+                    message.delete().catch();
                     return
                 }
                 //equals ARRitm

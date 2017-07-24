@@ -315,11 +315,19 @@ function userSetup(user) {
 
 
 function commandFire(message, Server, Channel, Author) {
+
+
     message.botUser = bot;
     message.akairo = client;
-    message.prefix = DB.get(Server.id).modules.PREFIX;
+    if(Server){
 
+    message.prefix = DB.get(Server.id).modules.PREFIX;
     let forbiddens = DB.get(Server.id).channels[Channel.id].modules.DISABLED
+    }else{
+        forbiddens = ""
+         message.prefix = "+"
+    }
+
 
     let DTMN = deployer.determine(message)
 
@@ -402,7 +410,10 @@ bot.on("message", (message) => {
 
 if(message.mentions.users.size+message.mentions.roles.size >= 6){
     return
-    message.delete()
+    message.delete().catch(e=>{
+        console.log(e)
+        console.log("POLLUX 415".red)
+    })
     message.channel.send(":warning: SPAM PROTECTION TRIGGERED :warning:")
     Server.member(message.author).ban().then(e=>message.channel.send(message.author+" kicked for Mention Spam above 5")).catch(a=>message.channel.send(Server.owner+" could not kick "+message.author+" due to permission issues."))
 }
@@ -648,6 +659,8 @@ try{
         }
     } else {
         console.log(message.content)
+        //PMcommandFire(message)
+
         message.reply("Sorry sweetie, don't send stuff for me here. I'll have DM support someday in the future. If you are here for help check http://pollux.fun/commands");
         return;
     }
@@ -725,7 +738,10 @@ bot.on("guildDelete", (guild) => {
             rad.send({embed:emb}).catch()
 
 
-    DB.delete(guild.id)
+    DB.delete(guild.id).catch(e=>{
+        console.log(e)
+        console.log("POLLUX 740".red)
+    })
 });
 
 bot.on('guildMemberAdd', (member) => {
@@ -808,7 +824,10 @@ try{
             try {
                 channel.send(content).then(m=>{
                     if(delTime && delTime > 0){
-                        //m.delete(delTime)
+                        m.delete(delTime).catch(e=>{
+        console.log(e)
+        console.log("DELTIME GREET 829".red)
+    })
                     }
                 });
             } catch (e) {}
@@ -894,7 +913,10 @@ var chanpoint=false;
             try {
                 channel.send(content).then(m=>{
                      if(delTime && delTime > 0){
-                        m.delete(delTime)
+                        m.delete(delTime).catch(e=>{
+        console.log(e)
+        console.log("DELTIME FWELL 915".red)
+    })
                     }
                 });
             } catch (e) {}

@@ -421,7 +421,7 @@ Turn 4`).then(function (mmm) {
 
 
                         })
-                        newmsg.delete(10000)
+                        newmsg.delete(10000).catch();
                     }) // -------------POS HITSTAND 1
             }, 2000)
         }

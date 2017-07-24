@@ -74,7 +74,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
             }
 
         }
-        message.reply(rolenotfound).catch(gear.sendDebug(message))
+        message.reply(rolenotfound).catch(e=>gear.sendDebug(message))
 
 
 
@@ -88,7 +88,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
             }
 
         }
-        message.reply(rolenotfound).catch(gear.sendDebug(message))
+        message.reply(rolenotfound).catch(e=>gear.sendDebug(message))
 
     }
 
@@ -102,7 +102,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
         });
 
         var a = Server.roles.find('name', role);
-        memb.addRole(a).then(a => message.channel.send(roleadd_confirm)).then(e => e.delete(5000)).catch(e => message.channel.send(noPermsMe).catch(gear.sendDebug(message)))
+        memb.addRole(a).then(a => message.channel.send(roleadd_confirm)).then(e => e.delete(5000)).catch(e => message.channel.send(noPermsMe).catch(e=>gear.sendDebug(message)))
         message.delete(5000).catch()
     }
 
@@ -116,8 +116,8 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
         });
 
         var a = Server.roles.find('name', role);
-        memb.removeRole(a).then(a => message.channel.send(roleremove_confirm)).then(e => e.delete(5000)).catch(e => message.channel.send(noPermsMe).catch(gear.sendDebug(message)))
-           message.delete(5000).catch(gear.sendDebug(message))
+        memb.removeRole(a).then(a => message.channel.send(roleremove_confirm)).then(e => e.delete(5000)).catch(e => message.channel.send(noPermsMe).catch(e=>gear.sendDebug(message)))
+           message.delete(5000).catch(e=>gear.sendDebug(message))
     }
 }
 module.exports = {

@@ -132,7 +132,7 @@ emb.setTimestamp(ts)
  }).catch(e=>{message.reply(e)})
 
 
-    message.delete(1000)
+    message.delete(1000).catch()
 
 }
  module.exports = {pub:true,cmd: cmd, perms: 2, init: init, cat: 'misc'};

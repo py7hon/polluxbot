@@ -107,7 +107,7 @@ module.exports = {
                     );
                     if (responses.size === 0) {} else {
                         if (oldDropsly > CHN.DROPSLY) {
-                            r.delete();
+                            r.delete().catch();
                             return resolve(true);
                         }
                         let Picker = responses.first().author
@@ -204,8 +204,8 @@ module.exports = {
                             emoji: ""
                         }) + " " + gear.emoji("ruby")).then(function (c) {
                             message.delete()
-                            c.delete(500000)
-                        }).catch();
+                            c.delete(500000).catch()
+                        }).catch().catch();
 
                         gear.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
                         gear.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)

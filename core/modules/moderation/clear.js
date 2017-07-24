@@ -60,10 +60,10 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                     return message.reply(lerror);
                 }
                 if (number < 2) {
-                    return message.reply(lerror +" Must be 2 or more").then(m=> {m.delete(15000);message.delete()});
+                    return message.reply(lerror +" Must be 2 or more").then(m=> {m.delete(15000).catch();message.delete().catch()});
                 }
                 if (number > 100) {
-                    return message.reply(lerror +" Must be 100 or less").then(m=> {m.delete(15000);message.delete()});
+                    return message.reply(lerror +" Must be 100 or less").then(m=> {m.delete(15000).catch();message.delete().catch()});
                 } else {
                    Channel.fetchMessages({before: message.id, limit: number}).then(mbk => {
                         Channel.bulkDelete(mbk).then(() => {

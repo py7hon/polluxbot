@@ -5,7 +5,7 @@ var init = function (message,userDB,DB) {
 
 //    if (message.author.id != '88120564400553984') return message.reply('Only my master can send me direct orders. now begone!');
 
-  message.delete()
+  message.delete().catch()
  message.channel.send(message.content.substr(message.prefix.length+3))
 
 }

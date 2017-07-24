@@ -120,7 +120,7 @@ responses.first().delete()
 
                             message.channel.send(":new: Playing next: **" + b + "**");
                             message.delete()
-                            msg.delete()
+                            msg.delete().catch()
                             responses.first().delete();
                             return resolve(true)
 
