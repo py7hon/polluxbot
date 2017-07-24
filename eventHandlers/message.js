@@ -295,7 +295,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
         //Wave 2 -- CHECK PREFIX
         if (Server && typeof (DB.get(Server.id).modules.PREFIX) !== 'undefined' && DB.get(Server.id).modules.PREFIX && DB.get(Server.id).modules.PREFIX !== '') {
 
-            //-- START PREFIX
+            //-- GET & CHECK PREFIX
             if (message.content.startsWith(DB.get(Server.id).modules.PREFIX)||
                 message.content.startsWith("p!")) {
                 console.log(message.content)
@@ -308,7 +308,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
 
                 let cleber = false
                 if (cleber) {
-
+                    //cleverbot someday
                 } else {
 
                         if (message.content.startsWith("pollux, ")&&message.author.id==="88120564400553984"){
@@ -316,29 +316,19 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
                             let M = message.content;
                             console.log(M)
                             msg.content = DB.get(Server.id).modules.PREFIX + "eval" + M.substr(M.indexOf(",") + 1)
-
                             console.log(msg.content)
-
-                            //   console.log(msg.content)
                            return polx.commandFire(msg, Server, Channel, Author)
                         }
-
-     try {
+                        try {
                         var usr = message.mentions.users.first()
                         if (message.guild && usr.id == bot.user.id && !message.author.bot) {
-
                             let msg = message;
                             let M = message.content;
                             msg.content = DB.get(Server.id).modules.PREFIX + M.substr(M.indexOf(">") + 2)
-
-                            //   console.log(msg.content)
                             polx.commandFire(msg, Server, Channel, Author)
-
                         }
-
                     } catch (err) {}
                 }
-
             }
         } else {
             //CHECK COMMANDS INSIDE PM
@@ -348,7 +338,6 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
 
             } else {
 
-
             }
         }
     } else {
@@ -357,8 +346,5 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
         message.reply("Sorry sweetie, don't send stuff for me here. I'll have DM support someday in the future. If you are here for help check http://pollux.fun/commands");
         return;
     }
-
-
-
     }
 }

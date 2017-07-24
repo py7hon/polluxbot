@@ -36,8 +36,6 @@ const client = new AkairoClient({
     ownerID: '88120564400553984',
     prefix: '+'
 });
-const Jimp = require("jimp");
-const greeting = require('./utils/greeting');
 const skynet = '248285312353173505';
 const colors = require('colors');
 //==-------------------------------------------
@@ -74,9 +72,6 @@ getDirs('utils/lang/', (list) => {
 })
 
 var mm = multilang.getT();
-
-
-
 
 //Gearbox assemble!
 var gear = require("./core/gearbox.js");
@@ -135,48 +130,25 @@ async function loginSuccess() {
             gear.gamechange(bot)
 
         }
-    }, 1000);
+    }, 1000); // EVERY SEC
+
+    setInterval(function () {
+        //CLEAR EV CACHE
+        fs.readdir("./eventHandlers/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+      delete require.cache[require.resolve(`./eventHandlers/${file}`)]
+  });
+            postGCount(bot.guilds.size);
+});
+
+  }, (60000*15) ); // EVERY 15 MINS
+
 // ACTIONS OVER TIME ▲▲▲▲▲▲▲▲▲
 }
 
 console.log('Ready to Rock!')
-bot.on('ready', async () => {
 
-
-   /*
-
-    bot.guilds.forEach(async g => {
-        if (!DB.get(g.id)) return serverSetup(g);
-        await gear.normaliseGUILD(g, DB)
-
-        g.members.forEach(async m => {
-            if (!userDB.get(m.id)) return userSetup(m.user);
-            await gear.normaliseUSER(m, userDB, DB)
-
-        })
-    })*/
-    bot.user.setStatus('online')
-
-  //   bot.user.setGame(`coding Pollux`, 'https://www.twitch.tv/theFlicky').then().catch();
-
-    //bot.user.setGame(`Neverwinter Nights`).then().catch();
-
-/*    async.parallel(bot.guilds.forEach(G => serverSetup(G)))*/
-
-    userSetup(bot.user)
-
-    let name = 'Pollux Core Reporter';
-
-    let tx = `All systems go! I am ready to rock, master!`;
-    let color = '#3ed844';
-
-    await gear.sendSlack(name, tx, undefined, color)
-
-    if(bot.user.id != "278993643531141120"){
-     postGCount(bot.guilds.size)
-    }
-
-});
 
 //=====================================
 
@@ -198,11 +170,6 @@ Array.prototype.removeire = function removeire() {
 //      FUNCTIONFEST
 //=======================================//
 
-
-
-
-
-//===
 function getDirs(rootDir, cb) {
     fs.readdir(rootDir, function (err, files) {
         var dirs = [];
@@ -226,7 +193,6 @@ function getDirs(rootDir, cb) {
     })
 } //detatch
 function serverSetup(guild) {
-
 
     if (!DB.get(guild.id)||DB.get(guild.id)==undefined) {
 
@@ -289,8 +255,6 @@ function userSetup(user) {
         gear.normaliseUSER(user, userDB, DB)
     }
 } //DB
-
-
 function commandFire(message, Server, Channel, Author) {
 
 
@@ -342,18 +306,6 @@ bot.login(cfg.token).then(loginSuccess());
 //      BOT EVENT HANDLER
 //=======================================//
 
-//==---------------------------------
-// COMMANDS (MESSAGES)
-
-// XP SPAM PROTECTION
-
-// ==============================================
-
-let eventor = __dirname+"/events/"
-bot.on(eventor,(e)=>eventor.fires(e))
-
-
-
 fs.readdir("./eventHandlers/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
@@ -364,297 +316,6 @@ fs.readdir("./eventHandlers/", (err, files) => {
   });
 });
 
-
-
-
-
-// COMMANDS (MESSAGES)
-//==-------------------------------------------
-
-bot.on('reconnecting', () => {
-    console.log("Reconnect".bgRed)
-
-    let username = 'Pollux Core Reporter';
-    let pretext = `SELF RESTART TRIGGERED! Gimme a second to still myself.`;
-    let color = '#ffb249';
-
-    gear.sendSlack(username, pretext, undefined, color)
-
-});
-
-
-bot.on('guildCreate', (guild) => {
-
-
-
-    var PolluxS = bot.guilds.get("277391723322408960")
-    var rad = PolluxS.channels.get("332025773521371137")
-
-            var emb = new Discord.RichEmbed;
-
-            emb.setThumbnail(guild.iconURL)
-            emb.setDescription(`:inbox_tray: Added to **${guild.name}**`);
-            emb.addField("Members",guild.members.size,true)
-            emb.addField("Region",guild.region,true)
-            emb.addField("Owner",guild.owner,true)
-            emb.addField("Owner Tag",guild.owner.user.tag,true)
-            emb.setColor("#255ec9");
-            var ts = new Date
-            emb.setTimestamp(ts)
-
-            rad.send({embed:emb}).catch()
-
-
-
-
-
-
-    if (guild.region=="brazil"){
-      var greetings = greeting.ownPt
-    }else{
-       var greetings = greeting.own
-    }
-
-    var greetings = greetings.replace(/\{\{server\}\}/g, guild.name)
-    guild.owner.send(greetings)
-    serverSetup(guild);
-});
-bot.on("guildDelete", (guild) => {
-
-
-        var PolluxS = bot.guilds.get("277391723322408960")
-    var rad = PolluxS.channels.get("332025773521371137")
-
-
-            var emb = new Discord.RichEmbed;
-
-            emb.setThumbnail(guild.iconURL)
-            emb.setDescription(`:outbox_tray: Removed from **${guild.name}**`);
-  emb.addField("Members",guild.members.size,false)
-            emb.addField("Owner",guild.owner,true)
-            emb.addField("Owner Tag",guild.owner.username+"#"+guild.owner.discriminator,true)
-            emb.setColor("#c92525");
-            var ts = new Date
-            emb.setTimestamp(ts)
-
-            rad.send({embed:emb}).catch()
-
-
-    DB.delete(guild.id).catch(e=>{
-        console.log(e)
-        console.log("POLLUX 740".red)
-    })
-});
-
-bot.on('guildMemberAdd', (member) => {
-    var Server = member.guild
-var chanpoint=false;
-       try {
-
-        let logchan = DB.get(Server.id).modules.LOGCHANNEL
-        let advchan = DB.get(Server.id).modules.ADVLOG
-        let actchan = DB.get(Server.id).modules.ACTLOG
-        let modchan = DB.get(Server.id).modules.MODLOG
-
-
-        // if( advchan && Server.channels.has(advchan)){chanpoint = Server.channels.get(advchan)}
-        if (logchan && Server.channels.has(logchan)) {
-            chanpoint = Server.channels.get(logchan)
-        }
-        if (actchan && Server.channels.has(actchan)) {
-            chanpoint = Server.channels.get(actchan)
-        }
-        // if( modchan && Server.channels.has(modchan)){chanpoint = Server.channels.get(modchan)}
-
-
-        if (chanpoint) {
-
-            var id = member.id
-            var emb = new Discord.RichEmbed;
-
-
-            var joined = "joined the Server"
-
-
-            emb.setDescription(`:inbox_tray: **${member.user.username+"#"+member.user.discriminator}** ${joined}`);
-
-            emb.setColor("#25c9b0");
-            var ts = new Date
-            emb.setFooter("Join", member.user.avatarURL)
-            emb.setTimestamp(ts)
-
-            chanpoint.send({embed:emb}).catch()
-
-        }
-
-
-    } catch (err) {
-        console.log(err)
-    }
-
-
-    if (Server) {
-
-        let defaultgreet = {
-            hi: false,
-            joinText: "Welcome to the Server %username%!",
-            greetChan: ""
-        }
-try{
-
-        if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET === undefined) {
-            gear.paramDefine(Server, "GREET", defaultgreet)
-        }
-}catch(e){
-    serverSetup(Server)
-}
-
-        if (typeof (DB.get(Server.id).modules.GREET.hi) !== 'undefined' && DB.get(Server.id).modules.GREET.joinText !== '' && DB.get(Server.id).modules.GREET.hi == true) {
-
-               if(DB.get(Server.id).modules.GREET.hiDEL === undefined){
-                   gear.paramDefine(Server,"GREET.hiDEL",5000)
-               }
-
-            let delTime = DB.get(Server.id).modules.GREET.hiDEL || 5000;
-
-            let channels = member.guild.channels.filter(c => {
-                return (c.id === DB.get(Server.id).modules.GREET.greetChan)
-            });
-            let channel = channels.first();
-            let content = DB.get(Server.id).modules.GREET.joinText.replace('%username%', member.user);
-            content = content.replace('%server%', member.guild.name);
-            try {
-                channel.send(content).then(m=>{
-                    if(delTime && delTime > 0){
-                        m.delete(delTime).catch(e=>{
-        console.log(e)
-        console.log("DELTIME GREET 829".red)
-    })
-                    }
-                });
-            } catch (e) {}
-        }
-    }
-})
-
-bot.on('guildMemberRemove', (member) => {
-
-    var Server = member.guild
-
-var chanpoint=false;
-    try {
-
-        let logchan = DB.get(Server.id).modules.LOGCHANNEL
-        let advchan = DB.get(Server.id).modules.ADVLOG
-        let actchan = DB.get(Server.id).modules.ACTLOG
-        let modchan = DB.get(Server.id).modules.MODLOG
-
-
-        // if( advchan && Server.channels.has(advchan)){chanpoint = Server.channels.get(advchan)}
-        if (logchan && Server.channels.has(logchan)) {
-            chanpoint = Server.channels.get(logchan)
-        }
-        if (actchan && Server.channels.has(actchan)) {
-            chanpoint = Server.channels.get(actchan)
-        }
-        // if( modchan && Server.channels.has(modchan)){chanpoint = Server.channels.get(modchan)}
-
-
-        if (chanpoint) {
-
-            var id = member.id
-            var emb = new Discord.RichEmbed;
-
-
-
-            //var mm = multilang.getT();
-
-            var left = "left the Server"
-            emb.setDescription(`:outbox_tray: **${member.user.username+"#"+member.user.discriminator}** ${left}`);
-
-            emb.setColor("#c92525");
-            var ts = new Date
-            emb.setFooter("Leave", member.user.avatarURL)
-            emb.setTimestamp(ts)
-
-            chanpoint.send({embed:emb}).catch()
-
-        }
-
-
-    } catch (err) {
-        console.log(err)
-    }
-
-    if (Server) {
-        let defaultgreetB = {
-            hi: false,
-            joinText: "%username% has left us!",
-            greetChan: ""
-        }
-
-        if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL === undefined) {
-            gear.paramDefine(Server, "FWELL", defaultgreetB)
-        }
-       if(DB.get(Server.id).modules.FWELL.hiDEL === undefined){
-                   gear.paramDefine(Server,"FWELL.hiDEL",5000)
-               }
-
-            let delTime = DB.get(Server.id).modules.FWELL.hiDEL || 5000;
-
-
-
-        if (typeof (DB.get(Server.id).modules.FWELL.hi) !== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !== '' && DB.get(Server.id).modules.FWELL.hi == true) {
-
-            let channels = member.guild.channels.filter(c => {
-                return (c.id === DB.get(Server.id).modules.FWELL.greetChan)
-            });
-            let channel = channels.first();
-            let content = DB.get(Server.id).modules.FWELL.joinText.replace('%username%', member.user);
-            content = content.replace('%server%', member.guild.name);
-            try {
-                channel.send(content).then(m=>{
-                     if(delTime && delTime > 0){
-                        m.delete(delTime).catch(e=>{
-        console.log(e)
-        console.log("DELTIME FWELL 915".red)
-    })
-                    }
-                });
-            } catch (e) {}
-        }
-    }
-})
-
-bot.on('error', (err) => {
-    if (!err    ) return;
-let name = "Pollux Core Reporter"
-let txb = "Minor error! Check console"
-let tx = `
-**${err}**
-
-
-${err.stack}
-
-`
-let color =  '#ffdc49'
-
-gear.sendSlack(name, txb, tx, color)
-
-    //hook.send(error.toString())
-});
-
-bot.on("channelCreate", channel=>{
-
-    gear.logChannel(channel,"CREATED",DB)
-
-})
-bot.on("channelDelete", channel=>{
-
-    gear.logChannel(channel,"DELETED",DB)
-
-})
-
 //=======================================//
 //      PROCESS EVENT HANDLER
 //=======================================//
@@ -662,12 +323,9 @@ bot.on("channelDelete", channel=>{
 process.on('unhandledRejection', function(reason, p){
     console.log("Possibly Unhandled Rejection at: Promise \n".red,p, "\n\n reason: ".red, reason.stack);
 
-
     gear.sendSlack("Promise Breaker","Promise Rejection: "+reason,reason.stack,"#ffcd25" )
 });
-
 process.on('uncaughtException', function (err) {
-
 
     console.log('EXCEPTION: '.bgRed.white.bold + err);
     console.log(err.stack);
@@ -689,72 +347,68 @@ ${err.stack}
 
 });
 
-
 function postGCount(g) {
-
-
-
-
-
-    console.log(cfg.dborg)
-
     let rqORG = {
         headers: {
             Authorization: cfg.dborg
         },
         url: `https://discordbots.org/api/bots/271394014358405121/stats`,
         method: 'POST',
-           body: { server_count: g },
-  json: true
+        body: {
+            server_count: g
+        },
+        json: true
     };
     rq(rqORG, function (err, response, body) {
         if (err) {
-          console.log("ORG");
+            console.log("ORG");
             console.log(err)
         }
-          console.log("ORG");
+        console.log("ORG");
         //  console.log(response);
-  console.log(body);
+        console.log(body);
     });
 
-        let rqOptions = {
+    let rqOptions = {
         headers: {
             Authorization: cfg.pwTok
         },
         url: `https://bots.discord.pw/api/bots/271394014358405121/stats`,
         method: 'POST',
-      body: { server_count: g },
-  json: true
+        body: {
+            server_count: g
+        },
+        json: true
     };
     rq(rqOptions, function (err, response, body) {
-             if (err) {
-          console.log("PW");
-            console.log(err)
-        }
-          console.log("PW");
-        //  console.log(response);
-  console.log(body);
-    });
-/*
-
-    });
-
-    let rqCarbon = {
-        url: `https://www.carbonitex.net/discord/data/botdata.php`,
-        method: 'POST',
-        json: {
-            "server_count": g,
-            "key": cfg.carbon_token //SOON
-        }
-    };
-
-    rq(rqCarbon, function (err, response, body) {
         if (err) {
+            console.log("PW");
             console.log(err)
         }
-
+        console.log("PW");
+        //  console.log(response);
+        console.log(body);
     });
-*/
+    /*
+
+        });
+
+        let rqCarbon = {
+            url: `https://www.carbonitex.net/discord/data/botdata.php`,
+            method: 'POST',
+            json: {
+                "server_count": g,
+                "key": cfg.carbon_token //SOON
+            }
+        };
+
+        rq(rqCarbon, function (err, response, body) {
+            if (err) {
+                console.log(err)
+            }
+
+        });
+    */
 }
 
 //---------------------------------------------------------------------------------------- END
@@ -765,5 +419,6 @@ module.exports = {
     serverSetup: serverSetup,
     userSetup: serverSetup,
     commandFire: commandFire,
+    postGCount: postGCount,
     bot:bot
 };
