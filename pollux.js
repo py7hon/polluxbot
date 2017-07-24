@@ -172,7 +172,9 @@ bot.on('ready', async () => {
 
     await gear.sendSlack(name, tx, undefined, color)
 
+    if(bot.user.id != "278993643531141120"){
      postGCount(bot.guilds.size)
+    }
 
 });
 
