@@ -3,7 +3,7 @@ const Jimp = require("jimp");
 const fs = require("fs");
 const paths = require("../paths.js");
 const REACTIONS = "./resources/imgres/reactions/"
-
+var mentioned = []
 module.exports = {
 
     //------------------------------------------------------------------------------//
@@ -14,11 +14,18 @@ module.exports = {
 
 
     presenceUpdate:  function (gear,DB,userDB,bot, oldMember, newMember){
+
+
+
        // console.log("oldMember")
         try{
        // console.log(newMember.presence.game.name.toLowerCase())
       var sky = newMember.guild;
-          //  setTimeout(fu => {
+
+            if (mentioned.includes(newMember.id) return;
+
+
+
                 try {
                     if (newMember.id == '248435798179971072' && newMember.presence.game.name.toLowerCase() == "for honor") {
                         console.log('HONOR')
@@ -26,11 +33,12 @@ module.exports = {
                     }
 
 
-                    if ((newMember.presence.game.name.toLowerCase() == "heroes of the storm") && (oldMember.presence.game.name.toLowerCase() != "heroes of the storm")) {
+                    if ((newMember.presence.game.name.toLowerCase() === "heroes of the storm") && (oldMember.presence.game.name.toLowerCase() !== "heroes of the storm") && cd==false) {
+                        var cd = true
                         console.log('HERO')
                         var herois = sky.roles.find('name', 'Heróis do Toró')
                         sky.defaultChannel.send(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.").then(jjm => {
-                            jjm.delete(600000)
+                            jjm.delete(60000)
                         }).catch()
 
                         var team = 0
@@ -40,24 +48,30 @@ module.exports = {
 
                         if (team > 1 && team < 6) {
                             sky.defaultChannel.send("Temos **" + team + "** malucos jogando, faltam " + (5 - team) + " e fecha o time.").then(jjm => {
-                                jjm.delete(600000)
+                                jjm.delete(60000)
                             }).catch()
                         }
                         if (team > 5 && team < 10) {
                             sky.defaultChannel.send("Temos **" + team + "** malucos jogando, faltam " + (10 - team) + " e temos dois times!!!").then(jjm => {
-                                jjm.delete(600000)
+                                jjm.delete(60000)
                             }).catch()
                         }
                         if (team == 5) {
                             sky.defaultChannel.send("FECHOU TIME!!!").then(jjm => {
-                                jjm.delete(600000)
+                                jjm.delete(60000)
                             }).catch()
                         }
                         if (team == 10) {
                             sky.defaultChannel.send("FECHOU DOIS TIMES!!!").then(jjm => {
-                                jjm.delete(600000)
+                                jjm.delete(60000)
                             }).catch()
                         }
+                         if (team > 10) {
+                            sky.defaultChannel.send("Sifudeu, vai jogar sozinho!!!").then(jjm => {
+                                jjm.delete(60000)
+                            }).catch()
+                        }
+                        mentioned.push(newMember.id)
 
                     }
                 } catch (e) {
@@ -66,7 +80,8 @@ module.exports = {
 
                     }
                 }
-           // }, 10000)
+             setTimeout(fu => {cd=false}, 65432);
+             setTimeout(fu => {mentioned=[]}, 654321);
 
         }catch(e){
            // console.log(e)
