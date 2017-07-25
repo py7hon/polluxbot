@@ -16,7 +16,7 @@
   "repository": "https://github.com/Flicksie/polluxbot.git",
   "license": "MIT",
   "dependencies": {
-      "cheerio":"latest",
+    "cheerio":"latest",
     "array-sort": "latest",
     "ascii-art": "^1.4.2",
     "ascii-table": "0.0.9",
