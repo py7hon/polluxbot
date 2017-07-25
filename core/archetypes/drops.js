@@ -59,7 +59,7 @@ module.exports = {
                     good: GOOD,
                     emoji: GOODMOJI,
                     prefix: prefie
-                }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">")).then(m => processDrop(m))
+                }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">")).then(m => processDrop(m)).catch(e=>console.log("--unauthorized drop--"))
 
             }).then(m => processDrop(m))
         }
@@ -81,7 +81,7 @@ module.exports = {
                     good: GOOD,
                     emoji: GOODMOJI,
                     prefix: event.DB.get(Server.id).modules.PREFIX
-                }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">")).then(m => processDropRare(m)).catch(e => gear.hook.send(e.error))
+                }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">")).then(m => processDropRare(m)).catch(e => gear.hook.send("**DROP REFUSES** \n"+e.error))
             })
         }
 
@@ -146,13 +146,6 @@ module.exports = {
                             hook.send(v)
                         });
                         return resolve(true);
-
-
-
-
-
-
-
 
 
                     }
