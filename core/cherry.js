@@ -32,7 +32,7 @@ module.exports = {
 
                     let eventor = require(`${__dirname}/cherry/${file}`);
                     // let eventide = file.split(".")[0];
-
+                    if(!eventor[eve])return;
                     bot.on(eve, (...args) => eventor[eve](gear, DB, userDB, bot, ...args));
                 } catch (e) {
                   //  console.log(e)
