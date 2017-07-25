@@ -15,14 +15,18 @@ module.exports = {
 
     presenceUpdate:  function (gear,DB,userDB,bot, oldMember, newMember){
 
+        console.log(oldMember[1])
 
+if(!Server.mentioned){
+    Server.mentioned = []
+}
 
-       // console.log("oldMember")
         try{
        // console.log(newMember.presence.game.name.toLowerCase())
       var sky = newMember.guild;
 
             if (mentioned.includes(newMember.id) return;
+            if (Server.mentioned.includes(newMember.id)) return;
 
 
 
@@ -37,7 +41,7 @@ module.exports = {
                         var cd = true
                         console.log('HERO')
                         var herois = sky.roles.find('name', 'Heróis do Toró')
-                        sky.defaultChannel.send(herois + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.").then(jjm => {
+                        sky.defaultChannel.send(herois.name + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.").then(jjm => {
                             jjm.delete(60000)
                         }).catch()
 
@@ -72,6 +76,7 @@ module.exports = {
                             }).catch()
                         }
                         mentioned.push(newMember.id)
+                       Server.mentioned.push(newMember.id)
 
                     }
                 } catch (e) {
@@ -82,6 +87,7 @@ module.exports = {
                 }
              setTimeout(fu => {cd=false}, 65432);
              setTimeout(fu => {mentioned=[]}, 654321);
+             setTimeout(fu => {Server.mentioned=[]}, 654321);
 
         }catch(e){
            // console.log(e)
