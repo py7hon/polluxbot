@@ -67,7 +67,7 @@ module.exports = {
 
 
         if (droprate == 777) {
-            var mm = multilang.getT();
+
             event.channel.send(mm('$.rareDrop', {
                 lngs: LANG,
                 good: GOOD,
