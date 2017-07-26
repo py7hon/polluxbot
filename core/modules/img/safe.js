@@ -1,6 +1,6 @@
 var gear = require("../../gearbox.js");
-const Discord = require("discord.js");
-const Jimp = require("jimp");
+
+
 const getter = require("booru-getter")
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
@@ -26,7 +26,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
     return gear.usage(cmd,message);
 }
 //------------
-    var emb =    new Discord.RichEmbed();
+    var emb =    new gear.Discord.RichEmbed();
 
         console.log("SAFEBOORU INVOKED by " + Author.name + "-------------\n")
         console.log(1) ;

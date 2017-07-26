@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
@@ -53,7 +53,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
 
 
- emb =    new Discord.RichEmbed();
+ emb =    new gear.Discord.RichEmbed();
 
 var ram = parseFloat(Math.round(os.totalmem()) / 1000)-parseFloat(Math.round(os.freemem()) / 1000)
 

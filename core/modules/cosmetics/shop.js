@@ -1,5 +1,5 @@
-const Jimp = require("jimp");
-const Discord = require("discord.js");
+
+
 const arraySort = require('array-sort')
 const fs = require("fs");
 const gear = require('../../gearbox.js')
@@ -233,7 +233,7 @@ const check = bot.emojis.get("314349398811475968") || "✅";
 const xmark = bot.emojis.get("314349398824058880") || "❌";
 
 //Choose Shop
-let emb = new Discord.RichEmbed
+let emb = new gear.Discord.RichEmbed
 emb.setColor("#5743c6")
 emb.setTitle(v.whatShop)
 emb.addField(v.bgShop, bkgEmoj, true)
@@ -327,7 +327,7 @@ function buildPage(page) {
     let currentPage = page || 0;
     let menuArr = menu[currentPage]; // MENU IS GLOBAL
     let pageObj = createpage(menu[currentPage]); // reaction pagination
-    let emb = new Discord.RichEmbed
+    let emb = new gear.Discord.RichEmbed
     emb.setColor("#e12f55")
     emb.setTitle(medalEmoj + " "+v.medalShop.toUpperCase())
     for (i = 0; i < menuArr.length; i++) {
@@ -392,7 +392,7 @@ function processCheckout(item, index, m) {
         Channel.send(v.noFundsResponse).then(m => m.delete(2500).catch())
         return refresh(index, m, v.noFundsFormal)
     };
-    let processing = new Discord.RichEmbed;
+    let processing = new gear.Discord.RichEmbed;
     processing.setColor("#2bb955")
      m.clearReactions().catch(e=>{         message.reply("I need MANAGE MESSAGES and ADD REACTIONS Permissions to do this correctly, please contact the server administrator");            });
     processing.setTitle(v.processing)

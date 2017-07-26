@@ -49,7 +49,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
 
 
-            if (typeof (cmdd[1]) !=== 'undefined') {
+            if (typeof (cmdd[1]) !== 'undefined') {
                 var number = 0;
                 try {
                     number = parseInt(cmdd[1]);

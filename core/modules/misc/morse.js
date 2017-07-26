@@ -1,4 +1,4 @@
-var Discord = require("discord.js");
+
 var gear = require("../../gearbox.js");
 var morse = require("morse-mp3");
 var morset = require("morse");
@@ -29,7 +29,7 @@ try{
 
              let mo = morset.encode(string)
 
-             emb = new Discord.RichEmbed
+             emb = new gear.Discord.RichEmbed
             emb.setAuthor("We get signal!")
             emb.setFooter("Radio Operator | Zero Wing","http://i.imgur.com/tda07NK.png")
             emb.setColor("#5745a3")

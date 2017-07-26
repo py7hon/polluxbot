@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+
 const polx = require("../pollux.js")
 const fs = require("fs")
 var defaults = require("../utils/defaults.js") // Database Defaults
@@ -29,8 +29,8 @@ module.exports = {
 
             if (chanpoint) {
                 var id = member.id
-                var emb = new Discord.RichEmbed;
-                var left = JSON.parse(fs.readFileSync("../utils/lang/" + locale + "/translation.json", 'utf8')).leftServ;
+                var emb = new gear.Discord.RichEmbed;
+                var left = JSON.parse(gear.fs.readFileSync("../utils/lang/" + locale + "/translation.json", 'utf8')).leftServ;
                 emb.setDescription(`:outbox_tray: **${member.user.username+"#"+member.user.discriminator}** ${left}`);
 
                 emb.setColor("#c92525");
@@ -63,7 +63,7 @@ module.exports = {
 
             let delTime = DB.get(Server.id).modules.FWELL.hiDEL || 5000;
 
-            if (typeof (DB.get(Server.id).modules.FWELL.hi) !=== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !=== '' && DB.get(Server.id).modules.FWELL.hi == true) {
+            if (typeof (DB.get(Server.id).modules.FWELL.hi) !== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !== '' && DB.get(Server.id).modules.FWELL.hi == true) {
 
                 let channels = member.guild.channels.filter(c => {
                     return (c.id === DB.get(Server.id).modules.FWELL.greetChan)

@@ -1,6 +1,6 @@
-const Discord = require("discord.js")
+
 const fs = require("fs");
-const Jimp = require("jimp");
+
 const Cafe = require("../archetypes/Cafe");
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
@@ -42,7 +42,7 @@ var init = function (message, userDB, DB) {
     }
 
     Author.menuproc = true
-    var emb = new Discord.RichEmbed();
+    var emb = new gear.Discord.RichEmbed();
 
     message.author.order = []
 

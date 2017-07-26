@@ -1,5 +1,5 @@
 
-const Discord = require("discord.js");
+
 const arraySort = require('array-sort')
 const fs = require("fs");
 const gear = require('../../gearbox.js')
@@ -26,7 +26,7 @@ var LANG = message.lang;
 
 gear.paramIncrement(Author,'goodies',0)
 
- emb =    new Discord.RichEmbed();
+ emb =    new gear.Discord.RichEmbed();
     emb.title = "Server Leaderboards"
     emb.description = "Servers sort by Member Count: No Servers with bot count > 15%"
 

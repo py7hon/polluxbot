@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
@@ -72,7 +72,7 @@ module.exports = {
                 lngs: LANG,
                 good: GOOD,
                 emoji: GOODMOJI,
-                prefix: event.DB.get(Server.id).modules.PREFIX
+                prefix: DB.get(Server.id).modules.PREFIX
             }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">"), {
                 files: [paths.BUILD + 'rubypot.png']
             }).then(m => processDropRare(m)).catch(e => {
@@ -80,7 +80,7 @@ module.exports = {
                     lngs: LANG,
                     good: GOOD,
                     emoji: GOODMOJI,
-                    prefix: event.DB.get(Server.id).modules.PREFIX
+                    prefix: DB.get(Server.id).modules.PREFIX
                 }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">")).then(m => processDropRare(m)).catch(e => gear.hook.send("**DROP REFUSES** \n"+e.error))
             })
         }

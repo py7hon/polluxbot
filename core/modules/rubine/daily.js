@@ -19,7 +19,7 @@
      days > 1 ? time = days + " dias " : time = time
      return time;
  }
-const Discord = require("discord.js")
+
  var gear = require("../../gearbox.js");
  var paths = require("../../paths.js");
  var locale = require('../../../utils/multilang_b');
@@ -83,7 +83,7 @@ var emoj = bot.emojis.get('276878246589497344')
 
 
           if (args === "help" || args === "?" || args === "reset" || args === "epoch"){
-         let e = new Discord.RichEmbed
+         let e = new gear.Discord.RichEmbed
 
           var r = next
           //var R = -();

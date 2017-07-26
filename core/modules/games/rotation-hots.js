@@ -3,15 +3,15 @@
 
 
 var request = require('request');
-var cheerio = require('cheerio');
+
 var rotation = [[]]
 const fs = require("fs");
-const Jimp = require("jimp");
+
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
-const Discord = require("discord.js");
+
 
 
 var cmd = 'rotation-hots';
@@ -51,7 +51,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
     request('http://heroesofthestorm.gamepedia.com/Free_rotation', function (error, response, html) {
 
   if (!error && response.statusCode == 200) {
-    var $ = cheerio.load(html);
+    var $ = gear.cheerio.load(html);
     $('.hero-tile').each(function(i, element){
 
         //console.log(element)
@@ -70,7 +70,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 
 
 
- emb =    new Discord.RichEmbed();
+ emb =    new gear.Discord.RichEmbed();
 
 
 

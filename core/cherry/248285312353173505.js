@@ -1,5 +1,5 @@
-const Discord = require("discord.js");
-const Jimp = require("jimp");
+
+
 const fs = require("fs");
 const paths = require("../paths.js");
 const REACTIONS = "./resources/imgres/reactions/"
@@ -14,8 +14,8 @@ module.exports = {
 
 
     presenceUpdate:  function (gear,DB,userDB,bot, oldMember, newMember){
+let Server = newMember.guild
 
-        console.log(oldMember[1])
 
 if(!Server.mentioned){
     Server.mentioned = []

@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+
 const getter = require("booru-getter");
 const fs = require("fs");
 const gear = require("../../gearbox.js")
@@ -6,7 +6,7 @@ var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
 
 var cmd = 'airwaifu';
-var emb = new Discord.RichEmbed();
+var emb = new gear.Discord.RichEmbed();
 
 var init = function (message) {
 var Server = message.guild;

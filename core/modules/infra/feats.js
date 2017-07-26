@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
@@ -50,7 +50,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 
 
 
- emb =    new Discord.RichEmbed();
+ emb =    new gear.Discord.RichEmbed();
 
 
 

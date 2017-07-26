@@ -146,11 +146,11 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
         // SIDE COMMANDS
         try{
 
-        fs.readFile("./core/collateral_triggers.json", 'utf8', (err, data) => {
+        gear.fs.readFile("./core/collateral_triggers.json", 'utf8', (err, data) => {
             data = JSON.parse(data)
 
             if (data[MSG]) {
-                let jet = require(`./core/sidecommands/${data[MSG]}.js`);
+                let jet = require(`../core/sidecommands/${data[MSG]}.js`);
                 try {
                     jet.run(bot, message, DB, defaults.gdfal)
                     return
@@ -163,12 +163,12 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
         }catch(e){}
         if (message.content.endsWith('now illegal')) {
 
-            let illegal = require(`./core/sidecommands/nowillegal.js`);
+            let illegal = require(`../core/sidecommands/nowillegal.js`);
             try {
                 illegal.run(bot, message)
                 return
             } catch (err) {
-                console.log('ERROR')
+                console.log(err)
                 //hook.send(err)
                 return
             }
@@ -284,7 +284,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
 
         //Wave 1 --> CHECK LOCALE
 
-        if (Server && typeof (DB.get(Server.id).modules.LANGUAGE) !=== 'undefined' && DB.get(Server.id).modules.LANGUAGE && DB.get(Server.id).modules.LANGUAGE !=== '') {
+        if (Server && typeof (DB.get(Server.id).modules.LANGUAGE) !== 'undefined' && DB.get(Server.id).modules.LANGUAGE && DB.get(Server.id).modules.LANGUAGE !== '') {
             let langua = "en"
             if (Server.region === 'brazil') langua = "dev";
             message.lang = [DB.get(Server.id).modules.LANGUAGE, langua];
@@ -295,7 +295,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
         }
 
         //Wave 2 -- CHECK PREFIX
-        if (Server && typeof (DB.get(Server.id).modules.PREFIX) !=== 'undefined' && DB.get(Server.id).modules.PREFIX && DB.get(Server.id).modules.PREFIX !=== '') {
+        if (Server && typeof (DB.get(Server.id).modules.PREFIX) !== 'undefined' && DB.get(Server.id).modules.PREFIX && DB.get(Server.id).modules.PREFIX !== '') {
 
             //-- GET & CHECK PREFIX
             if (message.content.startsWith(DB.get(Server.id).modules.PREFIX)||

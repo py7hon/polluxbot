@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+
 const arraySort = require('array-sort')
 const fs = require("fs");
 const gear = require('../../gearbox.js')
@@ -25,7 +25,7 @@ var LANG = message.lang;
 
 gear.paramIncrement(Author,'goodies',0)
 
- emb =    new Discord.RichEmbed();
+ emb =    new gear.Discord.RichEmbed();
     emb.title = "Global Leaderboards"
 
  emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/skynet.png")

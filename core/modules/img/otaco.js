@@ -1,7 +1,5 @@
 var cmd = 'ahegao';
 var gear = require("../../gearbox.js");
-var fs = require("fs");
-
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
@@ -24,7 +22,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 }
 //------------
 try{
-  fs.readdir(paths.BUILD+"frenes/otaco/", function (err, files) {
+  gear.fs.readdir(paths.BUILD+"frenes/otaco/", function (err, files) {
       let rand = gear.randomize(0,files.length-1);
       var filepath = paths.BUILD+"frenes/otaco/"+files[rand]
 

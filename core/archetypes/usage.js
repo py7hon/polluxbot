@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+
 const fs = require("fs")
 var gear = require("../gearbox.js");
 var paths = require("../paths.js");
@@ -15,7 +15,7 @@ module.exports = {
     run: function run(cmd, m, third) {
     try{
 
-        let emb = new Discord.RichEmbed
+        let emb = new gear.Discord.RichEmbed
         emb.setColor("#c65fe5")
         if (third === "nsfw") {
             emb.setThumbnail("https://rlv.zcache.com/nsfw_square_sticker-rea0c876a9755416f8e088671fe163335_v9i40_8byvr_324.jpg");

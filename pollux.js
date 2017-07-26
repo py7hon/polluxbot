@@ -1,7 +1,7 @@
 //Discord Start
-const Discord = require("discord.js");
+var gear = require("./core/gearbox.js");
 var rq = require("request");
-var bot = new Discord.Client({
+var bot = new gear.Discord.Client({
     messageCacheMaxSize: 4048,
     messageCacheLifetime: 1680,
     messageSweepInterval: 2600,
@@ -74,7 +74,7 @@ getDirs('utils/lang/', (list) => {
 var mm = multilang.getT();
 
 //Gearbox assemble!
-var gear = require("./core/gearbox.js");
+
 
 //Database load!
 const DB = gear.DB
@@ -175,7 +175,7 @@ function getDirs(rootDir, cb) {
         var dirs = [];
         for (var i = 0; i < files.length; ++i) {
             var file = files[i];
-            if (file[0] !=== '.') {
+            if (file[0] !== '.') {
                 var filePath = rootDir + '/' + file;
                 fs.stat(filePath, function (err, stat) {
                     if (stat.isDirectory()) {

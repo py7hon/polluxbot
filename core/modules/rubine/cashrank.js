@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+
 const arraySort = require('array-sort')
 const fs = require("fs");
 const gear = require('../../gearbox.js')
@@ -45,7 +45,7 @@ var emojya = bot.emojis.get('276878246589497344')
     if (DB.get(Server.id).modules.GOODNAME) {
         GOOD = DB.get(Server.id).modules.GOODNAME
     }
-    emb = new Discord.RichEmbed();
+    emb = new gear.Discord.RichEmbed();
     var rankItem = []
     var ranked = []
      userDB.forEach(j=>{

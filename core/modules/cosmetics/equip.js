@@ -1,5 +1,5 @@
-const Jimp = require("jimp");
-const Discord = require("discord.js");
+
+
 const arraySort = require('array-sort')
 const fs = require("fs");
 const gear = require('../../gearbox.js')
@@ -306,7 +306,7 @@ if (inventory == undefined){
         let currentPage = page || 0;
         let menuArr = menu[currentPage]; // MENU IS GLOBAL
         let pageObj = createpage(menu[currentPage]); // reaction pagination
-        let emb = new Discord.RichEmbed
+        let emb = new gear.Discord.RichEmbed
         emb.setColor("#e18f2f")
         emb.setTitle(":diamond_shape_with_a_dot_inside:" + v.equipMenu)
         emb.setDescription(v.choose)
@@ -335,7 +335,7 @@ if (inventory == undefined){
         let name = item[1]
 
 
-        let processing = new Discord.RichEmbed;
+        let processing = new gear.Discord.RichEmbed;
         processing.setColor("#2bb955")
         m.clearReactions().catch(e => {
             message.reply(

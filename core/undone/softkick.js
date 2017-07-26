@@ -1,5 +1,5 @@
 exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
-    const Jimp = require("jimp");
+
     var paths = require("../paths.js");
 
 
@@ -42,19 +42,19 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         img = kik.avatarURL.substr(0, kik.avatarURL.length - 10);
     }
 
-    Jimp.read(img).then(function (face) {
+    gear.Jimp.read(img).then(function (face) {
         face.resize(126, 126)
-        Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
+        gear.Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
             face.mask(lenna, 0, 0)
 
 
             face.resize(96, 96)
             face.rotate(-45)
-            Jimp.read(paths.BUILD + "jazz.png").then(function (jazz) {
+            gear.Jimp.read(paths.BUILD + "jazz.png").then(function (jazz) {
                 jazz.composite(face, 80, 31);
                 //jazz.write(`${paths.ROUND}/${caller}2.png`);
                 message.channel.send('Ok, me dá um segundo...')
-                jazz.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                jazz.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
 
 
                     message.channel.sendFile(image, 'kicked.png', `:lock: Mandei ${kik.username} passear na Masmorra.`).then(m => {

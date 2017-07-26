@@ -1,5 +1,5 @@
 
-const Discord = require('discord.js');
+const gear.Discord = require('discord.js');
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
@@ -31,7 +31,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
 
 //-------MAGIC----------------
-    const Jimp = require("jimp");
+
     var paths = require("../../paths.js");
 
 
@@ -104,7 +104,7 @@ var namae = banMember.displayName
 
 var id =  Target.id
 var mess = message
-var emb = new Discord.RichEmbed;
+var emb = new gear.Discord.RichEmbed;
 
 
 

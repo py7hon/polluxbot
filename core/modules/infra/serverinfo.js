@@ -1,5 +1,5 @@
 
-var Discord = require("discord.js");
+
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
@@ -49,7 +49,7 @@ var G = message.guild
 
 
 
- emb =    new Discord.RichEmbed();
+ emb =    new gear.Discord.RichEmbed();
 
 
 

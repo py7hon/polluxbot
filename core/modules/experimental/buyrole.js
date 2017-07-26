@@ -1,5 +1,5 @@
 var ff = require("../functionfest.js");
-const Discord = require("discord.js");
+
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');

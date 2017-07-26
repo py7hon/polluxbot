@@ -2,7 +2,7 @@ var gear = require("../gearbox.js");
 var paths = require("../paths.js");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
-const Jimp = require("jimp");
+
 
 var cmd = 'name';
 

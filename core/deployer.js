@@ -1,8 +1,8 @@
-const Discord = require("discord.js")
+var gear = require("./gearbox.js");
 const fs = require('fs');
 const path = require('path');
 const cfg = require('../config.js');
-const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
+const hook = new gear.Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
 
 module.exports = {
     determine: function determine(msg) {

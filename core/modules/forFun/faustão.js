@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const gear.Discord = require('discord.js');
 var gear = require("../../gearbox.js");
 var cmd = 'fausto';
 var locale = require('../../../utils/multilang_b');
@@ -41,7 +41,7 @@ message.channel.createWebhook('Faustão',"http://static2.blastingnews.com/media/
 })
  .catch(e=>{
 
-    let emb = new Discord.RichEmbed
+    let emb = new gear.Discord.RichEmbed
     emb.setDescription(fausto[gear.randomize(0,11)]);
     emb.setAuthor("Faustão");
     emb.setThumbnail(f);

@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+
 const polx = require("../pollux.js")
 var defaults = require("../utils/defaults.js") // Database Defaults
 
@@ -90,8 +90,8 @@ module.exports = {
 
             if (chanpoint) {
                 var id = member.id
-                var emb = new Discord.RichEmbed;
-               var joined = JSON.parse(fs.readFileSync("../utils/lang/"+locale+"/translation.json", 'utf8')).joinServ;
+                var emb = new gear.Discord.RichEmbed;
+               var joined = JSON.parse(gear.fs.readFileSync("../utils/lang/"+locale+"/translation.json", 'utf8')).joinServ;
 
                 emb.setDescription(`:inbox_tray: **${member.user.username+"#"+member.user.discriminator}** ${joined}`);
                 emb.setColor("#25c9b0");
@@ -119,7 +119,7 @@ module.exports = {
             } catch (e) {
                 serverSetup(Server)
             }
-            if (typeof (DB.get(Server.id).modules.GREET.hi) !=== 'undefined' && DB.get(Server.id).modules.GREET.joinText !=== '' && DB.get(Server.id).modules.GREET.hi == true) {
+            if (typeof (DB.get(Server.id).modules.GREET.hi) !== 'undefined' && DB.get(Server.id).modules.GREET.joinText !== '' && DB.get(Server.id).modules.GREET.hi == true) {
                 if (DB.get(Server.id).modules.GREET.hiDEL === undefined) {
                     gear.paramDefine(Server, "GREET.hiDEL", 5000)
                 }

@@ -1,8 +1,7 @@
 var gear = require("../../gearbox.js");
-const Discord = require("discord.js");
-const Jimp = require("jimp");
+
+
 const rq = require("request")
-const cheerio = require("cheerio")
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
 var cmd = 'catgirl';
@@ -53,7 +52,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
         return message.reply("Bonus already rewarded!")
     }
 
- var emb  = new Discord.RichEmbed
+ var emb  = new gear.Discord.RichEmbed
 
  emb.setColor("#d92323")
         emb.setAuthor(Target.tag,Target.avatarURL)

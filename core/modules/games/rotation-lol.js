@@ -1,13 +1,13 @@
 var request = require('request');
-var cheerio = require('cheerio');
+
 var rotation = []
 const fs = require("fs");
-const Jimp = require("jimp");
+
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
-const Discord = require("discord.js");
+
 
 
 var cmd = 'rotation-lol';
@@ -38,7 +38,7 @@ var init = function (message, userDB, DB) {
     request('http://leagueoflegends.wikia.com/wiki/Free_champion_rotation', function (error, response, html) {
 
         if (!error && response.statusCode == 200) {
-            var $ = cheerio.load(html);
+            var $ = gear.cheerio.load(html);
             $('span.champion-icon').each(function (i, element) {
 
                 var a = $(this).children()[1]
@@ -50,7 +50,7 @@ var init = function (message, userDB, DB) {
             console.log(rotation)
         }
 
-        emb = new Discord.RichEmbed();
+        emb = new gear.Discord.RichEmbed();
         emb.setColor('#395790')
         emb.title = "League of Legends"
 

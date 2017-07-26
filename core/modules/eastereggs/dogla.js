@@ -1,5 +1,5 @@
 const fs = require("fs");
-const Jimp = require("jimp");
+
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
@@ -44,15 +44,15 @@ var init = function (message, userDB, DB) {
         if (txt.includes("imgur") && (!txt.includes('png') && !txt.includes('jpg') && !txt.includes('gif'))) {
             txt = txt + ".png"
         }
-        Jimp.read(dogla).then(function (base) {
-            Jimp.read(txt, function (err, ovlay) {
+        gear.Jimp.read(dogla).then(function (base) {
+            gear.Jimp.read(txt, function (err, ovlay) {
                 if (err) {
                     message.reply("INVALID IMAGE URL")
                 }
-                ovlay.contain(665, 170, Jimp.HORIZONTAL_ALIGN_CENTER);
+                ovlay.contain(665, 170, gear.Jimp.HORIZONTAL_ALIGN_CENTER);
                 ovlay.rotate(-6);
                 base.composite(ovlay, 100, 24);
-                base.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                base.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
                     message.channel.send({files:[{attachment:image,name:"file.png"}]})
 
 
@@ -64,15 +64,15 @@ var init = function (message, userDB, DB) {
 
     } else if (txt =="dogla"){
 
-       Jimp.read(dogla).then(function (base) {
-            Jimp.read(dogla, function (err, ovlay) {
+       gear.Jimp.read(dogla).then(function (base) {
+            gear.Jimp.read(dogla, function (err, ovlay) {
                 if (err) {
                     message.reply("INVALID IMAGE URL")
                 }
-                ovlay.contain(665, 170, Jimp.HORIZONTAL_ALIGN_CENTER);
+                ovlay.contain(665, 170, gear.Jimp.HORIZONTAL_ALIGN_CENTER);
                 ovlay.rotate(-6);
                 base.composite(ovlay, 100, 24);
-                base.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                base.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
                     message.channel.send({files:[{attachment:image,name:"file.png"}]})
 
 
@@ -85,15 +85,15 @@ var init = function (message, userDB, DB) {
     }
     else if (txt.startsWith("$")){
 
-       Jimp.read(dogla).then(function (base) {
-            Jimp.read('./resources/imgres/reactions/'+txt.substr(1)+".png", function (err, ovlay) {
+       gear.Jimp.read(dogla).then(function (base) {
+            gear.Jimp.read('./resources/imgres/reactions/'+txt.substr(1)+".png", function (err, ovlay) {
                 if (err) {
                     message.reply("NOT A SERVER IMAGE")
                 }
-                ovlay.contain(665, 170, Jimp.HORIZONTAL_ALIGN_CENTER);
+                ovlay.contain(665, 170, gear.Jimp.HORIZONTAL_ALIGN_CENTER);
                 ovlay.rotate(-6);
                 base.composite(ovlay, 100, 24);
-                base.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                base.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
                     message.channel.send({files:[{attachment:image,name:"file.png"}]})
 
 
@@ -110,13 +110,13 @@ var init = function (message, userDB, DB) {
 
         //   cart.print(eval(skinfo.persotextF), skinfo.persotextX  , skinfo.persotextY , `${texp}`, skinfo.persotextWmax);
 
-        Jimp.read(dogla).then(function (base) {
+        gear.Jimp.read(dogla).then(function (base) {
 
 
-                var ovlay = new Jimp(947, 100, function (err, txbox) {
+                var ovlay = new gear.Jimp(947, 100, function (err, txbox) {
            // txbox.background(0xFFFFFFFF)
                 })
-            Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
+            gear.Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
 
             let totalWidth = measureText(sub, txt)
             ovlay.print(sub, Math.floor(947 / 2 - totalWidth / 2), Math.floor(100 / 2 - 64), txt);
@@ -125,7 +125,7 @@ var init = function (message, userDB, DB) {
 
                 ovlay.rotate(-6);
                 base.composite(ovlay, 0, 24);
-                    base.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                    base.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
                      message.channel.send({files:[{attachment:image,name:"file.png"}]})
 
                     })

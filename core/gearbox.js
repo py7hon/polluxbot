@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const cfg = require('../config.js');
-const Jimp = require("jimp");
 const fs = require("fs");
 const paths = require("./paths.js");
 const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
@@ -147,18 +146,18 @@ try{
                 img = TG.avatarURL.substr(0, TG.avatarURL.length - 10);
             }
             var guild = event.guild
-            Jimp.read(img).then(function (user) {
-                Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
-                    Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
+            gear.Jimp.read(img).then(function (user) {
+                gear.Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
+                    gear.Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
                         user.resize(126, 126)
                         user.mask(glass, 0, 0)
                         var air = {}
-                        Jimp.read(paths.BUILD + "note.png").then(function (photo) {
+                        gear.Jimp.read(paths.BUILD + "note.png").then(function (photo) {
                             photo.composite(user, 0, 0)
                             photo.mask(lenna, 0, 0)
-                            Jimp.read(paths.BUILD + "profile/skins/" + userData.skin + '/levelcard.png').then(function (cart) {
-                                Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
-                                    Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
+                            gear.Jimp.read(paths.BUILD + "profile/skins/" + userData.skin + '/levelcard.png').then(function (cart) {
+                                gear.Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
+                                    gear.Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
                                         try {
                                             var level = overallevel.toString()
                                         } catch (err) {
@@ -174,7 +173,7 @@ try{
                                         cart.print(sub, 336, 45, `${level}`);
                                         cart.composite(photo, 18, 20)
 
-                                        cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                                        cart.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
                                             if (DB.get(guild.id).modules.LVUP) {
                                                 if (DB.get(guild.id).channels[event.channel.id].modules.LVUP) {
 
@@ -630,15 +629,15 @@ ${msg.content}
 
     glassify: function glassify(img, call, msg = false) {
 
-            Jimp.read(img).then(function (user) {
+            gear.Jimp.read(img).then(function (user) {
 
-                Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
-                    Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
+                gear.Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
+                    gear.Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
 
                         user.resize(126, 126)
                         user.mask(glass, 0, 0)
                         var air = {}
-                        Jimp.read(paths.BUILD + "note.png").then(function (lennaB) {
+                        gear.Jimp.read(paths.BUILD + "note.png").then(function (lennaB) {
                             lennaB.composite(user, 0, 0)
                             lennaB.mask(lenna, 0, 0)
 
@@ -670,20 +669,20 @@ ${msg.content}
         else return text;
     },
     draw: function draw(array, who) {
-        var cardimg = Jimp.read(`${paths.BUILD}cards/fiver.png`).then(function (cardimg) {
-            Jimp.read(`${paths.BUILD}cards/${array[0].card}.png`).then(function (c1) {
+        var cardimg = gear.Jimp.read(`${paths.BUILD}cards/fiver.png`).then(function (cardimg) {
+            gear.Jimp.read(`${paths.BUILD}cards/${array[0].card}.png`).then(function (c1) {
                 cardimg.composite(c1, 0 * 96, 0)
                 cardimg.write(`${paths.BUILD}cards/${who}0_bj.png`)
                 console.log(array[0].card)
             })
             setTimeout(function () {
-                Jimp.read(`${paths.BUILD}cards/${array[1].card}.png`).then(function (c1) {
+                gear.Jimp.read(`${paths.BUILD}cards/${array[1].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 1 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}1_bj.png`)
                 })
             }, 300);
             setTimeout(function () {
-                Jimp.read(`${paths.BUILD}cards/${array[2].card}.png`).then(function (c1) {
+                gear.Jimp.read(`${paths.BUILD}cards/${array[2].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 2 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}2_bj.png`)
                     console.log(array[2].card + "-------------------------------------")
@@ -691,13 +690,13 @@ ${msg.content}
             }, 600);
             setTimeout(function () {
                 console.log(`${paths.BUILD}cards/${array[3].card}.png`)
-                Jimp.read(`${paths.BUILD}cards/${array[3].card}.png`).then(function (c1) {
+                gear.Jimp.read(`${paths.BUILD}cards/${array[3].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 3 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}3_bj.png`)
                 })
             }, 900);
             setTimeout(function () {
-                Jimp.read(`${paths.BUILD}cards/${array[4].card}.png`).then(function (c1) {
+                gear.Jimp.read(`${paths.BUILD}cards/${array[4].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 4 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}4_bj.png`)
                     cardimg.write(`${paths.BUILD}cards/${who}5_bj.png`)
@@ -711,10 +710,10 @@ ${msg.content}
         if (array.length >= 1) {
 
 
-            var cardimg = Jimp.read(`${paths.BUILD}cards/fiver.png`).then(function (cardimg) {
+            var cardimg = gear.Jimp.read(`${paths.BUILD}cards/fiver.png`).then(function (cardimg) {
 
 
-                Jimp.read(`${paths.BUILD}cards/${array[0].card}.png`).then(function (c1) {
+                gear.Jimp.read(`${paths.BUILD}cards/${array[0].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 0 * 96, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}0_bj.png`)
                     console.log(array[0].card)
@@ -723,7 +722,7 @@ ${msg.content}
         };
         if (array.length >= 2) {
             setTimeout(function () {
-                Jimp.read(`${paths.BUILD}cards/${array[1].card}.png`).then(function (c1) {
+                gear.Jimp.read(`${paths.BUILD}cards/${array[1].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 1 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}1_bj.png`)
                 })
@@ -731,7 +730,7 @@ ${msg.content}
         }
         if (array.length >= 3) {
             setTimeout(function () {
-                Jimp.read(`${paths.BUILD}cards/${array[2].card}.png`).then(function (c1) {
+                gear.Jimp.read(`${paths.BUILD}cards/${array[2].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 2 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}2_bj.png`)
                     console.log(array[2].card + "-------------------------------------")
@@ -741,7 +740,7 @@ ${msg.content}
         if (array.length >= 4) {
             setTimeout(function () {
                 console.log(`${paths.BUILD}cards/${array[3].card}.png`)
-                Jimp.read(`${paths.BUILD}cards/${array[3].card}.png`).then(function (c1) {
+                gear.Jimp.read(`${paths.BUILD}cards/${array[3].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 3 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}3_bj.png`)
                 })
@@ -749,7 +748,7 @@ ${msg.content}
         }
         if (array.length >= 5) {
             setTimeout(function () {
-                Jimp.read(`${paths.BUILD}cards/${array[4].card}.png`).then(function (c1) {
+                gear.Jimp.read(`${paths.BUILD}cards/${array[4].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 4 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}4_bj.png`)
                     cardimg.write(`${paths.BUILD}cards/${who}5_bj.png`)
@@ -763,7 +762,7 @@ ${msg.content}
             var dirs = [];
             for (var index = 0; index < files.length; ++index) {
                 var file = files[index];
-                if (file[0] !=== '.') {
+                if (file[0] !== '.') {
                     var filePath = rootDir + '/' + file;
                     fs.stat(filePath, function (err, stat) {
                         if (stat.isDirectory()) {
@@ -779,6 +778,16 @@ ${msg.content}
                 }
             }
         });
-    }
+    },
+
+
+    // DEPENDENCY TOOLBOX AHOY
+
+
+    Jimp:require("Jimp"),
+    cheerio:require("cheerio"),
+    Discord:  Discord,
+    fs:fs,
+
 
 }

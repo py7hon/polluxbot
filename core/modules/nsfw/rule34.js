@@ -2,7 +2,7 @@
 const fs = require("fs");
 const getter = require("booru-getter");
 var gear = require("../../gearbox.js");
- const Discord = require("discord.js");
+
 
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
@@ -65,7 +65,7 @@ if (DB.get(Server.id).modules.GOODNAME) {
                 //message.channel.send()
                 //message.reply("http:" + url);
                              var msg_ax = "**Query:** " +query[1] +"\nby "+Author//GOODMOJI + mm('forFun.nsfwCheckout',{lngs:LANG,emoji:""})
-                 var emb = new Discord.RichEmbed();
+                 var emb = new gear.Discord.RichEmbed();
                       emb.setColor('#b41212')
                       emb.setTitle(':underage: RULE 34')
                       emb.setDescription(msg_ax)

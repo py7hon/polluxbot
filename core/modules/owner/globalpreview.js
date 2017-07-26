@@ -1,7 +1,7 @@
-const Discord = require('discord.js')
+const gear.Discord = require('discord.js')
 let fs = require('fs')
 const cfg = require("../../config.js");
-//const hook = new Discord.WebhookClient(cfg.annHook.ID, cfg.annHook.token);
+//const hook = new gear.Discord.WebhookClient(cfg.annHook.ID, cfg.annHook.token);
 
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
@@ -30,7 +30,7 @@ console.log(DB.get(message.guild.id).modules.announcements)
 
 
 
-     emb = new Discord.RichEmbed();
+     emb = new gear.Discord.RichEmbed();
     let ann = message.content.substr('+globalnotice'.length)
 
 

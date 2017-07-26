@@ -1,13 +1,13 @@
 var request = require('request');
-var cheerio = require('cheerio');
+
 var rotation = []
 const fs = require("fs");
-const Jimp = require("jimp");
+
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
-const Discord = require("discord.js");
+
 
 
 var cmd = 'fortunecookie';
@@ -40,7 +40,7 @@ var init = function (message, userDB, DB) {
     request('http://www.fortunecookiemessage.com/', function (error, response, html) {
 
         if (!error && response.statusCode == 200) {
-            var $ = cheerio.load(html);
+            var $ = gear.cheerio.load(html);
             $('.cookie-link').each(function (i, element) {
 
                 //console.log(element)
@@ -55,13 +55,13 @@ var init = function (message, userDB, DB) {
 
 
 
-                Jimp.read(paths.BUILD + 'fortune.jpg').then(function (base) {
+                gear.Jimp.read(paths.BUILD + 'fortune.jpg').then(function (base) {
 
 
-                    var ovlay = new Jimp(278, 80, function (err, txbox) {
+                    var ovlay = new gear.Jimp(278, 80, function (err, txbox) {
                         // txbox.background(0xFFFFFFFF)
                     })
-                    Jimp.loadFont(paths.FONTS + 'TXT.fnt').then(function (sub) {
+                    gear.Jimp.loadFont(paths.FONTS + 'TXT.fnt').then(function (sub) {
 
 
                         ovlay.print(sub, 0, 0, txt, 200);
@@ -69,12 +69,12 @@ var init = function (message, userDB, DB) {
                         ovlay.autocrop();
                         var kalk = ovlay.clone();
                         kalk.autocrop(false);
-                        kalk.contain(278,80,Jimp.VERTICAL_ALIGN_CENTER)
+                        kalk.contain(278,80,gear.Jimp.VERTICAL_ALIGN_CENTER)
                         kalk.invert();
                         //  txbox.print(sub, 0, 0, txt, 665);
                         kalk.rotate(11);
                             base.composite(kalk, 192, 91);
-                        base.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                        base.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
                             message.channel.send(message.author + " ",{files:[image]}).catch()
 
                         })

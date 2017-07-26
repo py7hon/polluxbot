@@ -1,5 +1,5 @@
 const fs = require("fs");
-const Jimp = require("jimp");
+
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
@@ -54,11 +54,11 @@ var init = function (message, userDB, DB) {
 
 
 
-        Jimp.read(paths.BUILD + "puto.jpg").then(function (base) {
-                    Jimp.loadFont(paths.FONTS + 'blackTXT.fnt').then(function (sub) {
+        gear.Jimp.read(paths.BUILD + "puto.jpg").then(function (base) {
+                    gear.Jimp.loadFont(paths.FONTS + 'blackTXT.fnt').then(function (sub) {
                           base.print(sub, 235, 25, a.toString());
                           base.print(sub, 322, 65, s.toString());
-                        base.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                        base.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
                             message.channel.send({files:[{attachment:image,name:"file.png"}]})
 
 

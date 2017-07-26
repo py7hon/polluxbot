@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+
 var gear = require("../../gearbox.js");
 var cmd = 'say';
 
@@ -9,7 +9,7 @@ try{
 
     Server.playlist = DB.get(Server.id).playlist
 
-    let emb = new Discord.RichEmbed
+    let emb = new gear.Discord.RichEmbed
     emb.setDescription(":arrow_forward: Now Playing: **"+Server.playlist[0][1]+"**")
     emb.setColor("#f7da3c")
     emb.setFooter(Server.playlist[0][2])

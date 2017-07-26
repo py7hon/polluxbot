@@ -1,8 +1,8 @@
 var gear = require("../../gearbox.js");
-const Discord = require("discord.js");
-const Jimp = require("jimp");
+
+
 const rq = require("request")
-const cheerio = require("cheerio")
+
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
 var cmd = 'catgirl';
@@ -27,13 +27,13 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
     return gear.usage(cmd,message,"nsfw");
 }
 //------------
-    var emb =    new Discord.RichEmbed();
+    var emb =    new gear.Discord.RichEmbed();
 var xc = ""
         console.log("CATGIRL INVOKED by " + Author.name + "-------------\n")
         console.log(1) ;
  rq('http://catgirls.brussell98.tk/nsfw/',  function (error, response, html) {
         if (!error && response.statusCode == 200) {
-            var $ = cheerio.load(html);
+            var $ = gear.cheerio.load(html);
             $('img').each(function (i, element) {
               xc += "http://catgirls.brussell98.tk"+ element.attribs.src
             });

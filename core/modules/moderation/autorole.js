@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
@@ -66,7 +66,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
     if (args === "list" || args === "l") {
 
 
-        emb = new Discord.RichEmbed();
+        emb = new gear.Discord.RichEmbed();
         emb.setColor('#4ab25a')
         emb.setDescription('Remove: `' + message.prefix + 'roleme out`')
         emb.title = mm('dict.autoRolesforThis', {

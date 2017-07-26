@@ -3,7 +3,7 @@ module.exports = {
 
     own: `**Greetings, dear new boss!** If you're reading this is because you, or someone of your trust invited me to one of your servers, most specifically the **{{server}}** one! Let me introduce myself:
 
-I'm **Pollux**, a little assistant-in-training for your Discordy needs.
+I'm **Pollux**, a little assistant-in-training for your gear.Discordy needs.
 I'm still new, less than a year, so I'm counting on you to help me improve and grow as a bot!
 If you ever notice something wrong or wonky about me, don't hesitate in joining my support server and report it!
 
@@ -68,7 +68,7 @@ Para mais ajuda com comandos visite http://pollux.fun/commands`,
    adm: `**Greetings, dear new boss!** If you're reading this is because you, or someone of trust from a server you administrate invited me to it.
 Specifically, I was added to **{{server}}**! Let me introduce myself:
 
-I'm **Pollux**, a little assistant-in-training for your Discordy needs.
+I'm **Pollux**, a little assistant-in-training for your gear.Discordy needs.
 I'm still new, less than a year, so I'm counting on you to help me improve and grow as a bot!
 If you ever notice something wrong or wonky about me, don't hesitate in joining my support server and report it!
 

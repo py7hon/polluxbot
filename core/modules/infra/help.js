@@ -16,8 +16,8 @@ var init = function (message,userDB,DB) {
         let helpkey = mm("helpkey",{lngs:message.lang})
 if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
 
-    const Discord = require("discord.js");
-    let emb = new Discord.RichEmbed
+
+    let emb = new gear.Discord.RichEmbed
     emb.setDescription(mm('usage.askingHelpForHelp', {
                     lngs: LANG,
 
@@ -84,8 +84,8 @@ let suplink     = "https://discord.gg/ay48h7Q"
 let commlink    = "http://pollux.fun/commands"
 let invitelink  = "http://goo.gl/qkGqqU"
 
-    const Discord = require("discord.js");
- emb =    new Discord.RichEmbed();
+
+ emb =    new gear.Discord.RichEmbed();
 
 
 

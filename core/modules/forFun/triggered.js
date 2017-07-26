@@ -1,5 +1,5 @@
 const fs = require("fs");
-const Jimp = require("jimp");
+
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
@@ -16,14 +16,14 @@ var Member = Server.member(Author);
 var Target = message.mentions.users.first() || Author;
 
 var img = Target.displayAvatarURL
-Jimp.read(img).then(function (photo) {
+gear.Jimp.read(img).then(function (photo) {
     photo.resize(512, 512)
-    Jimp.read(paths.BUILD + "trigger.png").then(function (lenna) {
+    gear.Jimp.read(paths.BUILD + "trigger.png").then(function (lenna) {
 
         photo.composite(lenna,0,0)
 
         console.log("Success".green)
-        photo.getBuffer(Jimp.MIME_PNG, function (err, image) {
+        photo.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
             message.channel.send({files:[{attachment:image,name:"file.png"}]})
         })
 

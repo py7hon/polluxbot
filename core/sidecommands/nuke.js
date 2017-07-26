@@ -1,6 +1,6 @@
-const Discord = require("discord.js");
+var gear = require("../gearbox.js");
 var hooks = require('../../hooks');
-var nuke = new Discord.WebhookClient(hooks.nukeID, hooks.nukeToken);
+var nuke = new gear.Discord.WebhookClient(hooks.nukeID, hooks.nukeToken);
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 

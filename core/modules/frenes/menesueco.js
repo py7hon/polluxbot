@@ -1,7 +1,7 @@
 var cmd = 'ahegao';
 var gear = require("../../gearbox.js");
 var fs = require("fs");
-const Discord = require("discord.js")
+
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
@@ -24,11 +24,11 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 }
 //------------
 
-  fs.readdir(paths.BUILD+"frenes/menes_suekos/", function (err, files) {
+  gear.fs.readdir(paths.BUILD+"frenes/menes_suekos/", function (err, files) {
       let rand = gear.randomize(0,files.length-1);
       var filepath = paths.BUILD+"frenes/menes_suekos/"+files[rand]
 
-      let emb = new Discord.RichEmbed
+      let emb = new gear.Discord.RichEmbed
       emb.setDescription("© Século 2017 | 🇸🇪 Menes Suenkos ")
       emb.setColor("#1a167e")
     message.channel.send({embed:emb,files:[filepath]}).then(m=>{

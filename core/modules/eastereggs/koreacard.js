@@ -1,5 +1,5 @@
     const fs = require("fs");
-    const Jimp = require("jimp");
+
     var gear = require("../../gearbox.js");
     var paths = require("../../paths.js");
     var locale = require('../../../utils/multilang_b');
@@ -41,9 +41,9 @@
             }
             card = input
             url = "https://www.fantasymasters.co.kr/FM_Image/FM_image/fm/shop/Cardmarket/L_images/" + card + "L.jpg"
-            Jimp.read(url).then(function (base) {
+            gear.Jimp.read(url).then(function (base) {
                // base.crop(25, 45, 240, 196)
-                base.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                base.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
                     message.channel.send({files:[{attachment:image,name:"file.png"}]})
                 })
             })

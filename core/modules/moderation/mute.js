@@ -1,5 +1,5 @@
 
-const Discord = require("discord.js");
+
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
@@ -142,7 +142,7 @@ var init = function (message, userDB, DB) {
 
                 var id = Target.user.id
                 var mess = message
-                var emb = new Discord.RichEmbed;
+                var emb = new gear.Discord.RichEmbed;
 
                 emb.setThumbnail(Target.user.avatarURL)
                 emb.setTitle(":mute: " + MUTED);
@@ -159,7 +159,7 @@ var init = function (message, userDB, DB) {
                 chanpoint.send({embed:emb}).catch()
 
 
-                var RevokeEmb = new Discord.RichEmbed;
+                var RevokeEmb = new gear.Discord.RichEmbed;
 
                 RevokeEmb.setThumbnail(Target.user.avatarURL)
                 RevokeEmb.setTitle(":mute: " + UNMUTE);

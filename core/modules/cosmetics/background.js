@@ -1,6 +1,6 @@
 var gear = require("../../gearbox.js");
 var cmd = 'background';
-var Jimp = require("jimp")
+
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
 
@@ -21,7 +21,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 
 
 
-     Jimp.read("http://files.pollux.fun/"+args+".png",async function (err, ovlay) {
+     gear.Jimp.read("http://files.pollux.fun/"+args+".png",async function (err, ovlay) {
                 if (err) {
                   message.reply("**__INVALID IMAGE CODE__**")
                  message.channel.send("Image codes can be get at <http://files.pollux.fun/a/wQLyYKdE>, click on an image, and copy its code like this:")

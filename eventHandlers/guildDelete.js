@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+
 const polx = require("../pollux.js")
 var defaults = require("../utils/defaults.js") // Database Defaults
 
@@ -8,7 +8,7 @@ module.exports = {
         var PolluxS = bot.guilds.get("277391723322408960")
         var rad = PolluxS.channels.get("332025773521371137")
 
-        var emb = new Discord.RichEmbed;
+        var emb = new gear.Discord.RichEmbed;
 
         emb.setThumbnail(guild.iconURL)
         emb.setDescription(`:outbox_tray: Removed from **${guild.name}**`);

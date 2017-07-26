@@ -34,7 +34,7 @@
     "i18next": "^3.5.2",
     "i18next-node-fs-backend": "^0.1.3",
     "icy": "^2.1.0",
-    "jimp": "latest",
+    "Jimp": "latest",
     "morse-mp3": "^0.2.5",
     "opusscript": "latest",
     "pureimage": "^0.1.0",

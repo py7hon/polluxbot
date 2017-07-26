@@ -1,6 +1,6 @@
-const Discord = require("discord.js");
+
 const arraySort = require('array-sort')
-const Jimp = require("jimp");
+
 const gear = require("../../gearbox.js");
 const fs = require("fs");
 var paths = require("../../paths.js");
@@ -21,7 +21,7 @@ var init = function (message,userDB,DB) {
     var bot = message.botUser
     if (Author.bot) return;
     var LANG = message.lang;
-    emb = new Discord.RichEmbed();
+    emb = new gear.Discord.RichEmbed();
 
 //HELP TRIGGER
     let helpkey = mm("helpkey",{lngs:message.lang})

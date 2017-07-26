@@ -3,7 +3,6 @@ var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
-var fs = require('fs');
 var cmd = 'lang';
 
 var init = function (message,userDB,DB) {
@@ -46,7 +45,6 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 if (!modPass) return message.reply(noperms);
 
 
-//if (fs.existsSync('./utils/lang/'+args)) {
      switch(args){
         case 'en':
         case 'english':

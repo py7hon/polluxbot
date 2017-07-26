@@ -1,6 +1,6 @@
 
-const Jimp = require("jimp");
-const Discord = require("discord.js");
+
+
 const arraySort = require('array-sort')
 const fs = require("fs");
 const gear = require('../../gearbox.js')
@@ -198,22 +198,22 @@ console.log("==============="+backgroundIMAGE)
 
 
 
-    Jimp.read(paths.MEDALS+ medals[0][0]+'.png').then(function (md1) {
-    Jimp.read(paths.MEDALS+ medals[1][0]+'.png').then(function (md2) {
-    Jimp.read(paths.MEDALS+ medals[2][0]+'.png').then(function (md3) {
-    Jimp.read(paths.MEDALS+ medals[3][0]+'.png').then(function (md4) {
-    Jimp.read(paths.MEDALS+ medals[4][0]+'.png').then(function (md5) {
-    Jimp.read(paths.MEDALS+ medals[5][0]+'.png').then(function (md6) {
-    Jimp.read(paths.MEDALS+ medals[6][0]+'.png').then(function (md7) {
-    Jimp.read(paths.MEDALS+ medals[7][0]+'.png').then(function (md8) {
+    gear.Jimp.read(paths.MEDALS+ medals[0][0]+'.png').then(function (md1) {
+    gear.Jimp.read(paths.MEDALS+ medals[1][0]+'.png').then(function (md2) {
+    gear.Jimp.read(paths.MEDALS+ medals[2][0]+'.png').then(function (md3) {
+    gear.Jimp.read(paths.MEDALS+ medals[3][0]+'.png').then(function (md4) {
+    gear.Jimp.read(paths.MEDALS+ medals[4][0]+'.png').then(function (md5) {
+    gear.Jimp.read(paths.MEDALS+ medals[5][0]+'.png').then(function (md6) {
+    gear.Jimp.read(paths.MEDALS+ medals[6][0]+'.png').then(function (md7) {
+    gear.Jimp.read(paths.MEDALS+ medals[7][0]+'.png').then(function (md8) {
 
-    Jimp.read(paths.SKINS + skin + '/mainframe.png').then(function (frame) {
-    Jimp.read(paths.SKINS + skin + '/mainframe.png').then(function (frameB) {
-    Jimp.read(paths.SKINS + skin + '/sidebar.png').then(function (sidebar) {
-    Jimp.read(paths.SKINS + skin + '/levbar.png').then(function (levbar) {
-    Jimp.read(propic).then(function (photo) {
-    Jimp.read(paths.SKINS + skin + '/lenna.png').then(function (lenna) {
-    Jimp.read(backgroundIMAGE).then(function (bg) {
+    gear.Jimp.read(paths.SKINS + skin + '/mainframe.png').then(function (frame) {
+    gear.Jimp.read(paths.SKINS + skin + '/mainframe.png').then(function (frameB) {
+    gear.Jimp.read(paths.SKINS + skin + '/sidebar.png').then(function (sidebar) {
+    gear.Jimp.read(paths.SKINS + skin + '/levbar.png').then(function (levbar) {
+    gear.Jimp.read(propic).then(function (photo) {
+    gear.Jimp.read(paths.SKINS + skin + '/lenna.png').then(function (lenna) {
+    gear.Jimp.read(backgroundIMAGE).then(function (bg) {
 
 
         photo.resize(100,100)
@@ -248,12 +248,12 @@ sidebar.color([
           frame.composite(sidebar,0,0 )
 
 
-          Jimp.loadFont(paths.FONTS + "product_24_black_bold.fnt").then(function (levelf) {
-          Jimp.loadFont(paths.FONTS + "roboto_12.fnt").then(function (lorem) {
-          Jimp.loadFont(paths.FONTS + "product_12_grey_bold.fnt").then(function (tag) {
-          Jimp.loadFont(paths.FONTS + "roboto_20_bold.fnt").then(function (name) {
-          Jimp.loadFont(paths.FONTS + "visitor_18_white.fnt").then(function (rfont) {
-          Jimp.loadFont(paths.FONTS + "product_12_grey_bold.fnt").then( async function (ranks) {
+          gear.Jimp.loadFont(paths.FONTS + "product_24_black_bold.fnt").then(function (levelf) {
+          gear.Jimp.loadFont(paths.FONTS + "roboto_12.fnt").then(function (lorem) {
+          gear.Jimp.loadFont(paths.FONTS + "product_12_grey_bold.fnt").then(function (tag) {
+          gear.Jimp.loadFont(paths.FONTS + "roboto_20_bold.fnt").then(function (name) {
+          gear.Jimp.loadFont(paths.FONTS + "visitor_18_white.fnt").then(function (rfont) {
+          gear.Jimp.loadFont(paths.FONTS + "product_12_grey_bold.fnt").then( async function (ranks) {
 
 
 
@@ -261,46 +261,46 @@ sidebar.color([
 
 
               if (level.length == 4) level = "MAX";
-              var ovlat = new Jimp(50, 30, 0x00000000, function (err, image) {});
-              ovlat.print(levelf, 0, 0, `${level}`, 50,  Jimp.ALIGN_FONT_CENTER);
+              var ovlat = new gear.Jimp(50, 30, 0x00000000, function (err, image) {});
+              ovlat.print(levelf, 0, 0, `${level}`, 50,  gear.Jimp.ALIGN_FONT_CENTER);
            //   ovlat.autocrop(false)
-            //  ovlat.contain(45, 20, Jimp.HORIZONTAL_ALIGN_CENTER)
+            //  ovlat.contain(45, 20, gear.Jimp.HORIZONTAL_ALIGN_CENTER)
 
              await frame.composite(ovlat, 345, 20)
 
               frame.print(name, 162, 138, `${nickname}`);
               frame.print(tag, 170, 168, `${nametag}`);
-              var lorembox = new Jimp(220, 45, 0x00000000,function (err, image) {});
+              var lorembox = new gear.Jimp(220, 45, 0x00000000,function (err, image) {});
               lorembox.print(lorem, 0, 0, `${persotex}`,180);
-             // kalk.contain(226, 25, Jimp.HORIZONTAL_ALIGN_LEFT);
+             // kalk.contain(226, 25, gear.Jimp.HORIZONTAL_ALIGN_LEFT);
               frame.composite(lorembox, 165, 188) //+25 down
 
 
-              var srank = new Jimp(60, 16, 0x00000000,function (err, image) {});
-              srank.print(ranks, 0, 0, `${serverank}`, 50 ,Jimp.ALIGN_FONT_RIGHT);
+              var srank = new gear.Jimp(60, 16, 0x00000000,function (err, image) {});
+              srank.print(ranks, 0, 0, `${serverank}`, 50 ,gear.Jimp.ALIGN_FONT_RIGHT);
            //   srank.autocrop(false)
-          //    srank.contain(50, 10, Jimp.HORIZONTAL_ALIGN_RIGHT)
+          //    srank.contain(50, 10, gear.Jimp.HORIZONTAL_ALIGN_RIGHT)
 
-              var grank = new Jimp(60, 16, 0x00000000,function (err, image) {});
-              grank.print(ranks, 0, 0, `${globalrank}`, 50,Jimp.ALIGN_FONT_RIGHT);
+              var grank = new gear.Jimp(60, 16, 0x00000000,function (err, image) {});
+              grank.print(ranks, 0, 0, `${globalrank}`, 50,gear.Jimp.ALIGN_FONT_RIGHT);
           //    grank.autocrop(false)
-         //     grank.contain(50, 10, Jimp.HORIZONTAL_ALIGN_RIGHT)
+         //     grank.contain(50, 10, gear.Jimp.HORIZONTAL_ALIGN_RIGHT)
 
-              var rrank = new Jimp(60, 16,0x00000000, function (err, image) {});
-              rrank.print(ranks, 0, 0, `${rubys}`, 50,Jimp.ALIGN_FONT_RIGHT);
+              var rrank = new gear.Jimp(60, 16,0x00000000, function (err, image) {});
+              rrank.print(ranks, 0, 0, `${rubys}`, 50,gear.Jimp.ALIGN_FONT_RIGHT);
           //    rrank.autocrop(false)
-         //     rrank.contain(50, 10, Jimp.HORIZONTAL_ALIGN_RIGHT)
+         //     rrank.contain(50, 10, gear.Jimp.HORIZONTAL_ALIGN_RIGHT)
 
-              var reputation = new Jimp(40, 16, 0x00000000,function (err, image) {});
-              reputation.print(rfont, 0, 0, `${rep}`, 40,Jimp.ALIGN_FONT_CENTER);
+              var reputation = new gear.Jimp(40, 16, 0x00000000,function (err, image) {});
+              reputation.print(rfont, 0, 0, `${rep}`, 40,gear.Jimp.ALIGN_FONT_CENTER);
              // reputation.autocrop()
-             // reputation.contain(30, 10, Jimp.HORIZONTAL_ALIGN_CENTER)
+             // reputation.contain(30, 10, gear.Jimp.HORIZONTAL_ALIGN_CENTER)
 
 
-              var paasento = new Jimp(100, 16,  0x00000000,function (err, image) {});
-              paasento.print(ranks, 0, 0, `${percent}% [${exp}] `, 80,Jimp.ALIGN_FONT_RIGHT);
+              var paasento = new gear.Jimp(100, 16,  0x00000000,function (err, image) {});
+              paasento.print(ranks, 0, 0, `${percent}% [${exp}] `, 80,gear.Jimp.ALIGN_FONT_RIGHT);
             //  paasento.autocrop(false)
-             // paasento.contain(100, 10, Jimp.HORIZONTAL_ALIGN_RIGHT)
+             // paasento.contain(100, 10, gear.Jimp.HORIZONTAL_ALIGN_RIGHT)
 
               frame.composite(srank, 105, 185) //+25 down
               frame.composite(grank, 105, 210) //+25 down
@@ -308,7 +308,7 @@ sidebar.color([
               frame.composite(reputation, 8, 30) //+25 down
               frame.composite(paasento, 60, 258) //+25 down
 
-              var displays = new Jimp(214, 25, 0x00000000,function (err, image) {});
+              var displays = new gear.Jimp(214, 25, 0x00000000,function (err, image) {});
 
               displays.composite(md1, 0 * 27, 0) //+25 down
               displays.composite(md2, 1 * 27, 0) //+25 down
@@ -323,7 +323,7 @@ sidebar.color([
 
 
 
-              frame.getBuffer(Jimp.MIME_PNG, function (err, image) {
+              frame.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
                   message.channel.send({files:[{attachment:image,name:"file.png"}]}).then(picsent=>{
                        var stop = Date.now();
                         var diff = (stop - start);
@@ -378,9 +378,9 @@ sidebar.color([
 
     var skinfo = require("../../" + paths.SKINS + skin + "/skin.js")
 
-    Jimp.read(img).then(function (photo) {
+    gear.Jimp.read(img).then(function (photo) {
         photo.resize(skinfo.propicHW, skinfo.propicHW)
-        Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
+        gear.Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
 
             if (skinfo.roundpic) {
 
@@ -389,7 +389,7 @@ sidebar.color([
 
 
 
-            Jimp.read(paths.SKINS + skin + '/cartela.png').then(function (cart) {
+            gear.Jimp.read(paths.SKINS + skin + '/cartela.png').then(function (cart) {
 
 
                                         cart.color([
@@ -403,14 +403,14 @@ sidebar.color([
                                             }
 ]);
 
-                Jimp.read(paths.SKINS + skin + '/levbar.png').then(function (bar) {
+                gear.Jimp.read(paths.SKINS + skin + '/levbar.png').then(function (bar) {
 
-                    Jimp.read(paths.PROFILE + adm + '.png').then(function (tag) {
+                    gear.Jimp.read(paths.PROFILE + adm + '.png').then(function (tag) {
 
-                        Jimp.loadFont(paths.FONTS + skinfo.font1).then(function (f1) { // load font from .fnt file
-                            Jimp.loadFont(paths.FONTS + skinfo.font2).then(function (f2) {
-                                Jimp.loadFont(paths.FONTS + skinfo.font3).then(function (f3) {
-                                    Jimp.loadFont(paths.FONTS + skinfo.invisible).then(function (inv) {
+                        gear.Jimp.loadFont(paths.FONTS + skinfo.font1).then(function (f1) { // load font from .fnt file
+                            gear.Jimp.loadFont(paths.FONTS + skinfo.font2).then(function (f2) {
+                                gear.Jimp.loadFont(paths.FONTS + skinfo.font3).then(function (f3) {
+                                    gear.Jimp.loadFont(paths.FONTS + skinfo.invisible).then(function (inv) {
                                         try {
                                             var level = tgtData.level.toString()
                                             var money = tgtData.goodies.toString()
@@ -476,7 +476,7 @@ sidebar.color([
 
 
 
-                                        cart.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                                        cart.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
                                             message.channel.send({files:[{attachment:image,name:"file.png"}]})
                                         })
 

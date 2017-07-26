@@ -1,5 +1,5 @@
 
-const Discord = require('discord.js');
+const gear.Discord = require('discord.js');
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');
@@ -30,7 +30,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 //------------
 
 //-------MAGIC----------------
-    const Jimp = require("jimp");
+
     var paths = require("../../paths.js");
 
 
@@ -95,7 +95,7 @@ var namae = kickMember.displayName
 
 var id =  Target.id
 var mess = message
-var emb = new Discord.RichEmbed;
+var emb = new gear.Discord.RichEmbed;
 
      emb.setThumbnail(Target.avatarURL)
        emb.setTitle(":boot: "+KICKED);
@@ -114,19 +114,19 @@ emb.setTimestamp(ts)
          }
 
 
-    Jimp.read(img).then(function (face) {
+    gear.Jimp.read(img).then(function (face) {
         face.resize(126, 126)
-        Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
+        gear.Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
             face.mask(lenna, 0, 0)
 
 
             face.resize(96, 96)
             face.rotate(-45)
-            Jimp.read(paths.BUILD + "jazz.png").then(function (jazz) {
+            gear.Jimp.read(paths.BUILD + "jazz.png").then(function (jazz) {
                 jazz.composite(face, 80, 31);
                 //jazz.write(`${paths.ROUND}/${caller}2.png`);
                 message.channel.send(justasec)
-                jazz.getBuffer(Jimp.MIME_PNG, function (err, image) {
+                jazz.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
 
 
                     message.channel.send(didkik,{files:[image]}).then(m => {
