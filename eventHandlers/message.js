@@ -112,7 +112,7 @@ var plzDrop = cd(console,  gear.dropGoodies, 5000);
 
 if(message.mentions.users.size+message.mentions.roles.size >= 6){
     return;
-    message.delete().catch(e=>{
+    message.delete().catch(e => {
         console.log(e)
         console.log("POLLUX 415".red)
     })
