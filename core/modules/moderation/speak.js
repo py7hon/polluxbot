@@ -21,7 +21,7 @@ var LANG = message.lang;
 //-------MAGIC----------------
 
 
-    var modPass = false
+
 
 
     var noperms     =   mm('CMD.moderationNeeded', {lngs:LANG})

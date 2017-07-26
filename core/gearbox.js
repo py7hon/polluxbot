@@ -230,7 +230,7 @@ try{
 
         let Server = Member.guild
         //var DB = DB;
-        var modPass = false;
+
         try {
             modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
         } catch (e) {

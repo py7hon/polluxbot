@@ -24,7 +24,7 @@ var init = function (message,userDB,DB) {
     var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
     var justasec    =   mm('CMD.jas', {lngs:LANG})
 
-    var modPass = false
+
 
     if (DB.get(Server.id).modules.MODROLE && DB.get(Server.id).modules.MODROLE.size >= 1){
         modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);

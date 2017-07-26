@@ -112,7 +112,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
 
 
-    var modPass = false
+
 
     try {
 

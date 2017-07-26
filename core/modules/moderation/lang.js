@@ -27,7 +27,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 }
 //------------
 
-    var modPass = false
+
     var noperms     =   mm('CMD.moderationNeeded', {lngs:LANG})
     var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
 

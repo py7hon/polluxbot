@@ -37,7 +37,7 @@ if (MSG.length == (message.prefix + cmd).length || MSG.split(" ")[1]==helpkey ||
 
     message.delete(8000).catch();
 
-    var modPass = false
+
 
     try {
         var modPass = gear.hasPerms(Member,DB);

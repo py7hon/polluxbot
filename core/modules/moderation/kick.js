@@ -32,7 +32,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 //-------MAGIC----------------
     const Jimp = require("jimp");
     var paths = require("../../paths.js");
-    var modPass = false
+
 
     var noperms     =   mm('CMD.moderationNeeded', {lngs:LANG})
     var KICKED     =   mm('dict.kicked', {lngs:LANG})
