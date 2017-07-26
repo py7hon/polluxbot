@@ -25,7 +25,7 @@ if(!Server.mentioned){
        // console.log(newMember.presence.game.name.toLowerCase())
       var sky = newMember.guild;
 
-            if (mentioned.includes(newMember.id) return;
+            if (mentioned.includes(newMember.id)) return;
             if (Server.mentioned.includes(newMember.id)) return;
 
 

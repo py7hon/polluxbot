@@ -20,7 +20,7 @@ var LANG = message.lang;
 
 //-------MAGIC----------------
 
-       var modPass = false
+
 
 //HELP TRIGGER
     let helpkey = mm("helpkey",{lngs:message.lang})
