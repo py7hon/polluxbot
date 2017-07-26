@@ -43,7 +43,7 @@ var init = async function (message, userDB, DB) {
     });
 
     //-------MAGIC----------------
-    if (message.channel.type == 'dm') {
+    if (message.channel.type === 'dm') {
         message.reply(nope)
         return
     }
@@ -437,7 +437,7 @@ sidebar.color([
                                         bar.resize(stret + 1, skinfo.barH)
                                         try {
 
-                                            if (Target.id == '271394014358405121') {
+                                            if (Target.id === '271394014358405121') {
                                                 level = "XX"
                                                 money = tgtData.goodies.toString()
                                                 exp = "99999"

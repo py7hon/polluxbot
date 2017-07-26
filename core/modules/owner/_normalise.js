@@ -32,7 +32,7 @@ userDB.forEach(async us=>{
 
 
 
-    if (user.modules.bgID == "0"||user.modules.bgID == undefined){
+    if (user.modules.bgID === "0"||user.modules.bgID == undefined){
 
 
 

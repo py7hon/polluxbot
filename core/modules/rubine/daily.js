@@ -50,7 +50,7 @@ const Discord = require("discord.js")
 
 
        var b = "Get a boost on yout dailies and 1000"+gear.emoji("ruby")+" by upvoting me at discordbots.org and then using `+reward`"
-          if(LANG[0] == "dev"||LANG[0]=="pt"||LANG[0]=="pt-br"){
+          if(LANG[0] === "dev"||LANG[0]=="pt"||LANG[0]=="pt-br"){
        b = "Ganhe um bonus em suas dailies e mais 1000"+gear.emoji("ruby")+" votando em mim no discordbots.org e em seguida usando `+reward`"
         }
 
@@ -82,7 +82,7 @@ var emoj = bot.emojis.get('276878246589497344')
 
 
 
-          if (args == "help" || args == "?" || args == "reset" || args == "epoch"){
+          if (args === "help" || args === "?" || args === "reset" || args === "epoch"){
          let e = new Discord.RichEmbed
 
           var r = next
@@ -138,7 +138,7 @@ console.log(LANG)
      var a = "And more **50** "+gear.emoji("ruby")+" for upvoting me!"
 
 
-          if(LANG[0] == "dev"||LANG[0]=="pt"){
+          if(LANG[0] === "dev"||LANG[0]=="pt"){
        a = "E mais **50** "+gear.emoji("ruby")+" por ter votado em mim!"
         }
                 message.channel.send(a)

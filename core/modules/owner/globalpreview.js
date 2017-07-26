@@ -24,7 +24,7 @@ var init = function async (message,userDB,DB) {
 
     //-------MAGIC----------------
 
-    if (!message.author.id == '88120564400553984') return;
+    if (!message.author.id === '88120564400553984') return;
 
 console.log(DB.get(message.guild.id).modules.announcements)
 

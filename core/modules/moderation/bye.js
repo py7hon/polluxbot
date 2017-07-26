@@ -41,7 +41,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
     }
 
 
-    if (args.length == 2 && args[0] == "time") {
+    if (args.length == 2 && args[0] === "time") {
 
         if (!isNaN(Number(args[1]))){
             let num = parseInt(args[1])

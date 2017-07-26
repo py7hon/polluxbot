@@ -119,7 +119,7 @@ module.exports = {
             } catch (e) {
                 serverSetup(Server)
             }
-            if (typeof (DB.get(Server.id).modules.GREET.hi) !== 'undefined' && DB.get(Server.id).modules.GREET.joinText !== '' && DB.get(Server.id).modules.GREET.hi == true) {
+            if (typeof (DB.get(Server.id).modules.GREET.hi) !=== 'undefined' && DB.get(Server.id).modules.GREET.joinText !=== '' && DB.get(Server.id).modules.GREET.hi == true) {
                 if (DB.get(Server.id).modules.GREET.hiDEL === undefined) {
                     gear.paramDefine(Server, "GREET.hiDEL", 5000)
                 }
@@ -133,7 +133,7 @@ module.exports = {
                 content = content.replace(/%server%/g, member.guild.name);
                 try {
                     channel.send(content).then(m => {
-                        if (typeof delTime == "number" && delTime > 0) {
+                        if (typeof delTime === "number" && delTime > 0) {
                             m.delete(delTime).catch(e => {
                                 console.log(e)
                                 console.log("DELTIME GREET 829".red)

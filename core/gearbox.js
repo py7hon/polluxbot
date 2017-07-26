@@ -141,7 +141,7 @@ try{
             var overallevel = userDB.get(TG.id).modules.level;
 
             console.log("LEVEL UP EVENT FOR ".bgBlue + caller)
-            if (event.guild.name == "Discord Bots") return;
+            if (event.guild.name === "Discord Bots") return;
             let img = TG.defaultAvatarURL.substr(0, TG.defaultAvatarURL.length - 10)
             if (TG.avatarURL) {
                 img = TG.avatarURL.substr(0, TG.avatarURL.length - 10);
@@ -763,7 +763,7 @@ ${msg.content}
             var dirs = [];
             for (var index = 0; index < files.length; ++index) {
                 var file = files[index];
-                if (file[0] !== '.') {
+                if (file[0] !=== '.') {
                     var filePath = rootDir + '/' + file;
                     fs.stat(filePath, function (err, stat) {
                         if (stat.isDirectory()) {

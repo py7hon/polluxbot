@@ -13,7 +13,7 @@ var init = function (message,userDB,DB) {
     var LANG = message.lang;
 
     //-------MAGIC----------------
-if (!message.author.id == '88120564400553984') return message.reply('Only my master can change my profile picture. now begone!');
+if (!message.author.id === '88120564400553984') return message.reply('Only my master can change my profile picture. now begone!');
 var av;
     if (args && args > 0 && args < 12 ){
          av = args

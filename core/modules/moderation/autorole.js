@@ -98,7 +98,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
         //  emb.addField('Roles',"```"+(bot.channels.size+8e2)+"```", true)
 
-        if (output == "") {
+        if (output === "") {
             output = mm('dict.none', {
                 lngs: LANG
             })

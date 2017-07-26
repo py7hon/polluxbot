@@ -32,7 +32,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
    var On      = gear.emoji("check")
 var Off     = gear.emoji("xmark")
 
-    if (message.channel.type == 'dm') {
+    if (message.channel.type === 'dm') {
         message.reply(mm('CMD.noDM', {
             lngs: LANG
         }));
@@ -107,7 +107,7 @@ var Off     = gear.emoji("xmark")
 
 
 
-    if (sc == 'S') {
+    if (sc === 'S') {
         Server.channels.forEach(e=>{
 
         if (module in DB.get(e.guild.id).channels[e.id].modules) {
@@ -135,7 +135,7 @@ var Off     = gear.emoji("xmark")
         try {
             let command = msg.content.substr(msg.prefix.length).split(' ')[1];
             let commandFile = require(`./${command}.js`);
-            if (scope == 'S') {
+            if (scope === 'S') {
                                      Server.channels.forEach(e=>{
 
    gear.paramRemove(e, 'DISABLED', command)
@@ -145,7 +145,7 @@ var Off     = gear.emoji("xmark")
                 message.reply(disaCS)
 
             }
-            if (scope == 'C') {
+            if (scope === 'C') {
                 gear.paramRemove(Channel, 'DISABLED', command)
                 message.reply(disaCC)
             }

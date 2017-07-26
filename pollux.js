@@ -175,7 +175,7 @@ function getDirs(rootDir, cb) {
         var dirs = [];
         for (var i = 0; i < files.length; ++i) {
             var file = files[i];
-            if (file[0] !== '.') {
+            if (file[0] !=== '.') {
                 var filePath = rootDir + '/' + file;
                 fs.stat(filePath, function (err, stat) {
                     if (stat.isDirectory()) {

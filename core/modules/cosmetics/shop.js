@@ -40,7 +40,7 @@ var init = async function (message, userDB, DB) {
     });
 
     //-------MAGIC----------------
-    if (message.channel.type == 'dm') {
+    if (message.channel.type === 'dm') {
         message.reply(nope)
         return
     }
@@ -548,13 +548,13 @@ async function pageResolve(m, menuPage, index) {
 
             }
             //equalsARROW
-            if (rea.emoji == "▶" && rea.count > 1) {
+            if (rea.emoji === "▶" && rea.count > 1) {
                 console.log("index " + index)
                 console.log("===========CALL B >>")
                 return refresh(index + 1, m)
 
             } // arrow >> end
-            if (rea.emoji == "◀" && rea.count > 1) {
+            if (rea.emoji === "◀" && rea.count > 1) {
                 console.log("index " + index)
                 console.log("===========CALL B <<")
                 return refresh(index - 1, m) // << this call errors

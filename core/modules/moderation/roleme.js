@@ -39,7 +39,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 
     Target = Server.member(Target)
     console.log(args)
-    if (args == "help" || args == "" || args === undefined) {
+    if (args === "help" || args === "" || args === undefined) {
 
         return ifEmpty()
     }
@@ -63,7 +63,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
         lngs: LANG
     })
 
-    if (args == "out") {
+    if (args === "out") {
         var argum = MSG.substr((message.prefix + " out" + cmd).length + 1)
 
 

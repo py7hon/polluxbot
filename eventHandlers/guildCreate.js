@@ -89,7 +89,7 @@ module.exports = {
             embed: emb
         }).catch()
 
-        if (guild.region == "brazil") {
+        if (guild.region === "brazil") {
             var greetings = greeting.ownPt
         } else {
             var greetings = greeting.own

@@ -170,7 +170,7 @@ var init = function (message, userDB, DB) {
                 RevokeEmb.setFooter("Unmute", Target.user.avatarURL)
                 RevokeEmb.setTimestamp(ts)
 
-                if (time && typeof time == "number") {
+                if (time && typeof time === "number") {
 
                     setTimeout(f => {
                         chanpoint.sendEmbed(RevokeEmb).catch()

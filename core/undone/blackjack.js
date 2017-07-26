@@ -320,7 +320,7 @@ return
                                 ongoing = false
                                 return;
                             } else {
-                                if (newmsg.author == message.author && newmsg.content == "1") {
+                                if (newmsg.author == message.author && newmsg.content === "1") {
                                     player.keepgo = true
                                     player.round = 2
 
@@ -365,7 +365,7 @@ Turn 4`).then(function (mmm) {
                                                                                         ongoing = false
                                                                                         return;
                                                                                     } else {
-                                                                                        if (newmsgC.author == message.author && newmsgC.content == "1") {
+                                                                                        if (newmsgC.author == message.author && newmsgC.content === "1") {
                                                                                             player.keepgo = true
                                                                                             player.round = 4
 
@@ -379,7 +379,7 @@ Turn 4`).then(function (mmm) {
                                                                                             }
 
 
-                                                                                        } else if (newmsgC.author == message.author && newmsgC.content == "2") {
+                                                                                        } else if (newmsgC.author == message.author && newmsgC.content === "2") {
                                                                                             gotoEnd();
                                                                                         }
                                                                                     }
@@ -395,7 +395,7 @@ Turn 4`).then(function (mmm) {
                                                                     }
                                                                 }, 1000)
 
-                                                            } else if (newmsgB.author == message.author && newmsgB.content == "2") {
+                                                            } else if (newmsgB.author == message.author && newmsgB.content === "2") {
                                                                 gotoEnd();
                                                                 return
                                                             }
@@ -411,7 +411,7 @@ Turn 4`).then(function (mmm) {
                                         }
                                     }, 1500)
 
-                                } else if (newmsg.author == message.author && newmsg.content == "2") {
+                                } else if (newmsg.author == message.author && newmsg.content === "2") {
                                     gotoEnd();
                                 }
                             }

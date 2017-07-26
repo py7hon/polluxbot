@@ -31,7 +31,7 @@ if(!Server.mentioned){
 
 
                 try {
-                    if (newMember.id == '248435798179971072' && newMember.presence.game.name.toLowerCase() == "for honor") {
+                    if (newMember.id === '248435798179971072' && newMember.presence.game.name.toLowerCase() === "for honor") {
                         console.log('HONOR')
                         sky.defaultChannel.send("O gay do " + newMember + " já tá jogando aquele jogo de viado de novo.").catch()
                     }
@@ -47,7 +47,7 @@ if(!Server.mentioned){
 
                         var team = 0
                         newMember.guild.presences.forEach(e => {
-                            if (e.game && e.game.name.toLowerCase() == "heroes of the storm") team++;
+                            if (e.game && e.game.name.toLowerCase() === "heroes of the storm") team++;
                         })
 
                         if (team > 1 && team < 6) {
@@ -80,7 +80,7 @@ if(!Server.mentioned){
 
                     }
                 } catch (e) {
-                    if (newMember.id == '248435798179971072' && oldMember.presence.game.name.toLowerCase() == "for honor" && !newMember.presence.game) {
+                    if (newMember.id === '248435798179971072' && oldMember.presence.game.name.toLowerCase() === "for honor" && !newMember.presence.game) {
                         sky.defaultChannel.send(" Juba acabou de sair do jogo de viado dele.")
 
                     }
@@ -134,7 +134,7 @@ message: function (gear,DB,userDB,bot,message)  {
 
                 var team = 0
                 message.guild.presences.forEach(e => {
-                    if (e.game && e.game.name.toLowerCase() == "heroes of the storm") team++;
+                    if (e.game && e.game.name.toLowerCase() === "heroes of the storm") team++;
                 })
                 var n = ""
                 if (team > 1) n = "s";

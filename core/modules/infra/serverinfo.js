@@ -109,13 +109,13 @@ function flagLang(){
 
         let R = DB.get(G.id).modules.LANGUAGE
         switch (true) {
-            case R == "en":
+            case R === "en":
                 return ":flag_gb:";
                 break;
-                 case R == "dev":
+                 case R === "dev":
                 return ":flag_br:";
                 break;
-                 case R == "pt":
+                 case R === "pt":
                 return ":flag_br:";
                 break;
             default:

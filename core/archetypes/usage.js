@@ -17,12 +17,12 @@ module.exports = {
 
         let emb = new Discord.RichEmbed
         emb.setColor("#c65fe5")
-        if (third == "nsfw") {
+        if (third === "nsfw") {
             emb.setThumbnail("https://rlv.zcache.com/nsfw_square_sticker-rea0c876a9755416f8e088671fe163335_v9i40_8byvr_324.jpg");
             emb.setColor("#240d12")
         }
 
-        if (third == "mod") {
+        if (third === "mod") {
             emb.setThumbnail("http://www.freeiconspng.com/uploads/letter-m-icon-png-5.png")
             emb.setColor("#322be5")
         }
@@ -43,7 +43,7 @@ module.exports = {
             prefix: m.prefix
         }), false)
         console.log(third)
-        if (third == "language"){
+        if (third === "language"){
              emb.addField("**" + mm("usage.speakAvailable", {
             lngs: m.lang
         }) + "**", langlistage.languages , false)

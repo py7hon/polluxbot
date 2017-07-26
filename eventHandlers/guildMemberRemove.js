@@ -63,7 +63,7 @@ module.exports = {
 
             let delTime = DB.get(Server.id).modules.FWELL.hiDEL || 5000;
 
-            if (typeof (DB.get(Server.id).modules.FWELL.hi) !== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !== '' && DB.get(Server.id).modules.FWELL.hi == true) {
+            if (typeof (DB.get(Server.id).modules.FWELL.hi) !=== 'undefined' && DB.get(Server.id).modules.FWELL.joinText !=== '' && DB.get(Server.id).modules.FWELL.hi == true) {
 
                 let channels = member.guild.channels.filter(c => {
                     return (c.id === DB.get(Server.id).modules.FWELL.greetChan)
@@ -73,7 +73,7 @@ module.exports = {
                 content = content.replace(/%server%/g, member.guild.name);
                 try {
                     channel.send(content).then(m => {
-                        if (typeof delTime == "number" && delTime > 0) {
+                        if (typeof delTime === "number" && delTime > 0) {
                             m.delete(delTime).catch(e => {
                                 console.log(e)
                                 console.log("DELTIME FWELL 915".red)

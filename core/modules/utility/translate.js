@@ -10,7 +10,7 @@ var init = function (message,userDB,DB) {
     var args=message.content.substr(cmd.length+message.prefix.length)
 
     var langua = DB.get(message.guild.id).modules.LANGUAGE
-    if (langua == "dev") langua ="pt";
+    if (langua === "dev") langua ="pt";
 
 translate(args, {to:langua }).then(res => {
     console.log(res.text);

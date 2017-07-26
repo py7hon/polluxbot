@@ -52,11 +52,11 @@ var emojya = bot.emojis.get('276878246589497344')
             var i = JSON.parse(j)
 
 
-   if (args == "sv"|| args =="server"||args=="guild"||args=="s") {
+   if (args === "sv"|| args =="server"||args=="guild"||args=="s") {
         if(!Server.members.has(i.ID)) return;
      }
 
-       if (i.name == 'Pollux' ||i.name == undefined) {}
+       if (i.name === 'Pollux' ||i.name == undefined) {}
         else {
             rankItem.name = i.name
             rankItem.goodies = i.modules.goodies

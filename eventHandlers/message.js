@@ -129,7 +129,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
         var logusr = " " + Author.username + ": "
         var logmsg = MSG
 
-            if (Author.username == "Pollux" || MSG.toLowerCase().includes('pollux') || MSG.startsWith("+")) {
+            if (Author.username === "Pollux" || MSG.toLowerCase().includes('pollux') || MSG.startsWith("+")) {
 
         console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
 
@@ -284,7 +284,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
 
         //Wave 1 --> CHECK LOCALE
 
-        if (Server && typeof (DB.get(Server.id).modules.LANGUAGE) !== 'undefined' && DB.get(Server.id).modules.LANGUAGE && DB.get(Server.id).modules.LANGUAGE !== '') {
+        if (Server && typeof (DB.get(Server.id).modules.LANGUAGE) !=== 'undefined' && DB.get(Server.id).modules.LANGUAGE && DB.get(Server.id).modules.LANGUAGE !=== '') {
             let langua = "en"
             if (Server.region === 'brazil') langua = "dev";
             message.lang = [DB.get(Server.id).modules.LANGUAGE, langua];
@@ -295,7 +295,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
         }
 
         //Wave 2 -- CHECK PREFIX
-        if (Server && typeof (DB.get(Server.id).modules.PREFIX) !== 'undefined' && DB.get(Server.id).modules.PREFIX && DB.get(Server.id).modules.PREFIX !== '') {
+        if (Server && typeof (DB.get(Server.id).modules.PREFIX) !=== 'undefined' && DB.get(Server.id).modules.PREFIX && DB.get(Server.id).modules.PREFIX !=== '') {
 
             //-- GET & CHECK PREFIX
             if (message.content.startsWith(DB.get(Server.id).modules.PREFIX)||

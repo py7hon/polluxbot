@@ -40,7 +40,7 @@ var init = async function (message, userDB, DB) {
     });
 
     //-------MAGIC----------------
-    if (message.channel.type == 'dm') {
+    if (message.channel.type === 'dm') {
         message.reply(nope)
         return
     }
@@ -556,7 +556,7 @@ if (inventory == undefined){
                 }
 
 
-                       if (rea.emoji == "❎" && rea.count > 1) {
+                       if (rea.emoji === "❎" && rea.count > 1) {
                     //return message.reply("ok" + finder)
                     let item = [0,0]
 
@@ -567,13 +567,13 @@ if (inventory == undefined){
 
 
                 //equalsARROW
-                if (rea.emoji == "▶" && rea.count > 1) {
+                if (rea.emoji === "▶" && rea.count > 1) {
                     console.log("index " + index)
                     console.log("===========CALL B >>")
                     return refresh(index + 1, m)
 
                 } // arrow >> end
-                if (rea.emoji == "◀" && rea.count > 1) {
+                if (rea.emoji === "◀" && rea.count > 1) {
                     console.log("index " + index)
                     console.log("===========CALL B <<")
                     return refresh(index - 1, m) // << this call errors

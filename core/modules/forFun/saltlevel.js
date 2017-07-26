@@ -24,13 +24,13 @@ let saltmoji = "<:salty:277280624900046849>"
 
     //let target = message.mentions.users.first();
     var multiplier = 1
-    try{if (message.mentions.users.first().id == "248435798179971072"){
+    try{if (message.mentions.users.first().id === "248435798179971072"){
         multiplier = 23
     }}catch(err){}
-     try{if (message.mentions.users.first().username == "Ranii"){
+     try{if (message.mentions.users.first().username === "Ranii"){
         multiplier = 2373
     }}catch(err){}
-       try{if (message.mentions.users.first().username == "Sona"){
+       try{if (message.mentions.users.first().username === "Sona"){
         multiplier = 0.23
     }}catch(err){}
     r = gear.randomize(1,100)

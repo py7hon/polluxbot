@@ -77,7 +77,7 @@ if (code.includes("server id")||code.includes("id desse server")){
 }
 
 
-    if (args == "2+2"){
+    if (args === "2+2"){
         return Channel.send("```Tá me achando com cara de calculadora, palhaço? ```").then(m=>{ setTimeout(c=>Channel.send("```(A propósito, são 4) ```"),1000 )})
     }
 

@@ -58,7 +58,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
  emb.setColor("#d92323")
         emb.setAuthor(Target.tag,Target.avatarURL)
         emb.setDescription("Not Voted Yet. Please upvote me at: https://discordbots.org/bot/271394014358405121 and receive 1000 "+gear.emoji("ruby")+", Dailies Boost and 5 Rep as Reward! And a Pollux medal! `+equip` "+gear.emoji("pollux"))
-        if(LANG == "dev"||LANG=="pt"){
+        if(LANG === "dev"||LANG=="pt"){
          emb.setDescription("Upvote não computado vote em mim em: https://discordbots.org/bot/271394014358405121 e receba 1000 "+gear.emoji("ruby")+", boost de Dailies e +5 Rep de Recompensa! E de brinde a Medalhinha da Pollux! `+equip`"+gear.emoji("pollux"))
         }
 
@@ -69,7 +69,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
             if (body[i].id == Target.id){
  emb.setColor("#8cdd5a")
         emb.setDescription("Vote confirmed! Awarding 1000 "+gear.emoji("ruby")+" as reward! And boosting your dailies by 50 for one month, and 5 Rep!" )
-                 if(LANG == "dev"||LANG=="pt"){
+                 if(LANG === "dev"||LANG=="pt"){
          emb.setDescription("Voto confirmado! Entregando 1000 "+gear.emoji("ruby")+" de Recompensa! E boostando suas dailies em 50 por um mês, e 5 Rep!")
         }
                 gear.superDefine(Target,"upvote",true)

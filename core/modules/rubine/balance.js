@@ -49,7 +49,7 @@ var emojya = bot.emojis.get('276878246589497344')
     if (DB.get(Server.id).modules.GOODNAME) {
         GOOD = DB.get(Server.id).modules.GOODNAME
     }
-    if (message.channel.type == 'dm') {
+    if (message.channel.type === 'dm') {
         message.reply(nope)
         return
     }

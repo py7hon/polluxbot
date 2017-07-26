@@ -78,7 +78,7 @@ var input="X"
     }
 
 
-    if (args.length == 2 && args[0] == "time") {
+    if (args.length == 2 && args[0] === "time") {
 
         if (!isNaN(Number(args[1]))){
             let num = parseInt(args[1])

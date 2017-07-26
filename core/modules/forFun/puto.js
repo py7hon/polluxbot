@@ -37,7 +37,7 @@ var init = function (message, userDB, DB) {
         });
 
         //-------MAGIC----------------
-        if (message.channel.type == 'dm') {
+        if (message.channel.type === 'dm') {
             message.reply(nope)
             return
         }

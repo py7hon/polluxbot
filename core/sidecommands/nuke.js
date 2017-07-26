@@ -70,7 +70,7 @@ if (!modPass) return message.reply(noperms);
             }
 
             const action = responses.first().content.toLowerCase();
-            if (action.includes('cancel') || action === 'c' || action == 'no') {
+            if (action.includes('cancel') || action === 'c' || action === 'no') {
                 message.reply("CANCEL");
                 return resolve(true);
             }

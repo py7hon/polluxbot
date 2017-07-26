@@ -31,7 +31,7 @@ gear.paramIncrement(Author,'goodies',0)
     emb.description = "Servers sort by Member Count: No Servers with bot count > 15%"
 
  emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/6.png")
-     if (args == "sv"|| args =="server"||args=="guild"||args=="s") {
+     if (args === "sv"|| args =="server"||args=="guild"||args=="s") {
                     emb.title = "Server Leaderboards"
  //emb.setThumbnail(Server.iconURL)
      }

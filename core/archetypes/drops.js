@@ -34,7 +34,7 @@ module.exports = {
             CHN.DROPSLY = 0
         }
         var droprate = gear.randomize(1, 10000)
-        if (GLD.name == "Discord Bots") return;
+        if (GLD.name === "Discord Bots") return;
         console.log(droprate)
         if (droprate == 1234 ||
             droprate == 2525 ||

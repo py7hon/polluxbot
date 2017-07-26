@@ -29,7 +29,7 @@ gear.paramIncrement(Author,'goodies',0)
     emb.title = "Global Leaderboards"
 
  emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/skynet.png")
-     if (args == "sv"|| args =="server"||args=="guild"||args=="s") {
+     if (args === "sv"|| args =="server"||args=="guild"||args=="s") {
                     emb.title = "Server Leaderboards"
  emb.setThumbnail(Server.iconURL)
      }
@@ -45,7 +45,7 @@ gear.paramIncrement(Author,'goodies',0)
             }catch(e){}
 
 
-            if (args == "sv"|| args =="server"||args=="guild"||args=="s") {
+            if (args === "sv"|| args =="server"||args=="guild"||args=="s") {
                 if(!Server.members.has(i.ID)) return;
             }
 
