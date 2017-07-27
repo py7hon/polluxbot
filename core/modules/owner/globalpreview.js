@@ -1,4 +1,4 @@
-const gear.Discord = require('discord.js')
+const Discord = require('discord.js')
 let fs = require('fs')
 const cfg = require("../../config.js");
 //const hook = new gear.Discord.WebhookClient(cfg.annHook.ID, cfg.annHook.token);

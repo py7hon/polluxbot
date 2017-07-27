@@ -1,5 +1,5 @@
 
-const gear.Discord = require('discord.js');
+const Discord = require('discord.js');
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
 var locale = require('../../../utils/multilang_b');

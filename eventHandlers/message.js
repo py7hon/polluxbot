@@ -7,6 +7,7 @@ module.exports = {
     run:  function run(gear,DB,userDB,bot, message) {
 
 
+//if (!message.guild.name.includes("POLLUX")) return;
 
         function serverSetup(guild) {
 
