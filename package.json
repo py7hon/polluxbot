@@ -44,7 +44,8 @@
     "uws": "^8.14.0",
     "x2js": "^3.0.1",
     "youtube-search": "^1.0.10",
-    "ytdl-core": "latest"
+    "ytdl-core": "latest",
+    "ffmpeg": "latest"
   },
   "engines": {
     "node": ">=7.0.0"
