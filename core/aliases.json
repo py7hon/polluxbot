@@ -95,6 +95,9 @@
     ,"store":"shop"
     ,"buy":"shop"
 
+    ,"bg":"background"
+    ,"fundo":"background"
+
     ,"equipmedals":"equip"
     ,"equipar":"equip"
     ,"badges":"equip"
