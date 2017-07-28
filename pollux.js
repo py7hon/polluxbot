@@ -298,6 +298,30 @@ function commandFire(message, Server, Channel, Author) {
     }
 }
 
+function DMcommandFire(message) {
+
+    message.botUser = bot;
+    message.akairo = client;
+
+
+    if(!message.prefix) message.prefix = "+"
+
+    let DTMN = deployer.determine(message)
+  //  let MDLE = deployer.checkModule(DTMN);
+
+    if (!DTMN) return;
+    if (DTMN.reaction) {
+      //  if (forbiddens.includes(MDLE)) return;
+      //  if (deployer.checkUse(DTMN, DB, message)!==true) return;
+      //  return message.channel.send({files: [DTMN.reaction]});
+    };
+
+
+
+            deployer.run(DTMN.path, message, userDB); //aqui nóis vai!
+
+}
+
 
 bot.login(cfg.token).then(loginSuccess());
 
@@ -380,6 +404,7 @@ function postGCount(g) {
         },
         json: true
     };
+
     rq(rqOptions, function (err, response, body) {
         if (err) {
             console.log("PW");
@@ -389,10 +414,9 @@ function postGCount(g) {
         //  console.log(response);
         console.log(body);
     });
+
     /*
-
         });
-
         let rqCarbon = {
             url: `https://www.carbonitex.net/discord/data/botdata.php`,
             method: 'POST',
@@ -401,14 +425,13 @@ function postGCount(g) {
                 "key": cfg.carbon_token //SOON
             }
         };
-
         rq(rqCarbon, function (err, response, body) {
             if (err) {
                 console.log(err)
             }
-
         });
     */
+
 }
 
 //---------------------------------------------------------------------------------------- END
@@ -419,6 +442,7 @@ module.exports = {
     serverSetup: serverSetup,
     userSetup: serverSetup,
     commandFire: commandFire,
+    DMcommandFire: DMcommandFire,
     postGCount: postGCount,
     bot:bot
 };

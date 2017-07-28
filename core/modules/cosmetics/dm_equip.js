@@ -34,9 +34,7 @@ var init = async function (message, userDB, DB) {
         lngs: LANG
     });
 
-
-
-
+    var footext = "Use numbers 1-8 | ok = confirm | c = cancel"
 
     //-------MAGIC----------------
     if (message.channel.type === 'dm') {
@@ -187,6 +185,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
         let pageObj = createpage(menu[currentPage]); // reaction pagination
         let emb = new gear.Discord.RichEmbed
         emb.setColor("#e18f2f")
+        emb.setFooter(footext)
         emb.setTitle(":diamond_shape_with_a_dot_inside:" + v.equipMenu)
         emb.setDescription(v.choose)
         for (i = 0; i < menuArr.length; i++) {
@@ -216,26 +215,27 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
         let processing = new gear.Discord.RichEmbed;
         processing.setColor("#2bb955")
-        m.clearReactions().catch(e => {
-
-        });
+       // m.clearReactions().catch(e => {});
         processing.setTitle(v.equip) // EQUIP THIS?
         processing.setDescription(equipArray);
-
+        processing.setFooter(footext)
         m.edit({
             embed: processing
         }).then(async m2 => {
 
 
             for (i = 0; i < 8; i++) {
-                await m.react(nums[i + 1]);
+                //await m.react(nums[i + 1]);
             }
 
             return new Promise(async resolve => {
 
-                const responses = await m2.awaitReactions(react =>
-                    react.users.has(Author.id), {
-                        maxEmojis: 1,
+                const responses = await Channel.awaitMessages(react =>
+                    !isNaN(parseInt(react.content))&&(
+                    parseInt(react.content) >= 1 &&
+                    parseInt(react.content) <= 8
+                ), {
+                        max: 1,
                         time: 20000
                     }
                 ).catch();
@@ -244,44 +244,44 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
                 } else {
 
-                    let rea = responses.first()
-                    let finder = reindex[rea.emoji]
+                    let rea = parseInt(responses.first().content)
+
 
                     //equals ARRitm
-                    if (finder && rea.count > 0) {
+                    if (!isNaN(rea)) {
                         // return message.reply("ok" + finder)
 
                         let pseudoequip = userDB.get(message.author.id).modules.medals;
 
-                        pseudoequip[finder - 1] = medal_file;
+                        pseudoequip[rea - 1] = medal_file;
                         processing.setDescription(getEquips(pseudoequip))
-
+                        responses.first().delete().catch
                         m.edit(v.youSure, {
                             embed: processing
                         }).then(async me => {
-                            await me.clearReactions().catch(e => {
+                           // await me.clearReactions().catch(e => {
 
-                            });
-                            await me.react(check)
-                            await me.react(xmark)
-
+                            //});
+                            //await me.react(check)
+                           // await me.react(xmark)
 
                             return new Promise(async resolve => {
-                                const responses = await m2.awaitReactions(react =>
-                                    react.users.has(Author.id), {
-                                        maxEmojis: 1,
+                                const responses = await Channel.awaitMessages(react =>
+                                    react.content==="ok", {
+                                        max: 1,
                                         time: 20000
                                     }
                                 ).catch();
                                 if (responses.size === 0) {} else {
-                                    let rea = responses.first()
-                                    if (rea.emoji == check && rea.count > 0) {
+                                    let reata = responses.first()
+                                    if (reata) {
 
                                         let u = userDB.get(message.author.id);
                                         console.log(medal_file)
-                                        u.modules.medals[finder - 1] = medal_file
+                                        u.modules.medals[rea - 1] = medal_file
                                         userDB.set(Author.id, u)
                                         me.delete().catch();
+                                        responses.first().delete().catch();
                                         return message.reply(check + v.success)
 
                                     }
@@ -365,17 +365,17 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
         console.log("FUNCTION: loadMedalShop")
         for (i = 0; i < menuPage.menuArr.length; i++) {
-            await m.react(nums[i + 1]).catch();
+           // await m.react(nums[i + 1]).catch();
         }
-                   await m.react("❎").catch();
+                  // await m.react("❎").catch();
 
         if (index !== 0) {
-            await m.react("◀").catch();
+          //  await m.react("◀").catch();
         }
         if (index != menu.length - 1) {
-            await m.react("▶").catch();
+          //  await m.react("▶").catch();
         }
-        await m.react(xmark).catch()
+       // await m.react(xmark).catch()
 
     }
     async function pageResolve(m, menuPage, index) {
@@ -390,11 +390,15 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
         //reactmonitor
         return new Promise(async resolve => {
 
-            const responses = await m.awaitReactions(react =>
-                react.users.has(Author.id), {
-                    maxEmojis: 1,
+            const responses = await Channel.awaitMessages(react =>
+                    react.content==="x"||
+                    react.content==="c"||
+                    (!isNaN(parseInt(react.content))&&(
+                    parseInt(react.content) >= 1 &&
+                    parseInt(react.content) <= 8
+                )), {
+                    max: 1,
                     time: 20000
-
                 }
             ).catch();
 
@@ -404,10 +408,11 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                 message.delete().catch();
             } else {
 
-                let rea = responses.first()
-                let finder = reindex[rea.emoji]
+                let rea = responses.first().content
+                let rae = parseInt(responses.first().content)
+            //    let finder = reindex[rea.emoji]
 
-                if (rea.emoji == xmark) {
+                if (rea == "c") {
 
                     message.reply(xmark + v.cancelled)
                     m.delete();
@@ -416,16 +421,16 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                 }
 
                 //equals ARRitm
-                if (finder && rea.count > 0) {
+                if (!isNaN(rae)) {
                     //return message.reply("ok" + finder)
-                    let item = menuPage.menuArr[finder - 1]
-
+                    responses.first().delete().catch
+                    let item = menuPage.menuArr[rae - 1]
                     processCheckout(item, index, m)
 
                 }
 
 
-                       if (rea.emoji === "❎" && rea.count > 0) {
+                       if (rea==="x") {
                     //return message.reply("ok" + finder)
                     let item = [0,0]
 
@@ -436,13 +441,13 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
 
                 //equalsARROW
-                if (rea.emoji === "▶" && rea.count > 0) {
+                if (rea === ">") {
                     console.log("index " + index)
                     console.log("===========CALL B >>")
                     return refresh(index + 1, m)
 
                 } // arrow >> end
-                if (rea.emoji === "◀" && rea.count > 0) {
+                if (rea === "<") {
                     console.log("index " + index)
                     console.log("===========CALL B <<")
                     return refresh(index - 1, m) // << this call errors
@@ -453,12 +458,12 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
     }
     async function refresh(index, m, optm) {
-        await m.clearReactions().catch(e => {
-            message.reply(mm("error.iNeedThesePerms", {
-                lngs: LANG,
-                PERMSLIST: `**${perms.MNG_MESS}**`
-            }));
-        });
+       // await m.clearReactions().catch(e => {
+       //     message.reply(mm("error.iNeedThesePerms", {
+       //         lngs: LANG,
+        //        PERMSLIST: `**${perms.MNG_MESS}**`
+       //     }));
+       // });
         return callB(index, true, m, optm);
     }
 

@@ -12,19 +12,20 @@ var cmd = 'shop';
 var init = async function (message, userDB, DB) {
 
 
-
     var start = Date.now();
 
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
     if (Author.bot) return;
-    var Member = Server.member(Author);
+    try{
+        var Member = Server.member(Author);
+    }catch(e){}
+
     var Target = message.mentions.users.first() || Author;
     var MSG = message.content;
     var bot = message.botUser
     var args = MSG.split(' ').slice(1)[0]
-
 
     var tint = (args || "0000FF")
     var LANG = message.lang;
@@ -41,136 +42,42 @@ var init = async function (message, userDB, DB) {
 
     //-------MAGIC----------------
     if (message.channel.type === 'dm') {
-        message.reply(nope)
-        return
-    }
-    //CHECK PROFS LV ETC ---
-
-/*
-
-
-
-    let img = Target.defaultAvatarURL.substr(0, Target.defaultAvatarURL.length - 10).replace(/gif/g, "png")
-    if (Target.avatarURL) {
-        img = Target.avatarURL.substr(0, Target.avatarURL.length - 10).replace(/gif/g, "png");
-    }
-
-    let tgtData = userDB.get(Target.id).modules;
-
-    //   let adm = gear.checkAdm(message, Target).toLowerCase()
-
-
-    gear.superDefine(Target, "ID", Target.id)
-
-    var ranked = []
-    userDB.forEach(j => {
-        var i = JSON.parse(j)
-        var rankItem = {}
-        rankItem.exp = i.modules.exp
-        rankItem.id = i.ID
-        rankItem.name = i.name
-        ranked.push(rankItem)
-
-    })
-
-    arraySort(ranked, 'exp', {
-        reverse: true
-    })
-
-    var Sranked = []
-    userDB.forEach(j => {
-        var i = JSON.parse(j)
-        var SrankItem = {}
-        if (Server.members.get(i.ID) == undefined) return;
-        SrankItem.exp = i.modules.exp
-        SrankItem.id = i.ID
-        SrankItem.name = i.name
-        Sranked.push(SrankItem)
-
-    })
-
-    arraySort(Sranked, 'exp', {
-        reverse: true
-    })
-
-
-
-    if (userDB.get(Target.id).modules.bgID == undefined) {
-        gear.paramDefine(Target, "bgID", "0")
-    }
-    if (userDB.get(Target.id).modules.rep == undefined) {
-        gear.paramDefine(Target, "rep", 0)
-    }
-    if (userDB.get(Target.id).modules.bgInventory == undefined) {
-        gear.paramDefine(Target, "bgInventory", [0])
-    }
-    if (userDB.get(Target.id).modules.medalInventory == undefined) {
-        gear.paramDefine(Target, "medalInventory", [])
-    }
-    if (userDB.get(Target.id).modules.medals == undefined) {
-        gear.paramDefine(Target, "medals", [0, 0, 0, 0, 0, 0, 0, 0])
-    }
-    if (userDB.get(Target.id).modules.medals.length == 0) {
-        gear.paramDefine(Target, "medals", [0, 0, 0, 0, 0, 0, 0, 0])
-    }
-
-    if (Target.bot && Target.id != "271394014358405121") {
-        gear.paramDefine(Target, "bgID", "bot")
+      //  message.reply(nope)
+       // return
     }
 
 
+    //HELP TRIGGER
+    let helpkey = mm("helpkey",{lngs:message.lang})
+if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+    return gear.usage(cmd,message);
+}
 
-    let join = message.guild.member(Target).joinedAt
-    let joinstamp = `${join.getDate()}/${join.getMonth()+1}/${join.getFullYear()} - ${join.toLocaleTimeString()}`;
+          var perms = {
+          MNG_MESS: mm("permission.MNG_MESS", {
+              lngs: LANG
+          }),
+          ADD_REA: mm("permission.ADD_REA", {
+              lngs: LANG
+          })
+      }
+ try{
+      if (!message.guild.member(message.botUser.user)
+          .permissionsIn(message.channel)
+          .hasPermission("ADD_REACTIONS")) {
+          return message.reply(
 
-    var favcolor = (userDB.get(Target.id).modules.favcolor || "2211EB")
-    var backgroundId = userDB.get(Target.id).modules.bgID
-    var medals = (userDB.get(Target.id).modules.medals || [0, 0, 0, 0, 0, 0, 0, 0])
-    var persotex = (userDB.get(Target.id).modules.persotext || "I have no personal text because i'm lazy as a sloth.")
-    var nametag = Target.username + "#" + Target.discriminator
-    var nickname = Server.member(Target).displayName
-    var rubys = (userDB.get(Target.id).modules.goodies.toString() || "00")
-    var globalrank = "#" + (1 + ranked.findIndex(i => i.id === Target.id)).toString()
-    var serverank = "#" + (1 + Sranked.findIndex(i => i.id === Target.id)).toString()
-    var exp = userDB.get(Target.id).modules.exp.toString()
-    var level = userDB.get(Target.id).modules.level.toString()
-    var exptoNex = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2)).toString()
-    var exptoThis = Math.trunc(Math.pow((Number(level)) / 0.18, 2)).toString()
-    var frameofact = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2)) - Math.trunc(Math.pow((Number(level)) / 0.18, 2))
-    // console.log(exptoThis)
-    //console.log(frameofact)
-    var percent = (((Number(exp) - Number(exptoThis)) / frameofact) * 100).toFixed(0)
-    // var percent     = ((Number(exptoThis) / exptoNex)*100).toFixed(0)
-    var membSince = joinstamp
-    var rep = userDB.get(Target.id).modules.rep
-    var propic = (Target.avatarURL.replace(/gif/g, "png") || Target.defaultAvatarURL.replace(/gif/g, "png"))
-    rep = rep.toString()
-    var medals = userDB.get(Target.id).modules.medals
+              mm("error.iNeedThesePerms", {
+                  lngs: LANG,
+                  PERMSLIST: `:small_orange_diamond: **${perms.MNG_MESS+"\n:small_orange_diamond: "+perms.ADD_REA }**`
+              })
 
+          );
+      };
 
-    var m = `
-
-favcolor:   ${favcolor}
-medals:   ${medals}
-persotex:   ${persotex}
-nametag:   ${nametag}
-nickname:   ${nickname}
-rubys:   ${rubys}
-globalrank:   ${globalrank}
-serverank:   ${serverank}
-exp:   ${exp}
-level:   ${level}
-exptoNex:   ${exptoNex}
-percent:   ${percent}
-membSince:   ${membSince}
-rep:   ${rep}
-`
+    }catch(e){}
 
 
-*/
-
-
-//Set global menu <---- Pull this from external JSON or smth
 var menu = [
                  [
                  ["Fruki Guaraná", "fruki", 953]

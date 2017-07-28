@@ -26,6 +26,8 @@ var init = async function (message, userDB, DB) {
     //-------MAGIC----------------
 
 
+//if(Author.id === "282546525836541963") return message.send("Elevation too low");//
+
 
     if (DB.get(Server.id).playlist != undefined) {
         SPL = DB.get(Server.id).playlist
@@ -34,7 +36,6 @@ var init = async function (message, userDB, DB) {
         SPL = []
     }
 
-
     var search = require('youtube-search');
 
     var opts = {
@@ -42,6 +43,7 @@ var init = async function (message, userDB, DB) {
         type: "video",
         key: 'AIzaSyB459p_ith_k86GLNPUHaq6EfsfEOOOKoU'
     };
+
 
     search(args, opts, function (err, results) {
         if (err) return console.log(err);
@@ -62,7 +64,6 @@ var init = async function (message, userDB, DB) {
         message.channel.send(list).then(async msg => {
 
 
-
             return new Promise(async resolve => {
                 const responses = await Channel.awaitMessages(msg2 =>
                     msg2.author.id === Author.id && msg2.author === Author && ((
@@ -73,10 +74,7 @@ var init = async function (message, userDB, DB) {
                         maxMatches: 1,
                         timeout: 20000
                     }
-
                 );
-
-
 
                 if (responses.size === 0) {
                     message.reply("timeout")
@@ -84,8 +82,7 @@ var init = async function (message, userDB, DB) {
 
                 } else {
 
-
-msg.delete()
+msg.delete().catch()
 
                     if (responses.first().content === "c") {
                         message.reply("cancel");
@@ -170,7 +167,7 @@ return
 module.exports = {
     pub: true,
     cmd: cmd,
-    perms: 2,
+    perms: 3,
     init: init,
     cat: 'master'
 };

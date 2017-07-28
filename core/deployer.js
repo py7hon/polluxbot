@@ -84,7 +84,7 @@ module.exports = {
 
         try {
 
-            require.cache[require.resolve(file)];
+            delete require.cache[require.resolve(file)];
             let command = require(file)
 
 

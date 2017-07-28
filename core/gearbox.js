@@ -1,10 +1,8 @@
-/*jslint es6 */
 const Discord = require("discord.js");
 const cfg = require("../config.js");
 const fs = require("fs");
 const paths = require("./paths.js");
 const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
-
 
 Array.prototype.removeire = function removeire() {
     var what, a = arguments;
@@ -16,12 +14,11 @@ Array.prototype.removeire = function removeire() {
             this.splice(ax, 1);
         }
     }
-    return this;
+    return ;
 };
 
 // DATABASE
 const PersistentCollection = require("djs-collection-persistent");
-
 
 const DB = new PersistentCollection({
     name: "DB"
@@ -29,14 +26,8 @@ const DB = new PersistentCollection({
 const userDB = new PersistentCollection({
     name: "userDB"
 });
-module.exports = {
 
-
-        DB: DB,
-        userDB: userDB,
-        hook:hook,
-
-    sendSlack: async function sendSlack(hookname = "PolluxHOOK", pretex="**Hook**", text = "", col = "#2551c9", avi = "https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg") {
+var sendSlack = async function sendSlack(hookname = "PolluxHOOK", pretex="**Hook**", text = "", col = "#2551c9", avi = "https://cdn.discordapp.com/attachments/249641789152034816/272620679755464705/fe3cf46fee9eb9162aa55c8eef6a300c.jpg") {
 //return;
        await hook.sendSlackMessage({
             "username": hookname,
@@ -50,10 +41,9 @@ module.exports = {
         }]
         }).catch()
 
-    },
+    }
 
-
-    normaliseUSER: function normaliseUSER(User, userDB, DB) {
+    var normaliseUSER = function normaliseUSER(User, userDB, DB) {
 
         try {
 
@@ -77,8 +67,8 @@ module.exports = {
         } catch (err) {
             //   console.log("not this")
         }
-    },
-    normaliseGUILD: function normaliseGUILD(SERV, DB) {
+    }
+    var normaliseGUILD = function normaliseGUILD(SERV, DB) {
 
         var GG = DB.get(SERV.id)
         GG.ID = SERV.id
@@ -87,12 +77,12 @@ module.exports = {
 
         DB.set(SERV.id, GG)
 
-    },
+    }
 
-    randomize: function randomize(min, max) {
+    var randomize = function randomize(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
-    },
-    gamechange: function gamechange(gamein = false) {
+    }
+    var gamechange = function gamechange(gamein = false) {
         try {
             if (gamein != false) return gamein;
             delete require.cache[require.resolve(`../resources/lists/playing.js`)];
@@ -106,20 +96,20 @@ module.exports = {
         } catch (e) {
             gear.hook.send(e.error)
         }
-    },
-    emoji: function emoji(emo) {
+    }
+    var emoji = function emoji(emo) {
 
         delete require.cache[require.resolve(`../resources/lists/emoji.js`)];
         var emojia = require("../resources/lists/emoji.js");
         if (emojia[emo] === undefined) return "";
         return emojia[emo];
-    },
-    writeJ: function writeJ(a, b) {
+    }
+    var writeJ = function writeJ(a, b) {
         fs.writeFile(b + ".json", JSON.stringify(a, null, 4), (err) => {
             console.log("-")
         });
-    },
-    updateEXP: function updateEXP(TG, event,DB,userDB) {
+    }
+    var updateEXP = function updateEXP(TG, event,DB,userDB) {
 
 try{
 
@@ -191,9 +181,9 @@ try{
                 });
             });
         }
-    },
+    }
 
-    updatePerms: function updatePerms(tgt, Server, DaB) {
+    var updatePerms = function updatePerms(tgt, Server, DaB) {
         try {
 
             switch (true) {
@@ -223,8 +213,9 @@ try{
             }
         }
 
-    },
-    hasPerms: function hasPerms(Member, DB) {
+    }
+
+    var hasPerms = function hasPerms(Member, DB) {
 
         if(Member.id =="88120564400553984" ) return true;
 
@@ -244,17 +235,16 @@ try{
             modPass = true;
         };
         return modPass;
-    },
-    checkGoods: function checkGoods(amount, invoker) {
+    }
+    var checkGoods = function checkGoods(amount, invoker) {
         if (userDB.get(invoker.id).modules.goodies >= amount) {
             return true;
         } else {
             return false;
         }
-    },
+    }
 
-
-    logChannel: function logChannel(channel, action, DB) {
+    var logChannel = function logChannel(channel, action, DB) {
         Server = channel.guild
         var chanpoint = false;
         try {
@@ -291,9 +281,9 @@ try{
 
         }
 
-    },
+    }
 
-       editData: function editData(target,param,val,ope) {
+    var editData = function editData(target,param,val,ope) {
     try {
         if (target instanceof Discord.User) {
             var Umodules = userDB.get(target.id)
@@ -391,27 +381,27 @@ try{
                     }
                             return item
                 }
-},
+}
 
-    paramAdd: function paramAdd(target, param, val) {
-       this.editData(target,param,val,"push");
-    },
-    paramRemove: function paramRemove(target, param, val) {
-       this.editData(target,param,val,"remove");
-    },
+    var paramAdd = function paramAdd(target, param, val) {
+       editData(target,param,val,"push");
+    }
+    var paramRemove = function paramRemove(target, param, val) {
+       editData(target,param,val,"remove");
+    }
 
-    paramIncrement: function paramIncrement(target, param, val) {
-      this.editData(target,param,val,"increment");
-    },
+    var paramIncrement = function paramIncrement(target, param, val) {
+       editData(target,param,val,"increment");
+    }
 
-    paramDefine: function paramDefine(target, param, val) {
-        this.editData(target,param,val,"define");
-    },
+    var paramDefine = function paramDefine(target, param, val) {
+        editData(target,param,val,"define");
+    }
 
-    superDefine: function superDefine(target, param, val) {
-        this.editData(target,param,val,"superDef");
-    },
-    sendDebug: function sendDebug(msg){
+    var superDefine = function superDefine(target, param, val) {
+        editData(target,param,val,"superDef");
+    }
+    var sendDebug = function sendDebug(msg){
         let response = `
 **Server:** ${msg.guild.name}
 **Channel:** ${msg.channel.name}
@@ -423,27 +413,27 @@ ${msg.content}
 
 `;
         return response
-    },
+    }
 
 
-    dropGoodies: function(a,b,c){
+    var dropGoodies = function(a,b,c){
     delete require.cache[require.resolve("./archetypes/drops.js") ];
   let drops = require("./archetypes/drops.js")
     return drops.runb(a,b,c)
 
-},
+}
 
-    usage: function usage(cmd,m,third){
+    var usage = function usage(cmd,m,third){
           delete require.cache[require.resolve("./archetypes/usage.js")];
         let usage = require("./archetypes/usage.js")
 
     return usage.run(cmd,m,third)
 
-    },
+    }
 
     //OLDS
 
-    getFlair: function getFlair(origin, target) {
+    var getFlair = function getFlair(origin, target) {
         try {
 
             let modRole = origin.guild.roles.find("name", "MOD");
@@ -470,9 +460,9 @@ ${msg.content}
             if (target.bot) return "BOT";
             return "none"
         }
-    },
+    }
 
-    glassify: function glassify(img, call, msg = false) {
+    var glassify = function glassify(img, call, msg = false) {
 
             gear.Jimp.read(img).then(function (user) {
 
@@ -492,9 +482,9 @@ ${msg.content}
                     });
                 })
             });
-        },
+        }
 
-    shuffle: function shuffle(array) {
+    var shuffle = function shuffle(array) {
         var currentIndex = array.length,
             temporaryValue, randomIndex;
         // While there remain elements to shuffle...
@@ -508,12 +498,12 @@ ${msg.content}
             array[randomIndex] = temporaryValue;
         }
         return array;
-    },
-    clean: function clean(text) {
+    }
+    var clean = function clean(text) {
         if (typeof (text) === "string") return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
         else return text;
-    },
-    draw: function draw(array, who) {
+    }
+    var draw = function draw(array, who) {
         var cardimg = gear.Jimp.read(`${paths.BUILD}cards/fiver.png`).then(function (cardimg) {
             gear.Jimp.read(`${paths.BUILD}cards/${array[0].card}.png`).then(function (c1) {
                 cardimg.composite(c1, 0 * 96, 0)
@@ -549,8 +539,8 @@ ${msg.content}
                 })
             }, 1200);
         })
-    },
-    drawalt: function drawalt(array, who) {
+    }
+    var drawalt = function drawalt(array, who) {
 
         if (array.length >= 1) {
 
@@ -601,8 +591,8 @@ ${msg.content}
                 })
             }, 200);
         }
-    },
-    getDir: function getDir(rootDir, cb) {
+    }
+    var getDir = function getDir(rootDir, cb) {
         fs.readdir(rootDir, function (err, files) {
             var dirs = [];
             for (var index = 0; index < files.length; ++index) {
@@ -623,19 +613,46 @@ ${msg.content}
                 }
             }
         });
-    },
+    }
 
 
     // DEPENDENCY TOOLBOX AHOY
 
-
-    Jimp:require("Jimp"),
-    cheerio:require("cheerio"),
-    Discord:  Discord,
-    fs:fs,
-
-
+module.exports = {
+    DB: DB,
+    userDB: userDB,
+    hook: hook,
+    sendSlack: sendSlack,
+    normaliseUSER: normaliseUSER,
+    normaliseGUILD: normaliseGUILD,
+    randomize: randomize,
+    gamechange: gamechange,
+    emoji: emoji,
+    writeJ: writeJ,
+    updateEXP: updateEXP,
+    updatePerms: updatePerms,
+    hasPerms: hasPerms,
+    checkGoods: checkGoods,
+    logChannel: logChannel,
+    editData: editData,
+    paramAdd: paramAdd,
+    paramRemove: paramRemove,
+    paramIncrement: paramIncrement,
+    paramDefine: paramDefine,
+    superDefine: superDefine,
+    sendDebug: sendDebug,
+    dropGoodies: dropGoodies,
+    usage: usage,
+    getFlair: getFlair,
+    glassify: glassify,
+    shuffle: shuffle,
+    clean: clean,
+    draw: draw,
+    drawalt: drawalt,
+    getDir: getDir,
+    Jimp: require("Jimp"),
+    cheerio: require("cheerio"),
+    Discord: Discord,
+    fs: fs
 }
-
-
 
