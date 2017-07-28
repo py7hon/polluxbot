@@ -1,13 +1,14 @@
+/*jslint es6 */
 const Discord = require("discord.js");
-const cfg = require('../config.js');
+const cfg = require("../config.js");
 const fs = require("fs");
 const paths = require("./paths.js");
 const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
 
 
 Array.prototype.removeire = function removeire() {
-    var what, a = arguments,
-        L = a.length,
+    var what, a = arguments;
+        L = a.length;
         ax;
     while (L && this.length) {
         what = a[--L];
@@ -19,14 +20,14 @@ Array.prototype.removeire = function removeire() {
 };
 
 // DATABASE
-const PersistentCollection = require('djs-collection-persistent');
+const PersistentCollection = require("djs-collection-persistent");
 
 
 const DB = new PersistentCollection({
     name: "DB"
 });
 const userDB = new PersistentCollection({
-    name: 'userDB'
+    name: "userDB"
 });
 module.exports = {
 
@@ -114,8 +115,8 @@ module.exports = {
         return emojia[emo];
     },
     writeJ: function writeJ(a, b) {
-        fs.writeFile(b + '.json', JSON.stringify(a, null, 4), (err) => {
-            console.log('-')
+        fs.writeFile(b + ".json", JSON.stringify(a, null, 4), (err) => {
+            console.log("-")
         });
     },
     updateEXP: function updateEXP(TG, event,DB,userDB) {
@@ -136,7 +137,7 @@ try{
         let forNext = Math.trunc(Math.pow((userData.level + 1) / 0.18, 2));
         if (curLevel > userData.level) {
             // Level up!
-            this.paramIncrement(TG, 'level', 1)
+            this.paramIncrement(TG, "level", 1)
             var overallevel = userDB.get(TG.id).modules.level;
 
             console.log("LEVEL UP EVENT FOR ".bgBlue + caller)
@@ -155,9 +156,9 @@ try{
                         gear.Jimp.read(paths.BUILD + "note.png").then(function (photo) {
                             photo.composite(user, 0, 0)
                             photo.mask(lenna, 0, 0)
-                            gear.Jimp.read(paths.BUILD + "profile/skins/" + userData.skin + '/levelcard.png').then(function (cart) {
-                                gear.Jimp.loadFont(paths.FONTS + 'HEADING.fnt').then(function (head) { // load font from .fnt file
-                                    gear.Jimp.loadFont(paths.FONTS + 'BIG.png.fnt').then(function (sub) {
+                            gear.Jimp.read(paths.BUILD + "profile/skins/" + userData.skin + "/levelcard.png").then(function (cart) {
+                                gear.Jimp.loadFont(paths.FONTS + "HEADING.fnt").then(function (head) { // load font from .fnt file
+                                    gear.Jimp.loadFont(paths.FONTS + "BIG.png.fnt").then(function (sub) {
                                         try {
                                             var level = overallevel.toString()
                                         } catch (err) {
@@ -286,283 +287,129 @@ try{
                 chanpoint.send({embed:emb}).catch()
 
             }
-
-
         } catch (err) {
 
         }
-
-
 
     },
-    paramAdd: function paramAdd(target, param, val) {
 
-        try {
-
-            if (target instanceof Discord.User) {
-
-                var Umodules = userDB.get(target.id)
-                if (!Umodules.modules[param]) {
-                    Umodules.modules[param] = []
-                }
-
-
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Umodules.modules[param[0]][param[1]].push(val)
-                } else {
-                    Umodules.modules[param].push(val)
-                }
-                userDB.set(target.id, Umodules)
-
+       editData: function editData(target,param,val,ope) {
+    try {
+        if (target instanceof Discord.User) {
+            var Umodules = userDB.get(target.id)
+            if (!Umodules.modules[param]) {
+                Umodules.modules[param] = []
             }
 
-            if (target instanceof Discord.Guild) {
-
-                var Smodules = DB.get(target.id)
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    if (!Smodules.modules[param[0]][param[1]]) {
-                        Smodules.modules[param[0]][param[1]] = []
-                    }
-                    Smodules.modules[param[0]][param[1]].push(val)
-                } else {
-                    console.log("INCLUDES")
-                    Smodules.modules[param].push(val)
-                }
-
-                DB.set(target.id, Smodules)
-
+            if (param.includes(".")) {
+                param = param.split(".")
+                Umodules = operateTwo(Umodules,param,ope,val)
+                 userDB.set(target.id,Umodules)
             }
-            if (target instanceof Discord.Channel) {
-
-                var Tchannel = DB.get(target.guild.id)
-                if (!Tchannel.channels[target.id].modules[param]) {
-                    Tchannel.channels[target.id].modules[param] = []
-                }
-
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Tchannel.channels[target.id].modules[param[0]][param[1]].push(val)
-                } else {
-                    Tchannel.channels[target.id].modules[param].push(val)
-                }
-                DB.set(target.guild.id, Tchannel)
-
+            else {
+                Umodules = operateOne(Umodules,param,ope,val)
+                 userDB.set(target.id,Umodules)
             }
-            //  }
-        } catch (err) {
-            console.log('ERROR ONWRITE == PARAM ADD'.bgRed.white.bold)
-            console.log(err.stack)
-
-
         }
+        //if GUILD
+        if (target instanceof Discord.Guild) {
+            var Smodules = DB.get(target.id)
+            if (param.includes(".")) {
+                param = param.split(".")
+                if (!Smodules.modules[param[0]][param[1]]) {
+                    Smodules.modules[param[0]][param[1]] = []
+                }
+               Smodules = operateTwo(Smodules,param,ope,val)
+                 DB.set(target.id,Smodules)
+            }
+            else {
+                Smodules = operateOne(Smodules,param,ope,val)
+                 DB.set(target.id,Smodules)
+            }
+        }
+        //IF CHAN
+        if (target instanceof Discord.Channel) {
+            var Tchannel = DB.get(target.guild.id)
+            if (!Tchannel.channels[target.id].modules[param]) {
+                Tchannel.channels[target.id].modules[param] = []
+            }
+            if (param.includes(".")) {
+                param = param.split(".")
+                 Tchannel = operateTwo(Tchannel,param,ope,val)
+                 DB.set(target.id,Tchannel)
+            }
+            else {
+                  Tchannel = operateOne(Tchannel,param,ope,val)
+                  DB.set(target.id,Tchannel)
+            }
+        }
+    }catch (err) {
+        console.log("ERROR ONWRITE == PARAM ADD".bgRed.white.bold)
+        console.log(err.stack)
+    }
+                           function operateTwo(item,p, operation,value){
+
+                    switch(operation){
+
+                        case "push":
+                            item.modules[p[0]][p[1]].push(value);
+                            break;
+                        case "remove":
+                            item.modules[p[0]][p[1]].removeire(value);
+                            break;
+                        case "define":
+                            item.modules[p[0]][p[1]] = value;
+                            break;
+                        case "increment":
+                            item.modules[p[0]][p[1]] += value;
+                            break;
+                        case "superDef":
+                            item[p[0]][p[1]] = value;
+                            break;
+                    }
+                            return item
+                }
+                           function operateOne(item,p, operation,value){
+
+                    switch(operation){
+
+                        case "push":
+                            item.modules[p].push(value);
+                            break;
+                        case "remove":
+                            item.modules[p].removeire(value);
+                            break;
+                        case "define":
+                            item.modules[p] = value;
+                            break;
+                        case "increment":
+                            item.modules[p] += value;
+                            break;
+                        case "superDef":
+                            item[p] = value;
+                            break;
+                    }
+                            return item
+                }
+},
+
+    paramAdd: function paramAdd(target, param, val) {
+       this.editData(target,param,val,"push");
     },
     paramRemove: function paramRemove(target, param, val) {
-        try {
-
-            //    param = param.split('.');
-            //   if ((param.length == 1)) {
-
-            if (target instanceof Discord.User) {
-
-                var Umodules = userDB.get(target.id)
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Umodules.modules[param[0]][param[1]].removeire(val)
-                } else {
-                    Umodules.modules[param].removeire(val)
-                }
-                userDB.set(target.id, Umodules)
-
-            }
-
-            if (target instanceof Discord.Guild) {
-
-                var Smodules = DB.get(target.id)
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Smodules.modules[param[0]][param[1]].removeire(val)
-                } else {
-                    Smodules.modules[param].removeire(val)
-                }
-                DB.set(target.id, Smodules)
-
-            }
-            if (target instanceof Discord.Channel) {
-
-                var Tchannel = DB.get(target.guild.id)
-
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Tchannel.channels[target.id].modules[param[0]][param[1]].removeire(val)
-                } else {
-                    Tchannel.channels[target.id].modules[param].removeire(val)
-                }
-                DB.set(target.guild.id, Tchannel)
-
-            }
-            //  }
-
-        } catch (err) {
-            console.log('ERROR JSON'.bgRed.white.bold)
-            console.log(err.stack)
-        }
+       this.editData(target,param,val,"remove");
     },
+
     paramIncrement: function paramIncrement(target, param, val) {
-        try {
-
-
-
-            if (target instanceof Discord.User) {
-
-                var Umodules = userDB.get(target.id)
-                if (!Umodules.modules[param]) {
-                    Umodules.modules[param] = 0
-                }
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Umodules.modules[param[0]][param[1]] += val
-                } else {
-                    Umodules.modules[param] += val
-                }
-                userDB.set(target.id, Umodules)
-
-            }
-
-            if (target instanceof Discord.Guild) {
-
-                var Smodules = DB.get(target.id)
-                if (!Smodules.modules[param]) {
-                    Smodules.modules[param] = 0
-                }
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Smodules.modules[param[0]][param[1]] += val
-                } else {
-                    Smodules.modules[param] += val
-                }
-                DB.set(target.id, Smodules)
-
-            }
-            if (target instanceof Discord.Channel) {
-
-                var Tchannel = DB.get(target.guild.id)
-                if (!Tchannel.channels[target.id].modules[param]) {
-                    Tchannel.channels[target.id].modules[param] = 0
-                }
-
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Tchannel.channels[target.id].modules[param[0]][param[1]] += val
-                } else {
-                    Tchannel.channels[target.id].modules[param] += val
-                }
-                DB.set(target.guild.id, Tchannel)
-
-            }
-
-        } catch (err) {
-            console.log('ERROR JSON'.bgRed.white.bold)
-            console.log(err.stack)
-        }
-
+      this.editData(target,param,val,"increment");
     },
+
     paramDefine: function paramDefine(target, param, val) {
-        try {
-
-            if (target instanceof Discord.User) {
-
-                var Umodules = userDB.get(target.id)
-
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Umodules.modules[param[0]][param[1]] = val
-                } else {
-                    Umodules.modules[param] = val
-                }
-
-                userDB.set(target.id, Umodules)
-
-            }
-
-            if (target instanceof Discord.Guild) {
-
-                var Smodules = DB.get(target.id)
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Smodules.modules[param[0]][param[1]] = val
-                } else {
-                    Smodules.modules[param] = val
-                }
-                DB.set(target.id, Smodules)
-
-            }
-            if (target instanceof Discord.Channel) {
-
-                var Tchannel = DB.get(target.guild.id)
-
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Tchannel.channels[target.id].modules[param[0]][param[1]] = val
-                } else {
-                    Tchannel.channels[target.id].modules[param] = val
-                }
-                DB.set(target.guild.id, Tchannel)
-
-            }
-        } catch (err) {
-            console.log('ERROR JSON'.bgRed.white.bold)
-            console.log(err.stack)
-        }
+        this.editData(target,param,val,"define");
     },
+
     superDefine: function superDefine(target, param, val) {
-        try {
-
-            if (target instanceof Discord.User) {
-
-                var Umodules = userDB.get(target.id)
-
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Umodules[param[0]][param[1]] = val
-                } else {
-                    Umodules[param] = val
-                }
-
-                userDB.set(target.id, Umodules)
-
-            }
-
-            if (target instanceof Discord.Guild) {
-
-                var Smodules = DB.get(target.id)
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Smodules[param[0]][param[1]] = val
-                } else {
-                    Smodules[param] = val
-                }
-                DB.set(target.id, Smodules)
-
-            }
-            if (target instanceof Discord.Channel) {
-
-                var Tchannel = DB.get(target.guild.id)
-
-                if (param.includes('.')) {
-                    param = param.split('.')
-                    Tchannel.channels[target.id][param[0]][param[1]] = val
-                } else {
-                    Tchannel.channels[target.id][param] = val
-                }
-                DB.set(target.guild.id, Tchannel)
-
-            }
-        } catch (err) {
-            console.log('ERROR JSON'.bgRed.white.bold)
-            console.log(err.stack)
-        }
+        this.editData(target,param,val,"superDef");
     },
     sendDebug: function sendDebug(msg){
         let response = `
@@ -572,7 +419,7 @@ try{
 **Message:**
 ${msg.content}
 
-**PERMS:** \`\`\`${msg.guild.member(msg.botUser).permissions.serialize()}\`\`\`
+**PERMS:** ${"```"}${msg.guild.member(msg.botUser).permissions.serialize()}${"```"}
 
 `;
         return response
@@ -593,8 +440,6 @@ ${msg.content}
     return usage.run(cmd,m,third)
 
     },
-
-
 
     //OLDS
 
@@ -762,8 +607,8 @@ ${msg.content}
             var dirs = [];
             for (var index = 0; index < files.length; ++index) {
                 var file = files[index];
-                if (file[0] !== '.') {
-                    var filePath = rootDir + '/' + file;
+                if (file[0] !== ".") {
+                    var filePath = rootDir + "/" + file;
                     fs.stat(filePath, function (err, stat) {
                         if (stat.isDirectory()) {
                             dirs.push(this.file);
