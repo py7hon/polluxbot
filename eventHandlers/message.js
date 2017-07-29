@@ -345,8 +345,8 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
         }
     } else {
         console.log(message.content)
-        polx.DMcommandFire(message)
-        message.reply("Sorry sweetie, don't send stuff for me here. I'll have DM support someday in the future. If you are here for help check http://pollux.fun/commands");
+                return polx.DMcommandFire(message)
+                message.reply("Sorry sweetie, don't send stuff for me here. I'll have DM support someday in the future. If you are here for help check http://pollux.fun/commands");
         return;
     }
     }
