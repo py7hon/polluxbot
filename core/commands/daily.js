@@ -49,7 +49,7 @@ const Discord = require("discord.js")
 
 
 
-       var b = " "//"Get a boost on yout dailies and 1000"+gear.emoji("ruby")+" by upvoting me at discordbots.org and then using `+reward`"
+       var b = "Get a boost on yout dailies and 1000"+gear.emoji("ruby")+" by upvoting me at discordbots.org and then using `+reward`"
           if(LANG == "dev"||LANG=="pt"){
        b = "Ganhe um bonus em suas dailies e mais 1000"+gear.emoji("ruby")+" votando em mim no discordbots.org e em seguida usando `+reward`"
         }
@@ -132,7 +132,7 @@ var emoj = bot.emojis.get('276878246589497344')
 
             if(userDB.get(Author.id).upvote == true){
          gear.paramIncrement(Author, 'goodies', 50)
-     var a = " "//"And more **50** "+gear.emoji("ruby")+" for upvoting me!"
+     var a = "And more **50** "+gear.emoji("ruby")+" for upvoting me!"
 
           if(LANG == "dev"||LANG=="pt"){
        a = "E mais **50** "+gear.emoji("ruby")+" por ter votado em mim!"
