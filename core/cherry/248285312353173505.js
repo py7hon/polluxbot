@@ -95,6 +95,8 @@ if(!Server.mentioned){
         },
 
 message: function (gear,DB,userDB,bot,message)  {
+    if (message.channel && message.channel.type == "dm") return;
+
     try{
         if (message.content==undefined)return;
         let prefix = DB.get(message.guild.id).modules.PREFIX
