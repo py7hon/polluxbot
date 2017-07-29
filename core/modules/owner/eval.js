@@ -7,11 +7,16 @@ var mm = locale.getT();
 var cmd = 'eval';
 
 var init = function (message,userDB,DB) {
-var Server = message.guild;
+
+    try{
+        var Server = message.guild
+        var Member = message.guild.member(message.author)
+    }catch(e){
+
+}
 var Channel = message.channel;
 var Author = message.author;
 if (Author.bot) return;
-var Member = Server.member(Author);
 var Target = message.mentions.users.first() || Author;
 var MSG = message.content;
 var bot = message.botUser
