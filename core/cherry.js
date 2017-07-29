@@ -6,6 +6,8 @@ var fs = require("fs");
 module.exports = {
 
     listen: async function (bot, DB, userDB, gear) {
+
+
         var events = [
                 "channelCreate",
                 "guildMemberAdd",
@@ -43,5 +45,6 @@ module.exports = {
         })}
 
     }
+
 
 }
