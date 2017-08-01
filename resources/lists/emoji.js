@@ -26,8 +26,9 @@ module.exports = {
         ,
     check: "<:check:314349398811475968> ",
     xmark: "<:xmark:314349398824058880> ",
-    empty: "<:empty:314349398723264512> "
-
+    empty: "<:empty:314349398723264512> ",
+        yep:    "<:yep:339398829050953728> ",
+        nope:    "<:nope:339398829088571402> "
 
 
  ,'api':'<:Api:338148353906966530>'
@@ -85,6 +86,8 @@ module.exports = {
 ,raspberrypi:'<:Raspberrypi:338329334278389760> '
 ,webhook:'<:Webhook:338329334605676557> '
 ,rubylang:'<:Ruby:338353496380276737> '
+
+
     //MEDALS
 
 ,hyruleshield:'<:hyruleShield:335866552878366731> '
