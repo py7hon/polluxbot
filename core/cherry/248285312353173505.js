@@ -33,7 +33,7 @@ if(!Server.mentioned){
                 try {
                     if (newMember.id === '248435798179971072' && newMember.presence.game.name.toLowerCase() === "for honor") {
                         console.log('HONOR')
-                        sky.defaultChannel.send("O gay do " + newMember + " já tá jogando aquele jogo de viado de novo.").catch()
+                        sky.defaultChannel.send("O gay do " + newMember + " já tá jogando aquele jogo de viado de novo.").catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                     }
 
 
@@ -43,7 +43,7 @@ if(!Server.mentioned){
                         var herois = sky.roles.find('name', 'Heróis do Toró')
                         sky.defaultChannel.send(herois.name + " pessoal, **" + newMember.displayName + "** abriu o jogo, juntem ae.").then(jjm => {
                             jjm.delete(60000)
-                        }).catch()
+                        }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
                         var team = 0
                         newMember.guild.presences.forEach(e => {
@@ -53,27 +53,27 @@ if(!Server.mentioned){
                         if (team > 1 && team < 6) {
                             sky.defaultChannel.send("Temos **" + team + "** malucos jogando, faltam " + (5 - team) + " e fecha o time.").then(jjm => {
                                 jjm.delete(60000)
-                            }).catch()
+                            }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                         }
                         if (team > 5 && team < 10) {
                             sky.defaultChannel.send("Temos **" + team + "** malucos jogando, faltam " + (10 - team) + " e temos dois times!!!").then(jjm => {
                                 jjm.delete(60000)
-                            }).catch()
+                            }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                         }
                         if (team == 5) {
                             sky.defaultChannel.send("FECHOU TIME!!!").then(jjm => {
                                 jjm.delete(60000)
-                            }).catch()
+                            }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                         }
                         if (team == 10) {
                             sky.defaultChannel.send("FECHOU DOIS TIMES!!!").then(jjm => {
                                 jjm.delete(60000)
-                            }).catch()
+                            }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                         }
                          if (team > 10) {
                             sky.defaultChannel.send("Sifudeu, vai jogar sozinho!!!").then(jjm => {
                                 jjm.delete(60000)
-                            }).catch()
+                            }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                         }
                         mentioned.push(newMember.id)
                        Server.mentioned.push(newMember.id)
