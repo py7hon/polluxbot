@@ -16,7 +16,6 @@
   "repository": "https://github.com/Flicksie/polluxbot.git",
   "license": "MIT",
   "dependencies": {
-    "cheerio":"latest",
     "array-sort": "latest",
     "ascii-art": "^1.4.2",
     "ascii-table": "0.0.9",
@@ -24,6 +23,8 @@
     "blocked": "latest",
     "bluebird": "latest",
     "booru-getter": "0.0.2",
+    "canvas": "^1.6.5",
+    "cheerio": "latest",
     "clapp": "^1.1.1",
     "colors": "^1.1.2",
     "discord-akairo": "^7.4.2",
@@ -34,8 +35,9 @@
     "i18next": "latest",
     "i18next-node-fs-backend": "latest",
     "icy": "^2.1.0",
-
     "morse-mp3": "^0.2.5",
+    "node-canvas-text": "^1.0.2",
+    "opentype.js": "^0.7.3",
     "opusscript": "latest",
     "pureimage": "^0.1.0",
     "shortid": "^2.2.6",
