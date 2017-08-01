@@ -86,7 +86,7 @@ runb:function loot(event, DB, userDB){
                     );
                     if (pickers.length === 0) {} else {
                         if (oldDropsly > CHN.DROPSLY) {
-                            drop.delete().catch();
+                            drop.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
                             return resolve(true);
                         }
 
@@ -107,8 +107,8 @@ runb:function loot(event, DB, userDB){
 
 
                      await pickers.deleteAll();
-                     await drop.delete().catch();
-                     await disp.delete().catch();
+                     await drop.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
+                     await disp.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
                         CHN.send(v.oscarGoesTo).then(goes => {
 
@@ -121,7 +121,7 @@ runb:function loot(event, DB, userDB){
                                         goes.edit(v.gratz)
 
                                         setTimeout(async fn => {
-                                            fin.delete().catch();
+                                            fin.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
                                         }, 5000)
 
                                     })
