@@ -35,7 +35,7 @@ ascii.font(string,"standard", render =>{
      console.log(render)
     message.channel.send("```"+render+"```")
 })
-  message.delete().catch()
+  message.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
 }
  module.exports = {

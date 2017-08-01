@@ -40,7 +40,7 @@ var init = function (message, userDB, DB) {
     var txt = MSG.substr((message.prefix + cmd).length + 1)
 
     if (txt.startsWith("http://")||txt.startsWith("https://")) {
-        message.delete().catch()
+        message.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
         if (txt.includes("imgur") && (!txt.includes('png') && !txt.includes('jpg') && !txt.includes('gif'))) {
             txt = txt + ".png"
         }
@@ -60,7 +60,7 @@ var init = function (message, userDB, DB) {
             }) //.catch(err=> message.reply("INVALID URL"))
 
 
-        }).catch()
+        }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
     } else if (txt =="dogla"){
 
@@ -80,7 +80,7 @@ var init = function (message, userDB, DB) {
             }) //.catch(err=> message.reply("INVALID URL"))
 
 
-        }).catch()
+        }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
     }
     else if (txt.startsWith("$")){
@@ -101,12 +101,12 @@ var init = function (message, userDB, DB) {
             }) //.catch(err=> message.reply("INVALID URL"))
 
 
-        }).catch()
+        }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
     }else {
 
         if (txt =="") return message.reply("ERROR");
-            message.delete(5000).catch()
+            message.delete(5000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
         //   cart.print(eval(skinfo.persotextF), skinfo.persotextX  , skinfo.persotextY , `${texp}`, skinfo.persotextWmax);
 

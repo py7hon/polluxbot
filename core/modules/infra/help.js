@@ -58,7 +58,7 @@ ${mm('help.joinSupp', {
 `
 
 
-            message.author.send(txt3).catch()
+            message.author.send(txt3).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
 
     //----Mess

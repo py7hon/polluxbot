@@ -5,6 +5,7 @@
     , ROUND: "../resources/misc/roundify/"
     , CARDS: "../resources/imgres/usercards/"
     , MEDALS: "./resources/imgres/medals/"
+    , LISTS: "./resources/lists/"
     , BUILD: "./resources/imgres/build/"
     , PROFILE: "resources/imgres/build/profile/"
     , SKINS: "resources/imgres/build/profile/skins/"

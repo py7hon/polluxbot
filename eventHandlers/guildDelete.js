@@ -20,7 +20,7 @@ module.exports = {
         emb.setTimestamp(ts)
         rad.send({
             embed: emb
-        }).catch()
+        }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
         DB.delete(guild.id).catch(e => {
             console.log(e)

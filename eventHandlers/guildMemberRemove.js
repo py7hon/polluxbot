@@ -40,7 +40,7 @@ module.exports = {
 
                 chanpoint.send({
                     embed: emb
-                }).catch()
+                }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
             }
 

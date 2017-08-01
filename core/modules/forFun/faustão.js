@@ -40,7 +40,7 @@ message.channel.createWebhook('Faustão',"http://static2.blastingnews.com/media/
  .then(async w => {
     await w.edit("Faustão",f)
     w.send(fausto[gear.randomize(0,11)])
-    w.delete().catch()
+    w.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 })
  .catch(e=>{
 

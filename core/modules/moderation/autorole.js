@@ -219,7 +219,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
     if (args === "rem" || args === "remove" || args === "-") {
 
-        message.delete().catch();
+        message.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
         remRole(Target)
 
     } // REMOVE

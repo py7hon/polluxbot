@@ -47,10 +47,10 @@ var xc = ""
                   emb.setColor('#f25acf')
 
                     message.channel.send({embed:emb}).then(function (m) {
-                m.react('👍').catch()
-                m.react('👎').catch()
-                m.react('❤').catch()
-                m.react('😠').catch()
+                m.react('👍').catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                m.react('👎').catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                m.react('❤').catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                m.react('😠').catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
             }).catch(e=>message.channel.send(xc))
         }else{

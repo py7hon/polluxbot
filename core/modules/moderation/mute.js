@@ -156,7 +156,7 @@ var init = function (message, userDB, DB) {
                 emb.setFooter("Mute", Target.user.avatarURL)
                 emb.setTimestamp(ts)
 
-                chanpoint.send({embed:emb}).catch()
+                chanpoint.send({embed:emb}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
 
                 var RevokeEmb = new gear.Discord.RichEmbed;
@@ -173,7 +173,7 @@ var init = function (message, userDB, DB) {
                 if (time && typeof time === "number") {
 
                     setTimeout(f => {
-                        chanpoint.sendEmbed(RevokeEmb).catch()
+                        chanpoint.sendEmbed(RevokeEmb).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                     }, time*60000)
                 }
 

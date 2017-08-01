@@ -65,7 +65,7 @@ gear.paramIncrement(Author,"goodies",price)
             return fR(args, Server.member(Target))
 
             function fR(role, memb) {
-                message.delete(50000).catch()
+                message.delete(50000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                 var a = Server.roles.find('name', role);
                // message.reply(role)
                 if (a == undefined) return message.reply("Não encontrei este cargo :c");

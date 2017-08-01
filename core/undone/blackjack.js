@@ -421,7 +421,7 @@ Turn 4`).then(function (mmm) {
 
 
                         })
-                        newmsg.delete(10000).catch();
+                        newmsg.delete(10000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
                     }) // -------------POS HITSTAND 1
             }, 2000)
         }

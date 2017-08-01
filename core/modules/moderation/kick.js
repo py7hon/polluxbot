@@ -109,7 +109,7 @@ var ts = new Date
 emb.setFooter("Kick",Target.avatarURL)
 emb.setTimestamp(ts)
 
-   chanpoint.send({embed:emb}).catch()
+   chanpoint.send({embed:emb}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
          }
 
@@ -145,7 +145,7 @@ emb.setTimestamp(ts)
  }).catch(e=>{message.reply(e)})
 
 
-    message.delete(1000).catch()
+    message.delete(1000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
 }
  module.exports = {pub:true,cmd: cmd, perms: 2, init: init, cat: 'misc'};

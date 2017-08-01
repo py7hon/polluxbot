@@ -101,7 +101,7 @@ for (i=0;i<ranked.length;i++){
 
 
 
-    message.channel.send({embed:emb}).catch()
+    message.channel.send({embed:emb}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
 
 

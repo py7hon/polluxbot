@@ -12,7 +12,7 @@ var init = function (message,userDB,DB) {
         if (coin == 1) {
             message.channel.send(mm('dict.coinHeads', {
                 lngs: LANG
-            }),{files:[paths.BUILD + 'heads.png']}).catch()
+            }),{files:[paths.BUILD + 'heads.png']}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
         }
         else {
             message.channel.send(mm('dict.coinTails', {

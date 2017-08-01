@@ -23,9 +23,9 @@ module.exports = {
          })*/
         bot.user.setStatus('online')
 
-        //   bot.user.setGame(`coding Pollux`, 'https://www.twitch.tv/theFlicky').then().catch();
+        //   bot.user.setGame(`coding Pollux`, 'https://www.twitch.tv/theFlicky').then().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
-        //bot.user.setGame(`Neverwinter Nights`).then().catch();
+        //bot.user.setGame(`Neverwinter Nights`).then().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
         /*    async.parallel(bot.guilds.forEach(G => serverSetup(G)))*/
 

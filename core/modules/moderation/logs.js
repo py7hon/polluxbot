@@ -35,7 +35,7 @@ if (MSG.length == (message.prefix + cmd).length || MSG.split(" ")[1]==helpkey ||
 
 
 
-    message.delete(8000).catch();
+    message.delete(8000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
 
 
@@ -103,7 +103,7 @@ console.log(destination[i])
                 lngs: LANG,
                 channel: Server.channels.get(chan),
                 CHNTYPE: destA
-            }) ).then(m => m.delete(25000).catch()).catch();
+            }) ).then(m => m.delete(25000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
 
 
@@ -154,7 +154,7 @@ console.log(destination[i])
                 lngs: LANG,
                 channel: Server.channels.get(chan),
                 CHNTYPE: destA
-            }) ).then(m => m.delete(25000)).catch()
+            }) ).then(m => m.delete(25000)).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
         }
 

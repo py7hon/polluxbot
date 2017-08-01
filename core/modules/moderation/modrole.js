@@ -32,7 +32,7 @@ var argument = MSG.substr((message.prefix + cmd).length +1)
     //-------MAGIC----------------
 
 
-        message.delete(8000).catch();
+        message.delete(8000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
 var modPass=false
 

@@ -90,9 +90,9 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                         emoji: ""
                     }) + " " + emojya).then(function (c) {
 
-                        c.delete(500000).catch()
-                        r.delete(0).catch()
-                    }).catch();
+                        c.delete(500000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                        r.delete(0).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                    }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
                     gear.paramIncrement(Picker, 'goodies', Channel.DROPSLY)
                     gear.paramIncrement(Picker, 'earnings.drops', Channel.DROPSLY)
@@ -105,13 +105,13 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                 return resolve(true);
             })
 
-        }).catch()
+        }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
     } else {
         message.reply(mm('$.cantDrop', {
             lngs: LANG,
             goods: GOOD
-        })).catch();
+        })).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
     }
 
 }

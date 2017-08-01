@@ -47,12 +47,12 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
 
             message.channel.send({embed:emb}).then(function (m) {
-                m.react('👍').catch()
-                m.react('👎').catch()
-                m.react('❤').catch()
-                m.react('😠').catch()
+                m.react('👍').catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                m.react('👎').catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                m.react('❤').catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                m.react('😠').catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
-            }).catch()
+            }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
         }
     })
 

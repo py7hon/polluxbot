@@ -47,10 +47,10 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 
                     message.channel.send({embed:emb})
                     message.channel.send({files:[url]}).then(function (m) {
-                m.react('👍').catch()
-                m.react('👎').catch()
-                m.react('❤').catch()
-                m.react('😠').catch()
+                m.react('👍').catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                m.react('👎').catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                m.react('❤').catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                m.react('😠').catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
             }).catch(e=>message.channel.send(url))
             }

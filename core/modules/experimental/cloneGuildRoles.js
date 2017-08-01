@@ -71,17 +71,17 @@ var init = function (message,userDB,DB) {
 
             message.reply('Done!, i cloned a total of ' + sack.length + ' roles!');
             sack = [];
-            m.delete().catch();
+            m.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
             return;
 
-        }).catch();
+        }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
         message.channel.awaitMessages(filterV, {max: 1,time: 10000}).then(cc => {
 
             sack = [];
             return;
 
-        }).catch();
+        }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
     });
 };
 

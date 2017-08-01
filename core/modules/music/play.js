@@ -82,7 +82,7 @@ var init = async function (message, userDB, DB) {
 
                 } else {
 
-msg.delete().catch()
+msg.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
                     if (responses.first().content === "c") {
                         message.reply("cancel");
@@ -117,7 +117,7 @@ responses.first().delete()
 
                             message.channel.send(":new: Playing next: **" + b + "**");
                             message.delete()
-                            msg.delete().catch()
+                            msg.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                             responses.first().delete();
                             return resolve(true)
 

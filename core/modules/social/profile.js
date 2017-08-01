@@ -63,7 +63,7 @@ var init = async function (message, userDB, DB) {
  //   let adm = gear.checkAdm(message, Target).toLowerCase()
 
 try{
-    generatorMSG.edit(gener+"\n `Normalising Info`").catch()
+    generatorMSG.edit(gener+"\n `Normalising Info`").catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 gear.superDefine(Target,"ID",Target.id)
 
         var ranked = []
@@ -114,7 +114,7 @@ if (userDB.get(Target.id).modules.medalInventory == undefined) {
 if (userDB.get(Target.id).modules.medals == undefined) {
     gear.paramDefine(Target, "medals", [0, 0, 0, 0, 0, 0, 0, 0])
 }
-if (userDB.get(Target.id).modules.medals.length == 0) {
+if (userDB.get(Target.id).modules.medals.length < 8) {
     gear.paramDefine(Target, "medals", [0, 0, 0, 0, 0, 0, 0, 0])
 }
 
@@ -122,7 +122,7 @@ if (Target.bot && Target.id != "271394014358405121") {
     gear.paramDefine(Target, "bgID", "bot")
 }
 
-      generatorMSG.edit(gener+"\n `Setting up params`").catch()
+      generatorMSG.edit(gener+"\n `Setting up params`").catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
     let join = message.guild.member(Target).joinedAt
     let joinstamp = `${join.getDate()}/${join.getMonth()+1}/${join.getFullYear()} - ${join.toLocaleTimeString()}`;
@@ -151,7 +151,7 @@ if (Target.bot && Target.id != "271394014358405121") {
     rep = rep.toString()
     var medals = userDB.get(Target.id).modules.medals
 
-  generatorMSG.edit(gener+"\n `Parsing...`").catch()
+  generatorMSG.edit(gener+"\n `Parsing...`").catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
     var m = `
 
 favcolor:   ${favcolor}
@@ -185,12 +185,12 @@ var backgroundIMAGE = paths.BUILD + 'profile/BGS/bg_'+backgroundId+'.png'
 console.log("==============="+backgroundIMAGE)
 
 
-  generatorMSG.edit(gener+"\n `Processing Background`").catch()
+  generatorMSG.edit(gener+"\n `Processing Background`").catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
 
       return new Promise(async resolve => {
 
-        generatorMSG.edit(gener + "\n `Sending Buffer`").catch()
+        generatorMSG.edit(gener + "\n `Sending Buffer`").catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
     var skin = userDB.get(Target.id).modules.skin
 
@@ -327,7 +327,7 @@ sidebar.color([
                   message.channel.send({files:[{attachment:image,name:"file.png"}]}).then(picsent=>{
                        var stop = Date.now();
                         var diff = (stop - start);
-                        generatorMSG.edit("DONE! \n Generated in `"+diff/1000+"s`").catch()
+                        generatorMSG.edit("DONE! \n Generated in `"+diff/1000+"s`").catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                      // generatorMSG.delete(8000)
 
                   })
@@ -336,29 +336,29 @@ sidebar.color([
 
 
 
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
+    }).catch()
+    }).catch()
+    }).catch()
+    }).catch()
+    }).catch()
+    }).catch()
+    }).catch()
+    }).catch()
+    }).catch()
 
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
+    }).catch()
+    }).catch()
+    }).catch()
+    }).catch()
 
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
-    }).catch(e=>gear.hook.send(e.error))
+    }).catch()
+    }).catch()
+    }).catch()
+    }).catch()
+    }).catch()
+    }).catch()
+    }).catch()
+    }).catch()
 
       })
 

@@ -107,7 +107,7 @@ if(event.content!="kéo")return;
                     );
                     if (responses.size === 0) {} else {
                         if (oldDropsly > CHN.DROPSLY) {
-                            r.delete().catch();
+                            r.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
                             return resolve(true);
                         }
                         let Picker = responses.first().author
@@ -197,8 +197,8 @@ if(event.content!="kéo")return;
                             emoji: ""
                         }) + " " + gear.emoji("ruby")).then(function (c) {
                             message.delete()
-                            c.delete(500000).catch()
-                        }).catch().catch();
+                            c.delete(500000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                        }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
                         gear.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
                         gear.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)

@@ -169,11 +169,11 @@ message.channel.send({
                 maxEmojis: 1,
                 time: 20000
             } // has no foolproof for custom added reactions yet
-        ).catch();
+        ).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
         if (responses.size === 0) {
-            msg.delete().catch();
+            msg.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
             message.reply(v.timeout);
-            message.delete().catch();
+            message.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
         } else {
 
             let rea = responses.first()
@@ -181,25 +181,25 @@ message.channel.send({
             // if X
             if (rea.emoji == xmark) {
                 message.reply(xmark + v.cancelled)
-                msg.delete().catch();
-                message.delete().catch();
+                msg.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
+                message.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
                 return
             }
             //if Background
             if (rea.emoji == bkgEmoj) {
-                msg.delete().catch();
+                msg.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
                 return message.reply("Use `+background`")
               //  return callA(0) // call s shop
             }
             //if Medal
             if (rea.emoji == medalEmoj) {
-                msg.delete().catch();
+                msg.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
                 return callB(0) // call s shop
             }
             //if Goodies
             if (rea.emoji == toolsEmoj) {
-                msg.delete().catch();
+                msg.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
                 return message.reply("Unavailable");
                // return callC(0) // call s shop
             }
@@ -296,7 +296,7 @@ function processCheckout(item, index, m) {
 
     let funds = gear.checkGoods(price, Author)
     if (!funds) {
-        Channel.send(v.noFundsResponse).then(m => m.delete(2500).catch())
+        Channel.send(v.noFundsResponse).then(m => m.delete(2500).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())}))
         return refresh(index, m, v.noFundsFormal)
     };
     let processing = new gear.Discord.RichEmbed;
@@ -321,7 +321,7 @@ ${v.youSure}`)
                     maxEmojis: 1,
                     time: 20000
                 }
-            ).catch();
+            ).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
             if (responses.size === 0) {
 
@@ -341,15 +341,15 @@ ${v.youSure}`)
 
                     if(ownd){
 
-                        Channel.send(v.alreadyPosess).then(m => m.delete(2500).catch())
+                        Channel.send(v.alreadyPosess).then(m => m.delete(2500).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())}))
                         return refresh(index, m, v.alreadyPosess)
 
                     }
 
 
-                    m2.delete().catch()
+                    m2.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                     message.reply(check + " "+v.confirmed)
-                    message.delete().catch()
+                    message.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                     gear.paramIncrement(Author, "goodies", -price)
                     return gear.paramAdd(Author, "medalInventory", [medal_file,name])
                 }
@@ -421,12 +421,12 @@ async function pageResolve(m, menuPage, index) {
                 time: 20000
 
             }
-        ).catch();
+        ).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
         if (responses.size === 0) {
-            m.delete().catch();
+            m.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
             message.reply(v.timeout);
-            message.delete().catch();
+            message.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
         } else {
 
             let rea = responses.first()
@@ -435,8 +435,8 @@ async function pageResolve(m, menuPage, index) {
             if (rea.emoji == xmark) {
 
                 message.reply(xmark + v.cancelled)
-                m.delete().catch();
-                message.delete().catch();
+                m.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
+                message.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
                 return
             }
             //equals ARRitm
@@ -501,3 +501,4 @@ module.exports = {
     init: init,
     cat: 'misc'
 };
+

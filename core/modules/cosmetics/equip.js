@@ -238,7 +238,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                         maxEmojis: 1,
                         time: 20000
                     }
-                ).catch();
+                ).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
                 if (responses.size === 0) {
 
@@ -272,7 +272,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                                         maxEmojis: 1,
                                         time: 20000
                                     }
-                                ).catch();
+                                ).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
                                 if (responses.size === 0) {} else {
                                     let rea = responses.first()
                                     if (rea.emoji == check && rea.count > 0) {
@@ -281,7 +281,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                                         console.log(medal_file)
                                         u.modules.medals[finder - 1] = medal_file
                                         userDB.set(Author.id, u)
-                                        me.delete().catch();
+                                        me.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
                                         return message.reply(check + v.success)
 
                                     }
@@ -310,9 +310,9 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                         }
 
 
-                        m2.delete().catch()
+                        m2.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                         message.reply(check + " " + v.confirmed)
-                        message.delete().catch()
+                        message.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                         return gear.paramAdd(Author, "medalInventory", medal_file)
                     }
 
@@ -365,17 +365,17 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
         console.log("FUNCTION: loadMedalShop")
         for (i = 0; i < menuPage.menuArr.length; i++) {
-            await m.react(nums[i + 1]).catch();
+            await m.react(nums[i + 1]).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
         }
-                   await m.react("❎").catch();
+                   await m.react("❎").catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
         if (index !== 0) {
-            await m.react("◀").catch();
+            await m.react("◀").catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
         }
         if (index != menu.length - 1) {
-            await m.react("▶").catch();
+            await m.react("▶").catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
         }
-        await m.react(xmark).catch()
+        await m.react(xmark).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
     }
     async function pageResolve(m, menuPage, index) {
@@ -396,13 +396,16 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
                     time: 20000
 
                 }
-            ).catch();
+            ).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
             if (responses.size === 0) {
-                m.delete().catch();
+                m.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
                 message.reply(v.timeout);
-                message.delete().catch();
+                message.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
             } else {
+
+
+
 
                 let rea = responses.first()
                 let finder = reindex[rea.emoji]
@@ -411,7 +414,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
                     message.reply(xmark + v.cancelled)
                     m.delete();
-                    message.delete().catch();
+                    message.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
                     return
                 }
 

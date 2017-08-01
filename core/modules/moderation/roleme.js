@@ -103,7 +103,7 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 
         var a = Server.roles.find('name', role);
         memb.addRole(a).then(a => message.channel.send(roleadd_confirm)).then(e => e.delete(5000)).catch(e => message.channel.send(noPermsMe).catch(e=>gear.sendDebug(message)))
-        message.delete(5000).catch()
+        message.delete(5000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
     }
 
     function xR(role, memb) {

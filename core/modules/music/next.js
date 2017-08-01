@@ -6,7 +6,8 @@ var Server=message.guild
 try{
 const yt = require('ytdl-core');
 
-    if(message.author.id!="88120564400553984"&&message.guild.id!="277391723322408960"&&message.guild.id!="337574844524789760"&&message.guild.owner.id!="88120564400553984"){
+
+   if(message.author.id != "88120564400553984") return message.reply(":warning:"); if(message.author.id!="88120564400553984"&&message.guild.id!="277391723322408960"&&message.guild.id!="337574844524789760"&&message.guild.owner.id!="88120564400553984"){
         return message.reply("Sorry, since this command is still very performance-consuming, it is a Patron-Only command.")
     }
     var voiceChannel = message.member.voiceChannel;

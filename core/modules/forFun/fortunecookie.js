@@ -75,7 +75,7 @@ var init = function (message, userDB, DB) {
                         kalk.rotate(11);
                             base.composite(kalk, 192, 91);
                         base.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
-                            message.channel.send(message.author + " ",{files:[image]}).catch()
+                            message.channel.send(message.author + " ",{files:[image]}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
                         })
                     })
