@@ -1,8 +1,11 @@
-const Discord = require("discord.js");
-const cfg = require("../config.js");
-const fs = require("fs");
-const paths = require("./paths.js");
-const hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
+var Discord = require("discord.js");
+var cfg = require("../config.js");
+var fs = require("fs");
+var paths = require("./paths.js");
+const Canvas = require("canvas");
+var hook = new Discord.WebhookClient(cfg.coreHook.ID, cfg.coreHook.token);
+
+
 
 Array.prototype.removeire = function removeire() {
     var what, a = arguments;
@@ -17,13 +20,27 @@ Array.prototype.removeire = function removeire() {
     return ;
 };
 
-// DATABASE
-const PersistentCollection = require("djs-collection-persistent");
 
-const DB = new PersistentCollection({
+
+  var errLog = async function errLog(error,file = "no file provided",errim){
+
+      errim = errim || (new Error)
+
+        sendSlack("ErrLogger",error.name+": "+error.message,errim);
+        console.log("\n")
+        console.log("CATCH! ".bgRed.white+(error.name+" :: "+error.message).red)
+        console.log("@ ::  "+file)
+        console.log(errim)
+        console.log("\n---===---\n")
+    }
+
+// DATABASE
+var PersistentCollection = require("djs-collection-persistent");
+
+var DB = new PersistentCollection({
     name: "DB"
 });
-const userDB = new PersistentCollection({
+var userDB = new PersistentCollection({
     name: "userDB"
 });
 
@@ -39,7 +56,7 @@ var sendSlack = async function sendSlack(hookname = "PolluxHOOK", pretex="**Hook
 
                 "ts": Date.now() / 1000
         }]
-        }).catch()
+        }).catch(e=> {let a = (new Error); errLog(e,__filename,a.stack.toString())})
 
     }
 
@@ -274,7 +291,7 @@ try{
                 emb.setFooter("Channel Edit")
                 emb.setTimestamp(ts)
 
-                chanpoint.send({embed:emb}).catch()
+                chanpoint.send({embed:emb}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
             }
         } catch (err) {
@@ -616,9 +633,77 @@ ${msg.content}
     }
 
 
+    const miliarize=function miliarize(numstring,strict){
+        if (typeof numstring == "number"){
+            numstring = numstring.toString()
+        }
+        if(numstring.length < 4)return numstring;
+
+        let stashe = numstring.replace(/\B(?=(\d{3})+(?!\d))/g, ".").toString();
+
+        if(strict){
+
+
+            console.log(stashe)
+            console.log(typeof stashe)
+            let stash = stashe.split(".")
+        switch(stash.length){
+            case 1:
+                return stash;
+            case 2:
+                if(stash[1]!="000") break;
+                return stash[0]+"K";
+            case 3:
+                if(stash[2]!="000") break;
+                return stash[0]+"."+stash[1][0]+stash[1][1]+"Mi";
+            case 4:
+                if(stash[3]!="000") break;
+                return stash[0]+"."+stash[1][0]+stash[1][1]+"Bi";
+             }
+
+            return stashe;
+        }
+
+        stash = stashe.split(".")
+        switch(stash.length){
+            case 1:
+                return stash.join(" ");
+            case 2:
+                if(stash[0].length<=1) break;
+                return stash[0]+"K";
+            case 3:
+                return stash[0]+"Mi";
+            case 4:
+                return stash[0]+"Bi";
+             }
+         return stashe;
+    }
+
+    const tag = async function tag(base, text, font, color) {
+
+            font = font || '14px Product,Sans'
+            color = color || '#b4b4b4'
+            base.font = font;
+
+            let H = base.measureText(text).emHeightAscent
+            let h = base.measureText(text).emHeightDescent;
+            let w = base.measureText(text).width;
+            const item = new Canvas(w, h + H);
+                let c = item.getContext("2d")
+                c.antialias = 'subpixel';
+                c.filter = 'best';
+                c.font = font;
+                c.fillStyle = color;
+                await c.fillText(text, 0, H);
+            return {item:item,height:h+H,width:w};
+        }
+
     // DEPENDENCY TOOLBOX AHOY
 
 module.exports = {
+    tag:tag,
+    miliarize:miliarize,
+     errLog:errLog,
     DB: DB,
     userDB: userDB,
     hook: hook,
@@ -654,5 +739,6 @@ module.exports = {
     cheerio: require("cheerio"),
     Discord: Discord,
     fs: fs
+
 }
 
