@@ -56,7 +56,12 @@ let loading = false;
             gear.paramDefine(Author, "medalInventory", [])
         }
         const inventory = userData.medalInventory
+        let il = inventory.length
 
+        if(!userData.medals){
+            gear.paramDefine(Author,"medals",[0,0,0,0,0,0,0,0])
+        }
+        let equippedMedals = userData.medals
         const m = JSON.parse(fs.readFileSync(paths.LISTS + "shop.json", 'utf8'))
         const menu = m.menu
 
@@ -64,8 +69,8 @@ let loading = false;
         const nopeMoji = gear.emoji("nope")
 
         //Pages Division
-
-        for (i = 0; i < menu.length; i += 18) {
+        let ml = menu.length
+        for (i = 0; i < ml; i += 18) {
             pages.push(menu.slice(i, i + 18))
         }
 
@@ -140,6 +145,7 @@ let loading = false;
             if (!shopMsg) return;
             if (responses.size === 0) {
                 shopMsg.delete().then(x => Channel.send(v.shopTimeout).catch(e => console.error(e))).catch(e => console.error(e))
+                return empty()
             } else {
 
                 let rea = parseInt(responses.first().content) - 1;
@@ -147,7 +153,8 @@ let loading = false;
 
                             let owned = false;
                    let emojifile = pages[globalPeeji][rea][1]
-                        for (a = 0; a < inventory.length; a++) {
+
+                        for (a = 0; a < il; a++) {
 
                         var o = inventory[a].includes(emojifile)
                         if (o == true) {
@@ -267,7 +274,9 @@ ${pages[globalPeeji][rea][2]}${gear.emoji("ruby")}
                         maxEmojis: 1
                     }
                 ).catch(e => console.error(e));
-                if (responses.size === 0) {} else {
+                if (responses.size === 0) {
+                    empty()
+                } else {
 
                     let rea = responses.first().emoji
 
@@ -289,7 +298,8 @@ ${pages[globalPeeji][rea][2]}${gear.emoji("ruby")}
             let currentPage = pages[index]
 
             let images = [];
-            for (i = 0; i < currentPage.length; i++) {
+            let cpl = currentPage.length
+            for (i = 0; i < cpl; i++) {
                 let minipath = paths.MEDALS + currentPage[i][1] + ".png"
                 if (!currentPage[i][1]) {
 
@@ -315,7 +325,7 @@ ${pages[globalPeeji][rea][2]}${gear.emoji("ruby")}
                     let price = gear.miliarize(currentPage[iter][2])
 
                     var owned = false;
-                    for (a = 0; a < inventory.length; a++) {
+                    for (a = 0; a < il; a++) {
 
                         var o = inventory[a].includes(emojifile)
                         if (o == true) {
@@ -357,7 +367,15 @@ ${pages[globalPeeji][rea][2]}${gear.emoji("ruby")}
 
 
          let tagsx = await gear.tag(base, TAG)
-         let medalcount = await gear.tag(base,userData.medals.length,'24px Product,Sans')
+
+         let l=equippedMedals.length
+         let medals=0;
+         for(i=0;i<l;i++){
+             if(equippedMedals[i]!==0 && equippedMedals[i]!==undefined) medals++;
+         }
+
+         let medalcount = await gear.tag(base,medals+" /",'24px Product,Sans')
+         let invcount = await gear.tag(base,inventory.length,'24px Product,Sans')
 
                 //----
 
@@ -365,6 +383,7 @@ ${pages[globalPeeji][rea][2]}${gear.emoji("ruby")}
             tagsx.width > 100 ? wid = 100 : wid = tagsx.width;
             await base.drawImage(tagsx.item, 20, 208, wid, tagsx.height);
             await base.drawImage(medalcount.item, 60, 240, medalcount.width, medalcount.height);
+            await base.drawImage(invcount.item, 90, 240, invcount.width, invcount.height);
 
             //BOUNDS
             let headerRect = {
@@ -429,6 +448,7 @@ ${pages[globalPeeji][rea][2]}${gear.emoji("ruby")}
                 ).catch(e => console.error(e));
                 if (responses.size === 0) {
                     Channel.send(v.checkoutTimeout).catch(e => console.error(e))
+                    empty()
                 } else {
 
                     let rea = responses.first().emoji
@@ -493,10 +513,12 @@ ${pages[globalPeeji][rea][2]}${gear.emoji("ruby")}
         }
         async function empty() {
             return new Promise(async resolve => {
-                for (i = 0; i < bucket.length; i++) {
+                let bl = bucket.length
+                for (i = 0; i < bl; i++) {
                     await bucket[i].delete().catch(e => {
-                        console.log("404 - pxJS 380")
+                        return
                     });
+
                 }
                 return resolve(true)
             })

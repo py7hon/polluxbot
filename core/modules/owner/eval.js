@@ -101,4 +101,4 @@ if (code.includes("server id")||code.includes("id desse server")){
     }
   }catch(err){console.log(err)}
 }
-module.exports = {pub:false,cmd: cmd, perms: 0, init: init, cat: 'misc'};
+module.exports = {pub:false,cmd: cmd, perms: 4, init: init, cat: 'misc'};
