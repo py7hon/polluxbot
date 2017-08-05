@@ -10,10 +10,10 @@
   },
   "files": "core",
   "main": "pollux.js",
-    "scripts":{
-  "shards":"shards.js",
-  "start":"node pollux.js"
-},
+  "scripts": {
+    "shards": "shards.js",
+    "start": "node pollux.js"
+  },
   "keywords": [
     "discordbot",
     "discordjs",
@@ -44,15 +44,16 @@
     "i18next": "latest",
     "i18next-node-fs-backend": "latest",
     "icy": "^2.1.0",
-    "jimp":"latest",
+    "jimp": "latest",
     "morse-mp3": "^0.2.5",
+    "name-this-color": "^1.0.2",
     "node-canvas-text": "^1.0.2",
     "opentype.js": "^0.7.3",
     "opusscript": "latest",
+    "pixel-utils": "latest",
     "pureimage": "^0.1.0",
     "shortid": "^2.2.6",
     "socket.io-client": "latest",
-    "pixel-utils":"latest",
     "uws": "^8.14.0",
     "x2js": "^3.0.1",
     "youtube-search": "^1.0.10",
@@ -60,5 +61,8 @@
   },
   "engines": {
     "node": ">=7.0.0"
+  },
+  "devDependencies": {
+    "name-this-color": "^1.0.2"
   }
 }

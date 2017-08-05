@@ -31,7 +31,7 @@ module.exports = {
         for (i = 0; i < files.length; i++) {
             let filedir = __dirname + "/modules/" + files[i]
 
-            let morefiles = fs.readdirSync(filedir)
+            let morefiles = fs.readdirSync(filedir  )
             if (morefiles.indexOf(command + ".js") > -1) {
 
 

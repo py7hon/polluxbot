@@ -1,35 +1,38 @@
+const translate = require('google-translate-api');
 var gear = require("../../gearbox.js");
 var paths = require("../../paths.js");
+const namely = require('name-this-color');
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
-var cmd = 'color';
+var cmd = 'favcolor';
 
 var init = function (message, userDB, DB) {
-    var Server = message.guild;
     var Channel = message.channel;
-    var Author = message.author;
-    if (Author.bot) return;
-    var Member = Server.member(Author);
-    var Target = message.mentions.users.first() || Author;
-    var MSG = message.content;
     var bot = message.botUser
-    var args = MSG.split(' ').slice(1)[0]
+    var args = message.content.split(' ').slice(1)[0]
     //  var input = args[0].toUpperCase()
 
-       //  console.log(isNaN(parseInt(args.replace(/^#/, ''), 16)))
-var regExp = new RegExp(/[0-9A-Fa-f]{6}/g);
+    //  console.log(isNaN(parseInt(args.replace(/^#/, ''), 16)))
+    var regExp = new RegExp(/[0-9A-Fa-f]{6}/g);
 
+    const v = {}
+    v.colorChanged = mm("misc.colorChange", {
+        lngs: message.lang
+    })
+    v.colorError = mm("faile", {
+        lngs: message.lang
+    })
 
     try {
         //HELP TRIGGER
         let helpkey = mm("helpkey", {
             lngs: message.lang
         })
-        if (!regExp.test(args)||!args||args===undefined||MSG.split(" ")[1] == helpkey || MSG.split(" ")[1] == "?" || MSG.split(" ")[1] == "help") {
+        if (!regExp.test(args) || !args || args === undefined || MSG.split(" ")[1] == helpkey || MSG.split(" ")[1] == "?" || MSG.split(" ")[1] == "help") {
             return gear.usage(cmd, message);
         }
     } catch (e) {
-       console.log(e)
+        console.log(e)
 
         // gear.hook.send(e.error)
     }
@@ -37,27 +40,27 @@ var regExp = new RegExp(/[0-9A-Fa-f]{6}/g);
 
     var hex = parseInt((args + "FF").replace(/^#/, ''), 16);
 
-    message.reply(gear.emoji("check"))
     gear.paramDefine(Author, "favcolor", args)
 
-    var image = new gear.Jimp(126, 126, hex, function (err, img) {
-        gear.Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
-            img.mask(lenna, 0, 0)
-            img.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
-                message.channel.send({
-                    files: [{
-                        attachment: image,
-                        name: "file.png"
-                    }]
-                })
+    let emb = new gear.Discord.RichEmbed;
+    emb.setColor("#" + args.replace(/^#/, ''))
+
+    let lang = message.lang[0]
+    if (lang === "dev") lang = "pt";
+
+    console.log(namely(args)[0].title);
+    translate(namely(args)[0].title, {
+        to: lang
+    }).then(colset => {
 
 
+        emb.setAuthor(colset.text, "https://png.icons8.com/paint-brush/dusk/64")
+        emb.description = gear.emoji("check") + v.colorChanged
 
-            })
+        message.channel.send({
+            embed: emb
         })
-
-    });
-
+    })
 
 }
 module.exports = {

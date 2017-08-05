@@ -29,7 +29,7 @@ var LANG = message.lang;
     //HELP TRIGGER
     let helpkey = mm("helpkey",{lngs:message.lang})
 if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
-    return gear.usage(cmd,message);
+    return gear.usage(cmd,message,this.cat);
 }
 //------------
 

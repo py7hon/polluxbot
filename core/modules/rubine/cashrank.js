@@ -29,7 +29,7 @@ var init = function (message,userDB,DB) {
 //HELP TRIGGER
     let helpkey = mm("helpkey",{lngs:message.lang})
 if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
-    return gear.usage(cmd,message);
+    return gear.usage(cmd,message,this.cat);
 }
 //------------
 
@@ -98,5 +98,5 @@ var medals = [':first_place: 1st',
     , cmd: cmd
     , perms: 0
     , init: init
-    , cat: 'misc'
+    , cat: '$'
 };

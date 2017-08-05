@@ -160,9 +160,10 @@
         "polHelp": "Pollux Help",
         "helpText": "These are the basics for helping me to use you! I've also sent a DM in case you get this message out of sight!",
         "lang": "Change my language, currently I can speak: `{{langs}}`",
-        "commUsage": "How to use: ",
+        "commUsage": "How to use: {{comm}}",
         "logs": "Set channels to log Server's activities",
-        "ahegao": "アヘ顔 (Ahegao) - You never know when this can come in handy."
+        "ahegao": "アヘ顔 (Ahegao) - You never know when this can come in handy.",
+        "rotation": "Weekly Hero Rotation for your games."
     },
     "menu": {
         "cake": "Cake",
@@ -222,7 +223,8 @@
     "helpkey": "help",
     "usage": {
         "logs": " `{{prefix}}logs #channel`\n Set all logs at the chosen Channel.\n\n`{{prefix}}logs mod #channel`\n Set moderation logs (Bans, Kicks and Mutes) at the chosen Channel.\n\n`{{prefix}}logs atv #channel`\n Set Activity logs (Members in and out, nickname edits) at the chosen Channel.\n\n`{{prefix}}logs adv #channel`\n Set Advanced Logs (Deleted and edited messages, Channels created, Activation or Deactivation of modules) at the chosen Channel.\n\n`{{prefix}}logs mod #channel delete`\nLogs will no more be sent to this Channel",
-        "ahegao": "Quite simple, just type `{{prefix}}ahegao` and you get a アヘ顔"
+        "ahegao": "Quite simple, just type `{{prefix}}ahegao` and you get a アヘ顔",
+           "rotation": "`{{prefix}}rotation [game]` \n\n**Games:**\nHeroes of the Storm : `heroes`,`hots`,`heroes of the storm`,`hos`\nLeague of Legends : `lol`,`league`,`league of legends`\nSmite : `smite`"
     },
     "logs": {
         "success": "Done! I've set {{channel}} as the Channel for {{CHNTYPE}}!",

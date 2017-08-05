@@ -59,7 +59,8 @@ getDirs('utils/lang/', (list) => {
     i18next.use(Backend).init({
         backend: backendOptions,
         lng: 'en',
-        fallbacklngs: false,
+               fallbackLng: true,
+        fallbackLng: "en",
         preload: list,
         load: 'all'
     }, async (err, t) => {

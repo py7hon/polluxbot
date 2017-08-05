@@ -18,15 +18,22 @@ module.exports = {
         let emb = new gear.Discord.RichEmbed
         emb.setColor("#c65fe5")
         if (third === "nsfw") {
-            emb.setThumbnail("https://rlv.zcache.com/nsfw_square_sticker-rea0c876a9755416f8e088671fe163335_v9i40_8byvr_324.jpg");
+            emb.setThumbnail("https://png.icons8.com/porn-folder/dusk/40")
             emb.setColor("#240d12")
         }
 
         if (third === "mod") {
-            emb.setThumbnail("http://www.freeiconspng.com/uploads/letter-m-icon-png-5.png")
+            emb.setThumbnail("https://png.icons8.com/sheriff/dusk/40")
             emb.setColor("#322be5")
         }
-
+        if (third === "$") {
+            emb.setThumbnail("https://png.icons8.com/money/dusk/40")
+            emb.setColor("#51ba8e")
+        }
+        if (third === "fun") {
+            emb.setThumbnail("https://png.icons8.com/cocktail/dusk/40")
+            emb.setColor("#ffd23e")
+        }
         emb.setAuthor(mm("help.commUsage", {
             lngs: m.lang,
             comm: m.prefix + cmd

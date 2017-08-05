@@ -7,7 +7,7 @@ var init = function (message, userDB, DB) {
 //HELP TRIGGER
 
 if (message.content.substr(message.prefix.length + cmd.length)<=2){
-    return gear.usage(cmd,message);
+    return gear.usage(cmd,message,this.cat);
 }
 //------------
 

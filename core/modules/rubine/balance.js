@@ -26,7 +26,7 @@ var init = function (message,userDB,DB) {
 //HELP TRIGGER
     let helpkey = mm("helpkey",{lngs:message.lang})
 if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
-    return gear.usage(cmd,message);
+    return gear.usage(cmd,message,this.cat);
 }
 //------------
 
@@ -85,5 +85,5 @@ var emojya = bot.emojis.get('276878246589497344')
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'misc'
+    cat: '$'
 };

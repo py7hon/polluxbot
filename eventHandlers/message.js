@@ -7,6 +7,28 @@ module.exports = {
     run:  function run(gear,DB,userDB,bot, message) {
 
 
+
+            /*
+            let lms= message.channel.messages.last()
+
+    if(lms.author.id==message.author.id && message.content.includes(lms.content)){
+        if(!Author.warning)Author.warning=0;
+        Author.warning++
+        setTimeout(()=>Author.warning--,3000)
+            if(Author.warning==6){
+        message.reply(":warning: **FLOOD**")
+    }  if(Author.warning>10){
+        message.guild.member(Author).kick().then(kik=>{
+            kik.send("You have been kicked from "+Server.name+" for Flooding all around.")
+            message.channel.send(kik.username+" have been kicked from "+Server.name+" for Flooding all around.")
+
+          }).catch(c=>{Channel.send(Server.owner+" No kick Permissions given for Flood Control.")})
+    }
+
+    }
+
+*/
+
 //if (!message.guild.name.includes("POLLUX")) return;
 
         function serverSetup(guild) {

@@ -28,7 +28,7 @@ var init = function (message,userDB,DB) {
     //HELP TRIGGER
     let helpkey = mm("helpkey",{lngs:message.lang})
 if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
-    return gear.usage(cmd,message);
+    return gear.usage(cmd,message,this.cat);
 }
 //------------
     if(DB.get(Server.id).channels[Channel.id].modules.NSFW==false){
@@ -91,5 +91,5 @@ if (DB.get(Server.id).modules.GOODNAME) {
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'NSFW'
+    cat: 'nsfw'
 };
