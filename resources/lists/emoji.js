@@ -2,6 +2,7 @@ module.exports = {
     //POLLUX ORIGINAL
 
     ruby: "<:ruby:276878246589497344> ",
+    rubine: "<:rubine:343314186765336576> ",
     salt: "<:salty:277280624900046849> ",
     cacetinho: "<:fruki:249731487530876929> ",
     fruki: "<:cacetinho:249732000750108673> ",

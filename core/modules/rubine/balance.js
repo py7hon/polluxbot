@@ -40,9 +40,9 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
     var tot =  mm('$.total',{lngs:LANG});
     var nope =  mm('CMD.noDM',{lngs:LANG});
 
-var emojya = bot.emojis.get('276878246589497344')
+var emojya = bot.emojis.get('343314186765336576')
     let GOODMOJI = emojya
-    let GOOD = 'Ruby'
+    let GOOD = 'Rubine'
     if (DB.get(Server.id).modules.GOODMOJI) {
         GOODMOJI = DB.get(Server.id).modules.GOODMOJI
     }

@@ -49,15 +49,15 @@
 
 
 
-       var b = "Get a boost on yout dailies and 1000"+gear.emoji("ruby")+" by upvoting me at discordbots.org and then using `+reward`"
+       var b = "Get a boost on yout dailies and 1000"+gear.emoji("rubine")+" by upvoting me at discordbots.org and then using `+reward`"
           if(LANG[0] === "dev"||LANG[0]=="pt"||LANG[0]=="pt-br"){
-       b = "Ganhe um bonus em suas dailies e mais 1000"+gear.emoji("ruby")+" votando em mim no discordbots.org e em seguida usando `+reward`"
+       b = "Ganhe um bonus em suas dailies e mais 1000"+gear.emoji("rubine")+" votando em mim no discordbots.org e em seguida usando `+reward`"
         }
 
-var emoj = bot.emojis.get('276878246589497344')
+var emoj = bot.emojis.get('343314186765336576')
 
      let GOODMOJI = DB.get(Server.id).modules.GOODMOJI || emoj
-     let GOOD = DB.get(Server.id).modules.GOODNAME || 'Ruby'
+     let GOOD = DB.get(Server.id).modules.GOODNAME || 'Rubine'
 
      if (!userDB.get(bot.user.id).dailyEpoch) {
          gear.superDefine(bot.user, "dailyEpoch", 1500271200000)
@@ -90,7 +90,7 @@ var emoj = bot.emojis.get('276878246589497344')
 
 
          var remain = (Math.abs((now-next)/1000)+ "").toHHMMSS();
-         e.setTitle(gear.emoji("ruby")+" Last Global Dailies Refresh")
+         e.setTitle(gear.emoji("rubine")+" Last Global Dailies Refresh")
          e.setDescription(remain)
          e.setTimestamp(userDB.get(bot.user.id).epochStamp)
          e.setColor("#d13d54")
@@ -135,11 +135,11 @@ console.log(LANG)
 
             if(userDB.get(Author.id).upvote == true){
          gear.paramIncrement(Author, 'goodies', 50)
-     var a = "And more **50** "+gear.emoji("ruby")+" for upvoting me!"
+     var a = "And more **50** "+gear.emoji("rubine")+" for upvoting me!"
 
 
           if(LANG[0] === "dev"||LANG[0]=="pt"){
-       a = "E mais **50** "+gear.emoji("ruby")+" por ter votado em mim!"
+       a = "E mais **50** "+gear.emoji("rubine")+" por ter votado em mim!"
         }
                 message.channel.send(a)
     }

@@ -22,8 +22,8 @@ if(event.content!="kéo")return;
         if (DB.get(Server.id).channels[CHN.id].modules.DROPS == false) return;
         var GLD = event.guild
         var LANG = event.lang;
-        let GOODMOJI = gear.emoji("ruby")
-        let GOOD = 'Ruby'
+        let GOODMOJI = gear.emoji("rubine")
+        let GOOD = 'Rubine'
         if (DB.get(Server.id).modules) {
             GOODMOJI = DB.get(Server.id).modules.GOODMOJI
         }
@@ -52,7 +52,7 @@ if(event.content!="kéo")return;
                 emoji: GOODMOJI,
                 prefix: prefie
             }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">"), {
-                files: [paths.BUILD + 'ruby.png']
+                files: [paths.BUILD + 'rubine.png']
             }).catch(e => {
                 CHN.send(mm('$.goodDrop', {
                     lngs: LANG,
@@ -74,7 +74,7 @@ if(event.content!="kéo")return;
                 emoji: GOODMOJI,
                 prefix: DB.get(Server.id).modules.PREFIX
             }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">"), {
-                files: [paths.BUILD + 'rubypot.png']
+                files: [paths.BUILD + 'rubinepot.png']
             }).then(m => processDropRare(m)).catch(e => {
                 event.channel.send(mm('$.rareDrop', {
                     lngs: LANG,
@@ -120,7 +120,7 @@ if(event.content!="kéo")return;
                             user: Picker.username,
                             count: CHN.DROPSLY,
                             emoji: ""
-                        }) + " " + gear.emoji("ruby")).then(function (c) {
+                        }) + " " + gear.emoji("rubine")).then(function (c) {
                             message.delete().catch(e => {
                                 let v = "Couldnt Delete Message at 377"
                                 console.log(v);
@@ -151,7 +151,7 @@ if(event.content!="kéo")return;
                     }
                 })
             } catch (e) {
-                let v = "Ruby Send Forbidden: " + r.guild.name + " C: " + r.channel.name
+                let v = "Rubine Send Forbidden: " + r.guild.name + " C: " + r.channel.name
                 gear.hook.send(e.error);
                 hook.send(v)
             }
@@ -195,7 +195,7 @@ if(event.content!="kéo")return;
                             user: Picker.username,
                             count: CHN.DROPSLY,
                             emoji: ""
-                        }) + " " + gear.emoji("ruby")).then(function (c) {
+                        }) + " " + gear.emoji("rubine")).then(function (c) {
                             message.delete()
                             c.delete(500000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                         }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
@@ -213,7 +213,7 @@ if(event.content!="kéo")return;
                     }
                 })
             } catch (e) {
-                let v = "Ruby Send Forbidden: " + r.guild.name + " C: " + r.channel.name
+                let v = "Rubine Send Forbidden: " + r.guild.name + " C: " + r.channel.name
                 gear.hook.send(e.error);
                 hook.send(v)
             }

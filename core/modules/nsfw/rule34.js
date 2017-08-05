@@ -36,8 +36,8 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
         return;
     }
 
-    let GOODMOJI = gear.emoji('ruby')
-let GOOD = 'Ruby'
+    let GOODMOJI = gear.emoji('rubine')
+let GOOD = 'Rubine'
 
 if (DB.get(Server.id).modules.GOODNAME) {
     GOOD = DB.get(Server.id).modules.GOODNAME

@@ -33,12 +33,12 @@ const init = function (message, userDB, DB) {
     if (args === "league of legends" || args === "league" || args === "lol") lol();
     else if (args === "heroes of the storm" || args === "hots" || args === "hos" || args === "heroes") hots();
     else if (args === "smite") smite();
-    else if (args === "help" || args === helpkey) smite();
-    else commandHelp();
+    else if (args === "help" || args === helpkey) return gear.usage(cmd, message,this.cat);
+    else return gear.usage(cmd, message,this.cat);
 
-    function commandHelp() {
-        return gear.usage(cmd, message);
-    }
+
+
+
 
     function smite() {
 
@@ -180,5 +180,5 @@ module.exports = {
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'misc'
+    cat: 'game'
 };

@@ -254,16 +254,16 @@ function buildPage(page) {
               }
           }
 
-            let pricetag = gear.emoji("ruby") + " **" + pricet + "** Rubys"
+            let pricetag = gear.emoji("rubine") + " **" + pricet + "** Rubines"
         if (owned){
             pricetag = ":label: Sold Out!"
         }else{
-            let pricetag = gear.emoji("ruby") + " **" + pricet + "** Rubys"
+            let pricetag = gear.emoji("rubine") + " **" + pricet + "** Rubines"
         }
 
         /*
 
-         let pricetaggie = gear.emoji("ruby") + " **" + menuArr[i][2] + "** Rubys"
+         let pricetaggie = gear.emoji("rubine") + " **" + menuArr[i][2] + "** Rubines"
 
         console.log(menuArr[i])
 
@@ -303,7 +303,7 @@ function processCheckout(item, index, m) {
     processing.setColor("#2bb955")
      m.clearReactions().catch(e=>{         message.reply("I need MANAGE MESSAGES and ADD REACTIONS Permissions to do this correctly, please contact the server administrator");            });
     processing.setTitle(v.processing)
-    processing.setDescription(`${icon} ${name} :: ${gear.emoji("ruby")}**${price}**
+    processing.setDescription(`${icon} ${name} :: ${gear.emoji("rubine")}**${price}**
 ${v.youSure}`)
     m.edit({
         embed: processing

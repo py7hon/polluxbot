@@ -349,7 +349,7 @@ Join the SUPPORT Server >> https://discord.gg/ay48h7Q
 
 <td class="command">menu</td>
 
-<td class="act">EXPERIMENTAL. Calls a menu, ask naturally what you want, pay with rubys, then wait.</td>
+<td class="act">EXPERIMENTAL. Calls a menu, ask naturally what you want, pay with rubines, then wait.</td>
 
 <td class="usage">+menu</td>
 
@@ -489,7 +489,7 @@ Join the SUPPORT Server >> https://discord.gg/ay48h7Q
 
 <td class="command">rule34</td>
 
-<td class="act">NSFW Anime Pictures, costs 5 rubys to use. The charge will be disableable soon.</td>
+<td class="act">NSFW Anime Pictures, costs 5 rubines to use. The charge will be disableable soon.</td>
 
 <td class="usage">+rule34 [tags]</td>
 

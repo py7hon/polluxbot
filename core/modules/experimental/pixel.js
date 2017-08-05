@@ -183,7 +183,7 @@ let loading = false;
 
 
                 Channel.send(`**${pages[globalPeeji][rea][0]}**
-${pages[globalPeeji][rea][2]}${gear.emoji("ruby")}
+${pages[globalPeeji][rea][2]}${gear.emoji("rubine")}
 `).then(async m => {
                     bucket.push(m)
                     shopMsg.delete().catch(e => console.log("shopmes"))

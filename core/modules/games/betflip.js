@@ -27,10 +27,10 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
     return gear.usage(cmd,message,this.cat);
 }
 //------------
-    var emojya = bot.emojis.get('276878246589497344')
-    var rubymoji = bot.emojis.get('276878246589497344')
+    var emojya = bot.emojis.get('343314186765336576')
+    var rubinemoji = bot.emojis.get('343314186765336576')
     let GOODMOJI = emojya
-    let GOOD = 'Ruby'
+    let GOOD = 'Rubine'
     if (DB.get(Server.id).modules.GOODMOJI) {
         GOODMOJI = DB.get(Server.id).modules.GOODMOJI
     }
@@ -69,7 +69,7 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
 
 
     if (gear.checkGoods(3, Author) == false) {
-        message.reply(prompts.error1+ rubymoji);
+        message.reply(prompts.error1+ rubinemoji);
         return;
     }
     if (bet.length <= 2) {
@@ -86,12 +86,12 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
         return;
     };
     if (gear.checkGoods(parseInt(bet[1]), Author) == false) {
-        message.reply(prompts.noFunds + rubymoji);
+        message.reply(prompts.noFunds + rubinemoji);
         return;
     };
 
     if (bet[2] != coinHeads && bet[2] != coinTails) {
-       message.reply(prompts.error2+ rubymoji);
+       message.reply(prompts.error2+ rubinemoji);
         return;
     }
     gear.paramIncrement(Author, 'goodies', -parseInt(bet[1]))

@@ -133,7 +133,7 @@ if (Target.bot && Target.id != "271394014358405121") {
     var persotex    = (userDB.get(Target.id).modules.persotext || "I have no personal text because i'm lazy as a sloth.")
     var nametag     = Target.username + "#" + Target.discriminator
     var nickname    = Server.member(Target).displayName
-    var rubys       = (userDB.get(Target.id).modules.goodies.toString() || "00")
+    var rubines       = (userDB.get(Target.id).modules.goodies.toString() || "00")
     var globalrank  = "#"+(1+ranked.findIndex(i => i.id === Target.id)).toString()
     var serverank   = "#"+(1+Sranked.findIndex(i => i.id === Target.id)).toString()
     var exp         = userDB.get(Target.id).modules.exp.toString()
@@ -159,7 +159,7 @@ medals:   ${medals}
 persotex:   ${persotex}
 nametag:   ${nametag}
 nickname:   ${nickname}
-rubys:   ${rubys}
+rubines:   ${rubines}
 globalrank:   ${globalrank}
 serverank:   ${serverank}
 exp:   ${exp}
@@ -287,7 +287,7 @@ sidebar.color([
          //     grank.contain(50, 10, gear.Jimp.HORIZONTAL_ALIGN_RIGHT)
 
               var rrank = new gear.Jimp(60, 16,0x00000000, function (err, image) {});
-              rrank.print(ranks, 0, 0, `${rubys}`, 50,gear.Jimp.ALIGN_FONT_RIGHT);
+              rrank.print(ranks, 0, 0, `${rubines}`, 50,gear.Jimp.ALIGN_FONT_RIGHT);
           //    rrank.autocrop(false)
          //     rrank.contain(50, 10, gear.Jimp.HORIZONTAL_ALIGN_RIGHT)
 

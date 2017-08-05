@@ -24,7 +24,7 @@ var deployer = require('./core/deployer.js'); // <------------- I DUN LIKE DIS <
 
 var fs = require("fs");
 var paths = require("./core/paths.js");
-var emojya = bot.emojis.get('276878246589497344');
+var emojya = bot.emojis.get('343314186765336576');
 //var cleverbot = require("cleverbot"); // <------------- REVIEW  DIS << NEEDS $ for CB fee
 //cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
 var async = require('async');

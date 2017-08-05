@@ -19,7 +19,7 @@ var init = function (message,userDB,DB) {
     //-------MAGIC----------------
 
 
-var emoj = bot.emojis.get('276878246589497344')
+var emoj = bot.emojis.get('343314186765336576')
 
    if (!Target) return;
 message.reply(Target.members.size + " user(s) bears the "+Target.name+" Role")

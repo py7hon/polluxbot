@@ -34,7 +34,7 @@ price = pricetab[a.id]
 
 
     if (!cashpass) {
-        return message.reply("Desculpa, você não tem Rubys pra comprar esta Role, ela custa "+price+ff.emoji("ruby"));
+        return message.reply("Desculpa, você não tem Rubines pra comprar esta Role, ela custa "+price+ff.emoji("rubine"));
     }
 
             //-------MAGIC----------------

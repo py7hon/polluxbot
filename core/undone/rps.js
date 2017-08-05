@@ -21,7 +21,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         , "money": 500
         , "medals": {}
         , "flowers": 0
-        , "rubys": 500
+        , "rubines": 500
         }
 
     if(message.mentions.users.size === 0){
@@ -33,7 +33,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
         , "money": 500
         , "medals": {}
         , "flowers": 0
-        , "rubys": 500
+        , "rubines": 500
         }
         message.reply("Já que você não especificou um desafiado, eu vou jogar com você!");
 
@@ -51,9 +51,9 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
 
     //let tgt = message.mentions.users.first()
 
-    if (gear.checkRubys(donate, userData) == true) {
+    if (gear.checkRubines(donate, userData) == true) {
 
-        if(gear.checkRubys(donate, tgtData) == true || tgt.bot == true){
+        if(gear.checkRubines(donate, tgtData) == true || tgt.bot == true){
 
 
         var challenger = message.author

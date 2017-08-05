@@ -21,8 +21,8 @@ module.exports = {
             LEVELS: true,
             LVUP: true,
             DROPS: false,
-            GOODMOJI: "<:ruby:276878246589497344> ",
-            GOODNAME: 'Ruby',
+            GOODMOJI: "<:rubine:343314186765336576> ",
+            GOODNAME: 'Rubine',
             ANNOUNCE: false,
             PREFIX: "+",
             MODROLE: {},
@@ -31,7 +31,7 @@ module.exports = {
             AUTOROLES: [],
             statistics: {
                 commandsUsed: {},
-                rubyHistory: 0
+                rubineHistory: 0
             }
 
         },

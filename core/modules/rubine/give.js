@@ -30,9 +30,9 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 
 
 try{
-var emojya = bot.emojis.get('276878246589497344')
+var emojya = bot.emojis.get('343314186765336576')
     let GOODMOJI = emojya
-    let GOOD = 'Ruby'
+    let GOOD = 'Rubine'
     if (DB.get(Server.id).modules.GOODMOJI) {
         GOODMOJI = DB.get(Server.id).modules.GOODMOJI
     }
@@ -57,7 +57,7 @@ var emojya = bot.emojis.get('276878246589497344')
         gear.paramIncrement(Target, 'goodies', donate)
         gear.paramIncrement(Target, 'earnings.trade', donate)
 
-       return  message.channel.send( mm('$.giveGoods' , {lngs:LANG, donate:donate, emoji:gear.emoji('ruby'), target:Target.username,author:Author.username })).then(function (c) {
+       return  message.channel.send( mm('$.giveGoods' , {lngs:LANG, donate:donate, emoji:gear.emoji('rubine'), target:Target.username,author:Author.username })).then(function (c) {
             message.delete(5000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
         })
        // gear.writePoints(points, caller)

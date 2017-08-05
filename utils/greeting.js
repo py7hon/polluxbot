@@ -24,7 +24,7 @@ Anyone with **Manage Server** permissions can use Mod-Only commands except for t
 **Other useful commands:**
 \`\`\`js
 +disable lvup <s or c> // Disable Level Up Messages in Server or Channel
-+enable drops <s or c> // Enable Ruby drops in Server or Channel
++enable drops <s or c> // Enable Rubine drops in Server or Channel
 +feats                 // Check which are the newest features added
 +profile  <@mention>   // See your PPC - Pollux Profile Card ™
 +help                  // Full List of Commands
@@ -56,7 +56,7 @@ Qualquer um com a permissão **Gerenciar Servidor** pode usar comandos elevados,
 **Outros comandos úteis:**
 \`\`\`js
 +disable lvup <s or c> // Desativa mensagens de Level Up no Servidor ou Canal
-+enable drops <s or c> // Habilita drops de Ruby no Server ou Canal
++enable drops <s or c> // Habilita drops de Rubine no Server ou Canal
 +feats                 // Confira quais são os últimos comandos adicionados!
 +profile  <@mention>   // Confira seu PPC - Pollux Profile Card ™
 +help                  // Lista completa de Comandos
@@ -89,7 +89,7 @@ Anyone with **Manage Server** permissions can use Mod-Only commands except for t
 **Other useful commands:**
 \`\`\`js
 +disable lvup <s or c> // Disable Level Up Messages in Server or Channel
-+enable drops <s or c> // Enable Ruby drops in Server or Channel
++enable drops <s or c> // Enable Rubine drops in Server or Channel
 +feats                 // Check which are the newest features added
 +profile  <@mention>   // See your PPC - Pollux Profile Card ™
 +help                  // Full List of Commands

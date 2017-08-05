@@ -138,7 +138,7 @@ runb:function loot(event, DB, userDB){
                     }
                 })
             } catch (e) {
-                let v = "Ruby Send Forbidden: " + drop.guild.name + " C: " + drop.channel.name
+                let v = "Rubine Send Forbidden: " + drop.guild.name + " C: " + drop.channel.name
                 gear.hook.send(e.error);
                 hook.send(v)
             }

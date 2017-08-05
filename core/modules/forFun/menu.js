@@ -24,7 +24,7 @@ var init = function (message, userDB, DB) {
     var bot = message.botUser
     var args = MSG.split(' ').slice(1)
     var LANG = message.lang;
-    const rubymoj = bot.emojis.get('276878246589497344')
+    const rubinemoj = bot.emojis.get('343314186765336576')
     var nope = mm('CMD.noDM', {
         lngs: LANG
     });
@@ -53,9 +53,9 @@ var init = function (message, userDB, DB) {
     //emb.setAuthor('Pollux Statistics',bot.user.avatarURL,'https://github.com/LucasFlicky/polluxbot')
     //emb.setThumbnail('https://github.com/LucasFlicky/polluxbot/blob/master/avis/'+a+'.gif?raw=true')
 
-    var emojya = bot.emojis.get('276878246589497344')
+    var emojya = bot.emojis.get('343314186765336576')
     let GOODMOJI = emojya
-    let GOOD = 'Ruby'
+    let GOOD = 'Rubine'
     if (DB.get(Server.id).modules.GOODMOJI) {
         GOODMOJI = DB.get(Server.id).modules.GOODMOJI
     }
@@ -77,10 +77,10 @@ var init = function (message, userDB, DB) {
     // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
     emb.description = "Ask your orders naturally, e.g.'I'd like a cake, please!'"
 
-    emb.addField(ORD.MENU[0][2] + " " + ORD.MENU[0][1], "**" + ORD.MENU[0][0] + "** Rubys " + rubymoj, true)
-    emb.addField(ORD.MENU[1][2] + " " + ORD.MENU[1][1], "**" + ORD.MENU[1][0] + "** Rubys " + rubymoj, true)
-    emb.addField(ORD.MENU[2][2] + " " + ORD.MENU[2][1], "**" + ORD.MENU[2][0] + "** Rubys " + rubymoj, true)
-    emb.addField(ORD.MENU[4][2] + " " + ORD.MENU[4][1], "**" + ORD.MENU[4][0] + "** Rubys " + rubymoj, true)
+    emb.addField(ORD.MENU[0][2] + " " + ORD.MENU[0][1], "**" + ORD.MENU[0][0] + "** Rubines " + rubinemoj, true)
+    emb.addField(ORD.MENU[1][2] + " " + ORD.MENU[1][1], "**" + ORD.MENU[1][0] + "** Rubines " + rubinemoj, true)
+    emb.addField(ORD.MENU[2][2] + " " + ORD.MENU[2][1], "**" + ORD.MENU[2][0] + "** Rubines " + rubinemoj, true)
+    emb.addField(ORD.MENU[4][2] + " " + ORD.MENU[4][1], "**" + ORD.MENU[4][0] + "** Rubines " + rubinemoj, true)
 
 
     return message.channel.send({embed:emb}).then(async() => {
@@ -239,8 +239,8 @@ OK?
                 if (balance < totale) {
                     message.reply(mm('$.noFundsGeneric', {
                         lngs: LANG,
-                        goods: "Ruby"
-                    }) + rubymoj);
+                        goods: "Rubine"
+                    }) + rubinemoj);
                     return resolve(true);
                 } else {
 
@@ -250,7 +250,7 @@ OK?
                     message.channel.send(mm('menu.chargeA', {
                         lngs: LANG,
                         total: totale
-                    }) + rubymoj + mm('menu.chargeB', {
+                    }) + rubinemoj + mm('menu.chargeB', {
                         lngs: LANG
                     }))
                     gear.paramIncrement(Author, "goodies", -totale)

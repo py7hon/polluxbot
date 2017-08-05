@@ -27,9 +27,9 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 //------------
     var userData = userDB.get(Author.id).modules
 
-    var emojya = gear.emoji("ruby")
+    var emojya = gear.emoji("rubine")
     let GOODMOJI = emojya
-    let GOOD = 'Ruby'
+    let GOOD = 'Rubine'
     if (DB.get(Server.id).modules.GOODMOJI) {
         GOODMOJI = DB.get(Server.id).modules.GOODMOJI
     }
@@ -52,7 +52,7 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
             good: GOOD,
             user: Author.username,
             prefix: message.prefix
-        }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">"),{files:[paths.BUILD + 'ruby.png']}).then(function (r) {
+        }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">"),{files:[paths.BUILD + 'rubine.png']}).then(function (r) {
 
 
             if (isNaN(Channel.DROPSLY)) {

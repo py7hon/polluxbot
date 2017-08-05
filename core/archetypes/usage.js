@@ -15,6 +15,8 @@ module.exports = {
     run: function run(cmd, m, third) {
     try{
 
+        console.log(third)
+
         let emb = new gear.Discord.RichEmbed
         emb.setColor("#c65fe5")
         if (third === "nsfw") {
@@ -33,6 +35,10 @@ module.exports = {
         if (third === "fun") {
             emb.setThumbnail("https://png.icons8.com/cocktail/dusk/40")
             emb.setColor("#ffd23e")
+        }
+        if (third === "game") {
+            emb.setThumbnail("https://png.icons8.com/game-controller/dusk/40")
+            emb.setColor("#9288c9")
         }
         emb.setAuthor(mm("help.commUsage", {
             lngs: m.lang,

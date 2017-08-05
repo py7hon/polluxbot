@@ -53,7 +53,7 @@ var G = message.guild
 
 
 
-var ruby    = gear.emoji("ruby")
+var rubine    = gear.emoji("rubine")
 var On      = gear.emoji("check")
 var Off     = gear.emoji("xmark")
 
@@ -171,7 +171,7 @@ mods = mods.removeire("cog")
    emb.addField(" :outbox_tray: Bye Message ","`"+bye.joinText +"`"+et(bye.hi)+" @ "+Server.channels.get(bye.greetChan), false)
 
   emb.addField(":gear: SuperModules",`:up: ${a} LevelUp Messages
-${ruby}${b} Ruby Drops
+${rubine}${b} Rubine Drops
 :underage: ${c} NSFW Master-Switch`, true)
   emb.addField(":gear: Disabled Commands","```."+ mods +"```", true)
 

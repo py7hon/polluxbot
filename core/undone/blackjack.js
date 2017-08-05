@@ -6,7 +6,7 @@ exports.run = (bot, message, args, userData, caller, gear, points, skynet) => {
     message.reply("Blackjack está temporariamente suspenso")
     return
 
-let RUBYMOJI = message.guild.emojis.find('name','ruby')
+let RUBYMOJI = message.guild.emojis.find('name','rubine')
 if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
     try {
 
@@ -21,12 +21,12 @@ if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
             message.reply("Você precisa apostar alguma coisa, chuchu~")
             return;
         };
-        if (gear.checkRubys(stuff[1], userData) == false) {
-            message.reply("Oxe, você não tem rubys suficientes pra cobrir essa aposta...")
+        if (gear.checkRubines(stuff[1], userData) == false) {
+            message.reply("Oxe, você não tem rubines suficientes pra cobrir essa aposta...")
             return;
         };
         var bet = stuff[1];
-        userData.rubys -= parseInt(bet);
+        userData.rubines -= parseInt(bet);
         ongoing = true;
         let endgame = undefined;
         var naipes = ['H/', 'D/', 'S/', 'C/'];
@@ -105,16 +105,16 @@ if (RUBYMOJI === null){RUBYMOJI = ':octagonal_sign: '}
         function conclusion(end) {
             switch (end) {
                 case 'victory':
-                    message.channel.send("Certo, toma aqui teus " + parseInt(bet * 2.4) + " "+RUBYMOJI+" Rubys de prêmio");
-                    userData.rubys += parseInt(bet * 2.4);
+                    message.channel.send("Certo, toma aqui teus " + parseInt(bet * 2.4) + " "+RUBYMOJI+" Rubines de prêmio");
+                    userData.rubines += parseInt(bet * 2.4);
                     break;
                 case 'defeat':
                     message.channel.send("Boa sorte da próxima vez.");
 
                     break;
                 case 'tie':
-                    message.channel.send("Bom, pega seus " + parseInt(bet * 2.4) + " "+RUBYMOJI+" rubys");
-                    userData.rubys += parseInt(bet * 2.4);
+                    message.channel.send("Bom, pega seus " + parseInt(bet * 2.4) + " "+RUBYMOJI+" rubines");
+                    userData.rubines += parseInt(bet * 2.4);
                     break;
             }
             return ongoing = false;
@@ -426,7 +426,7 @@ Turn 4`).then(function (mmm) {
             }, 2000)
         }
     } catch (err) {
-        message.reply('eita, deu algo meio errado aqui. tô devolvendo teus ruby')
-        userData.rubys += bet
+        message.reply('eita, deu algo meio errado aqui. tô devolvendo teus rubine')
+        userData.rubines += bet
     }
 }

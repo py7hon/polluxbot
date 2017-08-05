@@ -36,9 +36,9 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 
 
 
-var emojya = bot.emojis.get('276878246589497344')
+var emojya = bot.emojis.get('343314186765336576')
     let GOODMOJI = emojya
-    let GOOD = 'Ruby'
+    let GOOD = 'Rubine'
     if (DB.get(Server.id).modules.GOODMOJI) {
         GOODMOJI = DB.get(Server.id).modules.GOODMOJI
     }
@@ -73,7 +73,7 @@ var emojya = bot.emojis.get('276878246589497344')
     emb.title = "WEALTH RANK"
     emb.setAuthor('Pollux', bot.user.avatarURL, 'https://github.com/LucasFlicky/polluxbot')
         emb.setFooter('If you are not being displayed here, contact the creator immediately for a fix.')
-    emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/resources/imgres/emoji/ruby.png")
+    emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/resources/imgres/emoji/rubine.png")
         // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
         //    emb.description = "Os Top-5 mais rubificadoss do server"
 var medals = [':first_place: 1st',

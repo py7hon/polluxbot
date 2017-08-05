@@ -24,10 +24,10 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
 }
 //------------
 
-var emoj = bot.emojis.get('276878246589497344')
+var emoj = bot.emojis.get('343314186765336576')
 
      let GOODMOJI = DB.get(Server.id).modules.GOODMOJI || emoj
-     let GOOD = DB.get(Server.id).modules.GOODNAME || 'Ruby'
+     let GOOD = DB.get(Server.id).modules.GOODNAME || 'Rubine'
 
 
     if (DB.get(Server.id).modules) {
