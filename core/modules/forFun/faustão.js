@@ -61,7 +61,7 @@ message.channel.createWebhook('Faustão',"http://static2.blastingnews.com/media/
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'bot'
+    cat: 'forFun'
 };
 
 

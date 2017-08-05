@@ -10,5 +10,5 @@ var init = function (message,userDB,DB) {
     cmd: cmd,
     perms: 8,
     init: init,
-    cat: 'bot'
+    cat: 'infra'
 };

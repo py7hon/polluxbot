@@ -49,5 +49,5 @@ gear.shuffle(verbose)
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'bot'
+    cat: 'forFun'
 };

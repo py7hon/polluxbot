@@ -25,7 +25,7 @@ var output="";
     cmd: cmd,
     perms: 5,
     init: init,
-    cat: 'misc'
+    cat: 'infra'
 };
 
 

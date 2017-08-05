@@ -820,5 +820,5 @@ module.exports = {
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'misc'
+    cat: 'cosmetics'
 };

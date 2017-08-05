@@ -161,5 +161,5 @@ var Off     = gear.emoji("xmark")
     cmd: cmd,
     perms: 2,
     init: init,
-    cat: 'master'
+    cat: 'mod'
 };

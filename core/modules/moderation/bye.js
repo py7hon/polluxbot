@@ -137,5 +137,5 @@ module.exports = {
     cmd: cmd,
     perms: 0,
     init: init,
-    cat: 'server'
+    cat: 'mod'
 };

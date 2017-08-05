@@ -74,5 +74,5 @@ var init = function (message, userDB, DB) {
                     cmd: cmd,
                     perms: 3,
                     init: init,
-                    cat: 'misc'
+                    cat: 'forFun'
                 };

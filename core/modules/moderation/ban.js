@@ -135,4 +135,4 @@ emb.setTimestamp(ts)
     message.delete(1000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
 }
- module.exports = {pub:true,cmd: cmd, perms: 2, init: init, cat: 'misc'};
+ module.exports = {pub:true,cmd: cmd, perms: 2, init: init, cat: 'mod'};

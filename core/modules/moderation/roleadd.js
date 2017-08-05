@@ -87,5 +87,5 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
             cmd: cmd,
             perms: 3,
             init: init,
-            cat: 'info'
+            cat: 'mod'
         };

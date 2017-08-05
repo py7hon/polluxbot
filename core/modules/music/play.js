@@ -169,5 +169,5 @@ module.exports = {
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'master'
+    cat: 'music'
 };

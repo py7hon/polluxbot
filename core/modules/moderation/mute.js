@@ -201,5 +201,5 @@ module.exports = {
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'info'
+    cat: 'mod'
 };

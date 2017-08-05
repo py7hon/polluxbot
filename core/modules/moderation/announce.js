@@ -44,5 +44,5 @@ var anno = mm('dict.announce',{lngs:LANG})
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'misc'
+    cat: 'mod'
 };

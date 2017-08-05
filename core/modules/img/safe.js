@@ -57,5 +57,5 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
         })
     };
 
- module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'image'};
+ module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'img'};
 

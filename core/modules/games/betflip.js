@@ -139,5 +139,5 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'games'
+    cat: 'gambling'
 };

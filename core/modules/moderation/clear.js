@@ -90,5 +90,5 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
     cmd: cmd,
     perms: 1,
     init: init,
-    cat: 'mgmt'
+    cat: 'mod'
 };

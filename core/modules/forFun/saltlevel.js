@@ -49,6 +49,6 @@ let saltmoji = "<:salty:277280624900046849>"
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'skynet',
+    cat: 'forFun',
     skynet:true
 };

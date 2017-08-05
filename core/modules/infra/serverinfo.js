@@ -215,5 +215,5 @@ ${rubine}${b} Rubine Drops
     cmd: cmd,
     perms: 1,
     init: init,
-    cat: 'bot'
+    cat: 'infra'
 };

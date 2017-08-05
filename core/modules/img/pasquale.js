@@ -32,5 +32,5 @@ var  pasq=imgsrc[gear.randomize(0,imgsrc.length)]
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'bot'
+    cat: 'img'
 };

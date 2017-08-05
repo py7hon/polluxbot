@@ -27,7 +27,7 @@ __**BUG REPORT FILED**__
  module.exports = {
     pub:true,
     cmd: cmd,
-    perms: 3,
+    perms:2,
     init: init,
-    cat: 'bot'
+    cat: 'dev'
 };
