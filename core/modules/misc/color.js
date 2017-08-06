@@ -41,12 +41,24 @@ const init = function (message, userDB, DB) {
                  let lang = message.lang[0]
                  if (lang === "dev") lang = "pt";
 
-                 translate(namely(args)[0].title, {
+                 let colname = namely(args)[0].title
+                    console.log(args)
+                    if(args.replace(/^#/, '')==="179C49")colname="gorsal green";
+                    if(args.replace(/^#/, '')==="E52535")colname="flicky red"
+                 console.log(lang)
+                 translate(colname, {to:lang }).then(res => console.log(res))
+
+                 translate(colname, {
                      to: lang
                  }).then(colset => {
-                     console.log(colset.text);
+                     console.log(colset);
                      console.log(namely(args)[0].title);
-                     emb.setAuthor(colset.text, "https://png.icons8.com/paint-brush/dusk/64")
+                     let a = colset.text
+                                    .replace("gorsal","Gors")
+                                    .replace("flicky","Flicky")
+                                    .replace("red","Red")
+                                    .replace("green","Green")
+                     emb.setAuthor(a,"https://png.icons8.com/paint-brush/dusk/64")
                      message.channel.send({embed: emb,files: [{attachment: image,name: "file.png"}]})
 
                  })

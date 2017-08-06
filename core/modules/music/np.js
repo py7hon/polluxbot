@@ -10,8 +10,8 @@ try{
     Server.playlist = DB.get(Server.id).playlist
 
     let emb = new gear.Discord.RichEmbed
-    emb.setDescription(":arrow_forward: Now Playing: **"+Server.playlist[0][1]+"**")
-    emb.setColor("#f7da3c")
+    emb.setDescription(gear.emoji("play")+" Now Playing: **"+Server.playlist[0][1]+"**")
+    emb.setColor("#fbd796")
     emb.setFooter(Server.playlist[0][2])
     message.channel.send({embed:emb})
 }catch(e){gear.hook.send(e.error)}

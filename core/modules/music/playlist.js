@@ -18,6 +18,10 @@ var lista = ""
         if(i==9) lista += "\n*And "+(Server.playlist.length-9)+" more*..."
     }
 
+
+
+
+
  message.channel.send(lista)
 }catch(e){gear.hook.send(e.error)}
 }

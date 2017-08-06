@@ -41,7 +41,7 @@ var init = async function (message, userDB, DB) {
     var opts = {
         maxResults: 10,
         type: "video",
-        key: 'AIzaSyB459p_ith_k86GLNPUHaq6EfsfEOOOKoU'
+        key: ''
     };
 
 
