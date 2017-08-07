@@ -10,6 +10,8 @@ var bot = new gear.Discord.Client({
     disabledEvents: ['typingStart', 'typingStop', 'guildMemberSpeaking']
 });
 
+
+
 // Get Tokens
 const cfg = require('./config.js');
 

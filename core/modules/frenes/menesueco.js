@@ -1,4 +1,4 @@
-var cmd = 'ahegao';
+var cmd = 'menesueco';
 var gear = require("../../gearbox.js");
 var fs = require("fs");
 

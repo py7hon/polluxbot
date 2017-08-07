@@ -20,15 +20,16 @@ if (Author.bot) return;
 
     var success = mm('forFun.airwaifu',{lngs:LANG})
     var fail = mm('forFun.booru404',{lngs:LANG})
-try{
+
 //HELP TRIGGER
     let helpkey = mm("helpKeyword",{lngs:LANG})
 
 if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
     return gear.usage(cmd,message,this.cat);
 }
+
 //------------
-}catch(e){gear.hook.send(e.error)}
+
     let query = 'airplane+-comic+-animated'
     console.log("AIRWAIFU INVOKED by " + Author + "-------------\n")
 

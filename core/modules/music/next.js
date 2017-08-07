@@ -1,10 +1,15 @@
 var gear = require("../../gearbox.js");
 var cmd = 'say';
 
-var init =  function (message,userDB,DB) {
+var init =  function (message,userDB,DB,switche) {
 var Server=message.guild
 try{
 const yt = require('ytdl-core');
+
+
+        let playlist = DB.get(Server.id).playlist
+
+if(!switche&&!gear.hasPerms(message.author))return;
 
 
   // if(message.author.id != "88120564400553984") return message.reply(":warning:"); if(message.author.id!="88120564400553984"&&message.guild.id!="277391723322408960"&&message.guild.id!="337574844524789760"&&message.guild.owner.id!="88120564400553984"){
@@ -18,7 +23,10 @@ const yt = require('ytdl-core');
 
 
   if (message.guild.dispatcher) {
-      message.reply("⏩ Skip")
+      console.log(playlist)
+      if(playlist[1])message.channel.send("**Skip:** ~~"+playlist[0][1]+"~~ \n "+gear.emoji('ff')+" "+playlist[1][1]);
+      else return message.channel.send(gear.emoji("stop")+"**Last Song**");
+
       message.guild.dispatcher.end();
   }
 

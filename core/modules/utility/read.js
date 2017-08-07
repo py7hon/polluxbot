@@ -6,10 +6,15 @@ var cmd = 'read';
 var init = async function (message, userDB, DB) {
 
     let args = message.content.split(" ").slice(1)[0]
+
+
+
+
     i2b(args, async function (err, img) {
-        if (err && !message.attachments) message.channel.send("INVALID IMAGE URL");
-        else if (err && message.attachments){
-            return i2b(message.attachments.first().url,(err,b64)=> vere(b64.base64,message))
+        if (err){
+            let nwurl = await gear.getImg(message)
+             if (!nwurl) return message.channel.send("INVALID IMAGE URL");
+            return i2b(nwurl,(err,b64)=> vere(b64.base64,message))
         }
         vere(img.base64,message)
     });

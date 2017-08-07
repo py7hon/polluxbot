@@ -136,12 +136,21 @@ try{
        var  userData = userDB.get(TG.id).modules;
 }catch(e){console.log("2:    "+e)}
         var caller = TG.username // Checar Caller
-
-
+        const SVID = event.guild.id
         //LEVEL UP CHECKER
         //-----------------------------------------------------
-        let curLevel = Math.floor(0.18 * Math.sqrt(userData.exp));
-        let forNext = Math.trunc(Math.pow((userData.level + 1) / 0.18, 2));
+        let curLevel = Math.floor(0.08 * Math.sqrt(userData.exp));
+        let forNext = Math.trunc(Math.pow((userData.level + 1) / 0.08, 2));
+        //////-- // -- // -- // -- // -- -- - - -
+        let curLevel_local = Math.floor(0.12 * Math.sqrt(userData.exp));
+        let forNext_local = Math.trunc(Math.pow((userData.level + 1) / 0.12, 2));
+        //-----------------------------------------------------
+        if (!userData.loclevel)this.paramDefine(TG,"loclevel",{});
+        if (!userData.loclevel[SVID])this.paramDefine(TG,"loclevel."+SVID,0);
+        //----------------------------------------------------------------------
+        if (curLevel_local > userData.loclevel[SVID]){
+             this.paramIncrement(TG, "loclevel."+SVID, 1)
+        }
         if (curLevel > userData.level) {
             // Level up!
             this.paramIncrement(TG, "level", 1)
@@ -154,6 +163,7 @@ try{
                 img = TG.avatarURL.substr(0, TG.avatarURL.length - 10);
             }
             var guild = event.guild
+
             gear.Jimp.read(img).then(function (user) {
                 gear.Jimp.read(paths.BUILD + "glass.png").then(function (glass) {
                     gear.Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
@@ -214,6 +224,7 @@ try{
                     break;
 
                 case Server.member(tgt).hasPermission("KICK_MEMBERS"):
+                case Server.member(tgt).hasPermission("MANAGE_CHANNELS"):
                     return 2;
                     break;
 
@@ -242,7 +253,6 @@ try{
         try {
             modPass = Member.roles.has(DB.get(Server.id).modules.MODROLE);
         } catch (e) {
-
             message.channel.send("noMod Role defined")
         }
         if (Server.owner.id === Member.id || Member.hasPermission("ADMINISTRATOR")) {
@@ -262,7 +272,7 @@ try{
     }
 
     var logChannel = function logChannel(channel, action, DB) {
-        Server = channel.guild
+        let Server = channel.guild
         var chanpoint = false;
         try {
 
@@ -698,9 +708,35 @@ ${msg.content}
             return {item:item,height:h+H,width:w};
         }
 
+
+    const getImg = async function getImg(message) {
+
+            if (message.attachments.url && message.attachments.width) return message.attachments.url;
+            let sevmesgs = message.channel.messages
+
+            const messpool = sevmesgs.filter(mes => {
+                try {
+                    //console.log("\n\n-------------------")
+                    //console.log(mes.content)
+                    //console.log(!!mes.attachments.first().url)
+                    if (mes.attachments) {
+                        if (mes.attachments.first().url) {
+                            return true
+                        }
+                    }
+                } catch (e) {
+                    return false
+                }
+                //console.log("------------------\n\n")
+            })
+            if (messpool.last()) return messpool.last().attachments.first().url;
+            else return undefined
+    }
+
     // DEPENDENCY TOOLBOX AHOY
 
 module.exports = {
+    getImg:getImg,
     tag:tag,
     miliarize:miliarize,
      errLog:errLog,
@@ -741,4 +777,6 @@ module.exports = {
     fs: fs
 
 }
+
+
 

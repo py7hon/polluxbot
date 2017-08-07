@@ -8,6 +8,8 @@ var cmd = 'favcolor';
 
 var init = function (message, userDB, DB) {
     var Channel = message.channel;
+    const MSG = message.content
+    const Author = message.author
     var bot = message.botUser
     var args = message.content.split(' ').slice(1)[0]
     //  var input = args[0].toUpperCase()
@@ -55,7 +57,7 @@ var init = function (message, userDB, DB) {
 
 
         emb.setAuthor(colset.text, "https://png.icons8.com/paint-brush/dusk/64")
-        emb.description = gear.emoji("check") + v.colorChanged
+        emb.description = gear.emoji("yep") + v.colorChanged
 
         message.channel.send({
             embed: emb

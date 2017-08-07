@@ -30,18 +30,29 @@ if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"
 
         console.log("SAFEBOORU INVOKED by " + Author.name + "-------------\n")
         console.log(1) ;
-        let query = message.content.split(" ");
-        !query[1] ? query[1] = "1girl+airplane+solo" : query[1] = query[1];
-        getter.getRandom(query[1], (url) => {
+        let query = message.content
+                            .split(/\s+/)
+                            .slice(1)
+                            .join(" ")
+                            .replace(/(\s|),(\s|)/g,"+")
+                            .replace(/(\s|)\|(\s|)/g,"+")
+                            .replace(/\s/g,"_")
+                            .replace(/(_|)\+(_|)/g,"+")
+                            .replace(/_-/g,"-")
+                            .replace(/([A-z]|[0-9])-/g,"$1+-")
+
+
+        !query ? query = "1girl+airplane+solo" : query = query;
+        getter.getRandom(query, (url) => {
             console.log(2)
-            if (url === undefined) {
+            if (!url) {
                 message.reply(mm('forFun.booru404',{lngs:LANG}))
             }
             else {
                 //message.reply('http:' + url)
                // emb.setImage(url)
                emb.setTitle(":heart: S a f e b o o r u")
-               emb.setDescription("**Query:** "+query[1].replace(/_/g," ").replace(/\+/g," | ")+"\nAsked by "+Author)
+               emb.setDescription("**Query:** "+query.replace(/_/g," ").replace(/\+/g," | ")+"\nAsked by "+Author)
                 console.log(url)
                   emb.setColor('#ff97cf')
 

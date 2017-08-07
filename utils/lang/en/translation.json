@@ -337,4 +337,12 @@
 		"remain": "Time until next reset:",
 		"last": "Last reset time:"
 	}
+    ,"games":{
+        "dice":{
+            "someoneRolledX":"**%U%** rolled %D%...",
+            "andGot":"and got **{{val}}** !",
+            "rollsWere":"Rolls were: "
+        }
+
+    }
 }

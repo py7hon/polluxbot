@@ -49,5 +49,5 @@ module.exports = {
     cmd: cmd,
     perms: 5,
     init: init,
-    cat: 'forFun'
+    cat: 'fun'
 };
