@@ -24,7 +24,7 @@ module.exports = {
 
 
         let emb = new gear.Discord.RichEmbed
-
+        console.log(third)
         emb.setColor(d[third].color)
         emb.setThumbnail(d[third].thumb)
 

@@ -14,7 +14,7 @@
             "thumb": "https://png.icons8.com/money/dusk/40"
         },
         "game": {
-            "color": "#a9288c9aa",
+            "color": "#9288c9",
             "thumb": "https://png.icons8.com/game-controller/dusk/40"
         },
         "rubine": {
@@ -42,14 +42,14 @@
             "thumb": "https://png.icons8.com/code/dusk/40"
         },
         "easteregg": {
-            "color": "#aaa",
+            "color": "#ea5db4",
             "thumb": "https://png.icons8.com/easter-egg/color/40"
         },
         "language": {
             "color": "#61b149",
             "thumb": "https://png.icons8.com/world-map/dusk/40"
         },
-        "forfun": {
+        "fun": {
             "color": "#ffd23e",
             "thumb": "https://png.icons8.com/cocktail/dusk/40"
         },
