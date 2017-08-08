@@ -8,30 +8,6 @@ module.exports = {
 
 
 
-    if (Server.antiflood) {
-
-            let lms = message.channel.messages.last()
-
-            if (lms.author.id == message.author.id && message.content.includes(lms.content)) {
-                if (!Author.warning) Author.warning = 0;
-                Author.warning++
-                    setTimeout(() => Author.warning--, 3000)
-                if (Author.warning == 6) {
-                    message.reply(":warning: **FLOOD**")
-                }
-                if (Author.warning > 10) {
-                    message.guild.member(Author).kick().then(kik => {
-                        kik.send("You have been kicked from " + Server.name + " for Flooding all around.")
-                        message.channel.send(kik.username + " have been kicked from " + Server.name + " for Flooding all around.")
-
-                    }).catch(c => {
-                        Channel.send(Server.owner + " No kick Permissions given for Flood Control.")
-                    })
-                }
-
-            }
-
-        }
 
         function serverSetup(guild) {
 
@@ -165,6 +141,46 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
     //-- NO BOTS PAST HERE ---------------------------------------------------
 
     if (Server && !Author.bot) {
+
+
+
+
+
+
+
+    if (Server.antiflood) {
+
+            let lms = message.channel.messages.last()
+
+            if (lms.author.id == message.author.id && message.content.includes(lms.content)) {
+                if (!Author.warning) Author.warning = 0;
+                Author.warning++
+                    setTimeout(() => Author.warning--, 3000)
+                if (Author.warning == 6) {
+                    message.reply(":warning: **FLOOD**")
+                }
+                if (Author.warning > 10) {
+                    message.guild.member(Author).kick().then(kik => {
+                        kik.send("You have been kicked from " + Server.name + " for Flooding all around.")
+                        message.channel.send(kik.username + " have been kicked from " + Server.name + " for Flooding all around.")
+
+                    }).catch(c => {
+                        Channel.send(Server.owner + " No kick Permissions given for Flood Control.")
+                    })
+                }
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+
 
         let args = message.content.toLowerCase().split(' ').slice(1)[0]
         //==-------------------------------------------
