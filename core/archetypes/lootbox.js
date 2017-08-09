@@ -90,35 +90,34 @@ class Lootbox {
 
         let prize = base[rarity][gear.randomize(0, base[rarity].length-1)]
         console.log("PRIZE:"+prize)
-        this.prizes.stamps.push(prize)
+        this.prizes.stamps.push([rarity,prize])
     }
 
     getJades(rarity) {
         let rar= values[rarity]
         let rr = gear.randomize(8,10)
-        console.log("RAR:  "+rar +" * "+rr)
 
-        this.prizes.jades.push(rar*(gear.randomize(80,100))*18)
+        this.prizes.jades.push([rarity,Math.floor(rar*(gear.randomize(80,100))*18/10)])
     }
     getBG(rarity) {
         let base = JSON.parse(fs.readFileSync(BGBASE))
         let prize = base[rarity][gear.randomize(0, base[rarity].length-1)]
 
         console.log("PRIZE:"+prize)
-        this.prizes.bgs.push(prize)
+        this.prizes.bgs.push([rarity,prize])
     }
     getMedal(rarity) {
         let base = JSON.parse(fs.readFileSync(MEDALBASE))
 
         let prize = base[rarity][gear.randomize(0, base[rarity].length-1)]
         console.log("PRIZE:"+prize)
-        this.prizes.medals.push(prize)
+        this.prizes.medals.push([rarity,prize])
     }
     getRubines(rarity) {
         let rar= values[rarity]
         let rr = gear.randomize(80,100)
         console.log("RAR:  "+rar +" * "+rr)
-        this.prizes.rubines.push(rar*(rr))
+        this.prizes.rubines.push([rarity,Math.floor(rar*(rr)/4)])
     }
 
 
