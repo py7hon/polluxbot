@@ -49,6 +49,7 @@ module.exports = {
     //  DB.get(guild.id).channels[element.id] =
     //element.mods = DB.get(guild.id).channels[element.id].modules;
     var GGD = DB.get(guild.id)
+    if (!GGD.channels)GGD.channels={};
     GGD.channels[element.id] = defaults.cdfal
     DB.set(guild.id, GGD)
     var gg = DB.get(guild.id)
@@ -130,11 +131,10 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
         var logusr = " " + Author.username + ": "
         var logmsg = MSG
 
-            if (Author.username === "Pollux" || MSG.toLowerCase().includes('pollux') || MSG.startsWith("+")) {
 
         console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
 
-         }
+
     }
     //--- END LOGS   ---------------------------------------------------------
     if (Author.bot) return;
@@ -271,8 +271,10 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
         // DONE WITH PERMS ---//
 
         //A NEW CHANNEL? --------------------------------------------
-        if (DB.get(Server.id).channels[Channel.id] == undefined)channelSetup(Channel, Server);
-
+        try{if (DB.get(Server.id).channels[Channel.id] == undefined)channelSetup(Channel, Server);
+           }catch(e){
+             channelSetup(Channel, Server);
+           }
         let defaultgreet = {
             hi: false,
             joinText: "Welcome to the Server %username%!",
@@ -374,13 +376,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
             }
         } else {
             //CHECK COMMANDS INSIDE PM
-            if (message.content.startsWith(prefix)) {
-                message.botUser = bot;
-                message.content.startsWith("p!") ? message.prefix = "p!" : message.prefix = prefix;
 
-            } else {
-
-            }
         }
     } else {
         console.log(message.content)

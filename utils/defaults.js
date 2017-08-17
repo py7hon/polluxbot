@@ -8,7 +8,7 @@ module.exports = {
         modules: {
             GREET: {
                 hi: false,
-                joinText: "Welcome to the Server %username%!",
+                joinText: "Welcome to the Server **%username%**!",
                 greetChan: ""
             },
             FWELL: {
@@ -27,7 +27,7 @@ module.exports = {
             PREFIX: "+",
             MODROLE: {},
             LANGUAGE: 'en',
-            DISABLED: ['cog'],
+            DISABLED: [],
             AUTOROLES: [],
             statistics: {
                 commandsUsed: {},
@@ -51,7 +51,7 @@ module.exports = {
             LEVELS: true,
             LVUP: true,
             DROPS: true,
-            DISABLED: ['cog']
+            DISABLED: []
         }
     },
 
@@ -84,7 +84,7 @@ module.exports = {
             rep:0,
             bgID:"5zhr3HWlQB4OmyCBFyHbFuoIhxrZY6l6",
             skin: 'default',
-            skinsAvailable: ['default'],
+            skinsAvailable: [],
 
             build: {
                 STR: 10,

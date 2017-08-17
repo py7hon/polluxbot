@@ -50,6 +50,7 @@
     "node-canvas-text": "^1.0.2",
     "opentype.js": "^0.7.3",
     "opusscript": "latest",
+    "passport-cookie": "^1.0.4",
     "pixel-utils": "latest",
     "pureimage": "^0.1.0",
     "shortid": "^2.2.6",

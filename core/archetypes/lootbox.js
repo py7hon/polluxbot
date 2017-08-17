@@ -162,22 +162,22 @@ class Lootbox {
 
         switch (true) {
 
-            case finder <= 5:
+            case finder <= 2:
                 return this.getRubines(rarity)
                 break;
-            case finder <= 8:
+            case finder <= 4:
                 return this.getRubines(rarity)
                 break;
-            case finder <= 10:
-                return this.getBG(rarity)
-                break;
-            case finder <= 12:
-                return this.getMedal(rarity)
-                break;
-            case finder <= 15:
+            case finder <= 9:
                 return this.getJades(rarity)
                 break;
-            case finder <= 17:
+            case finder <= 11:
+                return this.getMedal(rarity)
+                break;
+            case finder <= 14:
+                return this.getBG(rarity)
+                break;
+            case finder <= 16:
                 return this.getStamps(rarity)
                 break;
             default:

@@ -138,9 +138,9 @@ if (Target.bot && Target.id != "271394014358405121") {
     var serverank   = "#"+(1+Sranked.findIndex(i => i.id === Target.id)).toString()
     var exp         = userDB.get(Target.id).modules.exp.toString()
     var level       = userDB.get(Target.id).modules.level.toString()
-    var exptoNex    = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2)).toString()
-    var exptoThis    = Math.trunc(Math.pow((Number(level)) / 0.18, 2)).toString()
-    var frameofact = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2))-Math.trunc(Math.pow((Number(level)) / 0.18, 2))
+    var exptoNex    = Math.trunc(Math.pow((Number(level) + 1) / 0.08, 2)).toString()
+    var exptoThis    = Math.trunc(Math.pow((Number(level)) / 0.08, 2)).toString()
+    var frameofact = Math.trunc(Math.pow((Number(level) + 1) / 0.08, 2))-Math.trunc(Math.pow((Number(level)) / 0.08, 2))
     console.log(exptoThis)
     console.log(frameofact)
      var percent     = (((Number(exp) - Number(exptoThis)) / frameofact)*100).toFixed(0)
@@ -180,7 +180,7 @@ var backgroundIMAGE = paths.BUILD + 'profile/BGS/bg_'+backgroundId+'.png'
      backgroundIMAGE = paths.BUILD + 'profile/BGS/bg_'+backgroundId+'.png'
     }else{
 
-     backgroundIMAGE = "http://files.pollux.fun/"+backgroundId+".png"
+     backgroundIMAGE = paths.BUILD+"backdrops/" +backgroundId+".png"
     }
 console.log("==============="+backgroundIMAGE)
 
@@ -215,7 +215,7 @@ console.log("==============="+backgroundIMAGE)
     gear.Jimp.read(paths.SKINS + skin + '/lenna.png').then(function (lenna) {
     gear.Jimp.read(backgroundIMAGE).then(function (bg) {
 
-
+      bg.resize(346,185)
         photo.resize(100,100)
          photo.mask(lenna, 0, 0)
 
@@ -423,7 +423,7 @@ sidebar.color([
                                             var texp = ""
                                         }
 
-                                        var next = Math.trunc(Math.pow((Number(level) + 1) / 0.18, 2));
+                                        var next = Math.trunc(Math.pow((Number(level) + 1) / 0.08, 2));
                                         var perc = Number(exp) / next
                                         if (level.length == 1) {
                                             level = `0${level}`

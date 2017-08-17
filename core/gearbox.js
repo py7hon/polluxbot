@@ -140,6 +140,8 @@ try{
         //LEVEL UP CHECKER
         //-----------------------------------------------------
         let curLevel = Math.floor(0.08 * Math.sqrt(userData.exp));
+
+
         let forNext = Math.trunc(Math.pow((userData.level + 1) / 0.08, 2));
         //////-- // -- // -- // -- // -- -- - - -
         let curLevel_local = Math.floor(0.12 * Math.sqrt(userData.exp));
@@ -153,7 +155,9 @@ try{
         }
         if (curLevel > userData.level) {
             // Level up!
+               console.log(typeof userDB.get(TG.id).modules.level)
             this.paramIncrement(TG, "level", 1)
+               console.log(typeof userDB.get(TG.id).modules.level)
             var overallevel = userDB.get(TG.id).modules.level;
 
             console.log("LEVEL UP EVENT FOR ".bgBlue + caller)
@@ -347,17 +351,20 @@ try{
         //IF CHAN
         if (target instanceof Discord.Channel) {
             var Tchannel = DB.get(target.guild.id)
+
             if (!Tchannel.channels[target.id].modules[param]) {
                 Tchannel.channels[target.id].modules[param] = []
             }
             if (param.includes(".")) {
                 param = param.split(".")
-                 Tchannel = operateTwo(Tchannel,param,ope,val)
-                 DB.set(target.id,Tchannel)
+                 let nTchannel = operateTwo(Tchannel.channels[target.id],param,ope,val)
+                 Tchannel.channels[target.id] = nTchannel
+                 DB.set(target.guild.id,Tchannel)
             }
             else {
-                  Tchannel = operateOne(Tchannel,param,ope,val)
-                  DB.set(target.id,Tchannel)
+                let  nTchannel = operateOne(Tchannel.channels[target.id],param,ope,val)
+                 Tchannel.channels[target.id] = nTchannel
+                DB.set(target.guild.id,Tchannel)
             }
         }
     }catch (err) {
@@ -378,7 +385,7 @@ try{
                             item.modules[p[0]][p[1]] = value;
                             break;
                         case "increment":
-                            item.modules[p[0]][p[1]] += value;
+                            item.modules[p[0]][p[1]] = Number(item.modules[p[0]][p[1]])+Number(value);
                             break;
                         case "superDef":
                             item[p[0]][p[1]] = value;
@@ -397,10 +404,12 @@ try{
                             item.modules[p].removeire(value);
                             break;
                         case "define":
+                            console.log(item)
                             item.modules[p] = value;
+                            console.log(item)
                             break;
                         case "increment":
-                            item.modules[p] += value;
+                            item.modules[p] = Number(item.modules[p])+Number(value);
                             break;
                         case "superDef":
                             item[p] = value;
@@ -422,6 +431,7 @@ try{
     }
 
     var paramDefine = function paramDefine(target, param, val) {
+      console.log("Param Define:"+target+" "+param+" "+val)
         editData(target,param,val,"define");
     }
 

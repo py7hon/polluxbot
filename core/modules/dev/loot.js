@@ -111,13 +111,13 @@ const    prize = {
 
 
 
-async function renderBG() {
+async function renderBG(rarity) {
 
-
-    let files = gear.fs.readdirSync(paths.BUILD + "profile/BGS/")
+console.log("Raritu:"+rarity)
+    let files = gear.fs.readdirSync(paths.BUILD + "backdrops/"+rarity)
 
     let rand = gear.randomize(0, files.length - 1);
-    var filepath = paths.BUILD + "profile/BGS/" + files[rand]
+    var filepath = paths.BUILD + "backdrops/" +rarity+"/" +files[rand]
 
     const incanv = new Canvas(150, 150);
     const ctx = incanv.getContext('2d');
@@ -157,7 +157,7 @@ async function renderBG() {
                 return b;
             });
         } else if (bay[i].type == "bgs") {
-            img = await renderBG()
+            img = await renderBG(bay[i].good[0])
         } else {
             img.src = await Pixly.createBuffer(paths.BUILD + "LOOT/" + prize[bay[i].type][bay[i].good[0]] + ".png").then(b => {
                 return b;

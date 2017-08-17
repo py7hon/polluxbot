@@ -1,4 +1,5 @@
 var gear = require("../../gearbox.js");
+var paths = require("../../paths.js");
 var cmd = 'background';
 
 var locale = require('../../../utils/multilang_b');
@@ -24,10 +25,10 @@ var init = function (message, userDB, DB) {
 
 
 
-        gear.Jimp.read("http://files.pollux.fun/" + args + ".png", async function (err, ovlay) {
+        gear.Jimp.read(paths.BUILD+"backdrops/" + args + ".png", async function (err, ovlay) {
             if (err) {
                 message.reply("**__INVALID IMAGE CODE__**")
-                message.channel.send("Image codes can be get at <http://files.pollux.fun/a/wQLyYKdE>, click on an image, and copy its code like this:")
+                message.channel.send("Image codes can be get at <http://krypt.pollux.fun/>, click on an image, and copy its code like this:")
                 await message.channel.send({
                     files: ["http://files.pollux.fun/0jVTENJoA0ZaA5uPVhcOJcuTV0RLSPtL.png"]
                 })
