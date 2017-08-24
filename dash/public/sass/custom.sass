@@ -1,0 +1,54 @@
+$family-sans-serif: "Whitney"
+
+@import "./utilities/_all"
+@import "./font"
+
+
+
+$pollux-danger:   #eb3c3c
+$pollux-info:     #788fff
+$pollux-success:  #5fd061
+$pollux-warning:  #ffcb10
+$pollux-ruby:     #eb2c58
+$pollux-pink:     #e58497
+$pollux-purple:   #b790f7
+$pollux-nsfw:     #5258e8
+$pollux-mod:      #788fff
+
+
+
+$pollux-danger-i:   findColorInvert($pollux-danger)
+$pollux-info-i:     findColorInvert($pollux-info)
+$pollux-success-i:  findColorInvert($pollux-success)
+$pollux-warning-i:  findColorInvert($pollux-warning)
+$pollux-ruby-i:     findColorInvert($pollux-ruby)
+$pollux-pink-i:     findColorInvert($pollux-pink)
+$pollux-purple-i:   findColorInvert($pollux-purple)
+$pollux-nsfw-i:     findColorInvert($pollux-nsfw)
+$pollux-mod-i:      findColorInvert($pollux-mod)
+
+
+
+
+$colors: ("danger":($pollux-danger,$pollux-danger-i),"info":($pollux-info,$pollux-info-i),"success":($pollux-success,$pollux-success-i),"warning":($pollux-warning,$pollux-warning-i),"ruby":($pollux-ruby,$pollux-ruby-i),"pink":($pollux-pink,$pollux-pink-i),"purple":($pollux-purple,$pollux-purple-i),"nsfw":($pollux-nsfw,$pollux-nsfw-i),"mod":($pollux-mod,$pollux-mod-i),"white": ($white, $black), "black": ($black, $white), "light": ($light, $light-invert), "dark": ($dark, $dark-invert), "primary": ($pollux-pink, $primary-invert))
+
+
+$primary: $pollux-pink
+$link: $pollux-purple
+$code-background:   #f7eff2
+$code:              #a21d55
+
+.message-body code, .message-body pre
+  background: $code-background!important
+
+.message.is-small
+  font-size: 0.75rem;
+.message.is-large
+  font-size: 1.25rem;
+
+.tag
+  border-radius: 3px !important
+
+
+
+@import "bulma"

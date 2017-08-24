@@ -1,0 +1,45 @@
+doctype html
+html(class="no-js" lang=locale||"en")
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="x-ua-compatible" content="ie=edge")
+        title= title || "Pollux"
+        meta(name="description" content=desc||"Pollux Bot Webpage")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(name="theme-color" content="#db4584")
+
+        link(rel="apple-touch-icon" href="apple-touch-icon.png")
+        link(rel="stylesheet" href="css/style.css")
+
+
+        link(rel='stylesheet', href='/css/custom.css')
+        link(rel='stylesheet', href='/css/style.css')
+        link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
+        link(rel='stylesheet', href='/css/lightbox.css')
+        link(rel='stylesheet', href='/css/nano.css')
+        link(rel='stylesheet', href='/css/sweetalert.css')
+
+
+
+    body
+        //
+            [if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]
+
+        //block content
+        .container.is-fluid
+          p.title= "BOILERPLATE"
+          p.subtitle= "Template"
+
+        script(src='http://code.jquery.com/jquery-3.2.1.min.js')
+        script  window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')
+        //script(src='/js/nano.js')
+        script(src='/js/sweetalert.js')
+        script(src='/js/lightbox.js')
+        script(src='/js/clipboard.js')
+        //script(src='/js/custom.js')
+        script  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date; ga('create','UA-104940687-1','auto');ga('send','pageview')
+        script(src="https://www.google-analytics.com/analytics.js" async defer)
+
+

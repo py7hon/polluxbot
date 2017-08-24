@@ -1,0 +1,133 @@
+h1#t.title(style="visibility:hidden")= "#"+channel.name
+
+div.level
+  b: span Drops:
+  span= bot.channels.get(channel.id).DROPSLY || 0
+div.level
+  b: span NSFW:
+  if bot.guilds.get(server.id).channels.get(channel.id).nsfw
+    img(src="https://png.icons8.com/checkmark/office/24")
+  else
+    img(src="https://png.icons8.com/delete/color/24")
+div.level
+  b: span Level Up Messages:
+  -console.log(channel.modules.LVUP)
+  if channel.modules.LVUP == true
+     div(data-sv=server.id data-target=channel.id data-param="LVUP" data-value="false").toggle: img(src="https://png.icons8.com/toggle-on/dusk/32")
+  else
+     div(data-sv=server.id data-target=channel.id data-param="LVUP" data-value="true").toggle: img(src="https://png.icons8.com/toggle-off/dusk/32")
+
+div.message.is-small.is-danger
+  p.message-header Disabled Commands
+  div.message-body
+    each v, i in channel.modules.DISABLED
+      if v!="cog"
+        .tag.is-info.m4= "p!"+v
+          button.delete.is-small(data-sv=server.id data-target=channel.id data-param="DISABLED" data-value=v data-operate="remove").arrayAd
+
+h1 Disable Command by Name
+
+  div.field.has-addons.level
+    div.control.level-left
+      input.input(list="commands" name="commands" disabled)
+      datalist#commands
+            each v, i in COMMANDS.list
+              option= v
+    div.control.level-right
+      a.button.is-info(disabled) Disable
+
+hr
+each v, i in COMMANDS.tree
+  .message.is-small
+    b: p.message-header.is-uppercase= "Module: " + i
+    .message-body
+      each va in COMMANDS.tree[i]
+        div.level.is-marginless.is-size-6
+          span.level-left= va
+          if channel.modules.DISABLED.includes(va)
+            div.level-right(data-sv=server.id data-target=channel.id data-param="DISABLED" data-value=va data-operate="remove").arrayAd: img(src="https://png.icons8.com/toggle-off/dusk/32")
+          else
+            div.level-right(data-sv=server.id data-target=channel.id data-param="DISABLED" data-value=va data-operate="add").arrayAd: img(src="https://png.icons8.com/toggle-on/dusk/32")
+
+
+
+
+script.
+     $(document).ready(function(){
+
+    $(".nano").nanoScroller();
+    $("#chaname").html( $("#t").html())
+
+
+     })
+     $(".toggle").click(function () {
+     var i1 = this.dataset.target
+     var i2 = this.dataset.param
+     var i3 = this.dataset.value
+     var i4 = this.dataset.sv
+
+
+     $.post(`/paramtoggle/${i1}/${i2}/${i3}/`, function (data) {
+      if (data=="OK"){
+                $.get(`./${i4}/${i1}/`, function (data) {
+       $('#results').html(data);
+     });
+     /* swal({
+              title: "OK!",
+              type: "success",
+              confirmButtonColor: "#5589dd",
+              confirmButtonText: "OK",
+              closeOnConfirm: true,
+              // showLoaderOnConfirm: true,
+            })*/
+
+
+
+      }else{
+            swal({
+              title: "NOT OK!",
+              type: "error",
+              confirmButtonColor: "#5589dd",
+              confirmButtonText: "OK",
+              closeOnConfirm: true,
+              // showLoaderOnConfirm: true,
+            })
+      }
+     });
+    });
+         $(".arrayAd").click(function () {
+     var i1 = this.dataset.target
+     var i2 = this.dataset.param
+     var i3 = this.dataset.value
+     var i4 = this.dataset.sv
+     var i5 = this.dataset.operate
+
+
+     $.post(`/paramaddrem/${i1}/${i2}/${i3}/${i5}/`, function (data) {
+      if (data=="OK"){
+                $.get(`./${i4}/${i1}/`, function (data) {
+       $('#results').html(data);
+     });
+     /* swal({
+              title: "OK!",
+              type: "success",
+              confirmButtonColor: "#5589dd",
+              confirmButtonText: "OK",
+              closeOnConfirm: true,
+              // showLoaderOnConfirm: true,
+            })*/
+
+
+
+      }else{
+            swal({
+              title: "NOT OK!",
+              type: "error",
+              confirmButtonColor: "#5589dd",
+              confirmButtonText: "OK",
+              closeOnConfirm: true,
+              // showLoaderOnConfirm: true,
+            })
+      }
+     });
+    });

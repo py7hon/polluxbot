@@ -1,0 +1,103 @@
+extends layout
+
+mixin medals
+  p: b Equipped Medals
+  .box.level
+      for i in [1,2,3,0,5,0,7,8]
+        .level-item
+          div
+            if i != 0
+              .medalSlot
+                img(src="/images/medals/"+i+".png").medal
+              a.button.is-danger.is-small.is-fullwidth Remove
+            else
+              .medalSlot
+              a.button.is-success.is-small.is-fullwidth Add
+
+
+
+block head
+  style.
+
+      .tabcontainer{
+        position:relative;
+        //bottom:16px;
+        //top:16px;
+      }
+block content
+
+
+
+  include navbas
+
+  .hero.is-purple
+        .container.level
+          .level-left
+              p.title: b= user.name
+          .level-item
+              p(class="subtitle")!= "<b>ID </b>"+userinfo.id
+
+          .level-right: img(src=userinfo.pix).image
+
+  div
+    .tabs.is-centered.is-boxed
+      ul
+        li.tab: a asadasd
+        li.tab: a  asadsadas
+        li.tab: a  adasdasd
+
+    .columns
+
+      .column.is-2
+
+      .column.is-8
+
+        .box
+          .columns
+            .column.is-half
+              p: b Current Background
+              .level
+                .level-item
+                img.level-item(src="/images/backdrops/"+user.modules.bgID+".png")
+                .level-item
+              .level: .level-item.level-right: a.button.is-info(disabled) SAVE
+              hr
+              p: b Current Personal Text
+              textarea(maxlength="100").textarea= user.modules.persotext
+              br
+              .level: .level-item.level-right: a.button.is-info CHANGE
+              hr
+            .column.is-half
+              p: b Background Inventory
+              .nano.inv_box
+                .nano-content
+                  for i in [1,2,3,4,5,6,7,8,2,3,4,5,6,7,8,2,3,4,5,6,7,8,2,3,4,5,6,7,8]
+                    .bg_icon
+                      a.bgpick: img(src="/images/backdrops/"+user.modules.bgID+".png").is-vcentered
+                      img.this_rare(src="/images/tiers/UR.png").is-vcentered
+
+
+
+          div
+            +medals
+            p: b Medal Inventory
+              .nano.inv_box(style="height:300px")
+                .nano-content
+                  for i in [1,2,3,4,5,6,7,8,2,3,4,5,6,7,8,2,3,4,5,6,7,8,2,3,4,5,6,7,8]
+                    .med_icon
+                      a.level
+                        img.level-left(src="/images/medals/"+i+".png").is-vcentered
+                        p.level-item Medal with long name
+
+                      img.this_rare_med(src="/images/tiers/UR.png").is-vcentered
+
+
+
+
+
+
+
+
+block scripts
+  include reloader
+block footer

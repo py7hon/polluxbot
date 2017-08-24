@@ -1,0 +1,101 @@
+extends layout
+
+block content
+  if userinfo
+        div.profileMock(style="display:none")
+          img.mainframe(src="http://i.imgur.com/PuDHUx5.png")
+          div#bgm(style="background-image:url('"+userinfo.bg+"')")
+          div.hexagon(style="background-image:url('"+userinfo.pix+"')")
+            div.hexTop
+            div.hexBottom
+  section(class="hero is-danger is-bold")
+    div(class="hero-body")
+      //h1(class="title") POLLUX BGDEMO
+      //p(class="subtitle") Backgrounds
+
+
+
+  div.columns
+    aside(class="column panel is-one-quarter")
+
+      div(class=" is-grouped is-centered ")
+        p.panel-heading Rarity
+        div.panel-block
+          button(class="button is-small is-fullwidth is-marginless is-danger super-filter-button" data-filter="all") All
+        div.panel-block
+          button(class="button is-small is-fullwidth is-marginless is-danger super-filter-button" data-filter="UR") Ultra Rare
+        div.panel-block
+          button(class="button is-small is-fullwidth is-marginless is-danger super-filter-button" data-filter="SR") Super Rare
+        div.panel-block
+          button(class="button is-small is-fullwidth is-marginless is-danger super-filter-button" data-filter="R") Rare
+        div.panel-block
+          button(class="button is-small is-fullwidth is-marginless is-danger super-filter-button" data-filter="U") Uncommon
+        div.panel-block
+          button(class="is-small button is-fullwidth is-marginless is-danger super-filter-button" data-filter="C") Common
+        p.panel-heading Tags
+
+        div.panel-block
+          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="all") All
+        div.panel-block
+          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="anime")  Anime
+        div.panel-block
+          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="game")  Games
+        div.panel-block
+          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="movie")  Movies
+        div.panel-block
+          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="landscape")   Landscape
+        div.panel-block
+          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="girl")   Girls
+        div.panel-block
+          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="boy")   Boys
+        div.panel-block
+          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="abstract")   Abstract
+        div.panel-block
+          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="other")   Other
+
+    section(class="column section")
+      div(class=" box has-text-centered super-filter UR")
+        img(src="/images/tiers/UR.png")
+        br
+        h1(class="title is-1") ULTRA RARE
+        br
+        each val in imgboxe.UR
+           a(title=val[1]  href=val[0]  data-lightbox="UR" price="12050" tags=tags[val[1]])
+              img(src=val[0] class="round-5 filter "+tags[val[1]])
+
+      div(class=" box has-text-centered super-filter SR")
+        img(src="/images/tiers/SR.png")
+        h1(class="title is-1") SUPER RARE
+        br
+        each val in imgboxe.SR
+            a(title=val[1]  href=val[0]  data-lightbox="SR" price="8200" tags=tags[val[1]])
+              img(src=val[0] class="round-5 filter "+tags[val[1]])
+
+      div(class=" box has-text-centered super-filter R")
+        img(src="/images/tiers/R.png")
+        h1(class="title is-1")  RARE
+        br
+        each val in imgboxe.R
+          a(title=val[1]  href=val[0]  data-lightbox="R" price="5300" tags=tags[val[1]])
+            img(src=val[0] class="round-5 filter "+tags[val[1]])
+
+      div(class=" box has-text-centered super-filter U")
+        img(src="/images/tiers/U.png")
+        h1(class="title is-1") UNCOMMON
+        br
+        each val in imgboxe.U
+          a(title=val[1]  href=val[0]  data-lightbox="U" price="2570" tags=tags[val[1]])
+            img(src=val[0] class="round-5 filter "+tags[val[1]])
+
+      div(class=" box has-text-centered super-filter C")
+        img(src="/images/tiers/C.png")
+        h1(class="title is-1") COMMON
+        br
+        each val in imgboxe.C
+          a(title=val[1]  href=val[0] data-lightbox="C" price="1550" tags=tags[val[1]])
+            img(src=val[0] class="round-5 filter "+tags[val[1]])
+
+
+
+block scripts
+  script(src='/js/lightbox.js')

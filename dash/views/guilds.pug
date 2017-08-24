@@ -1,0 +1,55 @@
+extends layout
+block content
+
+  div.section.is-paddingless
+    include header
+
+    div.container.columns.is-fluid
+      aside.menu.column.is-2
+        p.menu-label General
+        ul.menu-list
+         li Dashasdasdasd
+         li Custasdsad
+        p.menu-label ADMasdsadas
+        ul.menu-list
+          li
+            a Dashasdasdas
+          li
+            a.is-active Custasdsadas
+            ul
+              li
+                a 1asdasdasd
+              li
+                a 2asdsadasd
+              li
+                a 3asdasdasdsa
+      div.message.column.is-light.is-8(style="width:60%")
+        p.message-header Your Guilds
+        div.message-body
+          each g in guilds
+              if g.present !== true && g.perms != "owner"
+                -var p = "nopePol"
+              else
+                -var p = "yepPol"
+              div.card.gcard
+                div.hexContainer
+                  div.smolHex(class=p style="background-image:url('"+g.icon+"')")
+                    div.shexTop
+                    div.shexBottom
+                //img.is-round(src=g[0] width="48px")
+                p.mid(class=p)= g.name
+                div(class=`${pres}`)
+                  div.flair(class=g.perms title=`You are a ${g.perms} in this Server`)
+                if g.perms != "idk" && g.perms != "commoner" && g.present
+                  a(href="/myGuilds/"+g.id)
+                    button.button.is-small.manage Manage
+                  div.hasPollux
+                if g.perms == "owner" && !g.present
+                  a(href="https://goo.gl/qkGqqU")
+                    button.button.is-small.is-primary.is-outlined.addme Add Pollux to this Server
+                  div.hasPollux.no
+
+      //div.message.column(style="width:60%")
+        p.message-header Your Guilds
+        div.message-body
+          p lorem

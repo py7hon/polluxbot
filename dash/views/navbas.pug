@@ -1,0 +1,76 @@
+
+nav.navbar
+  script(src="js/login.js")
+  .navbar-brand
+    a.navbar-item(href='/')
+      .title: b Pollux
+    //a.navbar-item.is-hidden-desktop(href='https://github.com/PolluxBot/polluxbot', target='_blank')
+      span.icon(style='color: #333;')
+        i.fa.fa-github
+    //a.navbar-item.is-hidden-desktop(href='https://twitter.com/dasflicksie', target='_blank')
+      span.icon(style='color: #55acee;')
+        i.fa.fa-twitter
+    .navbar-burger.burger(data-target='USERMENU')
+      span
+      span
+      span
+  #USERMENU.navbar-menu
+    .navbar-start
+        a.navbar-item(href='/commands'): | COMMANDS
+        a.navbar-item(href='http://discord.me/pollux'): | SUPPORT
+        a.navbar-item(href='/info'): | INFO
+        .navbar-item.is-hidden-touch.ble
+        a.navbar-item(href='/commands'): | GLOBAL
+    //a.navbar-item(href='/commands'): | GLOBAL
+    block insert
+    .navbar-end
+      //a.navbar-item.is-hidden-touch(href='https://github.com/PolluxBot/polluxbot', target='_blank')
+        span.icon(style='color: #333;')
+          i.fa.fa-github
+      //a.navbar-item.is-hidden-touch(href='https://twitter.com/dasflicksie', target='_blank')
+        span.icon(style='color: #55acee;')
+          i.fa.fa-twitter
+      .navbar-item.has-dropdown.is-hoverable
+        if !userinfo
+          div.navbar-item
+            a(onclick="javascript:login()").navbar-right.button.is-purple.has-addons
+                span.icon.is-pulled-left
+                  i.fa.fa-sign-in
+                //span.divider  &#x2004
+                div( style="border-left:1px solid #844;border-right:1px solid #eee; opacity:.15;height:28px")
+                span.divider  &#x2000
+                span.is-pulled-right Login
+
+        else
+          div.navbar-link.is-unselectable.is-active
+            div.smolHex(style="transform:scale(.7);background-image:url('"+userinfo.pix+"')").is-hidden-touch
+              div.shexTop
+              div.shexBottom
+              //p.is-hidden-touch= userinfo.name
+
+            div.x= userinfo.name
+            //| Blog
+
+
+            #login.navbar-dropdown.is-boxed(data-style='width: 18rem;')
+
+
+              a(href="/dashboard").navbar-item.lv2 Dashboard
+              hr.navbar-divider
+              a(href="/bgshop").navbar-item.lv2 Background Shop
+              a(href="/medalshop").navbar-item.lv2 Medal Shop
+              a(href="/localranks").navbar-item.lv2 Rankings
+
+              hr.navbar-divider
+              .navbar-item
+                .navbar-content
+                  .level.is-mobile
+                    .level-item
+                    a(href="logout").button.is-danger.level-item.is-small LOGOUT
+                    .level-item
+
+
+      .navbar-item.ble
+
+
+

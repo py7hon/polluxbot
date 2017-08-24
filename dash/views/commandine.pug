@@ -1,0 +1,45 @@
+html
+  body
+
+
+     - //var locale = Document.getElementById("locale").innerHTML
+
+
+     - function sanitise(a){
+     -    a = a || "none"
+     -    return a.replace(/{{prefix}}/g , "p!").replace(/{{goods}}|{{GOODS}}/g , "Rubines").replace(/{{good}}|{{GOOD}}/g , "Rubine").replace(/\*\*(.*)\*\*/g , "<b>$1</b>").replace(/\*(.*)\*/g , "<i>$1</i>").replace(/`(.*?)`/g , "<code>$1</code>").replace(/(@[A-z]*)/g , " <code>$1</code>").replace(/__(.*?)__/g , " <u>$1</u>").replace(/\:warning\:/g , "⚠").replace(/\\n|\n/g , "<br>").replace("http://files.pollux.fun/a/wQLyYKdE" , "<a href='http://files.pollux.fun/a/wQLyYKdE'><b>THIS LINK</b></a>")
+     - }
+
+     .container
+      .box
+
+
+        each v, i in commands.tree
+
+
+          -var type = {nsfw:"is-danger", moderation: "is-info" }
+          -var cls = type[i] || "is-primary"
+
+          .message.is-small(class=`${cls}`)
+            .message-header: b=i
+            .message-body
+              table.table.is-striped.is-size-7
+                thead.is-size-7
+                  th.is-narrow  Command
+                  th(width="33%") Description
+                  th(width="35%") Usage
+                  th(width="22%") Command Aliases
+                tbody
+                  each va in commands.tree[i]
+                      tr
+                        td: b= ""+va
+                        td!= sanitise(jason.help[va]) || "NONE"
+                        td!= sanitise(jason.usage[va]) || "NONE"
+                        td
+                          for items, key in alias
+                            if (items==va.toLowerCase())
+                              .tag.is-small.is-dark(style="margin:2px")= "+"+key
+
+  script.
+
+      $(".nano").nanoScroller();

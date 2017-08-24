@@ -1,0 +1,166 @@
+extends layout
+block head
+  style.
+      .tabcontainer{
+        position:absolute;
+        bottom:16px;
+        top:16px;
+      }
+block content
+  -let OM = sv.members.filter(m=>m.presence.status=="offline").size
+  -let online = (sv.members.size)-OM
+  -let svroles = sv.roles.map(r=>[r.name,r.id,r.hexColor])
+  -let schans = sv.channels.filter(c=>c.type=="text").map(c=>{return {id:c.id,name:c.name,position:c.position}})
+  - svchans= schans.sort((a,b)=>a.position-b.position)
+  -let modrole; try{modrole = sv.roles.get(server.modules.MODROLE).name || "NONE";}catch(e){ modrole="NONE"}
+
+    //p= JSON.stringify(server.modules.MODROLE)
+    //.section.is-paddingless.division
+    include navbas
+
+    .hero.is-purple
+        .level
+          .level-item
+          .level-left
+            div
+              p.title: b= server.name
+              p(class="subtitle")!= "<b>ID </b>"+server.id
+          .level-item
+            div
+              p
+                span= online
+                span /
+                span=sv.members.size
+                span|  Members
+
+          .level-item
+          .level-item
+          .level-item
+          .level-item
+          .level-item
+          .level-right: img(src=server.avi).image.is-round
+
+    div.division
+      .tabs.is-boxed(style="background:#e0d0eb").is-marginless
+        ul
+          li.tab(data-target="tabA").is-active: a General Settings
+          li.tab(data-target="tabB"): a Channel Settings
+
+      .container.columns.is-fluid.gaps#tabB.tabcontainer.division2(style="display:none")
+        .column.is-3: .box.chandiv.nano#list: .nano-content
+          each chan in svchans
+
+            div.card
+              a.asbutton(data-channel=chan.id data-server=server.id): span.level-left= "#"+ chan.name
+                //if bot.guilds.get(server.id).channels.get(chan.id).nsfw
+                  span.icon.is-small.level-right
+                    i.fa.fa-exclamation-triangle
+        .column.is-9: .message.is-small.chandiv.nano#felist
+          b: .message-header#chaname(style="z-index:9") Channel Settings
+          .nano-content.message-body: #results.container.is-fluid
+        //.column.is-3: .box
+
+
+      .container.columns.is-fluid.gaps#tabA.tabcontainer.division2
+        .column.is-3: .box.chandiv.nano#list: .nano-content
+
+        .column.is-9: .message.is-small.chandiv.nano
+          b: .message-header(style="z-index:9") Settings
+          .nano-content.message-body
+            .container.is-fluid
+              hr
+              .columns
+                .column
+                  p!= "<b>Moderation Role: </b>"
+                  .field.has-addons.level
+                    div.control.level-left: .select.is-small: select
+                      each role in svroles
+                        if role[0] == modrole
+                          option(selected)= modrole
+                        else
+                          option(style="color:"+role[2]): b= role[0]
+                    div.control.level-right: div.button.is-purple.is-small Define
+
+                  hr
+                  .box
+                    p!= "<b>Log Channels: </b>"
+                    br
+                    p Advanced
+                    .field.has-addons.level
+                      div.control.level-left: .select.is-small: select
+                        each chan in svchans
+                          if chan.id == server.modules.GREET.greetChan
+                            option(selected)= chan.name
+                          else
+                            option= chan.name
+                      div.control.level-right: div.button.is-purple.is-small Save
+
+                    p Activity
+                    .field.has-addons.level
+                      div.control.level-left: .select.is-small: select
+                        each chan in svchans
+                          if chan.id == server.modules.GREET.greetChan
+                            option(selected)= chan.name
+                          else
+                            option= chan.name
+                      div.control.level-right: div.button.is-purple.is-small Save
+
+                    p Moderation
+                    .field.has-addons.level
+                      div.control.level-left: .select.is-small: select
+                        each chan in svchans
+                          if chan.id == server.modules.GREET.greetChan
+                            option(selected)= chan.name
+                          else
+                            option= chan.name
+                      div.control.level-right: div.button.is-purple.is-small Save
+
+                .column
+                  p: b Welcome Message
+                  .field
+                    .control: textarea.textarea(rows="10" placeholder="Hey, %user% left the server!")= server.modules.GREET.joinText
+                    .control: div.button.is-purple.is-small Define
+                  small.weak: i!= "<b>Wildcards</b> %user% = Mentions user | %username% = Shows user's display name | %server% Shows Server name"
+                  p: b Welcome Channel
+                  .field.has-addons.level
+                    div.control.level-left: .select.is-small: select
+                      each chan in svchans
+                        if chan.id == server.modules.GREET.greetChan
+                          option(selected)= chan.name
+                        else
+                          option= chan.name
+                    div.control.level-right: div.button.is-purple.is-small Define
+
+                  hr
+
+                  p: b Bye Message
+                  .field
+                    .control: textarea.textarea(rows="10" placeholder="Hey, %user% left the server!")= server.modules.FWELL.joinText
+                    .control: div.button.is-purple.is-small Define
+                  small.weak: i!= "<b>Wildcards</b> %user% = Mentions user | %username% = Shows user's display name | %server% Shows Server name"
+                  .columns
+                    .column
+                      p: b Bye Channel
+                      .level
+                        .field.has-addons.level.level-item.is-marginless
+                          div.control.level-left: .select.is-small: select
+                            each chan in svchans
+                              if chan.id == server.modules.FWELL.greetChan
+                                option(selected)= chan.name
+                              else
+                                option= chan.name
+                          div.control.level-right: div.button.is-purple.is-small Define
+                    .column
+                      p: b Timeout (ms)
+                      .field.has-addons.level.level-item.is-marginless
+                          div.control.level-left: .select.is-small
+                            input.input.is-small(value=server.modules.FWELL.hiDEL)
+                          div.control.level-right: div.button.is-purple.is-small Define
+
+
+
+
+
+        //.column.is-3: .box
+      .footspace
+

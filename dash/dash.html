@@ -1,0 +1,106 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pollux Storage Facility.</title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.0/css/bulma.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js"></script>
+        <script type="text/javascript" src="/js/home.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+     <body>
+        <section class="hero is-fullheight has-text-centered" id="home">
+
+
+            <div class="hero-body">
+                <div class="container">
+                    <p id="b">
+                    <!--  <img class="logo" src=<%= pix %> -->
+                    </p>
+
+                    <!--    <h1 class="title"><%= name %></h1>
+                    <h2 class="subtitle">You have <strong><%= rubys %></strong> Rubys</h2>
+                               <img  src=<%= background %>-->
+
+
+                    <h3 class="subtitle"><a href="/auth" id="loginLinkText"></a></h3>
+                    <h3 id="links">
+                       <a href="/logout" target="_blank" class="is-danger">LOGOUT</a>
+                    </h3>
+
+
+
+
+
+<div class="box">
+
+
+  <article class="media">
+
+    <div class="media-left">
+      <figure class="image is-128x128">
+          <img src=<%= pix %> alt="Image">
+
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+            <strong><%= uname %></strong> <small>#<%= discriminator %></small>
+
+          <br>
+             </p>
+          <%= ptxt %>
+
+
+
+      </div>
+      <div class="columns">
+
+        <div class="column columns">
+        <div class="column">
+
+            <span  class="tag is-medium"><i class="fa fa-diamond"> <space>:</space></i> <%= rubys %></span>
+        </div>
+   <div class="column">
+
+             <span  class="tag is-medium"><i class="fa fa-star"> <space>:</space></i> <%= exp %></span>
+    </div><div class="column">
+             <span  class="tag is-medium"><i class="fa fa-trophy"> <space>:</space></i> <%= level %></span>
+         </div>
+
+        </div><div class="column">
+        </div>
+        </div>
+
+    </div>
+
+
+                <div class="media-right">
+      <figure class="image is-350x180">
+        <img src=<%= background %> alt="Image">
+
+      </figure>
+    </div>
+
+
+  </article>
+</div>
+
+
+                      </div>
+            </div>
+        </section>
+
+    </body>
+</html>

@@ -1,0 +1,510 @@
+html{
+  overflow-y: auto;
+     height: 100vh;
+}
+
+   body{
+  overflow-y: auto;
+     height: 100%;
+}
+
+.ble{
+  pointer-events: none;
+}
+.lv2{
+  min-width:12rem;
+  max-width:12rem;
+}
+.lv2:hover{
+  border-left:solid 3px pink
+}
+
+#USERMENU.is-active{
+    background:white ;
+    color:#222 !important;
+    position: relative;
+  //box-shadow: 0 5px 20px rgba(122, 122, 122, 0.5);
+  z-index:9999 !important;
+}
+
+.hero .icon {
+  color:white !important;
+}
+.hero .navbar{
+  background: none;
+box-shadow: none;
+}
+.hero .x{
+color:white;
+}
+.navbar-item:hover .x{
+color:#222;
+}
+.navbar-dropdown .lv2:hover{
+color:white !important;
+  background: #f07db7 !important;
+}
+
+.navbar{
+box-shadow: 0 0 10px rgba(122, 122, 122, 0.5);
+  z-index: 1000;
+
+}
+.hero .navbar-item:hover{
+  background: #e58497 !important; // linear-gradient(to bottom, #e58497 0%, rgba(255, 255, 255, 0.18) 100%);
+}
+
+
+
+.round-5{
+  width: 210px;
+  height: 100px;
+  margin: 0 3px;
+  border-radius: 5px;
+}
+
+
+.gallery-title
+{
+    font-size: 36px;
+    color: #42B32F;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 70px;
+}
+.gallery-title:after {
+    content: "";
+    position: absolute;
+    width: 7.5%;
+    left: 46.5%;
+    height: 45px;
+    border-bottom: 1px solid #5e5e5e;
+}
+.filter-button
+{
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #42B32F;
+    margin-bottom: 30px;
+
+}
+.filter-button:hover
+{
+   // font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #42B32F;
+
+}
+.btn-default:active .filter-button:active
+{
+    background-color: #42B32F;
+    color: white;
+}
+
+.port-image
+{
+    width: 100%;
+}
+
+.gallery_product
+{
+    margin-bottom: 30px;
+}
+
+.hidden{
+  display: none
+}
+
+.profileMock{
+  width: 400;
+  height: 300;
+  position:fixed;
+  right:12px;
+  top:12px;
+  z-index:100000;
+
+}
+
+.profileMock .hexagon{
+
+  position:absolute;
+  top:72px;
+  left:61px;
+}
+
+.mainframe{
+  position:relative;
+ z-index:1;
+}
+
+#bgm{
+  position:absolute;
+  background-size: contain;
+  height: 185px;
+    width:346px;
+  top:18px;
+  left:45px;
+  z-index:0;
+}
+
+
+.hexagon {
+  position: relative;
+  width: 90px;
+  height: 51.96px;
+  margin: 25.98px 0;
+  background-image: url(http://csshexagon.com/img/meow.jpg);
+  background-size: auto 103.9230px;
+  background-position: center;
+}
+
+
+.hexTop,
+.hexBottom {
+  position: absolute;
+  z-index: 1;
+  width: 63.64px;
+  height: 63.64px;
+  overflow: hidden;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background: inherit;
+  left: 13.18px;
+}
+/*counter transform the bg image on the caps*/
+.hexTop:after,
+.hexBottom:after {
+  content: "";
+  position: absolute;
+  width: 90.0000px;
+  height: 51.96152422706632px;
+  -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-25.9808px);
+  -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-25.9808px);
+  transform:          rotate(45deg) scaleY(1.7321) translateY(-25.9808px);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  background: inherit;
+}
+
+.hexTop {
+  top: -31.8198px;
+}
+
+.hexTop:after {
+  background-position: center top;
+}
+
+.hexBottom {
+  bottom: -31.8198px;
+}
+
+.hexBottom:after {
+  background-position: center bottom;
+}
+
+.hexagon:after {
+  content: "";
+  position: absolute;
+  top: 0.0000px;
+  left: 0;
+  width: 90.0000px;
+  height: 51.9615px;
+  z-index: 2;
+  background: inherit;
+}
+
+.hexContainer{
+  display:inline-block;
+  width:98px;
+  height:20px;
+  position: relative;
+  padding:0px;
+  margin:2px 12px
+}
+
+
+/*--------------*/
+
+.smolHex {
+  position: relative;
+  width: 50px;
+  height: 28.87px;
+  margin: 14.43px 0;
+  background-image: url(http://csssmolHex.com/img/meow.jpg);
+  background-size: auto 57.7350px;
+  background-position: center;
+}
+
+.shexTop,
+.shexBottom {
+  position: absolute;
+  z-index: 1;
+  width: 35.36px;
+  height: 35.36px;
+  overflow: hidden;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background: inherit;
+  left: 7.32px;
+}
+
+/*counter transform the bg image on the caps*/
+.shexTop:after,
+.shexBottom:after {
+  content: "";
+  position: absolute;
+  width: 50.0000px;
+  height: 28.86751345948129px;
+  -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-14.4338px);
+  -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-14.4338px);
+  transform:          rotate(45deg) scaleY(1.7321) translateY(-14.4338px);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  background: inherit;
+}
+
+.shexTop {
+  top: -17.6777px;
+}
+
+.shexTop:after {
+  background-position: center top;
+}
+
+.shexBottom {
+  bottom: -17.6777px;
+}
+
+.shexBottom:after {
+  background-position: center bottom;
+}
+
+.smolHex:after {
+  content: "";
+  position: absolute;
+  top: 0.0000px;
+  left: 0;
+  width: 50.0000px;
+  height: 28.8675px;
+  z-index: 2;
+  background: inherit;
+}
+
+/*--------------*/
+/*--------------*/
+
+.mid{
+      position: absolute;
+    vertical-align: text-top;
+    top: 10%;
+    line-height: 1;
+    left: 80px
+}
+.gcard{
+  height:64px;
+  margin:4px;
+ // max-width:300px;
+  width:48%;
+  border-radius:4px;
+  display:inline-block;
+}
+
+.hasPollux{
+
+  background:#91d031;
+  height: 100%;
+  width: 10px;
+  position: absolute;
+  top:0;
+  right:0
+
+}
+.no{
+  background:#d64040;
+  border-radius: 0 4px 4px 0
+}
+
+.nopePol{
+  opacity: .5
+}
+.addme,.manage{
+  position:absolute;
+  bottom:0;
+  right:10px;
+  z-index:1;
+}
+
+.owner{
+  background: url("../images/flairs/adm.png");
+}
+.adm{
+  background: url("../images/flairs/mod.png");
+}
+.flair{
+  background-size:cover;
+  width: 57px;
+  height: 18px;
+  position: absolute;
+  top:2px;
+  right:10px;
+}
+
+.is-vcentered {
+  -webkit-box-align: center;
+     -ms-flex-align: center;
+        align-items: center;
+  vertical-align: middle;
+}
+
+.is-round{
+  border-radius:100%
+}
+.toggle,.arrayAd{
+  cursor: pointer
+}
+.m4{
+  margin:4px
+}
+
+}
+.chandiv{
+ //overflow-y: scroll;
+  //height:60vh !important
+}
+
+        .division2 /*.nano*/{
+          flex:2;
+          margin-bottom:12px
+        }
+        .shad{
+        position:absolute;
+        width:100%;
+        height:100%;
+          box-shadow:inset 0 20px 50px #fff;
+          pointer-events:none;
+        }
+        .divisi{
+  opacity:.3;
+  transform: scale(.4)
+}
+      .division{
+        height:100%;
+        display:flex;
+        flex-flow: column;
+        }
+
+.footspace{
+  height:24px;
+}
+.weak{
+  opacity: .5 !important
+}
+b{
+  font-weight: 900
+}
+
+
+
+
+.bg_icon{
+  position:relative;
+   align-items: center;
+  vertical-align: middle;
+  padding:1%;
+  margin:1%;
+  width:23%;
+  display: inline-block;
+  box-shadow: 0 1px 3px #ccc;
+  border-radius: 2px;
+  background:white;
+
+}
+.this_rare{
+  position:absolute;
+  height:32px;
+  top:-5px;
+  left: -5px;
+
+}
+
+.inv_box{
+  background:#eee;
+  border-radius: 5px;
+  height:100%;
+  box-shadow:inset 0 2px 3px rgba(0,0,0, 0.1), 0 0 0 1px rgba(0,0,0, 0.1);
+  display: block;
+  padding: 1.25rem;
+}
+
+.sf{
+  position:relative;
+  flex:2;
+}
+.stretch{
+  flex:2;
+    max-height: 100vh;
+      position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.downmost{
+  position:absolute;
+  width:100%;
+  bottom:0
+}
+
+.medalSlot{
+  height:80px;
+  width:80px;
+  padding:30px;
+  box-shadow: 0 1px 3px #aaa;
+  position:relative;
+}
+.medal{
+  transform: scale(2);
+    image-rendering: optimizeQuality;
+}
+
+
+.med_icon{
+  position:relative;
+  align-items: center;
+  vertical-align: middle;
+  padding:1%;
+  margin:1%;
+  width:30.4%;
+  height:50px;
+  display: inline-block;
+  box-shadow: 0 1px 3px #ccc;
+  border-radius: 2px;
+  background:white;
+
+}
+.this_rare_med{
+  position:absolute;
+  height:32px;
+  bottom:-10px;
+  right: -10px;
+
+}
+
+.unequip:hover{
+  filter:drop-shadow(1px 1px 5px #f00)
+}
+.equip:hover{
+  filter:drop-shadow(1px 1px 5px #0f0)
+}
+
+.bgpick:hover{
+  filter:drop-shadow(0px 0px 6px #ea2c7c)
+}

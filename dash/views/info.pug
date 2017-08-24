@@ -1,0 +1,159 @@
+extends layout
+block content
+
+  style.
+    figure img{
+     // border-radius:100% !important
+    }
+    .is-6{
+      font-size:.75rem !important
+    }
+    .hexagon,.smolHex{
+      filter: drop-shadow(0px 0px 2px #fff) drop-shadow(1px 1px 2px rgba(44, 44, 44, 0.5));
+    }
+    .section{
+     padding-top:0 !important
+    }
+  mixin card(pic, name, tag, occ, desc, size)
+    .card
+      //.card-image: figure.image
+        img(src=pic)
+
+      .card-content.level
+
+          figure.image.is-96x96
+            if size == "big"
+              div.hexagon(style="transform:scale(1) translateY(-10px) translateX(-10px);background-image:url('"+pic+"')")
+                div.hexTop
+                div.hexBottom
+            else
+              div.smolHex(style="transform:scale(1.2)translateY(12px);background-image:url('"+pic+"')")
+                div.shexTop
+                div.shexBottom
+
+
+          .media-content
+            p.title.is-5: b= name
+            p.subtitle.is-6= tag
+
+            small!= occ.replace(/,/g," · ")
+
+      //.card-content
+        p= desc
+        small: i= occ
+
+
+
+
+  include navbas
+
+
+
+  .is-fullwidth.nano: .nano-content
+    br
+    .container
+      .title: b Information
+      .subtitle Who's Pollux, and who's behind her
+      hr
+      .section
+
+        .subtitle: b: i "Basic Moderation, Advanced Fun"
+        p Pollux is before anything else, a social/community bot, her main focus is to boost interaction between users in their own servers and also cross-server by providing from the well known general-purpose bots' commands to entertain everyone around and a basic but solid moderation toolset, to lots of  unique-to-Pollux features like the cross-server dynamic economy system.
+        br
+        br
+        .subtitle: b: i Solid Cross-server Economy with enough freedom
+        p Pollux gives Server owners more options to promote events in their servers using her features, Pollux is the first (and so far the only) bot which gives Server owners enough liberty to handle its virtual currency to use as prizes and rewards to their members, while still making sure that the economy stays solid. This is made by making the value of the money proportional to the money circulating and server activities, so no one can multiply money by just creating multiple accounts and servers.
+        br
+        br
+        .subtitle: b: i Thinks are just much more pretty and usable with Pollux
+        p  Pollux is created entirely by a Visual and UX Designer which happens to be a web-development enthusiast, so besides many bots out there, if Pollux have the chance to present things in an eye-candy way, she surely will. On top of that, usability issues from many other bots that always bugged me are considerably adressed here, and since end-users can always surprise us, this aspect of Pollux is what receives the most attention on every update
+        br
+        br
+        .subtitle: b: i Your virtual Community Manager
+        p!= "Pollux is your Server's personal automated maid, she will entertain your members with her <i>forFun</i> commandset, watch for achievements, level ups, and drops, all if you allow her to do so, most of those are disabled by default, so be sure to enable it."
+        br
+        br
+        .subtitle: b: i Cute but Deadly
+        p!= "She can keep stuff going the way they're supposed to even when you're away. She watches for unwanted invite links, mention spams, general message flood, and can be even more deadly to spammers and raiders with the introduction of <b>Nightwach Mode</b> which will put her on a state of <u>Zero Tolerance</u> to anything she judges malicious for 6 hours while you and most of your moderation body are away to sleep. At the end of the Nightwatch period, she will send you a Report of every warning, kick, ban, and tags she commited during the watch."
+        br
+        br
+        .subtitle: b: i Goodies!
+        p Pollux bears the best and most advanced Loot system out there! Randomised Lootboxes which can be awarded by leveling up, or by activity drops on chatrooms. Lootboxes have a random chance of containing either Rubines, the main currency, Jades, the secondary currency, Backgrounds, Colors, Medals, and Stamps. Which can be either stored on your inventory, used to customise yours, or even stored to the Server's safe to be later on used as rewards to members or put for sale!
+
+        br
+        br
+        br
+        .level
+          .level-item
+            image.divisi(src="/images/divider.png")
+      .title: b Team
+      .subtitle All people involved in this project and which without them, there would be no Pollux at all
+      hr
+      .section
+        p.title Developers
+        p.subtitle The ones that brought Pollux into living
+
+        .tile.is-ancestor
+          .tile.is-7
+            +card("https://cdn.discordapp.com/avatars/88120564400553984/b76d859df7f62502aeee5b6d767a55ec.png","Flicky","Flicky#9065",
+                              "Creator,Developer,Designer","more text","big")
+
+        hr
+        p.title Translators
+        p.subtitle Thank these guys for teaching Pollux how to speak your native language
+        .columns
+          .column.is-4
+            +card("https://cdn.discordapp.com/avatars/289807824698081280/9bd7c9df194656993d979e2c6266891a.png","SchinkTasia","SchinkTasia#3021","<img src='images/flags/de.png'> German Translator","more text")
+
+            br
+          .column.is-4
+            +card("https://cdn.discordapp.com/avatars/216901800899510272/8a3a10b46b17e86496d2c80f6a3b5bb5.png","Pill","Pill#8076","<img src='images/flags/pt.png'> EU Portuguese Translator","more text")
+
+            br
+
+        hr
+        p.title Special Thanks
+        p.subtitle Amazing people that helped with Pollux's growth
+        .columns
+          .column.is-4
+            if userinfo
+              +card(userinfo.pix,"YOU",userinfo.name,"Lovely User","more text")
+              br
+
+            +card("https://cdn.discordapp.com/avatars/190995579076214784/a0cc9d00620f734e44cdde11b9abf550.png","Ampola","Apolo Bolinha#7355","Community Helper","more text")
+            br
+
+            +card("https://cdn.discordapp.com/avatars/269305556030849027/a4243e2ed8c64f63778b17a87cd1c4b5.png","Ranii","R4n11#2200","Word Spreader,Bug Seeker","more text")
+            br
+
+            +card("https://cdn.discordapp.com/avatars/238975494047924224/199b839cf123b9488adbd364a07b1afe.png","Delta Fox","xDeltaFox#8871","Bug Seeker","more text")
+            br
+
+            br
+
+
+          .column.is-4
+            +card("https://cdn.discordapp.com/avatars/279449777702174720/e0f3e181d74cde1856ee7708154e21ba.png","Shadow","Acnologia#0217","Backgrounds Provider","more text")
+            br
+
+
+            +card("https://cdn.discordapp.com/avatars/299708147235553293/e01a21340294ddaaf71c222403569372.png","Mismatched Ho","Mismatched Ho#6764","Proficient Helper","more text")
+            br
+
+
+            +card("https://cdn.discordapp.com/avatars/226976267382161408/9fb65e201db6ad253ba91f067b7d00ce.png","Supermouse","Megumin#4233","First-steps Advisor","more text")
+            br
+
+            +card("https://cdn.discordapp.com/avatars/136972950069837824/ae88b8b194177a4efc0a94c50f24a348.png","Mahnt'Thax","MahntThax#1223","General Cancermancer","more text")
+
+          .column.is-4
+            +card("https://cdn.discordapp.com/avatars/203139018760781824/9acd9500f941ad19088b5b93382ad9ca.png","Akira","Luan Morais#6297","Many Crazy Ideas","more text")
+            br
+
+            +card("https://cdn.discordapp.com/avatars/164779118024589312/5630ce7ef86129c9b141d8c1957edac4.png","Emvili","Tsukino#5262","Coin Flipper,Feature Idealist","more text")
+            br
+
+            +card("https://cdn.discordapp.com/avatars/312955521873346570/e8635cad5dfe7f9f1cd4e052df286951.png","Kuroi","Kuroi#0303","Bug Seeker","more text")
+
+        hr
+block scripts
