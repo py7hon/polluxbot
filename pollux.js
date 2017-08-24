@@ -85,7 +85,7 @@ const userDB = gear.userDB
 var defaults = require("./utils/defaults.js")  // Database Defaults
 
 //DASHBOARD INIT
-const dash = require("../pollux-dash/server.js")
+const dash = require("./dash/server.js")
 dash.init(bot,DB,userDB)
 
 
