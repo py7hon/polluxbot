@@ -387,7 +387,58 @@
         "remain": "Time until next reset:",
         "last": "Last reset time:"
     },
-    "website": {
+
+    "modules": {
+        "nsfw": "NSFW",
+        "mod": "Moderation",
+        "$": "Economy",
+        "game": "Game",
+        "rubine": "Rubine",
+        "cosmetics": "Cosmetics",
+        "social": "Social",
+        "img": "Image",
+        "dev": "Development",
+        "own": "Owner-Only",
+        "easteregg": "EasterEggs",
+        "language": "Locale",
+        "forfun": "4Fun",
+        "memes": "Memes",
+        "gambling": "Gambling",
+        "infra": "Infra",
+        "misc": "Miscelaneous",
+        "util": "Utility"
+    },
+    "games": {
+        "dice": {
+            "someoneRolledX": "**%U%** rolled %D%...",
+            "andGot": "and got **{{val}}** !",
+            "rollsWere": "Rolls were: "
+        }
+    },
+  "loot":{
+            "rareDrop":"Do you know what is this? It is a **RARE** Lootbox!" ,
+            "ultraRareDrop":"I can't believe this! An **ULTRA RARE** Lootbox has dropped! you may never see one again!" ,
+            "lootDrop": {
+          "1":"HEY GUYS! A Lootbox has just spawned at this Channel!",
+          "2":"WHOA! A Lootbox! Quick, come get it!",
+          "3":"Nice, looks like there's a Lootbox here!",
+          "4":"Sorry to interrupt, but did someone notice this Lootbox lying over here?",
+          "5":"Sugoi! Look at this Lootbox that i've found!"
+
+        },
+        "lootPick": " You all have **__20 Seconds__** to dispute it! Type `{{prefix}}pick` for a chance to claim it!",
+        "goesTo": "Time's up! Let's see who's getting this Box.\n**This Loot Box will be raffled between:**\n",
+        "congrats": "Congrats! This box has been added to your inventory. You can open it using the `{{prefix}}lootbox` command.",
+        "opening":"{{user}} opened his Lootbox...",
+        "contains":"This Lootbox contains",
+        "options":"You can either keep it, or reroll it by paying {{amt}}",
+        "keep":"Keep it",
+        "reroll":"Reroll it",
+        "rerolled":"Let's try again, rerolling the box content...",
+        "noMoreRolls":"You've ran out of rerolls, you'll have to stick with this result.",
+        "noFunds":"You cannot afford a reroll kiddo, better luck next time."
+  },
+   "website": {
         "commands": "Commands"
         ,"commCat": "Command Categories"
         ,"chooseLang": "Choose a Language"
@@ -498,55 +549,5 @@
 
 
 
-    },
-    "modules": {
-        "nsfw": "NSFW",
-        "mod": "Moderation",
-        "$": "Economy",
-        "game": "Game",
-        "rubine": "Rubine",
-        "cosmetics": "Cosmetics",
-        "social": "Social",
-        "img": "Image",
-        "dev": "Development",
-        "own": "Owner-Only",
-        "easteregg": "EasterEggs",
-        "language": "Locale",
-        "forfun": "4Fun",
-        "memes": "Memes",
-        "gambling": "Gambling",
-        "infra": "Infra",
-        "misc": "Miscelaneous",
-        "util": "Utility"
-    },
-    "games": {
-        "dice": {
-            "someoneRolledX": "**%U%** rolled %D%...",
-            "andGot": "and got **{{val}}** !",
-            "rollsWere": "Rolls were: "
-        }
-    },
-  "loot":{
-            "rareDrop":"Do you know what is this? It is a **RARE** Lootbox!" ,
-            "ultraRareDrop":"I can't believe this! An **ULTRA RARE** Lootbox has dropped! you may never see one again!" ,
-            "lootDrop": {
-          "1":"HEY GUYS! A Lootbox has just spawned at this Channel!",
-          "2":"WHOA! A Lootbox! Quick, come get it!",
-          "3":"Nice, looks like there's a Lootbox here!",
-          "4":"Sorry to interrupt, but did someone notice this Lootbox lying over here?",
-          "5":"Sugoi! Look at this Lootbox that i've found!"
-
-        },
-        "lootPick": " You all have **__20 Seconds__** to dispute it! Type `{{prefix}}pick` for a chance to claim it!",
-        "goesTo": "Time's up! Let's see who's getting this Box.\n**This Loot Box will be raffled between:**\n",
-        "congrats": "Congrats! This box has been added to your inventory. You can open it using the `{{prefix}}lootbox` command.",
-        "opening":"{{user}} opened his Lootbox...",
-        "contains":"This Lootbox contains",
-        "options":"You can either keep it, or reroll it by paying {{amt}}",
-        "keep":"Keep it",
-        "reroll":"Reroll it",
-        "rerolled":"Let's try again, rerolling the box content...",
-        "noMoreRolls":"You've ran out of rerolls, you'll have to stick with this result.",
-        "noFunds":"You cannot afford a reroll kiddo, better luck next time."
-  }
+    }
 }
