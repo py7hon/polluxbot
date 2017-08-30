@@ -7,6 +7,9 @@ var mm = locale.getT();
 var cmd = 'drop';
 
 var init = function (message, userDB, DB) {
+
+
+
     var Server = message.guild;
     var Channel = message.channel;
     var Author = message.author;
@@ -37,7 +40,9 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
         GOOD = DB.get(Server.id).modules.GOODNAME
     }
 
-    var dropAmy = parseInt(args[0]) || 1
+    var dropAmy = Math.abs(parseInt(args[0])) || -1
+
+    if( dropAmy <= 0) return message.channel.send(":warning:");
 
     console.log("------------DROP by" + Author)
     // message.guild.defaultChannel.send()

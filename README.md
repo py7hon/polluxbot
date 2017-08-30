@@ -2,8 +2,16 @@
 # **POLLUX**
 Discord Bot 
 
-[![Build Status](https://travis-ci.org/LucasFlicky/polluxbot.svg?branch=master)](https://travis-ci.org/LucasFlicky/polluxbot)
-[![Discord](https://discordapp.com/api/guilds/248285312353173505/widget.png)](https://discord.gg/ay48h7Q)
+CURRENT: [![Build Status](https://travis-ci.org/Flicksie/polluxbot.svg?branch=master)](https://travis-ci.org/Flicksie/polluxbot)
+NEXT: [![Build Status](https://travis-ci.org/Flicksie/polluxbot.svg?branch=dev_pollux_v4)](https://travis-ci.org/Flicksie/polluxbot)
+
+[![NSP Status](https://nodesecurity.io/orgs/pxbt/projects/859d61e6-d56e-43e2-9b97-0ecfba2e3299/badge)](https://nodesecurity.io/orgs/pxbt/projects/859d61e6-d56e-43e2-9b97-0ecfba2e3299)
+[![dependencies Status](https://david-dm.org/flicksie/polluxbot/status.svg)](https://david-dm.org/flicksie/polluxbot)
+[![Code Climate](https://codeclimate.com/github/Flicksie/polluxbot/badges/gpa.svg)](https://codeclimate.com/github/Flicksie/polluxbot) 
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Flicksie/polluxbot/issues)
+
+[![Discord](https://discordapp.com/api/guilds/277391723322408960/widget.png)](https://discord.gg/ay48h7Q)
+
 
 |     |    |
 |:-------------|-------------:|
