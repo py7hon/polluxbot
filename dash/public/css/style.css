@@ -3,6 +3,8 @@ html{
      height: 100vh;
 }
 
+
+
    body{
   overflow-y: auto;
      height: 100%;
@@ -376,10 +378,6 @@ box-shadow: 0 0 10px rgba(122, 122, 122, 0.5);
 }
 
 }
-.chandiv{
- //overflow-y: scroll;
-  //height:60vh !important
-}
 
         .division2 /*.nano*/{
           flex:2;
@@ -439,7 +437,7 @@ b{
 .inv_box{
   background:#eee;
   border-radius: 5px;
-  height:100%;
+  height:90%;
   box-shadow:inset 0 2px 3px rgba(0,0,0, 0.1), 0 0 0 1px rgba(0,0,0, 0.1);
   display: block;
   padding: 1.25rem;
@@ -466,37 +464,13 @@ b{
 .medalSlot{
   height:80px;
   width:80px;
-  padding:30px;
-  box-shadow: 0 1px 3px #aaa;
+  margin:2px;
+  border-radius: 100%;
+  box-shadow:inset 0 1px 3px #aaa;
+  background: rgba(221, 221, 221, 0.4);
   position:relative;
 }
-.medal{
-  transform: scale(2);
-    image-rendering: optimizeQuality;
-}
 
-
-.med_icon{
-  position:relative;
-  align-items: center;
-  vertical-align: middle;
-  padding:1%;
-  margin:1%;
-  width:30.4%;
-  height:50px;
-  display: inline-block;
-  box-shadow: 0 1px 3px #ccc;
-  border-radius: 2px;
-  background:white;
-
-}
-.this_rare_med{
-  position:absolute;
-  height:32px;
-  bottom:-10px;
-  right: -10px;
-
-}
 
 .unequip:hover{
   filter:drop-shadow(1px 1px 5px #f00)
@@ -508,3 +482,182 @@ b{
 .bgpick:hover{
   filter:drop-shadow(0px 0px 6px #ea2c7c)
 }
+
+.drag{
+  z-index: 9999;
+  overflow: visible;
+}
+#cardPile{
+  height: 100%;
+}
+
+
+.tinyFonto{
+  margin:auto;
+  font-size:7.5pt;
+  line-height: 7pt;
+      width: 100%;
+}
+
+
+.medallien{
+
+    display:inline-block;
+  //box-shadow: 0 1px 3px #ccc;
+  height: 80px;
+  width: 80px;
+  position: relative;
+  filter:drop-shadow(1px 1px 3px #ccc);
+
+}
+.med-pic{
+    height: 80px;
+  width: 80px;
+  border-radius: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px;
+}
+.med-pic img{
+  width:50px
+}
+
+.med-name{
+  border-radius: 5px;
+  width: 100%;
+  height: 30px;
+  //border-top:solid 1px #eee;
+  text-align: center;
+  position: absolute;
+  bottom: -20px;
+  align-items: stretch;
+  display: flex;
+}
+
+#equipped .med-name{
+  display:none;
+}
+
+#cardPile .medallien{
+  margin:15px
+}
+
+.med-rare{
+  position:absolute;
+  right:0px;
+  top:0px;
+
+}
+.med-rare img{
+height: 25px;
+}
+
+
+#medalmocks{
+  position: absolute;
+
+  top:243px;
+  left:170px;
+  height:30px;
+  width: 210px;
+  z-index: 999;
+}
+
+#ptxmock{
+
+text-align: justify;
+  position: absolute;
+  top:188px;
+  left:170px;
+  line-height: 13px;
+  font-size: 10.5px;
+  height:50px;
+  width: 210px;
+  z-index: 999;
+
+}
+
+
+      .reslideU{
+      animation: reslideU .4s cubic-bezier(.11, .56, .67, 1.53) both;
+      animation-delay: 1.5s;
+    }
+
+        @keyframes reslideU {
+    0% {
+      opacity: 0;
+      transform:translateY(110px) scale(.7) translateX(380px)
+    }
+
+    100% {
+      opacity: 1;
+      transform:translateY(0) scale(.7) translateX(380px)
+    }
+    }
+
+
+.hidden{
+  display: none
+}
+
+.curr_icon{
+  position:absolute;
+  transform:scale(.8) translateY(5px)
+}
+
+.bitdown{
+  filter: drop-shadow(0 0 10px rgba(255, 231, 235, 0.63));
+  position:absolute;
+  right:12px;
+  transform:translateY(35px)
+}
+
+.herohr{
+  opacity: .3;
+  margin:  0;
+}
+
+.floatnglow{
+  transform: translatey(0px);
+  animation: floatnglow 6s ease-in-out infinite;
+  filter:drop-shadow(0 0 10px rgba(255, 231, 235, .6))
+}
+@keyframes floatnglow {
+  0% {
+
+    transform: translatey(0px);
+    filter:drop-shadow(0 0 10px rgba(255, 231, 235,.6))
+  }
+  40% {
+
+    transform: translatey(-15px);
+    filter:drop-shadow(0 0 25px rgba(255, 231, 235, 0))
+  }
+  100% {
+
+    transform: translatey(0px);
+    filter:drop-shadow(0 0 10px rgba(255, 231, 235, .6))
+  }
+}
+
+.floatnglow:hover{
+  transform: rotate(45)
+}
+
+.generally-disabled{
+  user-select: none;
+  opacity: .5;
+  cursor: not-allowed !important;
+  filter:blur(1px)
+}
+.generally-disabled .columns{
+
+  pointer-events: none;
+}
+.fullheight{
+  height: 100%
+}
+
+
+

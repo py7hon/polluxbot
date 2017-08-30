@@ -1,0 +1,189 @@
+style.
+
+  @media screen and (max-height:700px){
+    .ov{
+      transform:scale(.8) translateY(-50px)
+    }
+  }
+  .bbgColor{
+
+  height:100%;
+  width:25px;
+  position:absolute;
+    top:0;
+    opacity:.8;
+  left:0;
+  z-index:-1
+  }
+  .bbg{
+  background-size:100%;
+  filter:blur(5px);
+  height:100%;
+  width:100%;
+  top:0;
+  left:0;
+  position:absolute;
+  z-index:-2;
+  }
+  .alignrite{
+  text-align:right;
+  float:right
+  }
+  .ovi{
+  width:30%
+  }
+  .bbgOvlay{
+  top:0;
+  left:0;
+  position:absolute;
+  background: linear-gradient(70deg, #ffffff 0%,#ffffff 37%,rgba(255, 255, 255, 0) 100%);
+  height:100%;
+  width:100%;
+  z-index:-1;
+  }
+
+
+-var jade = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACZElEQVQ4jX2SPUxTUQCFv/v6KKW0UMQiGjDGMBgNiybiZIJhd3ESJ6Mw+rMhYSDGQd2Mi4mDi5MDASMJIcZBJeqkRmNE5afQ+l5boJT2Pd7PfdeBUGjTeLZ77zlfTnIP/EdzZnbgxodPF/7n0epdGmXruGnZExnLmk2EG15ffft+4uLsm556XrH/YFp2DBgBbhdcN/JiaQkFBEqRKllu3nEeAXcnB/qLVQDTsgEuA/eBLoCZdJrlcrkCV0ph2NukLTsLjAFPJwf6Aw1gLp2540j5fDf817KqwrtqaWhAlMod5DaeqHRuHEAHePnje1zTw/S0xmlvDPMxn0cpheVLtjyPLc8nV9zi5/wCwnc41daBQEQrgM1tm1RhnQAo+R7vzBwl3yNQEAQBq6kMK6k0YV2jKaJjS5+o3kAFAAQL+RxdiQN8WV+n6HkAFDY2+fNrEdveRgiINIYAKHsuTbqu7QewWljH8X3SloXneiwuLJM18wA06TqCACF2Pq3kuyRprm4QKMVnI0MqY5JfNYhoGieTSeLhMFljjaXlDEEyTmN7M5bvIlWw10Ap8D2fVzNzKBlwqK2F1pYYmqZhmjthACe3hV92iB5JUHC29xqsmYXyym8Dz/GRgcQw8miaRvJggmhzE93dnUgpkTJASklQcCmKslUBLHxbeYAQWeBeSAt16iGFL302iyV6eo7WzsEARoFnX6mZcvfwWEwpNQrc9KQXEZqg72zv7rML6rFSYnxqaLB6yrXqHh47ppR66Erv0rm+XoQQ08CtyeuD87XeuoBdHb42cv70mROxUCg0PTV0pa7nH0I1NB1t8gzhAAAAAElFTkSuQmCC"
+-var ruby = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB9UlEQVQ4T6WTy2sTURSHv3m56iZZqbSVootWi1bjppGKiEtfFPeKf183guBe0riJGyHT1JCmbZpH8yaJSZrXeO7cSUloFMGBO+dy7/y+87vnnjH4z8eY1cdX8CZj8NSi2pFhmEFU82BsH/m7/nM5id3Au/vuI6HIc71TLEA+D6bFRbVIS4Zp2bRaBUoFl2hWa/2XEm/svid8fwfGQ+j3IJkEyxKAWBBINZtiPBrI1KHVLlIuHPgQI76Mt/72A6F7URj05WNhuq7MB1rsH8VkIuLS8SGG7WCZNu12SSBJjP2beNHPh9BpwmgEtmTd2wPH0TDfp0QR8uWTjqow5jW+lb9ixFfFwfZLQrc2BSBZ1ceuAFVUDqYAER2nDzBtW7g23VGd895JTaWIxJZJbOy8Iry2hXiVAhah1giOoEGdZp16pSz2HX6JuHZxQjTDg+ktaMjT14RvP5QiSi3clBRRWdVFLGTSeJ4nmRtUtfixJP8+2wcB5A3hO48gk0Eqpa+x16WSP6M7aUrm00vxXB8EfaEhzwRyfR1+pqVoNpVcjkbnjNogNydeBFBrkdiKguwSHi5Br08qtU9jmCd6pG1Pu/BPAA1ZJbG59YJuuUz2/AdPslfFfwP4kPgaCXWb0vtXMk9dzP1Ms9amNQninO1/OcIC1uKl308HxtwjnsOlAAAAAElFTkSuQmCC"
+
+
+.box.ov(style="background:rgba(0, 0, 0, 0); overflow:hidden; position:relative; padding-left:50px")
+  p.title &#x2000 Overview
+  div.level.is-marginless
+
+    .box.ovi.is-marginless
+      p
+        b Rubines:
+        span.alignrite: img(src=ruby).curr_icon
+        span.alignrite.countup(data-count= user.modules.goodies) 0
+      p
+        b Jades:
+        span.alignrite: img(src=jade).curr_icon
+        span.alignrite.countup(data-count= (user.modules.jades || 0)) 0
+      p
+        b Current Daily Streak:
+        span.alignrite.countup(data-count= user.modules.dyStreak) 0
+      p
+        b Last Daily:
+        -let d = new Date(user.modules.daily).getDate()
+        -let m = new Date(user.modules.daily).getMonth()+1
+        -let a = new Date(user.modules.daily).getFullYear()
+        -let data = `${d}/${m}/${a}`
+        span.alignrite= data
+
+    p &#x2003
+
+    .level-item
+
+  .columns(style="margin:12px")
+    .columns
+      .column: small
+        b Expenses:
+        p Drops:
+          span.countup(data-count= user.modules.expenses.drops) 0
+        p Trades:
+          span.countup(data-count= user.modules.expenses.trade) 0
+        p Lewd:
+          span.countup(data-count= user.modules.expenses.putaria) 0
+        p Gambling:
+          span.countup(data-count= user.modules.expenses.jogatina) 0
+
+      .column: small
+
+        b Earnings:
+        p Drops:
+          span.countup(data-count= user.modules.earnings.drops) 0
+        p Trades:
+          span.countup(data-count= user.modules.earnings.trade) 0
+        p Lewd:
+          span.countup(data-count= user.modules.earnings.putaria) 0
+        p Gambling:
+          span.countup(data-count= user.modules.earnings.jogatina) 0
+
+  .columns(style="margin:0px")
+    .column.box.level.is-marginless.columns.is-6
+
+      .column: small
+        p
+          .icon.is-small: i.fa.fa-picture-o
+          span &#x2000
+          b Backgrounds: &#x2003
+
+          if user.modules.bgInventory
+            span.alignrite.countup(data-count= user.modules.bgInventory.length) 0
+          else
+            span.alignrite.countup(data-count= 0)
+        p
+          .icon.is-small
+            i.fa.fa-certificate
+          span &#x2000
+          b Medals: &#x2003
+
+          if user.modules.medalInventory
+            span.alignrite.countup(data-count= user.modules.medalInventory.length) 0
+          else
+            span.alignrite.countup(data-count= 0)
+        p
+          .icon.is-small: i.fa.fa-flask
+          span &#x2000
+          b Inventory: &#x2003
+          span.alignrite ---
+        p
+          .icon.is-small: i.fa.fa-ticket
+          span &#x2000
+          b Stamps: &#x2003
+          span.alignrite ---
+
+      .column.is-1
+      .column: small
+        p
+          .icon.is-small: i.fa.fa-hand-o-up
+          span &#x2000
+          b Reputation: &#x2003
+          span.alignrite= user.modules.rep
+        p
+          .icon.is-small: i.fa.fa-star
+          span &#x2000
+          b Exp: &#x2003
+          span.alignrite.countup(data-count= user.modules.exp) 0
+        p
+          .icon.is-small: i.fa.fa-eject
+          span &#x2000
+          b Level: &#x2003
+          span.alignrite.countup(data-count= user.modules.level) 0
+        p
+          .icon.is-small: i.fa.fa-trophy
+          span &#x2000
+          b Global Rank: &#x2003
+          span.alignrite
+            span.countup(data-count=999) 0
+            span /
+            span= bot.users.size
+
+    .column.is-4(style="transform:translateY(65px)")
+      small Equipped Medals
+      .level.is-marginless.columns.is-half(style=";filter:drop-shadow(0 0 5px #fff)")
+            .level-item
+            -var it = 0;
+            while it < 8
+              -var medal_icon = user.modules.medals[it][0]
+
+              if medal_icon!=0 && user.modules.medals[it]!=[0,0]
+                img(src="/medals/"+medal_icon+".png")
+              else
+                img(src="/medals/undefined.png")
+                //li.drop.ui-droppable.medalSlot
+              .level-item
+              -it++
+            .level-item
+
+
+
+    .bbgOvlay
+    .bbgColor(style="background:#"+(user.modules.favcolor||"ccc"))
+    .bbg
+      img#bgov(src="backdrops/"+user.modules.bgID+".png")(style="height:100%;width:auto;position:absolute;right:3px")
+      //(style="background-image:url('backdrops/"+user.modules.bgID+".png')")
+
+
+

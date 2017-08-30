@@ -781,7 +781,7 @@ module.exports = {
     draw: draw,
     drawalt: drawalt,
     getDir: getDir,
-    Jimp: require("Jimp"),
+    Jimp: require("jimp"),
     cheerio: require("cheerio"),
     Discord: Discord,
     fs: fs

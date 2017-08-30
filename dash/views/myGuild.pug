@@ -1,7 +1,7 @@
 extends layout
 block head
   style.
-      .tabcontainer{
+      .atabcontainer{
         position:absolute;
         bottom:16px;
         top:16px;
@@ -16,9 +16,9 @@ block content
 
     //p= JSON.stringify(server.modules.MODROLE)
     //.section.is-paddingless.division
-    include navbas
 
-    .hero.is-purple
+    //.hero.is-purple.is-bold
+        include navbas
         .level
           .level-item
           .level-left
@@ -38,13 +38,53 @@ block content
           .level-item
           .level-item
           .level-item
-          .level-right: img(src=server.avi).image.is-round
+          //.level-right: img(src=server.avi).image.is-round.bitdown
 
-    div.division
-      .tabs.is-boxed(style="background:#e0d0eb").is-marginless
-        ul
-          li.tab(data-target="tabA").is-active: a General Settings
-          li.tab(data-target="tabB"): a Channel Settings
+        .tabs.is-boxed(style="background:rgba(224, 208, 235, 0.21)")
+          ul
+            li.tab(data-target="tabA").is-active: a General Settings
+            li.tab(data-target="tabB"): a Channel Settings
+
+  .hero.is-purple.is-bold
+      include navbas
+
+      .level
+            .level-left
+              //img(src=userinfo.pix).image(height="128px")
+              div.hexagon(style="opacity:0")
+                div.hexTop
+                div.hexBottom
+            div &#x2003
+            div &#x2003
+            div &#x2003
+            div &#x2003
+            .level-left
+                div
+                  p.title: b= sv.name
+                  p.subtitle!= "<b>ID </b>"+userinfo.id
+
+            .level-item
+                div
+                  p
+                    span= online
+                    span /
+                    span=sv.members.size
+                    span|  Members
+            //.level-item
+            .level-right: div: img(src=server.avi).image.is-round.bitdown.floatnglow
+            .level-item
+
+
+      div
+        .tabs.is-centered.is-boxed(style="background:rgba(234, 221, 255, 0.3)")
+
+          ul
+            li.tab(data-target="tabA").is-active: a General Settings
+            li.tab(data-target="tabB"): a Channel Settings
+
+  .nano: .container.nano-content.division
+
+
 
       .container.columns.is-fluid.gaps#tabB.tabcontainer.division2(style="display:none")
         .column.is-3: .box.chandiv.nano#list: .nano-content
@@ -61,106 +101,45 @@ block content
         //.column.is-3: .box
 
 
-      .container.columns.is-fluid.gaps#tabA.tabcontainer.division2
-        .column.is-3: .box.chandiv.nano#list: .nano-content
+      .container(style="height:100%").columns.is-fluid.gaps#tabA.tabcontainer.division2
+         .column.is-3
 
-        .column.is-9: .message.is-small.chandiv.nano
-          b: .message-header(style="z-index:9") Settings
-          .nano-content.message-body
-            .container.is-fluid
-              hr
-              .columns
-                .column
-                  p!= "<b>Moderation Role: </b>"
-                  .field.has-addons.level
-                    div.control.level-left: .select.is-small: select
-                      each role in svroles
-                        if role[0] == modrole
-                          option(selected)= modrole
-                        else
-                          option(style="color:"+role[2]): b= role[0]
-                    div.control.level-right: div.button.is-purple.is-small Define
+            .menu-label General Settings
+            ul.menu-list
+              li: a.is-active.itm(data-target="basic") Basic Options
+              li: a.itm(data-target="advanced") Advanced Options
+              li: a.itm(data-target="logs") Activity Logs
 
-                  hr
-                  .box
-                    p!= "<b>Log Channels: </b>"
-                    br
-                    p Advanced
-                    .field.has-addons.level
-                      div.control.level-left: .select.is-small: select
-                        each chan in svchans
-                          if chan.id == server.modules.GREET.greetChan
-                            option(selected)= chan.name
-                          else
-                            option= chan.name
-                      div.control.level-right: div.button.is-purple.is-small Save
+            .menu-label Goodies
+            ul.menu-list
+              li: a.itm(data-target="leader") Server Leaderboards
+              li: a.itm(data-target="prodil") Server Profile
+              li: a.itm(data-target="loot") Loots & Drops
+              li: a.itm(data-target="bank") Server Bank
 
-                    p Activity
-                    .field.has-addons.level
-                      div.control.level-left: .select.is-small: select
-                        each chan in svchans
-                          if chan.id == server.modules.GREET.greetChan
-                            option(selected)= chan.name
-                          else
-                            option= chan.name
-                      div.control.level-right: div.button.is-purple.is-small Save
+            .generally-disabled
+              .menu-label Premium
+              ul.menu-list
+                li: .itm(data-target="advanced") Server Collectibles
+                br
+                li: .itm(data-target="advanced") Cherry-Modules
 
-                    p Moderation
-                    .field.has-addons.level
-                      div.control.level-left: .select.is-small: select
-                        each chan in svchans
-                          if chan.id == server.modules.GREET.greetChan
-                            option(selected)= chan.name
-                          else
-                            option= chan.name
-                      div.control.level-right: div.button.is-purple.is-small Save
 
-                .column
-                  p: b Welcome Message
-                  .field
-                    .control: textarea.textarea(rows="10" placeholder="Hey, %user% left the server!")= server.modules.GREET.joinText
-                    .control: div.button.is-purple.is-small Define
-                  small.weak: i!= "<b>Wildcards</b> %user% = Mentions user | %username% = Shows user's display name | %server% Shows Server name"
-                  p: b Welcome Channel
-                  .field.has-addons.level
-                    div.control.level-left: .select.is-small: select
-                      each chan in svchans
-                        if chan.id == server.modules.GREET.greetChan
-                          option(selected)= chan.name
-                        else
-                          option= chan.name
-                    div.control.level-right: div.button.is-purple.is-small Define
-
-                  hr
-
-                  p: b Bye Message
-                  .field
-                    .control: textarea.textarea(rows="10" placeholder="Hey, %user% left the server!")= server.modules.FWELL.joinText
-                    .control: div.button.is-purple.is-small Define
-                  small.weak: i!= "<b>Wildcards</b> %user% = Mentions user | %username% = Shows user's display name | %server% Shows Server name"
-                  .columns
-                    .column
-                      p: b Bye Channel
-                      .level
-                        .field.has-addons.level.level-item.is-marginless
-                          div.control.level-left: .select.is-small: select
-                            each chan in svchans
-                              if chan.id == server.modules.FWELL.greetChan
-                                option(selected)= chan.name
-                              else
-                                option= chan.name
-                          div.control.level-right: div.button.is-purple.is-small Define
-                    .column
-                      p: b Timeout (ms)
-                      .field.has-addons.level.level-item.is-marginless
-                          div.control.level-left: .select.is-small
-                            input.input.is-small(value=server.modules.FWELL.hiDEL)
-                          div.control.level-right: div.button.is-purple.is-small Define
+         #basic.column.is-9.pgs
+          include guild/settings/logs
+         #advanced.column.is-9.pgs.hidden
+          include guild/settings/advanced
+         #logs.column.is-9.pgs.hidden
+          include guild/settings/logs
 
 
 
 
 
-        //.column.is-3: .box
+
+
+
       .footspace
+block scripts
+  script(src="/js/guilds.js")
 

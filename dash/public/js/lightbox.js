@@ -562,7 +562,7 @@ console.log(this)
       this.album[this.currentImageIndex].title !== '') {
       var $caption = this.$lightbox.find('#title');
       var $$$ = this.$lightbox.find('#pric');
-      $('#bgm').attr("style","background-image:url('images/backdrops/"+this.album[this.currentImageIndex].title+".png')");
+      $('#bgm').attr("style","background-image:url('backdrops/"+this.album[this.currentImageIndex].title+".png')");
       var $$$J = this.$lightbox.find('#pricJ');
 
 

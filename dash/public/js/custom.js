@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
         $el.classList.toggle('is-active');
         $target.classList.toggle('is-active');
 
+
+
+
+
       });
     });
 
@@ -34,10 +38,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Toggle the class on both the "navbar-burger" and the "navbar-menu"
         $(tabs).removeClass('is-active');
-        $(".tabcontainer").hide()
-
         $tab.classList.toggle('is-active');
-        $($target).show()
+        $(".tabcontainer").fadeOut()
+
+        try{count()}catch(e){}
+
+        $($target).delay(700).fadeIn()
+        $(".nano").nanoScroller();
+
 
       });
     });
@@ -49,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 $(document).ready(function () {
+
+
 
 
   try{

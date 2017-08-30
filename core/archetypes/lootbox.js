@@ -101,7 +101,9 @@ class Lootbox {
     }
     getBG(rarity) {
         let base = JSON.parse(fs.readFileSync(BGBASE))
-        let prize = base[rarity][gear.randomize(0, base[rarity].length-1)]
+
+        let filter = base.filter(bg=>bg.rarity===rarity)
+        let prize = filter[gear.randomize(0, filter.length-1)]
 
         console.log("PRIZE:"+prize)
         this.prizes.bgs.push([rarity,prize])
@@ -109,8 +111,11 @@ class Lootbox {
     getMedal(rarity) {
         let base = JSON.parse(fs.readFileSync(MEDALBASE))
 
-        let prize = base[rarity][gear.randomize(0, base[rarity].length-1)]
+        let filter = base.filter(med=>med.rarity===rarity)
+        let prize = filter[gear.randomize(0, filter.length-1)]
+
         console.log("PRIZE:"+prize)
+        console.log(prize)
         this.prizes.medals.push([rarity,prize])
     }
     getRubines(rarity) {

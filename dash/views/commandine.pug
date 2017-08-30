@@ -11,6 +11,7 @@ html
      - }
 
      .container
+
       .box
 
 
@@ -21,7 +22,7 @@ html
           -var cls = type[i] || "is-primary"
 
           .message.is-small(class=`${cls}`)
-            .message-header: b=i
+            .message-header(id = i ): b=i
             .message-body
               table.table.is-striped.is-size-7
                 thead.is-size-7

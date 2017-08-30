@@ -27,14 +27,29 @@ block nav
 
 block content
 
-    .container.is-fluid.division2.nano.is-marginless.is-paddingless
-      .nano-content: #placer
-      .shad
+  .columns.division2
+    .column.is-2
+      hr
+      aside.menu
+        p.menu-label Command Categories
+        ul.menu-list
+          each v, i in commands.tree
+            li: b: a.side-option(href="#"+i)= i
+
+    .column
+      .nano.is-marginless.is-paddingless
+        .nano-content: #placer
+
 
 
 block scripts
+ script(src="/js/inview.js")
  script.
+
+
   $(document).ready(function(){
+
+    $("html, body").animate({ scrollTop: $('#nsfw').offset() }, 1000);
     $(".container").fadeIn()
     var siteLang;
       if(!localStorage.locale){
@@ -64,7 +79,8 @@ block scripts
            $(".nano").nanoScroller();
          })
             },500)
-       }
+        }
+
 
 
 
@@ -85,6 +101,12 @@ block scripts
          })
          $("#ru").click(function(){
             setLang("ru")
+
+         })
+         $(".side-option").click(function(){
+            $(".side-option").removeClass("is-active")
+           $(this).addClass("is-active")
          })
       })
+
 

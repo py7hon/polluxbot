@@ -23,12 +23,12 @@ var user = sv.userDB.get("88120564400553984").modules
     for (let i=0;i<5;++i){
      let RAR = rerities[i]
       imgbox[RAR] = []
-     let path = "images/backdrops/"
+     let path = "../../resources/imgres/build/backdrops/"
     let files = fs.readdirSync(updir+"public/"+path+RAR)
     for (let y=0;y<files.length;++y){
 
       imn = files[y].split(".")[0]
-    var filepath = path +RAR+"/"+ files[y]
+    var filepath = "backdrops/" +RAR+"/"+ files[y]
     imgbox[RAR].push([filepath,imn])
     }
     }

@@ -1,12 +1,12 @@
-var i2b = require("imageurl-base64");
-var gear = require("../../gearbox.js");
-const Vision = require('@google-cloud/vision')
+const i2b = require("imageurl-base64");
+const gear = require("../../gearbox.js");
+const Vision = require('@google-cloud/vision/')
 
-var cmd = 'read';
+const cmd = 'read';
 var init = async function (message, userDB, DB) {
-
+try{
     let args = message.content.split(" ").slice(1)[0]
-
+console.log("a")
 
 
 
@@ -18,11 +18,17 @@ var init = async function (message, userDB, DB) {
         }
         vere(img.base64,message)
     });
+  }catch(e){
+  console.log(e)
+}
 }
 
 function vere(base64,message){
+
+  try{
         const vision = Vision({
             projectId: 'grape-spaceship-123',
+
             keyFilename: './Pollux-b0f6c7eb29f4.json'
         });
         vision.textDetection(
@@ -37,7 +43,12 @@ function vere(base64,message){
                 message.channel.send("Error")
                 console.error('ERROR:', err);
             });
+  }catch(e){
+    console.log(e)
+  }
     }
+
+
 
 module.exports = {
     pub: true,

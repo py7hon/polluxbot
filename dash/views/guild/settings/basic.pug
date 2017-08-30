@@ -1,0 +1,114 @@
+.message.is-small.fullheight
+  .message-header(style="z-index:9"): b Basic Server Settings
+  .message-body.nano: .nano-content
+
+    .container.is-fluid
+      br
+      br
+      .columns
+        .column.is-2
+          p!= "<b>Prefix: </b>"
+          input.input(size=3 value=server.modules.PREFIX||"+").is-small
+
+        .column
+          p!= "<b>Server Language: </b>"
+            span= server.modules.LANGUAGE
+
+            div.control.level-left: .select.is-small: select
+              option English
+              option Brazilian Portuguese
+              option European Portuguese
+              option German
+              option Dutch
+              option Spanish
+              option Russian
+
+          //each lang in botLangs
+
+
+
+        .column
+
+          p!= "<b>Moderation Role: </b>"
+
+            div.control.level-left: .select.is-small: select
+              option= "--NONE--"
+              each role in svroles
+                if role[0] == modrole
+                  option(selected)= modrole
+                else
+                  option(style="color:"+role[2]): b= role[0]
+
+
+        .column
+
+          p!= "<b>Mute Role: </b>"
+
+            div.control.level-left: .select.is-small: select
+              option= "--NONE--"
+              each role in svroles
+                if role[1] == server.modules.MUTEROLE ||role[0] == "POLLUX-MUTE"
+                  option(selected)= role[0]
+                else
+                  option(style="color:"+role[2]): b= role[0]
+
+
+      .message.is-small: .message-body
+          .columns.is-marginless
+            .column
+              p: b Welcome Message
+              .field
+                .control: textarea.textarea(rows="10" placeholder="Hey, %user% left the server!")= server.modules.GREET.joinText
+
+
+              .columns
+                .column
+                  p: b Welcome Channel
+                  .level
+                    div.control.level-left: .select.is-small: select
+                      each chan in svchans
+                        if chan.id == server.modules.GREET.greetChan
+                          option(selected)= chan.name
+                        else
+                          option= chan.name
+
+                .column
+                      p: b Timeout
+                      .field.has-addons.level.level-item.is-marginless
+                          div.control.level-left
+                            input.input.is-small(size=6 value=server.modules.FWELL.hiDEL)
+                            span ms
+
+
+            .column
+              p: b Bye Message
+              .field
+                .control: textarea.textarea(rows="10" placeholder="Hey, %user% left the server!")= server.modules.FWELL.joinText
+
+              .columns
+                .column
+                  p: b Bye Channel
+                  .level
+
+                      div.control.level-left: .select.is-small: select
+                        each chan in svchans
+                          if chan.id == server.modules.FWELL.greetChan
+                            option(selected)= chan.name
+                          else
+                            option= chan.name
+
+                .column
+                  p: b Timeout
+                  .field.has-addons.level.level-item.is-marginless
+                      div.control.level-left
+                        input.input.is-small(size=6 value=server.modules.FWELL.hiDEL)
+                        span ms
+
+          small.weak: i!= "<b>Wildcards</b> %user% = Mentions user | %username% = Shows user's display name | %server% Shows Server name"
+
+      .level.is-marginless
+        .level-item
+        .level-right
+          .button.is-success Save
+          span &#x2000
+          .button.is-danger.is-small Reset

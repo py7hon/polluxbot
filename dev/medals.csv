@@ -1,0 +1,28 @@
+name,icon,rarity,tags,category,buyable,droppable
+-,undefined,C,none,none,TRUE,TRUE
+Beyblade,beyblade,C,,anime,TRUE,TRUE
+Brazil Flag,brazil,C,south america,flags,TRUE,TRUE
+Burger,burger,U,fast-food,food,TRUE,TRUE
+Counter Strike,counterstrike,C,fps csgo,games,TRUE,TRUE
+Dark Magician Girl,darkmagirl,SR,yu-gi-oh yugioh,anime,TRUE,TRUE
+Fruki Guaraná,fruki,SR,soda brazil,brands,TRUE,TRUE
+Gardevoir,gardevoir,R,,pokemon,TRUE,TRUE
+Germany Flag,germany,C,europe,flags,TRUE,TRUE
+Hatsune Miku,miku,SR,vocaloid,anime,TRUE,TRUE
+Heroes of the Storm,heroes,U,moba blizzard,games,TRUE,TRUE
+Hylian Shield,hyruleshield,R,rpg nintendo zelda,games,TRUE,TRUE
+Japan Flag,japan,SR,asia,flags,TRUE,TRUE
+League of Legends,league,R,moba,games,TRUE,TRUE
+Megaman: Sigma,megamansigma,SR,capcom megaman,games,TRUE,TRUE
+Nintendo 3DS,n3ds,R,console nintendo,games,TRUE,TRUE
+Osu!,osu,R,rhythm music,games,TRUE,TRUE
+Overwatch,overwatch,SR,fps blizzard,games,TRUE,TRUE
+Patreon,patreon,UR,brands,exclusive,FALSE,FALSE
+Pikachu,pikachu,R,,pokemon,TRUE,TRUE
+Pokéball,pokeball,C,icons,pokemon,TRUE,TRUE
+Pollux,pollux,UR,,exclusive,TRUE,TRUE
+Portugal Flag,portugal,C,europe,flags,TRUE,TRUE
+StarCraft II,starcraft,R,rts blizzard,games,TRUE,TRUE
+Super Nintendo,snes,R,console nintendo,games,TRUE,TRUE
+Twitch.tv,twitch,R,sites,brands,TRUE,TRUE
+Umbreon,umbreon,R,,pokemon,TRUE,TRUE

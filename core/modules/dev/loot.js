@@ -44,7 +44,7 @@ console.log("ok")
 //    Channel.sendCode(bauzin).then()
     console.log("-------------------")
     await bauzin.open()
-    console.log(bauzin)
+   // console.log(bauzin)
 
             let bauzinB = require("util").inspect(bauzin);
 
@@ -57,7 +57,7 @@ console.log("ok")
 
 
             let itm= bauzin.prizes[i][y];
-console.log(i)
+//console.log(i)
 
             bay.push({type:i,good:itm})
 
@@ -134,7 +134,30 @@ console.log("Raritu:"+rarity)
     return incanv
 
 }
+async function renderMedal(medal) {
 
+console.log(medal)
+    let medalfolder = gear.fs.readdirSync(paths.MEDALS)
+
+   // let rand = gear.randomize(0, files.length - 1);
+
+    var filepath = paths.MEDALS + medal.icon + ".png"
+
+    const incanv = new Canvas(150, 150);
+    const ctx = incanv.getContext('2d');
+
+    let I = new Canvas.Image;
+    I.src = await Pixly.createBuffer(filepath).then(b => {return b;});
+    let J = new Canvas.Image;
+    J.src = await Pixly.createBuffer(paths.BUILD+"LOOT/MEDAL.png").then(b => {return b;});
+        await ctx.drawImage(J, 0, 0);
+        //await ctx.rotate(0.16)
+        await ctx.drawImage(I, 62, 76);
+        //await ctx.rotate(-0.16)
+
+    return incanv
+
+}
 
 
 
@@ -158,6 +181,10 @@ console.log("Raritu:"+rarity)
             });
         } else if (bay[i].type == "bgs") {
             img = await renderBG(bay[i].good[0])
+        }else if (bay[i].type == "medals") {
+
+
+          img = await renderMedal(bay[i].good[1])
         } else {
             img.src = await Pixly.createBuffer(paths.BUILD + "LOOT/" + prize[bay[i].type][bay[i].good[0]] + ".png").then(b => {
                 return b;
@@ -177,11 +204,11 @@ console.log("Raritu:"+rarity)
             R: rarity,
             Q: qtd || false
         }
-        console.log(item)
+       // console.log(item)
         LOOTS.push(item)
     }
 
-    console.log(bay)
+   // console.log(bay)
 
 
         const V = new Canvas.Image;

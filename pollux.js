@@ -1,7 +1,7 @@
 //Discord Start
-var gear = require("./core/gearbox.js");
-var rq = require("request");
-var bot = new gear.Discord.Client({
+const gear = require("./core/gearbox.js");
+const rq = require("request");
+const bot = new gear.Discord.Client({
     messageCacheMaxSize: 4048,
     messageCacheLifetime: 1680,
     messageSweepInterval: 2600,
@@ -16,21 +16,33 @@ var bot = new gear.Discord.Client({
 const cfg = require('./config.js');
 
 
+
+
+//======================================//
+//      GENERATE RARITY LIBS
+//======================================//
+
+
+
+
+
+
+
 //=======================================//
 //      TOOLSET
 //======================================//
 
-var deployer = require('./core/deployer.js'); // <------------- I DUN LIKE DIS << FIX
+const deployer = require('./core/deployer.js'); // <------------- I DUN LIKE DIS << FIX
 //==-------------------------------------------
 // UTILITY
 
-var fs = require("fs");
-var paths = require("./core/paths.js");
-var emojya = bot.emojis.get('343314186765336576');
+const fs = require("fs");
+const paths = require("./core/paths.js");
+const emojya = bot.emojis.get('343314186765336576');
 //var cleverbot = require("cleverbot"); // <------------- REVIEW  DIS << NEEDS $ for CB fee
 //cleverbot = new cleverbot(cfg.clever.ID, cfg.clever.token);
-var async = require('async');
-var timer;
+const async = require('async');
+let timer;
 const {
     AkairoClient
 } = require('discord-akairo');
@@ -46,10 +58,10 @@ const colors = require('colors');
 //==-------------------------------------------
 // MULTILANG
 
-var i18next = require('i18next');
-var multilang = require('./utils/multilang_b');
-var Backend = require('i18next-node-fs-backend');
-var backendOptions = {
+const i18next = require('i18next');
+const multilang = require('./utils/multilang_b');
+const Backend = require('i18next-node-fs-backend');
+const backendOptions = {
     loadPath: './utils/lang/{{lng}}/{{ns}}.json',
     addPath: './utils/lang/{{lng}}/{{ns}}.missing.json',
     jsonIndent: 2
@@ -74,7 +86,7 @@ getDirs('utils/lang/', (list) => {
     });
 })
 
-var mm = multilang.getT();
+const mm = multilang.getT();
 
 //Gearbox assemble!
 
@@ -82,7 +94,7 @@ var mm = multilang.getT();
 //Database load!
 const DB = gear.DB
 const userDB = gear.userDB
-var defaults = require("./utils/defaults.js")  // Database Defaults
+const defaults = require("./utils/defaults.js")  // Database Defaults
 
 //DASHBOARD INIT
 const dash = require("./dash/server.js")
@@ -100,7 +112,7 @@ async function loginSuccess() {
     let tx = `Successful Login!`;
     let color = '#49c7ff';
 
-    gear.sendSlack(name, tx, undefined, color)
+   // gear.sendSlack(name, tx, undefined, color)
 
 // ACTIONS OVER TIME ▼▼▼▼▼▼▼▼▼▼
 
@@ -350,7 +362,7 @@ fs.readdir("./eventHandlers/", (err, files) => {
 process.on('unhandledRejection', function(reason, p){
     console.log("Possibly Unhandled Rejection at: Promise \n".red,p, "\n\n reason: ".red, reason.stack);
 
-    gear.sendSlack("Promise Breaker","Promise Rejection: "+reason,reason.stack,"#ffcd25" )
+   // gear.sendSlack("Promise Breaker","Promise Rejection: "+reason,reason.stack,"#ffcd25" )
 });
 process.on('uncaughtException', function (err) {
 
@@ -366,7 +378,7 @@ ${err.stack}
 `
     let color = '#C04'
 
-    gear.sendSlack(name, txb, tx, color)
+   // gear.sendSlack(name, txb, tx, color)
 
 
 

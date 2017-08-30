@@ -172,6 +172,13 @@
 .tag {
   border-radius: 3px !important; }
 
+.med-name {
+  background: #e58497;
+  color: #fff; }
+
+.over {
+  background: #5fd061 !important; }
+
 /*! bulma.io v0.4.2 | MIT License | github.com/jgthms/bulma */
 @keyframes spinAround {
   from {
@@ -4951,10 +4958,10 @@ label.panel-block {
       border-color: #fff;
       color: #eb3c3c; }
     .hero.is-danger.is-bold {
-      background-image: linear-gradient(141deg, #ea0a30 0%, #eb3c3c 71%, #f26a4e 100%); }
+      background-image: linear-gradient(141deg, #d12340 0%, #eb3c3c 71%, #f26a4e 100%); }
       @media screen and (max-width: 768px) {
         .hero.is-danger.is-bold .nav-menu {
-          background-image: linear-gradient(141deg, #ea0a30 0%, #eb3c3c 71%, #f26a4e 100%); } }
+          background-image: linear-gradient(141deg, #d12340 0%, #eb3c3c 71%, #f26a4e 100%); } }
     @media screen and (max-width: 768px) {
       .hero.is-danger .nav-toggle span {
         background-color: #fff; }
@@ -5005,10 +5012,10 @@ label.panel-block {
       border-color: #fff;
       color: #788fff; }
     .hero.is-info.is-bold {
-      background-image: linear-gradient(141deg, #4584ff 0%, #788fff 71%, #9292ff 100%); }
+      background-image: linear-gradient(141deg, #4e87f6 0%, #788fff 71%, #9292ff 100%); }
       @media screen and (max-width: 768px) {
         .hero.is-info.is-bold .nav-menu {
-          background-image: linear-gradient(141deg, #4584ff 0%, #788fff 71%, #9292ff 100%); } }
+          background-image: linear-gradient(141deg, #4e87f6 0%, #788fff 71%, #9292ff 100%); } }
     @media screen and (max-width: 768px) {
       .hero.is-info .nav-toggle span {
         background-color: #fff; }
@@ -5059,10 +5066,10 @@ label.panel-block {
       border-color: #fff;
       color: #5fd061; }
     .hero.is-success.is-bold {
-      background-image: linear-gradient(141deg, #45cf2d 0%, #5fd061 71%, #6eda82 100%); }
+      background-image: linear-gradient(141deg, #57b646 0%, #5fd061 71%, #6eda82 100%); }
       @media screen and (max-width: 768px) {
         .hero.is-success.is-bold .nav-menu {
-          background-image: linear-gradient(141deg, #45cf2d 0%, #5fd061 71%, #6eda82 100%); } }
+          background-image: linear-gradient(141deg, #57b646 0%, #5fd061 71%, #6eda82 100%); } }
     @media screen and (max-width: 768px) {
       .hero.is-success .nav-toggle span {
         background-color: #fff; }
@@ -5113,10 +5120,10 @@ label.panel-block {
       border-color: rgba(0, 0, 0, 0.7);
       color: #ffcb10; }
     .hero.is-warning.is-bold {
-      background-image: linear-gradient(141deg, #dc8700 0%, #ffcb10 71%, #fff42a 100%); }
+      background-image: linear-gradient(141deg, #d1850b 0%, #ffcb10 71%, #fff42a 100%); }
       @media screen and (max-width: 768px) {
         .hero.is-warning.is-bold .nav-menu {
-          background-image: linear-gradient(141deg, #dc8700 0%, #ffcb10 71%, #fff42a 100%); } }
+          background-image: linear-gradient(141deg, #d1850b 0%, #ffcb10 71%, #fff42a 100%); } }
     @media screen and (max-width: 768px) {
       .hero.is-warning .nav-toggle span {
         background-color: rgba(0, 0, 0, 0.7); }
@@ -5167,10 +5174,10 @@ label.panel-block {
       border-color: #fff;
       color: #eb2c58; }
     .hero.is-ruby.is-bold {
-      background-image: linear-gradient(141deg, #dc085c 0%, #eb2c58 71%, #f23e4a 100%); }
+      background-image: linear-gradient(141deg, #c51f61 0%, #eb2c58 71%, #f23e4a 100%); }
       @media screen and (max-width: 768px) {
         .hero.is-ruby.is-bold .nav-menu {
-          background-image: linear-gradient(141deg, #dc085c 0%, #eb2c58 71%, #f23e4a 100%); } }
+          background-image: linear-gradient(141deg, #c51f61 0%, #eb2c58 71%, #f23e4a 100%); } }
     @media screen and (max-width: 768px) {
       .hero.is-ruby .nav-toggle span {
         background-color: #fff; }
@@ -5221,10 +5228,10 @@ label.panel-block {
       border-color: #fff;
       color: #e58497; }
     .hero.is-pink.is-bold {
-      background-image: linear-gradient(141deg, #e65086 0%, #e58497 71%, #ed9698 100%); }
+      background-image: linear-gradient(141deg, #d2648c 0%, #e58497 71%, #ed9698 100%); }
       @media screen and (max-width: 768px) {
         .hero.is-pink.is-bold .nav-menu {
-          background-image: linear-gradient(141deg, #e65086 0%, #e58497 71%, #ed9698 100%); } }
+          background-image: linear-gradient(141deg, #d2648c 0%, #e58497 71%, #ed9698 100%); } }
     @media screen and (max-width: 768px) {
       .hero.is-pink .nav-toggle span {
         background-color: #fff; }
@@ -5275,10 +5282,10 @@ label.panel-block {
       border-color: #fff;
       color: #b790f7; }
     .hero.is-purple.is-bold {
-      background-image: linear-gradient(141deg, #7b58fc 0%, #b790f7 71%, #d4a5fb 100%); }
+      background-image: linear-gradient(141deg, #8569eb 0%, #b790f7 71%, #d4a5fb 100%); }
       @media screen and (max-width: 768px) {
         .hero.is-purple.is-bold .nav-menu {
-          background-image: linear-gradient(141deg, #7b58fc 0%, #b790f7 71%, #d4a5fb 100%); } }
+          background-image: linear-gradient(141deg, #8569eb 0%, #b790f7 71%, #d4a5fb 100%); } }
     @media screen and (max-width: 768px) {
       .hero.is-purple .nav-toggle span {
         background-color: #fff; }
@@ -5329,10 +5336,10 @@ label.panel-block {
       border-color: #fff;
       color: #5258e8; }
     .hero.is-nsfw.is-bold {
-      background-image: linear-gradient(141deg, #1945ee 0%, #5258e8 71%, #7664ef 100%); }
+      background-image: linear-gradient(141deg, #3153d6 0%, #5258e8 71%, #7664ef 100%); }
       @media screen and (max-width: 768px) {
         .hero.is-nsfw.is-bold .nav-menu {
-          background-image: linear-gradient(141deg, #1945ee 0%, #5258e8 71%, #7664ef 100%); } }
+          background-image: linear-gradient(141deg, #3153d6 0%, #5258e8 71%, #7664ef 100%); } }
     @media screen and (max-width: 768px) {
       .hero.is-nsfw .nav-toggle span {
         background-color: #fff; }
@@ -5383,10 +5390,10 @@ label.panel-block {
       border-color: #fff;
       color: #788fff; }
     .hero.is-mod.is-bold {
-      background-image: linear-gradient(141deg, #4584ff 0%, #788fff 71%, #9292ff 100%); }
+      background-image: linear-gradient(141deg, #4e87f6 0%, #788fff 71%, #9292ff 100%); }
       @media screen and (max-width: 768px) {
         .hero.is-mod.is-bold .nav-menu {
-          background-image: linear-gradient(141deg, #4584ff 0%, #788fff 71%, #9292ff 100%); } }
+          background-image: linear-gradient(141deg, #4e87f6 0%, #788fff 71%, #9292ff 100%); } }
     @media screen and (max-width: 768px) {
       .hero.is-mod .nav-toggle span {
         background-color: #fff; }
@@ -5545,10 +5552,10 @@ label.panel-block {
       border-color: #363636;
       color: whitesmoke; }
     .hero.is-light.is-bold {
-      background-image: linear-gradient(141deg, #dfd8d9 0%, whitesmoke 71%, white 100%); }
+      background-image: linear-gradient(141deg, #dbdbdb 0%, whitesmoke 71%, white 100%); }
       @media screen and (max-width: 768px) {
         .hero.is-light.is-bold .nav-menu {
-          background-image: linear-gradient(141deg, #dfd8d9 0%, whitesmoke 71%, white 100%); } }
+          background-image: linear-gradient(141deg, #dbdbdb 0%, whitesmoke 71%, white 100%); } }
     @media screen and (max-width: 768px) {
       .hero.is-light .nav-toggle span {
         background-color: #363636; }
@@ -5599,10 +5606,10 @@ label.panel-block {
       border-color: whitesmoke;
       color: #363636; }
     .hero.is-dark.is-bold {
-      background-image: linear-gradient(141deg, #1f191a 0%, #363636 71%, #46403f 100%); }
+      background-image: linear-gradient(141deg, #1c1c1c 0%, #363636 71%, #46403f 100%); }
       @media screen and (max-width: 768px) {
         .hero.is-dark.is-bold .nav-menu {
-          background-image: linear-gradient(141deg, #1f191a 0%, #363636 71%, #46403f 100%); } }
+          background-image: linear-gradient(141deg, #1c1c1c 0%, #363636 71%, #46403f 100%); } }
     @media screen and (max-width: 768px) {
       .hero.is-dark .nav-toggle span {
         background-color: whitesmoke; }
@@ -5653,10 +5660,10 @@ label.panel-block {
       border-color: #fff;
       color: #e58497; }
     .hero.is-primary.is-bold {
-      background-image: linear-gradient(141deg, #e65086 0%, #e58497 71%, #ed9698 100%); }
+      background-image: linear-gradient(141deg, #d2648c 0%, #e58497 71%, #ed9698 100%); }
       @media screen and (max-width: 768px) {
         .hero.is-primary.is-bold .nav-menu {
-          background-image: linear-gradient(141deg, #e65086 0%, #e58497 71%, #ed9698 100%); } }
+          background-image: linear-gradient(141deg, #d2648c 0%, #e58497 71%, #ed9698 100%); } }
     @media screen and (max-width: 768px) {
       .hero.is-primary .nav-toggle span {
         background-color: #fff; }
