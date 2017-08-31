@@ -7,90 +7,90 @@
       .column
         .message.is-small.is-success
           .message-header
-            p Activity
+            p=translation.website.activity ||  "Activity"
           .message-body
             ul
               li.level
-                p User Joins Server
+                p=translation.website.userJoin || "User Joins Server"
                 input(type="checkbox")
 
               li.level
-                p User Leaves Server
+                p=translation.website.userLeave || "User Leaves Server"
                 input(type="checkbox")
 
               li.level
-                p Message Deleted
+                p=translation.website.messDel || "Message Deleted"
                 input(type="checkbox")
 
               li.level
-                p Message Edited
+                p=translation.website.messEdit || "Message Edited"
                 input(type="checkbox")
 
 
 
         .message.is-small.is-info
           .message-header
-            p Moderation
+            p=translation.website.moderation ||  "Moderation"
           .message-body
             ul
               li.level
-                p User Kicked
+                p=translation.website.usrKick || "User Kicked"
                 input(type="checkbox")
 
               li.level
-                p User Banned
+                p=translation.website.usrBan || "User Banned"
                 input(type="checkbox")
 
               li.level
-                p User Muted
+                p=translation.website.usrMute || "User Muted"
                 input(type="checkbox")
 
               li.level
-                p User Unmuted
+                p=translation.website.usrUnmute || "User Unmuted"
                 input(type="checkbox")
 
 
       .column
         .message.is-small.is-warning
           .message-header
-            p Advanced
+            p=translation.website.advanced ||  "Advanced"
           .message-body
             ul
 
               li.level
-                p User Photo Changed
+                p=translation.website.usrPhoto || "User Photo Changed"
                 input(type="checkbox")
 
               li.level
-                p User Name or Nick Changed
+                p=translation.website.usrNick || "User Name or Nick Changed"
                 input(type="checkbox")
 
               li.level
-                p User Roles Updated
+                p=translation.website.usrRoles || "User Roles Updated"
                 input(type="checkbox")
 
               li.level
-                p Channel Created
+                p=translation.website.newChan || "Channel Created"
                 input(type="checkbox")
 
               li.level
-                p Channel Deleted
+                p=translation.website.delChan || "Channel Deleted"
                 input(type="checkbox")
 
               li.level
-                p Role Created
+                p=translation.website.newRole || "Role Created"
                 input(type="checkbox")
 
               li.level
-                p Role Updated
+                p=translation.website.uptRole || "Role Updated"
                 input(type="checkbox")
 
               li.level
-                p Ban Revoked
+                p=translation.website.revokeBan || "Ban Revoked"
                 input(type="checkbox")
 
               li.level
-                p Permissions Edited
+                p=translation.website.permsEdit || "Permissions Edited"
                 input(type="checkbox")
 
 

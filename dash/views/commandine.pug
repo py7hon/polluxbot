@@ -16,20 +16,29 @@ html
 
 
         each v, i in commands.tree
-
+          if i == "moderation"
+            -y = "mod"
+          if i == "utility"
+            -y = "util"
+          if i == "games"
+            -y = "game"
+          if i == "frenes"
+            -y = "memes"
+          if i == "forFun"
+            -y = "forfun"
 
           -var type = {nsfw:"is-danger", moderation: "is-info" }
           -var cls = type[i] || "is-primary"
 
           .message.is-small(class=`${cls}`)
-            .message-header(id = i ): b=i
+            .message-header(id = i ): b=translation.modules[i] ||translation.modules[y] || i
             .message-body
               table.table.is-striped.is-size-7
                 thead.is-size-7
-                  th.is-narrow  Command
-                  th(width="33%") Description
-                  th(width="35%") Usage
-                  th(width="22%") Command Aliases
+                  th.is-narrow= translation.website.command ||  "Command"
+                  th(width="33%")= translation.website.description || "Description"
+                  th(width="35%")= translation.dict.usage || "Usage"
+                  th(width="22%")= translation.website.aliases || "Command Aliases"
                 tbody
                   each va in commands.tree[i]
                       tr

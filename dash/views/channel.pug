@@ -4,7 +4,7 @@
 h1#t.title(style="visibility:hidden")= "#"+channel.name
 
 div.level
-  b: span Drops:
+  b: span= translation.website.drops|| "Drops:"
   span= bot.channels.get(channel.id).DROPSLY || 0
 div.level
   b: span NSFW:
@@ -57,6 +57,10 @@ each v, i in COMMANDS.tree
 
 script.
      $(document).ready(function(){
+
+
+     $(".asbutton").first().click();
+
 
     $(".nano").nanoScroller();
     $("#chaname").html( $("#t").html())

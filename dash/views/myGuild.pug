@@ -79,14 +79,14 @@ block content
         .tabs.is-centered.is-boxed(style="background:rgba(234, 221, 255, 0.3)")
 
           ul
-            li.tab(data-target="tabA").is-active: a General Settings
-            li.tab(data-target="tabB"): a Channel Settings
+            li.tab(data-target="tabA").is-active: a=translation.website.genSets || "General Settings"
+            li.tab(data-target="tabB"): a=translation.website.chanSets || "Channel Settings"
 
   .nano: .container.nano-content.division
 
 
 
-      .container.columns.is-fluid.gaps#tabB.tabcontainer.division2(style="display:none")
+      .container.columns.is-fluid.gaps#tabB.tabcontainer.division2(style="display:none;    height: 100%")
         .column.is-3: .box.chandiv.nano#list: .nano-content
           each chan in svchans
 
@@ -95,34 +95,34 @@ block content
                 //if bot.guilds.get(server.id).channels.get(chan.id).nsfw
                   span.icon.is-small.level-right
                     i.fa.fa-exclamation-triangle
-        .column.is-9: .message.is-small.chandiv.nano#felist
-          b: .message-header#chaname(style="z-index:9") Channel Settings
+        .column.is-5: .message.is-small.chandiv.nano#felist
+          b: .message-header#chaname(style="z-index:9")=translation.website.chanSets || "Channel Settings"
           .nano-content.message-body: #results.container.is-fluid
-        //.column.is-3: .box
-
+        .column.is-3: .box
+          p asasas
 
       .container(style="height:100%").columns.is-fluid.gaps#tabA.tabcontainer.division2
          .column.is-3
 
-            .menu-label General Settings
+            .menu-label=translation.website.genSets || "General Settings"
             ul.menu-list
-              li: a.is-active.itm(data-target="basic") Basic Options
-              li: a.itm(data-target="advanced") Advanced Options
-              li: a.itm(data-target="logs") Activity Logs
+              li: a.is-active.itm(data-target="basic")=translation.website.basic || "Basic Options"
+              li: a.itm(data-target="advanced")=translation.website.advanced || "Advanced Options"
+              li: a.itm(data-target="logs")=translation.website.logs || "Activity Logs"
 
-            .menu-label Goodies
+            .menu-label=translation.website.goodies || "Goodies"
             ul.menu-list
-              li: a.itm(data-target="leader") Server Leaderboards
-              li: a.itm(data-target="prodil") Server Profile
-              li: a.itm(data-target="loot") Loots & Drops
-              li: a.itm(data-target="bank") Server Bank
+              li: a.itm(data-target="leader")=translation.website.svLead || "Server Leaderboards"
+              li: a.itm(data-target="prodil")=translation.website.svProfile || "Server Profile"
+              li: a.itm(data-target="loot")=translation.website.loots || "Loots & Drops"
+              li: a.itm(data-target="bank")=translation.website.svBank || "Server Bank"
 
             .generally-disabled
-              .menu-label Premium
+              .menu-label=translation.website.premium || "Premium"
               ul.menu-list
-                li: .itm(data-target="advanced") Server Collectibles
+                li: .itm(data-target="advanced")=translation.website.svColle || "Server Collectibles"
                 br
-                li: .itm(data-target="advanced") Cherry-Modules
+                li: .itm(data-target="advanced")=translation.website.cherrymods || "Cherry-Modules"
 
 
          #basic.column.is-9.pgs

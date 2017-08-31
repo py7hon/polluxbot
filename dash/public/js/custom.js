@@ -150,7 +150,7 @@ $(document).ready(function () {
 $(".asbutton").click(function () {
   let i1 = this.dataset.server
   let i2 = this.dataset.channel
-  $.get(`./${i1}/${i2}/`, function (data) {
+  $.post(`./${i1}/${i2}/`, function (data) {
     $('#results').html(data);
   });
 });

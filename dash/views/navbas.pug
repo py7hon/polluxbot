@@ -20,7 +20,7 @@ nav.navbar
         a.navbar-item(href='http://discord.me/pollux')= translation.website.support
         a.navbar-item(href='/info')= translation.website.info
         .navbar-item.is-hidden-touch.ble
-        a.navbar-item(href='/commands')= translation.website.info
+        a.navbar-item(href='/commands')= translation.website.global
     //a.navbar-item(href='/commands'): | GLOBAL
     block insert
     .navbar-end
@@ -39,7 +39,7 @@ nav.navbar
                 //span.divider  &#x2004
                 div( style="border-left:1px solid #844;border-right:1px solid #eee; opacity:.15;height:28px")
                 span.divider  &#x2000
-                span.is-pulled-right Login
+                span.is-pulled-right=translation.website.login || "Login"
 
         else
           div.navbar-link.is-unselectable.is-active
@@ -55,18 +55,18 @@ nav.navbar
             #login.navbar-dropdown.is-boxed(data-style='width: 18rem;')
 
 
-              a(href="/dashboard").navbar-item.lv2 Dashboard
+              a(href="/dashboard").navbar-item.lv2=translation.website.dash || "Dashboard"
               hr.navbar-divider
-              a(href="/bgshop").navbar-item.lv2 Background Shop
-              a(href="/medalshop").navbar-item.lv2 Medal Shop
-              a(href="/localranks").navbar-item.lv2 Rankings
+              a(href="/bgshop").navbar-item.lv2=translation.website.bgshop || "Background Shop"
+              a(href="/medalshop").navbar-item.lv2=translation.website.mdshop || "Medal Shop"
+              a(href="/localranks").navbar-item.lv2=translation.website.rank || "Rankings"
 
               hr.navbar-divider
               .navbar-item
                 .navbar-content
                   .level.is-mobile
                     .level-item
-                    a(href="logout").button.is-danger.level-item.is-small LOGOUT
+                    a(href="logout").button.is-danger.level-item.is-small=translation.website.logout || "LOGOUT"
                     .level-item
 
 

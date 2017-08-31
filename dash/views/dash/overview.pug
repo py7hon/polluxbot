@@ -48,23 +48,23 @@ style.
 
 
 .box.ov(style="background:rgba(0, 0, 0, 0); overflow:hidden; position:relative; padding-left:50px")
-  p.title &#x2000 Overview
+  p.title!= "&#x2000" + (translation.website.overview  || "Overview")
   div.level.is-marginless
 
     .box.ovi.is-marginless
       p
-        b Rubines:
+        b=translation.website.rubines || "Rubines"
         span.alignrite: img(src=ruby).curr_icon
         span.alignrite.countup(data-count= user.modules.goodies) 0
       p
-        b Jades:
+        b=translation.website.jades ||  "Jades"
         span.alignrite: img(src=jade).curr_icon
         span.alignrite.countup(data-count= (user.modules.jades || 0)) 0
       p
-        b Current Daily Streak:
+        b=translation.website.currDySt || "Current Daily Streak"
         span.alignrite.countup(data-count= user.modules.dyStreak) 0
       p
-        b Last Daily:
+        b=translation.website.lastDy || " Last Daily"
         -let d = new Date(user.modules.daily).getDate()
         -let m = new Date(user.modules.daily).getMonth()+1
         -let a = new Date(user.modules.daily).getFullYear()
@@ -78,26 +78,26 @@ style.
   .columns(style="margin:12px")
     .columns
       .column: small
-        b Expenses:
-        p Drops:
+        b=translation.$.expenses || "Expenses"
+        p=translation.$.drops || "Drops"
           span.countup(data-count= user.modules.expenses.drops) 0
-        p Trades:
+        p=translation.$.trades || "Trades"
           span.countup(data-count= user.modules.expenses.trade) 0
-        p Lewd:
+        p=translation.$.lewdery || "Lewd"
           span.countup(data-count= user.modules.expenses.putaria) 0
-        p Gambling:
+        p=translation.$.gambling || "Gambling"
           span.countup(data-count= user.modules.expenses.jogatina) 0
 
       .column: small
 
-        b Earnings:
-        p Drops:
+        b=translation.$.earnings || "Earnings"
+        p=translation.$.drops || "Drops"
           span.countup(data-count= user.modules.earnings.drops) 0
-        p Trades:
+        p=translation.$.trades || "Trades"
           span.countup(data-count= user.modules.earnings.trade) 0
-        p Lewd:
+        p=translation.$.lewdery || "Lewd"
           span.countup(data-count= user.modules.earnings.putaria) 0
-        p Gambling:
+        p=translation.$.gambling || "Gambling"
           span.countup(data-count= user.modules.earnings.jogatina) 0
 
   .columns(style="margin:0px")
@@ -107,7 +107,7 @@ style.
         p
           .icon.is-small: i.fa.fa-picture-o
           span &#x2000
-          b Backgrounds: &#x2003
+          b= translation.website.backgrounds || "Backgrounds:"
 
           if user.modules.bgInventory
             span.alignrite.countup(data-count= user.modules.bgInventory.length) 0
@@ -117,7 +117,7 @@ style.
           .icon.is-small
             i.fa.fa-certificate
           span &#x2000
-          b Medals: &#x2003
+          b=translation.website.medals || "Medals"
 
           if user.modules.medalInventory
             span.alignrite.countup(data-count= user.modules.medalInventory.length) 0
@@ -126,12 +126,12 @@ style.
         p
           .icon.is-small: i.fa.fa-flask
           span &#x2000
-          b Inventory: &#x2003
+          b=translation.website.inventory || "Inventory"
           span.alignrite ---
         p
           .icon.is-small: i.fa.fa-ticket
           span &#x2000
-          b Stamps: &#x2003
+          b=translation.website.stamps || "Stamps"
           span.alignrite ---
 
       .column.is-1
@@ -139,7 +139,7 @@ style.
         p
           .icon.is-small: i.fa.fa-hand-o-up
           span &#x2000
-          b Reputation: &#x2003
+          b=translation.website.reputation || "Reputation"
           span.alignrite= user.modules.rep
         p
           .icon.is-small: i.fa.fa-star
@@ -149,19 +149,19 @@ style.
         p
           .icon.is-small: i.fa.fa-eject
           span &#x2000
-          b Level: &#x2003
+          b=translation.website.level ||"Level"
           span.alignrite.countup(data-count= user.modules.level) 0
         p
           .icon.is-small: i.fa.fa-trophy
           span &#x2000
-          b Global Rank: &#x2003
+          b=translation.website.globalrank ||" Global Rank:"
           span.alignrite
             span.countup(data-count=999) 0
             span /
             span= bot.users.size
 
     .column.is-4(style="transform:translateY(65px)")
-      small Equipped Medals
+      small=translation.website.eqMeds || "Equipped Medals"
       .level.is-marginless.columns.is-half(style=";filter:drop-shadow(0 0 5px #fff)")
             .level-item
             -var it = 0;

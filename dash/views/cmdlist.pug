@@ -27,15 +27,26 @@ block nav
       a.button.is-small#ru RU
 
 block content
-
+  #langslot.hidden= lang
   .columns.division2
     .column.is-2
       hr
       aside.menu
-        p.menu-label Command Categories
+        p.menu-label= translation.website.commCat || "Command Categories"
         ul.menu-list
           each v, i in commands.tree
-            li: b: a.side-option(href="#"+i)= i
+            if i == "moderation"
+              -y = "mod"
+            if i == "utility"
+              -y = "util"
+            if i == "games"
+              -y = "game"
+            if i == "frenes"
+              -y = "memes"
+            if i == "forFun"
+              -y = "forfun"
+
+            li: b: a.side-option(href="#"+i)= translation.modules[i] ||translation.modules[y]|| y
 
     .column
       .nano.is-marginless.is-paddingless
@@ -49,12 +60,12 @@ block scripts
 
 
   $(document).ready(function(){
-
+    var langua = $("#langslot").html()
     $("html, body").animate({ scrollTop: $('#nsfw').offset() }, 1000);
     $(".container").fadeIn()
     var siteLang;
       if(!localStorage.locale){
-        siteLang = 'en';
+        siteLang = langua||"en";
        localStorage.setItem('locale', siteLang);
       }else {
        siteLang = localStorage.locale;

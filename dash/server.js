@@ -509,7 +509,7 @@ exports.init = (bot, DB, userDB) => {
 //              SPECIFIC CHANNEL
 //======================================================================
 
-  app.get('/myGuilds/:id1/:id2', checkAuth, function (req, res) {
+  app.post('/myGuilds/:id1/:id2', checkAuth, function (req, res) {
     let dbpars = DB.get(req.params.id1);
     if (dbpars == undefined) {
       serverSetup(bot.guilds.get(req.params.id1))

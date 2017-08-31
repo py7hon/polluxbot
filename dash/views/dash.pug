@@ -67,10 +67,10 @@ block content
         .tabs.is-centered.is-boxed(style="background:rgba(234, 221, 255, 0.3)")
 
           ul
-            li.tab.is-active(data-target="overviewSettings"): a Overview
-            li.tab(data-target="profileSettings"): a  Profile
-            li.tab(data-target="guildsets"): a  My Servers
-            li.tab(data-target="soon"): a  Inventory
+            li.tab.is-active(data-target="overviewSettings"): a= translation.website.overview || "Overview"
+            li.tab(data-target="profileSettings"): a= translation.website.profile ||  "Profile"
+            li.tab(data-target="guildsets"): a= translation.website.myServs|| "My Servers"
+            li.tab(data-target="soon"): a=translation.website.inventory||  "Inventory"
 
   .nano: .container.nano-content
         br
