@@ -22,6 +22,7 @@ block nav
       a.button.is-small#en: img(src="/images/flags/GB.png")
       a.button.is-small#de: img(src="/images/flags/DE.png")
       a.button.is-small#nl: img(src="/images/flags/NL.png")
+      a.button.is-small#cz: img(src="/images/flags/CZ.png")
       a.button.is-small#pt-EU: img(src="/images/flags/PT.png")
       a.button.is-small#ru RU
 
@@ -101,6 +102,10 @@ block scripts
          })
          $("#ru").click(function(){
             setLang("ru")
+
+         })
+         $("#cz").click(function(){
+            setLang("cz")
 
          })
          $(".side-option").click(function(){
