@@ -12,8 +12,8 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-var sassMiddleware = require('node-sass-middleware');
-
+const sassMiddleware = require('node-sass-middleware');
+const i18n=require("i18n-express");
 
 const gear = require("../core/gearbox.js")
 
@@ -84,6 +84,11 @@ exports.init = (bot, DB, userDB) => {
     prefix: '/css'
   }));
 
+app.use(i18n({
+  translationsPath: path.join(__dirname, '/../utils/lang/'),
+  siteLangs: ["en","dev","cz","es","de"],
+  textsVarName: 'translation'
+}));
 
   // view engine setup
   app.set('views', path.join(__dirname, 'views'));

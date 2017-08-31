@@ -45,23 +45,18 @@
     "ejs": "latest",
     "express": "~4.15.2",
     "express-session": "latest",
+    "ffmpeg": "latest",
     "google-cloud": "^0.56.0",
     "google-translate": "^2.0.5",
     "google-translate-api": "^2.3.0",
-<<<<<<< HEAD
     "grpc": "^1.4.1",
+    "i18n-express": "^1.1.2",
     "i18next": "latest",
     "i18next-node-fs-backend": "latest",
     "icy": "^2.1.0",
     "imageurl-base64": "^1.0.0",
     "jimp": "latest",
     "morgan": "~1.8.1",
-=======
-    "i18next": "latest",
-    "i18next-node-fs-backend": "latest",
-    "icy": "^2.1.0",
-    "jimp": "latest",
->>>>>>> origin/master
     "morse-mp3": "^0.2.5",
     "name-this-color": "^1.0.2",
     "node-canvas-text": "^1.0.2",
@@ -77,20 +72,12 @@
     "serve-favicon": "~2.4.2",
     "shortid": "^2.2.6",
     "socket.io-client": "latest",
-<<<<<<< HEAD
-    "uws": "^8.14.1",
-    "x2js": "^3.0.1",
-    "youtube-search": "^1.0.10",
-    "ytdl-core": "latest"
-=======
     "spotify-web-api-node": "^2.4.0",
     "sqlite": "^2.2.4",
     "uws": "^8.14.0",
     "x2js": "^3.0.1",
     "youtube-search": "^1.0.10",
-    "ytdl-core": "latest",
-    "ffmpeg": "latest"
->>>>>>> origin/master
+    "ytdl-core": "latest"
   },
   "engines": {
     "node": ">=8.0.0"
