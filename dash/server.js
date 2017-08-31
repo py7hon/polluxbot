@@ -75,24 +75,6 @@ exports.init = (bot, DB, userDB) => {
   }));
 
 
-  app.use(sassMiddleware({
-    /* Options */
-    src: path.join(__dirname, 'public/sass'),
-    dest: path.join(__dirname, 'public/css'),
-    debug: true,
-    outputStyle: 'compressed',
-    prefix: '/css'
-  }));
-
-app.use(i18n({
-  translationsPath: path.join(__dirname, '/../utils/lang/'),
-  siteLangs: ["en","dev","cz","es","de"],
-  textsVarName: 'translation'
-}));
-
-  // view engine setup
-  app.set('views', path.join(__dirname, 'views'));
-  app.set('view engine', 'pug');
 
 
 
@@ -113,6 +95,14 @@ app.use(i18n({
     sourceMap: true,
     prefix: '/css'
   }));
+
+
+
+    // view engine setup
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'pug');
+
+
 
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(express.static(path.join(__dirname, 'public/images')));
@@ -152,6 +142,7 @@ app.use(i18n({
   //app.use('/', bgse);
   app.use(session({
     secret: 'adobo the cato',
+    maxAge: 36000000,
     cookie: { maxAge: 36000000 },
     rolling: true,
     resave: true,
@@ -163,6 +154,13 @@ app.use(i18n({
     scope: scopes
   }), function (req, res) {});
 
+
+    app.use(i18n({
+  translationsPath: (__dirname+ '\\..\\utils\\lang'),
+  siteLangs: ["en","cz","es","de"],
+  textsVarName: 'translation',
+      paramLangName:"locale"
+}));
 
   // LOGIN PROCEDURE
 
@@ -831,7 +829,7 @@ app.use(i18n({
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {
     var err = new Error('Not Found');
-    res.render('404');
+    //res.render('404');
     err.status = 404;
     next(err);
   });

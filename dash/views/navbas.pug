@@ -16,11 +16,11 @@ nav.navbar
       span
   #USERMENU.navbar-menu
     .navbar-start
-        a.navbar-item(href='/commands'): | COMMANDS
-        a.navbar-item(href='http://discord.me/pollux'): | SUPPORT
-        a.navbar-item(href='/info'): | INFO
+        a.navbar-item(href='/commands')= translation.website.commands
+        a.navbar-item(href='http://discord.me/pollux')= translation.website.support
+        a.navbar-item(href='/info')= translation.website.info
         .navbar-item.is-hidden-touch.ble
-        a.navbar-item(href='/commands'): | GLOBAL
+        a.navbar-item(href='/commands')= translation.website.info
     //a.navbar-item(href='/commands'): | GLOBAL
     block insert
     .navbar-end
