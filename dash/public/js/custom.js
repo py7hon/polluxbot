@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Toggle the class on both the "navbar-burger" and the "navbar-menu"
         $(tabs).removeClass('is-active');
         $tab.classList.toggle('is-active');
+        $(".tabcontainer").removeClass('is-hidden');
         $(".tabcontainer").fadeOut()
 
         try{count()}catch(e){}
@@ -148,6 +149,8 @@ $(document).ready(function () {
 
 
 $(".asbutton").click(function () {
+  $(".asbutton").removeClass("is-active")
+  $(this).addClass("is-active")
   let i1 = this.dataset.server
   let i2 = this.dataset.channel
   $.post(`./${i1}/${i2}/`, function (data) {

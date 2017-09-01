@@ -40,7 +40,7 @@ box-shadow: none;
 color:white;
 }
 .navbar-item:hover .x{
-color:#222;
+color:#fff;
 }
 .navbar-dropdown .lv2:hover{
 color:white !important;
@@ -53,10 +53,22 @@ box-shadow: 0 0 10px rgba(122, 122, 122, 0.5);
 
 }
 .hero .navbar-item:hover{
-  background: #e58497 !important; // linear-gradient(to bottom, #e58497 0%, rgba(255, 255, 255, 0.18) 100%);
+  background: rgba(229, 132, 151, 0);
+  //background: linear-gradient(to bottom, #e58497 0%, rgba(255, 255, 255, 0.18) 100%);
+  text-shadow: 0 0 15px #ffd1e2 !important;
+
 }
+.striped{
+  /*linear-gradient(141deg, #8569eb 0%, #b790f7 71%, #d4a5fb 100%)*/
+  background: repeating-linear-gradient(
+  45deg,
+  rgba(183, 144, 247, 0.1),
+  rgba(183, 144, 247, 0.1) 10px,
+  rgba(133, 105, 235, 0.1) 10px,
+  rgba(133, 105, 235, 0.1) 20px
+);
 
-
+}
 
 .round-5{
   width: 210px;
@@ -410,7 +422,18 @@ b{
   font-weight: 900
 }
 
+.b500{
+  font-weight: 500 !important;
 
+}
+.b500T{
+  font-weight: 500 !important;
+  font-size: 120%
+}
+
+.b900{
+  font-weight: 900 !important
+}
 
 
 .bg_icon{
@@ -603,7 +626,7 @@ text-align: justify;
 
 .curr_icon{
   position:absolute;
-  transform:scale(.8) translateY(5px)
+  transform:scale(.8) translateY(5px) translateX(8px)
 }
 
 .bitdown{
@@ -660,4 +683,83 @@ text-align: justify;
 }
 
 
+.nano-content{
+  outline: 0 !important
+}
 
+.channel{
+  margin-right: 12px;
+}
+  .channel a{
+  padding: 5px 25px;
+    transition: all 100ms ease;
+    color:#aaa;
+}
+.channel:hover{
+  background: #333;
+  border-radius: 3px;
+
+}
+.channel a:hover{
+    color:#ccc;
+
+}
+.channel .is-active{
+    background: #db6195;
+  border-radius: 3px;
+  border-left: solid 5px #b2205e;
+  transition: all 300ms ease;
+    color:#fff;
+}
+.medallien_disp{
+  width:50px;
+  margin:5px;
+}
+
+.supershadow{
+  box-shadow: 0 3px 50px #111;
+}
+
+.texshadow{
+  text-shadow: 2px 2px 2px #222 !important
+}
+
+    .is-miniultra{
+    font-size:80px
+    }
+
+.fadezoom{
+    animation: fadezoom .4s both;
+
+}
+.fadein{
+
+  animation: fadeIn 2s both;
+  animation-delay: .5s
+
+}
+@keyframes fadeIn {
+  0% {
+
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1
+
+  }
+}
+@keyframes fadezoom {
+  0% {
+
+    opacity: 0;
+    transform: scale(1.2)
+  }
+
+
+  100% {
+    transform: scale(1);
+    opacity: 1
+
+  }
+}

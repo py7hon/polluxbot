@@ -312,6 +312,7 @@ exports.init = (bot, DB, userDB) => {
       user: dbpars,
       userinfo: USR,
       bot: bot,
+      gear:gear,
       guilds: ginfo,
       MEDALBASE: fs.readFileSync(__dirname + "/../resources/lists/medals.json"),
       BGBASE: fs.readFileSync(__dirname + "/../resources/lists/backgrounds.json")

@@ -316,11 +316,14 @@ function refreshMeds(medals){
 
         $.each($('.countup'), function (X) {
           var count = $(this).data("count"),
-              numAnim = new CountUp(this, 0, count, 0,2,options);
+              st = $(this).data("start") || 0,
+              t = $(this).data("time") || 0,
+              off = $(this).data("offset") || 0,
+              numAnim = new CountUp(this, st, count, 0,t,options);
             setTimeout(function(){
 
               numAnim.start();
-            },X*100)
+            },X*100-off)
           });
       }
 count()

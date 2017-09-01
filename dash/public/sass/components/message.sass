@@ -9,22 +9,24 @@
     $color-invert: nth($pair, 2)
     $color-lightning: max((100% - lightness($color)) - 2%, 0%)
     $color-luminance: colorLuminance($color)
-    $darken-percentage: $color-luminance * 70%
-    $desaturate-percentage: $color-luminance * 30%
+    $darken-percentage: $color-luminance * 20%
+    $desaturate-percentage: $color-luminance * 70%
     &.is-#{$name}
-      background-color: lighten($color, $color-lightning)
+      background-color: $black-ter
       .message-header
-        background-color: $color
+        background-color: $color  //desaturate(darken($color,2%),20%)
         color: $color-invert
       .message-body
-        border-color: $color
-        color: desaturate(darken($color, $darken-percentage), $desaturate-percentage)
+        border-color: desaturate(darken($color,20%),50%)
+        color: desaturate(lighten($color, $darken-percentage), $desaturate-percentage)
+        background-color: $grey-darkest
+
 
 .message-header
   align-items: center
-  background-color: $text
+  background-color: $black-bis
   border-radius: $radius $radius 0 0
-  color: $text-invert
+  color: $grey-light
   display: flex
   justify-content: space-between
   line-height: 1.25
@@ -45,7 +47,8 @@
     border-top: none
 
 .message-body
-  border: 1px solid $border
+  background-color: $grey-darker
+  border: 1px solid $black-bis
   border-radius: $radius
   color: $text
   padding: 1em 1.25em

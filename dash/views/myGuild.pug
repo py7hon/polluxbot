@@ -76,7 +76,7 @@ block content
 
 
       div
-        .tabs.is-centered.is-boxed(style="background:rgba(234, 221, 255, 0.3)")
+        .tabs.is-centered.is-boxed.striped
 
           ul
             li.tab(data-target="tabA").is-active: a=translation.website.genSets || "General Settings"
@@ -86,22 +86,24 @@ block content
 
 
 
-      .container.columns.is-fluid.gaps#tabB.tabcontainer.division2(style="display:none;    height: 100%")
+      .container.columns.is-fluid.gaps#tabB.tabcontainer.division2(style="height: 100%")
         .column.is-3: .box.chandiv.nano#list: .nano-content
           each chan in svchans
 
-            div.card
-              a.asbutton(data-channel=chan.id data-server=server.id): span.level-left= "#"+ chan.name
-                //if bot.guilds.get(server.id).channels.get(chan.id).nsfw
+            div.channel
+              a.asbutton(data-channel=chan.id data-server=server.id).level
+                span.level-left= "#"+ chan.name
+                if bot.guilds.get(server.id).channels.get(chan.id).nsfw
                   span.icon.is-small.level-right
                     i.fa.fa-exclamation-triangle
-        .column.is-5: .message.is-small.chandiv.nano#felist
-          b: .message-header#chaname(style="z-index:9")=translation.website.chanSets || "Channel Settings"
-          .nano-content.message-body: #results.container.is-fluid
+
+        .column.is-5: .message.is-small.chandiv#felist.fullheight
+          //b: .message-header#chaname(style="z-index:9")=translation.website.chanSets || "Channel Settings"
+          .message-body.nano: #results.container.is-fluid.nano-content
         .column.is-3: .box
           p asasas
 
-      .container(style="height:100%").columns.is-fluid.gaps#tabA.tabcontainer.division2
+      .container(style="height:100%").columns.is-fluid.gaps#tabA.tabcontainer.division2.is-hidden
          .column.is-3
 
             .menu-label=translation.website.genSets || "General Settings"
@@ -142,4 +144,7 @@ block content
       .footspace
 block scripts
   script(src="/js/guilds.js")
-
+  script.
+    $(document).ready(function(){
+       $(".asbutton").first().click();
+       })

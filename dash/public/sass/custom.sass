@@ -6,12 +6,12 @@ $family-sans-serif: "Whitney"
 
 
 $pollux-danger:   #eb3c3c
-$pollux-info:     #788fff
+$pollux-info:     #556de5
 $pollux-success:  #5fd061
 $pollux-warning:  #ffcb10
 $pollux-ruby:     #eb2c58
-$pollux-pink:     #e58497
-$pollux-purple:   #b790f7
+$pollux-pink:     #e87aa9
+$pollux-purple:   #ae77dd//#ba80de
 $pollux-nsfw:     #5258e8
 $pollux-mod:      #788fff
 
@@ -29,12 +29,18 @@ $pollux-mod-i:      findColorInvert($pollux-mod)
 
 
 
+$text:   hsl(0, 0%, 71%)
+$background: $grey-darker
+$grey-darkest:  hsl(0, 0%, 18%)
+$black-bis-mid:  hsl(0, 0%, 8%)
 
-$colors: ("danger":($pollux-danger,$pollux-danger-i),"info":($pollux-info,$pollux-info-i),"success":($pollux-success,$pollux-success-i),"warning":($pollux-warning,$pollux-warning-i),"ruby":($pollux-ruby,$pollux-ruby-i),"pink":($pollux-pink,$pollux-pink-i),"purple":($pollux-purple,$pollux-purple-i),"nsfw":($pollux-nsfw,$pollux-nsfw-i),"mod":($pollux-mod,$pollux-mod-i),"white": ($white, $black), "black": ($black, $white), "light": ($light, $light-invert), "dark": ($dark, $dark-invert), "primary": ($pollux-pink, $primary-invert))
+$colors: ("danger":($pollux-danger,$pollux-danger-i),"info":($pollux-info,$pollux-info-i),"success":($pollux-success,$pollux-success-i),"warning":($pollux-warning,$pollux-warning-i),"ruby":($pollux-ruby,$pollux-ruby-i),"pink":($pollux-pink,$pollux-pink-i),"purple":($pollux-purple,$pollux-purple-i),"nsfw":($pollux-nsfw,$pollux-nsfw-i),"mod":($pollux-mod,$pollux-mod-i),"white": ($white, $black), "black": ($black, $white), "light": ($light, $light-invert), "dark": ($black-bis, $white), "primary": ($pollux-pink, $primary-invert))
+
+
 
 
 $primary: $pollux-pink
-$link: $pollux-purple
+$link: $pollux-pink
 $code-background:   #f7eff2
 $code:              #a21d55
 
@@ -57,3 +63,8 @@ $code:              #a21d55
 
 
 @import "bulma"
+
+.message.is-dark .message-body
+  background: $grey-darkest
+  border-color: $black-ter
+  color: $grey-light
