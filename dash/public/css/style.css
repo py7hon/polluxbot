@@ -3,12 +3,66 @@ html{
      height: 100vh;
 }
 
-
-
    body{
   overflow-y: auto;
      height: 100%;
 }
+
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600,900&subset=latin-ext');
+@font-face {
+  font-family: "Whitney";
+  src: local('Raleway'), url("./fonts/Raleway-Bold.ttf");
+  unicode-range: U+0100-U+017F;
+  font-weight: 300
+}@font-face {
+  font-family: "Whitney";
+  src: local('Raleway'), url("./fonts/Raleway-Bold.ttf");
+  unicode-range: U+0100-U+017F;
+  font-weight: 400
+}@font-face {
+  font-family: "Whitney";
+  src: local('Raleway'), url("./fonts/Raleway-Bold.ttf");
+  unicode-range: U+0100-U+017F;
+  font-weight: 600
+}@font-face {
+  font-family: "Whitney";
+  src: local('Raleway'), url("./fonts/Raleway-Bold.ttf");
+  unicode-range: U+0100-U+017F;
+  font-weight: 900
+}@font-face {
+  font-family: "Whitney";
+  src: local('Raleway'), url("./fonts/Raleway-Bold.ttf");
+  unicode-range: U+0100-U+017F;
+  font-weight: 500;
+
+}
+
+@font-face {
+  font-family: "Whitney";
+  src: url("./fonts/WhitneyHTF-Light.otf");
+  font-weight: 300
+}
+@font-face {
+  font-family: "Whitney";
+  src: url("./fonts/WhitneyHTF-Medium.otf");
+}
+@font-face {
+  font-family: "Whitney";
+  src: url("./fonts/WhitneyHTF-Bold.otf");
+  font-weight: 600
+}
+@font-face {
+  font-family: "Whitney";
+  src: url("./fonts/WhitneyHTF-Black.otf");
+  font-weight: 900
+}
+@font-face {
+  font-family: "Whitney";
+  src: url("./fonts/WhitneyHTF-BoldSC.otf");
+  font-weight: 500
+}
+
 
 .ble{
   pointer-events: none;
@@ -94,6 +148,7 @@ box-shadow: 0 0 10px rgba(122, 122, 122, 0.5);
     height: 45px;
     border-bottom: 1px solid #5e5e5e;
 }
+/*
 .filter-button
 {
     font-size: 18px;
@@ -119,7 +174,7 @@ box-shadow: 0 0 10px rgba(122, 122, 122, 0.5);
     background-color: #42B32F;
     color: white;
 }
-
+*/
 .port-image
 {
     width: 100%;
@@ -419,16 +474,18 @@ box-shadow: 0 0 10px rgba(122, 122, 122, 0.5);
   opacity: .5 !important
 }
 b{
-  font-weight: 900
+  font-weight: 600
 }
 
 .b500{
   font-weight: 500 !important;
+  text-transform: uppercase;
+  font-size: 80%
 
 }
 .b500T{
   font-weight: 500 !important;
-  font-size: 120%
+  text-transform: uppercase;
 }
 
 .b900{
@@ -681,7 +738,9 @@ text-align: justify;
 .fullheight{
   height: 100%
 }
-
+.fullheight-f{
+  height: 100% !important
+}
 
 .nano-content{
   outline: 0 !important
@@ -762,4 +821,12 @@ text-align: justify;
     opacity: 1
 
   }
+}
+stuff{
+
+  transition: all .3s ease;
+}
+.blurred{
+  transition: all 1s ease;
+  filter: blur(18px)
 }

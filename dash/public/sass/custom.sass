@@ -1,7 +1,8 @@
 $family-sans-serif: "Whitney"
 
 @import "./utilities/_all"
-@import "./font"
+//@import "./font"
+
 
 
 
@@ -31,8 +32,14 @@ $pollux-mod-i:      findColorInvert($pollux-mod)
 
 $text:   hsl(0, 0%, 71%)
 $background: $grey-darker
-$grey-darkest:  hsl(0, 0%, 18%)
-$black-bis-mid:  hsl(0, 0%, 8%)
+$grey-darkest:  hsl(215, 5%, 18%)
+$grey-lightish:  hsl(215, 5%, 55%) !default
+$grey-darkish:  hsl(215, 5%, 40%) !default
+$black-bis-mid:  hsl(215, 5%, 8%)
+
+$blugray-dark: hsl(215, 5%, 20%)
+$blugray: hsl(215, 5%, 25%)
+$blugray-light: hsl(215, 5%, 30%)
 
 $colors: ("danger":($pollux-danger,$pollux-danger-i),"info":($pollux-info,$pollux-info-i),"success":($pollux-success,$pollux-success-i),"warning":($pollux-warning,$pollux-warning-i),"ruby":($pollux-ruby,$pollux-ruby-i),"pink":($pollux-pink,$pollux-pink-i),"purple":($pollux-purple,$pollux-purple-i),"nsfw":($pollux-nsfw,$pollux-nsfw-i),"mod":($pollux-mod,$pollux-mod-i),"white": ($white, $black), "black": ($black, $white), "light": ($light, $light-invert), "dark": ($black-bis, $white), "primary": ($pollux-pink, $primary-invert))
 
@@ -41,11 +48,14 @@ $colors: ("danger":($pollux-danger,$pollux-danger-i),"info":($pollux-info,$pollu
 
 $primary: $pollux-pink
 $link: $pollux-pink
-$code-background:   #f7eff2
-$code:              #a21d55
+$code-background:   #412e35
+$code:              #4cbbed
 
 .message-body code, .message-body pre
   background: $code-background!important
+  padding: 2px 4px
+
+  border-radius: 3px
 
 .message.is-small
   font-size: 0.75rem;

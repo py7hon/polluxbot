@@ -9,7 +9,7 @@ block content
       font-size:.75rem !important
     }
     .hexagon,.smolHex{
-      filter: drop-shadow(0px 0px 2px #fff) drop-shadow(1px 1px 2px rgba(44, 44, 44, 0.5));
+      filter: drop-shadow(0px 0px 1px #fff) drop-shadow(1px 1px 2px rgba(44, 44, 44, 0.5));
     }
     .section{
      padding-top:0 !important
@@ -44,8 +44,8 @@ block content
 
 
 
-
-  include navbas
+  .hero.is-pink.is-bold
+    include navbas
 
 
 
@@ -85,7 +85,7 @@ block content
         br
         .level
           .level-item
-            image.divisi(src="/images/divider.png")
+            image.divisi(src="/images/divider.png" style="filter:invert();mix-blend-mode: lighten;")
       .title: b Team
       .subtitle All people involved in this project and which without them, there would be no Pollux at all
       hr

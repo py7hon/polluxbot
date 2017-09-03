@@ -1,99 +1,112 @@
 extends layout
+mixin rarity(r,RR)
+      .level
+        .level-right
+          figure.image.is-48x48
+            img(src="/images/tiers/"+RR+".png")
+          .title: b!= "&#x2003 "+r.toUpperCase()
+
+
 
 block content
-  if userinfo
-        div.profileMock(style="display:none")
-          img.mainframe(src="http://i.imgur.com/PuDHUx5.png")
-          div#bgm(style="background-image:url('"+userinfo.bg+"')")
-          div.hexagon(style="background-image:url('"+userinfo.pix+"')")
-            div.hexTop
-            div.hexBottom
-  section(class="hero is-danger is-bold")
-    div(class="hero-body")
-      //h1(class="title") POLLUX BGDEMO
-      //p(class="subtitle") Backgrounds
+
+  .hero.is-primary.is-bold
+        include navbas
+
+        .level
+              .level-left
+                //img(src=userinfo.pix).image(height="128px")
+                div.hexagon(style="opacity:0")
+                  div.hexTop
+                  div.hexBottom
+              div &#x2003
+              div &#x2003
+              div &#x2003
+              div &#x2003
+              .level-left
+                  div
+                    p.title: b Background Catalog
+
+
+              .level-item
+                  div
+                    p
+                      //span= online
+                      //span /
+                      //span=sv.members.size
+
+              //.level-item
+              //.level-right: div: img(src=server.avi).image.is-round.bitdown.floatnglow
+              .level-item
 
 
 
-  div.columns
-    aside(class="column panel is-one-quarter")
+  .nano: .container.nano-content.division
 
-      div(class=" is-grouped is-centered ")
-        p.panel-heading Rarity
-        div.panel-block
-          button(class="button is-small is-fullwidth is-marginless is-danger super-filter-button" data-filter="all") All
-        div.panel-block
-          button(class="button is-small is-fullwidth is-marginless is-danger super-filter-button" data-filter="UR") Ultra Rare
-        div.panel-block
-          button(class="button is-small is-fullwidth is-marginless is-danger super-filter-button" data-filter="SR") Super Rare
-        div.panel-block
-          button(class="button is-small is-fullwidth is-marginless is-danger super-filter-button" data-filter="R") Rare
-        div.panel-block
-          button(class="button is-small is-fullwidth is-marginless is-danger super-filter-button" data-filter="U") Uncommon
-        div.panel-block
-          button(class="is-small button is-fullwidth is-marginless is-danger super-filter-button" data-filter="C") Common
-        p.panel-heading Tags
 
-        div.panel-block
-          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="all") All
-        div.panel-block
-          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="anime")  Anime
-        div.panel-block
-          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="game")  Games
-        div.panel-block
-          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="movie")  Movies
-        div.panel-block
-          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="landscape")   Landscape
-        div.panel-block
-          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="girl")   Girls
-        div.panel-block
-          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="boy")   Boys
-        div.panel-block
-          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="abstract")   Abstract
-        div.panel-block
-          button(class="is-fullwidth is-marginless button is-danger is-outlined filter-button is-small" data-filter="other")   Other
 
-    section(class="column section")
-      div(class=" box has-text-centered super-filter UR")
-        img(src="/images/tiers/UR.png")
-        br
-        h1(class="title is-1") ULTRA RARE
-        br
-        each val in imgboxe.UR
-           a(title=val[1]  href=val[0]  data-lightbox="UR" price="12050" tags=tags[val[1]])
-              img(src=val[0] class="round-5 filter "+tags[val[1]])
+        .container.columns.is-fluid.gaps#tabB.tabcontainer.division2(style="height: 100%")
+          .column.is-2: .box.chandiv.nano#list: .nano-content
 
-      div(class=" box has-text-centered super-filter SR")
-        img(src="/images/tiers/SR.png")
-        h1(class="title is-1") SUPER RARE
-        br
-        each val in imgboxe.SR
-            a(title=val[1]  href=val[0]  data-lightbox="SR" price="8200" tags=tags[val[1]])
-              img(src=val[0] class="round-5 filter "+tags[val[1]])
+            -const t = translation.website
+            -const r = translation.rarity || {r:"Rare",ur:"Ultra Rare", sr:"Super Rare",c:"Common", u:"Uncommon"}
+            aside.menu(style="margin:20px")
+              p.menu-label= t.rarity || "Rarity"
+              ul.menu-list
 
-      div(class=" box has-text-centered super-filter R")
-        img(src="/images/tiers/R.png")
-        h1(class="title is-1")  RARE
-        br
-        each val in imgboxe.R
-          a(title=val[1]  href=val[0]  data-lightbox="R" price="5300" tags=tags[val[1]])
-            img(src=val[0] class="round-5 filter "+tags[val[1]])
+                li:   a.is-active.itm.super-filter-button(data-filter="all")= t.all || "All"
+                li:   a.itm.super-filter-button(data-filter="UR")= r.ur
+                li:   a.itm.super-filter-button(data-filter="SR")= r.sr
+                li:   a.itm.super-filter-button(data-filter="R")= r.r
+                li:   a.itm.super-filter-button(data-filter="U")= r.u
+                li:   a.itm.super-filter-button(data-filter="C")= r.c
+              p.menu-label= t.tags || "Tags"
 
-      div(class=" box has-text-centered super-filter U")
-        img(src="/images/tiers/U.png")
-        h1(class="title is-1") UNCOMMON
-        br
-        each val in imgboxe.U
-          a(title=val[1]  href=val[0]  data-lightbox="U" price="2570" tags=tags[val[1]])
-            img(src=val[0] class="round-5 filter "+tags[val[1]])
+              -const tg = [{tag:"game",name:"Games"},{tag:"anime",name:"Anime"},{tag:"movie",name:"Movies"},{tag:"landscape",name:"Scenery"},{tag:"girl",name:"Girls"},{tag:"boy",name:"Boys"},{tag:"abstract",name:"Abstract"},{tag:"other",name:"Other"}]
 
-      div(class=" box has-text-centered super-filter C")
-        img(src="/images/tiers/C.png")
-        h1(class="title is-1") COMMON
-        br
-        each val in imgboxe.C
-          a(title=val[1]  href=val[0] data-lightbox="C" price="1550" tags=tags[val[1]])
-            img(src=val[0] class="round-5 filter "+tags[val[1]])
+              ul.menu-list
+
+                each tag in tg
+                  li:   a.itm.filter-button(data-filter=tag.tag)= tag.name
+
+
+
+
+
+          .column: .chandiv.nano#list: .nano-content
+
+            div(class=" box has-text-centered super-filter UR")
+              +rarity(r.ur,"UR")
+              each val in imgboxe.UR
+                 a(title=val[1]  href=val[0]  data-lightbox="UR" price="12050" tags=tags[val[1]])
+                    img(src=val[0] class="round-5 filter "+tags[val[1]])
+
+            div(class=" box has-text-centered super-filter SR")
+              +rarity(r.sr,"SR")
+              each val in imgboxe.SR
+                  a(title=val[1]  href=val[0]  data-lightbox="SR" price="8200" tags=tags[val[1]])
+                    img(src=val[0] class="round-5 filter "+tags[val[1]])
+
+            div(class=" box has-text-centered super-filter R")
+
+              +rarity(r.r,"R")
+              each val in imgboxe.R
+                a(title=val[1]  href=val[0]  data-lightbox="R" price="5300" tags=tags[val[1]])
+                  img(src=val[0] class="round-5 filter "+tags[val[1]])
+
+            div(class=" box has-text-centered super-filter U")
+              +rarity(r.u,"U")
+
+              each val in imgboxe.U
+                a(title=val[1]  href=val[0]  data-lightbox="U" price="2570" tags=tags[val[1]])
+                  img(src=val[0] class="round-5 filter "+tags[val[1]])
+
+            div(class=" box has-text-centered super-filter C")
+              +rarity(r.c,"C")
+              each val in imgboxe.C
+                a(title=val[1]  href=val[0] data-lightbox="C" price="1550" tags=tags[val[1]])
+                  img(src=val[0] class="round-5 filter "+tags[val[1]])
+
 
 
 

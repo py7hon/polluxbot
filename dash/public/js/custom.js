@@ -65,55 +65,56 @@ $(document).ready(function () {
   try{
 
  $(".nano").nanoScroller();
+
+
+
+  var btn = $('#btn');
+  var clipboard = new Clipboard(btn);
   }catch(e){
 
 }
 
 
 
-  var btn = document.getElementById('btn');
-  var clipboard = new Clipboard(btn);
-
 
   $(".super-filter-button").click(function () {
-    var value = $(this).attr('data-filter');
-    $(this).addClass("active");
+    var value = $(this).data('filter');
+
+      $(".super-filter-button").removeClass("is-active");
+
+
+    $(this).addClass("is-active");
 
     if (value == "all") {
-      //$('.filter').removeClass('hidden');
+      $(".super-filter-button").removeClass("is-active");
       $('.super-filter').show('1000');
+      $(this).addClass("is-active");
     } else {
-      //            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
-      //            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+      $(".super-filter").filter('.' + value).show('3000');
       $(".super-filter").not('.' + value).hide('3000');
-      $('.super-filter').filter('.' + value).show('3000');
-
     }
 
   });
 
 
-
   $(".filter-button").click(function () {
-    var value = $(this).attr('data-filter');
-    $(this).addClass("active");
+    var value = $(this).data('filter');
 
-
-
-    if (value == "all") {
-      //$('.filter').removeClass('hidden');
-      $('.filter').show('1000');
-    } else {
-      //            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
-      //            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
-      $(".filter").not('.' + value).hide('3000');
-      $('.filter').filter('.' + value).show('3000');
-
+    if($(this).hasClass("is-active")){
+    $(this).removeClass("is-active");
+    $(".filter").not('.' + value).show('3000');
+      return
     }
 
+    $(this).addClass("is-active");
 
-
-
+    if (value == "all") {
+      $(".filter-button").removeClass("is-active");
+      $('.filter').show('1000');
+    $(this).addClass("is-active");
+    } else {
+      $(".filter").not('.' + value).hide('3000');
+    }
 
   });
 

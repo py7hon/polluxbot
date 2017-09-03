@@ -19,10 +19,6 @@ const gear = require("../core/gearbox.js")
 
 const app = express();
 
-const index = require('./routes/index');
-const users = require('./routes/users');
-const bgse = require('./routes/bgse');
-const dash = require('./routes/dashboard');
 const defaults = require("../utils/defaults.js")
 
 
@@ -110,9 +106,6 @@ exports.init = (bot, DB, userDB) => {
   app.use(express.static(path.join(__dirname, '../resources/imgres')));
 
 
-
-  app.use('/bgs', bgse);
-
   /*
   function cookie(req, res, next) {
   // check if client sent cookie
@@ -137,8 +130,6 @@ exports.init = (bot, DB, userDB) => {
 
 
 
-  app.use('/users', bgse);
-  app.use('/dasha', checkAuth, dash);
   //app.use('/', bgse);
   app.use(session({
     secret: 'adobo the cato',
@@ -192,6 +183,8 @@ exports.init = (bot, DB, userDB) => {
   app.get('/redir', async function (req, res) {
     res.render("callback")
   })
+//-------------REDIR-----------------------------------//
+
 
 //======================================================================
 //              DASHBOARD
@@ -325,62 +318,68 @@ exports.init = (bot, DB, userDB) => {
 //======================================================================
 
 
-  app.get('/bgg', function (req, res, next) {
-    console.log(req.token)
+  app.get('/bgshop', function(req, res, next) {
+    console.log(req.user)
 
-    res.send(Object.keys(req))
+let user
+try{
+user = userDB.get(req.user.id).modules
+}catch(e){
+
+}
 
 
-    var user = userDB.get("88120564400553984").modules
-
-    let updir = __dirname + "/"
-    var rerities = ["UR", "SR", "R", "U", "C"]
+  let updir = __dirname+"/../"
+    var rerities = ["UR","SR","R","U","C"]
 
     let imgbox = {}
     let imn = []
-    let TAGS = JSON.parse(fs.readFileSync(updir + "public/js/grimoire.json", "utf8"))
-    for (let i = 0; i < 5; ++i) {
-      let RAR = rerities[i]
+    let TAGS = JSON.parse(fs.readFileSync(__dirname+"/public/js/grimoire.json","utf8"))
+    for (let i=0;i<5;++i){
+     let RAR = rerities[i]
       imgbox[RAR] = []
-      let path = "backdrops/"
-      let files = fs.readdirSync(updir + "public/" + path + RAR)
-      for (let y = 0; y < files.length; ++y) {
+     let path = "../resources/imgres/build/backdrops/"
+    let files = fs.readdirSync(updir+"public/"+path+RAR)
+    for (let y=0;y<files.length;++y){
 
-        imn = files[y].split(".")[0]
-        var filepath = path + RAR + "/" + files[y]
-        imgbox[RAR].push([filepath, imn])
-      }
+      imn = files[y].split(".")[0]
+    var filepath = "backdrops/" +RAR+"/"+ files[y]
+    imgbox[RAR].push([filepath,imn])
     }
-
-    let USR = req.user
-    let userinfo = {
-
     }
+//console.log(imgbox)
 
-    if (USR) {
-      let UDB = userDB.get(USR.id)
-      let bg = UDB.modules.bgID || "5zhr3HWlQB4OmyCBFyHbFuoIhxrZY6l6"
-      userinfo = {
-        pix: `https://cdn.discordapp.com/avatars/${USR.id}/${USR.avatar}.png`,
-        name: `${USR.username}#${USR.discriminator}`,
+
+   let USR = req.user
+  console.log("\n\n\n\n\n\nUSR")
+  console.log(USR)
+
+
+let userinfo
+    if (USR){
+        let UDB =  userDB.get(USR.id)
+        userinfo = {
+         pix:`https://cdn.discordapp.com/avatars/${USR.id}/${USR.avatar}.png`,
+      name:`${USR.username}#${USR.discriminator}`,
         uname: USR.username,
         discriminator: USR.discriminator,
-        rubys: UDB.modules.goodies,
-        exp: UDB.modules.exp,
-        level: UDB.modules.level,
-        bg: `backdrops/${bg}.png`
-      }
+      rubys:UDB.modules.goodies,
+      exp:UDB.modules.exp,
+      level:UDB.modules.level
+       }
     }
-    console.log("USINFO:")
-    console.log(userinfo)
+  console.log("USINFO:")
+  console.log(userinfo)
 
-    res.render('bgs', {
-      title: 'Pollux: Profile Backgrounds',
-      imgboxe: imgbox,
-      tags: TAGS,
-      user: user,
-      userinfo: userinfo
-    });
+  res.render('bgs', {
+    title: 'Pollux: Profile Backgrounds',
+    imgboxe: imgbox,
+    tags: TAGS,
+    user: user,
+    userinfo:userinfo
+
+  });
+
 
   });
 

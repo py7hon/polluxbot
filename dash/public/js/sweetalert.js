@@ -191,7 +191,7 @@ sweetAlert.setDefaults = swal.setDefaults = function (userParams) {
  */
 sweetAlert.close = swal.close = function () {
   var modal = (0, _modulesHandleSwalDom.getModal)();
-
+  document.getElementsByTagName("STUFF")[0].classList.remove('blurred');
   (0, _modulesHandleDom.fadeOut)((0, _modulesHandleSwalDom.getOverlay)(), 5);
   (0, _modulesHandleDom.fadeOut)(modal, 5);
   (0, _modulesHandleDom.removeClass)(modal, 'showSweetAlert');
@@ -812,6 +812,7 @@ var setFocusStyle = function setFocusStyle($button, bgColor) {
  * Animation when opening modal
  */
 var openModal = function openModal(callback) {
+  document.getElementsByTagName("STUFF")[0].classList.add('blurred');
   var $modal = getModal();
   (0, _handleDom.fadeIn)(getOverlay(), 10);
   (0, _handleDom.show)($modal);

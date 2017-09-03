@@ -1,16 +1,19 @@
-$table:                           $grey-darker !default
-$table-background:                $white !default
-$table-border:                    $grey-lighter !default
+$table:                           $grey-lighter !default
 
-$table-head:                      $grey !default
+$table-background:                $blugray-dark
+$table-row-even-background:       $blugray
+$table-border:                    $grey-darkest
+$hover:                           $grey
 
-$table-row-hover-background:      $white-bis !default
+$header:                          $black-ter !default
+$table-head:                      $white !default
 
-$table-row-active-background:     $primary !default
+$table-row-hover-background:      $hover  //$grey-darker !default
+$table-row-even-hover-background: $hover  //$grey-dark !default
+
 $table-row-active:                $primary-invert !default
+$table-row-active-background:     $primary !default
 
-$table-row-even-background:       $white-bis !default
-$table-row-even-hover-background: $white-ter !default
 
 .table
   background-color: $table-background
@@ -28,6 +31,7 @@ $table-row-even-hover-background: $white-ter !default
       white-space: nowrap
       width: 1%
   th
+    background-color: $header
     color: $text-strong
     text-align: left
   tr

@@ -1,9 +1,9 @@
-$button: $grey-darker !default
-$button-background: $white !default
-$button-border: $grey-lighter !default
+$button: $grey-lighter !default
+$button-background: $black-ter !default
+$button-border: $grey-darkest !default
 
-$button-hover: $link-hover !default
-$button-hover-border: $link-hover-border !default
+$button-hover: $white !default
+$button-hover-border: $grey-dark !default
 
 $button-focus: $link-focus !default
 $button-focus-border: $link-focus-border !default
@@ -108,10 +108,10 @@ $button-shadow-inset: inset 0 1px 2px rgba($black, 0.2) !default
         color: $color-invert
       &:active,
       &.is-active
-        background-color: darken($color, 5%)
+        background-color: darken($color, 5%) !important
         border-color: transparent
         box-shadow: $button-shadow-inset
-        color: $color-invert
+        color: $color-invert !important
       &[disabled]
         background-color: $color
         border-color: transparent
