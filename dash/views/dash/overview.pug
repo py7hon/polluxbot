@@ -193,9 +193,11 @@ style.
             span &#x2000
             b=translation.website.globalrank ||" Global Rank:"
             span.alignrite
-              span.countup(data-count=999) 0
+              -let stato = bot.users.size/2
+              span.countup(data-start=stato data-count=expR)=stato
               span /
-              span= bot.users.size
+             
+              span.countup(data-start=stato data-count=bot.users.size)=stato
 
       .column.is-1
       .column.is-4(style="transform:translateY(60px)")

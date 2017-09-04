@@ -121,7 +121,17 @@ box-shadow: 0 0 10px rgba(122, 122, 122, 0.5);
   rgba(133, 105, 235, 0.1) 10px,
   rgba(133, 105, 235, 0.1) 20px
 );
-
+}
+.striped-pink{
+  /*linear-gradient(141deg, #8569eb 0%, #b790f7 71%, #d4a5fb 100%)*/
+  background: repeating-linear-gradient(
+  45deg,
+  rgba(232, 120, 168, 0.1),
+  rgba(232, 120, 168, 0.1) 10px,
+  rgba(183, 80, 150, 0.1) 10px,
+  rgba(183, 80, 150, 0.1) 20px
+);
+  
 }
 
 .round-5{
@@ -829,4 +839,21 @@ stuff{
 .blurred{
   transition: all 1s ease;
   filter: blur(18px)
+}
+
+.bd-rainbow {
+  animation: rainbow 128s ease infinite;
+  background-image: linear-gradient(124deg, #ee470f, #ee3860, #b86bee, #3273dc,#1ade93, #eed112);
+  background-size: 800% 800%;
+}
+@keyframes rainbow {
+  0% {
+    background-position: 0% 80%;
+  }
+  50% {
+    background-position: 100% 20%;
+  }
+  100% {
+    background-position: 0% 80%;
+  }
 }

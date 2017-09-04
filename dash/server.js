@@ -14,6 +14,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
 const i18n=require("i18n-express");
+const dbMan = require("djs-collection-persistent");
 
 const gear = require("../core/gearbox.js")
 
@@ -21,7 +22,7 @@ const app = express();
 
 const defaults = require("../utils/defaults.js")
 
-
+//const session_DB= new dbMan({name:"sessions"})
 
 exports.init = (bot, DB, userDB) => {
 
@@ -71,12 +72,7 @@ exports.init = (bot, DB, userDB) => {
   }));
 
 
-
-
-
-
-  // uncomment after placing your favicon in /public
-  //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+  app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
@@ -127,14 +123,15 @@ exports.init = (bot, DB, userDB) => {
 };
 
   */
-
+var LevelStore = require('level-session-store')(session);
 
 
   //app.use('/', bgse);
   app.use(session({
-    secret: 'adobo the cato',
-    maxAge: 36000000,
-    cookie: { maxAge: 36000000 },
+    secret: config.secret,
+    maxAge: 3.154e+10,
+    store: new LevelStore(),
+    cookie: { maxAge: 3.154e+10 },
     rolling: true,
     resave: true,
     saveUninitialized: true
@@ -148,9 +145,11 @@ exports.init = (bot, DB, userDB) => {
 
     app.use(i18n({
   translationsPath: (__dirname+ '\\..\\utils\\lang'),
-  siteLangs: ["en","cz","es","de"],
+  defaultLang : "en",
+    //  browserEnable :false,
+  siteLangs: ["dev","en","cz","es","de"],
   textsVarName: 'translation',
-      paramLangName:"locale"
+  paramLangName:"locale"
 }));
 
   // LOGIN PROCEDURE
