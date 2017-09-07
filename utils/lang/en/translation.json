@@ -438,6 +438,25 @@
         "noMoreRolls":"You've ran out of rerolls, you'll have to stick with this result.",
         "noFunds":"You cannot afford a reroll kiddo, better luck next time."
   },
+
+  "logs":{
+    "userJoin" : "**%1%** has **joined** the Server",
+    "userLeave" : "**%1%** has **left** the Server",
+    "messDel" : "A message has been **deleted** at %2%",
+    "messEdit" : "%1% has **edited** his message at %2%",
+    "newChan" : "A new **channel** has been **created**: %2%",
+    "delChan" : "A **channel** has been **deleted**: %2%",
+    "updtChan" : "The channel **%2%** has been **updated**",
+    "newRole" : "A new **role** has been **created**:",
+    "uptRole" : "%1% roles has been updated",
+    "delRole" : "A **role** has been **deleted**:",
+    "revokeBan" : "Ban on **%1%** Revoked",
+    "usrNick" : "User **%1%** Display Name has changed to **%11%**",
+    "usrPhoto" : "**%1%** got a new Profile Picture",
+    "usrRoles" : "Roles updated for user %1%",
+    "gSets" : "Server settings has been changed!"
+  },
+
    "website": {
         "commands": "Commands"
         ,"commCat": "Command Categories"
@@ -503,8 +522,10 @@
         ,"usrRoles": "User Roles Updated"
         ,"newChan": "Channel Created"
         ,"delChan": "Channel Deleted"
+        ,"updtChan": "Channel Updated"
         ,"newRole": "Role Created"
         ,"uptRole": "Role Updated"
+        ,"gSets": "Server Settings Updated"
         ,"revokeBan": "Ban Revoked"
         ,"permsEdit": "Permissions Edited"
         ,"configure": "Configure"

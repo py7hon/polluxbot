@@ -1,3 +1,30 @@
+-var logterms = {act:{},mod:{},adv:{}}
+-logterms.activity = translation.website.activity ||  "Activity"
+-logterms.act.userJoin = translation.website.userJoin || "User Joins Server"
+-logterms.act.userLeave = translation.website.userLeave || "User Leaves Server"
+-logterms.act.messDel = translation.website.messDel || "Message Deleted"
+-logterms.act.messEdit = translation.website.messEdit || "Message Edited"
+
+-logterms.moderation = translation.website.moderation ||  "Moderation"
+-logterms.mod.usrKick = translation.website.usrKick || "User Kicked"
+-logterms.mod.usrBan = translation.website.usrBan || "User Banned"
+-logterms.mod.usrMute = translation.website.usrMute || "User Muted"
+-logterms.mod.usrUnmute = translation.website.usrUnmute || "User Unmuted"
+
+-logterms.advanced = translation.website.advanced ||  "Advanced"
+-logterms.adv.usrPhoto = translation.website.usrPhoto || "User Photo Changed"
+-logterms.adv.usrNick = translation.website.usrNick || "User Name or Nick Changed"
+-logterms.adv.usrRoles = translation.website.usrRoles || "User Roles Updated"
+-logterms.adv.newChan = translation.website.newChan || "Channel Created"
+-logterms.adv.delChan = translation.website.delChan || "Channel Deleted"
+-logterms.adv.newRole = translation.website.newRole || "Role Created"
+-logterms.adv.uptRole = translation.website.uptRole || "Role Updated"
+-logterms.adv.revokeBan = translation.website.revokeBan || "Ban Revoked"
+-logterms.adv.permsEdit = translation.website.permsEdit || "Permissions Edited"
+
+-var serverlogs=  server.logs
+-if(typeof serverlogs != "object") serverlogs = {act:{userJoin:!0,userLeave:!0,messDel:!1,messEdit:!1},mod:{usrBan:!0,usrKick:!0,usrMute:!0,usrUnmute:!0},adv:{newChan:!1,newRole:!1,permsEdit:!1,revokeBan:!0,uptRole:!1,delChan:!1,usrNick:!0,usrPhoto:!1,usrRoles:!1}};
+
 .message.is-small.fullheight
   .message-header(style="z-index:9"): b Activity Logging Options
   .message-body.nano: .nano-content
@@ -5,94 +32,48 @@
     .container.is-fluid: .columns.is-marginless
 
       .column
-        .message.is-small.is-success
+        .message.is-small.is-purple(style="margin-bottom: 1rem;")
           .message-header
-            p=translation.website.activity ||  "Activity"
+            p= logterms.activity
           .message-body
             ul
-              li.level
-                p=translation.website.userJoin || "User Joins Server"
-                input(type="checkbox")
+              for itm, ky in logterms.act
+                li.level
+                  p=itm
 
-              li.level
-                p=translation.website.userLeave || "User Leaves Server"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.messDel || "Message Deleted"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.messEdit || "Message Edited"
-                input(type="checkbox")
-
-
+                  label.switch
+                    input(type="checkbox" data-key=ky.toString() data-type="act" checked=serverlogs.act[ky]=='true').check
+                    span.slider
 
         .message.is-small.is-info
           .message-header
-            p=translation.website.moderation ||  "Moderation"
+            p= logterms.moderation
           .message-body
             ul
-              li.level
-                p=translation.website.usrKick || "User Kicked"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.usrBan || "User Banned"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.usrMute || "User Muted"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.usrUnmute || "User Unmuted"
-                input(type="checkbox")
-
+              for itm, ky in logterms.mod
+                li.level
+                  p=itm
+                  label.switch
+                    input(type="checkbox" data-key=ky.toString() data-type="mod" checked=serverlogs.mod[ky]=='true').check
+                    span.slider
 
       .column
-        .message.is-small.is-warning
+        .message.is-small.is-purple
           .message-header
-            p=translation.website.advanced ||  "Advanced"
+            p= logterms.advanced
           .message-body
             ul
+              for itm, ky in logterms.adv
+                li.level
+                  p=itm
+                  label.switch
+                    input(type="checkbox" data-key=ky.toString() data-type="adv" checked=serverlogs.adv[ky]=='true').check
+                    span.slider
 
-              li.level
-                p=translation.website.usrPhoto || "User Photo Changed"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.usrNick || "User Name or Nick Changed"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.usrRoles || "User Roles Updated"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.newChan || "Channel Created"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.delChan || "Channel Deleted"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.newRole || "Role Created"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.uptRole || "Role Updated"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.revokeBan || "Ban Revoked"
-                input(type="checkbox")
-
-              li.level
-                p=translation.website.permsEdit || "Permissions Edited"
-                input(type="checkbox")
-
-
-
-
+      .column.is-2.is-paddingless
+        br
+        p.button.is-fullwidth.is-small.is-info(onclick="save()") SAVE
+        br
+        p.button.is-fullwidth.is-small.is-light(onclick="reset()") Reset
+        br
+        p.button.is-fullwidth.is-small.is-danger(onclick="reset(true)") Default

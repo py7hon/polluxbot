@@ -27,11 +27,11 @@ Array.prototype.removeire = function removeire() {
       errim = errim || (new Error)
 
         sendSlack("ErrLogger",error.name+": "+error.message,errim);
-        console.log("\n")
-        console.log("CATCH! ".bgRed.white+(error.name+" :: "+error.message).red)
-        console.log("@ ::  "+file)
-        console.log(errim)
-        console.log("\n---===---\n")
+        //log("\n")
+        //log("CATCH! ".bgRed.white+(error.name+" :: "+error.message).red)
+        //log("@ ::  "+file)
+        //log(errim)
+        //log("\n---===---\n")
     }
 
 // DATABASE
@@ -82,17 +82,13 @@ var sendSlack = async function sendSlack(hookname = "PolluxHOOK", pretex="**Hook
 
             userDB.set(User.id, Umodules)
         } catch (err) {
-            //   console.log("not this")
+            //   //log("not this")
         }
     }
     var normaliseGUILD = function normaliseGUILD(SERV, DB) {
 
-        var GG = DB.get(SERV.id)
-        GG.ID = SERV.id
-        GG.iconURL = SERV.iconURL
-
-
-        DB.set(SERV.id, GG)
+      this.paramDefine(SERV,"id",SERV.id)
+      this.paramDefine(SERV,"ID",SERV.id)
 
     }
 
@@ -123,7 +119,7 @@ var sendSlack = async function sendSlack(hookname = "PolluxHOOK", pretex="**Hook
     }
     var writeJ = function writeJ(a, b) {
         fs.writeFile(b + ".json", JSON.stringify(a, null, 4), (err) => {
-            console.log("-")
+            //log("-")
         });
     }
     var updateEXP = function updateEXP(TG, event,DB,userDB) {
@@ -155,12 +151,12 @@ try{
         }
         if (curLevel > userData.level) {
             // Level up!
-               console.log(typeof userDB.get(TG.id).modules.level)
+               //log(typeof userDB.get(TG.id).modules.level)
             this.paramIncrement(TG, "level", 1)
-               console.log(typeof userDB.get(TG.id).modules.level)
+               //log(typeof userDB.get(TG.id).modules.level)
             var overallevel = userDB.get(TG.id).modules.level;
 
-            console.log("LEVEL UP EVENT FOR ".bgBlue + caller)
+            //log("LEVEL UP EVENT FOR ".bgBlue + caller)
             if (event.guild.name === "Discord Bots") return;
             let img = TG.defaultAvatarURL.substr(0, TG.defaultAvatarURL.length - 10)
             if (TG.avatarURL) {
@@ -275,7 +271,19 @@ try{
         }
     }
 
-    var logChannel = function logChannel(channel, action, DB) {
+
+    const sendLog = async function sendLog(eve,logtype,sv,DB,extra){
+      console.log("ASYNC SENDLOG")
+      try{
+
+      var a = require("./modules/dev/log.js")
+        a.init(eve,logtype,sv,DB,extra)
+      }catch(e){console.log(e)}
+    }
+
+
+
+    var logChannel = async function logChannel(channel, action, DB) {
         let Server = channel.guild
         var chanpoint = false;
         try {
@@ -294,19 +302,37 @@ try{
             }
             // if( modchan && Server.channels.has(modchan)){chanpoint = Server.channels.get(modchan)}
 
-            if (chanpoint) {
+            for(let type =0;type<3;type++){
+
+                switch (true){
+                  case logchan && Server.channels.has(logchan):
+                    chanpoint = Server.channels.get(logchan);
+                    break;
+                  case actchan && Server.channels.has(actchan):
+                    chanpoint = Server.channels.get(actchan);
+                    break;
+                  case advchan && Server.channels.has(advchan):
+                    chanpoint = Server.channels.get(advchan);
+                    break;
+                  case modchan && Server.channels.has(modchan):
+                    chanpoint = Server.channels.get(modchan);
+                    break;
+                  default:
+                    chanpoint = false;
+                  }
+
+                if (chanpoint) {
 
                 var emb = new Discord.RichEmbed;
-
                 emb.setDescription(`:hash: Channel **${channel.name}** ${action}`);
-
                 emb.setColor("#2551c9");
-                var ts = new Date
                 emb.setFooter("Channel Edit")
+                var ts = new Date
                 emb.setTimestamp(ts)
 
-                chanpoint.send({embed:emb}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+                chanpoint.send({embed:emb}).catch(e=> {console.log(e)})
 
+              }
             }
         } catch (err) {
 
@@ -315,6 +341,7 @@ try{
     }
 
     var editData = function editData(target,param,val,ope) {
+        //log(param,val,ope)
     try {
         if (target instanceof Discord.User) {
             var Umodules = userDB.get(target.id)
@@ -368,8 +395,8 @@ try{
             }
         }
     }catch (err) {
-        console.log("ERROR ONWRITE == PARAM ADD".bgRed.white.bold)
-        console.log(err.stack)
+        //log("ERROR ONWRITE == PARAM ADD".bgRed.white.bold)
+        //log(err.stack)
     }
                            function operateTwo(item,p, operation,value){
 
@@ -379,7 +406,13 @@ try{
                             item.modules[p[0]][p[1]].push(value);
                             break;
                         case "remove":
-                            item.modules[p[0]][p[1]].removeire(value);
+
+                            if(item.modules[p[0]][p[1]].constructor === Array){
+                              item.modules[p[0]][p[1]].removeire(value);
+                            }
+                            if(item.modules[p[0]][p[1]].constructor === Object){
+                              delete item.modules[p[0]][p[1]][value];
+                            }
                             break;
                         case "define":
                             item.modules[p[0]][p[1]] = value;
@@ -400,13 +433,18 @@ try{
                         case "push":
                             item.modules[p].push(value);
                             break;
-                        case "remove":
-                            item.modules[p].removeire(value);
-                            break;
+                            case "remove":
+                              if (item.modules[p].constructor === Array) {
+                                item.modules[p].removeire(value);
+                              }
+                              if (item.modules[p].constructor === Object) {
+                                delete item.modules[p][value];
+                              }
+                              break;
                         case "define":
-                            console.log(item)
+                            //log(item)
                             item.modules[p] = value;
-                            console.log(item)
+                            //log(item)
                             break;
                         case "increment":
                             item.modules[p] = Number(item.modules[p])+Number(value);
@@ -431,7 +469,7 @@ try{
     }
 
     var paramDefine = function paramDefine(target, param, val) {
-      console.log("Param Define:"+target+" "+param+" "+val)
+      //log("Param Define:"+target+" "+param+" "+val)
         editData(target,param,val,"define");
     }
 
@@ -514,7 +552,7 @@ ${msg.content}
                             lennaB.mask(lenna, 0, 0)
 
                             //lennaB.write(`${paths.GLASS}/${call}.png`);
-                            console.log("Glassify Done")
+                            //log("Glassify Done")
                         });
                     });
                 })
@@ -545,7 +583,7 @@ ${msg.content}
             gear.Jimp.read(`${paths.BUILD}cards/${array[0].card}.png`).then(function (c1) {
                 cardimg.composite(c1, 0 * 96, 0)
                 cardimg.write(`${paths.BUILD}cards/${who}0_bj.png`)
-                console.log(array[0].card)
+                //log(array[0].card)
             })
             setTimeout(function () {
                 gear.Jimp.read(`${paths.BUILD}cards/${array[1].card}.png`).then(function (c1) {
@@ -557,11 +595,11 @@ ${msg.content}
                 gear.Jimp.read(`${paths.BUILD}cards/${array[2].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 2 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}2_bj.png`)
-                    console.log(array[2].card + "-------------------------------------")
+                    //log(array[2].card + "-------------------------------------")
                 })
             }, 600);
             setTimeout(function () {
-                console.log(`${paths.BUILD}cards/${array[3].card}.png`)
+                //log(`${paths.BUILD}cards/${array[3].card}.png`)
                 gear.Jimp.read(`${paths.BUILD}cards/${array[3].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 3 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}3_bj.png`)
@@ -572,7 +610,7 @@ ${msg.content}
                     cardimg.composite(c1, 4 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}4_bj.png`)
                     cardimg.write(`${paths.BUILD}cards/${who}5_bj.png`)
-                    console.log(array[5].card + "-------------------------------------")
+                    //log(array[5].card + "-------------------------------------")
                 })
             }, 1200);
         })
@@ -588,7 +626,7 @@ ${msg.content}
                 gear.Jimp.read(`${paths.BUILD}cards/${array[0].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 0 * 96, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}0_bj.png`)
-                    console.log(array[0].card)
+                    //log(array[0].card)
                 })
             })
         };
@@ -605,13 +643,13 @@ ${msg.content}
                 gear.Jimp.read(`${paths.BUILD}cards/${array[2].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 2 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}2_bj.png`)
-                    console.log(array[2].card + "-------------------------------------")
+                    //log(array[2].card + "-------------------------------------")
                 })
             }, 100);
         }
         if (array.length >= 4) {
             setTimeout(function () {
-                console.log(`${paths.BUILD}cards/${array[3].card}.png`)
+                //log(`${paths.BUILD}cards/${array[3].card}.png`)
                 gear.Jimp.read(`${paths.BUILD}cards/${array[3].card}.png`).then(function (c1) {
                     cardimg.composite(c1, 3 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}3_bj.png`)
@@ -624,7 +662,7 @@ ${msg.content}
                     cardimg.composite(c1, 4 * 97, 0)
                     cardimg.write(`${paths.BUILD}cards/${who}4_bj.png`)
                     cardimg.write(`${paths.BUILD}cards/${who}5_bj.png`)
-                    console.log(array[5].card + "-------------------------------------")
+                    //log(array[5].card + "-------------------------------------")
                 })
             }, 200);
         }
@@ -664,8 +702,8 @@ ${msg.content}
         if(strict){
 
 
-            console.log(stashe)
-            console.log(typeof stashe)
+            //log(stashe)
+            //log(typeof stashe)
             let stash = stashe.split(".")
         switch(stash.length){
             case 1:
@@ -781,6 +819,7 @@ module.exports = {
     draw: draw,
     drawalt: drawalt,
     getDir: getDir,
+  sendLog:sendLog,
     Jimp: require("jimp"),
     cheerio: require("cheerio"),
     Discord: Discord,

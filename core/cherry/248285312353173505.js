@@ -99,6 +99,7 @@ message: function (gear,DB,userDB,bot,message)  {
 
     try{
         if (message.content==undefined)return;
+        if (!DB.get(message.guild.id))return;
         let prefix = DB.get(message.guild.id).modules.PREFIX
 
             var now = new Date().getTime();

@@ -1,75 +1,11 @@
 
 const polx = require("../pollux.js")
-var defaults = require("../utils/defaults.js") // Database Defaults
+const fx = require("../core/functions.js")
 
 
 module.exports = {
     run: function run(gear, DB, userDB, bot, member) {
 
-        function serverSetup(guild) {
-
-
-            if (!DB.get(guild.id) || DB.get(guild.id) == undefined) {
-
-                console.log(('          --- - - - - = = = = = = Setting Up Guild:'.yellow + guild.name).bgBlue)
-
-                DB.set(guild.id, defaults.gdfal)
-
-                var gg = DB.get(guild.id);
-                gg.name = guild.name;
-                gg.ID = guild.id;
-                if (guild.region === 'brazil') gg.modules.LANGUAGE = "dev";
-                DB.set(guild.id, gg);
-
-                guild.channels.forEach(element => {
-                    if (element.type != 'voice') {
-                        console.log('Setting Up Channel:'.white + element.name)
-
-                        var GGD = DB.get(guild.id)
-                        GGD.channels[element.id] = defaults.cdfal
-                        DB.set(guild.id, GGD)
-                        var gg = DB.get(guild.id)
-                        gg.channels[element.id].name = element.name
-                        DB.set(guild.id, gg)
-                    }
-                });
-            } else {
-
-                gear.normaliseGUILD(guild, DB)
-            }
-
-        }
-
-        function channelSetup(element, guild) {
-
-            console.log('Setting Up Channel:'.white + element.name + " from " + guild.name)
-            //  DB.get(guild.id).channels[element.id] =
-            //element.mods = DB.get(guild.id).channels[element.id].modules;
-            var GGD = DB.get(guild.id)
-            GGD.channels[element.id] = defaults.cdfal
-            DB.set(guild.id, GGD)
-            var gg = DB.get(guild.id)
-            gg.channels[element.id].name = element.name
-            gg.channels[element.id].ID = element.id
-            DB.set(guild.id, gg)
-
-        } //DB
-        function userSetup(user) {
-
-            if (!userDB.get(user.id)) {
-                console.log('Setting Up Member:' + user.username)
-
-                userDB.set(user.id, defaults.udefal)
-
-                var uu = userDB.get(user.id)
-                uu.name = user.username
-                uu.ID = user.id
-                userDB.set(user.id, uu)
-
-            } else {
-                gear.normaliseUSER(user, userDB, DB)
-            }
-        } //DB
 
         var Server = member.guild
         let locale = DB.get(Server.id).modules.LANGUAGE || "en";
@@ -117,7 +53,7 @@ module.exports = {
                     gear.paramDefine(Server, "GREET", defaultgreet)
                 }
             } catch (e) {
-                serverSetup(Server)
+                fx.run("serverSetup",Server)
             }
             if (typeof (DB.get(Server.id).modules.GREET.hi) !== 'undefined' && DB.get(Server.id).modules.GREET.joinText !== '' && DB.get(Server.id).modules.GREET.hi == true) {
                 if (DB.get(Server.id).modules.GREET.hiDEL === undefined) {

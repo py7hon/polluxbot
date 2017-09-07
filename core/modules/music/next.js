@@ -9,7 +9,7 @@ const yt = require('ytdl-core');
 
         let playlist = DB.get(Server.id).playlist
 
-if(!switche&&!gear.hasPerms(message.author))return;
+//if(!switche&&!gear.hasPerms(message.author))return;
 
 
   // if(message.author.id != "88120564400553984") return message.reply(":warning:"); if(message.author.id!="88120564400553984"&&message.guild.id!="277391723322408960"&&message.guild.id!="337574844524789760"&&message.guild.owner.id!="88120564400553984"){

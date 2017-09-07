@@ -16,7 +16,9 @@ const sassMiddleware = require('node-sass-middleware');
 const i18n=require("i18n-express");
 const dbMan = require("djs-collection-persistent");
 
+
 const gear = require("../core/gearbox.js")
+const fx = require("../core/functions.js")
 
 const app = express();
 
@@ -59,7 +61,9 @@ exports.init = (bot, DB, userDB) => {
   passport.use(new Strategy({
     clientID: "271394014358405121",
     clientSecret: config.secret,
-    callbackURL: "http://localhost:5000/callback",
+    //callbackURL: "http://localhost:5000/callback",//"http://conta.localhost.run/callback"
+    //callbackURL: "http://31.220.55.84:5200/callback",
+    callbackURL: "http://beta.pollux.fun/callback",
     scope: scopes,
     passReqToCallback: true
   }, function (req, accessToken, refreshToken, profile, done) {
@@ -144,7 +148,7 @@ var LevelStore = require('level-session-store')(session);
 
 
     app.use(i18n({
-  translationsPath: (__dirname+ '\\..\\utils\\lang'),
+  translationsPath: (__dirname+ '/../utils/lang'),
   defaultLang : "en",
     //  browserEnable :false,
   siteLangs: ["dev","en","cz","es","de"],
@@ -184,6 +188,11 @@ var LevelStore = require('level-session-store')(session);
   })
 //-------------REDIR-----------------------------------//
 
+      const col = {
+        err: "#dd2121",
+        oks: "#4754f2",
+        suc: "#68cb4a"
+      }
 
 //======================================================================
 //              DASHBOARD
@@ -207,16 +216,21 @@ var LevelStore = require('level-session-store')(session);
 
 
   app.get('/dashboard', checkAuth, function (req, res) {
-
+    console.log("DASHBOARD")
     // Collect Database Info
     let dbpars = userDB.get(req.user.id);
     if (dbpars == undefined) {
     try{
-      userSetup(bot.users.get(req.user.id))
+      console.log("USR STP")
+      let user =  bot.users.get(req.user.id)
+      console.log(user)
+      if (user==undefined)throw "Not Cached";
+      fx.run("userSetup",user)
       dbpars = userDB.get(req.user.id);
     }catch(e){
+      console.log("USR STP DUMMY")
       let dummyuser = {id:req.user.id,name:req.user.name}
-      userSetup(dummyuser)
+      fx.run("userSetup",dummyuser)
       dbpars = userDB.get(req.user.id);
     }
     }
@@ -328,7 +342,7 @@ user = userDB.get(req.user.id).modules
 }
 
 
-  let updir = __dirname+"/../"
+  let updir = __dirname
     var rerities = ["UR","SR","R","U","C"]
 
     let imgbox = {}
@@ -337,8 +351,8 @@ user = userDB.get(req.user.id).modules
     for (let i=0;i<5;++i){
      let RAR = rerities[i]
       imgbox[RAR] = []
-     let path = "../resources/imgres/build/backdrops/"
-    let files = fs.readdirSync(updir+"public/"+path+RAR)
+     let path = "/../resources/imgres/build/backdrops/"
+    let files = fs.readdirSync(updir+path+RAR)
     for (let y=0;y<files.length;++y){
 
       imn = files[y].split(".")[0]
@@ -484,12 +498,14 @@ let userinfo
 //              SPECIFIC SERVER SETTINGS
 //======================================================================
 
-  app.get('/myGuilds/:id', checkAuth, function (req, res) {
+  app.get('/myGuilds/:id', checkAuth, async function (req, res) {
     let dbpars = DB.get(req.params.id);
     if (dbpars == undefined) {
-      serverSetup(bot.guilds.get(req.params.id))
+      let theG = bot.guilds.get(req.params.id)
+      await fx.run("guildSetup",theG,{invoker:"SPECSERVSET"})
       dbpars = DB.get(req.params.id);
     }
+
     let g = req.user.guilds.filter(ge => ge.id == req.params.id)[0]
     let gg = bot.guilds.get(req.params.id)
     dbpars.avi = `https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png`
@@ -511,7 +527,9 @@ let userinfo
   app.post('/myGuilds/:id1/:id2', checkAuth, function (req, res) {
     let dbpars = DB.get(req.params.id1);
     if (dbpars == undefined) {
-      serverSetup(bot.guilds.get(req.params.id1))
+      //fx.run("guildSetup",bot.guilds.get(req.params.id1))
+
+      throw "porra"
       dbpars = DB.get(req.params.id1);
     }
     let chpars = dbpars.channels[req.params.id2]
@@ -675,7 +693,7 @@ let userinfo
         try {
           bgInv = gear.userDB.get(uid).modules.bgInventory
         } catch (e) {
-          userSetup(bot.users.get(uid))
+          fx.run("userSetup",bot.users.get(uid))
           bgInv = gear.userDB.get(uid).modules.bgInventory
         }
 
@@ -758,6 +776,8 @@ let userinfo
   });
 
 
+
+
   app.post('/paramtoggle/:id1/:id2/:id3', checkAuth, function (req, res) {
     try {
       let l1 = bot.channels.get(req.params.id1)
@@ -807,6 +827,65 @@ let userinfo
 
 
 
+  app.post('/paramsave', checkAuth, function (req, res) {
+
+      const respack = {
+        s: "error",
+        t: "Oops!",
+        m: "Something went wrong Server-side :(",
+        c: col.err,
+        b: "Geez"
+      }
+
+    try {
+      let action = req.body.action
+      let scope = req.body.scope
+      let target;
+      if      (scope == "user")    target = bot.users.get(req.body.target);
+      else if (scope == "server")  target = bot.guilds.get(req.body.target);
+      else if (scope == "channel") target = bot.channels.get(req.body.target);
+      else{
+        respack.m="Scope not Specified";
+        return res.send(respack);
+      }
+      if (action != "push" &&
+          action != "increment" &&
+          action != "define" &&
+          action != "superDef" &&
+          action != "remove"
+         ) {
+        respack.m="Invalid Action";
+        return res.send(respack);
+      }
+
+      let param = req.body.param
+      let value = req.body.value
+
+      try{
+
+      gear.editData(target,param,value,action);
+
+        respack.c=col.suc;
+        respack.b="OK";
+        respack.s="success";
+        respack.t="Done";
+        respack.m="All saved!";
+        return res.send(respack);
+
+      }catch(e){
+        respack.t=e.error;
+        respack.m=e.stack;
+        return res.send(respack);
+      }
+
+    } catch (e) {
+      console.log(e)
+      res.send(respack)
+    };
+  });
+
+
+
 
 
 
@@ -819,9 +898,9 @@ let userinfo
 //              ALL SET
 //======================================================================
 
-  app.listen(5000, function (err) {
+  app.listen(5200, function (err) {
     if (err) return console.log(err)
-    console.log('Listening at http://localhost:5000/')
+    console.log('Listening at http://localhost:5200/')
   })
 
 
@@ -877,73 +956,7 @@ let userinfo
   }
 
 
-  function serverSetup(guild) {
 
-
-    if (!DB.get(guild.id) || DB.get(guild.id) == undefined) {
-
-      console.log(('          --- - - - - = = = = = = Setting Up Guild:'.yellow + guild.name).bgBlue)
-
-      DB.set(guild.id, defaults.gdfal)
-
-      var gg = DB.get(guild.id);
-      gg.name = guild.name;
-      gg.ID = guild.id;
-      if (guild.region === 'brazil') gg.modules.LANGUAGE = "dev";
-      DB.set(guild.id, gg);
-
-      guild.channels.forEach(element => {
-        if (element.type != 'voice') {
-          console.log('Setting Up Channel:'.white + element.name)
-
-          var GGD = DB.get(guild.id)
-          GGD.channels[element.id] = defaults.cdfal
-          DB.set(guild.id, GGD)
-          var gg = DB.get(guild.id)
-          gg.channels[element.id].name = element.name
-          DB.set(guild.id, gg)
-
-        }
-      });
-    } else {
-
-      gear.normaliseGUILD(guild, DB)
-    }
-
-  }
-
-  function channelSetup(element, guild) {
-
-    console.log('Setting Up Channel:'.white + element.name + " from " + guild.name)
-    //  DB.get(guild.id).channels[element.id] =
-    //element.mods = DB.get(guild.id).channels[element.id].modules;
-    var GGD = DB.get(guild.id)
-    GGD.channels[element.id] = defaults.cdfal
-    DB.set(guild.id, GGD)
-    var gg = DB.get(guild.id)
-    gg.channels[element.id].name = element.name
-    gg.channels[element.id].ID = element.id
-    DB.set(guild.id, gg)
-
-  } //DB
-  function userSetup(user) {
-
-    if (!userDB.get(user.id)) {
-      console.log('Setting Up Member:' + user.username)
-
-      userDB.set(user.id, defaults.udefal)
-
-      var uu = userDB.get(user.id)
-      uu.name = user.username
-      uu.ID = user.id
-      userDB.set(user.id, uu)
-
-    } else {
-      gear.normaliseUSER(user, userDB, DB)
-    }
-  } //DB
-
-}
 
 function getComms() {
   let path = __dirname + "/../core"
@@ -987,12 +1000,4 @@ function xss_me(res, respack) {
   respack.m = "You do not own the background you're trying to apply!"
   res.send(respack)
 }
-
-/*
-form(method='POST' action='/bgga')
-    div.form-group
-      label(for='name') Genre:
-      input#name.form-control(type='text', placeholder='Fantasy, Poetry etc.' name='name' value=(undefined===genre ? '' : genre.name))
-      input#thing.form-control(type='text', placeholder='Fantasy, Poetry etc.' name='thing' value=(undefined===genre ? '' : genre.name))
-    button.button.is-primary(type='submit') Submit
-    */
+}

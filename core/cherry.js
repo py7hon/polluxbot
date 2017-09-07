@@ -28,10 +28,7 @@ module.exports = {
             if (err) return console.error(err);
             files.forEach(file => {
 
-
-
                 try {
-
                     let eventor = require(`${__dirname}/cherry/${file}`);
                     // let eventide = file.split(".")[0];
                     if(!eventor[eve])return;

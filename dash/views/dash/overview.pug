@@ -56,12 +56,12 @@ style.
 
 -var jade = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACZElEQVQ4jX2SPUxTUQCFv/v6KKW0UMQiGjDGMBgNiybiZIJhd3ESJ6Mw+rMhYSDGQd2Mi4mDi5MDASMJIcZBJeqkRmNE5afQ+l5boJT2Pd7PfdeBUGjTeLZ77zlfTnIP/EdzZnbgxodPF/7n0epdGmXruGnZExnLmk2EG15ffft+4uLsm556XrH/YFp2DBgBbhdcN/JiaQkFBEqRKllu3nEeAXcnB/qLVQDTsgEuA/eBLoCZdJrlcrkCV0ph2NukLTsLjAFPJwf6Aw1gLp2540j5fDf817KqwrtqaWhAlMod5DaeqHRuHEAHePnje1zTw/S0xmlvDPMxn0cpheVLtjyPLc8nV9zi5/wCwnc41daBQEQrgM1tm1RhnQAo+R7vzBwl3yNQEAQBq6kMK6k0YV2jKaJjS5+o3kAFAAQL+RxdiQN8WV+n6HkAFDY2+fNrEdveRgiINIYAKHsuTbqu7QewWljH8X3SloXneiwuLJM18wA06TqCACF2Pq3kuyRprm4QKMVnI0MqY5JfNYhoGieTSeLhMFljjaXlDEEyTmN7M5bvIlWw10Ap8D2fVzNzKBlwqK2F1pYYmqZhmjthACe3hV92iB5JUHC29xqsmYXyym8Dz/GRgcQw8miaRvJggmhzE93dnUgpkTJASklQcCmKslUBLHxbeYAQWeBeSAt16iGFL302iyV6eo7WzsEARoFnX6mZcvfwWEwpNQrc9KQXEZqg72zv7rML6rFSYnxqaLB6yrXqHh47ppR66Erv0rm+XoQQ08CtyeuD87XeuoBdHb42cv70mROxUCg0PTV0pa7nH0I1NB1t8gzhAAAAAElFTkSuQmCC"
 -var ruby = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB9UlEQVQ4T6WTy2sTURSHv3m56iZZqbSVootWi1bjppGKiEtfFPeKf183guBe0riJGyHT1JCmbZpH8yaJSZrXeO7cSUloFMGBO+dy7/y+87vnnjH4z8eY1cdX8CZj8NSi2pFhmEFU82BsH/m7/nM5id3Au/vuI6HIc71TLEA+D6bFRbVIS4Zp2bRaBUoFl2hWa/2XEm/svid8fwfGQ+j3IJkEyxKAWBBINZtiPBrI1KHVLlIuHPgQI76Mt/72A6F7URj05WNhuq7MB1rsH8VkIuLS8SGG7WCZNu12SSBJjP2beNHPh9BpwmgEtmTd2wPH0TDfp0QR8uWTjqow5jW+lb9ixFfFwfZLQrc2BSBZ1ceuAFVUDqYAER2nDzBtW7g23VGd895JTaWIxJZJbOy8Iry2hXiVAhah1giOoEGdZp16pSz2HX6JuHZxQjTDg+ktaMjT14RvP5QiSi3clBRRWdVFLGTSeJ4nmRtUtfixJP8+2wcB5A3hO48gk0Eqpa+x16WSP6M7aUrm00vxXB8EfaEhzwRyfR1+pqVoNpVcjkbnjNogNydeBFBrkdiKguwSHi5Br08qtU9jmCd6pG1Pu/BPAA1ZJbG59YJuuUz2/AdPslfFfwP4kPgaCXWb0vtXMk9dzP1Ms9amNQninO1/OcIC1uKl308HxtwjnsOlAAAAAElFTkSuQmCC"
--function filter(a,b){return JSON.parse(b).modules.exp -JSON.parse(a).modules.exp }
--function sistra(a,b){return JSON.parse(b).modules.goodies -JSON.parse(a).modules.goodies }
--let rank = gear.userDB.sort(filter)
--let rubs = gear.userDB.sort(sistra)
--let index = rank.map(x=>JSON.parse(x).ID)
--let index3 = rubs.map(x=>JSON.parse(x).ID)
+-function filter(a,b){return JSON.parse(JSON.stringify(b)).modules.exp -JSON.parse(JSON.stringify(a)).modules.exp }
+-function sistra(a,b){return JSON.parse(JSON.stringify(b)).modules.goodies -JSON.parse(JSON.stringify(a)).modules.goodies }
+-let rank = gear.userDB.sort(filter) || []
+-let rubs = gear.userDB.sort(sistra) || []
+-let index = rank.map(x=>x.ID)
+-let index3 = rubs.map(x=>x.ID)
 -let expR = index.findIndex(x => x==userinfo.id)
 -let rubR = index3.findIndex(x => x==userinfo.id)
 
@@ -219,7 +219,7 @@ style.
               .level-item
 
   .bbgOvlay
-  .bbgColor(style="background:#"+(user.modules.favcolor||"ccc"))
+  .bbgColor(style="background:#"+(user.modules.favcolor||"ccc").replace("#",""))
   .bbg.supershadow
     img#bgov(src="backdrops/"+user.modules.bgID+".png")(style="height:100%;width:auto;position:absolute;right:3px")
     //(style="background-image:url('backdrops/"+user.modules.bgID+".png')")

@@ -46,6 +46,7 @@ block content
             li.tab(data-target="tabB"): a Channel Settings
 
   .hero.is-primary.is-bold
+
       include navbas
 
       .level
@@ -86,7 +87,7 @@ block content
 
 
 
-      .container.columns.is-fluid.gaps#tabB.tabcontainer.division2(style="height: 100%")
+      .container.columns.is-fluid.gaps#tabB.tabcontainer.division2(style="height: 100%").is-hidden
         .column.is-3: .box.chandiv.nano#list: .nano-content
           each chan in svchans
 
@@ -103,7 +104,7 @@ block content
         .column.is-3: .box
           p asasas
 
-      .container(style="height:100%").columns.is-fluid.gaps#tabA.tabcontainer.division2.is-hidden
+      .container(style="height:100%").columns.is-fluid.gaps#tabA.tabcontainer.division2
          .column.is-3
 
             .menu-label=translation.website.genSets || "General Settings"
@@ -127,24 +128,85 @@ block content
                 li: .itm(data-target="advanced")=translation.website.cherrymods || "Cherry-Modules"
 
 
-         #basic.column.is-9.pgs
+         #basic.column.is-9.pgs.hidden
           include guild/settings/logs
          #advanced.column.is-9.pgs.hidden
           include guild/settings/advanced
-         #logs.column.is-9.pgs.hidden
+         #logs.column.is-9.pgs
           include guild/settings/logs
 
 
-
-
-
-
-
-
-
+      br
 block scripts
   script(src="/js/guilds.js")
   script.
     $(document).ready(function(){
        $(".asbutton").first().click();
        })
+
+        var def = {act:{userJoin:true,userLeave:true,messDel:false,messEdit:false},mod:{usrBan:true,usrKick:true,usrMute:true,usrUnmute:true},adv:{newChan:false,newRole:false,permsEdit:false,revokeBan:true,uptRole:false,delChan:false,usrNick:true,usrPhoto:false,usrRoles:false}};
+
+        var slogs;
+         slogs = !{JSON.stringify(server.logs) || false}
+          slogs ? slogs = slogs : slogs = def;
+
+    function getChecks(){
+
+        var serverlogs = slogs
+
+        if(typeof serverlogs != "object") serverlogs = def
+
+        $(".check").each(function(){
+        var classi  = $(this).data("type")
+        var item    = $(this).data("key")
+        serverlogs[classi][item] = this.checked
+
+        })
+        return  serverlogs
+    }
+
+
+        function reset(_default=false){
+        var slo     = slogs
+        var curr    = getChecks()
+
+
+        $(".check").each(function(){
+        var classi  = $(this).data("type")
+        var item    = $(this).data("key")
+        if(_default && def[classi][item]!=curr[classi][item])$(this).click();
+        if(_default==false && slo[classi][item]!=curr[classi][item].toString())$(this).click();
+
+
+
+        })
+    }
+
+
+    function save(){
+
+              //if(!serverlogs) var serverlogs= !{JSON.stringify(server.logs)};
+              var postage = $.post("/paramsave", {
+                action: "superDef"  ,
+                scope:  "server" ,
+                target: !{server.id} || !{sv.id} ,
+                param:  "logs",
+                value:  getChecks()
+
+              })
+
+               postage.done(function (res) {
+
+                        swal({
+                        title: res.t,
+                        text: res.m,
+                        type: res.s,
+                        confirmButtonColor: res.c,
+                        confirmButtonText: res.b,
+                        closeOnConfirm: true,
+                        // showLoaderOnConfirm: true,
+                      })
+
+               })
+
+               }

@@ -4,7 +4,7 @@
 br
 h1#t.title()= "#"+channel.name
 hr
-
+p= JSON.stringify(channel)
 div.level
   b: span= translation.website.drops|| "Drops:"
   span= bot.channels.get(channel.id).DROPSLY || 0
@@ -16,7 +16,11 @@ div.level
     img(src="https://png.icons8.com/delete/color/24")
 div.level
   b: span Level Up Messages:
-  -console.log(channel.modules.LVUP)
+  label.switch
+    input(type="checkbox" data-type="mod" checked=server.modules.LVUP=="true" data-target=server.id data-param="LVUP" data-operate="define").toggle
+    span.slider
+
+
   if channel.modules.LVUP == true
      div(data-sv=server.id data-target=channel.id data-param="LVUP" data-value="false").toggle: img(src=on)
   else
@@ -51,34 +55,21 @@ each v, i in COMMANDS.tree
 
 
       each va in COMMANDS.tree[i]
-        div.level.is-marginless.is-size-6
+        div.level.is-.is-size-4
           span.level-left= va
-          if channel.modules.DISABLED.includes(va)
-            div.level-right(data-sv=server.id data-target=channel.id data-param="DISABLED" data-value=va data-operate="remove").arrayAd: img(src=off)
-          else
-            div.level-right(data-sv=server.id data-target=channel.id data-param="DISABLED" data-value=va data-operate="add").arrayAd: img(src=on)
+          div.level-right
+            label.switch
+              input(type="checkbox" data-key=va.toString() data-type="mod" checked=!channel.modules.DISABLED.includes(va) data-sv=server.id data-target=channel.id data-param="DISABLED" data-value=va).arrayAd
+              span.slider
+
+
+
 
 
 
 
 script.
-      function sendChangeTog(i1,i2,i3,i4){
-          $.post(`/paramtoggle/${i1}/${i2}/${i3}/`, function (data) {
-        if (data=="OK"){
-                $.post(`./${i4}/${i1}/`, function (data) {
-         $('#results').html(data);
-         });      }else{
-            swal({
-              title: "NOT OK!",
-              type: "error",
-              confirmButtonColor: "#5589dd",
-              confirmButtonText: "OK",
-              closeOnConfirm: true,
-              // showLoaderOnConfirm: true,
-            })
-            }
-            })
-      }
+
      $(document).ready(function(){
 
 
@@ -92,16 +83,49 @@ script.
        var i2 = this.dataset.param
        var i3 = $("input[name=commands]").val()
        var i4 = this.dataset.sv
-       alert(i1+i2+i3+i4)
-        sendChangeTog(i1,i2,i3,i4)
+
+              var postage = $.post("/paramsave", {
+                action: "push"  ,
+                scope:  "channel" ,
+                target: i1 || !{channel.id} ,
+                param:  i2,
+                value:  i3
+
+              })
+
+               postage.done(function (res) {
+
+                      $.post(`./${i4}/${i1}/`, function (data) {
+                     $('#results').html(data);
+                   });
+
+               })
+
+       // sendChangeTog(i1,i2,i3,i4)
      })
      $(".toggle").click(function () {
      var i1 = this.dataset.target
      var i2 = this.dataset.param
-     var i3 = this.dataset.value
-     var i4 = this.dataset.sv
+     var i3 = this.checked
+     var i4 = !{server.id}
+     var i5 = "define"
 
+                  var postage = $.post("/paramsave", {
+                action: i5  ,
+                scope:  "server" ,
+                target: i1 || !{server.id} ,
+                param:  i2,
+                value:  i3
 
+              })
+
+               postage.done(function (res) {
+
+                      $.post(`./${i4}/${i1}/`, function (data) {
+                     $('#results').html(data);
+                   });
+
+               })
 
      /* swal({
               title: "OK!",
@@ -118,32 +142,38 @@ script.
      });
 
          $(".arrayAd").click(function () {
-     var i1 = this.dataset.target
-     var i2 = this.dataset.param
-     var i3 = this.dataset.value
-     var i4 = this.dataset.sv
-     var i5 = this.dataset.operate
+
+         var i1 = this.dataset.target
+         var i2 = this.dataset.param
+         var i4 = this.dataset.sv
+         var i3 = this.dataset.value || this.checked
+         var i5
+         this.checked ? i5 = "remove" : i5 = "add"
+         i5 = this.dataset.operate || i5
+         alert(i5,i3)
+        setTimeout(function(){
 
 
-     $.post(`/paramaddrem/${i1}/${i2}/${i3}/${i5}/`, function (data) {
-      if (data=="OK"){
-                $.post(`./${i4}/${i1}/`, function (data) {
-       $('#results').html(data);
-     });
+         $.post(`/paramaddrem/${i1}/${i2}/${i3}/${i5}/`, function (data) {
+          if (data=="OK"){
+            $.post(`./${i4}/${i1}/`, function (data) {
+             $('#results').html(data);
+           });
 
 
-      }else{
-            swal({
-              title: "NOT OK!",
-              type: "error",
-              confirmButtonColor: "#5589dd",
-              confirmButtonText: "OK",
-              closeOnConfirm: true,
-              // showLoaderOnConfirm: true,
-            })
-      }
-     });
+          }else{
+                swal({
+                  title: "NOT OK!",
+                  type: "error",
+                  confirmButtonColor: "#5589dd",
+                  confirmButtonText: "OK",
+                  closeOnConfirm: true,
+                  // showLoaderOnConfirm: true,
+                })
+          }
+         });
 
 
+        },1000)
 
-    });
+        });

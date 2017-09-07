@@ -67,8 +67,7 @@ try{
 gear.superDefine(Target,"ID",Target.id)
 
         var ranked = []
-        userDB.forEach(j=>{
-            var i = JSON.parse(j)
+        userDB.forEach(i=>{
             var rankItem = {}
             rankItem.exp = i.modules.exp
             rankItem.id = i.ID
@@ -82,8 +81,7 @@ gear.superDefine(Target,"ID",Target.id)
         })
 
        var Sranked = []
-        userDB.forEach(j=>{
-            var i = JSON.parse(j)
+        userDB.forEach(i=>{
             var SrankItem = {}
             if (Server.members.get(i.ID)==undefined) return;
             SrankItem.exp = i.modules.exp
@@ -128,7 +126,9 @@ if (Target.bot && Target.id != "271394014358405121") {
     let joinstamp = `${join.getDate()}/${join.getMonth()+1}/${join.getFullYear()} - ${join.toLocaleTimeString()}`;
 
     var favcolor    = (userDB.get(Target.id).modules.favcolor || "2211EB")
-    var backgroundId    = userDB.get(Target.id).modules.bgID
+    var backgroundId    = (userDB.get(Target.id).modules.bgID|| "5zhr3HWlQB4OmyCBFyHbFuoIhxrZY6l6")
+    console.log("backgroundId")
+    console.log(backgroundId)
     var medals      = (userDB.get(Target.id).modules.medals || [0,0,0,0,0,0,0,0])
     var persotex    = (userDB.get(Target.id).modules.persotext || "I have no personal text because i'm lazy as a sloth.")
     var nametag     = Target.username + "#" + Target.discriminator
@@ -171,16 +171,17 @@ rep:   ${rep}
 `
 
 //    message.reply(m)
-}catch(e){gear.hook.send(e.error)}
+}catch(e){console.log(e)}
+
 console.log("==============="+backgroundId)
 console.log("==============="+backgroundId.toString().length)
-var backgroundIMAGE = paths.BUILD + 'profile/BGS/bg_'+backgroundId+'.png'
+var backgroundIMAGE = paths.BUILD + 'backdrops/'+backgroundId+'.png'
     if (backgroundId.toString().length < 10){
 
-     backgroundIMAGE = paths.BUILD + 'profile/BGS/bg_'+backgroundId+'.png'
+     backgroundIMAGE = paths.BUILD + 'backdrops/5zhr3HWlQB4OmyCBFyHbFuoIhxrZY6l6.png'
     }else{
-
-     backgroundIMAGE = paths.BUILD+"backdrops/" +backgroundId+".png"
+console.log(backgroundIMAGE)
+     backgroundIMAGE = paths.BUILD+"backdrops/"+backgroundId+".png"
     }
 console.log("==============="+backgroundIMAGE)
 
@@ -190,7 +191,7 @@ console.log("==============="+backgroundIMAGE)
 
       return new Promise(async resolve => {
 
-        generatorMSG.edit(gener + "\n `Sending Buffer`").catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
+        generatorMSG.edit(gener + "\n `Sending Buffer`").catch(e=> console.log(e))
 
     var skin = userDB.get(Target.id).modules.skin
 
@@ -362,138 +363,8 @@ sidebar.color([
 
       })
 
-    /*
 
 
-    let GOODMOJI = ':gem:'
-    let GOOD = 'Gem'
-    if (DB.get(Server.id).modules) {
-        GOODMOJI = DB.get(Server.id).modules
-    }
-    if (DB.get(Server.id).modules.GOODNAME) {
-        GOOD = DB.get(Server.id).modules.GOODNAME
-    }
-
-
-
-    var skinfo = require("../../" + paths.SKINS + skin + "/skin.js")
-
-    gear.Jimp.read(img).then(function (photo) {
-        photo.resize(skinfo.propicHW, skinfo.propicHW)
-        gear.Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
-
-            if (skinfo.roundpic) {
-
-                photo.mask(lenna, 0, 0)
-            }
-
-
-
-            gear.Jimp.read(paths.SKINS + skin + '/cartela.png').then(function (cart) {
-
-
-                                        cart.color([
-                                             {
-                                                apply: 'desaturate',
-                                                params: [100]
-                                            },
-                                            {
-                                                apply: 'mix',
-                                                params: [tint, 40]
-                                            }
-]);
-
-                gear.Jimp.read(paths.SKINS + skin + '/levbar.png').then(function (bar) {
-
-                    gear.Jimp.read(paths.PROFILE + adm + '.png').then(function (tag) {
-
-                        gear.Jimp.loadFont(paths.FONTS + skinfo.font1).then(function (f1) { // load font from .fnt file
-                            gear.Jimp.loadFont(paths.FONTS + skinfo.font2).then(function (f2) {
-                                gear.Jimp.loadFont(paths.FONTS + skinfo.font3).then(function (f3) {
-                                    gear.Jimp.loadFont(paths.FONTS + skinfo.invisible).then(function (inv) {
-                                        try {
-                                            var level = tgtData.level.toString()
-                                            var money = tgtData.goodies.toString()
-                                            var exp = tgtData.exp.toString()
-                                            var texp = tgtData.persotext.toString()
-                                        } catch (err) {
-                                            var level = "00"
-                                            var money = "00"
-                                            var exp = "0000"
-                                            var texp = ""
-                                        }
-
-                                        var next = Math.trunc(Math.pow((Number(level) + 1) / 0.08, 2));
-                                        var perc = Number(exp) / next
-                                        if (level.length == 1) {
-                                            level = `0${level}`
-                                        } else if (level === undefined) {
-                                            level = `XX`
-                                        }
-                                        console.log('OK ATE QUI')
-                                        let join = message.guild.member(Target).joinedAt
-                                        let joinstamp = `${join.getDate()}/${join.getMonth()+1}/${join.getFullYear()} - ${join.toLocaleTimeString()}`;
-                                        var stret = skinfo.barW * perc
-                                        bar.resize(stret + 1, skinfo.barH)
-                                        try {
-
-                                            if (Target.id === '271394014358405121') {
-                                                level = "XX"
-                                                money = tgtData.goodies.toString()
-                                                exp = "99999"
-                                                next = "99999"
-                                                bar.resize(skinfo.barW, skinfo.barH)
-                                            } else if (Target.bot) {
-                                                level = "XX"
-                                                money = inf
-                                                exp = "99999"
-                                                next = "99999"
-                                                bar.resize(skinfo.barW, skinfo.barH)
-                                            };
-                                        } catch (err) {
-                                            level = "XX"
-                                            money = inf
-                                            exp = "99999"
-                                            next = "99999"
-                                            bar.resize(skinfo.barW, skinfo.barH)
-
-                                        }
-                                        cart.print(eval(skinfo.nameF), skinfo.nameX, skinfo.nameY, message.guild.member(Target).displayName);
-
-
-                                        cart.print(eval(skinfo.levelF), skinfo.levelX, skinfo.levelY, `${level}`);
-                                        cart.print(eval(skinfo.moneyF), skinfo.moneyX, skinfo.moneyY, `${money} ${GOOD}s`);
-                                        cart.print(eval(skinfo.expF), skinfo.expX, skinfo.expY, `${exp} / ${next}`);
-                                        console.log('OK ATE QUI')
-                                        cart.print(eval(skinfo.joinF), skinfo.joinX, skinfo.joinY, `${joinstamp}`);
-                                        cart.print(eval(skinfo.persotextF), skinfo.persotextX, skinfo.persotextY, `${texp}`, skinfo.persotextWmax);
-                                        cart.composite(bar, skinfo.barX, skinfo.barY)
-                                        cart.composite(photo, skinfo.propicX, skinfo.propicY)
-                                        cart.composite(tag, skinfo.admtagX, skinfo.admtagY)
-                                        //cart.write(`${paths.CARDS}${caller}.png`)
-                                        console.log("Success".green)
-
-
-
-
-                                        cart.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
-                                            message.channel.send({files:[{attachment:image,name:"file.png"}]})
-                                        })
-
-                                    })
-                                });
-
-                            });
-                        });
-                    });
-                });
-            });
-
-        });
-    });
-
-
-*/
 
     })}catch(e){console.log(message.channel.send("**ERROR**"))}
       }

@@ -1,79 +1,11 @@
 
 const polx = require("../pollux.js")
-var defaults = require("../utils/defaults.js")  // Database Defaults
+const fx = require("../core/functions.js")  // Database Defaults
 
 
 module.exports = {
     run:  function run(gear,DB,userDB,bot, message) {
 
-
-
-
-        function serverSetup(guild) {
-
-
-    if (!DB.get(guild.id)||DB.get(guild.id)==undefined) {
-
-        console.log(('          --- - - - - = = = = = = Setting Up Guild:'.yellow + guild.name).bgBlue)
-
-        DB.set(guild.id, defaults.gdfal)
-
-        var gg = DB.get(guild.id);
-        gg.name = guild.name;
-        gg.ID = guild.id;
-        if (guild.region === 'brazil') gg.modules.LANGUAGE = "dev";
-        DB.set(guild.id, gg);
-
-        guild.channels.forEach(element => {
-            if (element.type != 'voice') {
-                console.log('Setting Up Channel:'.white + element.name)
-
-                var GGD = DB.get(guild.id)
-                GGD.channels[element.id] = defaults.cdfal
-                DB.set(guild.id, GGD)
-                var gg = DB.get(guild.id)
-                gg.channels[element.id].name = element.name
-                DB.set(guild.id, gg)
-
-            }
-        });
-    } else {
-
-        gear.normaliseGUILD(guild,DB)
-    }
-
-}
-        function channelSetup(element, guild) {
-
-    console.log('Setting Up Channel:'.white + element.name + " from " + guild.name)
-    //  DB.get(guild.id).channels[element.id] =
-    //element.mods = DB.get(guild.id).channels[element.id].modules;
-    var GGD = DB.get(guild.id)
-    if (!GGD.channels)GGD.channels={};
-    GGD.channels[element.id] = defaults.cdfal
-    DB.set(guild.id, GGD)
-    var gg = DB.get(guild.id)
-    gg.channels[element.id].name = element.name
-    gg.channels[element.id].ID = element.id
-    DB.set(guild.id, gg)
-
-} //DB
-        function userSetup(user) {
-
-    if (!userDB.get(user.id)) {
-        console.log('Setting Up Member:' + user.username)
-
-        userDB.set(user.id, defaults.udefal)
-
-        var uu = userDB.get(user.id)
-        uu.name = user.username
-        uu.ID = user.id
-        userDB.set(user.id, uu)
-
-    } else {
-        gear.normaliseUSER(user, userDB, DB)
-    }
-} //DB
 
 //COOLDOWNS-----------------------------------------------------------//
         var cd = function (argamassa, fx, timeout, respfn) {
@@ -122,7 +54,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
     Server.member(message.author).ban().then(e=>message.channel.send(message.author+" kicked for Mention Spam above 5")).catch(a=>message.channel.send(Server.owner+" could not kick "+message.author+" due to permission issues."))
 }
 
-    //---  LOGS     ---------------------------------------------------------
+    /*/---  LOGS     ---------------------------------------------------------
     if (Server && Server.name != "Discord Bots") {
 
 
@@ -136,19 +68,13 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
 
 
     }
-    //--- END LOGS   ---------------------------------------------------------
+    //--- END LOGS   ---------------------------------------------------------*/
     if (Author.bot) return;
     //-- NO BOTS PAST HERE ---------------------------------------------------
 
     if (Server && !Author.bot) {
 
-
-
-
-
-
-
-    if (Server.antiflood) {
+    if (Server.antiflood || Server.id=="277391723322408960") {
 
             let lms = message.channel.messages.last()
 
@@ -214,9 +140,9 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
                 return
             }
         }
-        console.log(Server.name)
+        //console.log(Server.name)
 
-    if (DB.get(Server.id)==undefined)serverSetup(Server);
+    if (DB.get(Server.id)==undefined)fx.run("guildSetup",Server);
 
         if (DB.get(Server.id).modules.REACTIONS != undefined) {
             let servdata = DB.get(Server.id).modules
@@ -233,9 +159,9 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
 
         //--- END SIDE   ---------------------------------------------------------
         //  SETUPS
-         serverSetup(Server);
-         userSetup(Author);
-         userSetup(Target);
+         fx.run("guildSetup",Server);
+         fx.run("userSetup",Author);
+         fx.run("userSetup",Target);
         try{
         if(userDB.get(Author.id).name==undefined){
             superDefine(Author,"name",Author.username)
@@ -271,9 +197,9 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
         // DONE WITH PERMS ---//
 
         //A NEW CHANNEL? --------------------------------------------
-        try{if (DB.get(Server.id).channels[Channel.id] == undefined)channelSetup(Channel, Server);
+        try{if (DB.get(Server.id).channels[Channel.id] == undefined)fx.run("channelSetup",Channel, Server);
            }catch(e){
-             channelSetup(Channel, Server);
+             fx.run("channelSetup",Channel, Server);
            }
         let defaultgreet = {
             hi: false,
@@ -305,7 +231,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
             }
 
         } catch (err) {
-            serverSetup(Server) // maybe no server
+            fx.run("guildSetup",Server) // maybe no server
         }
 
         //TRY gemdrop shit
@@ -318,7 +244,7 @@ if(message.mentions.users.size+message.mentions.roles.size >= 6){
             }
         } catch (err) {
             console.log(err)
-            serverSetup(Server)
+            fx.run("guildSetup",Server)
         }
 
                    //==========================//

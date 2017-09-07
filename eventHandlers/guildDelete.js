@@ -1,6 +1,6 @@
 
 const polx = require("../pollux.js")
-var defaults = require("../utils/defaults.js") // Database Defaults
+const fx = require("../core/functions.js")
 
 module.exports = {
     run: function run(gear, DB, userDB, bot, guild) {
@@ -24,7 +24,7 @@ module.exports = {
 
         DB.delete(guild.id).catch(e => {
             console.log(e)
-            console.log("POLLUX 740".red)
+            console.log("GUILD DEL 27".red)
         })
     }
 }

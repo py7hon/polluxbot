@@ -1,5 +1,5 @@
-2017/09/03-21:32:35.558 22b4 Recovering log #71
-2017/09/03-21:32:35.558 22b4 Level-0 table #73: started
-2017/09/03-21:32:35.599 22b4 Level-0 table #73: 8408 bytes OK
-2017/09/03-21:32:35.758 22b4 Delete type=0 #71
-2017/09/03-21:32:35.758 22b4 Delete type=3 #69
+2017/09/06-02:18:23.939 a0 Recovering log #215
+2017/09/06-02:18:23.939 a0 Level-0 table #217: started
+2017/09/06-02:18:24.003 a0 Level-0 table #217: 188 bytes OK
+2017/09/06-02:18:24.156 a0 Delete type=0 #215
+2017/09/06-02:18:24.156 a0 Delete type=3 #213

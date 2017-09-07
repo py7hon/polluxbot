@@ -41,7 +41,22 @@ block content
 
 
 
-  .nano: .container.nano-content.division
+  .nano
+    .container.preloder
+        style
+          include hearty
+
+
+          div.grid-big
+            - for (i=0; i<25; i++)
+              div.cell-1
+        br
+        br
+        p.title LOADING
+        //div.loadere
+          div.bare
+            div.bareb
+    .container.nano-content.division.prelod
 
 
 
@@ -74,6 +89,8 @@ block content
 
 
           .column: .chandiv.nano#list: .nano-content
+
+
 
             div(class=" box has-text-centered super-filter UR")
               +rarity(r.ur,"UR")
@@ -112,3 +129,4 @@ block content
 
 block scripts
   script(src='/js/lightbox.js')
+

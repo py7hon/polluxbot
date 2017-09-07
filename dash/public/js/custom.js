@@ -158,3 +158,9 @@ $(".asbutton").click(function () {
     $('#results').html(data);
   });
 });
+
+      $(window).on('load',function(){
+
+            $(".preloder").fadeOut("slow")
+            $(".prelod").fadeIn("slow")
+      })
