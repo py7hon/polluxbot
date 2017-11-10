@@ -1,314 +1,189 @@
+const gear      = require('../core/gearbox.js'),
+      serverDB  = gear.serverDB,
+      channelDB = gear.channelDB,
+      userDB    = gear.userDB,
+      async     = require('async');
 
-const polx = require("../pollux.js")
-const fx = require("../core/functions.js")  // Database Defaults
+let GREYLIST=[],BLACKLIST=[],WHITELIST=[]
 
+function dataChecks(type,ent){
+  return new Promise(async resolve =>{
+    if(type==="user"){
+      userDB.findOne({id:ent.id}).then(user=>{
+        if(!user) return resolve(userDB.new(ent));
+        return resolve(user);
+      });
+    };
+    if(type==="server"){
+      serverDB.findOne({id:ent.id}).then(server=>{
+        if(!server) return resolve(serverDB.new(ent));
+        return resolve(server);
+      });
+    };
+    if(type==="channel"){
+      channelDB.findOne({id:ent.id}).then(channel=>{
+        if(!channel) return resolve(channelDB.new(ent));
+        return resolve(channel);
+      });
+    };
+  });
+};
 
-module.exports = {
-    run:  function run(gear,DB,userDB,bot, message) {
+async function levelUps(message,servData,chanData,USER,userData){
+    let levelup;
+    if(!chanData.modules.LVUP){
+      levelup = (await channelDB.set(message.channel.id,{$set:{'modules.LVUP':true}})).modules.LVUP;
+    }else{
+      levelup = chanData.modules.LVUP;
+    };
+    if (levelup){
+        let xp=userData.modules.exp;
+        xp+=gear.randomize(0,2)-gear.randomize(0,3);
+        await userDB.findOneAndUpdate({id:message.author.id},{$set:{'modules.exp':xp}});
+        delete require.cache[require.resolve('../core/subroutines.js')];
+        require('../core/subroutines.js').levelChecks(message,servData,userData);
+    };
+};
 
+async function localExpIncrement(message,servData,chanData,USER,userData){
 
-//COOLDOWNS-----------------------------------------------------------//
-        var cd = function (argamassa, fx, timeout, respfn) {
-    var onCooldown = false;
-    return function () {
-        if (!onCooldown) {
-            fx.apply(argamassa, arguments);
-            onCooldown = true;
-            try{
+    let channel_exp;
+    if(!chanData.modules.EXP){
+      channel_exp = (await channelDB.set(message.channel.id,{$set:{'modules.EXP':true}})).modules.EXP;
+    }else{
+      channel_exp = chanData.modules.EXP;
+    };
+    if (channel_exp){
+        let lRanks= {};
+        if(!servData.modules.LOCALRANK){
+          lRanks = (await serverDB.findOneAndUpdate({id:message.guild.id},{$set:{'modules.LOCALRANK':{}}})).modules.LOCALRANK||{};
+        }else{
+          lRanks = servData.modules.LOCALRANK;
+        };
 
-            setTimeout(function () {
-                onCooldown = false;
-            }, timeout);
-            }catch(err){
-                onCooldown = false;
-                console.log("HERE")
-                console.error
-            }
-
-        } else {
-            try {
-                respfn()
-            } catch (err) {}
+        let userRankLocal;
+        if(!lRanks[USER.id]){
+          userRankLocal = {level:0,exp:0};
+        }else{
+          userRankLocal = lRanks[USER.id];
         }
-    }
-}     //
-//-------------------------------------------------------------------//
+        userRankLocal.exp+=1;
+        await serverDB.findOneAndUpdate({id:message.guild.id},{$set:{['modules.LOCALRANK.'+USER.id]:userRankLocal}});
+    };
+};
+async function randomDrops(CHANNEL,chanData){
 
-var gibexp = cd(console, gear.paramIncrement, 5000);
-var plzDrop = cd(console,  gear.dropGoodies, 5000);
+    let random_drops;
+    if(!chanData.modules.EXP){
+      random_drops = (await channelDB.findOneAndUpdate({id:CHANNEL.id},{$set:{'modules.DROPS':true}})).modules.DROPS;
+    }else{
+      random_drops = chanData.modules.DROPS;
+    };
+    if (random_drops){
 
-    //Set Them Up
-    var Server = message.guild;
-    var Channel = message.channel;
-    var Author = message.author;
-    var Target = message.mentions.users.first() || Author;
-    var MSG = message.content;
+      //processDrops();
 
-if(message.mentions.users.size+message.mentions.roles.size >= 6){
-    return;
-    message.delete().catch(e => {
-        console.log(e)
-        console.log("POLLUX 415".red)
-    })
-    message.channel.send(":warning: SPAM PROTECTION TRIGGERED :warning:")
-    Server.member(message.author).ban().then(e=>message.channel.send(message.author+" kicked for Mention Spam above 5")).catch(a=>message.channel.send(Server.owner+" could not kick "+message.author+" due to permission issues."))
+    };
+};
+async function spamBuster(SERVER,servData,CHANNEL,chanData){
+    //const Nightwatch = require ('./supermodules/nightwatch.js');
+    let spam_buster;
+    if(!chanData.modules.BUSTER){
+      await (await channelDB.set(CHANNEL.id,{
+        $set:{
+          'modules.BUSTER':{
+              'flood'      :false,
+              'links'      :false,
+              'invites'    :false,
+              'words'      :false,
+              'mentionSpam':false
+          }
+        }
+      })).modules.BUSTER;
+      spam_buster = (await channelDB.findOne({id:CHANNEL.id})).modules.BUSTER;
+
+    }else{
+      spam_buster = chanData.modules.BUSTER;
+    };
+    if(spam_buster.flood)/*Nightwatch.floodBuster()*/;
+    if(spam_buster.links)/*Nightwatch.linksBuster()*/;
+    if(spam_buster.invites)/*Nightwatch.invitesBuster()*/;
+    if(spam_buster.words)/*Nightwatch.wordsBuster()*/;
+    if(spam_buster.mentionSpam)/*Nightwatch.mentionBuster()*/;
+};
+function serverLanguageSets(message, servData){
+     if (servData.modules.LANGUAGE) {
+       let langua = servData.modules.LANGUAGE;
+       if (message.guild.region === 'brazil') langua = "pt-BR";
+       message.lang = [langua, 'dev'];
+     } else {
+       let langua = "en"
+       if (SERVER.region === 'brazil') langua = "pt-BR";
+       message.lang = [langua, 'dev'];
+       serverDB.set(message.guild.id, {$set: {'modules.LANGUAGE': langua}});
+     };
+   };
+
+exports.run = async function(bot, message){
+
+
+  const USER   = message.author,
+        SERVER = message.guild,
+        CHANNEL= message.channel,
+        TARGET = message.mentions.users.first() ||USER;
+try{
+  if (GREYLIST.includes(SERVER.id) || GREYLIST.includes(USER.id))return;
+
+}catch(e){
+  return;
 }
+  if (USER.bot) return;
 
-    /*/---  LOGS     ---------------------------------------------------------
-    if (Server && Server.name != "Discord Bots") {
+  let userData = await dataChecks( 'user',   USER    ),
+      servData = await dataChecks( 'server', SERVER  ),
+      chanData = await dataChecks( 'channel',CHANNEL ),
+      targData = await dataChecks( 'user',   TARGET  );
 
+  if (SERVER){
 
-        var logserver = Server.name + " "
-        var logchan = " #" + Channel.name + " "
-        var logusr = " " + Author.username + ": "
-        var logmsg = MSG
+    await localExpIncrement(message,servData,chanData,USER,userData),
+    await randomDrops(CHANNEL,chanData),
+    await spamBuster(SERVER,servData,CHANNEL,chanData);
+    await levelUps(message,servData,chanData,USER,userData);
 
+    //CHECK SERVER LANG
+    await serverLanguageSets(message,servData);
 
-        console.log(" @ " + logserver.bgWhite.black.bold + logchan.bgWhite.blue + logusr.yellow.underline + logmsg.gray.underline + "\n")
-
-
-    }
-    //--- END LOGS   ---------------------------------------------------------*/
-    if (Author.bot) return;
-    //-- NO BOTS PAST HERE ---------------------------------------------------
-
-    if (Server && !Author.bot) {
-
-    if (Server.antiflood || Server.id=="277391723322408960") {
-
-            let lms = message.channel.messages.last()
-
-            if (lms.author.id == message.author.id && message.content.includes(lms.content)) {
-                if (!Author.warning) Author.warning = 0;
-                Author.warning++
-                    setTimeout(() => Author.warning--, 3000)
-                if (Author.warning == 6) {
-                    message.reply(":warning: **FLOOD**")
-                }
-                if (Author.warning > 10) {
-                    message.guild.member(Author).kick().then(kik => {
-                        kik.send("You have been kicked from " + Server.name + " for Flooding all around.")
-                        message.channel.send(kik.username + " have been kicked from " + Server.name + " for Flooding all around.")
-
-                    }).catch(c => {
-                        Channel.send(Server.owner + " No kick Permissions given for Flood Control.")
-                    })
-                }
-
-            }
-
-        }
+    //CHECK CHANNEL LANG
+    if(chanData.LANGUAGE){
+      message.lang = [chanData.LANGUAGE || servData.LANGUAGE, 'dev'];
+    };
 
 
+    if (typeof (servData.modules.PREFIX) !== 'undefined' && servData.modules.PREFIX && servData.modules.PREFIX !== '') {
+        message.botUser = bot;
+
+        let parsedData = {servData,userData,chanData,targData};
+        if (require('../core/donFire.js').run(message,parsedData)===true)return;
 
 
+        if (message.content.startsWith(servData.modules.PREFIX)) message.prefix=servData.modules.PREFIX;
+        if (servData.globalPrefix!==false){
+          if(message.content.startsWith("p!")) message.prefix = "p!";
+        };
+        if(message.content.startsWith("plx!")) message.prefix = "plx!";
+        if(message.prefix){
+            require('../core/commandFire.js').run(message,parsedData);
+        };
+    };
 
+    //---SPAM BUSTER
 
+    //---NIGHTWATCH SUBROUTINES
 
+    //---REACTIONS
 
+  }
 
-
-        let args = message.content.toLowerCase().split(' ').slice(1)[0]
-        //==-------------------------------------------
-        // SIDE COMMANDS
-        try{
-
-        gear.fs.readFile("./core/collateral_triggers.json", 'utf8', (err, data) => {
-            data = JSON.parse(data)
-
-            if (data[MSG]) {
-                let jet = require(`../core/sidecommands/${data[MSG]}.js`);
-                try {
-                    jet.run(bot, message, DB, defaults.gdfal)
-                    return
-                } catch (err) {
-                   // hook.send(err)
-                    return
-                }
-            }
-        });
-        }catch(e){}
-        if (message.content.endsWith('now illegal')) {
-
-            let illegal = require(`../core/sidecommands/nowillegal.js`);
-            try {
-                illegal.run(bot, message)
-                return
-            } catch (err) {
-                console.log(err)
-                //hook.send(err)
-                return
-            }
-        }
-        //console.log(Server.name)
-
-    if (DB.get(Server.id)==undefined)fx.run("guildSetup",Server);
-
-        if (DB.get(Server.id).modules.REACTIONS != undefined) {
-            let servdata = DB.get(Server.id).modules
-            if (servdata.REACTIONS[MSG]) {
-                let max = servdata.REACTIONS[MSG].length
-                let goer = gear.randomize(0, max)
-                return Channel.send(servdata.REACTIONS[MSG][goer])
-            }
-        } else {
-            let D = DB.get(Server.id)
-            D.modules.REACTIONS = {}
-            DB.set(Server.id, D)
-        }
-
-        //--- END SIDE   ---------------------------------------------------------
-        //  SETUPS
-         fx.run("guildSetup",Server);
-         fx.run("userSetup",Author);
-         fx.run("userSetup",Target);
-        try{
-        if(userDB.get(Author.id).name==undefined){
-            superDefine(Author,"name",Author.username)
-        }
-        if(userDB.get(Author.id).ID==undefined){
-            superDefine(Author,"ID",Author.username)
-        }
-        if(userDB.get(Author.id).modules.goodies>=999999){
-            gear.paramDefine(Author,"goodies",0)
-            message.reply("Your rubies has been reset due to suspect of exploit")
-            console.log("\n\n\n\n RUBY FRAUD RESET \n\n\n\n\n")
-            bot.users.get("88120564400553984").send("RESET:"+Author+" :: "+Author.id+" "+Author.username)
-        }
-        }catch(e){}
-        //  ------
-        gibexp(Author, 'exp', gear.randomize(1, 10)) // EXP GIVEAWAY
-
-        // POLLUX PERMS 101
-
-        /*
-        -= ::PERMS:: =-
-        0 = ALMIGHTY (owner)
-        1 = ADM
-        2 = MOD
-        3 = PLEB
-        4 = FUDIDO
-        5 = FORBIDDEN
-        */
-
-        Author.PLXpems = gear.updatePerms(Author, Server, DB)
-        Target.PLXpems = gear.updatePerms(Target, Server, DB)
-
-        // DONE WITH PERMS ---//
-
-        //A NEW CHANNEL? --------------------------------------------
-        try{if (DB.get(Server.id).channels[Channel.id] == undefined)fx.run("channelSetup",Channel, Server);
-           }catch(e){
-             fx.run("channelSetup",Channel, Server);
-           }
-        let defaultgreet = {
-            hi: false,
-            joinText: "Welcome to the Server %username%!",
-            greetChan: ""
-        }
-
-        if (!DB.get(Server.id).modules.GREET || DB.get(Server.id).modules.GREET === undefined) {
-            gear.paramDefine(Server, "GREET", defaultgreet)
-        }
-
-        let defaultgreetB = {
-            hi: false,
-            joinText: "%username% has left us!",
-            greetChan: ""
-        }
-        if (!DB.get(Server.id).modules.FWELL || DB.get(Server.id).modules.FWELL === undefined) {
-            gear.paramDefine(Server, "FWELL", defaultgreetB)
-        }
-
-
-        //TRY level shit
-        //------------------------------------------------------------
-        try {
-            if (DB.get(Server.id).modules && !DB.get(Server.id).modules.DISABLED.includes("level")) {
-                gear.updateEXP(Author, message, DB, userDB)
-            } else if (DB.get(Server.id).modules && !DB.get(Server.id).channels[Channel.id].modules.DISABLED.includes("level")) {
-                gear.updateEXP(Author, message, DB, userDB)
-            }
-
-        } catch (err) {
-            fx.run("guildSetup",Server) // maybe no server
-        }
-
-        //TRY gemdrop shit
-        //------------------------------------------------------------
-        try {
-            if (DB.get(Server.id).modules && !DB.get(Server.id).modules.DISABLED.includes("drop")) {
-                plzDrop(message,DB,userDB)
-            } else if (!DB.get(Server.id).channels[Channel.id].modules.DISABLED.includes("drop")) {
-                plzDrop(message,DB,userDB)
-            }
-        } catch (err) {
-            console.log(err)
-            fx.run("guildSetup",Server)
-        }
-
-                   //==========================//
-//-----------------//  ACTUAL COMMAND PROCESS  //~~//~~//~~//~~//~~//~~//~~||
-                   //==========================//
-
-        //Wave 1 --> CHECK LOCALE
-
-        if (Server && typeof (DB.get(Server.id).modules.LANGUAGE) !== 'undefined' && DB.get(Server.id).modules.LANGUAGE && DB.get(Server.id).modules.LANGUAGE !== '') {
-            let langua = "en"
-            if (Server.region === 'brazil') langua = "dev";
-            message.lang = [DB.get(Server.id).modules.LANGUAGE, langua];
-        } else {
-            let langua = "en"
-            if (Server.region === 'brazil') langua = "dev";
-            gear.paramDefine(Server, "LANGUAGE", langua)
-        }
-
-        //Wave 2 -- CHECK PREFIX
-        if (Server && typeof (DB.get(Server.id).modules.PREFIX) !== 'undefined' && DB.get(Server.id).modules.PREFIX && DB.get(Server.id).modules.PREFIX !== '') {
-
-            //-- GET & CHECK PREFIX
-            if (message.content.startsWith(DB.get(Server.id).modules.PREFIX)||
-                message.content.startsWith("p!")) {
-                console.log(message.content)
-                if (message.content.startsWith("p!")){
-                    message.prefix = "p!";
-                }
-                polx.commandFire(message, Server, Channel, Author)
-
-            } else {
-                if (false){
-
-                    //cleverbot someday
-                } else {
-
-                        if (message.content.startsWith("pollux, ")&&message.author.id==="88120564400553984"){
-                              let msg = message;
-                            let M = message.content;
-                            console.log(M)
-                            msg.content = DB.get(Server.id).modules.PREFIX + "eval" + M.substr(M.indexOf(",") + 1)
-                            console.log(msg.content)
-                           return polx.commandFire(msg, Server, Channel, Author)
-                        }
-                        try {
-                        var usr = message.mentions.users.first()
-                        if (message.guild && usr.id == bot.user.id && !message.author.bot) {
-                            let msg = message;
-                            let M = message.content;
-                            msg.content = DB.get(Server.id).modules.PREFIX + M.substr(M.indexOf(">") + 2)
-                            polx.commandFire(msg, Server, Channel, Author)
-                        }
-                    } catch (err) {}
-                }
-            }
-        } else {
-            //CHECK COMMANDS INSIDE PM
-
-        }
-    } else {
-        console.log(message.content)
-                return polx.DMcommandFire(message)
-                message.reply("Sorry sweetie, don't send stuff for me here. I'll have DM support someday in the future. If you are here for help check http://pollux.fun/commands");
-        return;
-    }
-    }
 }
+console.log("Message OK!")

@@ -1,48 +1,40 @@
+const gear = require("../core/gearbox.js");
 
-const polx = require("../pollux.js")
-var defaults = require("../utils/defaults.js") // Database Defaults
-const fx = require("../core/functions.js")
+exports.run =async function run(bot) {
+    let GLB = await gear.globalDB.get();
 
-module.exports = {
-    run: async function run(gear, DB, userDB, bot) {
-
-
-        require("../core/cherry.js").listen(bot, DB, userDB, gear)
-
-        /*
-
-         bot.guilds.forEach(async g => {
-             if (!DB.get(g.id)) return serverSetup(g);
-             await gear.normaliseGUILD(g, DB)
-
-             g.members.forEach(async m => {
-                 if (!userDB.get(m.id)) return userSetup(m.user);
-                 await gear.normaliseUSER(m, userDB, DB)
-
-             })
-         })*/
-        bot.user.setStatus('online')
-
-        //   bot.user.setGame(`coding Pollux`, 'https://www.twitch.tv/theFlicky').then().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
-
-        //bot.user.setGame(`Neverwinter Nights`).then().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
-
-        /*    async.parallel(bot.guilds.forEach(G => serverSetup(G)))*/
-
-        fx.run("userSetup",bot.user)
-
-        let name = 'Pollux Core Reporter';
-
-        let tx = `All systems go! I am ready to rock, master!`;
-        let color = '#3ed844';
-
-        await gear.sendSlack(name, tx, undefined, color)
-
-        if (bot.user.id != "278993643531141120") {
-            polx.postGCount(bot.guilds.size)
-        }
-
-
-
+    if (GLB.redButton) {
+      let embed = new gear.RichEmbed
+      embed.setTitle("Reset Response")
+      embed.setDescription(gear.emoji('yep') + " Back Online!")
+      let ts = new Date()
+      embed.setTimestamp(ts)
+      embed.setColor("#3ed844")
+      bot.channels.get(GLB.redButton).send({
+        embed
+      })
     }
+
+  gear.globalDB.set({$set:{'redbutton':false}});
+
+  await bot.user.setStatus('idle')
+  bot.user.setGame(`Booting Up...`);
+
+  let embed = new gear.RichEmbed
+  embed.setTitle('Pollux Core Reporter');
+  embed.setDescription('Ready! All systems go!');
+  embed.setColor('#3ed844');
+  await gear.wait(4);
+
+    bot.user.setStatus('online').then(y=>{
+      bot.user.setGame("Ready!");
+    })
+
+
+
+  if (bot.shard) {
+    console.log('Shard' + (1 + bot.shard.id) + '/' + bot.shard.count + " [ONLINE]")
+  }
+
 }
+

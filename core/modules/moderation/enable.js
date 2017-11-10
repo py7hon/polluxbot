@@ -1,165 +1,171 @@
+const gear = require("../../gearbox.js");
+const paths = require("../../paths.json");
+const locale = require('../../../utils/multilang_b');
+const mm = locale.getT();
 
-var gear = require("../../gearbox.js");
-var paths = require("../../paths.js");
-var locale = require('../../../utils/multilang_b');
-var mm = locale.getT();
+const cmd = 'enable';
 
-var cmd = 'enable';
-
-var init = function (message,userDB,DB) {
-
-    console.log('fff')
-    var Server = message.guild;
-    var Channel = message.channel;
-    var Author = message.author;
-    if (Author.bot) return;
-    var Member = Server.member(Author);
-    var Target = message.mentions.users.first() || Author;
-    var MSG = message.content;
-    var bot = message.botUser
-    var args = MSG.split(' ').slice(1)
-    var LANG = message.lang;
-
-    //-------MAGIC----------------
-
-    //HELP TRIGGER
-    let helpkey = mm("helpkey",{lngs:message.lang})
-if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
-     gear.usage(cmd,message);
-}
-//------------
-
-   var On      = gear.emoji("check")
-var Off     = gear.emoji("xmark")
-
-    if (message.channel.type === 'dm') {
-        message.reply(mm('CMD.noDM', {
-            lngs: LANG
-        }));
-        return;
-    }
-
-    if (message.content.length < 10) {
-        message.reply(mm('CMD.chooseAmod', {
-            lngs: LANG
-        }));
-        return;
-    }
-
- var modPass = gear.hasPerms(Member,DB)
+const init = async function (message) {
 
 
-    if (!modPass) {
-        return message.reply(mm('CMD.moderationNeeded', {
-            lngs: LANG
-        })).catch(console.error);
-    }
+  const On = gear.emoji("yep")
+  const Off = gear.emoji("nope")
+
+  const Server = message.guild;
+  const Channel = message.channel;
+  const Author = message.author;
+
+  const Member = message.member;
+  const Target = message.mentions.users.first() || Author;
+  const MSG = message.content;
+
+  const args = MSG.split(' ').slice(1)
+  const LANG = message.lang;
+
+  const P = {lngs: LANG}
+
+  //-------MAGIC----------------
+  //HELP TRIGGER
+  let helpkey = mm("helpkey", {
+    lngs: message.lang
+  })
+  if (MSG.split(" ")[1] == helpkey || MSG.split(" ")[1] == "?" || MSG.split(" ")[1] == "help") {
+    return gear.usage(cmd, message);
+  }
+  //------------
+
+  if (message.channel.type == 'dm') {
+    message.reply(mm('CMD.noDM', P));
+    return;
+  }
+  if (message.content.length < 10) {
+    message.reply(mm('CMD.chooseAmod', P));
+    return;
+  }
+  if (!gear.hasPerms(Member)) {
+    return message.reply(mm('CMD.moderationNeeded', P)).catch(console.error);
+  }
+
+  function pp(o, p) {
+    return o[p];
+  }
+
+  const module = args[0].toUpperCase()
+  let scope;
+  if (args[1]) {
+     scope = args[1].toLowerCase()
+  }else{
+    scope = 'c'
+  }
+  let sc = ''
+  switch (scope) {
+    case 's':
+    case 'server':
+    case 'guild':
+      sc = 'S'
+      break;
+    case 'c':
+    case 'channel':
+    case 'chnl':
+      sc = 'C'
+      break;
+    default:
+      sc = 'C'
+      break;
+  }
 
 
+  const enaMS = On + mm('CMD.enabledSer', {
+    lngs: LANG,
+    module: module
+  })
+  const enaMC = On + mm('CMD.enabledChn', {
+    lngs: LANG,
+    module: module,
+    channel: Channel.name
+  })
+  const enaCS = On + mm('CMD.enabledComSer', {
+    lngs: LANG,
+    command: module
+  })
+  const enaCC = On + mm('CMD.enabledComChn', {
+    lngs: LANG,
+    command: module,
+    channel: Channel.name
+  })
 
-
-    function pp(o, p) {
-        return o[p];
-    }
-
-    var module = args[0].toUpperCase()
-    if (args[1]) {
-        var scope = args[1].toLowerCase()
-    }
-    var sc = ''
-    switch (scope) {
-        case 's':
-        case 'server':
-        case 'guild':
-        case 'g':
-        case 'global':
-            sc = 'S'
-            break;
-        case 'c':
-        case 'channel':
-        case 'chnl':
-            sc = 'C'
-            break;
-        default:
-            sc = 'C'
-            break;
-    }
-
-
-    var disaMS = On + mm('CMD.enabledSer', {
-        lngs: LANG,
-        module: module
-    })
-    var disaMC = On + mm('CMD.enabledChn', {
-        lngs: LANG,
-        module: module,
-        channel: Channel.name
-    })
-    var disaCS = On + mm('CMD.enabledComSer', {
-        lngs: LANG,
-        command: module
-    })
-    var disaCC = On + mm('CMD.enabledComChn', {
-        lngs: LANG,
-        command: module,
-        channel: Channel.name
-    })
-
-
-
-    if (sc === 'S') {
-        Server.channels.forEach(e=>{
-
-        if (module in DB.get(e.guild.id).channels[e.id].modules) {
-            gear.paramDefine(e, module, true)
-            message.reply(disaMS)
+  if (sc == 'S') {
+    let mod;
+    Server.channels.forEach(e => {
+      try {
+        if (module in Channel.dDATA.modules) {
+          mod = true
+          gear.channelDB.set(e.id, {
+            $set: {
+              [module]: true
+            }
+          });
         } else {
-            imComm(message, sc)
+          mod = false
+          gear.channelDB.set(e.id, {
+            $pull: {
+              'modules.DISABLED': module.toLowerCase()
+            }
+          });
         }
-
-        })
+      } catch (e) {
+        console.log(e)
+      }
+    })
+    mod ? message.reply(enaMS) : message.reply(enaCS);
+  } else {
+    if (module in Channel.dDATA.modules) {
+      gear.channelDB.set(message.channel.id, {
+        $set: {
+          [module]: true
+        }
+      });
+      message.reply(enaMC)
     } else {
 
-        if (module in DB.get(message.guild.id).channels[message.channel.id].modules) {
-            gear.paramDefine(Channel, module, true)
-            message.reply(disaMC)
-        } else {
-            imComm(message, sc)
-        }
+      imComm(message, sc)
     }
+  }
 
 
+  function imComm(msg, scope) {
+    console.log('immcomm')
+    try {
+      let command = msg.content.substr(msg.prefix.length).split(/ +/)[1];
+      // let commandFile = require(`./${command}.js`);
+      if (scope == 'S') {
+        Server.channels.forEach(e => {
 
-    function imComm(msg, scope) {
-        console.log('immcomm')
-        try {
-            let command = msg.content.substr(msg.prefix.length).split(' ')[1];
-            let commandFile = require(`./${command}.js`);
-            if (scope === 'S') {
-                                     Server.channels.forEach(e=>{
-
-   gear.paramRemove(e, 'DISABLED', command)
-
+          if (!Server.dDATA.channels[e.id]) {
+            console.log("nochan:  " + e.name)
+          }
         })
-                gear.paramRemove(Server, 'DISABLED', command)
-                message.reply(disaCS)
 
-            }
-            if (scope === 'C') {
-                gear.paramRemove(Channel, 'DISABLED', command)
-                message.reply(disaCC)
-            }
-        } catch (err) {
-            console.log((err.stack).red)
-        }
+      }
+      if (scope == 'C') {
+        gear.channelDB.set(msg.channel.id, {
+          $pull: {
+            'modules.DISABLED': module.toLowerCase()
+          }
+        });
+        message.reply(enaCC)
+      }
+    } catch (err) {
+      console.log((err.stack).red)
     }
+  }
 
 
 }
- module.exports = {
-    pub: true,
-    cmd: cmd,
-    perms: 2,
-    init: init,
-    cat: 'mod'
+module.exports = {
+  pub: true,
+  cmd: cmd,
+  perms: 2,
+  init: init,
+  cat: 'mod'
 };

@@ -1,151 +1,58 @@
+const gear = require("../../gearbox.js");
+const paths = require("../../paths.json");
+const locale = require('../../../utils/multilang_b');
+const mm = locale.getT();
 
-const Discord = require('discord.js');
-var gear = require("../../gearbox.js");
-var paths = require("../../paths.js");
-var locale = require('../../../utils/multilang_b');
-var mm = locale.getT();
+const cmd = 'kick';
 
-var cmd = 'kick';
+const init = async function (message) {
 
-var init = function (message,userDB,DB) {
-var Server = message.guild;
-var Channel = message.channel;
-var Author = message.author;
-if (Author.bot) return;
-var Member = Server.member(Author);
-var Target = message.mentions.users.first() || Author;
-var MSG = message.content;
-var bot = message.botUser
-var args = MSG.split(' ').slice(1)
-var reason = MSG.split(' ').slice(2)
-var LANG = message.lang;
+    const Server = message.guild;
+    const Channel = message.channel;
+    const Author = message.author;
+    const Member =message.member;
+    const Target = message.mentions.members.first() || Member;
+    const MSG = message.content;
+    const bot = message.botUser
+    const args = MSG.split(/ +/).slice(1).join(' ');
+    let reason = args.split(' ').slice(1).join(' ');
+    const LANG = message.lang;
 
- reason = reason.toString().replace(/,/g," ")
-
-    //HELP TRIGGER
-    let helpkey = mm("helpkey",{lngs:message.lang})
-if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
-    return gear.usage(cmd,message,this.cat);
-}
+//HELP TRIGGER
+const P = {lngs:message.lang};
+if(gear.autoHelper([mm("helpkey",P)],{cmd,message,opt:this.cat}))return;
+if(gear.autoHelper(['noargs'],{cmd,message,opt:this.cat}));
 //------------
 
-//-------MAGIC----------------
+    const noperms     =   mm('CMD.moderationNeeded', P)
+    const KICKED      =   mm('dict.kicked', P)
+    const wasKICKED   =   mm('dict.waskicked', P)
+    const REASON      =   mm('dict.reason', P)
+    const RESPO       =   mm('dict.responsible', P)
+    const whokik      =   mm('CMD.kinNone', P)
+    const nope        =   mm('CMD.kin404', P)
+    const noPermsMe   =   mm('CMD.unperm', P)
+    const justasec    =   mm('CMD.jas', P)
+    const noReason    =   mm('CMD.noReason', {lngs:LANG, target:Target.user.tag})
+    const didkik      =   mm('CMD.didkik', {lngs:LANG, target:Target.user.tag,reason:reason})
 
-    var paths = require("../../paths.js");
+   reason=reason?reason:noReason;
 
+    const modPass = await gear.hasPerms(Member,gear.serverDB);
 
-    var noperms     =   mm('CMD.moderationNeeded', {lngs:LANG})
-    var KICKED     =   mm('dict.kicked', {lngs:LANG})
-    var wasKICKED     =   mm('dict.waskicked', {lngs:LANG})
-    var REASON     =   mm('dict.reason', {lngs:LANG})
-    var RESPO     =   mm('dict.responsible', {lngs:LANG})
-    var whokik      =   mm('CMD.kinNone', {lngs:LANG})
-    var nope        =   mm('CMD.kin404', {lngs:LANG})
-    var noPermsMe   =   mm('CMD.unperm', {lngs:LANG})
-    var justasec    =   mm('CMD.jas', {lngs:LANG})
-    var noReason      =   mm('CMD.noReason', {lngs:LANG, target:Target.username})
+    if (!modPass)return message.reply(mm('CMD.moderationNeeded',P)).catch(e=>console.warn);
+    if (message.mentions.users.size === 0)return message.reply(whokik).catch();
 
-   if (reason=="") {reason = noReason };
-    var didkik      =   mm('CMD.didkik', {lngs:LANG, target:Target.username,reason:reason})
+    let kickMember = Target;
+    let kik = Target.user
+    if (!kickMember)return message.reply(nope);
+    if (!Server.member(bot.user).hasPermission("KICK_MEMBERS"))return message.reply(noPermsMe).catch();
 
-   var modPass = gear.hasPerms(Member,DB)
-
-    if (!modPass) {
-        return message.reply(mm('CMD.moderationNeeded', {
-            lngs: LANG
-        })).catch(console.error);
-    }
-
-
-    if (message.mentions.users.size === 0) {
-        return message.reply(whokik).catch(console.error);
-    }
-    let kickMember = Server.member(Target);
-    let kik = Target
-    if (!kickMember) {
-        return message.reply(nope);
-    }
-    if (!Server.member(bot.user).hasPermission("KICK_MEMBERS")) {
-        return message.reply(noPermsMe).catch(console.error);
-    }
-
-
-    let img = Target.defaultAvatarURL.substr(0, Target.defaultAvatarURL.length - 10)
-    if (Target.avatarURL) {
-        img = Target.avatarURL.substr(0, Target.avatarURL.length - 10);
-    }
-var namae = kickMember.displayName
-
- kickMember.kick().then(kik=>{
-
-
-     let logchan = DB.get(Server.id).modules.LOGCHANNEL
-     let advchan = DB.get(Server.id).modules.ADVLOG
-     let actchan = DB.get(Server.id).modules.ACTLOG
-     let modchan = DB.get(Server.id).modules.MODLOG
-
-
-   // if( advchan && Server.channels.has(advchan)){chanpoint = Server.channels.get(advchan)}
-  //  if( actchan && Server.channels.has(actchan)){chanpoint = Server.channels.get(actchan)}
-    if( logchan && Server.channels.has(logchan)){chanpoint = Server.channels.get(logchan)}
-    if( modchan && Server.channels.has(modchan)){chanpoint = Server.channels.get(modchan)}
-
-
-   if (chanpoint){
-
-var id =  Target.id
-var mess = message
-var emb = new gear.Discord.RichEmbed;
-
-     emb.setThumbnail(Target.avatarURL)
-       emb.setTitle(":boot: "+KICKED);
-emb.setDescription(`**${Target.username+"#"+Target.discriminator}** ${wasKICKED}`);
-//emb.addField("Channel",mess.channel,true)
-emb.addField(REASON, reason ,true)
-emb.addField(RESPO,Author,true)
-//emb.addField("Message",mess.content,true)
- emb.setColor("#f54510");
-var ts = new Date
-emb.setFooter("Kick",Target.avatarURL)
-emb.setTimestamp(ts)
-
-   chanpoint.send({embed:emb}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
-
-         }
-
-
-    gear.Jimp.read(img).then(function (face) {
-        face.resize(126, 126)
-        gear.Jimp.read(paths.BUILD + "note.png").then(function (lenna) {
-            face.mask(lenna, 0, 0)
-
-
-            face.resize(96, 96)
-            face.rotate(-45)
-            gear.Jimp.read(paths.BUILD + "jazz.png").then(function (jazz) {
-                jazz.composite(face, 80, 31);
-                //jazz.write(`${paths.ROUND}/${caller}2.png`);
-                message.channel.send(justasec)
-                jazz.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {
-
-
-                    message.channel.send(didkik,{files:[image]}).then(m => {
-
-                    }).catch(e=>{message.reply("Não me deixaram postar a imagem pica do Jazz aqui mas kickei ele igual")})
-                })
-
-            });
-
-        });
-    });
-
-
-
-
- }).catch(e=>{message.reply(e)})
-
-
-    message.delete(1000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
-
+ kickMember.kick().then(kicked=>{
+   Channel.send(didkik)
+ }).catch(e=>{
+   message.reply(gear.emoji('nope'));
+ })
+    message.delete(1000).catch();
 }
  module.exports = {pub:true,cmd: cmd, perms: 2, init: init, cat: 'mod'};

@@ -35,11 +35,10 @@
     ,"putme":"roleme"
     ,"cargo":"roleme"
 
-    ,"autoroles":"autorole"
-    ,"selfroles":"autorole"
-    ,"selfrole":"autorole"
-    ,"asar":"autorole"
-    ,"sr":"autorole"
+    ,"selfroles":"selfroles"
+    ,"selfrole":"selfroles"
+    ,"asar":"selfroles"
+    ,"sr":"selfroles"
 
     ,"r+":"roleadd"
     ,"radd":"roleadd"
@@ -224,6 +223,7 @@
     ,"locale":"speak"
     ,"setlocale":"speak"
     ,"sprache":"speak"
+    ,"parlé":"speak"
     ,"язык":"speak"
     ,"言語":"speak"
 
@@ -255,7 +255,40 @@
     ,"rolar":"roll"
     ,"dados":"roll"
     ,"dice":"roll"
-    ,"r":"roll"
+    ,"rl":"roll"
 
+
+
+    ,"bj":"blackjack"
+
+  ,"align":"alignment"
+  ,"alignchart":"alignment"
+  ,"alinhamento":"alignment"
+  ,"trueneutral":"alignment"
+  ,"alc":"alignment"
+
+
+  ,"dailies":"daily"
+  ,"diária":"daily"
+  ,"bonus":"daily"
+  ,"dly":"daily"
+  ,"tagesbonus":"daily"
+
+
+  ,"discoin":"exchange"
+  ,"cambio":"exchange"
+  ,"câmbio":"exchange"
+  ,"exg":"exchange"
+
+  ,"trit":"trickortreat"
+  ,"docesoutravessuras":"trickortreat"
+
+  ,"candytop":"candyrank"
+  ,"topcandy":"candyrank"
+  ,"topevent":"candyrank"
+
+  ,"cdy":"candy"
+  ,"doce":"candy"
+  ,"$cy":"candy"
 
 }

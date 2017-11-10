@@ -1,6 +1,6 @@
 const translate = require('google-translate-api');
 var gear = require("../../gearbox.js");
-var paths = require("../../paths.js");
+var paths = require("../../paths.json");
 const namely = require('name-this-color');
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
@@ -30,7 +30,7 @@ var init = function (message, userDB, DB) {
         let helpkey = mm("helpkey", {
             lngs: message.lang
         })
-        if (!regExp.test(args) || !args || args === undefined || MSG.split(" ")[1] == helpkey || MSG.split(" ")[1] == "?" || MSG.split(" ")[1] == "help") {
+        if (!regExp.test(args) || !args || args === undefined || MSG.split(/ +/)[1] == helpkey || MSG.split(/ +/)[1] == "?" || MSG.split(/ +/)[1] == "help") {
             return gear.usage(cmd, message,this.cat);
         }
     } catch (e) {
@@ -42,7 +42,7 @@ var init = function (message, userDB, DB) {
 
     var hex = parseInt((args + "FF").replace(/^#/, ''), 16);
 
-    gear.paramDefine(Author, "favcolor", args)
+    gear.userDB.set(Author.id, {$set:{"favcolor":args}})
 
     let emb = new gear.Discord.RichEmbed;
     emb.setColor("#" + args.replace(/^#/, ''))

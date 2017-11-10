@@ -9,12 +9,14 @@ const v={}
 
  let regex = /(([0-9]+|)d([0-9]+))((\s+|)(\+|-|\*|\/)(\s+|)([0-9]+)|)/g
 
+ if(message.content.length > 12)return message.reply("Sorry, I bought all the dices I could find in local markets but there wasn't enough to do this roll");
+
    let match = regex.exec(message.content)
    const args = message.content.split(/\s+/).slice(1).join(" ").replace(regex,"$1$6$8")
 
    let NAME
    try{
-        NAME= message.guild.member(message.author).displayName
+        NAME= message.member.displayName
    }catch(e){
         NAME=message.author.username
    }

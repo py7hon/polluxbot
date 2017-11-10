@@ -3,12 +3,9 @@ const gear = require("../../gearbox.js");
 const Vision = require('@google-cloud/vision/')
 
 const cmd = 'read';
-var init = async function (message, userDB, DB) {
-try{
-    let args = message.content.split(" ").slice(1)[0]
-console.log("a")
+const init = async function (message, userDB, DB) {
 
-
+    let args = message.content.split(/ +/).slice(1)[0]
 
     i2b(args, async function (err, img) {
         if (err){
@@ -18,14 +15,11 @@ console.log("a")
         }
         vere(img.base64,message)
     });
-  }catch(e){
-  console.log(e)
-}
+
 }
 
 function vere(base64,message){
 
-  try{
         const vision = Vision({
             projectId: 'grape-spaceship-123',
 
@@ -35,17 +29,15 @@ function vere(base64,message){
                 {content:base64}
             )
             .then(async(results) => {
-                console.log(results)
+                //console.log(results)
                 const detections = await results[0].fullTextAnnotation.text
                 message.channel.send(detections)
             })
             .catch((err) => {
-                message.channel.send("Error")
+                message.channel.send("Error::Too Much Text")
                 console.error('ERROR:', err);
             });
-  }catch(e){
-    console.log(e)
-  }
+
     }
 
 

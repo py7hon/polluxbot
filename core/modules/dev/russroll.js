@@ -1,6 +1,6 @@
 const Russia = require("../archetypes/Russia");
 var gear = require("../../gearbox.js");
-var paths = require("../../paths.js");
+var paths = require("../../paths.json");
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
 var fs = require('fs');
@@ -35,7 +35,7 @@ const RRLT = new Russia(message);
 
         var players = await recol()
         await game(message, balance);
-        const balance = await userDB.get(Author.id).modules.goodies;
+        const balance = await Author.dDATA.modules.rubines;
 
 
 
@@ -76,7 +76,7 @@ const RRLT = new Russia(message);
             }else{
 
                 responses.forEach(re=>{
-                    let bet= re.content.split(" ")[1]
+                    let bet= re.content.split(/ +/)[1]
                     if (!typeof bet === "number") bet=0;
                     RRLT.register(re.author.id,bet);
                 message.reply(re.author.id+bet)

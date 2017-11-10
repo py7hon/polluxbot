@@ -32,48 +32,53 @@ module.exports = {
         nope:    "<:nope:339398829088571402> "
 
 
- ,'api':'<:Api:338148353906966530>'
-,'bot':'<:Bot:338148354007629845>'
-,'discord':'<:Discord:338148354544631808>'
-,'google':'<:Google:338148597927378945>'
-,'module':'<:Module:338148598057533441>'
-,'fork':'<:Fork:338148598099345409>'
-,'console':'<:Console:338148598103408651>'
-,'sourcecode':'<:SourceCode:338148598397009940>'
-,'wifirouter':'<:WifiRouter:338148598418112512>'
-,'wacomtablet':'<:WacomTablet:338149666841559043>'
-,'motherboard':'<:MotherBoard:338149666912862209>'
-,'workstation':'<:Workstation:338149667172909066>'
-,'fidgetspinner':'<:fidgetspinner:338150912566755329>'
-,'loser':'<:Loser:338150912688128000>'
-,'winner':'<:Winner:338150912696647680>'
-,'mute':'<:Mute:338151856759111681>'
-,'unmute':'<:Unmute:338151856931078145>'
-,'pause':'<:Pause:338151856947855362>'
-,'youtube':'<:Youtube:338151857014833153>'
-,'play':'<:PLay:338151857199513600>'
-,'stop':'<:Stop:338151857379606528>'
-,'privacy':'<:Privacy:338152581429985281>'
-,'like':'<:Like:338154351128346635>'
-,'dislike':'<:Dislike:338154671522840576>'
-,'error':'<:Error:338155247946039307>'
-,'download':'<:Download:338155248155885568>'
-,'error':'<:Error:338155248222732288>'
-,'expired':'<:Expired:338157313133248513>'
-,'hourglass':'<:Hourglass:338157886259855361>'
-,'commandline':'<:CommandLine:338158927332114434>'
-,'debug':'<:Debug:338158979777822741>'
-,'online':'<:Online:338324761019154432>'
-,'left':'<:Left:338325464101945348>'
-,'down':'<:Down:338325464219123713>'
-,'away':'<:Away:338325464244551681>'
-,'right':'<:Right:338325464378507266>'
-,'highpriority':'<:HighPriority:338325464437227522>'
-,'mediumpriority':'<:MediumPriority:338325464437358594>'
-,'up':'<:Up:338325464441552897>'
-,'dnd':'<:Dnd:338325464563187712>'
-,'lowpriority':'<:LowPriority:338325464579833857>'
-,'tasks':'<:Tasks:338325464840011776>'
+
+
+
+
+ ,'retweet':'<:Retweet:338764316792717322> '
+ ,'api':'<:Api:338148353906966530> '
+,'bot':'<:Bot:338148354007629845> '
+,'discord':'<:Discord:338148354544631808> '
+,'google':'<:Google:338148597927378945> '
+,'module':'<:Module:338148598057533441> '
+,'fork':'<:Fork:338148598099345409> '
+,'console':'<:Console:338148598103408651> '
+,'sourcecode':'<:SourceCode:338148598397009940> '
+,'wifirouter':'<:WifiRouter:338148598418112512> '
+,'wacomtablet':'<:WacomTablet:338149666841559043> '
+,'motherboard':'<:MotherBoard:338149666912862209> '
+,'workstation':'<:Workstation:338149667172909066> '
+,'fidgetspinner':'<:fidgetspinner:338150912566755329> '
+,'loser':'<:Loser:338150912688128000> '
+,'winner':'<:Winner:338150912696647680> '
+,'mute':'<:Mute:338151856759111681> '
+,'unmute':'<:Unmute:338151856931078145> '
+,'pause':'<:Pause:338151856947855362> '
+,'youtube':'<:Youtube:338151857014833153> '
+,'play':'<:PLay:338151857199513600> '
+,'stop':'<:Stop:338151857379606528> '
+,'privacy':'<:Privacy:338152581429985281> '
+,'like':'<:Like:338154351128346635> '
+,'dislike':'<:Dislike:338154671522840576> '
+,'error':'<:Error:338155247946039307> '
+,'download':'<:Download:338155248155885568> '
+,'error':'<:Error:338155248222732288> '
+,'expired':'<:Expired:338157313133248513> '
+,'hourglass':'<:Hourglass:338157886259855361> '
+,'commandline':'<:CommandLine:338158927332114434> '
+,'debug':'<:Debug:338158979777822741> '
+,'online':'<:Online:338324761019154432> '
+,'left':'<:Left:338325464101945348> '
+,'down':'<:Down:338325464219123713> '
+,'away':'<:Away:338325464244551681> '
+,'right':'<:Right:338325464378507266> '
+,'highpriority':'<:HighPriority:338325464437227522> '
+,'mediumpriority':'<:MediumPriority:338325464437358594> '
+,'up':'<:Up:338325464441552897> '
+,'dnd':'<:Dnd:338325464563187712> '
+,'lowpriority':'<:LowPriority:338325464579833857> '
+,'tasks':'<:Tasks:338325464840011776> '
 ,"3dsmax":'<:3dsMax:338329566688837645> '
 ,"gun":'<:Gun:338331025300127745> '
 ,"twitter":'<:Twitter:338329566646894604> '
@@ -88,6 +93,13 @@ module.exports = {
 ,webhook:'<:Webhook:338329334605676557> '
 ,rubylang:'<:Ruby:338353496380276737> '
 
+    //TIERS
+
+  ,UR:'<:UR:344622750650073088> '
+  ,SR:'<:SR:344622749584719873> '
+  ,R:'<:R_:344622750452809728> '
+  ,U:'<:U_:344622750628839434> '
+  ,C:'<:C_:344622750221991937> '
 
     //MEDALS
 
@@ -120,8 +132,17 @@ module.exports = {
 ,umbreon:'<:umbreon:337967647356616716> '
 
 
+  //ITEMS
+  ,loot:'<:loot:339957191027195905> '
 
 //SUPER UI MOJIS
+
+  ,rubine:'<:rubine:367128893372760064> '
+  ,sapphire:'<:sapphire:367128894307827712> '
+  ,jade:'<:jade:367128893716430848> '
+  ,amethist:'<:amethist:367128881766989824> '
+  ,emerald:'<:emerald:367128893309583360> '
+
 
 ,ff:'<:ff:343511122931875871> '
 ,play:'<:play:343511123204767744> '
@@ -137,7 +158,6 @@ module.exports = {
 ,strawb:'<:strawb:343590771930300417> '
 ,new:'<:new:343590772052066315> '
 ,sheriff:'<:sheriff:343590772098072576> '
-,rubine:'<:rubine:343590772119044096> '
 ,thumbs:'<:thumbs:343590772135952384> '
 ,siren:'<:siren:343590772144078868> '
 ,ticket:'<:ticket:343590772169244672> '
@@ -168,6 +188,13 @@ module.exports = {
 ,stop:'<:stop:343664908489064457> '
 
 
+  ,marksman:'<:Marksman:377365020176285707> '
+  ,mage:'<:Mage:377365019505065985> '
+  ,fighter:'<:Fighter:377365019941142530> '
+  ,support:'<:Controller:377365020142731264> '
+  ,assassin:'<:Slayer:377365019836284928> '
+  ,specialist:'<:Specialist:377365019471511554> '
+  ,tank:'<:Tank:377365019911913472> '
 
 
         //HEROES
@@ -206,7 +233,7 @@ module.exports = {
 ,chen:'<:Chen:328606056790097923> '
 ,thebutcher:'<:Butcher:328606056957870081> '
 ,cho:'<:Cho:328606057259597824> '
-,"cho'gall":'<:Cho:328606057259597824><:Gall:328606059151360000>'
+,"cho'gall":'<:Cho:328606057259597824><:Gall:328606059151360000> '
 ,chromie:'<:Chromie:328606057293283328> '
 ,dehaka:'<:Dehaka:328606057834479619> '
 ,"e.t.c.":'<:ETC:328606057914040322> '

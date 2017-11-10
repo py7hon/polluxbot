@@ -1,29 +1,28 @@
-var paths = require("../../paths.js");
-var gear = require("../../gearbox.js");
-var locale = require('../../../utils/multilang_b');
-var mm = locale.getT();
-var cmd = 'flip';
+const paths = require("../../paths.json");
+const gear = require("../../gearbox.js");
+const locale = require('../../../utils/multilang_b');
+const mm = locale.getT();
+const cmd = 'flip';
 
-
-var init = function (message,userDB,DB) {
-        var Channel = message.channel;
-        var LANG = message.lang;
-        var coin = gear.randomize(1, 2);
-        if (coin == 1) {
-            message.channel.send(mm('dict.coinHeads', {
-                lngs: LANG
-            }),{files:[paths.BUILD + 'heads.png']}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
-        }
-        else {
-            message.channel.send(mm('dict.coinTails', {
-                lngs: LANG
-            }),{files:[paths.BUILD + 'tails.png']})
-        }
+const init = function (message,userDB,DB) {
+const Channel = message.channel;
+const LANG = message.lang;
+const coin = gear.randomize(1, 2);
+if (coin == 1) {
+message.channel.send(mm('dict.coinHeads', {
+lngs: LANG
+}),{files:[paths.BUILD + 'heads.png']}).catch()
 }
-         module.exports = {
-            pub:true,
-            cmd: cmd
-            , perms: 0
-            , init: init
-            , cat: 'games'
-        };
+else {
+message.channel.send(mm('dict.coinTails', {
+lngs: LANG
+}),{files:[paths.BUILD + 'tails.png']})
+}
+}
+module.exports = {
+pub:true,
+cmd: cmd
+, perms: 0
+, init: init
+, cat: 'games'
+};

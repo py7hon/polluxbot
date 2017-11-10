@@ -1,13 +1,17 @@
 const fs = require("fs");
 const request = require('request');
-const paths = require("../../paths.js");
+const paths = require("../../paths.json");
 const gear = require("../../gearbox.js");
+const cheerio = require('cheerio')
 const locale = require('../../../utils/multilang_b');
 const mm = locale.getT();
-
+const rq = require("request");
 const cmd = 'rotation';
 
-const init = function (message, userDB, DB) {
+
+const init = async function (message, userDB, DB) {
+
+
 
     const LANG = message.lang;
 
@@ -36,18 +40,14 @@ const init = function (message, userDB, DB) {
     else if (args === "help" || args === helpkey) return gear.usage(cmd, message,this.cat);
     else return gear.usage(cmd, message,this.cat);
 
-
-
-
-
     function smite() {
 
         request('https://smite.gamepedia.com/Smite_Wiki', async function (error, response, html) {
 
             if (!error && response.statusCode == 200) {
-                let $ = gear.cheerio.load(html);
+                let $ = cheerio.load(html);
                 $('#mf-free_rotation').each(function (i, element) {
-                    gear.cheerio.load(element)("a").each((i, elm) => {
+                    cheerio.load(element)("a").each((i, elm) => {
                         if (i < 5) return;
                         rotation.push(elm.attribs.title)
                     })
@@ -82,7 +82,7 @@ const init = function (message, userDB, DB) {
         request('http://heroesofthestorm.gamepedia.com/Free_rotation', function (error, response, html) {
 
             if (!error && response.statusCode == 200) {
-                var $ = gear.cheerio.load(html);
+                var $ = cheerio.load(html);
                 $('.hero-tile').each(function (i, element) {
 
                     var a = $(this).children()[0] //[0];
@@ -124,20 +124,27 @@ ${gear.emoji(rotation[0][9].replace(/\./g,"").replace(" ","").toLowerCase())}${r
         });
     }
 
-    function lol() {
+   async function lol() {
+
+
         request('http://leagueoflegends.wikia.com/wiki/Free_champion_rotation', function (error, response, html) {
 
             if (!error && response.statusCode == 200) {
-                var $ = gear.cheerio.load(html);
-                $('span.champion-icon').each(function (i, element) {
-
-                    var a = $(this).children()[1]
+                var $ = cheerio.load(html);
+                let obj = require('../../../resources/lists/league.json').data;
+                let allchamps = Object.keys(obj).map(function(key) {
+                  return obj[key];
+                });
+                $('.champion-icon').each(function (i, element) {
                     if (i < 14) {
-                        rotation.push(a.children[0].attribs.title);
-
+                        let champ = element.attribs["data-champion"];
+                        let c =allchamps.find(x=>x.name == champ)
+                        let role = c? c.tags? c.tags[0]:"Specialist":"Specialist";
+                        rotation.push([gear.emoji(role.toLowerCase()),champ]);
                     }
                 });
                 console.log(rotation)
+
             }
 
             emb = new gear.Discord.RichEmbed();
@@ -149,22 +156,22 @@ ${gear.emoji(rotation[0][9].replace(/\./g,"").replace(" ","").toLowerCase())}${r
             emb.description = "Weekly Champion Rotation"
 
             emb.addField("₪₪₪₪₪₪₪₪₪₪₪", `
-:small_blue_diamond:  ${rotation[0]}
-:small_blue_diamond:  ${rotation[1]}
-:small_blue_diamond:  ${rotation[2]}
-:small_blue_diamond:  ${rotation[3]}
-:small_blue_diamond:  ${rotation[4]}
-:small_blue_diamond:  ${rotation[5]}
-:small_blue_diamond:  ${rotation[6]}
+${rotation[0][0]}  ${rotation[0][1]}
+${rotation[1][0]}  ${rotation[1][1]}
+${rotation[2][0]}  ${rotation[2][1]}
+${rotation[3][0]}  ${rotation[3][1]}
+${rotation[4][0]}  ${rotation[4][1]}
+${rotation[5][0]}  ${rotation[5][1]}
+${rotation[6][0]}  ${rotation[6][1]}
 `, true)
             emb.addField("₪₪₪₪₪₪₪₪₪₪₪", `
-:small_blue_diamond:  ${rotation[7]}
-:small_blue_diamond:  ${rotation[8]}
-:small_blue_diamond:  ${rotation[9]}
-:small_blue_diamond:  ${rotation[10]}
-:small_blue_diamond:  ${rotation[11]}
-:small_blue_diamond:  ${rotation[12]}
-:small_blue_diamond:  ${rotation[13]}
+${rotation[7][0]}  ${rotation[7][1]}
+${rotation[8][0]}  ${rotation[8][1]}
+${rotation[9][0]}  ${rotation[9][1]}
+${rotation[10][0]}  ${rotation[10][1]}
+${rotation[11][0]}  ${rotation[11][1]}
+${rotation[12][0]}  ${rotation[12][1]}
+${rotation[13][0]}  ${rotation[13][1]}
 `, true)
             message.channel.send({
                 embed: emb

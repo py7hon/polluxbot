@@ -1,103 +1,99 @@
-
 const arraySort = require('array-sort')
 const fs = require("fs");
 const gear = require('../../gearbox.js')
+const paths = require('../../paths.json')
+const locale = require('../../../utils/multilang_b');
+const mm = locale.getT();
+const cmd = 'cashrank';
+const init = async function (message, userDB, DB) {
 
-var locale = require('../../../utils/multilang_b');
-var mm = locale.getT();
+  const Server  = message.guild;
+  const Channel = message.channel;
+  const Author  = message.author;
+  const MSG     = message.content;
+  const bot     = message.botUser;
+  const args    = MSG.split(/ +/).slice(1)[0]||"";
+  const LANG    = message.lang;
 
-var cmd = 'rank';
-
-var init = function (message, userDB, DB) {
-var Server = message.guild;
-var Channel = message.channel;
-var Author = message.author;
-if (Author.bot) return;
-var Member = Server.member(Author);
-var Target = message.mentions.users.first() || Author;
-var MSG = message.content;
-var bot = message.botUser
-var args = MSG.split(' ').slice(1)[0]
-var LANG = message.lang;
-
-//-------MAGIC----------------
+    let P={lngs:LANG,prefix:message.prefix}
+    if(gear.autoHelper([mm("helpkey",P)],{cmd,message,opt:this.cat}))return;
 
 
-gear.paramIncrement(Author,'goodies',0)
+  let GOODMOJI = gear.emoji("rubine")
+  let GOOD = 'Rubine'
+  let emb = new gear.Discord.RichEmbed();
 
- emb =    new gear.Discord.RichEmbed();
-    emb.title = "Global Leaderboards"
+  let ranked = []
 
- emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/skynet.png")
-     if (args === "sv"|| args =="server"||args=="guild"||args=="s") {
-                    emb.title = "Server Leaderboards"
- emb.setThumbnail(Server.iconURL)
-     }
-     var rankItem = []
-        var ranked = []
-        userDB.forEach(j=>{
-            var i = JSON.parse(j)
+  Channel.startTyping();
+  let dbminiarray = await userDB.find().sort({'modules.exp': -1}).limit(10);
+  Channel.stopTyping();
 
+  dbminiarray.forEach(i => {
+    if (['server','sv','guild','local',Server.name].includes(args.toLowerCase())) {
+      if (!Server.members.has(i.id)) return;
+    };
 
-                try{
-                var u = bot.users.get(i.ID)
-                gear.superDefine(u,"name",u.username)
-            }catch(e){}
-
-
-            if (args === "sv"|| args =="server"||args=="guild"||args=="s") {
-                if(!Server.members.has(i.ID)) return;
-            }
-
-
-
-
-            rankItem.exp = i.modules.exp
-            rankItem.level = i.modules.level
-            //rankItem.name = (i.name||i.username||i.ID)
-            rankItem.name = (i.name||i.username)
-            ranked.push(rankItem)
-            rankItem = []
-        })
-        arraySort(ranked, 'exp', {
-            reverse: true
-        })
-
-
-    emb.setColor('#da5bae')
-
-
-    emb.setAuthor('Pollux',bot.user.avatarURL,'https://github.com/LucasFlicky/polluxbot')
-
-  emb.setFooter(mm('forFun.leadUnap',{lngs:LANG,prefix:message.prefix}))
- // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/skynet.png")
-  // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
-    //emb.description = "Os Top-5 fregueses mais tradicionais do Cyber Cafe"
-
-var medals = [':first_place: 1st',
-':second_place: 2nd',
-':third_place: 3rd',
-':medal: 4th',
-':medal: 5th'
-]
-console.log("WALRUS")
-for (i=0;i<ranked.length;i++){
-    if (i < 5){
-         console.log(ranked[i])
-         console.log(medals[i])
-      emb.addField(medals[i],ranked[i].name, true)
-      emb.addField('Level '+ranked[i].level,'**'+ranked[i].exp + '** Exp', true)
+    if (i.name !== 'Pollux' && i.name !== undefined){
+      let rankItem = {};
+      rankItem.id = i.id;
+      rankItem.name = i.name;
+      rankItem.exp = i.modules.exp || 0;
+      rankItem.level = i.modules.level;
+      ranked.push(rankItem);
     }
+  });
+  arraySort(ranked, 'exp', {
+    reverse: true
+  })
+  console.log(ranked)
+  let ids=ranked.map(x=>x.id)
+   if (['server','sv','guild','local',Server.name].includes(args.toLowerCase())) {
+  emb.title = mm('website.svLead',P)
+     P.scope = 'global'
+     P.srr = mm('website.globalrank',P)
+  emb.setFooter(mm('forFun.usethisfor',P));
+    }else{
+  emb.title = mm('website.globalrank',P)
+     P.scope = 'server'
+     P.srr = mm('website.svLead',P)
+  emb.setFooter(mm('forFun.usethisfor',P));
+    }
+  emb.setAuthor('Pollux ', bot.user.avatarURL, 'http://pollux.fun/leaderboards');
+  emb.attachFile(paths.BUILD +"rank.png")
+  emb.setThumbnail("attachment://rank.png")
+
+  var medals = [':first_place: 1st',
+':second_place: 2nd',
+':third_place: 3rd'
+, ':medal: 4th'
+, ':medal: 5th'
+, ':medal: 6th'
+, ':medal: 7th'
+, ':medal: 8th'
+, ':medal: 9th'
+, ':medal: 10th'
+]
+
+for (i=0;i<10;i++){
+      emb.addField(medals[i],ranked[i].name, true)
+      emb.addField(':small_orange_diamond: Level '+ranked[i].level,'**'+ranked[i].exp + '** Exp', true)
 }
 
+if(ids.indexOf(Author.id)+1>5){
+      emb.addField(":small_red_triangle_down:  "+mm('forFun.position',P)+": #"+(ids.indexOf(Author.id)+1),mm('forFun.leadUnap',P), false)
+}
+  emb.setColor('#da5bae');
 
 
-    message.channel.send({embed:emb}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
 
-
-
-
-
+  message.channel.send({
+    embed: emb
+  }).catch(e => {
+    message.reply(mm("error.iNeedThesePerms", {
+      lngs: LANG,
+      PERMSLIST: "`SEND ATTACHMENTS`"
+    }))
+  });
 }
  module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'misc'};
-

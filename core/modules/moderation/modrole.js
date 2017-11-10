@@ -1,82 +1,55 @@
+const gear = require("../../gearbox.js");
+const paths = require("../../paths.json");
+const locale = require('../../../utils/multilang_b');
+const mm = locale.getT();
 
+const cmd = 'modrole';
 
-var gear = require("../../gearbox.js");
-var paths = require("../../paths.js");
-var locale = require('../../../utils/multilang_b');
-var mm = locale.getT();
+const init = async function (message, userDB, DB) {
 
-var cmd = 'modrole';
-
-var init = function (message, userDB, DB) {
-
-    //HELP TRIGGER
-    let helpkey = mm("helpkey",{lngs:message.lang})
-if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
-    return gear.usage(cmd,message,this.cat);
-}
-//------------
-
-    var Server = message.guild;
-    var Channel = message.channel;
-    var Author = message.author;
+    const Server = message.guild;
+    const Channel = message.channel;
+    const Author = message.author;
     if (Author.bot) return;
-    var Member = Server.member(Author);
-    var Target = message.mentions.roles.first();
-    var MSG = message.content;
-    var bot = message.botUser
+    const Member = Server.member(Author);
+    const Target = message.mentions.roles.first();
+    const MSG = message.content;
+    const bot = message.botUser
+    const args = MSG.split(/ +/).slice(1).join(' ')
 
+    const LANG = message.lang;
 
-    var LANG = message.lang;
+const P = {lngs:message.lang};
+if(gear.autoHelper([mm("helpkey",P)],{cmd,message,opt:this.cat}))return;
+if(gear.autoHelper(['noargs'],{cmd,message,opt:this.cat})) return message.reply(mm('CMD.noRolesGiven',{lngs:LANG,role:args}));
+//------------
+const modPass = gear.hasPerms(Member,DB);
+if (!modPass)return message.reply(mm('CMD.moderationNeeded',P)).catch(e=>console.warn);
 
-var argument = MSG.substr((message.prefix + cmd).length +1)
-    //-------MAGIC----------------
+const rolenotfound = mm('CMD.nosuchrole', P);
+const noPermsMe = mm('CMD.unperm', P);
+  if(args.startsWith('delete')){
+    await gear.serverDB.set(Server.id,{$set:{'modules.MODROLE':undefined}});
+      let embed = new gear.RichEmbed
+  embed.setColor("#8e4848")
+  embed.setDescription(gear.emoji('nope')+"**MOD** Role: ---");
+  return message.channel.send({embed});
+  }
 
-
-        message.delete(8000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
-
-var modPass=false
-
-try{
-
-var modPass = gear.hasPerms(Member,DB);
-}catch(err){console.log(err)}
-
-    if (!modPass) {
-         return message.reply(mm('CMD.moderationNeeded', {
-            lngs: LANG
-        })).catch(console.error);
-    }
-
-    var role;
-    if (message.mentions.roles.size === 0){
-
-        if (argument.length >1){
-            if(Server.roles.exists("name",argument)){
-                role = Server.roles.find("name",argument).id
-
-            }else{
-              return   message.reply(mm('CMD.cantFindRole',{lngs:LANG,role:argument}))
-            }
-
-
-        }else{
-            return message.reply(mm('CMD.noRolesGiven',{lngs:LANG,role:argument}))
-        }
-
-    }else{
-        role = message.mentions.roles.first().id
-    }
-
-
-console.log(role)
-
- gear.paramDefine(Server,"MODROLE",role)
-   message.reply("DEFINED "+role)
-
-
+let a = Server.roles.find(rol=>rol.name.toLowerCase()==args.toLowerCase()||rol.name.toLowerCase().includes(args.toLowerCase()));
+if (message.mentions.roles.size>0){
+a = message.mentions.roles.first()
 }
+if(!a){
+return message.reply(rolenotfound)
+}
+message.delete(8000).catch();
 
 
-
-
+await gear.serverDB.set(Server.id,{$set:{'modules.MODROLE':a.id}});
+  let embed = new gear.RichEmbed
+  embed.setColor(a.hexColor)
+  embed.setDescription(gear.emoji('yep')+"**MOD** Role: "+a);
+  message.channel.send({embed});
+}
 module.exports = {pub:false,cmd: cmd, perms: 2, init: init, cat: 'mod'};

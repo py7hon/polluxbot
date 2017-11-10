@@ -2,7 +2,7 @@ const arraySort = require('array-sort')
 const fs = require("fs");
 const async = require("async");
 const gear = require('../../gearbox.js')
-var paths = require("../../paths.js");
+var paths = require("../../paths.json");
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
 
@@ -28,7 +28,7 @@ var init = async function (message, userDB, DB) {
     const LANG = message.lang;
 
 
-
+return message.reply("Under Re-Work; Equip Medals at <http://www.pollux.fun/dashboard#/profile> ~")
     //-------MAGIC----------------
 
 
@@ -36,7 +36,7 @@ var init = async function (message, userDB, DB) {
     const helpkey = mm("helpkey", {
         lngs: message.lang
     })
-    if (MSG.split(" ")[1] == helpkey || MSG.split(" ")[1] == "?" || MSG.split(" ")[1] == "help") {
+    if (MSG.split(/ +/)[1] == helpkey || MSG.split(/ +/)[1] == "?" || MSG.split(/ +/)[1] == "help") {
         return gear.usage(cmd, message,this.cat);
     }
 
@@ -151,18 +151,18 @@ var init = async function (message, userDB, DB) {
         '9⃣': 9
     };
 
-    const inventory = userDB.get(message.author.id).modules.medalInventory
-    const equipped = userDB.get(message.author.id).modules.medals
+    const inventory = message.author.dDATA.modules.medalInventory
+    const equipped = message.author.dDATA.modules.medals
 
     if (inventory == undefined) {
         gear.paramDefine(Author, "medalInventory", [])
-        inventory = userDB.get(message.author.id).modules.medalInventory
+        inventory = message.author.dDATA.modules.medalInventory
     }
 
     if (inventory.length == 0) return Channel.send("No Medals to Equip");
     // console.log(inventory)
 
-    const equipArray = getEquips(userDB.get(message.author.id).modules.medals)
+    const equipArray = getEquips(message.author.dDATA.modules.medals)
     var menu = []
     for (i = 0; i < inventory.length; i += 5) {
         menu.push(inventory.slice(i, i + 5))
@@ -191,7 +191,7 @@ var init = async function (message, userDB, DB) {
             console.log("FUNCTION: callB \n INDEX: " + index) //undefined?
             let current = index;
             var optMsg = optMsg || "";
-            let menuPage = await buildPage(current)
+            let menuPage = await buildPage(current);
             // console.log(menuPage)
             if (!recycle) {
 
@@ -535,7 +535,7 @@ var init = async function (message, userDB, DB) {
 
                 //equals ARRitm
                 if (!isNaN(responseINT)) {
-                    let pseudoequip = userDB.get(message.author.id).modules.medals;
+                    let pseudoequip = message.author.dDATA.modules.medals;
                     let empty = false;
                     if ((pseudoequip[responseINT - 1][0] === undefined || pseudoequip[responseINT - 1][0] === 0) && medal_file[0] === 0) {
                         console.log("aeho")
@@ -605,7 +605,7 @@ var init = async function (message, userDB, DB) {
                 //equals ARRitm
                 if (responseINT && reaMoji.count > 0) {
 
-                    let pseudoequip = userDB.get(message.author.id).modules.medals;
+                    let pseudoequip = message.author.dDATA.modules.medals;
                     let empty = false;
                     if (pseudoequip[responseINT - 1][0] === undefined || pseudoequip[responseINT - 1][0] === 0 && medal_file[0] === 0) {
                         empty = true;
@@ -675,7 +675,7 @@ var init = async function (message, userDB, DB) {
 
                 if (reata === "ok") {
 
-                    let u = userDB.get(message.author.id);
+                    let u = message.author.dDATA;
                     u.modules.medals[rea - 1] = medal_file
                     userDB.set(Author.id, u)
                     deleteIfPossible(yesOrNo);
@@ -728,7 +728,7 @@ var init = async function (message, userDB, DB) {
                 let rea = responses.first()
                 if (rea.emoji == check && rea.count > 0) {
 
-                    let u = userDB.get(message.author.id);
+                    let u = message.author.dDATA;
                     u.modules.medals[rea - 1] = medal_file
                     userDB.set(Author.id, u)
                     deleteIfPossible(yesOrNo);

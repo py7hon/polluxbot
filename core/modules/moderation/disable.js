@@ -1,166 +1,171 @@
+const gear = require("../../gearbox.js");
+const paths = require("../../paths.json");
+const locale = require('../../../utils/multilang_b');
+const mm = locale.getT();
 
-var gear = require("../../gearbox.js");
-var paths = require("../../paths.js");
-var locale = require('../../../utils/multilang_b');
-var mm = locale.getT();
+const cmd = 'disable';
 
-var cmd = 'disable';
-
-var init = function (message,userDB,DB) {
-
-
-    var Server = message.guild;
-    var Channel = message.channel;
-    var Author = message.author;
-    if (Author.bot) return;
-    var Member = Server.member(Author);
-    var Target = message.mentions.users.first() || Author;
-    var MSG = message.content;
-    var bot = message.botUser
-    var args = MSG.split(' ').slice(1)
-    var LANG = message.lang;
-
-    //-------MAGIC----------------
-//HELP TRIGGER
-    let helpkey = mm("helpkey",{lngs:message.lang})
-if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
-    return gear.usage(cmd,message,this.cat);
-}
-//------------
-
-    if (message.channel.type === 'dm') {
-        message.reply(mm('CMD.noDM', {
-            lngs: LANG
-        }));
-        return;
-    }
-
-    if (message.content.length < 10) {
-        message.reply(mm('CMD.chooseAmod', {
-            lngs: LANG
-        }));
-        return;
-    }
+const init = async function (message) {
 
 
-    var modPass = gear.hasPerms(Member,DB)
+  const On = gear.emoji("yep")
+  const Off = gear.emoji("nope")
+
+  const Server = message.guild;
+  const Channel = message.channel;
+  const Author = message.author;
+
+  const Member = message.member;
+  const Target = message.mentions.users.first() || Author;
+  const MSG = message.content;
+
+  const args = MSG.split(' ').slice(1)
+  const LANG = message.lang;
+
+  const P = {lngs: LANG}
+
+  //-------MAGIC----------------
+  //HELP TRIGGER
+  let helpkey = mm("helpkey", {
+    lngs: message.lang
+  })
+  if (MSG.split(" ")[1] == helpkey || MSG.split(" ")[1] == "?" || MSG.split(" ")[1] == "help") {
+    return gear.usage(cmd, message);
+  }
+  //------------
+
+  if (message.channel.type == 'dm') {
+    message.reply(mm('CMD.noDM', P));
+    return;
+  }
+  if (message.content.length < 10) {
+    message.reply(mm('CMD.chooseAmod', P));
+    return;
+  }
+  if (!gear.hasPerms(Member)) {
+    return message.reply(mm('CMD.moderationNeeded', P)).catch(console.error);
+  }
+
+  function pp(o, p) {
+    return o[p];
+  }
+
+  const module = args[0].toUpperCase()
+  let scope;
+  if (args[1]) {
+     scope = args[1].toLowerCase()
+  }else{
+    scope = 'c'
+  }
+  let sc = ''
+  switch (scope) {
+    case 's':
+    case 'server':
+    case 'guild':
+      sc = 'S'
+      break;
+    case 'c':
+    case 'channel':
+    case 'chnl':
+      sc = 'C'
+      break;
+    default:
+      sc = 'C'
+      break;
+  }
 
 
-    if (!modPass) {
-        return message.reply(mm('CMD.moderationNeeded', {
-            lngs: LANG
-        })).catch(console.error);
-    }
+  const disaMS = Off + mm('CMD.disabledSer', {
+    lngs: LANG,
+    module: module
+  })
+  const disaMC = Off + mm('CMD.disabledChn', {
+    lngs: LANG,
+    module: module,
+    channel: Channel.name
+  })
+  const disaCS = Off + mm('CMD.disabledComSer', {
+    lngs: LANG,
+    command: module
+  })
+  const disaCC = Off + mm('CMD.disabledComChn', {
+    lngs: LANG,
+    command: module,
+    channel: Channel.name
+  })
 
-
-
-
-    function pp(o, p) {
-        return o[p];
-    }
-
-    var module = args[0].toUpperCase()
-    if (args[1]) {
-        var scope = args[1].toLowerCase()
-    }
-    var sc = ''
-    switch (scope) {
-        case 's':
-        case 'server':
-        case 'guild':
-            sc = 'S'
-            break;
-        case 'c':
-        case 'channel':
-        case 'chnl':
-            sc = 'C'
-            break;
-        default:
-            sc = 'C'
-            break;
-    }
-
-
-    var disaMS = mm('CMD.disabledSer', {
-        lngs: LANG,
-        module: module
-    })
-    var disaMC = mm('CMD.disabledChn', {
-        lngs: LANG,
-        module: module,
-        channel: Channel.name
-    })
-    var disaCS = mm('CMD.disabledComSer', {
-        lngs: LANG,
-        command: module
-    })
-    var disaCC = mm('CMD.disabledComChn', {
-        lngs: LANG,
-        command: module,
-        channel: Channel.name
-    })
-
-
-
-
-    if (sc === 'S') {
-        Server.channels.forEach(e=>{
-
-        if (module in DB.get(e.id).modules) {
-            gear.paramDefine(e, module, false)
-            message.reply(disaMS)
+  if (sc == 'S') {
+    let mod;
+    Server.channels.forEach(e => {
+      try {
+        if (module in Channel.dDATA.modules) {
+          mod = true
+          gear.channelDB.set(e.id, {
+            $set: {
+              [module]: false
+            }
+          });
         } else {
-            imComm(message, sc)
+          mod = false
+          gear.channelDB.set(e.id, {
+            $push: {
+              'modules.DISABLED': module.toLowerCase()
+            }
+          });
         }
-
-        })
+      } catch (e) {
+        console.log(e)
+      }
+    })
+    mod ? message.reply(disaMS) : message.reply(disaCS);
+  } else {
+    if (module in Channel.dDATA.modules) {
+      gear.channelDB.set(message.channel.id, {
+        $set: {
+          [module]: false
+        }
+      });
+      message.reply(disaMC)
     } else {
 
-       if (module in DB.get(message.guild.id).channels[Channel.id].modules) {
-            gear.paramDefine(Channel, module, false)
-            message.reply(disaMC)
-        } else {
-            imComm(message, sc)
-        }
+      imComm(message, sc)
     }
+  }
 
 
+  function imComm(msg, scope) {
+    console.log('immcomm')
+    try {
+      let command = msg.content.substr(msg.prefix.length).split(/ +/)[1];
+      // let commandFile = require(`./${command}.js`);
+      if (scope == 'S') {
+        Server.channels.forEach(e => {
 
-    function imComm(msg, scope) {
-        console.log('immcomm')
-        try {
-            let command = msg.content.substr(msg.prefix.length).split(' ')[1];
-
-
-
-            if (scope === 'S') {
-
-
-                        Server.channels.forEach(e=>{
-
-   gear.paramAdd(e, 'DISABLED', command)
-
+          if (!Server.dDATA.channels[e.id]) {
+            console.log("nochan:  " + e.name)
+          }
         })
 
-
-                gear.paramAdd(Server, 'DISABLED', command)
-                message.reply(disaCS)
-            }
-            if (scope === 'C') {
-                gear.paramAdd(Channel, 'DISABLED', command)
-                message.reply(disaCC)
-            }
-        } catch (err) {
-            console.log((err.stack).red)
-        }
+      }
+      if (scope == 'C') {
+        gear.channelDB.set(msg.channel.id, {
+          $push: {
+            'modules.DISABLED': module.toLowerCase()
+          }
+        });
+        message.reply(disaCC)
+      }
+    } catch (err) {
+      console.log((err.stack).red)
     }
+  }
 
 
 }
- module.exports = {
-    pub: true,
-    cmd: cmd,
-    perms: 2,
-    init: init,
-    cat: 'mod'
+module.exports = {
+  pub: true,
+  cmd: cmd,
+  perms: 2,
+  init: init,
+  cat: 'master'
 };

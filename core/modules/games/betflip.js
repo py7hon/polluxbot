@@ -1,49 +1,31 @@
-var paths = require("../../paths.js");
-var gear = require("../../gearbox.js");
+const paths = require("../../paths.json");
+const gear = require("../../gearbox.js");
 const fs = require("fs");
-var locale = require('../../../utils/multilang_b');
-var mm = locale.getT();
+const eko = require("../../archetypes/ekonomist.js")
+const locale = require('../../../utils/multilang_b');
+const mm = locale.getT();
 
+const cmd = 'betflip';
 
-var cmd = 'betflip';
+let mony;
+const init = async function (message) {
 
-var init = function (message,userDB,DB) {
+    const Channel = message.channel;
+    const Author = message.author;
+    const MSG = message.content;
+    const bot = message.botUser
+    const BOT = message.botUser.user
 
+    let P={lngs:message.lang}
+    if(gear.autoHelper([mm("helpkey",P)],{cmd,message,opt:this.cat}))return;
 
+    let rubinemoji = bot.emojis.get('343314186765336576')
 
-    var Server = message.guild;
-    var Channel = message.channel;
-    var Author = message.author;
-    var Target = message.mentions.users.first() || Author;
-    var MSG = message.content;
-    if (Author.bot) return;
-    var bot = message.botUser
-    var BOT = message.botUser.user
-
-  try{
-//HELP TRIGGER
-    let helpkey = mm("helpkey",{lngs: message.lang})
-if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
-    return gear.usage(cmd,message,this.cat);
-}
-//------------
-    var emojya = bot.emojis.get('343314186765336576')
-    var rubinemoji = bot.emojis.get('343314186765336576')
-    let GOODMOJI = emojya
-    let GOOD = 'Rubine'
-    if (DB.get(Server.id).modules.GOODMOJI) {
-        GOODMOJI = DB.get(Server.id).modules.GOODMOJI
-    }
-    if (DB.get(Server.id).modules.GOODNAME) {
-        GOOD = DB.get(Server.id).modules.GOODNAME
-    }
-
-    var bet = MSG.toLowerCase().split(' ');
-    prompts = {
-
+    let bet = MSG.toLowerCase().split(/ +/);
+    const prompts = {
         error1: mm('$.insuFloor', {
             lngs: message.lang,
-            goods: GOOD,
+            goods: "Rubine",
             number: 3,
             emoji: ""
         }),
@@ -58,17 +40,16 @@ if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="h
         }),
           noFunds: mm('$.noFunds', {
             lngs: message.lang,
-            number: userDB.get(Author.id).modules.goodies,
+            number: Author.dDATA.modules.rubines,
             goods: ""
         }),
-
     };
 
-var coinHeads = mm('dict.coinHeads',{lngs: message.lang})
-var coinTails = mm('dict.coinTails',{lngs: message.lang})
+let coinHeads = mm('dict.coinHeads',{lngs: message.lang});
+let coinTails = mm('dict.coinTails',{lngs: message.lang});
+mony = Author.dDATA.modules.rubines / 2 +1000;
 
-
-    if (gear.checkGoods(3, Author) == false) {
+    if (await eko.checkFunds(3, Author) == false) {
         message.reply(prompts.error1+ rubinemoji);
         return;
     }
@@ -85,7 +66,7 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
        message.reply(prompts.error3);
         return;
     };
-    if (gear.checkGoods(parseInt(bet[1]), Author) == false) {
+    if ( eko.checkFunds(parseInt(bet[1]), Author) == false) {
         message.reply(prompts.noFunds + rubinemoji);
         return;
     };
@@ -94,50 +75,64 @@ var coinTails = mm('dict.coinTails',{lngs: message.lang})
        message.reply(prompts.error2+ rubinemoji);
         return;
     }
-    gear.paramIncrement(Author, 'goodies', -parseInt(bet[1]))
-    gear.paramIncrement(Author, 'expenses.jogatina', parseInt(bet[1]))
+            let valid=parseInt(bet[1]);
+            await eko.pay(valid,message.author.id, {type: 'gambling'});
 
-    var coin = gear.randomize(1, 2);
-    var res = ""
-    var ros = ""
-    coin == 1 ? res = coinHeads : res = coinTails;
-    coin == 1 ? ros = "heads.png" : ros = "tails.png";
+    let coin = gear.randomize(0, 500)+gear.randomize(1, 500);
+        coin = gear.randomize(0, 500)+gear.randomize(1, 500);
+        coin = gear.randomize(0, 500)+gear.randomize(1, 500);
+    let res = ""
+    let ros = ""
+    let actual =  bet[2] == coinHeads ? "heads" : "tails"
+    let actual_res = bet[2] == coinHeads ? coinHeads : coinTails
+    let opposite_img = bet[2] == coinHeads ? "tails" : "heads"
+    let opposite_res = bet[2] == coinHeads ? coinTails : coinHeads
+
+    if(coin == 400){
+    res =  'side'
+    ros = 'side.png'
+    }
+    else if(coin<400){
+    res = actual_res
+    ros = actual+'.png'
+    }else{
+    res = opposite_res
+    ros = opposite_img+'.png'
+    }
+    if (bet > 2000){
+          res = opposite_res
+          ros = opposite_img+'.png'
+    }
     if (res.toLowerCase() == bet[2]) {
-        var vicPrompt = mm('$.coinVictory', {
+        let vicPrompt = mm('$.coinVictory', {
             lngs: message.lang,
             result:res,
-            prize: bet[1]*2,
+            prize: Math.ceil(bet[1]*1.5),
             emoji: ""
-        })+emojya
+        })+rubinemoji
         message.channel.send(vicPrompt,{files:[paths.BUILD + ros]})
 
-        gear.paramIncrement(Author, 'goodies', parseInt(bet[1] * 2))
-        gear.paramIncrement(Author, 'earnings.jogatina', parseInt(bet[1] * 2))
-        gear.paramIncrement(BOT, 'expenses.jogatina', parseInt(bet[1] * 2))
+            let valid_ceil =Math.ceil(parseInt(bet[1])*1.5);
+            await eko.receive(valid_ceil,message.author.id, {type: 'gambling'});
 
-    } else {
-        var dftPrompt = mm('$.coinDefeat', {
+    }else if (res=='side'){
+        message.channel.send("The coin landed on its side??? Wat? Get away from me! And take "+Math.ceil(parseInt(bet[1] * 3))+"rubines!",{files:[paths.BUILD + ros]})
+            let valid_ceil =Math.ceil(parseInt(bet[1])*3);
+            await eko.receive(valid_ceil,message.author.id, {type: 'gambling'});
+              }else {
+        let dftPrompt = mm('$.coinDefeat', {
             lngs: message.lang,
             result:res
         })
         message.channel.send(dftPrompt,{files:[paths.BUILD + ros]})
-
-        gear.paramIncrement(BOT, 'goodies', parseInt(bet[1]))
-        gear.paramIncrement(BOT, 'earnings.jogatina', parseInt(bet[1]))
-
-
-    }
-    console.log("Bet:" + bet[1] + " Call:" + bet[2] + " -- Outcome: " + res)
-
-}catch(e){gear.hook.send(e.error)}
-
+      }
 }
-
 
  module.exports = {
     pub:true,
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'gambling'
+    cat: 'gambling',
+   cool: mony||3500
 };

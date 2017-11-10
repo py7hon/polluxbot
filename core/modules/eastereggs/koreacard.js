@@ -1,7 +1,7 @@
     const fs = require("fs");
 
     var gear = require("../../gearbox.js");
-    var paths = require("../../paths.js");
+    var paths = require("../../paths.json");
     var locale = require('../../../utils/multilang_b');
     var mm = locale.getT();
     var cmd = 'crd';
@@ -40,7 +40,7 @@
                 break;
             }
             card = input
-            url = "https://www.fantasymasters.co.kr/FM_Image/FM_image/fm/shop/Cardmarket/L_images/" + card + "L.jpg"
+            url = "http://www.fantasymasters.co.kr/FM_Image/FM_image/fm/shop/Cardmarket/L_images/" + card + "L.jpg"
             gear.Jimp.read(url).then(function (base) {
                // base.crop(25, 45, 240, 196)
                 base.getBuffer(gear.Jimp.MIME_PNG, function (err, image) {

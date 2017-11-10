@@ -20,7 +20,7 @@ paramDeleteServ: function paramDeleteServ(target, param, val){
 
         function newReact(trigger,reaction){
 
-let tgServ = DB.get(Server.id)
+let tgServ = Server.dDATA
 if (!tgServ.modules.REACTIONS[trigger]){
     tgServ.modules.REACTIONS[trigger]=[]
 }
@@ -31,7 +31,7 @@ tgServ.modules.REACTIONS[trigger].push(reaction)
 
         function removeReact(trigger,index){
 
-let tgServ = DB.get(Server.id)
+let tgServ = Server.dDATA
 tgServ.modules.REACTIONS[trigger].splice(index)
 
         }

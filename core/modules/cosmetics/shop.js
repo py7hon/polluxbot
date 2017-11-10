@@ -3,7 +3,7 @@
 const arraySort = require('array-sort')
 const fs = require("fs");
 const gear = require('../../gearbox.js')
-var paths = require("../../paths.js");
+var paths = require("../../paths.json");
 var locale = require('../../../utils/multilang_b');
 var mm = locale.getT();
 
@@ -46,10 +46,10 @@ var init = async function (message, userDB, DB) {
        // return
     }
 
-
+return message.reply("Temporarily Disabled for a Complete Rework!\n Meanwhile, get your Bgs and Medals at the Dashboard:\n**BGs**: <http://www.pollux.fun/bgshop>\n**Medals**: <http://www.pollux.fun/medalshop> ")
     //HELP TRIGGER
     let helpkey = mm("helpkey",{lngs:message.lang})
-if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
+if (MSG.split(/ +/)[1]==helpkey || MSG.split(/ +/)[1]=="?"|| MSG.split(/ +/)[1]=="help"){
     return gear.usage(cmd,message,this.cat);
 }
 
@@ -244,7 +244,7 @@ function buildPage(page) {
        let namemede = menuArr[i][0];
        let pricet =  menuArr[i][2];
 
-          let inv = userDB.get(Author.id).modules.medalInventory
+          let inv = Author.dDATA.modules.medalInventory
 
           var owned = false;
           for (a = 0; a < inv.length; a++) {
@@ -331,7 +331,7 @@ ${v.youSure}`)
 
                 if (rea.emoji == check && rea.count > 1) {
 
-                    let inv= userDB.get(Author.id).modules.medalInventory
+                    let inv= Author.dDATA.modules.medalInventory
                     let myMedal = [medal_file,name]
 
                for (i=0;i<inv.length;i++){
@@ -350,7 +350,7 @@ ${v.youSure}`)
                     m2.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                     message.reply(check + " "+v.confirmed)
                     message.delete().catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
-                    gear.paramIncrement(Author, "goodies", -price)
+                    gear.paramIncrement(Author, "rubines", -price)
                     return gear.paramAdd(Author, "medalInventory", [medal_file,name])
                 }
                 if (rea.emoji == xmark && rea.count > 1) {
@@ -473,7 +473,7 @@ async function pageResolve(m, menuPage, index) {
 }
 
       function checkOwnership(item) {
-          let inv = userDB.get(Author.id).modules.medalInventory
+          let inv = Author.dDATA.modules.medalInventory
 try{
 
 

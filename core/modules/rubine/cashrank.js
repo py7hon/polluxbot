@@ -1,102 +1,109 @@
-
 const arraySort = require('array-sort')
 const fs = require("fs");
 const gear = require('../../gearbox.js')
-var locale = require('../../../utils/multilang_b');
-var mm = locale.getT();
-var cmd = 'cashrank';
-var init = function (message,userDB,DB) {
+const paths = require('../../paths.json')
+const locale = require('../../../utils/multilang_b');
+const mm = locale.getT();
+const cmd = 'cashrank';
+
+const init = async function (message, userDB, DB) {
+
+  const Server  = message.guild;
+  const Channel = message.channel;
+  const Author  = message.author;
+  const MSG     = message.content;
+  const bot     = message.botUser;
+  const args    = MSG.split(/ +/).slice(1)[0]||"";
+  const LANG    = message.lang;
+
+    let P={lngs:LANG,prefix:message.prefix}
+    if(gear.autoHelper([mm("helpkey",P)],{cmd,message,opt:this.cat}))return;
 
 
-    var Server = message.guild;
-    var Channel = message.channel;
-    var Author = message.author;
-    if (Author.bot) return;
-    var Member = Server.member(Author);
-    var Target = message.mentions.users.first() || Author;
-    var MSG = message.content;
-    var bot = message.botUser
+  let GOODMOJI = gear.emoji("rubine")
+  let GOOD = 'Rubine'
+  let emb = new gear.Discord.RichEmbed();
 
-    var args = MSG.split(' ').slice(1)[0]
-    var LANG = message.lang;
-    //-------MAGIC----------------
+  let ranked = []
 
-    gear.paramIncrement(Author,'goodies',0)
-      gear.paramIncrement(Author,'goodies',0)
+  Channel.startTyping();
 
+  let dbminiarray
+      if (['server','sv','guild','local',Server.name].includes(args.toLowerCase())) {
+      dbminiarray = await userDB.find().sort({'modules.rubines': -1}).limit(50);
+    }else{
+      dbminiarray = await userDB.find().sort({'modules.rubines': -1}).limit(11);
 
-
-//HELP TRIGGER
-    let helpkey = mm("helpkey",{lngs:message.lang})
-if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
-    return gear.usage(cmd,message,this.cat);
-}
-//------------
+    };
 
 
+  Channel.stopTyping();
 
+  dbminiarray.forEach(i => {
 
-var emojya = bot.emojis.get('343314186765336576')
-    let GOODMOJI = emojya
-    let GOOD = 'Rubine'
-    if (DB.get(Server.id).modules.GOODMOJI) {
-        GOODMOJI = DB.get(Server.id).modules.GOODMOJI
+    if (i.name !== 'Pollux' && i.name !== undefined){
+      let rankItem = {};
+      rankItem.id = i.id;
+      rankItem.name = i.name;
+      rankItem.rubines = i.modules.rubines || 0;
+      rankItem.level = i.modules.level;
+      ranked.push(rankItem);
     }
-    if (DB.get(Server.id).modules.GOODNAME) {
-        GOOD = DB.get(Server.id).modules.GOODNAME
+  });
+  arraySort(ranked, 'rubines', {
+    reverse: true
+  })
+  console.log(ranked)
+  let ids=ranked.map(x=>x.id)
+   if (['server','sv','guild','local',Server.name].includes(args.toLowerCase())) {
+  emb.title = mm('website.svLead',P)
+     P.scope = 'global'
+     P.srr = mm('website.globalrank',P)
+  emb.setFooter(mm('forFun.usethisfor',P).replace('rank ','cashrank '));
+    }else{
+  emb.title = mm('website.globalrank',P)
+     P.scope = 'server'
+     P.srr = mm('website.svLead',P)
+  emb.setFooter(mm('forFun.usethisfor',P).replace('rank ','cashrank '));
     }
-    emb = new gear.Discord.RichEmbed();
-    var rankItem = []
-    var ranked = []
-     userDB.forEach(j=>{
-            var i = JSON.parse(j)
+  emb.setAuthor('Pollux ', bot.user.avatarURL, 'http://pollux.fun/leaderboards');
 
-
-   if (args === "sv"|| args =="server"||args=="guild"||args=="s") {
-        if(!Server.members.has(i.ID)) return;
-     }
-
-       if (i.name === 'Pollux' ||i.name == undefined) {}
-        else {
-            rankItem.name = i.name
-            rankItem.goodies = i.modules.goodies
-            rankItem.level = i.modules.level
-            ranked.push(rankItem)
-            rankItem = []
-        }
-    })
-    arraySort(ranked, 'goodies', {
-        reverse: true
-    })
-
-    emb.setColor('#e22449')
-    emb.title = "WEALTH RANK"
-    emb.setAuthor('Pollux', bot.user.avatarURL, 'https://github.com/LucasFlicky/polluxbot')
-        emb.setFooter('If you are not being displayed here, contact the creator immediately for a fix.')
-    emb.setThumbnail("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/resources/imgres/emoji/rubine.png")
-        // emb.setImage("https://raw.githubusercontent.com/LucasFlicky/polluxbot/master/avis/2.png")
-        //    emb.description = "Os Top-5 mais rubificadoss do server"
-var medals = [':first_place: 1st',
+  var medals = [':first_place: 1st',
 ':second_place: 2nd',
 ':third_place: 3rd'
 , ':medal: 4th'
 , ':medal: 5th'
+, ':medal: 6th'
+, ':medal: 7th'
+, ':medal: 8th'
+, ':medal: 9th'
+, ':medal: 10th'
 ]
-    console.log("WALRUS")
-    for (i = 0; i < ranked.length; i++) {
-        if (i < 5) {
 
-            emb.addField(medals[i], ranked[i].name, true)
-            emb.addField(GOOD + 's', ranked[i].goodies + "" + GOODMOJI, true)
-        }
-    }
-    message.channel.send({embed:emb}).catch(e=>{message.reply(mm("error.iNeedThesePerms",{lngs:LANG,PERMSLIST:"`SEND ATTACHMENTS`"}))})
+console.log(ranked)
+for (i=0;i<10;i++){
+  if(ranked[i]){
 
+      emb.addField(medals[i], ranked[i].name, true)
+      emb.addField(GOOD + 's', ranked[i].rubines + "" + GOODMOJI, true)
+  }
 }
- module.exports = {
-    pub: true
-    , cmd: cmd
-    , perms: 0
-    , init: init
-    , cat: '$'
-};
+
+if(ids.indexOf(Author.id)+1>5){
+      emb.addField(":small_red_triangle_down:  "+mm('forFun.position',P)+": #"+(ids.indexOf(Author.id)+1),mm('forFun.leadUnap',P), false)
+}
+  emb.setColor('#ea2424');
+
+  emb.setThumbnail("https://rebornix.gallerycdn.vsassets.io/extensions/rebornix/ruby/0.15.0/1503328840286/Microsoft.VisualStudio.Services.Icons.Default")
+
+
+  message.channel.send({
+    embed: emb
+  }).catch(e => {
+    message.reply(mm("error.iNeedThesePerms", {
+      lngs: LANG,
+      PERMSLIST: "`SEND ATTACHMENTS`"
+    }))
+  });
+}
+ module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: '$'};

@@ -9,7 +9,7 @@ var init = function (message,userDB,DB) {
 
     var args=message.content.substr(cmd.length+message.prefix.length)
 
-    var langua = DB.get(message.guild.id).modules.LANGUAGE
+    var langua = message.guild.dDATA.modules.LANGUAGE
     if (langua === "dev") langua ="pt";
 
 translate(args, {to:langua }).then(res => {
@@ -18,7 +18,13 @@ translate(args, {to:langua }).then(res => {
 
     var flag
     switch(res.from.language.iso){
-        case "en":
+        case "ro":
+            flag = ":flag_ro:";
+            break;
+      case "cs":
+            flag = ":flag_cz:";
+            break;
+      case "en":
             flag = ":flag_gb:";
             break;
         case "pt":
@@ -59,7 +65,7 @@ translate(args, {to:langua }).then(res => {
             break;
                             }
      var SVflag
-    switch(DB.get(message.guild.id).modules.LANGUAGE){
+    switch(message.guild.dDATA.modules.LANGUAGE){
         case "en":
             SVflag = ":flag_gb:";
             break;
@@ -69,7 +75,7 @@ translate(args, {to:langua }).then(res => {
         case "fr":
             SVflag = ":flag_fr:";
             break;
-        case "dev":
+        case "pt-BR":
             SVflag = ":flag_br:";
             break;
         case "ru":

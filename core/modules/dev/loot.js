@@ -1,30 +1,63 @@
-
 const fs = require("fs");
 const gear = require('../../gearbox.js')
-const paths = require("../../paths.js");
-const PixelCore = require('canvasutil').PixelCore
-const pixelProcessor = new PixelCore();
+const paths = require("../../paths.json");
 const Pixly = require("pixel-util");
-const Jimp = require("jimp");
 const Canvas = require("canvas");
-const opentype = require("opentype.js");
-const drawText = require("node-canvas-text").default;
 const locale = require('../../../utils/multilang_b');
-
-
 const mm = locale.getT();
 
+const cmd = 'loot';
 
+let rollNo = 0;
+const ej = gear.emoji;
+const MEDALBASE = JSON.parse(fs.readFileSync("./resources/lists/medals.json"));
+const BGBASE = JSON.parse(fs.readFileSync("./resources/lists/backgrounds.json"));
 
-var cmd = 'say';
+const  init = async function (message,userDB,DB,issuer,reducer,event) {
 
-var LOOT = require("../../Archetypes/lootbox.js")
+delete require.cache[require.resolve("../../archetypes/lootbox.js")]
+delete require.cache[require.resolve("../../gearbox.js")]
+let LOOT = require("../../archetypes/lootbox.js")
 
-var init = async function (message,userDB,DB) {
+//let faker = message.content.split("--ev").slice(1)[0]
+//console.log("|")
+//console.log(faker)
+//return
+event = event //|| faker
+//message.content = message.content.replace("--ev","")
 
+  let box_rarity = (message.content.split(/ +/)[1] ||'c').toUpperCase();
+  let factors = ["C", "U", "R", "SR", "UR"].indexOf(box_rarity) || 0
 
+  let rerollCost = Math.floor(50*Math.pow(3,rollNo+factors/3));
 
-    Canvas.registerFont(paths.FONTS + "/product-sans-bold.ttf", {
+  let now = Date.now();
+  let  rerolls = 3
+  if (message.author.dDATA.modules.powerups){
+    if (message.author.dDATA.modules.powerups.extrarerolls){
+        if(message.author.dDATA.modules.powerups.extrarerolls[1]<now){
+          rerolls = message.author.dDATA.modules.powerups.extrarerolls[0]
+        }
+    }
+  };
+
+  rerolls = typeof reducer== "number" ? reducer : rerolls;
+  let balance = message.author.dDATA.modules.rubines;
+
+if(message.author.id!= "88120564400553984" && issuer != "pollux")return;
+
+const LANG=message.lang
+let P={lngs:LANG, interpolation: {'escapeValue': false} };
+          let emb = new gear.Discord.RichEmbed;
+          emb.setColor("#f240a7");
+          P.user = message.member.displayName;
+          emb.description = ej("loot")+""+mm("loot.opening",P);
+
+          let sttup = await message.channel.send({embed:emb});
+          await gear.wait(3);
+          sttup.delete().catch();
+  /*
+      Canvas.registerFont(paths.FONTS + "/product-sans-bold.ttf", {
             family: 'Product',
             weigth: "bold"
         });
@@ -32,44 +65,21 @@ var init = async function (message,userDB,DB) {
             family: 'Product',
             weigth: "normal"
         });
-        //
+*/
+    const BOX = new LOOT.Lootbox(box_rarity);
+    await BOX.open(event);
+    let BOXB = require("util").inspect(BOX);
 
-
-
-console.log("ok")
-
-    let arg = message.content.split(/\s+/)[1];
-    var bauzin = new LOOT.Lootbox(arg)
-
-//    Channel.sendCode(bauzin).then()
-    console.log("-------------------")
-    await bauzin.open()
-   // console.log(bauzin)
-
-            let bauzinB = require("util").inspect(bauzin);
-
-    let bay=[]
-    for (var i in bauzin.prizes){
-
-        let yL = bauzin.prizes[i].length
-
-        for (var y=0;y<yL;y++){
-
-
-            let itm= bauzin.prizes[i][y];
-//console.log(i)
-
-            bay.push({type:i,good:itm})
-
-        }
-
-    }
-
-
-
+    let boxContents=[];
+    for (let i in BOX.prizes){
+        let yL = BOX.prizes[i].length
+        for (let y=0;y<yL;y++){
+            let itm= BOX.prizes[i][y];
+            boxContents.push({type:i,good:itm})
+        };
+    };
 
 const    prize = {
-
     bgs:{
         C:"BG",
         U:"BG",
@@ -104,258 +114,337 @@ const    prize = {
         R:"JADE_R",
         SR:"JADE_SR",
         UR:"JADE_UR"
-    },
+    }
+};
 
-}
+async function renderBG(bname) {
 
+    let BGFILE = paths.BUILD + "backdrops/"+bname+".png";// +rarity+"/" +files[rand].name+".png"
 
+    const incanv = {}
+    incanv.neme = '"'+bname+'"'
+    incanv.pic = new Canvas.createCanvas(285,350);
+    const ctx = incanv.pic.getContext('2d');
 
-
-async function renderBG(rarity) {
-
-console.log("Raritu:"+rarity)
-    let files = gear.fs.readdirSync(paths.BUILD + "backdrops/"+rarity)
-
-    let rand = gear.randomize(0, files.length - 1);
-    var filepath = paths.BUILD + "backdrops/" +rarity+"/" +files[rand]
-
-    const incanv = new Canvas(150, 150);
-    const ctx = incanv.getContext('2d');
-
-    let I = new Canvas.Image;
-    I.src = await Pixly.createBuffer(filepath).then(b => {return b;});
+    let I = await gear.getCanvas(BGFILE)
     let J = new Canvas.Image;
     J.src = await Pixly.createBuffer(paths.BUILD+"LOOT/BG.png").then(b => {return b;});
-        await ctx.rotate(0.16)
-       await ctx.drawImage(I, 18, 40,130,69);
-        await ctx.rotate(-0.16)
+
+       await ctx.rotate(0.16);
+       await ctx.drawImage(I, 36, 80,260,140);
+       await ctx.rotate(-0.16);
        await ctx.drawImage(J, 0, 0);
 
-    return incanv
+    return incanv;
+};
 
-}
 async function renderMedal(medal) {
+    let medalfolder = fs.readdirSync(paths.MEDALS)
+    let filepath = paths.MEDALS + medal.icon + ".png"
 
-console.log(medal)
-    let medalfolder = gear.fs.readdirSync(paths.MEDALS)
-
-   // let rand = gear.randomize(0, files.length - 1);
-
-    var filepath = paths.MEDALS + medal.icon + ".png"
-
-    const incanv = new Canvas(150, 150);
-    const ctx = incanv.getContext('2d');
+    const incanv = {}
+    incanv.neme = '"'+medal.name+'"'
+    incanv.nmo = medal.icon
+    incanv.pic = new Canvas.createCanvas(300, 300);
+    const ctx = incanv.pic.getContext('2d');
 
     let I = new Canvas.Image;
     I.src = await Pixly.createBuffer(filepath).then(b => {return b;});
     let J = new Canvas.Image;
     J.src = await Pixly.createBuffer(paths.BUILD+"LOOT/MEDAL.png").then(b => {return b;});
-        await ctx.drawImage(J, 0, 0);
         //await ctx.rotate(0.16)
-        await ctx.drawImage(I, 62, 76);
+        await ctx.drawImage(I, 94, 128);
+        await ctx.drawImage(J, 26, 26);
         //await ctx.rotate(-0.16)
-
-    return incanv
-
-}
-
-
+    return incanv;
+};
 
     let LOOTS = []
-    let Max = bay.length
-
-    const canvas = new Canvas(400, 300);
+    let Max = boxContents.length
+    const canvas = new Canvas.createCanvas(800, 600);
     const base = canvas.getContext('2d');
+
     for (i = 0; i < Max; ++i) {
+        let img
+        let namely;
+        let nmo;
+        let eventide;
 
-        let img = new Canvas.Image;
-        const rarity = new Canvas.Image;
+        img= await gear.getCanvas(paths.BUILD + "LOOT/" + prize[boxContents[i].type][boxContents[i].good[0]] + ".png")
+        if (boxContents[i].type == "rubines" || boxContents[i].type == "jades") {
+            img =await gear.getCanvas(paths.BUILD + "LOOT/" +(prize[boxContents[i].type]||"zirigidum")[boxContents[i].good[0]] + ".png")
 
-        img.src = await Pixly.createBuffer(paths.BUILD + "LOOT/" + prize[bay[i].type][bay[i].good[0]] + ".png").then(b => {
-                return b;
-            });
+        } else if (boxContents[i].type == "bgs") {
+            try{
+            eventide == BGBASE.filter(m=>m.name==boxContents[i].good[1].name)[0].event != undefined;
+            }catch(err){
+              console.log(err);
+              eventide = false;
+            };
 
-        if (bay[i].type == "rubines" || bay[i].type == "jades") {
-            img.src = await Pixly.createBuffer(paths.BUILD + "LOOT/" + prize[bay[i].type][bay[i].good[0]] + ".png").then(b => {
-                return b;
-            });
-        } else if (bay[i].type == "bgs") {
-            img = await renderBG(bay[i].good[0])
-        }else if (bay[i].type == "medals") {
+            let img_pre = await renderBG(boxContents[i].good[1].name);
+            namely = img_pre.neme;
+            img =await  img_pre.pic;
 
+        }else if (boxContents[i].type == "medals") {
+            try{
+              let filtlet = MEDALBASE.filter(m=>m.icon==boxContents[i].good[1]);
+              eventide= filtlet[0].event != undefined;
+            }catch(err){
+              eventide = false;
+            }
 
-          img = await renderMedal(bay[i].good[1])
+            let img_pre = await renderMedal(boxContents[i].good[1])
+            namely = img_pre.neme
+            img = await img_pre.pic
+            nmo = img_pre.nmo
+
         } else {
-            img.src = await Pixly.createBuffer(paths.BUILD + "LOOT/" + prize[bay[i].type][bay[i].good[0]] + ".png").then(b => {
-                return b;
-            });
-        }
+            img = await gear.getCanvas(paths.BUILD + "LOOT/" + prize[boxContents[i].type][boxContents[i].good[0]] + ".png")
+        };
 
-        let qtd
-        rarity.src = await Pixly.createBuffer(paths.BUILD + "LOOT/rarity/" + bay[i].good[0] + ".png").then(b => {
-            return b;
-        });
-        if (bay[i].type == "rubines" || bay[i].type == "jades") qtd = await gear.tag(base, "x" + bay[i].good[1], '18px Product,Sans', "#a0a0a0");
-        let name = await gear.tag(base, bay[i].type.toUpperCase(), '18px Product,Sans', "#d0d0d0");
+        let qtd;
+        let rarity = await gear.getCanvas(paths.BUILD + "LOOT/rarity/" + boxContents[i].good[0] + ".png")
+        let rarityShine = await gear.getCanvas(paths.BUILD + "LOOT/shine" + boxContents[i].good[0] + ".png")
+
+        if (boxContents[i].type == "rubines" || boxContents[i].type == "jades") qtd = await gear.tag(base, "x" + boxContents[i].good[1], '36px Product,Sans', "#a0a0a0");
+
+        let eve = eventide?"EVENT":"";
+        let event = await gear.tag(base, eve, '26px Product,Sans', "#d82d2d");
+        let name = await gear.tag(base, boxContents[i].type.toUpperCase(), '36px Product,Sans', "#d0d0d0");
 
         let item = {
             N: name,
             I: img,
             R: rarity,
-            Q: qtd || false
+            EV: event,
+            RS: rarityShine,
+            Q: qtd || false,
+            prompt:{name:namely||boxContents[i].good[1],rarity:boxContents[i].good[0],type:boxContents[i].type,sidename:nmo}
         }
-       // console.log(item)
         LOOTS.push(item)
     }
 
-   // console.log(bay)
-
-
-        const V = new Canvas.Image;
-            V.src = await Pixly.createBuffer(paths.BUILD + "LOOT/baseline.png").then(b => {
-            return b;
-        });
-
-      await base.drawImage(V, 0, 0);
-
-
-
-
-
-    let lootman = [
-        {
-            x: 125,
-            y: 25
-        },
-        {
-            x: 25,
-            y: 125
-        },
-        {
-            x: 400 - 150 - 25,
-            y: 125
-        },
-    ]
-    let rareman = [
-        {
-            x: 175,
-            y: 45
-        },
-        {
-            x: 75,
-            y: 150
-        },
-        {
-            x: 275,
-            y: 150
-        },
-    ]
-    let tagman = [
-        {
-            x: 275,
-            y: 100
-        },
-        {
-            x: 175,
-            y: 200
-        },
-        {
-            x: 375,
-            y: 200
-        },
-    ]
-    let nameman = [
-        {
-            x: 125,
-            y: 150
-        },
-
-        {
-            x: 25,
-            y: 250
-        },
-
-        {
-            x: 225,
-            y: 250
-        },
-    ]
-
-    let sq = 35
+    let sq = 70
     let shift = (50-sq)/2
+      const B = await gear.getCanvas(paths.BUILD + "LOOT/mainframe.png")
 
     for (i=0;i<LOOTS.length;++i){
+      await base.drawImage(LOOTS[i].RS, 74 + i*230+shift, 45);
+    }
+      await base.drawImage(B, 0, 0);
 
-        console.log(LOOTS[i])
-      await base.drawImage(LOOTS[i].I, lootman[i].x, lootman[i].y);
-      await base.drawImage(LOOTS[i].R, rareman[i].x+shift, rareman[i].y, sq,sq);
-      if (LOOTS[i].Q) await base.drawImage(LOOTS[i].Q.item, tagman[i].x-LOOTS[i].Q.width-25, tagman[i].y+10+25);
-      await base.drawImage(LOOTS[i].N.item, nameman[i].x+(150-LOOTS[i].N.width)/2, nameman[i].y+10);
-
+    for (i=0;i<LOOTS.length;++i){
+      //DRAW RARITY
+      await base.drawImage(LOOTS[i].R, 152 + i*230+shift, 305, sq,sq);
+      //DRAW ITEM
+      await base.drawImage(LOOTS[i].I, 32 + i*230,32);
+      //DRAW NAME
+      await base.drawImage(LOOTS[i].N.item, 175 + i*230-(LOOTS[i].N.width/2), 44);
+      //DRAW EVENT
+      await base.drawImage(LOOTS[i].EV.item, 175 + i*230-(LOOTS[i].EV.width/2), 44);
+      //DRAW QUANT
+      if (LOOTS[i].Q) await base.drawImage(LOOTS[i].Q.item, 197 + i*230+shift, 250);
     }
 
+const raretypes={
+   "UR":["ULTRA RARE","#ff59cc" ]
+  ,"SR": ["SUPER RARE","#ed4949" ]
+  ,"R":  ["RARE","#3663db" ]
+  ,"U":  ["UNCOMMON","#ebcb19" ]
+  ,"C":  ["COMMON","#222" ]
+  }
+const box={
+  "bgs":    "'Background': ",
+  "rubines":"'Rubines'   : ",
+  "jades":  "'Jades'     : ",
+  "medals": "'Medal'     : ",
+  "stamps": "'Sticker'   : "
+  ,"UR": "ULTRA RARE |"
+  ,"SR": "SUPER RARE |"
+  ,"R":  "      RARE |"
+  ,"U":  "  UNCOMMON |"
+  ,"C":  "    COMMON |"
+};
+  const exRate = {
+  "UR": 500
+  ,"SR": 250
+  ,"R":  125
+  ,"U":  75
+  ,"C":  50
+  }
 
+let prize_lineup = [
+  box[LOOTS[0].prompt.rarity] + box[LOOTS[0].prompt.type] + LOOTS[0].prompt.name,
+  box[LOOTS[1].prompt.rarity] + box[LOOTS[1].prompt.type] + LOOTS[1].prompt.name,
+  box[LOOTS[2].prompt.rarity] + box[LOOTS[2].prompt.type] + LOOTS[2].prompt.name
+]
 
+function invent_merge(item){
+  return new Promise(async resolve=>{
+  let amt;
+  switch(item.prompt.type){
+    case "rubines":
+      amt=Number(parseInt(item.prompt.name));
+      userDB.set(message.author.id,{$inc:{'modules.rubines':amt}}).then(ok=>{
+        P.X = ej("rubine")+"**"+item.prompt.name +"**"
+        return resolve(mm("loot.addedRubines",P));
+      });
+      break;
 
+    case "jades":
+      amt=Number(parseInt(item.prompt.name));
+      userDB.set(message.author.id,{$inc:{'modules.jades':amt}}).then(ok=>{
+        P.X = ej("jade")+"**"+item.prompt.name +"**"
+        return resolve(mm("loot.addedJades",P));
+      });
+      break;
 
-     message.channel.send("Loot", {
+    case "medals":
+      let m=item.prompt.sidename;
+      if(message.author.dDATA.modules.medalInventory.includes(m)){
+        dupeExchange().then(res=>resolve(res));
+      }else{
+        userDB.set(message.author.id,{$push:{'modules.medalInventory':m}}).then(ok=>{
+          P.itm= item.prompt.name
+          return resolve(ej("no1")+mm("loot.addedMedal",P));
+        })
+      }
+      break;
+
+    case "bgs":
+      let b=item.prompt.name.replace(/"/g,"");
+      if(message.author.dDATA.modules.bgInventory.includes(b)){
+        dupeExchange().then(res=>resolve(res));
+      }else{
+        userDB.set(message.author.id,{$push:{'modules.bgInventory':b}}).then(ok=>{
+          P.itm= item.prompt.name
+          return resolve(ej("pic")+mm("loot.addedBG",P));
+        });
+
+      }
+      break;
+
+    case "stamps":
+      break;
+
+    default:
+      break;
+    }
+  });
+
+  function dupeExchange(){
+    return new Promise(resolve=>{
+      let amt = exRate[item.prompt.rarity];
+      userDB.set(message.author.id,{$inc:{'modules.rubines':amt}}).then(ok=>{
+            P.itm= item.prompt.name
+            P.tpe= box[item.prompt.type].replace(/['| ]/g,"")
+            P.X  ="**"+ exRate[item.prompt.rarity] +"**"+ej("rubine")
+            return resolve(mm("loot.duplicateExchange",P));
+      })
+    })
+  };
+};
+
+        let embed = new gear.Discord.RichEmbed();
+        embed.setTitle(ej(box_rarity||"C")+(raretypes[box_rarity||"C"][0])+" LOOTBOX");
+        P.s = 30;
+        embed.setFooter(mm("CMD.timesOutIn",P),message.author.avatarURL || message.author.defaultAvatarURL);
+        embed.setColor(raretypes[box_rarity||"C"][1]);
+        embed.setDescription(`
+${mm("loot.contains",P)}
+\`\`\`ml
+${prize_lineup[0]}
+${prize_lineup[1]}
+${prize_lineup[2]}
+\`\`\`
+\`keep\` ${mm("loot.keep",P)} | ${ balance>=rerollCost?rerolls>0?`\`reroll\` ${mm("loot.reroll",P)} : **${rerollCost}** ${ej("rubine")} `:"":mm("loot.noFunds",P)}
+${ej("retweet")} ${mm("loot.rerollRemain",P)} **${rerolls}**
+
+`);
+
+    async function keeppit() {
+      for (i = 0; i < 3; i++) {
+        let x = await invent_merge(LOOTS[i]);
+
+        message.channel.send(x);
+      };
+    };
+
+  let lootpic=await message.channel.send({
                     files: [{
                         attachment: await canvas.toBuffer(),
                         name: "loot.png"
                     }]
-                })
+                });
 
+       let lootembed =await message.channel.send(embed)
+        if (rerolls===0){
+          message.channel.send(mm("loot.noMoreRolls",P))
+        };
+
+   const responses = await message.channel.awaitMessages(msg2 =>
+          msg2.author.id === message.author.id && (
+            (msg2.content.toLowerCase() === ("reroll")&&rerolls>0&&balance>=rerollCost)
+            || msg2.content.toLowerCase() === ("keep")
+          ), {
+            maxMatches: 1,
+            time: 30e3
+          });
+
+        let action
+        if (responses.size === 0) {
+          ////console.log("timeout")
+          action = "keep"
+        }else{
+        action = responses.first().content
+        }
+        let A;
+        if (action === "keep"){
+            await keeppit();
+        }
+        else if(action==="reroll"){
+
+          message.author.dDATA.modules.rubines -= rerollCost
+          message.author.dDATA.modules.rubines
+
+          lootpic.delete().catch(e=>{})
+          lootembed.delete().catch(e=>{})
+          rollNo++
+
+          let emb = new gear.Discord.RichEmbed
+          emb.setColor("#3251d0")
+          emb.description = ej("retweet")+""+mm("loot.rerolled",P)
+
+          let q = await message.channel.send({embed:emb})
+          await gear.wait(2);
+          q.delete().catch()
+          return this.init(message,userDB,DB,issuer,rerolls-1,event)
+        }else{
+              await keeppit();
+        };
 
 /*
     message.channel.send(`
 **Item 1**
-${bay[0].type}
-${bay[0].good}
+${boxContents[0].type}
+${boxContents[0].good}
 
 **Item 2**
-${bay[1].type}
-${bay[1].good}
+${boxContents[1].type}
+${boxContents[1].good}
 
 **Item 3**
-${bay[2].type}
-${bay[2].good}
-
-
+${boxContents[2].type}
+${boxContents[2].good}
 
 `)
 */
-    return
-      message.channel.sendCode("js", gear.clean(bauzinB)).then(coda=>ungra(coda))
-
-
-
-
-    async function ungra(coda){
-
-
-          const r = await coda.channel.awaitMessages(ms=>ms.author.id===message.author.id&&(ms.content=="ok"||ms.content=="reroll"),{max:1})
-
-          let rr=r.first().content
-
-          if (rr == "ok")return message.channel.send(`**LOOTBOX Done**`);
-          if (rr == "reroll"){
-
-              if (bauzin.stakes>=5)return message.channel.send(`**NO MORE REROLLS**`);;
-
-              await bauzin.reroll()
-                  let bauzinC = require("util").inspect(bauzin);
-              message.channel.send(`**Reroll ${bauzin.stakes}/5**`);
-      message.channel.sendCode("js", gear.clean(bauzinC)).then(coda=>ungra(coda))
-          }
-
-    }
-
-    }
+};
  module.exports = {
-    pub:true,
+    pub:false,
     cmd: cmd,
     perms: 3,
     init: init,
-    cat: 'misc'
+    cat: 'structures'
 };
-

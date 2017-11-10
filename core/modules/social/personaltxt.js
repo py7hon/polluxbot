@@ -1,40 +1,36 @@
-var gear = require("../../gearbox.js");
-var paths = require("../../paths.js");
-var locale = require('../../../utils/multilang_b');
-var mm = locale.getT();
+const gear = require("../../gearbox.js");
+const locale = require('../../../utils/multilang_b');
+const mm = locale.getT();
 
-var cmd = 'personalTxt';
+const cmd = 'personalTxt';
 
-var init = function (message,userDB,DB) {
-    var Server = message.guild;
-    var Channel = message.channel;
-    var Author = message.author;
-    if (Author.bot) return;
-    var Member = Server.member(Author);
-    var Target = message.mentions.users.first() || Author;
-    var MSG = message.content;
-    var bot = message.botUser
-    var args = MSG.split(' ').slice(1)
-    var LANG = message.lang;
+const init = async function (message, userDB, DB) {
+  const Channel = message.channel;
+  const Author = message.author;
+  const MSG = message.content;
+  const LANG = message.lang;
+  const userData = Author.dDATA
+  const persotxt = MSG.split(/ +/).slice(1).join(' ');
 
-    //-------MAGIC----------------
+  //HELP TRIGGER
+    let P={lngs:message.lang,}
+    if(gear.autoHelper([mm("helpkey",P)],{cmd,message,opt:this.cat}))return;
+  //------------
 
-        var userData = userDB.get(Author.id)
-        var persotxt = MSG.substr((message.prefix + cmd).length +1)
-        gear.paramDefine(Author,'persotext',persotxt)
-        userData.persotext = persotxt
-        message.reply(mm('profile.persotexUpdate', {
-            lngs:LANG,
-            pstext: persotxt,
-            prefix: message.prefix
-        }))
+  await gear.userDB.set(Author.id, {$set:{'modules.persotext':persotxt}});
+  userData.persotext = persotxt
+  message.reply(mm('profile.persotexUpdate', {
+    lngs: LANG,
+    pstext: persotxt,
+    prefix: message.prefix,
+    interpolation: {'escapeValue': false}
+  }))
+}
 
-    }
-
- module.exports = {
-    pub:true,
-    cmd: cmd,
-    perms: 3,
-    init: init,
-    cat: 'profile'
+module.exports = {
+  pub: true,
+  cmd: cmd,
+  perms: 3,
+  init: init,
+  cat: 'social'
 };

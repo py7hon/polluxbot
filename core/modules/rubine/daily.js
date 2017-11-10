@@ -1,171 +1,171 @@
- String.prototype.toHHMMSS = function () {
-     var sec_num = parseInt(this, 10); // don't forget the second param
-     var hours = Math.floor(sec_num / 3600);
-     var days = Math.floor(hours / 24);
+const gear = require("../../gearbox.js");
+const paths = require("../../paths.json");
+const locale = require('../../../utils/multilang_b');
+const mm = locale.getT();
+const eko = require("../../archetypes/ekonomist.js")
 
-     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-     var seconds = sec_num - (hours * 3600) - (minutes * 60);
+const cmd = 'daily';
 
-     if (hours < 10) {
-         hours = "0" + hours;
-     }
-     if (minutes < 10) {
-         minutes = "0" + minutes;
-     }
-     if (seconds < 10) {
-         seconds = "0" + seconds;
-     }
-     var time = hours + 'h ' + minutes + 'm ' + seconds + 's';
-     days > 1 ? time = days + " dias " : time = time
-     return time;
- }
+String.prototype.toHHMMSS = function () {
+  let sec_num = parseInt(this, 10); // don't forget the second param
+  let hours = Math.floor(sec_num / 3600);
+  let days = Math.floor(hours / 24);
 
- var gear = require("../../gearbox.js");
- var paths = require("../../paths.js");
- var locale = require('../../../utils/multilang_b');
- var mm = locale.getT();
+  let minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+  let seconds = sec_num - (hours * 3600) - (minutes * 60);
 
- var cmd = 'daily';
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  let time = hours + 'h ' + minutes + 'm ' + seconds + 's';
+  days > 1 ? time = days + " D " : time = time
+  return time;
+}
 
- var init = function (message,userDB,DB) {
-     var Server = message.guild;
-     var Channel = message.channel;
-     var Author = message.author;
-     if (Author.bot) return;
-     var Member = Server.member(Author);
-     var Target = message.mentions.users.first() || Author;
-     var MSG = message.content;
-     var bot = message.botUser
-     var args = MSG.split(' ').slice(1)[0]
-     var LANG = message.lang;
+async function performChecks(GLB,Author){
+    if (!GLB.dailyEpoch || isNaN(GLB.dailyEpoch)) {
+    GLB=await gear.globalDB.set({$set:{"data.dailyEpoch":1500271200000}});
+  }
+  if (!GLB.epochStamp || isNaN(GLB.epochStamp)) {
+    GLB=await gear.globalDB.set({$set:{"data.epochStamp":new Date(1500271200000)}});
+  }
+  if (!Author.dDATA.modules.daily || isNaN(Author.dDATA.modules.daily)) {
+    await gear.userDB.set(Author.id, {$set:{"modules.daily":1500271199999}});
+    Author.dDATA = await gear.userDB.findOne({id: Author.id});
+  }
+};
 
-     if (!DB.get(Server.id).modules.GOODIES) {
-         message.reply(mm('CMD.disabledModule', {
-             lngs: LANG,
-             module: "`GOODIES`"
-         }));
-         return;
-     }
+function calculateDaily(Author,bot) {
+        let semibanned  = 5
+        let penalised   = 50
+        let regular     = 100
+        let aluminium   = 120
+        let iridium     = 150
+        let palladium   = 200
+        let uranium     = 300
+        let emblem;
 
+      let thisguy = bot.guilds.get("277391723322408960").member(Author)
+if(!thisguy)return {class:regular,emblem};
+      if (thisguy.roles.find("name", "Uranium")) {
+        emblem = "uranium"
+        return {class:uranium,emblem};
+      };
+      if (thisguy.roles.find("name", "Palladium")) {
+        emblem = "palladium"
+        return {class:palladium,emblem};
+      };
+      if (thisguy.roles.find("name", "Iridium")) {
+        emblem = "iridium"
+        return {class:iridium,emblem};
+      };
+      if (thisguy.roles.find("name", "Aluminium")) {
+        emblem = "aluminium"
+        return {class:iridium,emblem};
+      };
+    return {class:regular,emblem};
+  };
 
+const init = async function (message) {
 
-       var b = "Get a boost on yout dailies and 1000"+gear.emoji("rubine")+" by upvoting me at discordbots.org and then using `+reward`"
-          if(LANG[0] === "dev"||LANG[0]=="pt"||LANG[0]=="pt-br"){
-       b = "Ganhe um bonus em suas dailies e mais 1000"+gear.emoji("rubine")+" votando em mim no discordbots.org e em seguida usando `+reward`"
-        }
+  const Channel = message.channel;
+  const Author = message.author;
+  const MSG = message.content;
+  const bot = message.botUser
+  const args = MSG.split(' ').slice(1)[0]
+  const LANG = message.lang;
+  const P = {lngs:LANG}
 
-var emoj = bot.emojis.get('343314186765336576')
+  //VERFIFY User
+  let creation = Author.createdAt.getTime();
+  let now = Date.now();
+  if (now - creation < 86478521) return message.reply(":warning: New Accounts can't daily");
+  //-----
 
-     let GOODMOJI = DB.get(Server.id).modules.GOODMOJI || emoj
-     let GOOD = DB.get(Server.id).modules.GOODNAME || 'Rubine'
-
-     if (!userDB.get(bot.user.id).dailyEpoch) {
-         gear.superDefine(bot.user, "dailyEpoch", 1500271200000)
-     }
-     if (!userDB.get(bot.user.id).epochStamp) {
-         gear.superDefine(bot.user, "epochStamp", new Date(1500271200000))
-     }
-     if (!userDB.get(Author.id).modules.daily) {
-         gear.paramDefine(Author, "daily", 1500271199999)
-     }
-
-
-
-
-     var now = new Date().getTime();
-     var day = 86400000
-     var userEpoch = userDB.get(Author.id).modules.daily
-     var streak = userDB.get(Author.id).modules.dyStreak
-     var globalEpoch =  userDB.get(bot.user.id).dailyEpoch
-     var next = globalEpoch+86400000
-
-
-
-
-          if (args === "help" || args === "?" || args === "reset" || args === "epoch"){
-         let e = new gear.Discord.RichEmbed
-
-          var r = next
-          //var R = -();
-
-
-         var remain = (Math.abs((now-next)/1000)+ "").toHHMMSS();
-         e.setTitle(gear.emoji("rubine")+" Last Global Dailies Refresh")
-         e.setDescription(remain)
-         e.setTimestamp(userDB.get(bot.user.id).epochStamp)
-         e.setColor("#d13d54")
-         return Channel.send({embed:e}).catch(e=>gear.hook.send(e.error))
-     }
-
-console.log(LANG)
-
-     if (userEpoch < globalEpoch) {
-
-         if (((userEpoch - globalEpoch) / 86400000) <= 2) {
-             gear.paramIncrement(Author, 'dyStreak', 1)
-         } else {
-             gear.paramDefine(Author, 'dyStreak', 0)
-         }
-
-         //CONFIRM DAILY
-         var dailyGet = mm('$.dailyGet', {
-             lngs: LANG,
-             emoji: '',
-             goods: GOOD
-         })
-
-         message.reply(emoj+dailyGet).then(m=>{
-             if(!userDB.get(message.author.id).upvote||userDB.get(message.author.id).upvote==undefined){message.channel.send(b)}
-             if(!userDB.get(message.author.id).upvote||userDB.get(message.author.id).upvote==undefined){message.channel.send(b)}
-         })
-         if (streak == 10) {
-             var dailyStreak = mm('$.dailyStreak', {
-                 lngs: LANG,
-                 emoji: ''
-
-             })
-
-             message.channel.send(emoj+dailyStreak)
-               gear.paramIncrement(Author, 'goodies', 500)
-         }
-
-         gear.paramIncrement(Author, 'goodies', 100)
-         gear.paramDefine(Author, 'daily', globalEpoch)
+  let GLB=await gear.globalDB.get();
+  await performChecks(GLB,Author,bot);
 
 
-            if(userDB.get(Author.id).upvote == true){
-         gear.paramIncrement(Author, 'goodies', 50)
-     var a = "And more **50** "+gear.emoji("rubine")+" for upvoting me!"
+  let RUBINE = gear.emoji("rubine");
 
+  let s=calculateDaily(Author,bot);
+  let emblem  = s.emblem;
+  let myDaily = s.class;
 
-          if(LANG[0] === "dev"||LANG[0]=="pt"){
-       a = "E mais **50** "+gear.emoji("rubine")+" por ter votado em mim!"
-        }
-                message.channel.send(a)
+  let day = 72000000;
+  //let day = 86400000;
+  let userEpoch   = Author.dDATA.modules.daily;
+  let streak      = Author.dDATA.modules.dyStreak;
+  let globalEpoch = GLB.dailyEpoch;
+
+  const embed = new gear.RichEmbed
+  embed.setColor("#d83668")
+  if (emblem) {
+    embed.attachFile(paths.BUILD + emblem + ".png")
+    embed.setThumbnail("attachment://" + emblem + ".png")
+  }
+
+  if (!userEpoch || now-userEpoch >= day) {
+
+    if (((userEpoch - globalEpoch) / day) <= 2) {
+         await gear.userDB.set(Author.id, {$inc:{'modules.dyStreak':1}});
+    } else {
+         await gear.userDB.set(Author.id, {$set:{'modules.dyStreak':0}});
+    }
+    //CONFIRM DAILY
+    let dailyGet = mm('$.dailyGet',P).replace("100", "**" + myDaily + "**")
+
+    embed.setDescription(".\n" + RUBINE + dailyGet);
+
+    let bar = "|▁▁▁▁▁▁▁▁▁▁|"
+
+    for (i = 0; i < streak + 1; i++) {
+      bar = bar.replace("▁", "▇")
     }
 
+    embed.setFooter("Streak " + streak + "/10" + bar)
 
+    if (streak >= 10) {
+      let dailyStreak = mm('$.dailyStreak', P)
 
-     } else {
-         var r = Math.abs(now-next);
-         var remain = (r / 1000 + "").toHHMMSS();
-         var dailyNope = mm('$.dailyNope', {
-             lngs: LANG,
-             emoji: '',
-             remaining: remain
-         })
-         message.reply(emoj+dailyNope)
-     }
+      await gear.userDB.set(Author.id, {$set:{'modules.dyStreak':0}});
+      await gear.userDB.set(Author.id, {$inc:{'modules.exp':80}});
 
+      embed.description += "\n" + (gear.emoji('ticket') + dailyStreak)
+      await eko.receive(myDaily * 5, Author, {type: 'dailies'});
+      // gear.paramIncrement(Author, 'rubines', 500)
+    }
 
+    message.reply({
+      embed
+    })
 
+    await gear.userDB.set(Author.id, {$set:{'modules.daily':now}});
+    await eko.receive(myDaily, Author, {type: 'dailies'});
+    //gear.paramIncrement(Author, 'rubines', 100)
 
+  } else {
+    let r = userEpoch+day-now;
+    let remain = (r / 1000 + "").toHHMMSS();
+    P.remaining= remain;
+    let dailyNope = mm('$.dailyNope',P);
+    gear.userDB.set(Author.id, {$inc:{'modules.exp':-20}});
+    message.reply(RUBINE + dailyNope);
+  };
+};
 
- }
-  module.exports = {
-     pub:true,
-     cmd: cmd,
-     perms: 3,
-     init: init,
-     cat: 'goodies'
- };
+module.exports = {
+  pub: true,
+  cmd: cmd,
+  perms: 3,
+  init: init,
+  cat: 'rubines',
+  exp: 15,
+  cool: 10
+};

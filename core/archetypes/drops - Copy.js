@@ -1,6 +1,6 @@
 
 var gear = require("../gearbox.js");
-var paths = require("../paths.js");
+var paths = require("../paths.json");
 var locale = require('../../utils/multilang_b');
 
 
@@ -19,16 +19,16 @@ if(event.content!="kéo")return;
 
 
         var CHN = event.channel
-        if (DB.get(Server.id).channels[CHN.id].modules.DROPS == false) return;
+        if (Server.dDATA.channels[CHN.id].modules.DROPS == false) return;
         var GLD = event.guild
         var LANG = event.lang;
         let GOODMOJI = gear.emoji("rubine")
         let GOOD = 'Rubine'
-        if (DB.get(Server.id).modules) {
-            GOODMOJI = DB.get(Server.id).modules.GOODMOJI
+        if (Server.dDATA.modules) {
+            GOODMOJI = Server.dDATA.modules.GOODMOJI
         }
-        if (DB.get(Server.id).modules) {
-            GOOD = DB.get(Server.id).modules.GOODNAME
+        if (Server.dDATA.modules) {
+            GOOD = Server.dDATA.modules.GOODNAME
         }
         if (typeof CHN.DROPSLY != 'number') {
             CHN.DROPSLY = 0
@@ -44,7 +44,7 @@ if(event.content!="kéo")return;
             droprate == 4321) {
             console.log('DROP')
             var pack;
-            var prefie = DB.get(Server.id).modules.PREFIX || "+"
+            var prefie = Server.dDATA.modules.PREFIX || "+"
 
             CHN.send(mm('$.goodDrop', {
                 lngs: LANG,
@@ -72,7 +72,7 @@ if(event.content!="kéo")return;
                 lngs: LANG,
                 good: GOOD,
                 emoji: GOODMOJI,
-                prefix: DB.get(Server.id).modules.PREFIX
+                prefix: Server.dDATA.modules.PREFIX
             }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">"), {
                 files: [paths.BUILD + 'rubinepot.png']
             }).then(m => processDropRare(m)).catch(e => {
@@ -80,7 +80,7 @@ if(event.content!="kéo")return;
                     lngs: LANG,
                     good: GOOD,
                     emoji: GOODMOJI,
-                    prefix: DB.get(Server.id).modules.PREFIX
+                    prefix: Server.dDATA.modules.PREFIX
                 }).replace(/\&lt;/g, "<").replace(/\&gt;/g, ">")).then(m => processDropRare(m)).catch(e => gear.hook.send("**DROP REFUSES** \n"+e.error))
             })
         }
@@ -101,7 +101,7 @@ if(event.content!="kéo")return;
 
                     var oldDropsly = CHN.DROPSLY
                     const responses = await CHN.awaitMessages(msg2 =>
-                        msg2.author.id === message.author.id && (msg2.content === message.prefix + 'pick'||msg2.content === DB.get(msg2.guild.id).modules.PREFIX + 'pick'), {
+                        msg2.author.id === message.author.id && (msg2.includes'pick', {
                             maxMatches: 1
                         }
                     );
@@ -137,7 +137,7 @@ if(event.content!="kéo")return;
                             hook.send(v)
                         });
 
-                        gear.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
+                        gear.paramIncrement(Picker, 'rubines', CHN.DROPSLY)
                         gear.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
                         CHN.DROPSLY = 0
                         r.delete().catch(e => {
@@ -200,7 +200,7 @@ if(event.content!="kéo")return;
                             c.delete(500000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
                         }).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())}).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())});
 
-                        gear.paramIncrement(Picker, 'goodies', CHN.DROPSLY)
+                        gear.paramIncrement(Picker, 'rubines', CHN.DROPSLY)
                         gear.paramIncrement(Picker, 'earnings.drops', CHN.DROPSLY)
                         CHN.DROPSLY = 0
 

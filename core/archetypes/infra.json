@@ -72,6 +72,10 @@
         "util": {
             "color": "#e24f4f",
             "thumb": "https://png.icons8.com/swiss-army-knife/dusk/40"
+        },
+      "halloween": {
+            "color": "#e2934f",
+            "thumb": "http://pollux.fun/images/pumpxd.png"
         }
     }
 }

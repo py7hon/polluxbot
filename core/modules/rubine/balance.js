@@ -1,84 +1,147 @@
-
-const arraySort = require('array-sort')
-
 const gear = require("../../gearbox.js");
+const eko = require("../../archetypes/ekonomist.js")
 const fs = require("fs");
-var paths = require("../../paths.js");
-var cmd = 'balance';
+const paths = require("../../paths.json");
+const cmd = 'balance';
 
-var locale = require('../../../utils/multilang_b');
-var mm = locale.getT();
+const locale = require('../../../utils/multilang_b');
+const mm = locale.getT();
 
+const init = async function (message) {
+const userDB = gear.userDB
+const DB = gear.serverDB
+    const Server = message.guild;
+    const Channel = message.channel;
+    const Target = message.mentions.users.first() || message.mentions.users.first() ||message.author;
+    const MSG = message.content;
+    const bot = message.botUser
+    const emb = new gear.Discord.RichEmbed();
 
+    let P={lngs:message.lang}
+    if(gear.autoHelper([mm("helpkey",P)],{cmd,message,opt:this.cat}))return;
 
+    const bal =  mm('$.balance',P);
+    const put =  mm('$.lewdery',P);
+    const jog =  mm('$.gambling',P);
+    const dro =  mm('$.drops',P);
+    const tra =  mm('$.trades',P);
+    const gas =  mm('$.expenses',P);
+    const gan =  mm('$.earnings',P);
+    const tot =  mm('$.total',P);
+    const exg =  mm('$.exchange',P);
+    const don =  mm('$.donation',P);
+    const cra =  mm('$.crafts',P);
+    const nope = mm('CMD.noDM',P);
 
-var init = function (message,userDB,DB) {
-    var Server = message.guild;
-    var Channel = message.channel;
-    var Author = message.author;
-    var Target = message.mentions.users.first() || Author;
-    var MSG = message.content;
-    var bot = message.botUser
-    if (Author.bot) return;
-    var LANG = message.lang;
-    emb = new gear.Discord.RichEmbed();
-
-//HELP TRIGGER
-    let helpkey = mm("helpkey",{lngs:message.lang})
-if (MSG.split(" ")[1]==helpkey || MSG.split(" ")[1]=="?"|| MSG.split(" ")[1]=="help"){
-    return gear.usage(cmd,message,this.cat);
-}
-//------------
-
-    var bal =  mm('$.balance',{lngs:LANG});
-    var put =  mm('$.lewdery',{lngs:LANG});
-    var jog =  mm('$.gambling',{lngs:LANG});
-    var dro =  mm('$.drops',{lngs:LANG});
-    var tra =  mm('$.trades',{lngs:LANG});
-    var gas =  mm('$.expenses',{lngs:LANG});
-    var gan =  mm('$.earnings',{lngs:LANG});
-    var tot =  mm('$.total',{lngs:LANG});
-    var nope =  mm('CMD.noDM',{lngs:LANG});
-
-var emojya = bot.emojis.get('343314186765336576')
-    let GOODMOJI = emojya
-    let GOOD = 'Rubine'
-    if (DB.get(Server.id).modules.GOODMOJI) {
-        GOODMOJI = DB.get(Server.id).modules.GOODMOJI
-    }
-    if (DB.get(Server.id).modules.GOODNAME) {
-        GOOD = DB.get(Server.id).modules.GOODNAME
-    }
-    if (message.channel.type === 'dm') {
-        message.reply(nope)
-        return
-    }
-
-    userDB.get(Target.id).modules = userDB.get(Author.id).modules
+  await eko.normalize(Target.id)
+  if(!Target.dDATA)Target.dDATA = await userDB.findOne({id:Target.id});
+  let  balc = Target.dDATA.modules.audits||eko.auditTemplate
+  console.log(balc);
+let  $R = Target.dDATA.modules.rubines   || 0
+let  $J = Target.dDATA.modules.jades     || 0
+let  $S = Target.dDATA.modules.sapphires || 0
 
 
-    let img = Target.defaultAvatarURL.substr(0, Target.defaultAvatarURL.length - 10)
-    if (Target.avatarURL) {
-        img = Target.avatarURL.substr(0, Target.avatarURL.length - 10);
-    }
-    emb.setColor('#ffd156')
-    emb.title =  ":yen: " +bal
-    emb.setThumbnail(img)
-    emb.description = tot+' **'+userDB.get(Target.id).modules.goodies+"** "+GOOD+"s "+GOODMOJI
-    emb.addField(gan, `
-      **${put}**: ${userDB.get(Target.id).modules.earnings.putaria}
-**${jog}**: ${userDB.get(Target.id).modules.earnings.jogatina}
-**${dro}**: ${userDB.get(Target.id).modules.earnings.drops}
-**${tra}**: ${userDB.get(Target.id).modules.earnings.trade}
-      `, true)
-    emb.addField(gas, `
-  **${put}**: ${userDB.get(Target.id).modules.expenses.putaria}
-**${jog}**: ${userDB.get(Target.id).modules.expenses.jogatina}
-**${dro}**: ${userDB.get(Target.id).modules.expenses.drops}
-**${tra}**: ${userDB.get(Target.id).modules.expenses.trade}
+emb.setColor('#ffd156')
+emb.setTitle(gear.emoji("chart")+bal)
+emb.setDescription(`
+**${Server.member(Target).displayName}**
 
-      `, true)
-    message.channel.send({embed:emb})
+${gear.emoji('rubine') + gear.miliarize($R,true)} Rubines  |  ${gear.emoji('jade') + gear.miliarize($J,true)} Jades  |  ${gear.emoji('sapphire') + gear.miliarize($S,true)} Sapphires
+
+**Audit:**
+`)
+
+    let unit=['rubines','jades','sapphires']
+    let fa=[gear.emoji('rubine')+"**Rubines** |",gear.emoji('jade')+"**Jades** |",gear.emoji('sapphire')+"**Sapphires** |"]
+
+
+
+let A=  `
+**${tra}** ${balc[unit[0]].expenses.trades ||0}
+**${dro}** ${balc[unit[0]].expenses.drops ||0}
+**${exg}** ${balc[unit[0]].expenses.exchange ||0}
+**${jog}** ${balc[unit[0]].expenses.gambling ||0}
+**${put}** ${balc[unit[0]].expenses.lewd ||0}
+
+
+`
+
+
+let B=  `
+**${tra}** ${balc[unit[0]].earnings.trades ||0}
+**${dro}** ${balc[unit[0]].earnings.drops ||0}
+**${exg}** ${balc[unit[0]].earnings.exchange ||0}
+**${jog}** ${balc[unit[0]].earnings.gambling ||0}
+**Dailies** ${balc[unit[0]].earnings.dailies ||0}
+
+`
+
+
+
+
+
+
+  let jA=  `
+**${tra}** ${balc[unit[1]].expenses.trades ||0}
+**${dro}** ${balc[unit[1]].expenses.drops ||0}
+**${cra}** ${balc[unit[1]].expenses.crafts ||0}
+
+`
+
+
+let jB=  `
+**${tra}** ${balc[unit[1]].earnings.trades ||0}
+**${dro}** ${balc[unit[1]].earnings.drops ||0}
+**${cra}** ${balc[unit[1]].earnings.crafts ||0}
+`
+
+
+
+
+
+
+
+
+
+  let SA=  `
+**${tra}** ${balc[unit[2]].expenses.trades ||0}
+**${cra}** ${balc[unit[2]].expenses.crafts ||0}
+
+`
+
+let SB=  `
+**${tra}** ${balc[unit[2]].earnings.trades ||0}
+**${cra}** ${balc[unit[2]].earnings.crafts ||0}
+**${don}** ${balc[unit[2]].earnings.cash ||0}
+`
+
+
+  emb.addField(fa[0]+gas,A,true)
+  emb.addField(fa[1]+gas,jA,true)
+  emb.addField(fa[2]+gas,SA,true)
+  emb.addField(fa[0]+gan,B,true)
+
+  emb.addField(fa[1]+gan,jB,true)
+
+  emb.addField(fa[2]+gan,SB,true)
+
+  let C = `
+${fa[0]} ${balc[unit[0]].expenses.shop ||0}\t\t   ${fa[1]} ${balc[unit[1]].expenses.shop ||0}\t\t   ${fa[2]} ${balc[unit[2]].expenses.shop ||0}
+`
+  emb.addField('Market Expenses',C,true)
+
+
+
+    let im = Target.avatarURL||Target.defaultAvatarURL
+  // emb.setThumbnail(im)
+  message.channel.send({embed:emb})
+
+
+
+
+
+
 }
  module.exports = {
     pub:true,

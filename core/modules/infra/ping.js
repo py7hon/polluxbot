@@ -1,16 +1,10 @@
-var cmd = 'ping';
-var init = function (message) {
-
-
-
-    var start = Date.now();
+const cmd = 'ping';
+const init = function (message) {
+    const start = Date.now();
     message.channel.send("pong").then(sendedMessage => {
-        var stop = Date.now();
-        var diff = (stop - start);
+        const stop = Date.now();
+        const diff = (stop - start);
         sendedMessage.edit(`pong \`${diff}ms\``);
-
-
-
     });
 };
- module.exports = {pub:true,cmd: cmd, perms: 3, init: init, cat: 'infra'};
+module.exports = {cool:1000,pub:true,cmd: cmd, perms: 3, init: init, cat: 'infra'};

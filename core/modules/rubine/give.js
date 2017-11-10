@@ -1,75 +1,43 @@
-var gear = require("../../gearbox.js");
-var paths = require("../../paths.js");
-var locale = require('../../../utils/multilang_b');
-var mm = locale.getT();
+const gear = require("../../gearbox.js");
+const eko = require("../../archetypes/ekonomist.js");
+const paths = require("../../paths.json");
+const locale = require('../../../utils/multilang_b');
+const mm = locale.getT();
 
-var cmd = 'give';
+const cmd = 'give';
 
-var init = function (message,userDB,DB) {
+const init =  async function (message,userDB,DB) {
 
+    const Author = message.author;
+    const Target = message.mentions.users.first() || Author;
+    const bot = message.botUser
+    const args = message.content.split(/ +/).slice(1)
+    const LANG = message.lang;
 
-        //HELP TRIGGER
-    let helpkey = mm("helpkey",{lngs:message.lang})
-if (message.content.split(" ")[1]==helpkey || message.content.split(" ")[1]=="?"|| message.content.split(" ")[1]=="help"){
-    return gear.usage(cmd,message,this.cat);
+  //HELP TRIGGER
+  const P = {lngs: message.lang}
+  if(gear.autoHelper([mm("helpkey",P),'noargs',''],{cmd,message,opt:this.cat}))return;
+  //------------
+  if(args.length<2||args[0].includes("<"))return gear.autoHelper('force',{cmd,message,opt:this.cat});
+
+  let donate = parseInt(Math.round(args[0]));
+  donate=Math.abs(donate);
+
+  if (args.lenght < 2 || isNaN(donate) || message.mentions.size === 0){
+      return gear.usage(cmd,message,this.cat)
+  }
+  if (gear.checkGoods(donate, Author) == true) {
+
+    await eko.pay(donate,Author.id,{target:Target.id});
+
+    return  message.channel.send(gear.emoji('rubine') + mm('$.giveGoods' , {lngs:LANG, donate:donate, target:Target.username,author:Author.username })).then(function (c) {
+      message.delete(5000).catch();
+    });
+  } else {
+    message.reply(mm('$.noFundsGeneric',{lngs:LANG,goods:GOOD}))
+  };
+
 }
-//------------
-
-    var Server = message.guild;
-    var Channel = message.channel;
-    var Author = message.author;
-    if (Author.bot) return;
-    var Member = Server.member(Author);
-    var Target = message.mentions.users.first() || Author;
-    var MSG = message.content;
-    var bot = message.botUser
-    var args = MSG.split(' ').slice(1)
-    var LANG = message.lang;
-    var userData = userDB.get(Author.id).modules
-    var tgtData = userDB.get(Target.id).modules
-
-
-try{
-var emojya = bot.emojis.get('343314186765336576')
-    let GOODMOJI = emojya
-    let GOOD = 'Rubine'
-    if (DB.get(Server.id).modules.GOODMOJI) {
-        GOODMOJI = DB.get(Server.id).modules.GOODMOJI
-    }
-    if (DB.get(Server.id).modules.GOODNAME) {
-        GOOD = DB.get(Server.id).modules.GOODNAME
-    }
-
-
-    var donate = parseInt(args[0])
-  donate=Math.abs(donate)
-
-    if (args.lenght < 2 || isNaN(donate) || message.mentions.size === 0){
-        return gear.usage(cmd,message,mm)
-    }
-
-    if (gear.checkGoods(donate, Author) == true) {
-
-
-        // message.guild.defaultChannel.send()
-        gear.paramIncrement(Author, 'goodies', -donate)
-        gear.paramIncrement(Author, 'expenses.trade', donate)
-        gear.paramIncrement(Target, 'goodies', donate)
-        gear.paramIncrement(Target, 'earnings.trade', donate)
-
-       return  message.channel.send( mm('$.giveGoods' , {lngs:LANG, donate:donate, emoji:gear.emoji('rubine'), target:Target.username,author:Author.username })).then(function (c) {
-            message.delete(5000).catch(e=> {let a = (new Error); gear.errLog(e,__filename,a.stack.toString())})
-        })
-       // gear.writePoints(points, caller)
-    } else {
-        message.reply(mm('$.noFundsGeneric',{lngs:LANG,goods:GOOD}))
-        return;
-    }
-
-
-
-}catch(e){message.reply(e.stack)}}
-
  module.exports = {
     pub:true,
     cmd: cmd,
