@@ -3,6 +3,7 @@ Join the Support Server for more up-to-date info: [![Discord](https://discordapp
 # **POLLUX**
 Discord Bot 
 
+
 CURRENT: [![Build Status](https://travis-ci.org/PolluxBot/polluxbot.svg?branch=master)](https://travis-ci.org/Flicksie/polluxbot)
 NEXT: [![Build Status](https://travis-ci.org/PolluxBot/polluxbot.svg?branch=dev_pollux_v4)](https://travis-ci.org/Flicksie/polluxbot)
 
