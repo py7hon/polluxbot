@@ -1,59 +1,60 @@
-const Discord = require("discord.js")
 const fs = require("fs")
 var gear = require("../gearbox.js");
-var paths = require("../paths.js");
+var paths = require("../paths.json");
 var locale = require('../../utils/multilang_b');
 var mm = locale.getT();
 
+const coinbase = require("../../resources/lists/discoin.json");
+const d = require("./infra.json").decoration;
+const langlistage = require('../../utils/langList.json');
 
+const v = {}
 
-                  var  langlistage = JSON.parse(fs.readFileSync(`./utils/langList.json`, 'utf8'));
+exports.run = function run(cmd, m, third) {
 
-module.exports = {
+        third = third || "misc"
+        v.mod = mm("dict.module", {lngs: m.lang});
+        v.name = mm("modules." + third, {lngs: m.lang});
 
-
-    run: function run(cmd, m, third) {
-    try{
-
-        let emb = new Discord.RichEmbed
-        emb.setColor("#c65fe5")
-        if (third == "nsfw") {
-            emb.setThumbnail("https://rlv.zcache.com/nsfw_square_sticker-rea0c876a9755416f8e088671fe163335_v9i40_8byvr_324.jpg");
-            emb.setColor("#240d12")
-        }
-
-        if (third == "mod") {
-            emb.setThumbnail("http://www.freeiconspng.com/uploads/letter-m-icon-png-5.png")
-            emb.setColor("#322be5")
-        }
-
+        let emb = new gear.Discord.RichEmbed;
+      try{
+        emb.setColor(d[third].color)
+      }catch(e){
+        emb.setColor("#eee")
+      }
+        emb.setThumbnail(d[third].thumb)
+        emb.setFooter(`${v.mod}: ${v.name} | ${third.toUpperCase()} > ${cmd}`, "https://png.icons8.com/puzzle/color/16");
         emb.setAuthor(mm("help.commUsage", {
             lngs: m.lang,
             comm: m.prefix + cmd
-        }), m.botUser.user.avatarURL, "http://Pollux.fun/commands")
-
+        }), m.botUser.user.avatarURL, "http://Pollux.fun/commands");
         emb.setDescription(mm("help." + cmd, {
-            lngs: m.lang
+            lngs: m.lang,
+             prefix: m.prefix
         }) + "\n\n")
-
         emb.addField("**" + mm("dict.usage", {
             lngs: m.lang
         }) + "**", mm("usage." + cmd, {
             lngs: m.lang,
             prefix: m.prefix
         }), false)
-        console.log(third)
-        if (third == "language"){
-             emb.addField("**" + mm("usage.speakAvailable", {
-            lngs: m.lang
-        }) + "**", langlistage.languages , false)
-            }
 
-        m.channel.send({
-            embed: emb
-        })
-    }catch(e){gear.hook.send(e.error)}
-    }
+        if (cmd == "exchange") {
+          let litzka = ""
+          for (i in coinbase) {
+            if (i != "DISCOIN") litzka += `\`${i}\`  ${coinbase[i].icon} **${coinbase[i].bot}**'s  ${coinbase[i].name}\n`;
+          };
+          emb.addField("======", `
+          ${litzka}
+          `, false)
 
-
-}
+        }
+      if (third === "language") {
+        emb.addField("**" + mm("usage.speakAvailable", {
+          lngs: m.lang
+        }) + "**", langlistage.languages.join('\n'), false)
+      }
+      m.channel.send({
+        embed: emb
+      })
+      }

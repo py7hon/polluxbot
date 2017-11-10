@@ -7,5 +7,4 @@ module.exports = {
     setT: function setT(t){
         reroute = t;
     },
-
 };
