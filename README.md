@@ -10,6 +10,7 @@ NEXT: [![Build Status](https://travis-ci.org/PolluxBot/polluxbot.svg?branch=dev_
 [![NSP Status](https://nodesecurity.io/orgs/pxbt/projects/859d61e6-d56e-43e2-9b97-0ecfba2e3299/badge)](https://nodesecurity.io/orgs/pxbt/projects/859d61e6-d56e-43e2-9b97-0ecfba2e3299)
 [![dependencies Status](https://david-dm.org/PolluxBot/polluxbot/status.svg)](https://david-dm.org/flicksie/polluxbot)
 [![Code Climate](https://codeclimate.com/github/PolluxBot/polluxbot/badges/gpa.svg)](https://codeclimate.com/github/PolluxBot/polluxbot) 
+[![codebeat badge](https://codebeat.co/badges/b0e186ac-5c4a-47be-9886-158955c8d8a1)](https://codebeat.co/projects/github-com-flicksie-polluxbot-master)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/PolluxBot/polluxbot/issues)
 
 
